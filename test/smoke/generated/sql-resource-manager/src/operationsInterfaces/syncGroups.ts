@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
   SyncFullSchemaProperties,
@@ -104,7 +103,7 @@ export interface SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Cancels a sync group synchronization.
@@ -173,7 +172,7 @@ export interface SyncGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SyncGroupsCreateOrUpdateResponse>,
+      PollOperationState<SyncGroupsCreateOrUpdateResponse>,
       SyncGroupsCreateOrUpdateResponse
     >
   >;
@@ -193,7 +192,7 @@ export interface SyncGroups {
     syncGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a sync group.
@@ -214,7 +213,7 @@ export interface SyncGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SyncGroupsUpdateResponse>,
+      PollOperationState<SyncGroupsUpdateResponse>,
       SyncGroupsUpdateResponse
     >
   >;

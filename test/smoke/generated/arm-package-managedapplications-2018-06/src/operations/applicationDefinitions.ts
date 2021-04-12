@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsGetResponse,
@@ -124,7 +124,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -166,7 +166,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+      PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
       ApplicationDefinitionsCreateOrUpdateResponse
     >
   > {
@@ -250,7 +250,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
@@ -292,7 +292,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+      PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
       ApplicationDefinitionsCreateOrUpdateByIdResponse
     >
   > {

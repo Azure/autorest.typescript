@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerDnsAlias,
   ServerDnsAliasesGetResponse,
@@ -62,7 +61,7 @@ export interface ServerDnsAliases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
+      PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
       ServerDnsAliasesCreateOrUpdateResponse
     >
   >;
@@ -80,7 +79,7 @@ export interface ServerDnsAliases {
     dnsAliasName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Acquires server DNS alias from another server.
@@ -98,6 +97,6 @@ export interface ServerDnsAliases {
     parameters: ServerDnsAliasAcquisition,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

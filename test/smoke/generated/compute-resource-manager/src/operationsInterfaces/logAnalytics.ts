@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RequestRateByIntervalInput,
   LogAnalyticsExportRequestRateByIntervalResponse,
@@ -31,7 +30,7 @@ export interface LogAnalytics {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
+      PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
       LogAnalyticsExportRequestRateByIntervalResponse
     >
   >;
@@ -47,7 +46,7 @@ export interface LogAnalytics {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LogAnalyticsExportThrottledRequestsResponse>,
+      PollOperationState<LogAnalyticsExportThrottledRequestsResponse>,
       LogAnalyticsExportThrottledRequestsResponse
     >
   >;

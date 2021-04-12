@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerAzureADAdministrator,
   AdministratorName,
@@ -66,7 +65,7 @@ export interface ServerAzureADAdministrators {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
+      PollOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
       ServerAzureADAdministratorsCreateOrUpdateResponse
     >
   >;
@@ -84,7 +83,7 @@ export interface ServerAzureADAdministrators {
     administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Disables Azure Active Directory only authentication on logical Server.
@@ -99,7 +98,7 @@ export interface ServerAzureADAdministrators {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
       >,
       ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Site,
   WebAppsListByResourceGroupNextOptionalParams,
@@ -1070,7 +1069,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateResponse>,
+      PollOperationState<WebAppsCreateOrUpdateResponse>,
       WebAppsCreateOrUpdateResponse
     >
   >;
@@ -1196,7 +1195,7 @@ export interface WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Replaces the application settings of an app.
@@ -1414,7 +1413,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsListPublishingCredentialsResponse>,
+      PollOperationState<WebAppsListPublishingCredentialsResponse>,
       WebAppsListPublishingCredentialsResponse
     >
   >;
@@ -1759,7 +1758,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateMSDeployOperationResponse>,
+      PollOperationState<WebAppsCreateMSDeployOperationResponse>,
       WebAppsCreateMSDeployOperationResponse
     >
   >;
@@ -1814,7 +1813,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateFunctionResponse>,
+      PollOperationState<WebAppsCreateFunctionResponse>,
       WebAppsCreateFunctionResponse
     >
   >;
@@ -2181,7 +2180,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+      PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
       WebAppsCreateInstanceMSDeployOperationResponse
     >
   >;
@@ -2304,7 +2303,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsMigrateStorageResponse>,
+      PollOperationState<WebAppsMigrateStorageResponse>,
       WebAppsMigrateStorageResponse
     >
   >;
@@ -2322,7 +2321,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsMigrateMySqlResponse>,
+      PollOperationState<WebAppsMigrateMySqlResponse>,
       WebAppsMigrateMySqlResponse
     >
   >;
@@ -2442,7 +2441,7 @@ export interface WebApps {
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   >;
@@ -2762,7 +2761,7 @@ export interface WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Restores a deleted web app to this web app.
@@ -2777,7 +2776,7 @@ export interface WebApps {
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Restores a web app from a snapshot.
@@ -2793,7 +2792,7 @@ export interface WebApps {
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
@@ -2822,7 +2821,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsInstallSiteExtensionResponse>,
+      PollOperationState<WebAppsInstallSiteExtensionResponse>,
       WebAppsInstallSiteExtensionResponse
     >
   >;
@@ -2853,7 +2852,7 @@ export interface WebApps {
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Gets the details of a web, mobile, or API app.
@@ -2887,7 +2886,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSlotResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
       WebAppsCreateOrUpdateSlotResponse
     >
   >;
@@ -3037,7 +3036,7 @@ export interface WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Replaces the application settings of an app.
@@ -3278,7 +3277,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+      PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
       WebAppsListPublishingCredentialsSlotResponse
     >
   >;
@@ -3663,7 +3662,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+      PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
       WebAppsCreateMSDeployOperationSlotResponse
     >
   >;
@@ -3726,7 +3725,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+      PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
       WebAppsCreateInstanceFunctionSlotResponse
     >
   >;
@@ -4154,7 +4153,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+      PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
       WebAppsCreateInstanceMSDeployOperationSlotResponse
     >
   >;
@@ -4420,7 +4419,7 @@ export interface WebApps {
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
       WebAppsStartWebSiteNetworkTraceOperationSlotResponse
     >
   >;
@@ -4656,7 +4655,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         WebAppsApproveOrRejectPrivateEndpointConnectionResponse
       >,
       WebAppsApproveOrRejectPrivateEndpointConnectionResponse
@@ -4676,7 +4675,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   >;
@@ -4872,7 +4871,7 @@ export interface WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Restores a deleted web app to this web app.
@@ -4889,7 +4888,7 @@ export interface WebApps {
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Restores a web app from a snapshot.
@@ -4907,7 +4906,7 @@ export interface WebApps {
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
@@ -4942,7 +4941,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+      PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
       WebAppsInstallSiteExtensionSlotResponse
     >
   >;
@@ -4979,7 +4978,7 @@ export interface WebApps {
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Swaps two deployment slots of an app.
@@ -4997,7 +4996,7 @@ export interface WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Gets the source control configuration of an app.
@@ -5030,7 +5029,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   >;
@@ -5092,7 +5091,7 @@ export interface WebApps {
     options?: WebAppsStartNetworkTraceSlotOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartNetworkTraceSlotResponse>,
+      PollOperationState<WebAppsStartNetworkTraceSlotResponse>,
       WebAppsStartNetworkTraceSlotResponse
     >
   >;
@@ -5386,7 +5385,7 @@ export interface WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Gets the source control configuration of an app.
@@ -5413,7 +5412,7 @@ export interface WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
       WebAppsCreateOrUpdateSourceControlResponse
     >
   >;
@@ -5464,7 +5463,7 @@ export interface WebApps {
     options?: WebAppsStartNetworkTraceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartNetworkTraceResponse>,
+      PollOperationState<WebAppsStartNetworkTraceResponse>,
       WebAppsStartNetworkTraceResponse
     >
   >;

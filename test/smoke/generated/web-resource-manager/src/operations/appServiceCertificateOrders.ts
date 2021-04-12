@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
   AppServiceCertificateResource,
@@ -311,7 +311,7 @@ export class AppServiceCertificateOrdersImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>,
+      PollOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>,
       AppServiceCertificateOrdersCreateOrUpdateResponse
     >
   > {
@@ -452,7 +452,7 @@ export class AppServiceCertificateOrdersImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
       >,
       AppServiceCertificateOrdersCreateOrUpdateCertificateResponse

@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
 
 /** Interface representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
@@ -25,7 +24,7 @@ export interface VpnServerConfigurationsAssociatedWithVirtualWan {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VpnServerConfigurationsAssociatedWithVirtualWanListResponse
       >,
       VpnServerConfigurationsAssociatedWithVirtualWanListResponse

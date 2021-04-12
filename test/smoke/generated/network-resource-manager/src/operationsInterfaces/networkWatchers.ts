@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkWatcher,
   NetworkWatchersCreateOrUpdateResponse,
@@ -97,7 +96,7 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a network watcher tags.
@@ -139,7 +138,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersVerifyIPFlowResponse>,
+      PollOperationState<NetworkWatchersVerifyIPFlowResponse>,
       NetworkWatchersVerifyIPFlowResponse
     >
   >;
@@ -157,7 +156,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetNextHopResponse>,
+      PollOperationState<NetworkWatchersGetNextHopResponse>,
       NetworkWatchersGetNextHopResponse
     >
   >;
@@ -175,7 +174,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
+      PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
       NetworkWatchersGetVMSecurityRulesResponse
     >
   >;
@@ -193,7 +192,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetTroubleshootingResponse>,
+      PollOperationState<NetworkWatchersGetTroubleshootingResponse>,
       NetworkWatchersGetTroubleshootingResponse
     >
   >;
@@ -211,7 +210,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
+      PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
       NetworkWatchersGetTroubleshootingResultResponse
     >
   >;
@@ -229,7 +228,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
+      PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
       NetworkWatchersSetFlowLogConfigurationResponse
     >
   >;
@@ -248,7 +247,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetFlowLogStatusResponse>,
+      PollOperationState<NetworkWatchersGetFlowLogStatusResponse>,
       NetworkWatchersGetFlowLogStatusResponse
     >
   >;
@@ -267,7 +266,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersCheckConnectivityResponse>,
+      PollOperationState<NetworkWatchersCheckConnectivityResponse>,
       NetworkWatchersCheckConnectivityResponse
     >
   >;
@@ -286,7 +285,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
+      PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
       NetworkWatchersGetAzureReachabilityReportResponse
     >
   >;
@@ -305,7 +304,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersListAvailableProvidersResponse>,
+      PollOperationState<NetworkWatchersListAvailableProvidersResponse>,
       NetworkWatchersListAvailableProvidersResponse
     >
   >;
@@ -327,7 +326,7 @@ export interface NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         NetworkWatchersGetNetworkConfigurationDiagnosticResponse
       >,
       NetworkWatchersGetNetworkConfigurationDiagnosticResponse

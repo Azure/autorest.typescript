@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceKey,
   ManagedInstanceKeysListByInstanceNextOptionalParams,
@@ -65,7 +64,7 @@ export interface ManagedInstanceKeys {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
+      PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
       ManagedInstanceKeysCreateOrUpdateResponse
     >
   >;
@@ -83,6 +82,6 @@ export interface ManagedInstanceKeys {
     keyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

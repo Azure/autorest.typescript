@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterface,
   NetworkInterfaceIPConfiguration,
@@ -98,7 +97,7 @@ export interface NetworkInterfaces {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets information about the specified network interface.
@@ -125,7 +124,7 @@ export interface NetworkInterfaces {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkInterfacesCreateOrUpdateResponse>,
+      PollOperationState<NetworkInterfacesCreateOrUpdateResponse>,
       NetworkInterfacesCreateOrUpdateResponse
     >
   >;
@@ -154,7 +153,7 @@ export interface NetworkInterfaces {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
+      PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
       NetworkInterfacesGetEffectiveRouteTableResponse
     >
   >;
@@ -170,7 +169,7 @@ export interface NetworkInterfaces {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
       >,
       NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse

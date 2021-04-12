@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
   CassandraTableGetResults,
@@ -239,7 +239,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesCreateUpdateCassandraKeyspaceResponse
       >,
       CassandraResourcesCreateUpdateCassandraKeyspaceResponse
@@ -286,7 +286,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -358,7 +358,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
       >,
       CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
@@ -464,7 +464,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
+      PollOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
       CassandraResourcesCreateUpdateCassandraTableResponse
     >
   > {
@@ -512,7 +512,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -590,7 +590,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesUpdateCassandraTableThroughputResponse
       >,
       CassandraResourcesUpdateCassandraTableThroughputResponse

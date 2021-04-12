@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilterRule,
   RouteFilterRulesGetResponse,
@@ -44,7 +43,7 @@ export interface RouteFilterRules {
     ruleName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the specified rule from a route filter.
@@ -76,7 +75,7 @@ export interface RouteFilterRules {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<RouteFilterRulesCreateOrUpdateResponse>,
+      PollOperationState<RouteFilterRulesCreateOrUpdateResponse>,
       RouteFilterRulesCreateOrUpdateResponse
     >
   >;

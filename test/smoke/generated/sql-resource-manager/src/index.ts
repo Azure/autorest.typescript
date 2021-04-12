@@ -11,4 +11,3 @@ export * from "./models";
 export { SqlManagementClient } from "./sqlManagementClient";
 export { SqlManagementClientContext } from "./sqlManagementClientContext";
 export * from "./operationsInterfaces";
-export { LROOperationState } from "./lro";

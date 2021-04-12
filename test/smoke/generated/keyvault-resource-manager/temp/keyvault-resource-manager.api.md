@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export interface AccessPolicyEntry {
@@ -294,26 +290,6 @@ export interface LogSpecification {
     name?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
-}
-
 // @public
 export type NetworkRuleAction = string;
 
@@ -405,7 +381,7 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnections {
-    delete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
+    delete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
     get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
     put(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsPutResponse>;
 }
@@ -618,7 +594,7 @@ export interface VaultProperties {
 // @public
 export interface Vaults {
     checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: coreHttp.OperationOptions): Promise<VaultsCheckNameAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
     delete(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<VaultsGetResponse>;
     getDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<VaultsGetDeletedResponse>;
@@ -626,7 +602,7 @@ export interface Vaults {
     listByResourceGroup(resourceGroupName: string, options?: VaultsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Vault>;
     listBySubscription(options?: VaultsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Vault>;
     listDeleted(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeletedVault>;
-    purgeDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    purgeDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     update(resourceGroupName: string, vaultName: string, parameters: VaultPatchParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateResponse>;
     updateAccessPolicy(resourceGroupName: string, vaultName: string, operationKind: AccessPolicyUpdateKind, parameters: VaultAccessPolicyParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateAccessPolicyResponse>;
 }

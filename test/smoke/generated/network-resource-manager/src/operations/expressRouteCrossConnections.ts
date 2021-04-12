@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsListResponse,
@@ -210,7 +210,7 @@ export class ExpressRouteCrossConnectionsImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
       ExpressRouteCrossConnectionsCreateOrUpdateResponse
     >
   > {
@@ -284,7 +284,7 @@ export class ExpressRouteCrossConnectionsImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
       ExpressRouteCrossConnectionsListArpTableResponse
     >
   > {
@@ -333,7 +333,7 @@ export class ExpressRouteCrossConnectionsImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
       >,
       ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
@@ -385,7 +385,7 @@ export class ExpressRouteCrossConnectionsImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
       ExpressRouteCrossConnectionsListRoutesTableResponse
     >
   > {

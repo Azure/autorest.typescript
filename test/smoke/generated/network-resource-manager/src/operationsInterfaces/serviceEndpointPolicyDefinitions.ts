@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServiceEndpointPolicyDefinition,
   ServiceEndpointPolicyDefinitionsGetResponse,
@@ -44,7 +43,7 @@ export interface ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Get the specified service endpoint policy definitions from service endpoint policy.
@@ -76,7 +75,9 @@ export interface ServiceEndpointPolicyDefinitions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>,
+      PollOperationState<
+        ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
+      >,
       ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
     >
   >;

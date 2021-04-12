@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export type AccessTier = "Hot" | "Cool";
@@ -1155,26 +1151,6 @@ export interface ListServiceSasResponse {
     readonly serviceSasToken?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
-}
-
 // @public
 export interface ManagementPolicies {
     createOrUpdate(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, properties: ManagementPolicy, options?: coreHttp.OperationOptions): Promise<ManagementPoliciesCreateOrUpdateResponse>;
@@ -1693,9 +1669,9 @@ export interface StorageAccountRegenerateKeyParameters {
 // @public
 export interface StorageAccounts {
     checkNameAvailability(accountName: StorageAccountCheckNameAvailabilityParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsCheckNameAvailabilityResponse>;
-    create(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
+    create(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
     delete(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    failover(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getProperties(resourceGroupName: string, accountName: string, options?: StorageAccountsGetPropertiesOptionalParams): Promise<StorageAccountsGetPropertiesResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<StorageAccount>;
     listAccountSAS(resourceGroupName: string, accountName: string, parameters: AccountSasParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsListAccountSASResponse>;
@@ -1703,7 +1679,7 @@ export interface StorageAccounts {
     listKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<StorageAccountsListKeysResponse>;
     listServiceSAS(resourceGroupName: string, accountName: string, parameters: ServiceSasParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsListServiceSASResponse>;
     regenerateKey(resourceGroupName: string, accountName: string, regenerateKey: StorageAccountRegenerateKeyParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsRegenerateKeyResponse>;
-    restoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
+    restoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
     revokeUserDelegationKeys(resourceGroupName: string, accountName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     update(resourceGroupName: string, accountName: string, parameters: StorageAccountUpdateParameters, options?: coreHttp.OperationOptions): Promise<StorageAccountsUpdateResponse>;
 }

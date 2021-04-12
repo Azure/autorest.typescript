@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachine,
   VirtualMachinesListAllNextOptionalParams,
@@ -85,7 +84,7 @@ export interface VirtualMachines {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachinesCaptureResponse>,
+      PollOperationState<VirtualMachinesCaptureResponse>,
       VirtualMachinesCaptureResponse
     >
   >;
@@ -104,7 +103,7 @@ export interface VirtualMachines {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachinesCreateOrUpdateResponse>,
+      PollOperationState<VirtualMachinesCreateOrUpdateResponse>,
       VirtualMachinesCreateOrUpdateResponse
     >
   >;
@@ -122,7 +121,7 @@ export interface VirtualMachines {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachinesUpdateResponse>,
+      PollOperationState<VirtualMachinesUpdateResponse>,
       VirtualMachinesUpdateResponse
     >
   >;
@@ -137,7 +136,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Retrieves information about the model view or the instance view of a virtual machine.
@@ -173,7 +172,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Shuts down the virtual machine and releases the compute resources. You are not billed for the
@@ -187,7 +186,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Sets the OS state of the virtual machine to generalized. It is recommended to sysprep the virtual
@@ -217,7 +216,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: VirtualMachinesPowerOffOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to reapply a virtual machine's state.
@@ -230,7 +229,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to restart a virtual machine.
@@ -243,7 +242,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to start a virtual machine.
@@ -256,7 +255,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Shuts down the virtual machine, moves it to a new node, and powers it back on.
@@ -269,7 +268,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
@@ -282,7 +281,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: VirtualMachinesReimageOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to perform maintenance on a virtual machine.
@@ -295,7 +294,7 @@ export interface VirtualMachines {
     vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to simulate the eviction of spot virtual machine. The eviction will occur within 30
@@ -323,7 +322,7 @@ export interface VirtualMachines {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachinesRunCommandResponse>,
+      PollOperationState<VirtualMachinesRunCommandResponse>,
       VirtualMachinesRunCommandResponse
     >
   >;

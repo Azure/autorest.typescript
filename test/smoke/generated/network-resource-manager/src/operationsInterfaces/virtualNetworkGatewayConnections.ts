@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGatewayConnection,
   VirtualNetworkGatewayConnectionsCreateOrUpdateResponse,
@@ -56,7 +55,9 @@ export interface VirtualNetworkGatewayConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>,
+      PollOperationState<
+        VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
+      >,
       VirtualNetworkGatewayConnectionsCreateOrUpdateResponse
     >
   >;
@@ -82,7 +83,7 @@ export interface VirtualNetworkGatewayConnections {
     virtualNetworkGatewayConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a virtual network gateway connection tags.
@@ -98,7 +99,7 @@ export interface VirtualNetworkGatewayConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
+      PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
       VirtualNetworkGatewayConnectionsUpdateTagsResponse
     >
   >;
@@ -119,7 +120,7 @@ export interface VirtualNetworkGatewayConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
+      PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
       VirtualNetworkGatewayConnectionsSetSharedKeyResponse
     >
   >;
@@ -153,7 +154,9 @@ export interface VirtualNetworkGatewayConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>,
+      PollOperationState<
+        VirtualNetworkGatewayConnectionsResetSharedKeyResponse
+      >,
       VirtualNetworkGatewayConnectionsResetSharedKeyResponse
     >
   >;
@@ -169,7 +172,7 @@ export interface VirtualNetworkGatewayConnections {
     options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
       >,
       VirtualNetworkGatewayConnectionsStartPacketCaptureResponse
@@ -190,7 +193,7 @@ export interface VirtualNetworkGatewayConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
       >,
       VirtualNetworkGatewayConnectionsStopPacketCaptureResponse

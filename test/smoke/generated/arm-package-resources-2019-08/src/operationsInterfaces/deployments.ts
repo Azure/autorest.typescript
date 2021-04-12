@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentExtended,
   DeploymentsListAtScopeNextOptionalParams,
@@ -113,7 +112,7 @@ export interface Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the deployment exists.
@@ -140,7 +139,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
       DeploymentsCreateOrUpdateAtScopeResponse
     >
   >;
@@ -208,7 +207,7 @@ export interface Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the deployment exists.
@@ -231,7 +230,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
       DeploymentsCreateOrUpdateAtTenantScopeResponse
     >
   >;
@@ -293,7 +292,7 @@ export interface Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the deployment exists.
@@ -320,7 +319,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
       >,
       DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
@@ -390,7 +389,7 @@ export interface Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the deployment exists.
@@ -413,7 +412,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
     >
   >;
@@ -461,7 +460,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
+      PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
       DeploymentsWhatIfAtSubscriptionScopeResponse
     >
   >;
@@ -493,7 +492,7 @@ export interface Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the deployment exists.
@@ -522,7 +521,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateResponse>,
       DeploymentsCreateOrUpdateResponse
     >
   >;
@@ -580,7 +579,7 @@ export interface Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsWhatIfResponse>,
+      PollOperationState<DeploymentsWhatIfResponse>,
       DeploymentsWhatIfResponse
     >
   >;

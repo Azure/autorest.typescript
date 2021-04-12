@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FailoverGroup,
   FailoverGroupsGetResponse,
@@ -67,7 +66,7 @@ export interface FailoverGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<FailoverGroupsCreateOrUpdateResponse>,
+      PollOperationState<FailoverGroupsCreateOrUpdateResponse>,
       FailoverGroupsCreateOrUpdateResponse
     >
   >;
@@ -85,7 +84,7 @@ export interface FailoverGroups {
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a failover group.
@@ -104,7 +103,7 @@ export interface FailoverGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<FailoverGroupsUpdateResponse>,
+      PollOperationState<FailoverGroupsUpdateResponse>,
       FailoverGroupsUpdateResponse
     >
   >;
@@ -123,7 +122,7 @@ export interface FailoverGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<FailoverGroupsFailoverResponse>,
+      PollOperationState<FailoverGroupsFailoverResponse>,
       FailoverGroupsFailoverResponse
     >
   >;
@@ -142,7 +141,7 @@ export interface FailoverGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
+      PollOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
       FailoverGroupsForceFailoverAllowDataLossResponse
     >
   >;

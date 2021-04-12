@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkWatcher,
   NetworkWatchersCreateOrUpdateResponse,
@@ -196,7 +196,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -324,7 +324,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersVerifyIPFlowResponse>,
+      PollOperationState<NetworkWatchersVerifyIPFlowResponse>,
       NetworkWatchersVerifyIPFlowResponse
     >
   > {
@@ -370,7 +370,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetNextHopResponse>,
+      PollOperationState<NetworkWatchersGetNextHopResponse>,
       NetworkWatchersGetNextHopResponse
     >
   > {
@@ -416,7 +416,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
+      PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
       NetworkWatchersGetVMSecurityRulesResponse
     >
   > {
@@ -462,7 +462,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetTroubleshootingResponse>,
+      PollOperationState<NetworkWatchersGetTroubleshootingResponse>,
       NetworkWatchersGetTroubleshootingResponse
     >
   > {
@@ -508,7 +508,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
+      PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
       NetworkWatchersGetTroubleshootingResultResponse
     >
   > {
@@ -554,7 +554,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
+      PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
       NetworkWatchersSetFlowLogConfigurationResponse
     >
   > {
@@ -601,7 +601,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetFlowLogStatusResponse>,
+      PollOperationState<NetworkWatchersGetFlowLogStatusResponse>,
       NetworkWatchersGetFlowLogStatusResponse
     >
   > {
@@ -648,7 +648,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersCheckConnectivityResponse>,
+      PollOperationState<NetworkWatchersCheckConnectivityResponse>,
       NetworkWatchersCheckConnectivityResponse
     >
   > {
@@ -695,7 +695,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
+      PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
       NetworkWatchersGetAzureReachabilityReportResponse
     >
   > {
@@ -742,7 +742,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkWatchersListAvailableProvidersResponse>,
+      PollOperationState<NetworkWatchersListAvailableProvidersResponse>,
       NetworkWatchersListAvailableProvidersResponse
     >
   > {
@@ -792,7 +792,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         NetworkWatchersGetNetworkConfigurationDiagnosticResponse
       >,
       NetworkWatchersGetNetworkConfigurationDiagnosticResponse

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Image,
   ImagesCreateOrUpdateResponse,
@@ -52,7 +51,7 @@ export interface Images {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ImagesCreateOrUpdateResponse>,
+      PollOperationState<ImagesCreateOrUpdateResponse>,
       ImagesCreateOrUpdateResponse
     >
   >;
@@ -69,7 +68,7 @@ export interface Images {
     parameters: ImageUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
+    PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
   >;
   /**
    * Deletes an Image.
@@ -82,7 +81,7 @@ export interface Images {
     imageName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets an image.

@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse,
@@ -40,7 +39,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse
       >,
       VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse
@@ -64,7 +63,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>,
+      PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>,
       VirtualMachineScaleSetVMExtensionsUpdateResponse
     >
   >;
@@ -83,7 +82,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to get the VMSS VM extension.

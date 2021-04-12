@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
   SqlContainerGetResults,
@@ -480,7 +480,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
       SqlResourcesCreateUpdateSqlDatabaseResponse
     >
   > {
@@ -525,7 +525,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -597,7 +597,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+      PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
       SqlResourcesUpdateSqlDatabaseThroughputResponse
     >
   > {
@@ -700,7 +700,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
       SqlResourcesCreateUpdateSqlContainerResponse
     >
   > {
@@ -748,7 +748,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -825,7 +825,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+      PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
       SqlResourcesUpdateSqlContainerThroughputResponse
     >
   > {
@@ -938,7 +938,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
       SqlResourcesCreateUpdateSqlStoredProcedureResponse
     >
   > {
@@ -989,7 +989,7 @@ export class SqlResourcesImpl implements SqlResources {
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1100,7 +1100,9 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
+      PollOperationState<
+        SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
+      >,
       SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
     >
   > {
@@ -1151,7 +1153,7 @@ export class SqlResourcesImpl implements SqlResources {
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1261,7 +1263,7 @@ export class SqlResourcesImpl implements SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
       SqlResourcesCreateUpdateSqlTriggerResponse
     >
   > {
@@ -1312,7 +1314,7 @@ export class SqlResourcesImpl implements SqlResources {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

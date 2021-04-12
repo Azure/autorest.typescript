@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentExtended,
   DeploymentsListAtScopeNextOptionalParams,
@@ -335,7 +335,7 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -399,7 +399,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
       DeploymentsCreateOrUpdateAtScopeResponse
     >
   > {
@@ -558,7 +558,7 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -616,7 +616,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
       DeploymentsCreateOrUpdateAtTenantScopeResponse
     >
   > {
@@ -761,7 +761,7 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -825,7 +825,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
       >,
       DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
@@ -986,7 +986,7 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1044,7 +1044,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
     >
   > {
@@ -1149,7 +1149,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
+      PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
       DeploymentsWhatIfAtSubscriptionScopeResponse
     >
   > {
@@ -1234,7 +1234,7 @@ export class DeploymentsImpl implements Deployments {
     deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1300,7 +1300,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsCreateOrUpdateResponse>,
+      PollOperationState<DeploymentsCreateOrUpdateResponse>,
       DeploymentsCreateOrUpdateResponse
     >
   > {
@@ -1419,7 +1419,7 @@ export class DeploymentsImpl implements Deployments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DeploymentsWhatIfResponse>,
+      PollOperationState<DeploymentsWhatIfResponse>,
       DeploymentsWhatIfResponse
     >
   > {

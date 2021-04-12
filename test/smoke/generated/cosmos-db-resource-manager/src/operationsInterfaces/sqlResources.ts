@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
   SqlContainerGetResults,
@@ -140,7 +139,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
       SqlResourcesCreateUpdateSqlDatabaseResponse
     >
   >;
@@ -157,7 +156,7 @@ export interface SqlResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the SQL database under an existing Azure Cosmos DB database account with
@@ -190,7 +189,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+      PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
       SqlResourcesUpdateSqlDatabaseThroughputResponse
     >
   >;
@@ -227,7 +226,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
       SqlResourcesCreateUpdateSqlContainerResponse
     >
   >;
@@ -246,7 +245,7 @@ export interface SqlResources {
     containerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the SQL container under an existing Azure Cosmos DB database account.
@@ -282,7 +281,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+      PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
       SqlResourcesUpdateSqlContainerThroughputResponse
     >
   >;
@@ -324,7 +323,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
       SqlResourcesCreateUpdateSqlStoredProcedureResponse
     >
   >;
@@ -345,7 +344,7 @@ export interface SqlResources {
     storedProcedureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the SQL userDefinedFunction under an existing Azure Cosmos DB database account.
@@ -385,7 +384,9 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
+      PollOperationState<
+        SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
+      >,
       SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
     >
   >;
@@ -406,7 +407,7 @@ export interface SqlResources {
     userDefinedFunctionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the SQL trigger under an existing Azure Cosmos DB database account.
@@ -445,7 +446,7 @@ export interface SqlResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+      PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
       SqlResourcesCreateUpdateSqlTriggerResponse
     >
   >;
@@ -466,6 +467,6 @@ export interface SqlResources {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

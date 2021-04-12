@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsGetResponse,
@@ -66,7 +65,7 @@ export interface ExpressRouteCrossConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
       ExpressRouteCrossConnectionsCreateOrUpdateResponse
     >
   >;
@@ -100,7 +99,7 @@ export interface ExpressRouteCrossConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
       ExpressRouteCrossConnectionsListArpTableResponse
     >
   >;
@@ -120,7 +119,7 @@ export interface ExpressRouteCrossConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
       >,
       ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
@@ -143,7 +142,7 @@ export interface ExpressRouteCrossConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
+      PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
       ExpressRouteCrossConnectionsListRoutesTableResponse
     >
   >;

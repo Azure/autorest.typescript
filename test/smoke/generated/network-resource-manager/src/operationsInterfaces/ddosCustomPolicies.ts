@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DdosCustomPoliciesGetResponse,
   DdosCustomPolicy,
@@ -30,7 +29,7 @@ export interface DdosCustomPolicies {
     ddosCustomPolicyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets information about the specified DDoS custom policy.
@@ -57,7 +56,7 @@ export interface DdosCustomPolicies {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DdosCustomPoliciesCreateOrUpdateResponse>,
+      PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>,
       DdosCustomPoliciesCreateOrUpdateResponse
     >
   >;

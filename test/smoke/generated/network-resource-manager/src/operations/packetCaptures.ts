@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PacketCaptureResult,
   PacketCapture,
@@ -113,7 +113,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<PacketCapturesCreateResponse>,
+      PollOperationState<PacketCapturesCreateResponse>,
       PacketCapturesCreateResponse
     >
   > {
@@ -184,7 +184,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -227,7 +227,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +271,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<PacketCapturesGetStatusResponse>,
+      PollOperationState<PacketCapturesGetStatusResponse>,
       PacketCapturesGetStatusResponse
     >
   > {

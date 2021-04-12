@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteConnection,
   ExpressRouteConnectionsCreateOrUpdateResponse,
@@ -35,7 +34,7 @@ export interface ExpressRouteConnections {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>,
+      PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>,
       ExpressRouteConnectionsCreateOrUpdateResponse
     >
   >;
@@ -65,7 +64,7 @@ export interface ExpressRouteConnections {
     connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Lists ExpressRouteConnections.

@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -176,7 +176,7 @@ export class ResourcesImpl implements Resources {
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       sourceResourceGroupName,
@@ -220,7 +220,7 @@ export class ResourcesImpl implements Resources {
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       sourceResourceGroupName,
@@ -319,7 +319,7 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -374,7 +374,7 @@ export class ResourcesImpl implements Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesCreateOrUpdateResponse>,
+      PollOperationState<ResourcesCreateOrUpdateResponse>,
       ResourcesCreateOrUpdateResponse
     >
   > {
@@ -432,7 +432,7 @@ export class ResourcesImpl implements Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesUpdateResponse>,
+      PollOperationState<ResourcesUpdateResponse>,
       ResourcesUpdateResponse
     >
   > {
@@ -539,7 +539,7 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,
@@ -583,7 +583,7 @@ export class ResourcesImpl implements Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesCreateOrUpdateByIdResponse>,
+      PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
       ResourcesCreateOrUpdateByIdResponse
     >
   > {
@@ -630,7 +630,7 @@ export class ResourcesImpl implements Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesUpdateByIdResponse>,
+      PollOperationState<ResourcesUpdateByIdResponse>,
       ResourcesUpdateByIdResponse
     >
   > {

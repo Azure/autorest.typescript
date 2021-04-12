@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetVM,
   VirtualMachineScaleSetVMsListNextOptionalParams,
@@ -51,7 +50,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
@@ -67,7 +66,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
@@ -84,7 +83,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a virtual machine of a VM scale set.
@@ -102,7 +101,7 @@ export interface VirtualMachineScaleSetVMs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
+      PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
       VirtualMachineScaleSetVMsUpdateResponse
     >
   >;
@@ -119,7 +118,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets a virtual machine from a VM scale set.
@@ -162,7 +161,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Restarts a virtual machine in a VM scale set.
@@ -177,7 +176,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Starts a virtual machine in a VM scale set.
@@ -192,7 +191,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
@@ -208,7 +207,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Performs maintenance on a virtual machine in a VM scale set.
@@ -223,7 +222,7 @@ export interface VirtualMachineScaleSetVMs {
     instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will
@@ -255,7 +254,7 @@ export interface VirtualMachineScaleSetVMs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,
+      PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,
       VirtualMachineScaleSetVMsRunCommandResponse
     >
   >;

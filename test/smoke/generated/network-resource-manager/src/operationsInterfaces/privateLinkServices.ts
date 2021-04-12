@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateLinkService,
   PrivateEndpointConnection,
@@ -89,7 +88,7 @@ export interface PrivateLinkServices {
     serviceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the specified private link service by resource group.
@@ -116,7 +115,7 @@ export interface PrivateLinkServices {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
+      PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
       PrivateLinkServicesCreateOrUpdateResponse
     >
   >;
@@ -162,7 +161,7 @@ export interface PrivateLinkServices {
     peConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether the subscription is visible to private link service.

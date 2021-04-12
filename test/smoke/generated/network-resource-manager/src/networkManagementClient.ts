@@ -9,8 +9,8 @@
 import * as coreHttp from "@azure/core-http";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "./lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationGatewaysImpl,
   ApplicationSecurityGroupsImpl,
@@ -719,7 +719,9 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkManagementClientPutBastionShareableLinkResponse>,
+      PollOperationState<
+        NetworkManagementClientPutBastionShareableLinkResponse
+      >,
       NetworkManagementClientPutBastionShareableLinkResponse
     >
   > {
@@ -764,7 +766,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bslRequest: BastionShareableLinkListRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -831,7 +833,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NetworkManagementClientGetActiveSessionsResponse>,
+      PollOperationState<NetworkManagementClientGetActiveSessionsResponse>,
       NetworkManagementClientGetActiveSessionsResponse
     >
   > {
@@ -948,7 +950,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
       >,
       NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse

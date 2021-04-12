@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   P2SVpnGateway,
   P2SVpnGatewaysGetResponse,
@@ -70,7 +69,7 @@ export interface P2SVpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
+      PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
       P2SVpnGatewaysCreateOrUpdateResponse
     >
   >;
@@ -98,7 +97,7 @@ export interface P2SVpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
@@ -114,7 +113,7 @@ export interface P2SVpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
+      PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
       P2SVpnGatewaysGenerateVpnProfileResponse
     >
   >;
@@ -131,7 +130,7 @@ export interface P2SVpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
+      PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
       P2SVpnGatewaysGetP2SVpnConnectionHealthResponse
     >
   >;
@@ -150,7 +149,7 @@ export interface P2SVpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
       >,
       P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
@@ -169,6 +168,6 @@ export interface P2SVpnGateways {
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }
