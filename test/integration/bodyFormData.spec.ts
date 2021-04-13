@@ -26,7 +26,7 @@ describe("Integration tests for BodyFormData", () => {
     }
   });
 
-  it.skip("should correctly accept file via body", async function() {
+  it("should correctly accept file via body", async function() {
     client = new BodyFormDataClient();
     const fileName: string = `sample.png`;
     const filePath: string = `${__dirname}/../res/${fileName}`;
@@ -35,8 +35,11 @@ describe("Integration tests for BodyFormData", () => {
       fileContent
     );
     if (result.readableStreamBody) {
-      const buff = await readStreamToBuffer(result.readableStreamBody);
-      assert.deepEqual(buff, fileContent);
+      let str: string = "";
+      for await (let chunk of result.readableStreamBody) {
+        str += chunk as string;
+      }
+      assert.deepEqual(str, fileContent.toString());
     } else {
       assert.fail("ReadableStreamBody must not be null!!!");
     }
@@ -74,18 +77,3 @@ describe("Integration tests for BodyFormData", () => {
     assert(downloadNotified);
   });
 });
-
-const readStreamToBuffer = async function(
-  strm: NodeJS.ReadableStream
-): Promise<Buffer> {
-  return new Promise<Buffer>((resolve, reject) => {
-    const bufs: Buffer[] = [];
-    strm.on("data", function(d: Buffer) {
-      bufs.push(d);
-    });
-    strm.on("end", function() {
-      resolve(Buffer.concat(bufs));
-    });
-    strm.on("error", reject);
-  });
-};
