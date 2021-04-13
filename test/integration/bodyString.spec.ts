@@ -95,7 +95,6 @@ describe("Integration tests for BodyString", () => {
 
     it("should putEnumReferencedConstant", async function() {
       await client.enum.putReferencedConstant({
-        field1: "",
         colorConstant: "green-color"
       });
     });

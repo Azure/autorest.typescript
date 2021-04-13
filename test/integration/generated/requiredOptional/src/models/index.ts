@@ -69,6 +69,18 @@ export interface ImplicitPutOptionalBodyOptionalParams
 }
 
 /** Optional parameters. */
+export interface ImplicitPutOptionalBinaryBodyOptionalParams
+  extends coreHttp.OperationOptions {
+  bodyParameter?: coreHttp.HttpRequestBody;
+}
+
+/** Optional parameters. */
+export interface ExplicitPutOptionalBinaryBodyOptionalParams
+  extends coreHttp.OperationOptions {
+  bodyParameter?: coreHttp.HttpRequestBody;
+}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalIntegerParameterOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: number;

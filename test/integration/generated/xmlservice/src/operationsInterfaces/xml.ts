@@ -32,7 +32,11 @@ import {
   XmlListBlobsResponse,
   JsonInput,
   XmlJsonOutputResponse,
-  XmlGetXMsTextResponse
+  XmlGetXMsTextResponse,
+  XmlGetBytesResponse,
+  ModelWithByteProperty,
+  XmlGetUriResponse,
+  ModelWithUrlProperty
 } from "../models";
 
 /** Interface representing a Xml. */
@@ -269,4 +273,32 @@ export interface Xml {
   getXMsText(
     options?: coreHttp.OperationOptions
   ): Promise<XmlGetXMsTextResponse>;
+  /**
+   * Get an XML document with binary property
+   * @param options The options parameters.
+   */
+  getBytes(options?: coreHttp.OperationOptions): Promise<XmlGetBytesResponse>;
+  /**
+   * Put an XML document with binary property
+   * @param slideshow
+   * @param options The options parameters.
+   */
+  putBinary(
+    slideshow: ModelWithByteProperty,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Get an XML document with uri property
+   * @param options The options parameters.
+   */
+  getUri(options?: coreHttp.OperationOptions): Promise<XmlGetUriResponse>;
+  /**
+   * Put an XML document with uri property
+   * @param model
+   * @param options The options parameters.
+   */
+  putUri(
+    model: ModelWithUrlProperty,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse>;
 }

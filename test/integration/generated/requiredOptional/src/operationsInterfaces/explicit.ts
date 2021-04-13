@@ -8,6 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPostOptionalIntegerParameterOptionalParams,
   IntWrapper,
   ExplicitPostOptionalIntegerPropertyOptionalParams,
@@ -28,6 +29,22 @@ import {
 
 /** Interface representing a Explicit. */
 export interface Explicit {
+  /**
+   * Test explicitly optional body parameter
+   * @param options The options parameters.
+   */
+  putOptionalBinaryBody(
+    options?: ExplicitPutOptionalBinaryBodyOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Test explicitly required body parameter
+   * @param bodyParameter
+   * @param options The options parameters.
+   */
+  putRequiredBinaryBody(
+    bodyParameter: coreHttp.HttpRequestBody,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly required integer. Please put null and the client library should throw before the
    * request is sent.
