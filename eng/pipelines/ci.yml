@@ -46,11 +46,6 @@ stages:
         dependsOn: Build
         strategy:
           matrix:
-            Linux_Node8:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "8.x"
-              TestType: "node"
             Linux_Node10:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-18.04"
