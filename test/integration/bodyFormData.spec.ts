@@ -19,8 +19,11 @@ describe("Integration tests for BodyFormData", () => {
       fileName
     );
     if (result.readableStreamBody) {
-      const buff = await readStreamToBuffer(result.readableStreamBody);
-      assert.deepEqual(buff, fileContent);
+      const buff: Buffer[] = [];
+      for await (let chunk of result.readableStreamBody) {
+        buff.push(chunk as Buffer);
+      }
+      assert.deepEqual(Buffer.concat(buff), fileContent);
     } else {
       assert.fail("ReadableStreamBody must not be null!!!");
     }
