@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
@@ -87,7 +86,7 @@ export interface LROs {
     options?: LROsPut200SucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut200SucceededResponse>,
+      PollOperationState<LROsPut200SucceededResponse>,
       LROsPut200SucceededResponse
     >
   >;
@@ -100,7 +99,7 @@ export interface LROs {
     options?: LROsPut201SucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut201SucceededResponse>,
+      PollOperationState<LROsPut201SucceededResponse>,
       LROsPut201SucceededResponse
     >
   >;
@@ -113,7 +112,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPost202ListResponse>,
+      PollOperationState<LROsPost202ListResponse>,
       LROsPost202ListResponse
     >
   >;
@@ -126,7 +125,7 @@ export interface LROs {
     options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut200SucceededNoStateResponse>,
+      PollOperationState<LROsPut200SucceededNoStateResponse>,
       LROsPut200SucceededNoStateResponse
     >
   >;
@@ -139,7 +138,7 @@ export interface LROs {
     options?: LROsPut202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut202Retry200Response>,
+      PollOperationState<LROsPut202Retry200Response>,
       LROsPut202Retry200Response
     >
   >;
@@ -153,7 +152,7 @@ export interface LROs {
     options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut201CreatingSucceeded200Response>,
+      PollOperationState<LROsPut201CreatingSucceeded200Response>,
       LROsPut201CreatingSucceeded200Response
     >
   >;
@@ -167,7 +166,7 @@ export interface LROs {
     options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut200UpdatingSucceeded204Response>,
+      PollOperationState<LROsPut200UpdatingSucceeded204Response>,
       LROsPut200UpdatingSucceeded204Response
     >
   >;
@@ -181,7 +180,7 @@ export interface LROs {
     options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut201CreatingFailed200Response>,
+      PollOperationState<LROsPut201CreatingFailed200Response>,
       LROsPut201CreatingFailed200Response
     >
   >;
@@ -195,7 +194,7 @@ export interface LROs {
     options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPut200Acceptedcanceled200Response>,
+      PollOperationState<LROsPut200Acceptedcanceled200Response>,
       LROsPut200Acceptedcanceled200Response
     >
   >;
@@ -208,7 +207,7 @@ export interface LROs {
     options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutNoHeaderInRetryResponse>,
+      PollOperationState<LROsPutNoHeaderInRetryResponse>,
       LROsPutNoHeaderInRetryResponse
     >
   >;
@@ -222,7 +221,7 @@ export interface LROs {
     options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncRetrySucceededResponse>,
+      PollOperationState<LROsPutAsyncRetrySucceededResponse>,
       LROsPutAsyncRetrySucceededResponse
     >
   >;
@@ -236,7 +235,7 @@ export interface LROs {
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncNoRetrySucceededResponse>,
+      PollOperationState<LROsPutAsyncNoRetrySucceededResponse>,
       LROsPutAsyncNoRetrySucceededResponse
     >
   >;
@@ -250,7 +249,7 @@ export interface LROs {
     options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncRetryFailedResponse>,
+      PollOperationState<LROsPutAsyncRetryFailedResponse>,
       LROsPutAsyncRetryFailedResponse
     >
   >;
@@ -264,7 +263,7 @@ export interface LROs {
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncNoRetrycanceledResponse>,
+      PollOperationState<LROsPutAsyncNoRetrycanceledResponse>,
       LROsPutAsyncNoRetrycanceledResponse
     >
   >;
@@ -277,7 +276,7 @@ export interface LROs {
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncNoHeaderInRetryResponse>,
+      PollOperationState<LROsPutAsyncNoHeaderInRetryResponse>,
       LROsPutAsyncNoHeaderInRetryResponse
     >
   >;
@@ -289,7 +288,7 @@ export interface LROs {
     options?: LROsPutNonResourceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutNonResourceResponse>,
+      PollOperationState<LROsPutNonResourceResponse>,
       LROsPutNonResourceResponse
     >
   >;
@@ -301,7 +300,7 @@ export interface LROs {
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncNonResourceResponse>,
+      PollOperationState<LROsPutAsyncNonResourceResponse>,
       LROsPutAsyncNonResourceResponse
     >
   >;
@@ -313,7 +312,7 @@ export interface LROs {
     options?: LROsPutSubResourceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutSubResourceResponse>,
+      PollOperationState<LROsPutSubResourceResponse>,
       LROsPutSubResourceResponse
     >
   >;
@@ -325,7 +324,7 @@ export interface LROs {
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPutAsyncSubResourceResponse>,
+      PollOperationState<LROsPutAsyncSubResourceResponse>,
       LROsPutAsyncSubResourceResponse
     >
   >;
@@ -339,7 +338,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
+      PollOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
       LROsDeleteProvisioning202Accepted200SucceededResponse
     >
   >;
@@ -353,7 +352,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
+      PollOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
       LROsDeleteProvisioning202DeletingFailed200Response
     >
   >;
@@ -367,7 +366,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
+      PollOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
       LROsDeleteProvisioning202Deletingcanceled200Response
     >
   >;
@@ -378,7 +377,7 @@ export interface LROs {
   delete204Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Long running delete request, service returns a 202 to the initial request. Polls return this value
@@ -389,7 +388,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDelete202Retry200Response>,
+      PollOperationState<LROsDelete202Retry200Response>,
       LROsDelete202Retry200Response
     >
   >;
@@ -402,7 +401,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDelete202NoRetry204Response>,
+      PollOperationState<LROsDelete202NoRetry204Response>,
       LROsDelete202NoRetry204Response
     >
   >;
@@ -415,7 +414,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteNoHeaderInRetryResponse>,
+      PollOperationState<LROsDeleteNoHeaderInRetryResponse>,
       LROsDeleteNoHeaderInRetryResponse
     >
   >;
@@ -428,7 +427,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
+      PollOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
       LROsDeleteAsyncNoHeaderInRetryResponse
     >
   >;
@@ -441,7 +440,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteAsyncRetrySucceededResponse>,
+      PollOperationState<LROsDeleteAsyncRetrySucceededResponse>,
       LROsDeleteAsyncRetrySucceededResponse
     >
   >;
@@ -454,7 +453,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
+      PollOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
       LROsDeleteAsyncNoRetrySucceededResponse
     >
   >;
@@ -467,7 +466,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteAsyncRetryFailedResponse>,
+      PollOperationState<LROsDeleteAsyncRetryFailedResponse>,
       LROsDeleteAsyncRetryFailedResponse
     >
   >;
@@ -480,7 +479,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsDeleteAsyncRetrycanceledResponse>,
+      PollOperationState<LROsDeleteAsyncRetrycanceledResponse>,
       LROsDeleteAsyncRetrycanceledResponse
     >
   >;
@@ -493,7 +492,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPost200WithPayloadResponse>,
+      PollOperationState<LROsPost200WithPayloadResponse>,
       LROsPost200WithPayloadResponse
     >
   >;
@@ -506,7 +505,7 @@ export interface LROs {
     options?: LROsPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPost202Retry200Response>,
+      PollOperationState<LROsPost202Retry200Response>,
       LROsPost202Retry200Response
     >
   >;
@@ -519,7 +518,7 @@ export interface LROs {
     options?: LROsPost202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPost202NoRetry204Response>,
+      PollOperationState<LROsPost202NoRetry204Response>,
       LROsPost202NoRetry204Response
     >
   >;
@@ -532,7 +531,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
+      PollOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
       LROsPostDoubleHeadersFinalLocationGetResponse
     >
   >;
@@ -546,7 +545,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
+      PollOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
       LROsPostDoubleHeadersFinalAzureHeaderGetResponse
     >
   >;
@@ -560,7 +559,7 @@ export interface LROs {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
       >,
       LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
@@ -576,7 +575,7 @@ export interface LROs {
     options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostAsyncRetrySucceededResponse>,
+      PollOperationState<LROsPostAsyncRetrySucceededResponse>,
       LROsPostAsyncRetrySucceededResponse
     >
   >;
@@ -590,7 +589,7 @@ export interface LROs {
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostAsyncNoRetrySucceededResponse>,
+      PollOperationState<LROsPostAsyncNoRetrySucceededResponse>,
       LROsPostAsyncNoRetrySucceededResponse
     >
   >;
@@ -604,7 +603,7 @@ export interface LROs {
     options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostAsyncRetryFailedResponse>,
+      PollOperationState<LROsPostAsyncRetryFailedResponse>,
       LROsPostAsyncRetryFailedResponse
     >
   >;
@@ -618,7 +617,7 @@ export interface LROs {
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsPostAsyncRetrycanceledResponse>,
+      PollOperationState<LROsPostAsyncRetrycanceledResponse>,
       LROsPostAsyncRetrycanceledResponse
     >
   >;

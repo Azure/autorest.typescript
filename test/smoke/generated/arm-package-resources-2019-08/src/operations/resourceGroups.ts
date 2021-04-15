@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ResourceGroup,
   ResourceGroupsListNextOptionalParams,
@@ -137,7 +137,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -219,7 +219,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourceGroupsExportTemplateResponse>,
+      PollOperationState<ResourceGroupsExportTemplateResponse>,
       ResourceGroupsExportTemplateResponse
     >
   > {

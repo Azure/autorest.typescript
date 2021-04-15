@@ -46,15 +46,4 @@ export function generateIndexFile(
       }
     ]);
   }
-
-  const includeLRO = operationGroups.find(hasLROOperation) !== undefined;
-
-  if (includeLRO) {
-    indexFile.addExportDeclarations([
-      {
-        moduleSpecifier: `./lro`,
-        namedExports: ["LROOperationState"]
-      }
-    ]);
-  }
 }

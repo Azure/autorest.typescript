@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryImage,
   GalleryImagesCreateOrUpdateResponse,
@@ -129,7 +129,7 @@ export class GalleryImagesImpl implements GalleryImages {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GalleryImagesCreateOrUpdateResponse>,
+      PollOperationState<GalleryImagesCreateOrUpdateResponse>,
       GalleryImagesCreateOrUpdateResponse
     >
   > {
@@ -180,7 +180,7 @@ export class GalleryImagesImpl implements GalleryImages {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GalleryImagesUpdateResponse>,
+      PollOperationState<GalleryImagesUpdateResponse>,
       GalleryImagesUpdateResponse
     >
   > {
@@ -252,7 +252,7 @@ export class GalleryImagesImpl implements GalleryImages {
     galleryImageName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

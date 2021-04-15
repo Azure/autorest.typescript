@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Subnet,
   SubnetsGetOptionalParams,
@@ -47,7 +46,7 @@ export interface Subnets {
     subnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the specified subnet by virtual network and resource group.
@@ -78,7 +77,7 @@ export interface Subnets {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<SubnetsCreateOrUpdateResponse>,
+      PollOperationState<SubnetsCreateOrUpdateResponse>,
       SubnetsCreateOrUpdateResponse
     >
   >;
@@ -98,7 +97,7 @@ export interface Subnets {
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Unprepares a subnet by removing network intent policies.
@@ -116,6 +115,6 @@ export interface Subnets {
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

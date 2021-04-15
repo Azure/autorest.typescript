@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
   MetricDefinition,
@@ -369,7 +369,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesImportResponse>,
+      PollOperationState<DatabasesImportResponse>,
       DatabasesImportResponse
     >
   > {
@@ -420,7 +420,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesCreateImportOperationResponse>,
+      PollOperationState<DatabasesCreateImportOperationResponse>,
       DatabasesCreateImportOperationResponse
     >
   > {
@@ -470,7 +470,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesExportResponse>,
+      PollOperationState<DatabasesExportResponse>,
       DatabasesExportResponse
     >
   > {
@@ -623,7 +623,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesCreateOrUpdateResponse>,
+      PollOperationState<DatabasesCreateOrUpdateResponse>,
       DatabasesCreateOrUpdateResponse
     >
   > {
@@ -669,7 +669,7 @@ export class DatabasesImpl implements Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -715,7 +715,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesUpdateResponse>,
+      PollOperationState<DatabasesUpdateResponse>,
       DatabasesUpdateResponse
     >
   > {
@@ -788,7 +788,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesPauseResponse>,
+      PollOperationState<DatabasesPauseResponse>,
       DatabasesPauseResponse
     >
   > {
@@ -834,7 +834,7 @@ export class DatabasesImpl implements Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesResumeResponse>,
+      PollOperationState<DatabasesResumeResponse>,
       DatabasesResumeResponse
     >
   > {
@@ -879,7 +879,7 @@ export class DatabasesImpl implements Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -951,7 +951,7 @@ export class DatabasesImpl implements Databases {
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

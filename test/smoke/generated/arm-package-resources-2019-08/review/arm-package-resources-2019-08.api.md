@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export interface AliasPathType {
@@ -346,16 +342,16 @@ export interface Deployments {
     checkExistenceAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     checkExistenceAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     checkExistenceAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
-    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
-    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
-    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
-    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
-    delete(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
+    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
+    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
+    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
+    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
+    delete(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     exportTemplate(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateResponse>;
     exportTemplateAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
     exportTemplateAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtScopeResponse>;
@@ -376,8 +372,8 @@ export interface Deployments {
     validateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtScopeResponse>;
     validateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
     validateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtTenantScopeResponse>;
-    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
-    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
+    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
+    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
 }
 
 // @public
@@ -805,26 +801,6 @@ export interface Identity {
     };
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
-}
-
 // @public
 export interface OnErrorDeployment {
     deploymentName?: string;
@@ -1096,8 +1072,8 @@ export interface ResourceGroupProperties {
 export interface ResourceGroups {
     checkExistence(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     createOrUpdate(resourceGroupName: string, parameters: ResourceGroup, options?: coreHttp.OperationOptions): Promise<ResourceGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
+    delete(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
     get(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ResourceGroupsGetResponse>;
     list(options?: ResourceGroupsListOptionalParams): PagedAsyncIterableIterator<ResourceGroup>;
     update(resourceGroupName: string, parameters: ResourceGroupPatchable, options?: coreHttp.OperationOptions): Promise<ResourceGroupsUpdateResponse>;
@@ -1223,18 +1199,18 @@ export interface ResourceProviderOperationDisplayProperties {
 export interface Resources {
     checkExistence(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     checkExistenceById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
-    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
+    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetResponse>;
     getById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetByIdResponse>;
     list(options?: ResourcesListOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
     listByResourceGroup(resourceGroupName: string, options?: ResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
-    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
-    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
-    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
+    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
+    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public

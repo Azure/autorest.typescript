@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DedicatedHost,
   DedicatedHostsCreateOrUpdateResponse,
@@ -50,7 +49,7 @@ export interface DedicatedHosts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DedicatedHostsCreateOrUpdateResponse>,
+      PollOperationState<DedicatedHostsCreateOrUpdateResponse>,
       DedicatedHostsCreateOrUpdateResponse
     >
   >;
@@ -70,7 +69,7 @@ export interface DedicatedHosts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DedicatedHostsUpdateResponse>,
+      PollOperationState<DedicatedHostsUpdateResponse>,
       DedicatedHostsUpdateResponse
     >
   >;
@@ -87,7 +86,7 @@ export interface DedicatedHosts {
     hostName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Retrieves information about a dedicated host.

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRoutePort,
   ExpressRoutePortsGetResponse,
@@ -49,7 +48,7 @@ export interface ExpressRoutePorts {
     expressRoutePortName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Retrieves the requested ExpressRoutePort resource.
@@ -76,7 +75,7 @@ export interface ExpressRoutePorts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRoutePortsCreateOrUpdateResponse>,
+      PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>,
       ExpressRoutePortsCreateOrUpdateResponse
     >
   >;

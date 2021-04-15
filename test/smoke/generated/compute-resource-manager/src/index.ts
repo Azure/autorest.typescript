@@ -11,4 +11,3 @@ export * from "./models";
 export { ComputeManagementClient } from "./computeManagementClient";
 export { ComputeManagementClientContext } from "./computeManagementClientContext";
 export * from "./operationsInterfaces";
-export { LROOperationState } from "./lro";

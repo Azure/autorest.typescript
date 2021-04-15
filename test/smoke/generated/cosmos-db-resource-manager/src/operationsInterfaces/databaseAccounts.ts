@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
   Metric,
@@ -112,7 +111,7 @@ export interface DatabaseAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabaseAccountsUpdateResponse>,
+      PollOperationState<DatabaseAccountsUpdateResponse>,
       DatabaseAccountsUpdateResponse
     >
   >;
@@ -131,7 +130,7 @@ export interface DatabaseAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabaseAccountsCreateOrUpdateResponse>,
+      PollOperationState<DatabaseAccountsCreateOrUpdateResponse>,
       DatabaseAccountsCreateOrUpdateResponse
     >
   >;
@@ -146,7 +145,7 @@ export interface DatabaseAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
@@ -164,7 +163,7 @@ export interface DatabaseAccounts {
     failoverParameters: FailoverPolicies,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Lists the access keys for the specified Azure Cosmos DB database account.
@@ -201,7 +200,7 @@ export interface DatabaseAccounts {
     regionParameterForOffline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Online the specified region for the specified Azure Cosmos DB database account.
@@ -216,7 +215,7 @@ export interface DatabaseAccounts {
     regionParameterForOnline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
@@ -253,7 +252,7 @@ export interface DatabaseAccounts {
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only

@@ -5169,8 +5169,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5304,8 +5304,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5439,8 +5439,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5566,8 +5566,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5686,8 +5686,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5805,8 +5805,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -5924,8 +5924,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -6043,8 +6043,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -6154,8 +6154,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -6258,8 +6258,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -8084,8 +8084,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -8211,8 +8211,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -11821,174 +11821,6 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface LROOperationState<TResult extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "BaseResult",
-              "canonicalReference": "arm-package-resources-2019-08!BaseResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "> extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "PollOperationState",
-              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TResult> "
-            }
-          ],
-          "releaseTag": "Public",
-          "typeParameters": [
-            {
-              "typeParameterName": "TResult",
-              "constraintTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              }
-            }
-          ],
-          "name": "LROOperationState",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#finalStateVia:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "finalStateVia?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FinalStateVia",
-                  "canonicalReference": "arm-package-resources-2019-08!FinalStateVia:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "finalStateVia",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#initialOperation:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "initialOperation: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROOperationStep",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationStep:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "initialOperation",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#lastOperation:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "lastOperation: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROOperationStep",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationStep:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "lastOperation",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "arm-package-resources-2019-08!LROOperationState#pollingStrategy:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "pollingStrategy: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROStrategy",
-                  "canonicalReference": "arm-package-resources-2019-08!LROStrategy:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "pollingStrategy",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 3,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Interface",
           "canonicalReference": "arm-package-resources-2019-08!OnErrorDeployment:interface",
           "docComment": "/**\n * Deployment on error behavior.\n */\n",
           "excerptTokens": [
@@ -15417,8 +15249,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -15530,8 +15362,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17477,8 +17309,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17640,8 +17472,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17798,8 +17630,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17945,8 +17777,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18440,8 +18272,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18600,8 +18432,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18763,8 +18595,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18890,8 +18722,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "arm-package-resources-2019-08!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",

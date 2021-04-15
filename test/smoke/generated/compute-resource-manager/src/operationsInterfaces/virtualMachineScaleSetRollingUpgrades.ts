@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
 
 /** Interface representing a VirtualMachineScaleSetRollingUpgrades. */
@@ -24,7 +23,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
@@ -39,7 +38,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
@@ -54,7 +53,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the status of the latest virtual machine scale set rolling upgrade.

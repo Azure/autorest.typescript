@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
   ManagedInstanceAdministratorsListByInstanceResponse,
@@ -170,7 +170,7 @@ export class ManagedInstanceAdministratorsImpl
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
+      PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
       ManagedInstanceAdministratorsCreateOrUpdateResponse
     >
   > {
@@ -213,7 +213,7 @@ export class ManagedInstanceAdministratorsImpl
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

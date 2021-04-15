@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PacketCaptureResult,
   PacketCapture,
@@ -49,7 +48,7 @@ export interface PacketCaptures {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<PacketCapturesCreateResponse>,
+      PollOperationState<PacketCapturesCreateResponse>,
       PacketCapturesCreateResponse
     >
   >;
@@ -79,7 +78,7 @@ export interface PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Stops a specified packet capture session.
@@ -94,7 +93,7 @@ export interface PacketCaptures {
     packetCaptureName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Query the status of a running packet capture session.
@@ -110,7 +109,7 @@ export interface PacketCaptures {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<PacketCapturesGetStatusResponse>,
+      PollOperationState<PacketCapturesGetStatusResponse>,
       PacketCapturesGetStatusResponse
     >
   >;

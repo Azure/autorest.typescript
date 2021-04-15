@@ -11,4 +11,3 @@ export * from "./models";
 export { NetworkManagementClient } from "./networkManagementClient";
 export { NetworkManagementClientContext } from "./networkManagementClientContext";
 export * from "./operationsInterfaces";
-export { LROOperationState } from "./lro";

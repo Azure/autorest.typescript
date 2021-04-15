@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstance,
   ManagedInstancesGetResponse,
@@ -78,7 +77,7 @@ export interface ManagedInstances {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ManagedInstancesCreateOrUpdateResponse>,
+      PollOperationState<ManagedInstancesCreateOrUpdateResponse>,
       ManagedInstancesCreateOrUpdateResponse
     >
   >;
@@ -94,7 +93,7 @@ export interface ManagedInstances {
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a managed instance.
@@ -111,7 +110,7 @@ export interface ManagedInstances {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ManagedInstancesUpdateResponse>,
+      PollOperationState<ManagedInstancesUpdateResponse>,
       ManagedInstancesUpdateResponse
     >
   >;

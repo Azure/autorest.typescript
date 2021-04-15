@@ -7,8 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "./lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
@@ -53,7 +53,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     data: coreHttp.HttpRequestBody,
     options?: MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Send payload to Foo service.
@@ -66,7 +66,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     data: string,
     options?: MediaTypesV3LROClientSendOnDefault$textOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Send payload to Foo service.
@@ -85,7 +85,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           MediaTypesV3LROClientSendOnDefault$textOptionalParams?
         ]
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;

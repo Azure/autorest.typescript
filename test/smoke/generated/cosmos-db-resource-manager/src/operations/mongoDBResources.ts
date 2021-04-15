@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
   MongoDBCollectionGetResults,
@@ -239,7 +239,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
+      PollOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
       MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
     >
   > {
@@ -284,7 +284,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -356,7 +356,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
       >,
       MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
@@ -462,7 +462,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
+      PollOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
       MongoDBResourcesCreateUpdateMongoDBCollectionResponse
     >
   > {
@@ -510,7 +510,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     collectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -588,7 +588,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
       >,
       MongoDBResourcesUpdateMongoDBCollectionThroughputResponse

@@ -1,4 +1,4 @@
-import { Poller } from "@azure/core-lro";
+import { Poller, PollOperationState } from "@azure/core-lro";
 import {
   OperationSpec,
   OperationArguments,
@@ -51,7 +51,7 @@ export interface LROPollerOptions<TResult extends BaseResult> {
 }
 
 export class LROPoller<TResult extends BaseResult> extends Poller<
-  LROOperationState<TResult>,
+  PollOperationState<TResult>,
   TResult
 > {
   private intervalInMs: number;

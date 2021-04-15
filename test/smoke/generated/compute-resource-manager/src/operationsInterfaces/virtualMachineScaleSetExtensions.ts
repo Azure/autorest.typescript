@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetExtension,
   VirtualMachineScaleSetExtensionsCreateOrUpdateResponse,
@@ -50,7 +49,9 @@ export interface VirtualMachineScaleSetExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>,
+      PollOperationState<
+        VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
+      >,
       VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
     >
   >;
@@ -70,7 +71,7 @@ export interface VirtualMachineScaleSetExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
+      PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
       VirtualMachineScaleSetExtensionsUpdateResponse
     >
   >;
@@ -87,7 +88,7 @@ export interface VirtualMachineScaleSetExtensions {
     vmssExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to get the extension.

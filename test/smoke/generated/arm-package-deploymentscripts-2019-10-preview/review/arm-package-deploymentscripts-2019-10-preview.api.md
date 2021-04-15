@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export type AzureCliScript = DeploymentScript & {
@@ -115,7 +111,7 @@ export interface DeploymentScriptPropertiesBase {
 
 // @public
 export interface DeploymentScripts {
-    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
+    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
     delete(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetResponse>;
     getLogs(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetLogsResponse>;
@@ -320,26 +316,6 @@ export const enum KnownScriptType {
     AzureCLI = "AzureCLI",
     // (undocumented)
     AzurePowerShell = "AzurePowerShell"
-}
-
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
 }
 
 // @public

@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Disk,
   DisksCreateOrUpdateResponse,
@@ -153,7 +153,7 @@ export class DisksImpl implements Disks {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DisksCreateOrUpdateResponse>,
+      PollOperationState<DisksCreateOrUpdateResponse>,
       DisksCreateOrUpdateResponse
     >
   > {
@@ -199,7 +199,7 @@ export class DisksImpl implements Disks {
     disk: DiskUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<DisksUpdateResponse>, DisksUpdateResponse>
+    PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -265,7 +265,7 @@ export class DisksImpl implements Disks {
     diskName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -344,7 +344,7 @@ export class DisksImpl implements Disks {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DisksGrantAccessResponse>,
+      PollOperationState<DisksGrantAccessResponse>,
       DisksGrantAccessResponse
     >
   > {
@@ -389,7 +389,7 @@ export class DisksImpl implements Disks {
     diskName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

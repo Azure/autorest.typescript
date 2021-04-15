@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -60,7 +59,7 @@ export interface Resources {
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
@@ -78,7 +77,7 @@ export interface Resources {
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Checks whether a resource exists.
@@ -120,7 +119,7 @@ export interface Resources {
     apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Creates a resource.
@@ -145,7 +144,7 @@ export interface Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesCreateOrUpdateResponse>,
+      PollOperationState<ResourcesCreateOrUpdateResponse>,
       ResourcesCreateOrUpdateResponse
     >
   >;
@@ -172,7 +171,7 @@ export interface Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesUpdateResponse>,
+      PollOperationState<ResourcesUpdateResponse>,
       ResourcesUpdateResponse
     >
   >;
@@ -222,7 +221,7 @@ export interface Resources {
     apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Create a resource by ID.
@@ -240,7 +239,7 @@ export interface Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesCreateOrUpdateByIdResponse>,
+      PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
       ResourcesCreateOrUpdateByIdResponse
     >
   >;
@@ -260,7 +259,7 @@ export interface Resources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ResourcesUpdateByIdResponse>,
+      PollOperationState<ResourcesUpdateByIdResponse>,
       ResourcesUpdateByIdResponse
     >
   >;

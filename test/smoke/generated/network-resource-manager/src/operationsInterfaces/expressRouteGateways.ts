@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteGatewaysListBySubscriptionResponse,
   ExpressRouteGatewaysListByResourceGroupResponse,
@@ -50,7 +49,7 @@ export interface ExpressRouteGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>,
+      PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>,
       ExpressRouteGatewaysCreateOrUpdateResponse
     >
   >;
@@ -77,6 +76,6 @@ export interface ExpressRouteGateways {
     expressRouteGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

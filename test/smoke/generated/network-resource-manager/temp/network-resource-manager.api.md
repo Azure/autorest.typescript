@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export interface AadAuthenticationParameters {
@@ -407,10 +403,10 @@ export type ApplicationGatewayRewriteRuleSet = SubResource & {
 
 // @public
 export interface ApplicationGateways {
-    backendHealth(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysBackendHealthOptionalParams): Promise<PollerLike<LROOperationState<ApplicationGatewaysBackendHealthResponse>, ApplicationGatewaysBackendHealthResponse>>;
-    backendHealthOnDemand(resourceGroupName: string, applicationGatewayName: string, probeRequest: ApplicationGatewayOnDemandProbe, options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams): Promise<PollerLike<LROOperationState<ApplicationGatewaysBackendHealthOnDemandResponse>, ApplicationGatewaysBackendHealthOnDemandResponse>>;
-    createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: ApplicationGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationGatewaysCreateOrUpdateResponse>, ApplicationGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    backendHealth(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysBackendHealthOptionalParams): Promise<PollerLike<PollOperationState<ApplicationGatewaysBackendHealthResponse>, ApplicationGatewaysBackendHealthResponse>>;
+    backendHealthOnDemand(resourceGroupName: string, applicationGatewayName: string, probeRequest: ApplicationGatewayOnDemandProbe, options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams): Promise<PollerLike<PollOperationState<ApplicationGatewaysBackendHealthOnDemandResponse>, ApplicationGatewaysBackendHealthOnDemandResponse>>;
+    createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: ApplicationGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ApplicationGatewaysCreateOrUpdateResponse>, ApplicationGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetResponse>;
     getSslPredefinedPolicy(predefinedPolicyName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGateway>;
@@ -421,8 +417,8 @@ export interface ApplicationGateways {
     listAvailableSslOptions(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
     listAvailableSslPredefinedPolicies(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy>;
     listAvailableWafRuleSets(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
-    start(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    stop(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    start(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     updateTags(resourceGroupName: string, applicationGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysUpdateTagsResponse>;
 }
 
@@ -702,8 +698,8 @@ export interface ApplicationSecurityGroupListResult {
 
 // @public
 export interface ApplicationSecurityGroups {
-    createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: ApplicationSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>, ApplicationSecurityGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: ApplicationSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>, ApplicationSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<ApplicationSecurityGroupsGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
@@ -1202,12 +1198,12 @@ export type AzureFirewallRCActionType = string;
 
 // @public
 export interface AzureFirewalls {
-    createOrUpdate(resourceGroupName: string, azureFirewallName: string, parameters: AzureFirewall, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AzureFirewallsCreateOrUpdateResponse>, AzureFirewallsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, azureFirewallName: string, parameters: AzureFirewall, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AzureFirewallsCreateOrUpdateResponse>, AzureFirewallsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<AzureFirewallsGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
-    updateTags(resourceGroupName: string, azureFirewallName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AzureFirewallsUpdateTagsResponse>, AzureFirewallsUpdateTagsResponse>>;
+    updateTags(resourceGroupName: string, azureFirewallName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AzureFirewallsUpdateTagsResponse>, AzureFirewallsUpdateTagsResponse>>;
 }
 
 // @public
@@ -1383,8 +1379,8 @@ export interface BastionHostListResult {
 
 // @public
 export interface BastionHosts {
-    createOrUpdate(resourceGroupName: string, bastionHostName: string, parameters: BastionHost, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<BastionHostsCreateOrUpdateResponse>, BastionHostsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, bastionHostName: string, parameters: BastionHost, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<BastionHostsCreateOrUpdateResponse>, BastionHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<BastionHostsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
@@ -1699,13 +1695,13 @@ export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
 
 // @public
 export interface ConnectionMonitors {
-    createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: ConnectionMonitor, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ConnectionMonitorsCreateOrUpdateResponse>, ConnectionMonitorsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: ConnectionMonitor, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>, ConnectionMonitorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsGetResponse>;
     list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ConnectionMonitorResult>;
-    query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ConnectionMonitorsQueryResponse>, ConnectionMonitorsQueryResponse>>;
-    start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ConnectionMonitorsQueryResponse>, ConnectionMonitorsQueryResponse>>;
+    start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     updateTags(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsUpdateTagsResponse>;
 }
 
@@ -1927,8 +1923,8 @@ export interface CustomDnsConfigPropertiesFormat {
 
 // @public
 export interface DdosCustomPolicies {
-    createOrUpdate(resourceGroupName: string, ddosCustomPolicyName: string, parameters: DdosCustomPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DdosCustomPoliciesCreateOrUpdateResponse>, DdosCustomPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ddosCustomPolicyName: string, parameters: DdosCustomPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>, DdosCustomPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesGetResponse>;
     updateTags(resourceGroupName: string, ddosCustomPolicyName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesUpdateTagsResponse>;
 }
@@ -1996,8 +1992,8 @@ export interface DdosProtectionPlanListResult {
 
 // @public
 export interface DdosProtectionPlans {
-    createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: DdosProtectionPlan, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DdosProtectionPlansCreateOrUpdateResponse>, DdosProtectionPlansCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: DdosProtectionPlan, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>, DdosProtectionPlansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<DdosProtectionPlansGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
@@ -2289,8 +2285,8 @@ export type ExpressRouteCircuitAuthorization = SubResource & {
 
 // @public
 export interface ExpressRouteCircuitAuthorizations {
-    createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: ExpressRouteCircuitAuthorization, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>, ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: ExpressRouteCircuitAuthorization, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>, ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
     list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization>;
 }
@@ -2350,8 +2346,8 @@ export interface ExpressRouteCircuitConnectionListResult {
 
 // @public
 export interface ExpressRouteCircuitConnections {
-    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>, ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>, ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitConnectionsGetResponse>;
     list(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitConnection>;
 }
@@ -2448,8 +2444,8 @@ export interface ExpressRouteCircuitPeeringListResult {
 
 // @public
 export interface ExpressRouteCircuitPeerings {
-    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: ExpressRouteCircuitPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>, ExpressRouteCircuitPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: ExpressRouteCircuitPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>, ExpressRouteCircuitPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitPeeringsGetResponse>;
     list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitPeering>;
 }
@@ -2515,16 +2511,16 @@ export interface ExpressRouteCircuitRoutesTableSummary {
 
 // @public
 export interface ExpressRouteCircuits {
-    createOrUpdate(resourceGroupName: string, circuitName: string, parameters: ExpressRouteCircuit, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>, ExpressRouteCircuitsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, parameters: ExpressRouteCircuit, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>, ExpressRouteCircuitsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetResponse>;
     getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetPeeringStatsResponse>;
     getStats(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetStatsResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
-    listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitsListArpTableResponse>, ExpressRouteCircuitsListArpTableResponse>>;
-    listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitsListRoutesTableResponse>, ExpressRouteCircuitsListRoutesTableResponse>>;
-    listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>, ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
+    listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListArpTableResponse>, ExpressRouteCircuitsListArpTableResponse>>;
+    listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableResponse>, ExpressRouteCircuitsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>, ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
     updateTags(resourceGroupName: string, circuitName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsUpdateTagsResponse>;
 }
 
@@ -2697,8 +2693,8 @@ export interface ExpressRouteConnectionList {
 
 // @public
 export interface ExpressRouteConnections {
-    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, putExpressRouteConnectionParameters: ExpressRouteConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>, ExpressRouteConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, putExpressRouteConnectionParameters: ExpressRouteConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>, ExpressRouteConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsGetResponse>;
     list(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsListResponse>;
 }
@@ -2778,8 +2774,8 @@ export interface ExpressRouteCrossConnectionPeeringList {
 
 // @public
 export interface ExpressRouteCrossConnectionPeerings {
-    createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: ExpressRouteCrossConnectionPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>, ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: ExpressRouteCrossConnectionPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>, ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
     list(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering>;
 }
@@ -2827,13 +2823,13 @@ export interface ExpressRouteCrossConnectionRoutesTableSummary {
 
 // @public
 export interface ExpressRouteCrossConnections {
-    createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: ExpressRouteCrossConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>, ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: ExpressRouteCrossConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>, ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
     get(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
-    listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCrossConnectionsListArpTableResponse>, ExpressRouteCrossConnectionsListArpTableResponse>>;
+    listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>, ExpressRouteCrossConnectionsListArpTableResponse>>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
-    listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>, ExpressRouteCrossConnectionsListRoutesTableResponse>>;
-    listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>, ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>>;
+    listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>, ExpressRouteCrossConnectionsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>, ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>>;
     updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse>;
 }
 
@@ -2954,8 +2950,8 @@ export interface ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds {
 
 // @public
 export interface ExpressRouteGateways {
-    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, putExpressRouteGatewayParameters: ExpressRouteGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>, ExpressRouteGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, putExpressRouteGatewayParameters: ExpressRouteGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>, ExpressRouteGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysGetResponse>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListByResourceGroupResponse>;
     listBySubscription(options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListBySubscriptionResponse>;
@@ -3091,8 +3087,8 @@ export interface ExpressRoutePortListResult {
 
 // @public
 export interface ExpressRoutePorts {
-    createOrUpdate(resourceGroupName: string, expressRoutePortName: string, parameters: ExpressRoutePort, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ExpressRoutePortsCreateOrUpdateResponse>, ExpressRoutePortsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, expressRoutePortName: string, parameters: ExpressRoutePort, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>, ExpressRoutePortsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
@@ -3251,8 +3247,8 @@ export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProvid
 
 // @public
 export interface FirewallPolicies {
-    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, parameters: FirewallPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<FirewallPoliciesCreateOrUpdateResponse>, FirewallPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, parameters: FirewallPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FirewallPoliciesCreateOrUpdateResponse>, FirewallPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, firewallPolicyName: string, options?: FirewallPoliciesGetOptionalParams): Promise<FirewallPoliciesGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
@@ -3424,8 +3420,8 @@ export interface FirewallPolicyRuleGroupListResult {
 
 // @public
 export interface FirewallPolicyRuleGroups {
-    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, parameters: FirewallPolicyRuleGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>, FirewallPolicyRuleGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, parameters: FirewallPolicyRuleGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>, FirewallPolicyRuleGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<FirewallPolicyRuleGroupsGetResponse>;
     list(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicyRuleGroup>;
 }
@@ -3528,8 +3524,8 @@ export interface FlowLogListResult {
 
 // @public
 export interface FlowLogs {
-    createOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<FlowLogsCreateOrUpdateResponse>, FlowLogsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FlowLogsCreateOrUpdateResponse>, FlowLogsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<FlowLogsGetResponse>;
     list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FlowLog>;
 }
@@ -3661,8 +3657,8 @@ export type HubRouteTable = SubResource & {
 
 // @public
 export interface HubRouteTables {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, routeTableParameters: HubRouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<HubRouteTablesCreateOrUpdateResponse>, HubRouteTablesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, routeTableParameters: HubRouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<HubRouteTablesCreateOrUpdateResponse>, HubRouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<HubRouteTablesGetResponse>;
     list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HubRouteTable>;
 }
@@ -3791,8 +3787,8 @@ export interface InboundNatRuleListResult {
 
 // @public
 export interface InboundNatRules {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<InboundNatRulesCreateOrUpdateResponse>, InboundNatRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InboundNatRulesCreateOrUpdateResponse>, InboundNatRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesGetOptionalParams): Promise<InboundNatRulesGetResponse>;
     list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InboundNatRule>;
 }
@@ -3867,8 +3863,8 @@ export type IPAllocationMethod = string;
 
 // @public
 export interface IpAllocations {
-    createOrUpdate(resourceGroupName: string, ipAllocationName: string, parameters: IpAllocation, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<IpAllocationsCreateOrUpdateResponse>, IpAllocationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ipAllocationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ipAllocationName: string, parameters: IpAllocation, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<IpAllocationsCreateOrUpdateResponse>, IpAllocationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipAllocationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ipAllocationName: string, options?: IpAllocationsGetOptionalParams): Promise<IpAllocationsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
@@ -3987,8 +3983,8 @@ export interface IpGroupListResult {
 
 // @public
 export interface IpGroups {
-    createOrUpdate(resourceGroupName: string, ipGroupsName: string, parameters: IpGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<IpGroupsCreateOrUpdateResponse>, IpGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ipGroupsName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ipGroupsName: string, parameters: IpGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<IpGroupsCreateOrUpdateResponse>, IpGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipGroupsName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ipGroupsName: string, options?: IpGroupsGetOptionalParams): Promise<IpGroupsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
@@ -5675,8 +5671,8 @@ export interface LoadBalancerBackendAddressPoolListResult {
 
 // @public
 export interface LoadBalancerBackendAddressPools {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, parameters: BackendAddressPool, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>, LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, parameters: BackendAddressPool, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>, LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerBackendAddressPoolsGetResponse>;
     list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackendAddressPool>;
 }
@@ -5890,8 +5886,8 @@ export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult & {
 
 // @public
 export interface LoadBalancers {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: LoadBalancer, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<LoadBalancersCreateOrUpdateResponse>, LoadBalancersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: LoadBalancer, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LoadBalancersCreateOrUpdateResponse>, LoadBalancersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancersGetOptionalParams): Promise<LoadBalancersGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
@@ -6009,8 +6005,8 @@ export interface LocalNetworkGatewayListResult {
 
 // @public
 export interface LocalNetworkGateways {
-    createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: LocalNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>, LocalNetworkGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: LocalNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>, LocalNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LocalNetworkGateway>;
     updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysUpdateTagsResponse>;
@@ -6062,26 +6058,6 @@ export interface LogSpecification {
     blobDuration?: string;
     displayName?: string;
     name?: string;
-}
-
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
 }
 
 // @public
@@ -6182,8 +6158,8 @@ export interface NatGatewayListResult {
 
 // @public
 export interface NatGateways {
-    createOrUpdate(resourceGroupName: string, natGatewayName: string, parameters: NatGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NatGatewaysCreateOrUpdateResponse>, NatGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, natGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, natGatewayName: string, parameters: NatGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NatGatewaysCreateOrUpdateResponse>, NatGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, natGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, natGatewayName: string, options?: NatGatewaysGetOptionalParams): Promise<NatGatewaysGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
@@ -6439,15 +6415,15 @@ export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBala
 
 // @public
 export interface NetworkInterfaces {
-    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: NetworkInterface, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkInterfacesCreateOrUpdateResponse>, NetworkInterfacesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: NetworkInterface, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesCreateOrUpdateResponse>, NetworkInterfacesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesGetOptionalParams): Promise<NetworkInterfacesGetResponse>;
-    getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>, NetworkInterfacesGetEffectiveRouteTableResponse>>;
+    getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>, NetworkInterfacesGetEffectiveRouteTableResponse>>;
     getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse>;
     getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
-    listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>, NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>>;
+    listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>, NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>>;
     listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
     listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
     listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
@@ -6635,8 +6611,8 @@ export interface NetworkInterfaceTapConfigurationListResult {
 
 // @public
 export interface NetworkInterfaceTapConfigurations {
-    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, tapConfigurationParameters: NetworkInterfaceTapConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>, NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, tapConfigurationParameters: NetworkInterfaceTapConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>, NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<NetworkInterfaceTapConfigurationsGetResponse>;
     list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration>;
 }
@@ -6708,7 +6684,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     ddosProtectionPlans: DdosProtectionPlans;
     // (undocumented)
     defaultSecurityRules: DefaultSecurityRules;
-    deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     // (undocumented)
     expressRouteCircuitAuthorizations: ExpressRouteCircuitAuthorizations;
     // (undocumented)
@@ -6739,7 +6715,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     firewallPolicyRuleGroups: FirewallPolicyRuleGroups;
     // (undocumented)
     flowLogs: FlowLogs;
-    generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
+    generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
     // (undocumented)
     hubRouteTables: HubRouteTables;
     // (undocumented)
@@ -7002,7 +6978,7 @@ export interface NetworkProfileListResult {
 // @public
 export interface NetworkProfiles {
     createOrUpdate(resourceGroupName: string, networkProfileName: string, parameters: NetworkProfile, options?: coreHttp.OperationOptions): Promise<NetworkProfilesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, networkProfileName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, networkProfileName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkProfileName: string, options?: NetworkProfilesGetOptionalParams): Promise<NetworkProfilesGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
@@ -7107,8 +7083,8 @@ export interface NetworkSecurityGroupResult {
 
 // @public
 export interface NetworkSecurityGroups {
-    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: NetworkSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>, NetworkSecurityGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: NetworkSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>, NetworkSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkSecurityGroupName: string, options?: NetworkSecurityGroupsGetOptionalParams): Promise<NetworkSecurityGroupsGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
@@ -7208,8 +7184,8 @@ export interface NetworkVirtualApplianceListResult {
 
 // @public
 export interface NetworkVirtualAppliances {
-    createOrUpdate(resourceGroupName: string, networkVirtualApplianceName: string, parameters: NetworkVirtualAppliance, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>, NetworkVirtualAppliancesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkVirtualApplianceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkVirtualApplianceName: string, parameters: NetworkVirtualAppliance, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>, NetworkVirtualAppliancesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkVirtualApplianceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkVirtualApplianceName: string, options?: NetworkVirtualAppliancesGetOptionalParams): Promise<NetworkVirtualAppliancesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
@@ -7291,24 +7267,24 @@ export interface NetworkWatcherListResult {
 
 // @public
 export interface NetworkWatchers {
-    checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: ConnectivityParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersCheckConnectivityResponse>, NetworkWatchersCheckConnectivityResponse>>;
+    checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: ConnectivityParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersCheckConnectivityResponse>, NetworkWatchersCheckConnectivityResponse>>;
     createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: NetworkWatcher, options?: coreHttp.OperationOptions): Promise<NetworkWatchersCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetResponse>;
-    getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: AzureReachabilityReportParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetAzureReachabilityReportResponse>, NetworkWatchersGetAzureReachabilityReportResponse>>;
-    getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogStatusParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetFlowLogStatusResponse>, NetworkWatchersGetFlowLogStatusResponse>>;
-    getNetworkConfigurationDiagnostic(resourceGroupName: string, networkWatcherName: string, parameters: NetworkConfigurationDiagnosticParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>, NetworkWatchersGetNetworkConfigurationDiagnosticResponse>>;
-    getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: NextHopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetNextHopResponse>, NetworkWatchersGetNextHopResponse>>;
+    getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: AzureReachabilityReportParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>, NetworkWatchersGetAzureReachabilityReportResponse>>;
+    getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogStatusParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetFlowLogStatusResponse>, NetworkWatchersGetFlowLogStatusResponse>>;
+    getNetworkConfigurationDiagnostic(resourceGroupName: string, networkWatcherName: string, parameters: NetworkConfigurationDiagnosticParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>, NetworkWatchersGetNetworkConfigurationDiagnosticResponse>>;
+    getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: NextHopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetNextHopResponse>, NetworkWatchersGetNextHopResponse>>;
     getTopology(resourceGroupName: string, networkWatcherName: string, parameters: TopologyParameters, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetTopologyResponse>;
-    getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: TroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetTroubleshootingResponse>, NetworkWatchersGetTroubleshootingResponse>>;
-    getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: QueryTroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetTroubleshootingResultResponse>, NetworkWatchersGetTroubleshootingResultResponse>>;
-    getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: SecurityGroupViewParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersGetVMSecurityRulesResponse>, NetworkWatchersGetVMSecurityRulesResponse>>;
+    getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: TroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResponse>, NetworkWatchersGetTroubleshootingResponse>>;
+    getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: QueryTroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>, NetworkWatchersGetTroubleshootingResultResponse>>;
+    getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: SecurityGroupViewParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>, NetworkWatchersGetVMSecurityRulesResponse>>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
-    listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: AvailableProvidersListParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersListAvailableProvidersResponse>, NetworkWatchersListAvailableProvidersResponse>>;
-    setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogInformation, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersSetFlowLogConfigurationResponse>, NetworkWatchersSetFlowLogConfigurationResponse>>;
+    listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: AvailableProvidersListParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersListAvailableProvidersResponse>, NetworkWatchersListAvailableProvidersResponse>>;
+    setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogInformation, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>, NetworkWatchersSetFlowLogConfigurationResponse>>;
     updateTags(resourceGroupName: string, networkWatcherName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkWatchersUpdateTagsResponse>;
-    verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: VerificationIPFlowParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<NetworkWatchersVerifyIPFlowResponse>, NetworkWatchersVerifyIPFlowResponse>>;
+    verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: VerificationIPFlowParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersVerifyIPFlowResponse>, NetworkWatchersVerifyIPFlowResponse>>;
 }
 
 // @public
@@ -7599,13 +7575,13 @@ export type P2SVpnGateway = Resource & {
 
 // @public
 export interface P2SVpnGateways {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: P2SVpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<P2SVpnGatewaysCreateOrUpdateResponse>, P2SVpnGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    disconnectP2SVpnConnections(resourceGroupName: string, p2SVpnGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generateVpnProfile(resourceGroupName: string, gatewayName: string, parameters: P2SVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>, P2SVpnGatewaysGenerateVpnProfileResponse>>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: P2SVpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>, P2SVpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    disconnectP2SVpnConnections(resourceGroupName: string, p2SVpnGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generateVpnProfile(resourceGroupName: string, gatewayName: string, parameters: P2SVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>, P2SVpnGatewaysGenerateVpnProfileResponse>>;
     get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysGetResponse>;
-    getP2SVpnConnectionHealth(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
-    getP2SVpnConnectionHealthDetailed(resourceGroupName: string, gatewayName: string, request: P2SVpnConnectionHealthRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>>;
+    getP2SVpnConnectionHealth(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
+    getP2SVpnConnectionHealthDetailed(resourceGroupName: string, gatewayName: string, request: P2SVpnConnectionHealthRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
     updateTags(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysUpdateTagsResponse>;
@@ -7765,12 +7741,12 @@ export type PacketCaptureResultProperties = PacketCaptureParameters & {
 
 // @public
 export interface PacketCaptures {
-    create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: PacketCapture, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PacketCapturesCreateResponse>, PacketCapturesCreateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: PacketCapture, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PacketCapturesCreateResponse>, PacketCapturesCreateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PacketCapturesGetResponse>;
-    getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PacketCapturesGetStatusResponse>, PacketCapturesGetStatusResponse>>;
+    getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PacketCapturesGetStatusResponse>, PacketCapturesGetStatusResponse>>;
     list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PacketCaptureResult>;
-    stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -7941,8 +7917,8 @@ export interface PrivateDnsZoneGroupListResult {
 
 // @public
 export interface PrivateDnsZoneGroups {
-    createOrUpdate(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, parameters: PrivateDnsZoneGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>, PrivateDnsZoneGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, parameters: PrivateDnsZoneGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>, PrivateDnsZoneGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PrivateDnsZoneGroupsGetResponse>;
     list(privateEndpointName: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateDnsZoneGroup>;
 }
@@ -8016,8 +7992,8 @@ export interface PrivateEndpointListResult {
 
 // @public
 export interface PrivateEndpoints {
-    createOrUpdate(resourceGroupName: string, privateEndpointName: string, parameters: PrivateEndpoint, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PrivateEndpointsCreateOrUpdateResponse>, PrivateEndpointsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, privateEndpointName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, parameters: PrivateEndpoint, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateEndpointsCreateOrUpdateResponse>, PrivateEndpointsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, privateEndpointName: string, options?: PrivateEndpointsGetOptionalParams): Promise<PrivateEndpointsGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
     listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
@@ -8140,9 +8116,9 @@ export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
 export interface PrivateLinkServices {
     checkPrivateLinkServiceVisibility(location: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
     checkPrivateLinkServiceVisibilityByResourceGroup(location: string, resourceGroupName: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse>;
-    createOrUpdate(resourceGroupName: string, serviceName: string, parameters: PrivateLinkService, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PrivateLinkServicesCreateOrUpdateResponse>, PrivateLinkServicesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deletePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serviceName: string, parameters: PrivateLinkService, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>, PrivateLinkServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deletePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, serviceName: string, options?: PrivateLinkServicesGetOptionalParams): Promise<PrivateLinkServicesGetResponse>;
     getPrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams): Promise<PrivateLinkServicesGetPrivateEndpointConnectionResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkService>;
@@ -8369,8 +8345,8 @@ export interface PublicIPAddressDnsSettings {
 
 // @public
 export interface PublicIPAddresses {
-    createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: PublicIPAddress, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PublicIPAddressesCreateOrUpdateResponse>, PublicIPAddressesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, publicIpAddressName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: PublicIPAddress, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PublicIPAddressesCreateOrUpdateResponse>, PublicIPAddressesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpAddressName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, publicIpAddressName: string, options?: PublicIPAddressesGetOptionalParams): Promise<PublicIPAddressesGetResponse>;
     getVirtualMachineScaleSetPublicIPAddress(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, publicIpAddressName: string, options?: PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams): Promise<PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
@@ -8518,8 +8494,8 @@ export type PublicIPPrefix = Resource & {
 
 // @public
 export interface PublicIPPrefixes {
-    createOrUpdate(resourceGroupName: string, publicIpPrefixName: string, parameters: PublicIPPrefix, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<PublicIPPrefixesCreateOrUpdateResponse>, PublicIPPrefixesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, publicIpPrefixName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, publicIpPrefixName: string, parameters: PublicIPPrefix, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PublicIPPrefixesCreateOrUpdateResponse>, PublicIPPrefixesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpPrefixName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, publicIpPrefixName: string, options?: PublicIPPrefixesGetOptionalParams): Promise<PublicIPPrefixesGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
@@ -8727,8 +8703,8 @@ export interface RouteFilterRuleListResult {
 
 // @public
 export interface RouteFilterRules {
-    createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: RouteFilterRule, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<RouteFilterRulesCreateOrUpdateResponse>, RouteFilterRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: RouteFilterRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteFilterRulesCreateOrUpdateResponse>, RouteFilterRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<RouteFilterRulesGetResponse>;
     listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilterRule>;
 }
@@ -8771,8 +8747,8 @@ export type RouteFilterRuleType = string;
 
 // @public
 export interface RouteFilters {
-    createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: RouteFilter, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<RouteFiltersCreateOrUpdateResponse>, RouteFiltersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: RouteFilter, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteFiltersCreateOrUpdateResponse>, RouteFiltersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeFilterName: string, options?: RouteFiltersGetOptionalParams): Promise<RouteFiltersGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
@@ -8852,8 +8828,8 @@ export type RouteNextHopType = string;
 
 // @public
 export interface Routes {
-    createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Route, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<RoutesCreateOrUpdateResponse>, RoutesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Route, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RoutesCreateOrUpdateResponse>, RoutesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<RoutesGetResponse>;
     list(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Route>;
 }
@@ -8908,8 +8884,8 @@ export interface RouteTableListResult {
 
 // @public
 export interface RouteTables {
-    createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: RouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<RouteTablesCreateOrUpdateResponse>, RouteTablesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: RouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteTablesCreateOrUpdateResponse>, RouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeTableName: string, options?: RouteTablesGetOptionalParams): Promise<RouteTablesGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
@@ -9021,8 +8997,8 @@ export interface SecurityPartnerProviderListResult {
 
 // @public
 export interface SecurityPartnerProviders {
-    createOrUpdate(resourceGroupName: string, securityPartnerProviderName: string, parameters: SecurityPartnerProvider, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>, SecurityPartnerProvidersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, securityPartnerProviderName: string, parameters: SecurityPartnerProvider, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>, SecurityPartnerProvidersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<SecurityPartnerProvidersGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
@@ -9136,8 +9112,8 @@ export type SecurityRuleProtocol = string;
 
 // @public
 export interface SecurityRules {
-    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: SecurityRule, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SecurityRulesCreateOrUpdateResponse>, SecurityRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: SecurityRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SecurityRulesCreateOrUpdateResponse>, SecurityRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<SecurityRulesGetResponse>;
     list(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityRule>;
 }
@@ -9208,8 +9184,8 @@ export interface ServiceAssociationLinksListResult {
 
 // @public
 export interface ServiceEndpointPolicies {
-    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: ServiceEndpointPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>, ServiceEndpointPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: ServiceEndpointPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>, ServiceEndpointPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, serviceEndpointPolicyName: string, options?: ServiceEndpointPoliciesGetOptionalParams): Promise<ServiceEndpointPoliciesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
@@ -9305,8 +9281,8 @@ export interface ServiceEndpointPolicyDefinitionListResult {
 
 // @public
 export interface ServiceEndpointPolicyDefinitions {
-    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>, ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>, ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
     listByResourceGroup(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition>;
 }
@@ -9451,12 +9427,12 @@ export interface SubnetListResult {
 
 // @public
 export interface Subnets {
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Subnet, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<SubnetsCreateOrUpdateResponse>, SubnetsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Subnet, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SubnetsCreateOrUpdateResponse>, SubnetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: SubnetsGetOptionalParams): Promise<SubnetsGetResponse>;
     list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Subnet>;
-    prepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    unprepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    prepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    unprepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -9736,8 +9712,8 @@ export type VirtualHubRouteTableV2 = SubResource & {
 
 // @public
 export interface VirtualHubRouteTableV2S {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>, VirtualHubRouteTableV2SCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>, VirtualHubRouteTableV2SCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubRouteTableV2SGetResponse>;
     list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHubRouteTableV2>;
 }
@@ -9785,8 +9761,8 @@ export interface VirtualHubRouteV2 {
 
 // @public
 export interface VirtualHubs {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, virtualHubParameters: VirtualHub, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualHubsCreateOrUpdateResponse>, VirtualHubsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, virtualHubParameters: VirtualHub, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualHubsCreateOrUpdateResponse>, VirtualHubsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
@@ -9961,16 +9937,16 @@ export type VirtualNetworkGatewayConnectionProtocol = string;
 
 // @public
 export interface VirtualNetworkGatewayConnections {
-    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VirtualNetworkGatewayConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>, VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VirtualNetworkGatewayConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>, VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetResponse>;
     getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection>;
-    resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionResetSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>, VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
-    setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>, VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
-    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>>;
-    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>>;
-    updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>, VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
+    resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionResetSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>, VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
+    setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>, VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
+    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>, VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
 }
 
 // @public
@@ -10097,27 +10073,27 @@ export interface VirtualNetworkGatewayListResult {
 
 // @public
 export interface VirtualNetworkGateways {
-    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VirtualNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>, VirtualNetworkGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    disconnectVirtualNetworkGatewayVpnConnections(resourceGroupName: string, virtualNetworkGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>, VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
-    generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>, VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VirtualNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>, VirtualNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    disconnectVirtualNetworkGatewayVpnConnections(resourceGroupName: string, virtualNetworkGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>, VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
+    generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>, VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
     get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysGetResponse>;
-    getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>, VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
-    getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>, VirtualNetworkGatewaysGetBgpPeerStatusResponse>>;
-    getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>, VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
-    getVpnclientConnectionHealth(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>, VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>>;
-    getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>>;
-    getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>, VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
+    getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>, VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
+    getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>, VirtualNetworkGatewaysGetBgpPeerStatusResponse>>;
+    getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>, VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
+    getVpnclientConnectionHealth(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>, VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>>;
+    getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>>;
+    getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>, VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGateway>;
     listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity>;
-    reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysResetOptionalParams): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysResetResponse>, VirtualNetworkGatewaysResetResponse>>;
-    resetVpnClientSharedKey(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: VpnClientIPsecParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>>;
-    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>, VirtualNetworkGatewaysStartPacketCaptureResponse>>;
-    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>, VirtualNetworkGatewaysStopPacketCaptureResponse>>;
+    reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysResetOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysResetResponse>, VirtualNetworkGatewaysResetResponse>>;
+    resetVpnClientSharedKey(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: VpnClientIPsecParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>>;
+    startPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>, VirtualNetworkGatewaysStartPacketCaptureResponse>>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>, VirtualNetworkGatewaysStopPacketCaptureResponse>>;
     supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
-    updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkGatewaysUpdateTagsResponse>, VirtualNetworkGatewaysUpdateTagsResponse>>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>, VirtualNetworkGatewaysUpdateTagsResponse>>;
     vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnDeviceScriptParameters, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
 }
 
@@ -10375,8 +10351,8 @@ export interface VirtualNetworkPeeringListResult {
 
 // @public
 export interface VirtualNetworkPeerings {
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: VirtualNetworkPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>, VirtualNetworkPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: VirtualNetworkPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>, VirtualNetworkPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkPeeringsGetResponse>;
     list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkPeering>;
 }
@@ -10420,8 +10396,8 @@ export type VirtualNetworkPeeringState = string;
 // @public
 export interface VirtualNetworks {
     checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, ipAddress: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: VirtualNetwork, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworksCreateOrUpdateResponse>, VirtualNetworksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: VirtualNetwork, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworksCreateOrUpdateResponse>, VirtualNetworksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworksGetOptionalParams): Promise<VirtualNetworksGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
@@ -10534,8 +10510,8 @@ export interface VirtualNetworkTapListResult {
 
 // @public
 export interface VirtualNetworkTaps {
-    createOrUpdate(resourceGroupName: string, tapName: string, parameters: VirtualNetworkTap, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualNetworkTapsCreateOrUpdateResponse>, VirtualNetworkTapsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, tapName: string, parameters: VirtualNetworkTap, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>, VirtualNetworkTapsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkTapsGetResponse>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
@@ -10649,8 +10625,8 @@ export interface VirtualRouterPeeringListResult {
 
 // @public
 export interface VirtualRouterPeerings {
-    createOrUpdate(resourceGroupName: string, virtualRouterName: string, peeringName: string, parameters: VirtualRouterPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualRouterPeeringsCreateOrUpdateResponse>, VirtualRouterPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, peeringName: string, parameters: VirtualRouterPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualRouterPeeringsCreateOrUpdateResponse>, VirtualRouterPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualRouterPeeringsGetResponse>;
     list(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouterPeering>;
 }
@@ -10690,8 +10666,8 @@ export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult &
 
 // @public
 export interface VirtualRouters {
-    createOrUpdate(resourceGroupName: string, virtualRouterName: string, parameters: VirtualRouter, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualRoutersCreateOrUpdateResponse>, VirtualRoutersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, parameters: VirtualRouter, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualRoutersCreateOrUpdateResponse>, VirtualRoutersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualRouterName: string, options?: VirtualRoutersGetOptionalParams): Promise<VirtualRoutersGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
@@ -10766,8 +10742,8 @@ export type VirtualWAN = Resource & {
 
 // @public
 export interface VirtualWans {
-    createOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<VirtualWansGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
@@ -10972,8 +10948,8 @@ export type VpnConnection = SubResource & {
 
 // @public
 export interface VpnConnections {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, connectionName: string, vpnConnectionParameters: VpnConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnConnectionsCreateOrUpdateResponse>, VpnConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, connectionName: string, vpnConnectionParameters: VpnConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnConnectionsCreateOrUpdateResponse>, VpnConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<VpnConnectionsGetResponse>;
     listByVpnGateway(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnConnection>;
 }
@@ -11036,12 +11012,12 @@ export type VpnGatewayGeneration = string;
 
 // @public
 export interface VpnGateways {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: VpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnGatewaysCreateOrUpdateResponse>, VpnGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: VpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnGatewaysCreateOrUpdateResponse>, VpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<VpnGatewaysGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
-    reset(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnGatewaysResetResponse>, VpnGatewaysResetResponse>>;
+    reset(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnGatewaysResetResponse>, VpnGatewaysResetResponse>>;
     updateTags(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnGatewaysUpdateTagsResponse>;
 }
 
@@ -11196,8 +11172,8 @@ export type VpnServerConfiguration = Resource & {
 
 // @public
 export interface VpnServerConfigurations {
-    createOrUpdate(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: VpnServerConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnServerConfigurationsCreateOrUpdateResponse>, VpnServerConfigurationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: VpnServerConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnServerConfigurationsCreateOrUpdateResponse>, VpnServerConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<VpnServerConfigurationsGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
@@ -11206,7 +11182,7 @@ export interface VpnServerConfigurations {
 
 // @public
 export interface VpnServerConfigurationsAssociatedWithVirtualWan {
-    list(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>, VpnServerConfigurationsAssociatedWithVirtualWanListResponse>>;
+    list(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>, VpnServerConfigurationsAssociatedWithVirtualWanListResponse>>;
 }
 
 // @public
@@ -11389,8 +11365,8 @@ export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult & {
 
 // @public
 export interface VpnSites {
-    createOrUpdate(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: VpnSite, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<VpnSitesCreateOrUpdateResponse>, VpnSitesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: VpnSite, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnSitesCreateOrUpdateResponse>, VpnSitesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<VpnSitesGetResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
@@ -11399,7 +11375,7 @@ export interface VpnSites {
 
 // @public
 export interface VpnSitesConfiguration {
-    download(resourceGroupName: string, virtualWANName: string, request: GetVpnSitesConfigurationRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    download(resourceGroupName: string, virtualWANName: string, request: GetVpnSitesConfigurationRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -11490,7 +11466,7 @@ export type WebApplicationFirewallOperator = string;
 // @public
 export interface WebApplicationFirewallPolicies {
     createOrUpdate(resourceGroupName: string, policyName: string, parameters: WebApplicationFirewallPolicy, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesGetResponse>;
     list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
     listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;

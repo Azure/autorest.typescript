@@ -11,4 +11,3 @@ export * from "./models";
 export { StorageManagementClient } from "./storageManagementClient";
 export { StorageManagementClientContext } from "./storageManagementClientContext";
 export * from "./operationsInterfaces";
-export { LROOperationState } from "./lro";

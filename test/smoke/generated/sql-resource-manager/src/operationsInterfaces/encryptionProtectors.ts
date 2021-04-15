@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   EncryptionProtector,
   EncryptionProtectorName,
@@ -47,7 +46,7 @@ export interface EncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets a server encryption protector.
@@ -80,7 +79,7 @@ export interface EncryptionProtectors {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
+      PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
       EncryptionProtectorsCreateOrUpdateResponse
     >
   >;

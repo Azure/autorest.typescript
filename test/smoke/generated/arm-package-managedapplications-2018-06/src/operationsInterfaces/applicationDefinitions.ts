@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsGetResponse,
@@ -53,7 +52,7 @@ export interface ApplicationDefinitions {
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Creates a new managed application definition.
@@ -69,7 +68,7 @@ export interface ApplicationDefinitions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+      PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
       ApplicationDefinitionsCreateOrUpdateResponse
     >
   >;
@@ -97,7 +96,7 @@ export interface ApplicationDefinitions {
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Creates a new managed application definition.
@@ -114,7 +113,7 @@ export interface ApplicationDefinitions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+      PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
       ApplicationDefinitionsCreateOrUpdateByIdResponse
     >
   >;

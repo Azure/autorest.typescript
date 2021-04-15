@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GremlinDatabaseGetResults,
   GremlinGraphGetResults,
@@ -85,7 +84,7 @@ export interface GremlinResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
+      PollOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
       GremlinResourcesCreateUpdateGremlinDatabaseResponse
     >
   >;
@@ -102,7 +101,7 @@ export interface GremlinResources {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the Gremlin database under an existing Azure Cosmos DB database account
@@ -135,7 +134,7 @@ export interface GremlinResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         GremlinResourcesUpdateGremlinDatabaseThroughputResponse
       >,
       GremlinResourcesUpdateGremlinDatabaseThroughputResponse
@@ -174,7 +173,7 @@ export interface GremlinResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
+      PollOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
       GremlinResourcesCreateUpdateGremlinGraphResponse
     >
   >;
@@ -193,7 +192,7 @@ export interface GremlinResources {
     graphName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the Gremlin graph throughput under an existing Azure Cosmos DB database account with the
@@ -230,7 +229,7 @@ export interface GremlinResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
+      PollOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
       GremlinResourcesUpdateGremlinGraphThroughputResponse
     >
   >;

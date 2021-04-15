@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
   VirtualMachineExtensionsCreateOrUpdateResponse,
@@ -38,7 +37,7 @@ export interface VirtualMachineExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
+      PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
       VirtualMachineExtensionsCreateOrUpdateResponse
     >
   >;
@@ -58,7 +57,7 @@ export interface VirtualMachineExtensions {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualMachineExtensionsUpdateResponse>,
+      PollOperationState<VirtualMachineExtensionsUpdateResponse>,
       VirtualMachineExtensionsUpdateResponse
     >
   >;
@@ -75,7 +74,7 @@ export interface VirtualMachineExtensions {
     vmExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * The operation to get the extension.

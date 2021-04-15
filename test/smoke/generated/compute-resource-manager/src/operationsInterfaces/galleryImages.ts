@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryImage,
   GalleryImagesCreateOrUpdateResponse,
@@ -53,7 +52,7 @@ export interface GalleryImages {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GalleryImagesCreateOrUpdateResponse>,
+      PollOperationState<GalleryImagesCreateOrUpdateResponse>,
       GalleryImagesCreateOrUpdateResponse
     >
   >;
@@ -76,7 +75,7 @@ export interface GalleryImages {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<GalleryImagesUpdateResponse>,
+      PollOperationState<GalleryImagesUpdateResponse>,
       GalleryImagesUpdateResponse
     >
   >;
@@ -108,6 +107,6 @@ export interface GalleryImages {
     galleryImageName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

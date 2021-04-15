@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
   Metric,
@@ -358,7 +358,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabaseAccountsUpdateResponse>,
+      PollOperationState<DatabaseAccountsUpdateResponse>,
       DatabaseAccountsUpdateResponse
     >
   > {
@@ -404,7 +404,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabaseAccountsCreateOrUpdateResponse>,
+      PollOperationState<DatabaseAccountsCreateOrUpdateResponse>,
       DatabaseAccountsCreateOrUpdateResponse
     >
   > {
@@ -446,7 +446,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -490,7 +490,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     failoverParameters: FailoverPolicies,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -611,7 +611,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     regionParameterForOffline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -653,7 +653,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     regionParameterForOnline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -739,7 +739,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

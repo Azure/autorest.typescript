@@ -11,8 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -47,7 +47,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+      PollOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
       LROsCustomHeaderPutAsyncRetrySucceededResponse
     >
   > {
@@ -86,7 +86,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+      PollOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
       LROsCustomHeaderPut201CreatingSucceeded200Response
     >
   > {
@@ -124,7 +124,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPost202Retry200Response>,
+      PollOperationState<LROsCustomHeaderPost202Retry200Response>,
       LROsCustomHeaderPost202Retry200Response
     >
   > {
@@ -163,7 +163,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+      PollOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
       LROsCustomHeaderPostAsyncRetrySucceededResponse
     >
   > {

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicyRuleGroup,
   FirewallPolicyRuleGroupsGetResponse,
@@ -44,7 +43,7 @@ export interface FirewallPolicyRuleGroups {
     ruleGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the specified FirewallPolicyRuleGroup.
@@ -75,7 +74,7 @@ export interface FirewallPolicyRuleGroups {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>,
+      PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>,
       FirewallPolicyRuleGroupsCreateOrUpdateResponse
     >
   >;

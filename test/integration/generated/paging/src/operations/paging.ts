@@ -15,8 +15,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingClientContext } from "../pagingClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Product,
   PagingGetMultiplePagesNextOptionalParams,
@@ -1615,7 +1615,7 @@ export class PagingImpl implements Paging {
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<PagingGetMultiplePagesLROResponse>,
+      PollOperationState<PagingGetMultiplePagesLROResponse>,
       PagingGetMultiplePagesLROResponse
     >
   > {

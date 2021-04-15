@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Site,
   WebAppsListByResourceGroupNextOptionalParams,
@@ -4709,7 +4709,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateResponse>,
+      PollOperationState<WebAppsCreateOrUpdateResponse>,
       WebAppsCreateOrUpdateResponse
     >
   > {
@@ -4979,7 +4979,7 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5442,7 +5442,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsListPublishingCredentialsResponse>,
+      PollOperationState<WebAppsListPublishingCredentialsResponse>,
       WebAppsListPublishingCredentialsResponse
     >
   > {
@@ -6199,7 +6199,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateMSDeployOperationResponse>,
+      PollOperationState<WebAppsCreateMSDeployOperationResponse>,
       WebAppsCreateMSDeployOperationResponse
     >
   > {
@@ -6337,7 +6337,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateFunctionResponse>,
+      PollOperationState<WebAppsCreateFunctionResponse>,
       WebAppsCreateFunctionResponse
     >
   > {
@@ -7086,7 +7086,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+      PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
       WebAppsCreateInstanceMSDeployOperationResponse
     >
   > {
@@ -7433,7 +7433,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsMigrateStorageResponse>,
+      PollOperationState<WebAppsMigrateStorageResponse>,
       WebAppsMigrateStorageResponse
     >
   > {
@@ -7479,7 +7479,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsMigrateMySqlResponse>,
+      PollOperationState<WebAppsMigrateMySqlResponse>,
       WebAppsMigrateMySqlResponse
     >
   > {
@@ -7718,7 +7718,7 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   > {
@@ -8456,7 +8456,7 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8498,7 +8498,7 @@ export class WebAppsImpl implements WebApps {
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8541,7 +8541,7 @@ export class WebAppsImpl implements WebApps {
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8631,7 +8631,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsInstallSiteExtensionResponse>,
+      PollOperationState<WebAppsInstallSiteExtensionResponse>,
       WebAppsInstallSiteExtensionResponse
     >
   > {
@@ -8701,7 +8701,7 @@ export class WebAppsImpl implements WebApps {
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8796,7 +8796,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSlotResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
       WebAppsCreateOrUpdateSlotResponse
     >
   > {
@@ -9103,7 +9103,7 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9586,7 +9586,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+      PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
       WebAppsListPublishingCredentialsSlotResponse
     >
   > {
@@ -10400,7 +10400,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+      PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
       WebAppsCreateMSDeployOperationSlotResponse
     >
   > {
@@ -10553,7 +10553,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+      PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
       WebAppsCreateInstanceFunctionSlotResponse
     >
   > {
@@ -11397,7 +11397,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+      PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
       WebAppsCreateInstanceMSDeployOperationSlotResponse
     >
   > {
@@ -12013,7 +12013,7 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
       WebAppsStartWebSiteNetworkTraceOperationSlotResponse
     >
   > {
@@ -12479,7 +12479,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         WebAppsApproveOrRejectPrivateEndpointConnectionResponse
       >,
       WebAppsApproveOrRejectPrivateEndpointConnectionResponse
@@ -12527,7 +12527,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   > {
@@ -13004,7 +13004,7 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13049,7 +13049,7 @@ export class WebAppsImpl implements WebApps {
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13095,7 +13095,7 @@ export class WebAppsImpl implements WebApps {
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13197,7 +13197,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+      PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
       WebAppsInstallSiteExtensionSlotResponse
     >
   > {
@@ -13275,7 +13275,7 @@ export class WebAppsImpl implements WebApps {
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13350,7 +13350,7 @@ export class WebAppsImpl implements WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13473,7 +13473,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   > {
@@ -13600,7 +13600,7 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsStartNetworkTraceSlotOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartNetworkTraceSlotResponse>,
+      PollOperationState<WebAppsStartNetworkTraceSlotResponse>,
       WebAppsStartNetworkTraceSlotResponse
     >
   > {
@@ -14277,7 +14277,7 @@ export class WebAppsImpl implements WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14386,7 +14386,7 @@ export class WebAppsImpl implements WebApps {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+      PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
       WebAppsCreateOrUpdateSourceControlResponse
     >
   > {
@@ -14498,7 +14498,7 @@ export class WebAppsImpl implements WebApps {
     options?: WebAppsStartNetworkTraceOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<WebAppsStartNetworkTraceResponse>,
+      PollOperationState<WebAppsStartNetworkTraceResponse>,
       WebAppsStartNetworkTraceResponse
     >
   > {

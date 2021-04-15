@@ -6,13 +6,9 @@
 
 import * as coreHttp from '@azure/core-http';
 import { HttpMethods } from '@azure/core-http';
-import { HttpOperationResponse } from '@azure/core-http';
-import { OperationArguments } from '@azure/core-http';
-import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
-import { RestResponse } from '@azure/core-http';
 
 // @public
 export interface AbnormalTimePeriod {
@@ -196,8 +192,8 @@ export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewabl
 
 // @public
 export interface AppServiceCertificateOrders {
-    createOrUpdate(resourceGroupName: string, certificateOrderName: string, certificateDistinguishedName: AppServiceCertificateOrder, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>, AppServiceCertificateOrdersCreateOrUpdateResponse>>;
-    createOrUpdateCertificate(resourceGroupName: string, certificateOrderName: string, name: string, keyVaultCertificate: AppServiceCertificateResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>, AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>>;
+    createOrUpdate(resourceGroupName: string, certificateOrderName: string, certificateDistinguishedName: AppServiceCertificateOrder, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>, AppServiceCertificateOrdersCreateOrUpdateResponse>>;
+    createOrUpdateCertificate(resourceGroupName: string, certificateOrderName: string, name: string, keyVaultCertificate: AppServiceCertificateResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>, AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>>;
     delete(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deleteCertificate(resourceGroupName: string, certificateOrderName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, certificateOrderName: string, options?: coreHttp.OperationOptions): Promise<AppServiceCertificateOrdersGetResponse>;
@@ -491,10 +487,10 @@ export type AppServiceEnvironmentResource = Resource & {
 
 // @public
 export interface AppServiceEnvironments {
-    createOrUpdate(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>, AppServiceEnvironmentsCreateOrUpdateResponse>>;
-    createOrUpdateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>, AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>>;
-    createOrUpdateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>, AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>>;
-    delete(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsDeleteOptionalParams): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, name: string, hostingEnvironmentEnvelope: AppServiceEnvironmentResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>, AppServiceEnvironmentsCreateOrUpdateResponse>>;
+    createOrUpdateMultiRolePool(resourceGroupName: string, name: string, multiRolePoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>, AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>>;
+    createOrUpdateWorkerPool(resourceGroupName: string, name: string, workerPoolName: string, workerPoolEnvelope: WorkerPoolResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>, AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>>;
+    delete(resourceGroupName: string, name: string, options?: AppServiceEnvironmentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetResponse>;
     getDiagnosticsItem(resourceGroupName: string, name: string, diagnosticsName: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
     getMultiRolePool(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
@@ -1058,7 +1054,7 @@ export type AppServicePlanRestrictions = "None" | "Free" | "Shared" | "Basic" | 
 
 // @public
 export interface AppServicePlans {
-    createOrUpdate(resourceGroupName: string, name: string, appServicePlan: AppServicePlan, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<AppServicePlansCreateOrUpdateResponse>, AppServicePlansCreateOrUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, name: string, appServicePlan: AppServicePlan, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AppServicePlansCreateOrUpdateResponse>, AppServicePlansCreateOrUpdateResponse>>;
     createOrUpdateVnetRoute(resourceGroupName: string, name: string, vnetName: string, routeName: string, route: VnetRoute, options?: coreHttp.OperationOptions): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse>;
     delete(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deleteHybridConnection(resourceGroupName: string, name: string, namespaceName: string, relayName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
@@ -2690,7 +2686,7 @@ export type DomainRegistrationProviderListOperationsResponse = CsmOperationColle
 // @public
 export interface Domains {
     checkAvailability(identifier: NameIdentifier, options?: coreHttp.OperationOptions): Promise<DomainsCheckAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, domainName: string, domain: Domain, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<DomainsCreateOrUpdateResponse>, DomainsCreateOrUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, domainName: string, domain: Domain, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DomainsCreateOrUpdateResponse>, DomainsCreateOrUpdateResponse>>;
     createOrUpdateOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, domainOwnershipIdentifier: DomainOwnershipIdentifier, options?: coreHttp.OperationOptions): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
     delete(resourceGroupName: string, domainName: string, options?: DomainsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
     deleteOwnershipIdentifier(resourceGroupName: string, domainName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
@@ -3420,26 +3416,6 @@ export interface LogSpecification {
     displayName?: string;
     // (undocumented)
     name?: string;
-}
-
-// Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
-    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    finalStateVia?: FinalStateVia;
-    // (undocumented)
-    initialOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    lastOperation: LROOperationStep<TResult>;
-    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    pollingStrategy: LROStrategy<TResult>;
 }
 
 // @public
@@ -5677,20 +5653,20 @@ export interface WebApps {
     analyzeCustomHostnameSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsAnalyzeCustomHostnameSlotOptionalParams): Promise<WebAppsAnalyzeCustomHostnameSlotResponse>;
     applySlotConfigToProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     applySlotConfigurationSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    approveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
+    approveOrRejectPrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>, WebAppsApproveOrRejectPrivateEndpointConnectionResponse>>;
     backup(resourceGroupName: string, name: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsBackupResponse>;
     backupSlot(resourceGroupName: string, name: string, slot: string, request: BackupRequest, options?: coreHttp.OperationOptions): Promise<WebAppsBackupSlotResponse>;
-    copyProductionSlot(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    copySlot(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    copyProductionSlot(resourceGroupName: string, name: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    copySlot(resourceGroupName: string, name: string, slot: string, copySlotEntity: CsmCopySlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     createDeployment(resourceGroupName: string, name: string, id: string, deployment: Deployment, options?: coreHttp.OperationOptions): Promise<WebAppsCreateDeploymentResponse>;
     createDeploymentSlot(resourceGroupName: string, name: string, id: string, slot: string, deployment: Deployment, options?: coreHttp.OperationOptions): Promise<WebAppsCreateDeploymentSlotResponse>;
-    createFunction(resourceGroupName: string, name: string, functionName: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateFunctionResponse>, WebAppsCreateFunctionResponse>>;
-    createInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateInstanceFunctionSlotResponse>, WebAppsCreateInstanceFunctionSlotResponse>>;
-    createInstanceMSDeployOperation(resourceGroupName: string, name: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateInstanceMSDeployOperationResponse>, WebAppsCreateInstanceMSDeployOperationResponse>>;
-    createInstanceMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>, WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
-    createMSDeployOperation(resourceGroupName: string, name: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateMSDeployOperationResponse>, WebAppsCreateMSDeployOperationResponse>>;
-    createMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateMSDeployOperationSlotResponse>, WebAppsCreateMSDeployOperationSlotResponse>>;
-    createOrUpdate(resourceGroupName: string, name: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateOrUpdateResponse>, WebAppsCreateOrUpdateResponse>>;
+    createFunction(resourceGroupName: string, name: string, functionName: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateFunctionResponse>, WebAppsCreateFunctionResponse>>;
+    createInstanceFunctionSlot(resourceGroupName: string, name: string, functionName: string, slot: string, functionEnvelope: FunctionEnvelope, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>, WebAppsCreateInstanceFunctionSlotResponse>>;
+    createInstanceMSDeployOperation(resourceGroupName: string, name: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>, WebAppsCreateInstanceMSDeployOperationResponse>>;
+    createInstanceMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>, WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
+    createMSDeployOperation(resourceGroupName: string, name: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationResponse>, WebAppsCreateMSDeployOperationResponse>>;
+    createMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, mSDeploy: MSDeploy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>, WebAppsCreateMSDeployOperationSlotResponse>>;
+    createOrUpdate(resourceGroupName: string, name: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateOrUpdateResponse>, WebAppsCreateOrUpdateResponse>>;
     createOrUpdateConfiguration(resourceGroupName: string, name: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateConfigurationResponse>;
     createOrUpdateConfigurationSlot(resourceGroupName: string, name: string, slot: string, siteConfig: SiteConfigResource, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse>;
     createOrUpdateDomainOwnershipIdentifier(resourceGroupName: string, name: string, domainOwnershipIdentifierName: string, domainOwnershipIdentifier: Identifier, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse>;
@@ -5707,9 +5683,9 @@ export interface WebApps {
     createOrUpdatePublicCertificateSlot(resourceGroupName: string, name: string, publicCertificateName: string, slot: string, publicCertificate: PublicCertificate, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse>;
     createOrUpdateRelayServiceConnection(resourceGroupName: string, name: string, entityName: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse>;
     createOrUpdateRelayServiceConnectionSlot(resourceGroupName: string, name: string, entityName: string, slot: string, connectionEnvelope: RelayServiceConnectionEntity, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse>;
-    createOrUpdateSlot(resourceGroupName: string, name: string, slot: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateOrUpdateSlotResponse>, WebAppsCreateOrUpdateSlotResponse>>;
-    createOrUpdateSourceControl(resourceGroupName: string, name: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateOrUpdateSourceControlResponse>, WebAppsCreateOrUpdateSourceControlResponse>>;
-    createOrUpdateSourceControlSlot(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>, WebAppsCreateOrUpdateSourceControlSlotResponse>>;
+    createOrUpdateSlot(resourceGroupName: string, name: string, slot: string, siteEnvelope: Site, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateOrUpdateSlotResponse>, WebAppsCreateOrUpdateSlotResponse>>;
+    createOrUpdateSourceControl(resourceGroupName: string, name: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>, WebAppsCreateOrUpdateSourceControlResponse>>;
+    createOrUpdateSourceControlSlot(resourceGroupName: string, name: string, slot: string, siteSourceControl: SiteSourceControl, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>, WebAppsCreateOrUpdateSourceControlSlotResponse>>;
     createOrUpdateSwiftVirtualNetworkConnection(resourceGroupName: string, name: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
     createOrUpdateSwiftVirtualNetworkConnectionSlot(resourceGroupName: string, name: string, slot: string, connectionEnvelope: SwiftVirtualNetwork, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
     createOrUpdateVnetConnection(resourceGroupName: string, name: string, vnetName: string, connectionEnvelope: VnetInfo, options?: coreHttp.OperationOptions): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
@@ -5741,7 +5717,7 @@ export interface WebApps {
     deleteInstanceProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deletePremierAddOn(resourceGroupName: string, name: string, premierAddOnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deletePremierAddOnSlot(resourceGroupName: string, name: string, premierAddOnName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsDeletePrivateEndpointConnectionResponse>, WebAppsDeletePrivateEndpointConnectionResponse>>;
+    deletePrivateEndpointConnection(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>, WebAppsDeletePrivateEndpointConnectionResponse>>;
     deleteProcess(resourceGroupName: string, name: string, processId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deleteProcessSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     deletePublicCertificate(resourceGroupName: string, name: string, publicCertificateName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
@@ -5857,8 +5833,8 @@ export interface WebApps {
     getWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebJobSlotResponse>;
     getWebSiteContainerLogs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebSiteContainerLogsResponse>;
     getWebSiteContainerLogsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsGetWebSiteContainerLogsSlotResponse>;
-    installSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsInstallSiteExtensionResponse>, WebAppsInstallSiteExtensionResponse>>;
-    installSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsInstallSiteExtensionSlotResponse>, WebAppsInstallSiteExtensionSlotResponse>>;
+    installSiteExtension(resourceGroupName: string, name: string, siteExtensionId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsInstallSiteExtensionResponse>, WebAppsInstallSiteExtensionResponse>>;
+    installSiteExtensionSlot(resourceGroupName: string, name: string, siteExtensionId: string, slot: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsInstallSiteExtensionSlotResponse>, WebAppsInstallSiteExtensionSlotResponse>>;
     isCloneable(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsIsCloneableResponse>;
     isCloneableSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsIsCloneableSlotResponse>;
     list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
@@ -5921,8 +5897,8 @@ export interface WebApps {
     listProcessThreadsSlot(resourceGroupName: string, name: string, processId: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProcessThreadInfo>;
     listPublicCertificates(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicCertificate>;
     listPublicCertificatesSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicCertificate>;
-    listPublishingCredentials(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsListPublishingCredentialsResponse>, WebAppsListPublishingCredentialsResponse>>;
-    listPublishingCredentialsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsListPublishingCredentialsSlotResponse>, WebAppsListPublishingCredentialsSlotResponse>>;
+    listPublishingCredentials(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsListPublishingCredentialsResponse>, WebAppsListPublishingCredentialsResponse>>;
+    listPublishingCredentialsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsListPublishingCredentialsSlotResponse>, WebAppsListPublishingCredentialsSlotResponse>>;
     listPublishingProfileXmlWithSecrets(resourceGroupName: string, name: string, publishingProfileOptions: CsmPublishingProfileOptions, options?: coreHttp.OperationOptions): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse>;
     listPublishingProfileXmlWithSecretsSlot(resourceGroupName: string, name: string, slot: string, publishingProfileOptions: CsmPublishingProfileOptions, options?: coreHttp.OperationOptions): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse>;
     listRelayServiceConnections(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<WebAppsListRelayServiceConnectionsResponse>;
@@ -5955,8 +5931,8 @@ export interface WebApps {
     listVnetConnectionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<WebAppsListVnetConnectionsSlotResponse>;
     listWebJobs(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebJob>;
     listWebJobsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebJob>;
-    migrateMySql(resourceGroupName: string, name: string, migrationRequestEnvelope: MigrateMySqlRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsMigrateMySqlResponse>, WebAppsMigrateMySqlResponse>>;
-    migrateStorage(subscriptionName: string, resourceGroupName: string, name: string, migrationOptions: StorageMigrationOptions, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<WebAppsMigrateStorageResponse>, WebAppsMigrateStorageResponse>>;
+    migrateMySql(resourceGroupName: string, name: string, migrationRequestEnvelope: MigrateMySqlRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsMigrateMySqlResponse>, WebAppsMigrateMySqlResponse>>;
+    migrateStorage(subscriptionName: string, resourceGroupName: string, name: string, migrationOptions: StorageMigrationOptions, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WebAppsMigrateStorageResponse>, WebAppsMigrateStorageResponse>>;
     putPrivateAccessVnet(resourceGroupName: string, name: string, access: PrivateAccess, options?: coreHttp.OperationOptions): Promise<WebAppsPutPrivateAccessVnetResponse>;
     putPrivateAccessVnetSlot(resourceGroupName: string, name: string, slot: string, access: PrivateAccess, options?: coreHttp.OperationOptions): Promise<WebAppsPutPrivateAccessVnetSlotResponse>;
     recoverSiteConfigurationSnapshot(resourceGroupName: string, name: string, snapshotId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
@@ -5965,25 +5941,25 @@ export interface WebApps {
     resetSlotConfigurationSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     restart(resourceGroupName: string, name: string, options?: WebAppsRestartOptionalParams): Promise<coreHttp.RestResponse>;
     restartSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsRestartSlotOptionalParams): Promise<coreHttp.RestResponse>;
-    restore(resourceGroupName: string, name: string, backupId: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreFromBackupBlob(resourceGroupName: string, name: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreFromBackupBlobSlot(resourceGroupName: string, name: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreFromDeletedApp(resourceGroupName: string, name: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreFromDeletedAppSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreSlot(resourceGroupName: string, name: string, backupId: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreSnapshot(resourceGroupName: string, name: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restoreSnapshotSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restore(resourceGroupName: string, name: string, backupId: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreFromBackupBlob(resourceGroupName: string, name: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreFromBackupBlobSlot(resourceGroupName: string, name: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreFromDeletedApp(resourceGroupName: string, name: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreFromDeletedAppSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: DeletedAppRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreSlot(resourceGroupName: string, name: string, backupId: string, slot: string, request: RestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreSnapshot(resourceGroupName: string, name: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restoreSnapshotSlot(resourceGroupName: string, name: string, slot: string, restoreRequest: SnapshotRestoreRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     runTriggeredWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     runTriggeredWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     start(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     startContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     startContinuousWebJobSlot(resourceGroupName: string, name: string, webJobName: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    startNetworkTrace(resourceGroupName: string, name: string, options?: WebAppsStartNetworkTraceOptionalParams): Promise<PollerLike<LROOperationState<WebAppsStartNetworkTraceResponse>, WebAppsStartNetworkTraceResponse>>;
-    startNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartNetworkTraceSlotOptionalParams): Promise<PollerLike<LROOperationState<WebAppsStartNetworkTraceSlotResponse>, WebAppsStartNetworkTraceSlotResponse>>;
+    startNetworkTrace(resourceGroupName: string, name: string, options?: WebAppsStartNetworkTraceOptionalParams): Promise<PollerLike<PollOperationState<WebAppsStartNetworkTraceResponse>, WebAppsStartNetworkTraceResponse>>;
+    startNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartNetworkTraceSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsStartNetworkTraceSlotResponse>, WebAppsStartNetworkTraceSlotResponse>>;
     startSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     startWebSiteNetworkTrace(resourceGroupName: string, name: string, options?: WebAppsStartWebSiteNetworkTraceOptionalParams): Promise<WebAppsStartWebSiteNetworkTraceResponse>;
-    startWebSiteNetworkTraceOperation(resourceGroupName: string, name: string, options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams): Promise<PollerLike<LROOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>, WebAppsStartWebSiteNetworkTraceOperationResponse>>;
-    startWebSiteNetworkTraceOperationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams): Promise<PollerLike<LROOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>, WebAppsStartWebSiteNetworkTraceOperationSlotResponse>>;
+    startWebSiteNetworkTraceOperation(resourceGroupName: string, name: string, options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams): Promise<PollerLike<PollOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>, WebAppsStartWebSiteNetworkTraceOperationResponse>>;
+    startWebSiteNetworkTraceOperationSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>, WebAppsStartWebSiteNetworkTraceOperationSlotResponse>>;
     startWebSiteNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsStartWebSiteNetworkTraceSlotOptionalParams): Promise<WebAppsStartWebSiteNetworkTraceSlotResponse>;
     stop(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     stopContinuousWebJob(resourceGroupName: string, name: string, webJobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
@@ -5993,8 +5969,8 @@ export interface WebApps {
     stopSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     stopWebSiteNetworkTrace(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     stopWebSiteNetworkTraceSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    swapSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    swapSlotWithProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    swapSlot(resourceGroupName: string, name: string, slot: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    swapSlotWithProduction(resourceGroupName: string, name: string, slotSwapEntity: CsmSlotEntity, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     syncFunctions(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     syncFunctionsSlot(resourceGroupName: string, name: string, slot: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
     syncFunctionTriggers(resourceGroupName: string, name: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;

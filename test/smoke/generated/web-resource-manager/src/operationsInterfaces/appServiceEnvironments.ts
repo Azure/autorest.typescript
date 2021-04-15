@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
   StampCapacity,
@@ -315,7 +314,7 @@ export interface AppServiceEnvironments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
+      PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
       AppServiceEnvironmentsCreateOrUpdateResponse
     >
   >;
@@ -330,7 +329,7 @@ export interface AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Description for Create or update an App Service Environment.
@@ -405,7 +404,7 @@ export interface AppServiceEnvironments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
       >,
       AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
@@ -475,7 +474,9 @@ export interface AppServiceEnvironments {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>,
+      PollOperationState<
+        AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
+      >,
       AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
     >
   >;

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
   CassandraTableGetResults,
@@ -85,7 +84,7 @@ export interface CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesCreateUpdateCassandraKeyspaceResponse
       >,
       CassandraResourcesCreateUpdateCassandraKeyspaceResponse
@@ -104,7 +103,7 @@ export interface CassandraResources {
     keyspaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the Cassandra Keyspace under an existing Azure Cosmos DB database account
@@ -137,7 +136,7 @@ export interface CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
       >,
       CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
@@ -177,7 +176,7 @@ export interface CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
+      PollOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
       CassandraResourcesCreateUpdateCassandraTableResponse
     >
   >;
@@ -196,7 +195,7 @@ export interface CassandraResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the Cassandra table under an existing Azure Cosmos DB database account
@@ -233,7 +232,7 @@ export interface CassandraResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         CassandraResourcesUpdateCassandraTableThroughputResponse
       >,
       CassandraResourcesUpdateCassandraTableThroughputResponse

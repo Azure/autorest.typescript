@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   TableGetResults,
   TableResourcesGetTableResponse,
@@ -64,7 +63,7 @@ export interface TableResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<TableResourcesCreateUpdateTableResponse>,
+      PollOperationState<TableResourcesCreateUpdateTableResponse>,
       TableResourcesCreateUpdateTableResponse
     >
   >;
@@ -81,7 +80,7 @@ export interface TableResources {
     tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Gets the RUs per second of the Table under an existing Azure Cosmos DB database account with the
@@ -114,7 +113,7 @@ export interface TableResources {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<TableResourcesUpdateTableThroughputResponse>,
+      PollOperationState<TableResourcesUpdateTableThroughputResponse>,
       TableResourcesUpdateTableThroughputResponse
     >
   >;

@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Server,
   ServersGetResponse,
@@ -66,7 +65,7 @@ export interface Servers {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ServersCreateOrUpdateResponse>,
+      PollOperationState<ServersCreateOrUpdateResponse>,
       ServersCreateOrUpdateResponse
     >
   >;
@@ -82,7 +81,7 @@ export interface Servers {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a server.
@@ -98,7 +97,7 @@ export interface Servers {
     parameters: ServerUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<ServersUpdateResponse>, ServersUpdateResponse>
+    PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   >;
   /**
    * Determines whether a resource can be created with the specified name.

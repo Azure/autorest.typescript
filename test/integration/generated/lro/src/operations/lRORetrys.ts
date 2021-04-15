@@ -11,8 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -49,7 +49,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: LRORetrysPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysPut201CreatingSucceeded200Response>,
+      PollOperationState<LRORetrysPut201CreatingSucceeded200Response>,
       LRORetrysPut201CreatingSucceeded200Response
     >
   > {
@@ -87,7 +87,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
+      PollOperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
       LRORetrysPutAsyncRelativeRetrySucceededResponse
     >
   > {
@@ -125,7 +125,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         LRORetrysDeleteProvisioning202Accepted200SucceededResponse
       >,
       LRORetrysDeleteProvisioning202Accepted200SucceededResponse
@@ -164,7 +164,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysDelete202Retry200Response>,
+      PollOperationState<LRORetrysDelete202Retry200Response>,
       LRORetrysDelete202Retry200Response
     >
   > {
@@ -201,7 +201,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
+      PollOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
       LRORetrysDeleteAsyncRelativeRetrySucceededResponse
     >
   > {
@@ -238,7 +238,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: LRORetrysPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysPost202Retry200Response>,
+      PollOperationState<LRORetrysPost202Retry200Response>,
       LRORetrysPost202Retry200Response
     >
   > {
@@ -276,7 +276,7 @@ export class LRORetrysImpl implements LRORetrys {
     options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
+      PollOperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
       LRORetrysPostAsyncRelativeRetrySucceededResponse
     >
   > {

@@ -13,8 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
-import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Application,
   ApplicationsGetResponse,
@@ -172,7 +172,7 @@ export class ApplicationsImpl implements Applications {
     applicationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -214,7 +214,7 @@ export class ApplicationsImpl implements Applications {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationsCreateOrUpdateResponse>,
+      PollOperationState<ApplicationsCreateOrUpdateResponse>,
       ApplicationsCreateOrUpdateResponse
     >
   > {
@@ -335,7 +335,7 @@ export class ApplicationsImpl implements Applications {
     applicationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
     const operationArguments: coreHttp.OperationArguments = {
       applicationId,
@@ -376,7 +376,7 @@ export class ApplicationsImpl implements Applications {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ApplicationsCreateOrUpdateByIdResponse>,
+      PollOperationState<ApplicationsCreateOrUpdateByIdResponse>,
       ApplicationsCreateOrUpdateByIdResponse
     >
   > {

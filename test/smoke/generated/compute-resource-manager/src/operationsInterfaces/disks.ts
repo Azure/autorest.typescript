@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Disk,
   DisksCreateOrUpdateResponse,
@@ -54,7 +53,7 @@ export interface Disks {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DisksCreateOrUpdateResponse>,
+      PollOperationState<DisksCreateOrUpdateResponse>,
       DisksCreateOrUpdateResponse
     >
   >;
@@ -73,7 +72,7 @@ export interface Disks {
     disk: DiskUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<DisksUpdateResponse>, DisksUpdateResponse>
+    PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>
   >;
   /**
    * Gets information about a disk.
@@ -101,7 +100,7 @@ export interface Disks {
     diskName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Grants access to a disk.
@@ -119,7 +118,7 @@ export interface Disks {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DisksGrantAccessResponse>,
+      PollOperationState<DisksGrantAccessResponse>,
       DisksGrantAccessResponse
     >
   >;
@@ -136,6 +135,6 @@ export interface Disks {
     diskName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

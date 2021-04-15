@@ -88,11 +88,11 @@ export function generateClient(
 
   if (hasInlineOperations && hasLRO) {
     clientFile.addImportDeclaration({
-      namedImports: ["LROPoller", "shouldDeserializeLRO", "LROOperationState"],
+      namedImports: ["LROPoller", "shouldDeserializeLRO"],
       moduleSpecifier: "./lro"
     });
     clientFile.addImportDeclaration({
-      namedImports: ["PollerLike"],
+      namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
   }

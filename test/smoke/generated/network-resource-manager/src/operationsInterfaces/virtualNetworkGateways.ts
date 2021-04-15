@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
   VirtualNetworkGatewayConnectionListEntity,
@@ -79,7 +78,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
+      PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
       VirtualNetworkGatewaysCreateOrUpdateResponse
     >
   >;
@@ -105,7 +104,7 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates a virtual network gateway tags.
@@ -121,7 +120,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
+      PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
       VirtualNetworkGatewaysUpdateTagsResponse
     >
   >;
@@ -137,7 +136,7 @@ export interface VirtualNetworkGateways {
     options?: VirtualNetworkGatewaysResetOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysResetResponse>,
+      PollOperationState<VirtualNetworkGatewaysResetResponse>,
       VirtualNetworkGatewaysResetResponse
     >
   >;
@@ -152,7 +151,7 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Generates VPN client package for P2S client of the virtual network gateway in the specified resource
@@ -170,7 +169,9 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>,
+      PollOperationState<
+        VirtualNetworkGatewaysGeneratevpnclientpackageResponse
+      >,
       VirtualNetworkGatewaysGeneratevpnclientpackageResponse
     >
   >;
@@ -190,7 +191,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
+      PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
       VirtualNetworkGatewaysGenerateVpnProfileResponse
     >
   >;
@@ -207,7 +208,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
+      PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
       VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse
     >
   >;
@@ -223,7 +224,7 @@ export interface VirtualNetworkGateways {
     options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>,
+      PollOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>,
       VirtualNetworkGatewaysGetBgpPeerStatusResponse
     >
   >;
@@ -251,7 +252,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
+      PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
       VirtualNetworkGatewaysGetLearnedRoutesResponse
     >
   >;
@@ -270,7 +271,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
+      PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
       VirtualNetworkGatewaysGetAdvertisedRoutesResponse
     >
   >;
@@ -290,7 +291,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
       >,
       VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
@@ -310,7 +311,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
       >,
       VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
@@ -342,7 +343,7 @@ export interface VirtualNetworkGateways {
     options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>,
+      PollOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>,
       VirtualNetworkGatewaysStartPacketCaptureResponse
     >
   >;
@@ -361,7 +362,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
+      PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
       VirtualNetworkGatewaysStopPacketCaptureResponse
     >
   >;
@@ -378,7 +379,7 @@ export interface VirtualNetworkGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<
+      PollOperationState<
         VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
       >,
       VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
@@ -397,6 +398,6 @@ export interface VirtualNetworkGateways {
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

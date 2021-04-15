@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
@@ -191,7 +190,7 @@ export interface Paging {
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<
-      LROOperationState<PagingGetMultiplePagesLROResponse>,
+      PollOperationState<PagingGetMultiplePagesLROResponse>,
       PagingGetMultiplePagesLROResponse
     >
   >;

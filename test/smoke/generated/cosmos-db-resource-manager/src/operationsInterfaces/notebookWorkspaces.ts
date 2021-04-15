@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NotebookWorkspace,
   NotebookWorkspaceName,
@@ -64,7 +63,7 @@ export interface NotebookWorkspaces {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
+      PollOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
       NotebookWorkspacesCreateOrUpdateResponse
     >
   >;
@@ -81,7 +80,7 @@ export interface NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Retrieves the connection info for the notebook workspace
@@ -109,7 +108,7 @@ export interface NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Starts the notebook workspace
@@ -124,6 +123,6 @@ export interface NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

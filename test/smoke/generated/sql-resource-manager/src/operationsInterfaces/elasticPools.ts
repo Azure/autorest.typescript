@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
   MetricDefinition,
@@ -99,7 +98,7 @@ export interface ElasticPools {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ElasticPoolsCreateOrUpdateResponse>,
+      PollOperationState<ElasticPoolsCreateOrUpdateResponse>,
       ElasticPoolsCreateOrUpdateResponse
     >
   >;
@@ -117,7 +116,7 @@ export interface ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates an elastic pool.
@@ -136,7 +135,7 @@ export interface ElasticPools {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<ElasticPoolsUpdateResponse>,
+      PollOperationState<ElasticPoolsUpdateResponse>,
       ElasticPoolsUpdateResponse
     >
   >;
@@ -154,6 +153,6 @@ export interface ElasticPools {
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

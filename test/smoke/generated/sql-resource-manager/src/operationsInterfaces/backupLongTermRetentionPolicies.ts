@@ -7,8 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionPolicyName,
   BackupLongTermRetentionPoliciesGetResponse,
@@ -54,7 +53,7 @@ export interface BackupLongTermRetentionPolicies {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>,
+      PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>,
       BackupLongTermRetentionPoliciesCreateOrUpdateResponse
     >
   >;

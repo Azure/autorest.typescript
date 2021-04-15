@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnGateway,
   VpnGatewaysGetResponse,
@@ -64,7 +63,7 @@ export interface VpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VpnGatewaysCreateOrUpdateResponse>,
+      PollOperationState<VpnGatewaysCreateOrUpdateResponse>,
       VpnGatewaysCreateOrUpdateResponse
     >
   >;
@@ -92,7 +91,7 @@ export interface VpnGateways {
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Resets the primary of the vpn gateway in the specified resource group.
@@ -106,7 +105,7 @@ export interface VpnGateways {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<VpnGatewaysResetResponse>,
+      PollOperationState<VpnGatewaysResetResponse>,
       VpnGatewaysResetResponse
     >
   >;

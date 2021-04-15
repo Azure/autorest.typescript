@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
   MetricDefinition,
@@ -106,7 +105,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesImportResponse>,
+      PollOperationState<DatabasesImportResponse>,
       DatabasesImportResponse
     >
   >;
@@ -130,7 +129,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesCreateImportOperationResponse>,
+      PollOperationState<DatabasesCreateImportOperationResponse>,
       DatabasesCreateImportOperationResponse
     >
   >;
@@ -151,7 +150,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesExportResponse>,
+      PollOperationState<DatabasesExportResponse>,
       DatabasesExportResponse
     >
   >;
@@ -186,7 +185,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesCreateOrUpdateResponse>,
+      PollOperationState<DatabasesCreateOrUpdateResponse>,
       DatabasesCreateOrUpdateResponse
     >
   >;
@@ -204,7 +203,7 @@ export interface Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Updates an existing database.
@@ -223,7 +222,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesUpdateResponse>,
+      PollOperationState<DatabasesUpdateResponse>,
       DatabasesUpdateResponse
     >
   >;
@@ -242,7 +241,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesPauseResponse>,
+      PollOperationState<DatabasesPauseResponse>,
       DatabasesPauseResponse
     >
   >;
@@ -261,7 +260,7 @@ export interface Databases {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<DatabasesResumeResponse>,
+      PollOperationState<DatabasesResumeResponse>,
       DatabasesResumeResponse
     >
   >;
@@ -279,7 +278,7 @@ export interface Databases {
     databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Renames a database.
@@ -311,6 +310,6 @@ export interface Databases {
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
 }

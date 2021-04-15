@@ -9,8 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROOperationState } from "../lro";
-import { PollerLike } from "@azure/core-lro";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   StorageAccount,
   StorageAccountCheckNameAvailabilityParameters,
@@ -85,7 +84,7 @@ export interface StorageAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<StorageAccountsCreateResponse>,
+      PollOperationState<StorageAccountsCreateResponse>,
       StorageAccountsCreateResponse
     >
   >;
@@ -220,7 +219,7 @@ export interface StorageAccounts {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
    * Restore blobs in the specified blob ranges
@@ -239,7 +238,7 @@ export interface StorageAccounts {
     options?: coreHttp.OperationOptions
   ): Promise<
     PollerLike<
-      LROOperationState<StorageAccountsRestoreBlobRangesResponse>,
+      PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
       StorageAccountsRestoreBlobRangesResponse
     >
   >;

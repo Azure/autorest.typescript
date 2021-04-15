@@ -4627,8 +4627,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -4753,8 +4753,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -7717,8 +7717,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -7858,8 +7858,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -8200,8 +8200,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -9245,8 +9245,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -9371,8 +9371,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -9730,8 +9730,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -10626,8 +10626,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -10752,8 +10752,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -10972,8 +10972,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -11237,8 +11237,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -11365,8 +11365,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -12811,8 +12811,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -12937,8 +12937,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -13296,8 +13296,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -13994,8 +13994,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -14135,8 +14135,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -14477,8 +14477,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -15167,8 +15167,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -15323,8 +15323,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -15706,8 +15706,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -16991,8 +16991,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17132,8 +17132,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -17474,8 +17474,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18227,8 +18227,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18383,8 +18383,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -18766,8 +18766,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -20403,8 +20403,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -20529,8 +20529,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -20884,8 +20884,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -29406,8 +29406,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -29526,8 +29526,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -29972,174 +29972,6 @@
             }
           ],
           "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "compute-resource-manager!LROOperationState:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface LROOperationState<TResult extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "BaseResult",
-              "canonicalReference": "compute-resource-manager!BaseResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "> extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "PollOperationState",
-              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TResult> "
-            }
-          ],
-          "releaseTag": "Public",
-          "typeParameters": [
-            {
-              "typeParameterName": "TResult",
-              "constraintTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              }
-            }
-          ],
-          "name": "LROOperationState",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!LROOperationState#finalStateVia:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "finalStateVia?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FinalStateVia",
-                  "canonicalReference": "compute-resource-manager!FinalStateVia:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "finalStateVia",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!LROOperationState#initialOperation:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "initialOperation: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROOperationStep",
-                  "canonicalReference": "compute-resource-manager!LROOperationStep:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "initialOperation",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!LROOperationState#lastOperation:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "lastOperation: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROOperationStep",
-                  "canonicalReference": "compute-resource-manager!LROOperationStep:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "lastOperation",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!LROOperationState#pollingStrategy:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "pollingStrategy: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LROStrategy",
-                  "canonicalReference": "compute-resource-manager!LROStrategy:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TResult>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "pollingStrategy",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 3,
-              "endIndex": 5
-            }
-          ]
         },
         {
           "kind": "TypeAlias",
@@ -36603,8 +36435,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -36729,8 +36561,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -36949,8 +36781,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -37214,8 +37046,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -37342,8 +37174,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -42744,8 +42576,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -42885,8 +42717,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -43219,8 +43051,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -45794,8 +45626,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -45920,8 +45752,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -46048,8 +45880,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -46174,8 +46006,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -46293,8 +46125,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -46992,8 +46824,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47107,8 +46939,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47226,8 +47058,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47345,8 +47177,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47460,8 +47292,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47579,8 +47411,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47707,8 +47539,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -47925,8 +47757,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -48053,8 +47885,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -48714,8 +48546,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -48855,8 +48687,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -49193,8 +49025,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -51407,8 +51239,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -51618,8 +51450,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -51737,8 +51569,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -52037,8 +51869,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -52159,8 +51991,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -52278,8 +52110,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -52406,8 +52238,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53142,8 +52974,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53257,8 +53089,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53372,8 +53204,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53487,8 +53319,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53602,8 +53434,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53717,8 +53549,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53845,8 +53677,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -53967,8 +53799,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -54095,8 +53927,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -54230,8 +54062,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -57105,8 +56937,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -57261,8 +57093,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -57640,8 +57472,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -59101,8 +58933,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -59235,8 +59067,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -59671,8 +59503,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -59801,8 +59633,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -59935,8 +59767,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60065,8 +59897,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60199,8 +60031,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60333,8 +60165,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60476,8 +60308,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60724,8 +60556,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
@@ -60867,8 +60699,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "LROOperationState",
-                  "canonicalReference": "compute-resource-manager!LROOperationState:interface"
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
                 },
                 {
                   "kind": "Content",
