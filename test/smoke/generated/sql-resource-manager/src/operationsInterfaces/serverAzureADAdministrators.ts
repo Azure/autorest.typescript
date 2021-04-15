@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerAzureADAdministrator,
   AdministratorName,
@@ -63,7 +64,12 @@ export interface ServerAzureADAdministrators {
     administratorName: AdministratorName,
     parameters: ServerAzureADAdministrator,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerAzureADAdministratorsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
+      ServerAzureADAdministratorsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the Azure Active Directory administrator with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -77,7 +83,9 @@ export interface ServerAzureADAdministrators {
     serverName: string,
     administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Disables Azure Active Directory only authentication on logical Server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -90,7 +98,10 @@ export interface ServerAzureADAdministrators {
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
+      >,
       ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
     >
   >;

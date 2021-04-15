@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -174,7 +175,9 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       sourceResourceGroupName,
       parameters,
@@ -216,7 +219,9 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       sourceResourceGroupName,
       parameters,
@@ -313,7 +318,9 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       resourceProviderNamespace,
@@ -365,7 +372,12 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesCreateOrUpdateResponse>,
+      ResourcesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       resourceProviderNamespace,
@@ -418,7 +430,12 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesUpdateResponse>,
+      ResourcesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       resourceProviderNamespace,
@@ -521,7 +538,9 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,
       apiVersion,
@@ -562,7 +581,12 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesCreateOrUpdateByIdResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesCreateOrUpdateByIdResponse>,
+      ResourcesCreateOrUpdateByIdResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,
       apiVersion,
@@ -604,7 +628,12 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourcesUpdateByIdResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourcesUpdateByIdResponse>,
+      ResourcesUpdateByIdResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,
       apiVersion,

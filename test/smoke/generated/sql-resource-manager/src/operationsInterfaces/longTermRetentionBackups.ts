@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LongTermRetentionBackup,
   LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams,
@@ -141,7 +142,9 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets a long term retention backup.
    * @param locationName The location of the database.
@@ -171,5 +174,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkInterface,
   NetworkInterfaceIPConfiguration,
@@ -96,7 +97,9 @@ export interface NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets information about the specified network interface.
    * @param resourceGroupName The name of the resource group.
@@ -120,7 +123,12 @@ export interface NetworkInterfaces {
     networkInterfaceName: string,
     parameters: NetworkInterface,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkInterfacesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkInterfacesCreateOrUpdateResponse>,
+      NetworkInterfacesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates a network interface tags.
    * @param resourceGroupName The name of the resource group.
@@ -144,7 +152,12 @@ export interface NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkInterfacesGetEffectiveRouteTableResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
+      NetworkInterfacesGetEffectiveRouteTableResponse
+    >
+  >;
   /**
    * Gets all network security groups applied to a network interface.
    * @param resourceGroupName The name of the resource group.
@@ -156,7 +169,12 @@ export interface NetworkInterfaces {
     networkInterfaceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>
+    PollerLike<
+      LROOperationState<
+        NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
+      >,
+      NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
+    >
   >;
   /**
    * Get the specified network interface in a virtual machine scale set.

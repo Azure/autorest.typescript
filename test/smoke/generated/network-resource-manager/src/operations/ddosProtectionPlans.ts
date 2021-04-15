@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DdosProtectionPlan,
   DdosProtectionPlansGetResponse,
@@ -144,7 +145,9 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ddosProtectionPlanName,
@@ -206,7 +209,12 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DdosProtectionPlansCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DdosProtectionPlansCreateOrUpdateResponse>,
+      DdosProtectionPlansCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ddosProtectionPlanName,

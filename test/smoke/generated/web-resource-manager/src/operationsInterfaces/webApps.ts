@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Site,
   WebAppsListByResourceGroupNextOptionalParams,
@@ -1067,7 +1068,12 @@ export interface WebApps {
     name: string,
     siteEnvelope: Site,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateResponse>,
+      WebAppsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Description for Deletes a web, mobile, or API app, or one of the deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1189,7 +1195,9 @@ export interface WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1404,7 +1412,12 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsListPublishingCredentialsResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsListPublishingCredentialsResponse>,
+      WebAppsListPublishingCredentialsResponse
+    >
+  >;
   /**
    * Description for Updates the Push settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1744,7 +1757,12 @@ export interface WebApps {
     name: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateMSDeployOperationResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateMSDeployOperationResponse>,
+      WebAppsCreateMSDeployOperationResponse
+    >
+  >;
   /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1794,7 +1812,12 @@ export interface WebApps {
     functionName: string,
     functionEnvelope: FunctionEnvelope,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateFunctionResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateFunctionResponse>,
+      WebAppsCreateFunctionResponse
+    >
+  >;
   /**
    * Description for Delete a function for web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2156,7 +2179,12 @@ export interface WebApps {
     instanceId: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+      WebAppsCreateInstanceMSDeployOperationResponse
+    >
+  >;
   /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2274,7 +2302,12 @@ export interface WebApps {
     name: string,
     migrationOptions: StorageMigrationOptions,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsMigrateStorageResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsMigrateStorageResponse>,
+      WebAppsMigrateStorageResponse
+    >
+  >;
   /**
    * Description for Migrates a local (in-app) MySql database to a remote MySql database.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2287,7 +2320,12 @@ export interface WebApps {
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsMigrateMySqlResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsMigrateMySqlResponse>,
+      WebAppsMigrateMySqlResponse
+    >
+  >;
   /**
    * Description for Returns the status of MySql in app migration, if one is active, and whether or not
    * MySql in app is enabled
@@ -2402,7 +2440,12 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
-  ): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+      WebAppsStartWebSiteNetworkTraceOperationResponse
+    >
+  >;
   /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2718,7 +2761,9 @@ export interface WebApps {
     name: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2731,7 +2776,9 @@ export interface WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2745,7 +2792,9 @@ export interface WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2771,7 +2820,12 @@ export interface WebApps {
     name: string,
     siteExtensionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsInstallSiteExtensionResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsInstallSiteExtensionResponse>,
+      WebAppsInstallSiteExtensionResponse
+    >
+  >;
   /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2798,7 +2852,9 @@ export interface WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Gets the details of a web, mobile, or API app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2829,7 +2885,12 @@ export interface WebApps {
     slot: string,
     siteEnvelope: Site,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSlotResponse>,
+      WebAppsCreateOrUpdateSlotResponse
+    >
+  >;
   /**
    * Description for Deletes a web, mobile, or API app, or one of the deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2975,7 +3036,9 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3213,7 +3276,12 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsListPublishingCredentialsSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+      WebAppsListPublishingCredentialsSlotResponse
+    >
+  >;
   /**
    * Description for Updates the Push settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3593,7 +3661,12 @@ export interface WebApps {
     slot: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateMSDeployOperationSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+      WebAppsCreateMSDeployOperationSlotResponse
+    >
+  >;
   /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3651,7 +3724,12 @@ export interface WebApps {
     slot: string,
     functionEnvelope: FunctionEnvelope,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceFunctionSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+      WebAppsCreateInstanceFunctionSlotResponse
+    >
+  >;
   /**
    * Description for Delete a function for web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4074,7 +4152,12 @@ export interface WebApps {
     instanceId: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+      WebAppsCreateInstanceMSDeployOperationSlotResponse
+    >
+  >;
   /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4335,7 +4418,12 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
-  ): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+      WebAppsStartWebSiteNetworkTraceOperationSlotResponse
+    >
+  >;
   /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4567,7 +4655,12 @@ export interface WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>
+    PollerLike<
+      LROOperationState<
+        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+    >
   >;
   /**
    * Description for Deletes a private endpoint connection
@@ -4581,7 +4674,12 @@ export interface WebApps {
     name: string,
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsDeletePrivateEndpointConnectionResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      WebAppsDeletePrivateEndpointConnectionResponse
+    >
+  >;
   /**
    * Description for Gets the private link resources
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4773,7 +4871,9 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4788,7 +4888,9 @@ export interface WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4804,7 +4906,9 @@ export interface WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4836,7 +4940,12 @@ export interface WebApps {
     siteExtensionId: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsInstallSiteExtensionSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+      WebAppsInstallSiteExtensionSlotResponse
+    >
+  >;
   /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4869,7 +4978,9 @@ export interface WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4885,7 +4996,9 @@ export interface WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4915,7 +5028,12 @@ export interface WebApps {
     slot: string,
     siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+      WebAppsCreateOrUpdateSourceControlSlotResponse
+    >
+  >;
   /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4972,7 +5090,12 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartNetworkTraceSlotOptionalParams
-  ): Promise<LROPoller<WebAppsStartNetworkTraceSlotResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartNetworkTraceSlotResponse>,
+      WebAppsStartNetworkTraceSlotResponse
+    >
+  >;
   /**
    * Description for Stops an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5262,7 +5385,9 @@ export interface WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5286,7 +5411,12 @@ export interface WebApps {
     name: string,
     siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+      WebAppsCreateOrUpdateSourceControlResponse
+    >
+  >;
   /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5332,7 +5462,12 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams
-  ): Promise<LROPoller<WebAppsStartNetworkTraceResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartNetworkTraceResponse>,
+      WebAppsStartNetworkTraceResponse
+    >
+  >;
   /**
    * Description for Stops an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.

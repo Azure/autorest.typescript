@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCircuitAuthorization,
   ExpressRouteCircuitAuthorizationsGetResponse,
@@ -42,7 +43,9 @@ export interface ExpressRouteCircuitAuthorizations {
     circuitName: string,
     authorizationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified authorization from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -72,6 +75,11 @@ export interface ExpressRouteCircuitAuthorizations {
     authorizationParameters: ExpressRouteCircuitAuthorization,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
+      >,
+      ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
+    >
   >;
 }

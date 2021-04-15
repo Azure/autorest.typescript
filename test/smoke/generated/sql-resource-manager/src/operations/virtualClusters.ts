@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualCluster,
   VirtualClustersListResponse,
@@ -204,7 +205,9 @@ export class VirtualClustersImpl implements VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualClusterName,
@@ -244,7 +247,12 @@ export class VirtualClustersImpl implements VirtualClusters {
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualClustersUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualClustersUpdateResponse>,
+      VirtualClustersUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualClusterName,

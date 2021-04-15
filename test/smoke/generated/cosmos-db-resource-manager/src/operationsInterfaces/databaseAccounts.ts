@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
   Metric,
@@ -109,7 +110,12 @@ export interface DatabaseAccounts {
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabaseAccountsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabaseAccountsUpdateResponse>,
+      DatabaseAccountsUpdateResponse
+    >
+  >;
   /**
    * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
    * performing updates on an account.
@@ -123,7 +129,12 @@ export interface DatabaseAccounts {
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabaseAccountsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabaseAccountsCreateOrUpdateResponse>,
+      DatabaseAccountsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -134,7 +145,9 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
    * indicates a write region. The maximum value for a failover priority = (total number of regions - 1).
@@ -150,7 +163,9 @@ export interface DatabaseAccounts {
     accountName: string,
     failoverParameters: FailoverPolicies,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Lists the access keys for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -185,7 +200,9 @@ export interface DatabaseAccounts {
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Online the specified region for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -198,7 +215,9 @@ export interface DatabaseAccounts {
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -233,7 +252,9 @@ export interface DatabaseAccounts {
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only
    * lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters.

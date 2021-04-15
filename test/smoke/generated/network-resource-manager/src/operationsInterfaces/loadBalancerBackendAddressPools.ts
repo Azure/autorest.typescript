@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   BackendAddressPool,
   LoadBalancerBackendAddressPoolsGetResponse,
@@ -58,7 +59,12 @@ export interface LoadBalancerBackendAddressPools {
     backendAddressPoolName: string,
     parameters: BackendAddressPool,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>,
+      LoadBalancerBackendAddressPoolsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the specified load balancer backend address pool.
    * @param resourceGroupName The name of the resource group.
@@ -71,5 +77,7 @@ export interface LoadBalancerBackendAddressPools {
     loadBalancerName: string,
     backendAddressPoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

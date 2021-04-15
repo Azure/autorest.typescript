@@ -11,4 +11,4 @@ export * from "./models";
 export { CosmosDBManagementClient } from "./cosmosDBManagementClient";
 export { CosmosDBManagementClientContext } from "./cosmosDBManagementClientContext";
 export * from "./operationsInterfaces";
-export { LROPoller } from "./lro";
+export { LROOperationState } from "./lro";

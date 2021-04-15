@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServiceEndpointPolicyDefinition,
   ServiceEndpointPolicyDefinitionsGetResponse,
@@ -42,7 +43,9 @@ export interface ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Get the specified service endpoint policy definitions from service endpoint policy.
    * @param resourceGroupName The name of the resource group.
@@ -71,5 +74,10 @@ export interface ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyDefinitionName: string,
     serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>,
+      ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
+    >
+  >;
 }

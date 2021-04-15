@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
   VirtualNetworkGatewayConnectionListEntity,
@@ -76,7 +77,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
+      VirtualNetworkGatewaysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the specified virtual network gateway by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -98,7 +104,9 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a virtual network gateway tags.
    * @param resourceGroupName The name of the resource group.
@@ -111,7 +119,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysUpdateTagsResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
+      VirtualNetworkGatewaysUpdateTagsResponse
+    >
+  >;
   /**
    * Resets the primary of the virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -122,7 +135,12 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysResetResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysResetResponse>,
+      VirtualNetworkGatewaysResetResponse
+    >
+  >;
   /**
    * Resets the VPN client shared key of the virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -133,7 +151,9 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Generates VPN client package for P2S client of the virtual network gateway in the specified resource
    * group.
@@ -148,7 +168,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>,
+      VirtualNetworkGatewaysGeneratevpnclientpackageResponse
+    >
+  >;
   /**
    * Generates VPN profile for P2S client of the virtual network gateway in the specified resource group.
    * Used for IKEV2 and radius based authentication.
@@ -163,7 +188,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
+      VirtualNetworkGatewaysGenerateVpnProfileResponse
+    >
+  >;
   /**
    * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
    * resource group. The profile needs to be generated first using generateVpnProfile.
@@ -175,7 +205,12 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
+      VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse
+    >
+  >;
   /**
    * The GetBgpPeerStatus operation retrieves the status of all BGP peers.
    * @param resourceGroupName The name of the resource group.
@@ -186,7 +221,12 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetBgpPeerStatusResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>,
+      VirtualNetworkGatewaysGetBgpPeerStatusResponse
+    >
+  >;
   /**
    * Gets a xml format representation for supported vpn devices.
    * @param resourceGroupName The name of the resource group.
@@ -209,7 +249,12 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
+      VirtualNetworkGatewaysGetLearnedRoutesResponse
+    >
+  >;
   /**
    * This operation retrieves a list of routes the virtual network gateway is advertising to the
    * specified peer.
@@ -223,7 +268,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     peer: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
+      VirtualNetworkGatewaysGetAdvertisedRoutesResponse
+    >
+  >;
   /**
    * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual
    * network gateway in the specified resource group through Network resource provider.
@@ -239,7 +289,12 @@ export interface VirtualNetworkGateways {
     vpnclientIpsecParams: VpnClientIPsecParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
+      >,
+      VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
+    >
   >;
   /**
    * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy
@@ -254,7 +309,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
+      >,
+      VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
+    >
   >;
   /**
    * Gets a xml format representation for vpn device configuration script.
@@ -280,7 +340,12 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
-  ): Promise<LROPoller<VirtualNetworkGatewaysStartPacketCaptureResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>,
+      VirtualNetworkGatewaysStartPacketCaptureResponse
+    >
+  >;
   /**
    * Stops packet capture on virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -294,7 +359,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkGatewaysStopPacketCaptureResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
+      VirtualNetworkGatewaysStopPacketCaptureResponse
+    >
+  >;
   /**
    * Get VPN client connection health detail per P2S client connection of the virtual network gateway in
    * the specified resource group.
@@ -307,7 +377,12 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
+      >,
+      VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
+    >
   >;
   /**
    * Disconnect vpn connections of virtual network gateway in the specified resource group.
@@ -321,5 +396,7 @@ export interface VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

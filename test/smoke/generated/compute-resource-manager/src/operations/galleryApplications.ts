@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GalleryApplication,
   GalleryApplicationsCreateOrUpdateResponse,
@@ -126,7 +127,12 @@ export class GalleryApplicationsImpl implements GalleryApplications {
     galleryApplicationName: string,
     galleryApplication: GalleryApplication,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationsCreateOrUpdateResponse>,
+      GalleryApplicationsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -172,7 +178,12 @@ export class GalleryApplicationsImpl implements GalleryApplications {
     galleryApplicationName: string,
     galleryApplication: GalleryApplicationUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationsUpdateResponse>,
+      GalleryApplicationsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -240,7 +251,9 @@ export class GalleryApplicationsImpl implements GalleryApplications {
     galleryName: string,
     galleryApplicationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,

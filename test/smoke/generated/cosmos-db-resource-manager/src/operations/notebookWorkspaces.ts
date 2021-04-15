@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NotebookWorkspace,
   NotebookWorkspacesListByDatabaseAccountResponse,
@@ -159,7 +160,12 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     notebookWorkspaceName: NotebookWorkspaceName,
     notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
+      NotebookWorkspacesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -200,7 +206,9 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -265,7 +273,9 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -305,7 +315,9 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,

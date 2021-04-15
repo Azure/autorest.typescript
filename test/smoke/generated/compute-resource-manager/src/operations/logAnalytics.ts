@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   RequestRateByIntervalInput,
   LogAnalyticsExportRequestRateByIntervalResponse,
@@ -42,7 +43,12 @@ export class LogAnalyticsImpl implements LogAnalytics {
     location: string,
     parameters: RequestRateByIntervalInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LogAnalyticsExportRequestRateByIntervalResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
+      LogAnalyticsExportRequestRateByIntervalResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       location,
       parameters,
@@ -80,7 +86,12 @@ export class LogAnalyticsImpl implements LogAnalytics {
     location: string,
     parameters: ThrottledRequestsInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LogAnalyticsExportThrottledRequestsResponse>,
+      LogAnalyticsExportThrottledRequestsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       location,
       parameters,

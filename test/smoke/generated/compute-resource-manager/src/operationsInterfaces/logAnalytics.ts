@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   RequestRateByIntervalInput,
   LogAnalyticsExportRequestRateByIntervalResponse,
@@ -28,7 +29,12 @@ export interface LogAnalytics {
     location: string,
     parameters: RequestRateByIntervalInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LogAnalyticsExportRequestRateByIntervalResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
+      LogAnalyticsExportRequestRateByIntervalResponse
+    >
+  >;
   /**
    * Export logs that show total throttled Api requests for this subscription in the given time window.
    * @param location The location upon which virtual-machine-sizes is queried.
@@ -39,5 +45,10 @@ export interface LogAnalytics {
     location: string,
     parameters: ThrottledRequestsInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LogAnalyticsExportThrottledRequestsResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LogAnalyticsExportThrottledRequestsResponse>,
+      LogAnalyticsExportThrottledRequestsResponse
+    >
+  >;
 }

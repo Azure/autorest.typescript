@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   FailoverGroup,
   FailoverGroupsGetResponse,
@@ -152,7 +153,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
     failoverGroupName: string,
     parameters: FailoverGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsCreateOrUpdateResponse>,
+      FailoverGroupsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -194,7 +200,9 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -237,7 +245,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
     failoverGroupName: string,
     parameters: FailoverGroupUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsUpdateResponse>,
+      FailoverGroupsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -302,7 +315,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsFailoverResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsFailoverResponse>,
+      FailoverGroupsFailoverResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -343,7 +361,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsForceFailoverAllowDataLossResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
+      FailoverGroupsForceFailoverAllowDataLossResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

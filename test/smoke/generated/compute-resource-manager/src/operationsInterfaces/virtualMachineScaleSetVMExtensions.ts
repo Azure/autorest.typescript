@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse,
@@ -38,7 +39,12 @@ export interface VirtualMachineScaleSetVMExtensions {
     extensionParameters: VirtualMachineExtension,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse
+      >,
+      VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse
+    >
   >;
   /**
    * The operation to update the VMSS VM extension.
@@ -56,7 +62,12 @@ export interface VirtualMachineScaleSetVMExtensions {
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>,
+      VirtualMachineScaleSetVMExtensionsUpdateResponse
+    >
+  >;
   /**
    * The operation to delete the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +82,9 @@ export interface VirtualMachineScaleSetVMExtensions {
     instanceId: string,
     vmExtensionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to get the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.

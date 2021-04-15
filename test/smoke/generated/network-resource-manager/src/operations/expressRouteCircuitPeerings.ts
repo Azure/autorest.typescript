@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCircuitPeering,
   ExpressRouteCircuitPeeringsGetResponse,
@@ -107,7 +108,9 @@ export class ExpressRouteCircuitPeeringsImpl
     circuitName: string,
     peeringName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
@@ -176,7 +179,12 @@ export class ExpressRouteCircuitPeeringsImpl
     peeringName: string,
     peeringParameters: ExpressRouteCircuitPeering,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>,
+      ExpressRouteCircuitPeeringsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,

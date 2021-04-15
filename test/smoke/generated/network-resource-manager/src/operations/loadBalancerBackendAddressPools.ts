@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   BackendAddressPool,
   LoadBalancerBackendAddressPoolsListResponse,
@@ -165,7 +166,12 @@ export class LoadBalancerBackendAddressPoolsImpl
     backendAddressPoolName: string,
     parameters: BackendAddressPool,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>,
+      LoadBalancerBackendAddressPoolsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,
@@ -207,7 +213,9 @@ export class LoadBalancerBackendAddressPoolsImpl
     loadBalancerName: string,
     backendAddressPoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       loadBalancerName,

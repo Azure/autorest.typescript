@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkVirtualAppliance,
   NetworkVirtualAppliancesGetOptionalParams,
@@ -48,7 +49,9 @@ export interface NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Network Virtual Appliance.
    * @param resourceGroupName The name of the resource group.
@@ -85,5 +88,10 @@ export interface NetworkVirtualAppliances {
     networkVirtualApplianceName: string,
     parameters: NetworkVirtualAppliance,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkVirtualAppliancesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,
+      NetworkVirtualAppliancesCreateOrUpdateResponse
+    >
+  >;
 }

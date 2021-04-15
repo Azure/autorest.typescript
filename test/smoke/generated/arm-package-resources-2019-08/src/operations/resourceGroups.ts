@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ResourceGroup,
   ResourceGroupsListNextOptionalParams,
@@ -135,7 +136,9 @@ export class ResourceGroupsImpl implements ResourceGroups {
   async delete(
     resourceGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       options: this.getOperationOptions(options, "undefined")
@@ -214,7 +217,12 @@ export class ResourceGroupsImpl implements ResourceGroups {
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ResourceGroupsExportTemplateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ResourceGroupsExportTemplateResponse>,
+      ResourceGroupsExportTemplateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       parameters,

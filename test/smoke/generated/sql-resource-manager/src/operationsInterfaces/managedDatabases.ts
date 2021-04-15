@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedDatabase,
   ManagedDatabasesGetResponse,
@@ -75,7 +76,12 @@ export interface ManagedDatabases {
     databaseName: string,
     parameters: ManagedDatabase,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedDatabasesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedDatabasesCreateOrUpdateResponse>,
+      ManagedDatabasesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -89,7 +95,9 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -105,7 +113,12 @@ export interface ManagedDatabases {
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedDatabasesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedDatabasesUpdateResponse>,
+      ManagedDatabasesUpdateResponse
+    >
+  >;
   /**
    * Completes the restore operation on a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -121,5 +134,7 @@ export interface ManagedDatabases {
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

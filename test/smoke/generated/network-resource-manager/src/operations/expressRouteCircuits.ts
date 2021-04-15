@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteCircuit,
   ExpressRouteCircuitsGetResponse,
@@ -146,7 +147,9 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
     resourceGroupName: string,
     circuitName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
@@ -208,7 +211,12 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
     circuitName: string,
     parameters: ExpressRouteCircuit,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>,
+      ExpressRouteCircuitsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
@@ -277,7 +285,12 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListArpTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListArpTableResponse>,
+      ExpressRouteCircuitsListArpTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
@@ -322,7 +335,12 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListRoutesTableResponse>,
+      ExpressRouteCircuitsListRoutesTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,
@@ -367,7 +385,12 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
     peeringName: string,
     devicePath: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteCircuitsListRoutesTableSummaryResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>,
+      ExpressRouteCircuitsListRoutesTableSummaryResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       circuitName,

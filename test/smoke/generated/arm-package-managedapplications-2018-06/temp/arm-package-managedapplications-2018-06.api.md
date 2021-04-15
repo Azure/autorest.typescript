@@ -10,7 +10,7 @@ import { HttpOperationResponse } from '@azure/core-http';
 import { OperationArguments } from '@azure/core-http';
 import { OperationSpec } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { Poller } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
 
@@ -83,10 +83,10 @@ export interface ApplicationDefinitionListResult {
 
 // @public
 export interface ApplicationDefinitions {
-    createOrUpdate(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateResponse>>;
-    createOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, applicationDefinitionName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteById(applicationDefinitionId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationDefinitionsCreateOrUpdateResponse>, ApplicationDefinitionsCreateOrUpdateResponse>>;
+    createOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>, ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, applicationDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteById(applicationDefinitionId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationDefinitionName: string, options?: coreHttp.OperationOptions): Promise<ApplicationDefinitionsGetResponse>;
     getById(applicationDefinitionId: string, options?: coreHttp.OperationOptions): Promise<ApplicationDefinitionsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationDefinition>;
@@ -170,10 +170,10 @@ export interface ApplicationProviderAuthorization {
 
 // @public
 export interface Applications {
-    createOrUpdate(resourceGroupName: string, applicationName: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationsCreateOrUpdateResponse>>;
-    createOrUpdateById(applicationId: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, applicationName: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
-    deleteById(applicationId: string, options?: coreHttp.OperationOptions): Promise<LROPoller<coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, applicationName: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationsCreateOrUpdateResponse>, ApplicationsCreateOrUpdateResponse>>;
+    createOrUpdateById(applicationId: string, parameters: Application, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<ApplicationsCreateOrUpdateByIdResponse>, ApplicationsCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, applicationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteById(applicationId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationName: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetResponse>;
     getById(applicationId: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
@@ -322,14 +322,24 @@ export const enum KnownProvisioningState {
 }
 
 // Warning: (ae-forgotten-export) The symbol "BaseResult" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "LROOperationState" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export class LROPoller<TResult extends BaseResult> extends Poller<LROOperationState<TResult>, TResult> {
-    // Warning: (ae-forgotten-export) The symbol "LROPollerOptions" needs to be exported by the entry point index.d.ts
-    constructor({ initialOperationArguments, initialOperationResult, initialOperationSpec, sendOperation, finalStateVia, intervalInMs }: LROPollerOptions<TResult>);
-    delay(): Promise<void>;
-    }
+export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
+    // Warning: (ae-forgotten-export) The symbol "FinalStateVia" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    finalStateVia?: FinalStateVia;
+    // (undocumented)
+    initialOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROOperationStep" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    lastOperation: LROOperationStep<TResult>;
+    // Warning: (ae-forgotten-export) The symbol "LROStrategy" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    pollingStrategy: LROStrategy<TResult>;
+}
 
 // @public
 export interface Plan {

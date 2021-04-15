@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Subnet,
   SubnetsGetOptionalParams,
@@ -121,7 +122,9 @@ export class SubnetsImpl implements Subnets {
     virtualNetworkName: string,
     subnetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
@@ -189,7 +192,12 @@ export class SubnetsImpl implements Subnets {
     subnetName: string,
     subnetParameters: Subnet,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SubnetsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SubnetsCreateOrUpdateResponse>,
+      SubnetsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
@@ -234,7 +242,9 @@ export class SubnetsImpl implements Subnets {
     subnetName: string,
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
@@ -279,7 +289,9 @@ export class SubnetsImpl implements Subnets {
     subnetName: string,
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,

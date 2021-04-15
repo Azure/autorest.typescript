@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstanceEncryptionProtector,
   EncryptionProtectorName,
@@ -122,7 +123,9 @@ export class ManagedInstanceEncryptionProtectorsImpl
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -215,7 +218,12 @@ export class ManagedInstanceEncryptionProtectorsImpl
     parameters: ManagedInstanceEncryptionProtector,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
+      >,
+      ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Metric,
   MetricDefinition,
@@ -103,7 +104,12 @@ export interface Databases {
     serverName: string,
     parameters: ImportRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesImportResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesImportResponse>,
+      DatabasesImportResponse
+    >
+  >;
   /**
    * Creates an import operation that imports a bacpac into an existing database. The existing database
    * must be empty.
@@ -122,7 +128,12 @@ export interface Databases {
     extensionName: ExtensionName,
     parameters: ImportExtensionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesCreateImportOperationResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesCreateImportOperationResponse>,
+      DatabasesCreateImportOperationResponse
+    >
+  >;
   /**
    * Exports a database to a bacpac.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -138,7 +149,12 @@ export interface Databases {
     databaseName: string,
     parameters: ExportRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesExportResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesExportResponse>,
+      DatabasesExportResponse
+    >
+  >;
   /**
    * Gets a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -168,7 +184,12 @@ export interface Databases {
     databaseName: string,
     parameters: Database,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesCreateOrUpdateResponse>,
+      DatabasesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -182,7 +203,9 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -198,7 +221,12 @@ export interface Databases {
     databaseName: string,
     parameters: DatabaseUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesUpdateResponse>,
+      DatabasesUpdateResponse
+    >
+  >;
   /**
    * Pauses a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -212,7 +240,12 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesPauseResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesPauseResponse>,
+      DatabasesPauseResponse
+    >
+  >;
   /**
    * Resumes a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -226,7 +259,12 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DatabasesResumeResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DatabasesResumeResponse>,
+      DatabasesResumeResponse
+    >
+  >;
   /**
    * Upgrades a data warehouse.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -240,7 +278,9 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Renames a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -270,5 +310,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

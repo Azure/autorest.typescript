@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualRouter,
   VirtualRoutersGetOptionalParams,
@@ -46,7 +47,9 @@ export interface VirtualRouters {
     resourceGroupName: string,
     virtualRouterName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Virtual Router.
    * @param resourceGroupName The name of the resource group.
@@ -70,5 +73,10 @@ export interface VirtualRouters {
     virtualRouterName: string,
     parameters: VirtualRouter,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualRoutersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualRoutersCreateOrUpdateResponse>,
+      VirtualRoutersCreateOrUpdateResponse
+    >
+  >;
 }

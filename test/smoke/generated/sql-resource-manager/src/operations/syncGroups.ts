@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
   SyncFullSchemaProperties,
@@ -423,7 +424,9 @@ export class SyncGroupsImpl implements SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -623,7 +626,12 @@ export class SyncGroupsImpl implements SyncGroups {
     syncGroupName: string,
     parameters: SyncGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SyncGroupsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SyncGroupsCreateOrUpdateResponse>,
+      SyncGroupsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -668,7 +676,9 @@ export class SyncGroupsImpl implements SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -714,7 +724,12 @@ export class SyncGroupsImpl implements SyncGroups {
     syncGroupName: string,
     parameters: SyncGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SyncGroupsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SyncGroupsUpdateResponse>,
+      SyncGroupsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

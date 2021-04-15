@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Metric,
   MetricDefinition,
@@ -96,7 +97,12 @@ export interface ElasticPools {
     elasticPoolName: string,
     parameters: ElasticPool,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ElasticPoolsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ElasticPoolsCreateOrUpdateResponse>,
+      ElasticPoolsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -110,7 +116,9 @@ export interface ElasticPools {
     serverName: string,
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -126,7 +134,12 @@ export interface ElasticPools {
     elasticPoolName: string,
     parameters: ElasticPoolUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ElasticPoolsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ElasticPoolsUpdateResponse>,
+      ElasticPoolsUpdateResponse
+    >
+  >;
   /**
    * Failovers an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -140,5 +153,7 @@ export interface ElasticPools {
     serverName: string,
     elasticPoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

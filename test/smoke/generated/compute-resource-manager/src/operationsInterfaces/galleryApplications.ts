@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GalleryApplication,
   GalleryApplicationsCreateOrUpdateResponse,
@@ -50,7 +51,12 @@ export interface GalleryApplications {
     galleryApplicationName: string,
     galleryApplication: GalleryApplication,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationsCreateOrUpdateResponse>,
+      GalleryApplicationsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
@@ -68,7 +74,12 @@ export interface GalleryApplications {
     galleryApplicationName: string,
     galleryApplication: GalleryApplicationUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryApplicationsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryApplicationsUpdateResponse>,
+      GalleryApplicationsUpdateResponse
+    >
+  >;
   /**
    * Retrieves information about a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
@@ -96,5 +107,7 @@ export interface GalleryApplications {
     galleryName: string,
     galleryApplicationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

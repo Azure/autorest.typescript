@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   TableGetResults,
   TableResourcesListTablesResponse,
@@ -159,7 +160,12 @@ export class TableResourcesImpl implements TableResources {
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<TableResourcesCreateUpdateTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<TableResourcesCreateUpdateTableResponse>,
+      TableResourcesCreateUpdateTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -200,7 +206,9 @@ export class TableResourcesImpl implements TableResources {
     accountName: string,
     tableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -269,7 +277,12 @@ export class TableResourcesImpl implements TableResources {
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<TableResourcesUpdateTableThroughputResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<TableResourcesUpdateTableThroughputResponse>,
+      TableResourcesUpdateTableThroughputResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,

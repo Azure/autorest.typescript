@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   IpAllocation,
   IpAllocationsGetOptionalParams,
@@ -145,7 +146,9 @@ export class IpAllocationsImpl implements IpAllocations {
     resourceGroupName: string,
     ipAllocationName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ipAllocationName,
@@ -207,7 +210,12 @@ export class IpAllocationsImpl implements IpAllocations {
     ipAllocationName: string,
     parameters: IpAllocation,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<IpAllocationsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<IpAllocationsCreateOrUpdateResponse>,
+      IpAllocationsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       ipAllocationName,

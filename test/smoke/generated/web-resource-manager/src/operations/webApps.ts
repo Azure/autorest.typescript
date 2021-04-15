@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Site,
   WebAppsListByResourceGroupNextOptionalParams,
@@ -4706,7 +4707,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteEnvelope: Site,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateResponse>,
+      WebAppsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -4972,7 +4978,9 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -5432,7 +5440,12 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsListPublishingCredentialsResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsListPublishingCredentialsResponse>,
+      WebAppsListPublishingCredentialsResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -6184,7 +6197,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateMSDeployOperationResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateMSDeployOperationResponse>,
+      WebAppsCreateMSDeployOperationResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -6317,7 +6335,12 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     functionEnvelope: FunctionEnvelope,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateFunctionResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateFunctionResponse>,
+      WebAppsCreateFunctionResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -7061,7 +7084,12 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+      WebAppsCreateInstanceMSDeployOperationResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -7403,7 +7431,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     migrationOptions: StorageMigrationOptions,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsMigrateStorageResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsMigrateStorageResponse>,
+      WebAppsMigrateStorageResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionName,
       resourceGroupName,
@@ -7444,7 +7477,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsMigrateMySqlResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsMigrateMySqlResponse>,
+      WebAppsMigrateMySqlResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -7678,7 +7716,12 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
-  ): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+      WebAppsStartWebSiteNetworkTraceOperationResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8412,7 +8455,9 @@ export class WebAppsImpl implements WebApps {
     name: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8452,7 +8497,9 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8493,7 +8540,9 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8580,7 +8629,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteExtensionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsInstallSiteExtensionResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsInstallSiteExtensionResponse>,
+      WebAppsInstallSiteExtensionResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8646,7 +8700,9 @@ export class WebAppsImpl implements WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -8738,7 +8794,12 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     siteEnvelope: Site,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSlotResponse>,
+      WebAppsCreateOrUpdateSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -9041,7 +9102,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -9521,7 +9584,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsListPublishingCredentialsSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+      WebAppsListPublishingCredentialsSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -10330,7 +10398,12 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateMSDeployOperationSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+      WebAppsCreateMSDeployOperationSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -10478,7 +10551,12 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     functionEnvelope: FunctionEnvelope,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceFunctionSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+      WebAppsCreateInstanceFunctionSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -11317,7 +11395,12 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+      WebAppsCreateInstanceMSDeployOperationSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -11928,7 +12011,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
-  ): Promise<LROPoller<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+      WebAppsStartWebSiteNetworkTraceOperationSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -12390,7 +12478,12 @@ export class WebAppsImpl implements WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>
+    PollerLike<
+      LROOperationState<
+        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+      >,
+      WebAppsApproveOrRejectPrivateEndpointConnectionResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12432,7 +12525,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsDeletePrivateEndpointConnectionResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+      WebAppsDeletePrivateEndpointConnectionResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -12905,7 +13003,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -12948,7 +13048,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -12992,7 +13094,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -13091,7 +13195,12 @@ export class WebAppsImpl implements WebApps {
     siteExtensionId: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsInstallSiteExtensionSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+      WebAppsInstallSiteExtensionSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -13165,7 +13274,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -13238,7 +13349,9 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -13358,7 +13471,12 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+      WebAppsCreateOrUpdateSourceControlSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -13480,7 +13598,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartNetworkTraceSlotOptionalParams
-  ): Promise<LROPoller<WebAppsStartNetworkTraceSlotResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartNetworkTraceSlotResponse>,
+      WebAppsStartNetworkTraceSlotResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -14153,7 +14276,9 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -14259,7 +14384,12 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+      WebAppsCreateOrUpdateSourceControlResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
@@ -14366,7 +14496,12 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams
-  ): Promise<LROPoller<WebAppsStartNetworkTraceResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<WebAppsStartNetworkTraceResponse>,
+      WebAppsStartNetworkTraceResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       name,

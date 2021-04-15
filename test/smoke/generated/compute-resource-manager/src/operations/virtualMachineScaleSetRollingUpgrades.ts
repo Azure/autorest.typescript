@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
 
 /** Class representing a VirtualMachineScaleSetRollingUpgrades. */
@@ -37,7 +38,9 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -76,7 +79,9 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -115,7 +120,9 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,

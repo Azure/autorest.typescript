@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   NetworkWatcher,
   NetworkWatchersCreateOrUpdateResponse,
@@ -95,7 +96,9 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a network watcher tags.
    * @param resourceGroupName The name of the resource group.
@@ -134,7 +137,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersVerifyIPFlowResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersVerifyIPFlowResponse>,
+      NetworkWatchersVerifyIPFlowResponse
+    >
+  >;
   /**
    * Gets the next hop from the specified VM.
    * @param resourceGroupName The name of the resource group.
@@ -147,7 +155,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: NextHopParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetNextHopResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetNextHopResponse>,
+      NetworkWatchersGetNextHopResponse
+    >
+  >;
   /**
    * Gets the configured and effective security group rules on the specified VM.
    * @param resourceGroupName The name of the resource group.
@@ -160,7 +173,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetVMSecurityRulesResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
+      NetworkWatchersGetVMSecurityRulesResponse
+    >
+  >;
   /**
    * Initiate troubleshooting on a specified resource.
    * @param resourceGroupName The name of the resource group.
@@ -173,7 +191,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetTroubleshootingResponse>,
+      NetworkWatchersGetTroubleshootingResponse
+    >
+  >;
   /**
    * Get the last completed troubleshooting result on a specified resource.
    * @param resourceGroupName The name of the resource group.
@@ -186,7 +209,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResultResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
+      NetworkWatchersGetTroubleshootingResultResponse
+    >
+  >;
   /**
    * Configures flow log and traffic analytics (optional) on a specified resource.
    * @param resourceGroupName The name of the network watcher resource group.
@@ -199,7 +227,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: FlowLogInformation,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersSetFlowLogConfigurationResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
+      NetworkWatchersSetFlowLogConfigurationResponse
+    >
+  >;
   /**
    * Queries status of flow log and traffic analytics (optional) on a specified resource.
    * @param resourceGroupName The name of the network watcher resource group.
@@ -213,7 +246,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetFlowLogStatusResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetFlowLogStatusResponse>,
+      NetworkWatchersGetFlowLogStatusResponse
+    >
+  >;
   /**
    * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a given
    * endpoint including another VM or an arbitrary remote server.
@@ -227,7 +265,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: ConnectivityParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersCheckConnectivityResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersCheckConnectivityResponse>,
+      NetworkWatchersCheckConnectivityResponse
+    >
+  >;
   /**
    * NOTE: This feature is currently in preview and still being tested for stability. Gets the relative
    * latency score for internet service providers from a specified location to Azure regions.
@@ -241,7 +284,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersGetAzureReachabilityReportResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
+      NetworkWatchersGetAzureReachabilityReportResponse
+    >
+  >;
   /**
    * NOTE: This feature is currently in preview and still being tested for stability. Lists all available
    * internet service providers for a specified Azure region.
@@ -255,7 +303,12 @@ export interface NetworkWatchers {
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkWatchersListAvailableProvidersResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<NetworkWatchersListAvailableProvidersResponse>,
+      NetworkWatchersListAvailableProvidersResponse
+    >
+  >;
   /**
    * Gets Network Configuration Diagnostic data to help customers understand and debug network behavior.
    * It provides detailed information on what security rules were applied to a specified traffic flow and
@@ -273,6 +326,11 @@ export interface NetworkWatchers {
     parameters: NetworkConfigurationDiagnosticParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>
+    PollerLike<
+      LROOperationState<
+        NetworkWatchersGetNetworkConfigurationDiagnosticResponse
+      >,
+      NetworkWatchersGetNetworkConfigurationDiagnosticResponse
+    >
   >;
 }

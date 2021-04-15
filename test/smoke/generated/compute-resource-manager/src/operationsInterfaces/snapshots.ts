@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Snapshot,
   SnapshotsCreateOrUpdateResponse,
@@ -53,7 +54,12 @@ export interface Snapshots {
     snapshotName: string,
     snapshot: Snapshot,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsCreateOrUpdateResponse>,
+      SnapshotsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -68,7 +74,12 @@ export interface Snapshots {
     snapshotName: string,
     snapshot: SnapshotUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsUpdateResponse>,
+      SnapshotsUpdateResponse
+    >
+  >;
   /**
    * Gets information about a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -94,7 +105,9 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -109,7 +122,12 @@ export interface Snapshots {
     snapshotName: string,
     grantAccessData: GrantAccessData,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsGrantAccessResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsGrantAccessResponse>,
+      SnapshotsGrantAccessResponse
+    >
+  >;
   /**
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -122,5 +140,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

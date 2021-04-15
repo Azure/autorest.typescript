@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Vault,
   VaultsListByResourceGroupNextOptionalParams,
@@ -79,7 +80,12 @@ export interface Vaults {
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VaultsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VaultsCreateOrUpdateResponse>,
+      VaultsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update a key vault in the specified subscription.
    * @param resourceGroupName The name of the Resource Group to which the server belongs.
@@ -151,7 +157,9 @@ export interface Vaults {
     vaultName: string,
     location: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks that the vault name is valid and is not already in use.
    * @param vaultName The name of the vault.

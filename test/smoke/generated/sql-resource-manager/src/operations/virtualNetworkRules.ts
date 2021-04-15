@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkRule,
   VirtualNetworkRulesGetResponse,
@@ -148,7 +149,12 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     virtualNetworkRuleName: string,
     parameters: VirtualNetworkRule,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkRulesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
+      VirtualNetworkRulesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -190,7 +196,9 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     serverName: string,
     virtualNetworkRuleName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

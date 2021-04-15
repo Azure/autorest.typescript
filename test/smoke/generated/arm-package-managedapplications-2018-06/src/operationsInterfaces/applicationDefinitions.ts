@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsGetResponse,
@@ -51,7 +52,9 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Creates a new managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -64,7 +67,12 @@ export interface ApplicationDefinitions {
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+      ApplicationDefinitionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
@@ -88,7 +96,9 @@ export interface ApplicationDefinitions {
   deleteById(
     applicationDefinitionId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Creates a new managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
@@ -102,5 +112,10 @@ export interface ApplicationDefinitions {
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+      ApplicationDefinitionsCreateOrUpdateByIdResponse
+    >
+  >;
 }

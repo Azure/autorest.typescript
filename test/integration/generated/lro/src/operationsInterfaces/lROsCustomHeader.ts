@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -30,7 +31,12 @@ export interface LROsCustomHeader {
    */
   putAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPutAsyncRetrySucceededResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPutAsyncRetrySucceededResponse
+    >
+  >;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running put request, service returns a 201 to the initial request, with an entity
@@ -40,7 +46,12 @@ export interface LROsCustomHeader {
    */
   put201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPut201CreatingSucceeded200Response>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+      LROsCustomHeaderPut201CreatingSucceeded200Response
+    >
+  >;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with 'Location'
@@ -49,7 +60,12 @@ export interface LROsCustomHeader {
    */
   post202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPost202Retry200Response>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPost202Retry200Response>,
+      LROsCustomHeaderPost202Retry200Response
+    >
+  >;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with an entity
@@ -59,5 +75,10 @@ export interface LROsCustomHeader {
    */
   postAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPostAsyncRetrySucceededResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPostAsyncRetrySucceededResponse
+    >
+  >;
 }

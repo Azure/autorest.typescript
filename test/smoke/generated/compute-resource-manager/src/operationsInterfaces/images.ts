@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Image,
   ImagesCreateOrUpdateResponse,
@@ -49,7 +50,12 @@ export interface Images {
     imageName: string,
     parameters: Image,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ImagesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ImagesCreateOrUpdateResponse>,
+      ImagesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update an image.
    * @param resourceGroupName The name of the resource group.
@@ -62,7 +68,9 @@ export interface Images {
     imageName: string,
     parameters: ImageUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ImagesUpdateResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
+  >;
   /**
    * Deletes an Image.
    * @param resourceGroupName The name of the resource group.
@@ -73,7 +81,9 @@ export interface Images {
     resourceGroupName: string,
     imageName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets an image.
    * @param resourceGroupName The name of the resource group.

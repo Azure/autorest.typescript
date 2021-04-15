@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstanceLongTermRetentionPolicy,
   ManagedInstanceLongTermRetentionPolicyName,
@@ -68,6 +69,11 @@ export interface ManagedInstanceLongTermRetentionPolicies {
     parameters: ManagedInstanceLongTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse
+      >,
+      ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse
+    >
   >;
 }

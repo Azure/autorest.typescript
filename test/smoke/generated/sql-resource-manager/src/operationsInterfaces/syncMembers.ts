@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   SyncMember,
   SyncFullSchemaProperties,
@@ -92,7 +93,12 @@ export interface SyncMembers {
     syncMemberName: string,
     parameters: SyncMember,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SyncMembersCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SyncMembersCreateOrUpdateResponse>,
+      SyncMembersCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a sync member.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -110,7 +116,9 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates an existing sync member.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -130,7 +138,12 @@ export interface SyncMembers {
     syncMemberName: string,
     parameters: SyncMember,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SyncMembersUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<SyncMembersUpdateResponse>,
+      SyncMembersUpdateResponse
+    >
+  >;
   /**
    * Refreshes a sync member database schema.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -148,5 +161,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

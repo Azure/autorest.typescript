@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DdosProtectionPlan,
   DdosProtectionPlansGetResponse,
@@ -47,7 +48,9 @@ export interface DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets information about the specified DDoS protection plan.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +74,12 @@ export interface DdosProtectionPlans {
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DdosProtectionPlansCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DdosProtectionPlansCreateOrUpdateResponse>,
+      DdosProtectionPlansCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update a DDoS protection plan tags.
    * @param resourceGroupName The name of the resource group.

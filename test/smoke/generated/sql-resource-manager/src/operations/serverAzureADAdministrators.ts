@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerAzureADAdministrator,
   AdministratorName,
@@ -152,7 +153,12 @@ export class ServerAzureADAdministratorsImpl
     administratorName: AdministratorName,
     parameters: ServerAzureADAdministrator,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerAzureADAdministratorsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
+      ServerAzureADAdministratorsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -194,7 +200,9 @@ export class ServerAzureADAdministratorsImpl
     serverName: string,
     administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -257,7 +265,10 @@ export class ServerAzureADAdministratorsImpl
     serverName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<
+    PollerLike<
+      LROOperationState<
+        ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
+      >,
       ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
     >
   > {

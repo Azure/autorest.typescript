@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   FirewallPolicy,
   FirewallPoliciesGetOptionalParams,
@@ -140,7 +141,9 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       firewallPolicyName,
@@ -202,7 +205,12 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     firewallPolicyName: string,
     parameters: FirewallPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FirewallPoliciesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<FirewallPoliciesCreateOrUpdateResponse>,
+      FirewallPoliciesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       firewallPolicyName,

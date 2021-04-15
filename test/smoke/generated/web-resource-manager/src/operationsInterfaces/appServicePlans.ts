@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AppServicePlan,
   AppServicePlansListNextOptionalParams,
@@ -133,7 +134,12 @@ export interface AppServicePlans {
     name: string,
     appServicePlan: AppServicePlan,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServicePlansCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServicePlansCreateOrUpdateResponse>,
+      AppServicePlansCreateOrUpdateResponse
+    >
+  >;
   /**
    * Description for Delete an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

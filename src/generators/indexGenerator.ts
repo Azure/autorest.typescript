@@ -53,7 +53,7 @@ export function generateIndexFile(
     indexFile.addExportDeclarations([
       {
         moduleSpecifier: `./lro`,
-        namedExports: ["LROPoller"]
+        namedExports: ["LROOperationState"]
       }
     ]);
   }

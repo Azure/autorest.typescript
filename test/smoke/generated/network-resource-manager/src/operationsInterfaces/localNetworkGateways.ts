@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LocalNetworkGateway,
   LocalNetworkGatewaysCreateOrUpdateResponse,
@@ -42,7 +43,12 @@ export interface LocalNetworkGateways {
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<LocalNetworkGatewaysCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>,
+      LocalNetworkGatewaysCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets the specified local network gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -64,7 +70,9 @@ export interface LocalNetworkGateways {
     resourceGroupName: string,
     localNetworkGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a local network gateway tags.
    * @param resourceGroupName The name of the resource group.

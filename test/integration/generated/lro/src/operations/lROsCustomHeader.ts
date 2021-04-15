@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -44,7 +45,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    */
   async putAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPutAsyncRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPutAsyncRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -78,7 +84,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    */
   async put201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPut201CreatingSucceeded200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+      LROsCustomHeaderPut201CreatingSucceeded200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -111,7 +122,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    */
   async post202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPost202Retry200Response>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPost202Retry200Response>,
+      LROsCustomHeaderPost202Retry200Response
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };
@@ -145,7 +161,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    */
   async postAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
-  ): Promise<LROPoller<LROsCustomHeaderPostAsyncRetrySucceededResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPostAsyncRetrySucceededResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       options: this.getOperationOptions(options, "undefined")
     };

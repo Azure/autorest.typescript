@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DedicatedHost,
   DedicatedHostsCreateOrUpdateResponse,
@@ -47,7 +48,12 @@ export interface DedicatedHosts {
     hostName: string,
     parameters: DedicatedHost,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DedicatedHostsCreateOrUpdateResponse>,
+      DedicatedHostsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update an dedicated host .
    * @param resourceGroupName The name of the resource group.
@@ -62,7 +68,12 @@ export interface DedicatedHosts {
     hostName: string,
     parameters: DedicatedHostUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DedicatedHostsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DedicatedHostsUpdateResponse>,
+      DedicatedHostsUpdateResponse
+    >
+  >;
   /**
    * Delete a dedicated host.
    * @param resourceGroupName The name of the resource group.
@@ -75,7 +86,9 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Retrieves information about a dedicated host.
    * @param resourceGroupName The name of the resource group.

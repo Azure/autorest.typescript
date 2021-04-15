@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Vault,
   VaultsListByResourceGroupNextOptionalParams,
@@ -250,7 +251,12 @@ export class VaultsImpl implements Vaults {
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VaultsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VaultsCreateOrUpdateResponse>,
+      VaultsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vaultName,
@@ -459,7 +465,9 @@ export class VaultsImpl implements Vaults {
     vaultName: string,
     location: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       vaultName,
       location,

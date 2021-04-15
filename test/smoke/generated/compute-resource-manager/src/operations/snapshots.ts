@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Snapshot,
   SnapshotsCreateOrUpdateResponse,
@@ -150,7 +151,12 @@ export class SnapshotsImpl implements Snapshots {
     snapshotName: string,
     snapshot: Snapshot,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsCreateOrUpdateResponse>,
+      SnapshotsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       snapshotName,
@@ -192,7 +198,12 @@ export class SnapshotsImpl implements Snapshots {
     snapshotName: string,
     snapshot: SnapshotUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsUpdateResponse>,
+      SnapshotsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       snapshotName,
@@ -256,7 +267,9 @@ export class SnapshotsImpl implements Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       snapshotName,
@@ -332,7 +345,12 @@ export class SnapshotsImpl implements Snapshots {
     snapshotName: string,
     grantAccessData: GrantAccessData,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<SnapshotsGrantAccessResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<SnapshotsGrantAccessResponse>,
+      SnapshotsGrantAccessResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       snapshotName,
@@ -373,7 +391,9 @@ export class SnapshotsImpl implements Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       snapshotName,

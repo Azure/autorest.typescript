@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   P2SVpnGateway,
   P2SVpnGatewaysGetResponse,
@@ -175,7 +176,12 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
+      P2SVpnGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -239,7 +245,9 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -314,7 +322,12 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysGenerateVpnProfileResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
+      P2SVpnGatewaysGenerateVpnProfileResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -354,7 +367,12 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
+      P2SVpnGatewaysGetP2SVpnConnectionHealthResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
@@ -396,7 +414,12 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     request: P2SVpnConnectionHealthRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>
+    PollerLike<
+      LROOperationState<
+        P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
+      >,
+      P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -438,7 +461,9 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       p2SVpnGatewayName,

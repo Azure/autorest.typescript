@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GremlinDatabaseGetResults,
   GremlinGraphGetResults,
@@ -82,7 +83,12 @@ export interface GremlinResources {
     databaseName: string,
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinDatabaseResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
+      GremlinResourcesCreateUpdateGremlinDatabaseResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB Gremlin database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -95,7 +101,9 @@ export interface GremlinResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the RUs per second of the Gremlin database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -126,7 +134,12 @@ export interface GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        GremlinResourcesUpdateGremlinDatabaseThroughputResponse
+      >,
+      GremlinResourcesUpdateGremlinDatabaseThroughputResponse
+    >
   >;
   /**
    * Gets the Gremlin graph under an existing Azure Cosmos DB database account.
@@ -159,7 +172,12 @@ export interface GremlinResources {
     graphName: string,
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesCreateUpdateGremlinGraphResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
+      GremlinResourcesCreateUpdateGremlinGraphResponse
+    >
+  >;
   /**
    * Deletes an existing Azure Cosmos DB Gremlin graph.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -174,7 +192,9 @@ export interface GremlinResources {
     databaseName: string,
     graphName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the Gremlin graph throughput under an existing Azure Cosmos DB database account with the
    * provided name.
@@ -208,5 +228,10 @@ export interface GremlinResources {
     graphName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GremlinResourcesUpdateGremlinGraphThroughputResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
+      GremlinResourcesUpdateGremlinGraphThroughputResponse
+    >
+  >;
 }

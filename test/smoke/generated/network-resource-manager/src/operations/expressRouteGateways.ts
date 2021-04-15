@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ExpressRouteGatewaysListBySubscriptionResponse,
   ExpressRouteGatewaysListByResourceGroupResponse,
@@ -80,7 +81,12 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ExpressRouteGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>,
+      ExpressRouteGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       expressRouteGatewayName,
@@ -142,7 +148,9 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       expressRouteGatewayName,

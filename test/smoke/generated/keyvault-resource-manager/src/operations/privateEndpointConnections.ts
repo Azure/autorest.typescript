@@ -11,7 +11,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PrivateEndpointConnectionsGetResponse,
   PrivateEndpointConnection,
@@ -100,7 +101,12 @@ export class PrivateEndpointConnectionsImpl
     vaultName: string,
     privateEndpointConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PrivateEndpointConnectionsDeleteResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<PrivateEndpointConnectionsDeleteResponse>,
+      PrivateEndpointConnectionsDeleteResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vaultName,

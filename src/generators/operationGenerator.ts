@@ -413,7 +413,7 @@ function getReturnType(
   );
 
   return operation.isLRO
-    ? `Promise<LROPoller<${responseName}>>`
+    ? `Promise<PollerLike<LROOperationState<${responseName}>,${responseName}>>`
     : `Promise<${responseName}>`;
 }
 
@@ -822,7 +822,9 @@ function writeLROOperationBody(
     });`
   ]);
 
-  methodDeclaration.setReturnType(`Promise<LROPoller<${responseName}>>`);
+  methodDeclaration.setReturnType(
+    `Promise<PollerLike<LROOperationState<${responseName}>,${responseName}>>`
+  );
 }
 
 /**
@@ -1143,8 +1145,12 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller", "shouldDeserializeLRO"],
+      namedImports: ["LROPoller", "shouldDeserializeLRO", "LROOperationState"],
       moduleSpecifier: `../lro`
+    });
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["PollerLike"],
+      moduleSpecifier: "@azure/core-lro"
     });
   }
 }

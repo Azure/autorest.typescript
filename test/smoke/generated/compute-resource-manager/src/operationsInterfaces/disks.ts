@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   Disk,
   DisksCreateOrUpdateResponse,
@@ -51,7 +52,12 @@ export interface Disks {
     diskName: string,
     disk: Disk,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DisksCreateOrUpdateResponse>,
+      DisksCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates (patches) a disk.
    * @param resourceGroupName The name of the resource group.
@@ -66,7 +72,9 @@ export interface Disks {
     diskName: string,
     disk: DiskUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksUpdateResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<DisksUpdateResponse>, DisksUpdateResponse>
+  >;
   /**
    * Gets information about a disk.
    * @param resourceGroupName The name of the resource group.
@@ -92,7 +100,9 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Grants access to a disk.
    * @param resourceGroupName The name of the resource group.
@@ -107,7 +117,12 @@ export interface Disks {
     diskName: string,
     grantAccessData: GrantAccessData,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DisksGrantAccessResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<DisksGrantAccessResponse>,
+      DisksGrantAccessResponse
+    >
+  >;
   /**
    * Revokes access to a disk.
    * @param resourceGroupName The name of the resource group.
@@ -120,5 +135,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AzureFirewall,
   AzureFirewallsGetResponse,
@@ -47,7 +48,9 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Azure Firewall.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +74,12 @@ export interface AzureFirewalls {
     azureFirewallName: string,
     parameters: AzureFirewall,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AzureFirewallsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AzureFirewallsCreateOrUpdateResponse>,
+      AzureFirewallsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates tags of an Azure Firewall resource.
    * @param resourceGroupName The name of the resource group.
@@ -84,5 +92,10 @@ export interface AzureFirewalls {
     azureFirewallName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AzureFirewallsUpdateTagsResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AzureFirewallsUpdateTagsResponse>,
+      AzureFirewallsUpdateTagsResponse
+    >
+  >;
 }

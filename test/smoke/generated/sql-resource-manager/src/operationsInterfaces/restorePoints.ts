@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   RestorePoint,
   CreateDatabaseRestorePointDefinition,
@@ -49,7 +50,12 @@ export interface RestorePoints {
     databaseName: string,
     parameters: CreateDatabaseRestorePointDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<RestorePointsCreateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<RestorePointsCreateResponse>,
+      RestorePointsCreateResponse
+    >
+  >;
   /**
    * Gets a restore point.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

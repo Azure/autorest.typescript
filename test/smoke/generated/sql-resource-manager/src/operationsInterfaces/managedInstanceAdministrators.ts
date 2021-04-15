@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
   ManagedInstanceAdministratorsGetResponse,
@@ -56,7 +57,12 @@ export interface ManagedInstanceAdministrators {
     managedInstanceName: string,
     parameters: ManagedInstanceAdministrator,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
+      ManagedInstanceAdministratorsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a managed instance administrator.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -68,5 +74,7 @@ export interface ManagedInstanceAdministrators {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   InstancePool,
   InstancePoolsGetResponse,
@@ -63,7 +64,12 @@ export interface InstancePools {
     instancePoolName: string,
     parameters: InstancePool,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstancePoolsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstancePoolsCreateOrUpdateResponse>,
+      InstancePoolsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes an instance pool
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -75,7 +81,9 @@ export interface InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates an instance pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -89,5 +97,10 @@ export interface InstancePools {
     instancePoolName: string,
     parameters: InstancePoolUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<InstancePoolsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<InstancePoolsUpdateResponse>,
+      InstancePoolsUpdateResponse
+    >
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   FailoverGroup,
   FailoverGroupsGetResponse,
@@ -64,7 +65,12 @@ export interface FailoverGroups {
     failoverGroupName: string,
     parameters: FailoverGroup,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsCreateOrUpdateResponse>,
+      FailoverGroupsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -78,7 +84,9 @@ export interface FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -94,7 +102,12 @@ export interface FailoverGroups {
     failoverGroupName: string,
     parameters: FailoverGroupUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsUpdateResponse>,
+      FailoverGroupsUpdateResponse
+    >
+  >;
   /**
    * Fails over from the current primary server to this server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -108,7 +121,12 @@ export interface FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsFailoverResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsFailoverResponse>,
+      FailoverGroupsFailoverResponse
+    >
+  >;
   /**
    * Fails over from the current primary server to this server. This operation might result in data loss.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -122,5 +140,10 @@ export interface FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FailoverGroupsForceFailoverAllowDataLossResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
+      FailoverGroupsForceFailoverAllowDataLossResponse
+    >
+  >;
 }

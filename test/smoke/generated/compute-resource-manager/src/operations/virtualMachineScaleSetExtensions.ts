@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetExtension,
   VirtualMachineScaleSetExtensionsCreateOrUpdateResponse,
@@ -113,7 +114,10 @@ export class VirtualMachineScaleSetExtensionsImpl
     extensionParameters: VirtualMachineScaleSetExtension,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>,
+      VirtualMachineScaleSetExtensionsCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -157,7 +161,12 @@ export class VirtualMachineScaleSetExtensionsImpl
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
+      VirtualMachineScaleSetExtensionsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,
@@ -198,7 +207,9 @@ export class VirtualMachineScaleSetExtensionsImpl
     vmScaleSetName: string,
     vmssExtensionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       vmScaleSetName,

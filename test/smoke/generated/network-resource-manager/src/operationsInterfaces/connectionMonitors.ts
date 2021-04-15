@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ConnectionMonitorResult,
   ConnectionMonitor,
@@ -48,7 +49,12 @@ export interface ConnectionMonitors {
     connectionMonitorName: string,
     parameters: ConnectionMonitor,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ConnectionMonitorsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ConnectionMonitorsCreateOrUpdateResponse>,
+      ConnectionMonitorsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Gets a connection monitor by name.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -74,7 +80,9 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Update tags of the specified connection monitor.
    * @param resourceGroupName The name of the resource group.
@@ -102,7 +110,9 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -115,7 +125,9 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Query a snapshot of the most recent connection states.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -128,5 +140,10 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ConnectionMonitorsQueryResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ConnectionMonitorsQueryResponse>,
+      ConnectionMonitorsQueryResponse
+    >
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineScaleSet,
   VirtualMachineScaleSetSku,
@@ -89,7 +90,12 @@ export interface VirtualMachineScaleSets {
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSet,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>,
+      VirtualMachineScaleSetsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Update a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -102,7 +108,12 @@ export interface VirtualMachineScaleSets {
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSetUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineScaleSetsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineScaleSetsUpdateResponse>,
+      VirtualMachineScaleSetsUpdateResponse
+    >
+  >;
   /**
    * Deletes a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -113,7 +124,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Display information about a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
@@ -137,7 +150,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsDeallocateOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Deletes virtual machines in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -150,7 +165,9 @@ export interface VirtualMachineScaleSets {
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the status of a VM scale set instance.
    * @param resourceGroupName The name of the resource group.
@@ -174,7 +191,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPowerOffOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Restarts one or more virtual machines in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -185,7 +204,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRestartOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Starts one or more virtual machines in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -196,7 +217,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsStartOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Shuts down all the virtual machines in the virtual machine scale set, moves them to a new node, and
    * powers them back on.
@@ -208,7 +231,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRedeployOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Perform maintenance on one or more virtual machines in a VM scale set. Operation on instances which
    * are not eligible for perform maintenance will be failed. Please refer to best practices for more
@@ -222,7 +247,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Upgrades one or more virtual machines to the latest SKU set in the VM scale set model.
    * @param resourceGroupName The name of the resource group.
@@ -235,7 +262,9 @@ export interface VirtualMachineScaleSets {
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Reimages (upgrade the operating system) one or more virtual machines in a VM scale set which don't
    * have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is
@@ -248,7 +277,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Reimages all the disks ( including data disks ) in the virtual machines in a VM scale set. This
    * operation is only supported for managed disks.
@@ -260,7 +291,9 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageAllOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Manual platform update domain walk to update virtual machines in a service fabric virtual machine
    * scale set.
@@ -302,5 +335,7 @@ export interface VirtualMachineScaleSets {
     vmScaleSetName: string,
     parameters: OrchestrationServiceStateInput,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

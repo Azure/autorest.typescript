@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DiskEncryptionSet,
   DiskEncryptionSetsCreateOrUpdateResponse,
@@ -149,7 +150,12 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
+      DiskEncryptionSetsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,
@@ -192,7 +198,12 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DiskEncryptionSetsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DiskEncryptionSetsUpdateResponse>,
+      DiskEncryptionSetsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,
@@ -256,7 +267,9 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       diskEncryptionSetName,

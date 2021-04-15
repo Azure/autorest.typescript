@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   GalleryImage,
   GalleryImagesCreateOrUpdateResponse,
@@ -126,7 +127,12 @@ export class GalleryImagesImpl implements GalleryImages {
     galleryImageName: string,
     galleryImage: GalleryImage,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryImagesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryImagesCreateOrUpdateResponse>,
+      GalleryImagesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -172,7 +178,12 @@ export class GalleryImagesImpl implements GalleryImages {
     galleryImageName: string,
     galleryImage: GalleryImageUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<GalleryImagesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<GalleryImagesUpdateResponse>,
+      GalleryImagesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
@@ -240,7 +251,9 @@ export class GalleryImagesImpl implements GalleryImages {
     galleryName: string,
     galleryImageName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,

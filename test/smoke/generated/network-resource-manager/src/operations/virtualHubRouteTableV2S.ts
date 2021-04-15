@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualHubRouteTableV2,
   VirtualHubRouteTableV2SGetResponse,
@@ -135,7 +136,12 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     routeTableName: string,
     virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualHubRouteTableV2SCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>,
+      VirtualHubRouteTableV2SCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualHubName,
@@ -177,7 +183,9 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     virtualHubName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualHubName,

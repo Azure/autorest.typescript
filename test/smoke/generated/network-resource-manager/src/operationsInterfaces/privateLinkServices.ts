@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   PrivateLinkService,
   PrivateEndpointConnection,
@@ -87,7 +88,9 @@ export interface PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified private link service by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -111,7 +114,12 @@ export interface PrivateLinkServices {
     serviceName: string,
     parameters: PrivateLinkService,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<PrivateLinkServicesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
+      PrivateLinkServicesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Get the specific private end point connection by specific private link service in the resource
    * group.
@@ -153,7 +161,9 @@ export interface PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Checks whether the subscription is visible to private link service.
    * @param location The location of the domain name.

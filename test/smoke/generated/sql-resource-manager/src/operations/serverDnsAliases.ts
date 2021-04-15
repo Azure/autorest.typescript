@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ServerDnsAlias,
   ServerDnsAliasesGetResponse,
@@ -147,7 +148,12 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ServerDnsAliasesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
+      ServerDnsAliasesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -188,7 +194,9 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
@@ -254,7 +262,9 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,

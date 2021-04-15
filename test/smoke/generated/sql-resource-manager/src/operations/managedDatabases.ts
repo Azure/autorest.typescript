@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedDatabase,
   ManagedDatabasesListByInstanceResponse,
@@ -248,7 +249,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     databaseName: string,
     parameters: ManagedDatabase,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedDatabasesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedDatabasesCreateOrUpdateResponse>,
+      ManagedDatabasesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -290,7 +296,9 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -333,7 +341,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedDatabasesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedDatabasesUpdateResponse>,
+      ManagedDatabasesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -400,7 +413,9 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,

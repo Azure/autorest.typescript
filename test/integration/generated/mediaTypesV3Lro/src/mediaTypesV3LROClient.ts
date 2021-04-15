@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "./lro";
+import { PollerLike } from "@azure/core-lro";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
@@ -51,7 +52,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
     options?: MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Send payload to Foo service.
    * @param contentType Upload file type
@@ -62,7 +65,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     contentType: "text/plain",
     data: string,
     options?: MediaTypesV3LROClientSendOnDefault$textOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Send payload to Foo service.
    * @param args Includes all the parameters for this operation.
@@ -79,7 +84,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           string,
           MediaTypesV3LROClientSendOnDefault$textOptionalParams?
         ]
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
     let options;

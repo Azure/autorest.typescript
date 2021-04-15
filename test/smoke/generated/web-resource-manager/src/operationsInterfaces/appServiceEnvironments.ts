@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
   StampCapacity,
@@ -312,7 +313,12 @@ export interface AppServiceEnvironments {
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
+      AppServiceEnvironmentsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Description for Delete an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -323,7 +329,9 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Description for Create or update an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -396,7 +404,12 @@ export interface AppServiceEnvironments {
     multiRolePoolEnvelope: WorkerPoolResource,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>
+    PollerLike<
+      LROOperationState<
+        AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
+      >,
+      AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
+    >
   >;
   /**
    * Description for Create or update a multi-role pool.
@@ -460,7 +473,12 @@ export interface AppServiceEnvironments {
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>,
+      AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
+    >
+  >;
   /**
    * Description for Create or update a worker pool.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

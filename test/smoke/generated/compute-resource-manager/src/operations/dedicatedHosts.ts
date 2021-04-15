@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   DedicatedHost,
   DedicatedHostsCreateOrUpdateResponse,
@@ -123,7 +124,12 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostName: string,
     parameters: DedicatedHost,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DedicatedHostsCreateOrUpdateResponse>,
+      DedicatedHostsCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
@@ -166,7 +172,12 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostName: string,
     parameters: DedicatedHostUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<DedicatedHostsUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<DedicatedHostsUpdateResponse>,
+      DedicatedHostsUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
@@ -207,7 +218,9 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,

@@ -7,7 +7,8 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
   VirtualMachineExtensionsCreateOrUpdateResponse,
@@ -35,7 +36,12 @@ export interface VirtualMachineExtensions {
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtension,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineExtensionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
+      VirtualMachineExtensionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * The operation to update the extension.
    * @param resourceGroupName The name of the resource group.
@@ -50,7 +56,12 @@ export interface VirtualMachineExtensions {
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualMachineExtensionsUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualMachineExtensionsUpdateResponse>,
+      VirtualMachineExtensionsUpdateResponse
+    >
+  >;
   /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
@@ -63,7 +74,9 @@ export interface VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.

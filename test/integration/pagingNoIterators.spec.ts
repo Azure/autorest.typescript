@@ -352,7 +352,6 @@ describe("Integration tests for Paging", () => {
   describe("#getMultiplePagesLRO", () => {
     it("succeeds and gets 10 pages", async () => {
       const poller = await client.paging.getMultiplePagesLRO();
-      poller.delay = () => Promise.resolve();
       let pageCount = 1;
       let page:
         | PagingGetMultiplePagesLROResponse

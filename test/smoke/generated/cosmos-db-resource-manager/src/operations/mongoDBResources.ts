@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
   MongoDBCollectionGetResults,
@@ -236,7 +237,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
+      MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -277,7 +283,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -347,7 +355,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
+      >,
+      MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -447,7 +460,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     collectionName: string,
     createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
+      MongoDBResourcesCreateUpdateMongoDBCollectionResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -491,7 +509,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -567,7 +587,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+      >,
+      MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

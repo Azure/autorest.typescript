@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   FirewallPolicy,
   FirewallPoliciesGetOptionalParams,
@@ -46,7 +47,9 @@ export interface FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets the specified Firewall Policy.
    * @param resourceGroupName The name of the resource group.
@@ -70,5 +73,10 @@ export interface FirewallPolicies {
     firewallPolicyName: string,
     parameters: FirewallPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<FirewallPoliciesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<FirewallPoliciesCreateOrUpdateResponse>,
+      FirewallPoliciesCreateOrUpdateResponse
+    >
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkRule,
   VirtualNetworkRulesGetResponse,
@@ -60,7 +61,12 @@ export interface VirtualNetworkRules {
     virtualNetworkRuleName: string,
     parameters: VirtualNetworkRule,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkRulesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
+      VirtualNetworkRulesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes the virtual network rule with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -74,5 +80,7 @@ export interface VirtualNetworkRules {
     serverName: string,
     virtualNetworkRuleName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ReplicationLink,
   ReplicationLinksGetResponse,
@@ -80,7 +81,9 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
    * This operation might result in data loss.
@@ -97,7 +100,9 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Deletes a database replication link in forced or friendly way.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -115,5 +120,7 @@ export interface ReplicationLinks {
     linkId: string,
     parameters: UnlinkParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

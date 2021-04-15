@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstance,
   ManagedInstancesGetResponse,
@@ -75,7 +76,12 @@ export interface ManagedInstances {
     managedInstanceName: string,
     parameters: ManagedInstance,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstancesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstancesCreateOrUpdateResponse>,
+      ManagedInstancesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -87,7 +93,9 @@ export interface ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Updates a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -101,5 +109,10 @@ export interface ManagedInstances {
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstancesUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstancesUpdateResponse>,
+      ManagedInstancesUpdateResponse
+    >
+  >;
 }

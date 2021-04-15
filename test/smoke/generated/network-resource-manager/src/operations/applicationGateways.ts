@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ApplicationGateway,
   ApplicationGatewaySslPredefinedPolicy,
@@ -202,7 +203,9 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,
@@ -264,7 +267,12 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     applicationGatewayName: string,
     parameters: ApplicationGateway,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ApplicationGatewaysCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysCreateOrUpdateResponse>,
+      ApplicationGatewaysCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,
@@ -363,7 +371,9 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,
@@ -401,7 +411,9 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,
@@ -439,7 +451,12 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
-  ): Promise<LROPoller<ApplicationGatewaysBackendHealthResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysBackendHealthResponse>,
+      ApplicationGatewaysBackendHealthResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,
@@ -480,7 +497,12 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,
     options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams
-  ): Promise<LROPoller<ApplicationGatewaysBackendHealthOnDemandResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ApplicationGatewaysBackendHealthOnDemandResponse>,
+      ApplicationGatewaysBackendHealthOnDemandResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       applicationGatewayName,

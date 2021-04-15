@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   EncryptionProtector,
   EncryptionProtectorName,
@@ -45,7 +46,9 @@ export interface EncryptionProtectors {
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets a server encryption protector.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -75,5 +78,10 @@ export interface EncryptionProtectors {
     encryptionProtectorName: EncryptionProtectorName,
     parameters: EncryptionProtector,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<EncryptionProtectorsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
+      EncryptionProtectorsCreateOrUpdateResponse
+    >
+  >;
 }

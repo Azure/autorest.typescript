@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
   ManagedShortTermRetentionPolicyName,
@@ -166,7 +167,12 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>
+    PollerLike<
+      LROOperationState<
+        ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse
+      >,
+      ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -214,7 +220,12 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedBackupShortTermRetentionPoliciesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedBackupShortTermRetentionPoliciesUpdateResponse>,
+      ManagedBackupShortTermRetentionPoliciesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,

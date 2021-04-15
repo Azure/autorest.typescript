@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   ManagedInstance,
   ManagedInstancesListByInstancePoolResponse,
@@ -288,7 +289,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
     managedInstanceName: string,
     parameters: ManagedInstance,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstancesCreateOrUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstancesCreateOrUpdateResponse>,
+      ManagedInstancesCreateOrUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -327,7 +333,9 @@ export class ManagedInstancesImpl implements ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
@@ -367,7 +375,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<ManagedInstancesUpdateResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<ManagedInstancesUpdateResponse>,
+      ManagedInstancesUpdateResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,

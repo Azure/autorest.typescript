@@ -11,4 +11,4 @@ export * from "./models";
 export { ApplicationClient } from "./applicationClient";
 export { ApplicationClientContext } from "./applicationClientContext";
 export * from "./operationsInterfaces";
-export { LROPoller } from "./lro";
+export { LROOperationState } from "./lro";

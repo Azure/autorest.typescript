@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VirtualNetworkTap,
   VirtualNetworkTapsGetResponse,
@@ -47,7 +48,9 @@ export interface VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Gets information about the specified virtual network tap.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +74,12 @@ export interface VirtualNetworkTaps {
     tapName: string,
     parameters: VirtualNetworkTap,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VirtualNetworkTapsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VirtualNetworkTapsCreateOrUpdateResponse>,
+      VirtualNetworkTapsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Updates an VirtualNetworkTap tags.
    * @param resourceGroupName The name of the resource group.

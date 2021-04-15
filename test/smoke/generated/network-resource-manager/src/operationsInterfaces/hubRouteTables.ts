@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   HubRouteTable,
   HubRouteTablesCreateOrUpdateResponse,
@@ -44,7 +45,12 @@ export interface HubRouteTables {
     routeTableName: string,
     routeTableParameters: HubRouteTable,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<HubRouteTablesCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<HubRouteTablesCreateOrUpdateResponse>,
+      HubRouteTablesCreateOrUpdateResponse
+    >
+  >;
   /**
    * Retrieves the details of a RouteTable.
    * @param resourceGroupName The resource group name of the VirtualHub.
@@ -70,5 +76,7 @@ export interface HubRouteTables {
     virtualHubName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }

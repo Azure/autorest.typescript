@@ -13,7 +13,8 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, shouldDeserializeLRO, LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
   CassandraTableGetResults,
@@ -237,7 +238,12 @@ export class CassandraResourcesImpl implements CassandraResources {
     createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesCreateUpdateCassandraKeyspaceResponse
+      >,
+      CassandraResourcesCreateUpdateCassandraKeyspaceResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -279,7 +285,9 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -349,7 +357,12 @@ export class CassandraResourcesImpl implements CassandraResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
+      >,
+      CassandraResourcesUpdateCassandraKeyspaceThroughputResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -449,7 +462,12 @@ export class CassandraResourcesImpl implements CassandraResources {
     tableName: string,
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>> {
+  ): Promise<
+    PollerLike<
+      LROOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
+      CassandraResourcesCreateUpdateCassandraTableResponse
+    >
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -493,7 +511,9 @@ export class CassandraResourcesImpl implements CassandraResources {
     keyspaceName: string,
     tableName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
@@ -569,7 +589,12 @@ export class CassandraResourcesImpl implements CassandraResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
-    LROPoller<CassandraResourcesUpdateCassandraTableThroughputResponse>
+    PollerLike<
+      LROOperationState<
+        CassandraResourcesUpdateCassandraTableThroughputResponse
+      >,
+      CassandraResourcesUpdateCassandraTableThroughputResponse
+    >
   > {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

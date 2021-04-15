@@ -9,7 +9,8 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { LROPoller } from "../lro";
+import { LROOperationState } from "../lro";
+import { PollerLike } from "@azure/core-lro";
 import {
   VpnConnection,
   VpnConnectionsGetResponse,
@@ -58,7 +59,12 @@ export interface VpnConnections {
     connectionName: string,
     vpnConnectionParameters: VpnConnection,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<VpnConnectionsCreateOrUpdateResponse>>;
+  ): Promise<
+    PollerLike<
+      LROOperationState<VpnConnectionsCreateOrUpdateResponse>,
+      VpnConnectionsCreateOrUpdateResponse
+    >
+  >;
   /**
    * Deletes a vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
@@ -71,5 +77,7 @@ export interface VpnConnections {
     gatewayName: string,
     connectionName: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>>;
+  ): Promise<
+    PollerLike<LROOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
 }
