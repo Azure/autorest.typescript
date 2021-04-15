@@ -14,7 +14,8 @@ import { RequiredOptionalClientContext } from "../requiredOptionalClientContext"
 import {
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
-  ImplicitPutOptionalBodyOptionalParams
+  ImplicitPutOptionalBodyOptionalParams,
+  ImplicitPutOptionalBinaryBodyOptionalParams
 } from "../models";
 
 /** Class representing a Implicit. */
@@ -93,6 +94,22 @@ export class ImplicitImpl implements Implicit {
     return this.client.sendOperationRequest(
       operationArguments,
       putOptionalBodyOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
+
+  /**
+   * Test implicitly optional body parameter
+   * @param options The options parameters.
+   */
+  putOptionalBinaryBody(
+    options?: ImplicitPutOptionalBinaryBodyOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      putOptionalBinaryBodyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -200,6 +217,21 @@ const putOptionalBodyOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const putOptionalBinaryBodyOperationSpec: coreHttp.OperationSpec = {
+  path: "/reqopt/implicit/optional/binary-body",
+  httpMethod: "PUT",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  requestBody: Parameters.bodyParameter1,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType1, Parameters.accept1],
+  mediaType: "binary",
   serializer
 };
 const getRequiredGlobalPathOperationSpec: coreHttp.OperationSpec = {

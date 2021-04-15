@@ -155,6 +155,18 @@ export type PagingGetSinglePagesResponse = ProductResult & {
   };
 };
 
+/** Contains response data for the firstResponseEmpty operation. */
+export type PagingFirstResponseEmptyResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
+  };
+};
+
 /** Optional parameters. */
 export interface PagingGetMultiplePagesOptionalParams
   extends coreHttp.OperationOptions {
@@ -404,6 +416,18 @@ export type PagingGetSinglePagesNextResponse = ProductResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
+  };
+};
+
+/** Contains response data for the firstResponseEmptyNext operation. */
+export type PagingFirstResponseEmptyNextResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
   };
 };
 

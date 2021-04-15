@@ -16,6 +16,7 @@ import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesResponse,
+  PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesOptionalParams,
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsResponse,
@@ -40,6 +41,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
+  PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesNextResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
@@ -114,6 +116,23 @@ export class PagingImpl implements Paging {
       operationArguments,
       getSinglePagesOperationSpec
     ) as Promise<PagingGetSinglePagesResponse>;
+  }
+
+  /**
+   * A paging operation whose first response's items list is empty, but still returns a next link. Second
+   * (and final) call, will give you an items list of 1.
+   * @param options The options parameters.
+   */
+  firstResponseEmpty(
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingFirstResponseEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      firstResponseEmptyOperationSpec
+    ) as Promise<PagingFirstResponseEmptyResponse>;
   }
 
   /**
@@ -460,6 +479,25 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * FirstResponseEmptyNext
+   * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.
+   * @param options The options parameters.
+   */
+  firstResponseEmptyNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingFirstResponseEmptyNextResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      firstResponseEmptyNextOperationSpec
+    ) as Promise<PagingFirstResponseEmptyNextResponse>;
+  }
+
+  /**
    * GetMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param options The options parameters.
@@ -705,6 +743,19 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const firstResponseEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/paging/firstResponseEmpty/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
     },
     default: {}
   },
@@ -977,6 +1028,19 @@ const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const firstResponseEmptyNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
     },
     default: {}
   },

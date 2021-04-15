@@ -10,7 +10,8 @@ import * as coreHttp from "@azure/core-http";
 import {
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
-  ImplicitPutOptionalBodyOptionalParams
+  ImplicitPutOptionalBodyOptionalParams,
+  ImplicitPutOptionalBinaryBodyOptionalParams
 } from "../models";
 
 /** Interface representing a Implicit. */
@@ -44,6 +45,13 @@ export interface Implicit {
    */
   putOptionalBody(
     options?: ImplicitPutOptionalBodyOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Test implicitly optional body parameter
+   * @param options The options parameters.
+   */
+  putOptionalBinaryBody(
+    options?: ImplicitPutOptionalBinaryBodyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly required path parameter

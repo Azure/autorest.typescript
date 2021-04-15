@@ -1197,6 +1197,40 @@ export const ObjectWithXMsTextProperty: coreHttp.CompositeMapper = {
   }
 };
 
+export const ModelWithByteProperty: coreHttp.CompositeMapper = {
+  serializedName: "ModelWithByteProperty",
+  type: {
+    name: "Composite",
+    className: "ModelWithByteProperty",
+    modelProperties: {
+      bytes: {
+        serializedName: "Bytes",
+        xmlName: "Bytes",
+        type: {
+          name: "ByteArray"
+        }
+      }
+    }
+  }
+};
+
+export const ModelWithUrlProperty: coreHttp.CompositeMapper = {
+  serializedName: "ModelWithUrlProperty",
+  type: {
+    name: "Composite",
+    className: "ModelWithUrlProperty",
+    modelProperties: {
+      url: {
+        serializedName: "Url",
+        xmlName: "Url",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
   serializedName: "Xml_getHeadersHeaders",
   type: {

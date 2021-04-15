@@ -51,6 +51,14 @@ export interface Paging {
     options?: coreHttp.OperationOptions
   ): PagedAsyncIterableIterator<Product>;
   /**
+   * A paging operation whose first response's items list is empty, but still returns a next link. Second
+   * (and final) call, will give you an items list of 1.
+   * @param options The options parameters.
+   */
+  listFirstResponseEmpty(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product>;
+  /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */

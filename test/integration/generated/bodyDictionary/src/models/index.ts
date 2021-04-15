@@ -674,7 +674,7 @@ export type DictionaryGetDictionaryEmptyResponse = {
 
 /** Contains response data for the getDictionaryItemNull operation. */
 export type DictionaryGetDictionaryItemNullResponse = {
-  [propertyName: string]: { [propertyName: string]: string };
+  [propertyName: string]: { [propertyName: string]: string } | null;
 } & {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse & {
@@ -682,7 +682,9 @@ export type DictionaryGetDictionaryItemNullResponse = {
     bodyAsText: string;
 
     /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
+    parsedBody: {
+      [propertyName: string]: { [propertyName: string]: string } | null;
+    };
   };
 };
 

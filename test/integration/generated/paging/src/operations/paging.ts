@@ -31,6 +31,7 @@ import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesResponse,
+  PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsResponse,
   PagingNextOperationWithQueryParamsResponse,
@@ -49,6 +50,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
+  PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextResponse,
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextResponse,
@@ -190,6 +192,49 @@ export class PagingImpl implements Paging {
     options?: coreHttp.OperationOptions
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getSinglePagesPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation whose first response's items list is empty, but still returns a next link. Second
+   * (and final) call, will give you an items list of 1.
+   * @param options The options parameters.
+   */
+  public listFirstResponseEmpty(
+    options?: coreHttp.OperationOptions
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.firstResponseEmptyPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.firstResponseEmptyPagingPage(options);
+      }
+    };
+  }
+
+  private async *firstResponseEmptyPagingPage(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._firstResponseEmpty(options);
+    yield result.value || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._firstResponseEmptyNext(continuationToken, options);
+      continuationToken = result.nextLink;
+      yield result.value || [];
+    }
+  }
+
+  private async *firstResponseEmptyPagingAll(
+    options?: coreHttp.OperationOptions
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.firstResponseEmptyPagingPage(options)) {
       yield* page;
     }
   }
@@ -1114,6 +1159,40 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * A paging operation whose first response's items list is empty, but still returns a next link. Second
+   * (and final) call, will give you an items list of 1.
+   * @param options The options parameters.
+   */
+  private async _firstResponseEmpty(
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingFirstResponseEmptyResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_firstResponseEmpty",
+      options || {}
+    );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
+    };
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        firstResponseEmptyOperationSpec
+      );
+      return result as PagingFirstResponseEmptyResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
+  }
+
+  /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
@@ -1759,6 +1838,42 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * FirstResponseEmptyNext
+   * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.
+   * @param options The options parameters.
+   */
+  private async _firstResponseEmptyNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingFirstResponseEmptyNextResponse> {
+    const { span, updatedOptions } = createSpan(
+      "PagingClient-_firstResponseEmptyNext",
+      options || {}
+    );
+    const operationArguments: coreHttp.OperationArguments = {
+      nextLink,
+      options: coreHttp.operationOptionsToRequestOptionsBase(
+        updatedOptions || {}
+      )
+    };
+    try {
+      const result = await this.client.sendOperationRequest(
+        operationArguments,
+        firstResponseEmptyNextOperationSpec
+      );
+      return result as PagingFirstResponseEmptyNextResponse;
+    } catch (error) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: error.message
+      });
+      throw error;
+    } finally {
+      span.end();
+    }
+  }
+
+  /**
    * GetMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param options The options parameters.
@@ -2181,6 +2296,19 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const firstResponseEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/paging/firstResponseEmpty/1",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   path: "/paging/multiple",
   httpMethod: "GET",
@@ -2446,6 +2574,19 @@ const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const firstResponseEmptyNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
     },
     default: {}
   },

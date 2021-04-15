@@ -36,7 +36,11 @@ import {
   XmlListBlobsResponse,
   JsonInput,
   XmlJsonOutputResponse,
-  XmlGetXMsTextResponse
+  XmlGetXMsTextResponse,
+  XmlGetBytesResponse,
+  ModelWithByteProperty,
+  XmlGetUriResponse,
+  ModelWithUrlProperty
 } from "../models";
 
 /** Class representing a Xml. */
@@ -569,6 +573,72 @@ export class XmlImpl implements Xml {
       getXMsTextOperationSpec
     ) as Promise<XmlGetXMsTextResponse>;
   }
+
+  /**
+   * Get an XML document with binary property
+   * @param options The options parameters.
+   */
+  getBytes(options?: coreHttp.OperationOptions): Promise<XmlGetBytesResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getBytesOperationSpec
+    ) as Promise<XmlGetBytesResponse>;
+  }
+
+  /**
+   * Put an XML document with binary property
+   * @param slideshow
+   * @param options The options parameters.
+   */
+  putBinary(
+    slideshow: ModelWithByteProperty,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      slideshow,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      putBinaryOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
+
+  /**
+   * Get an XML document with uri property
+   * @param options The options parameters.
+   */
+  getUri(options?: coreHttp.OperationOptions): Promise<XmlGetUriResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getUriOperationSpec
+    ) as Promise<XmlGetUriResponse>;
+  }
+
+  /**
+   * Put an XML document with uri property
+   * @param model
+   * @param options The options parameters.
+   */
+  putUri(
+    model: ModelWithUrlProperty,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      model,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      putUriOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
 }
 // Operation Specifications
 const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
@@ -999,5 +1069,71 @@ const getXMsTextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
+  serializer: xmlSerializer
+};
+const getBytesOperationSpec: coreHttp.OperationSpec = {
+  path: "/xml/bytes",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ModelWithByteProperty
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  isXML: true,
+  serializer: xmlSerializer
+};
+const putBinaryOperationSpec: coreHttp.OperationSpec = {
+  path: "/xml/bytes",
+  httpMethod: "PUT",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  requestBody: Parameters.slideshow1,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
+  isXML: true,
+  contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
+  serializer: xmlSerializer
+};
+const getUriOperationSpec: coreHttp.OperationSpec = {
+  path: "/xml/url",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ModelWithUrlProperty
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  isXML: true,
+  serializer: xmlSerializer
+};
+const putUriOperationSpec: coreHttp.OperationSpec = {
+  path: "/xml/url",
+  httpMethod: "PUT",
+  responses: {
+    201: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  requestBody: Parameters.model2,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept1],
+  isXML: true,
+  contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer: xmlSerializer
 };

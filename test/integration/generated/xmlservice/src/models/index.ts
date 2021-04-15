@@ -261,6 +261,14 @@ export interface ObjectWithXMsTextProperty {
   content?: string;
 }
 
+export interface ModelWithByteProperty {
+  bytes?: Uint8Array;
+}
+
+export interface ModelWithUrlProperty {
+  url?: string;
+}
+
 /** Defines headers for Xml_getHeaders operation. */
 export interface XmlGetHeadersHeaders {
   /** A custom response header. */
@@ -544,6 +552,30 @@ export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ObjectWithXMsTextProperty;
+  };
+};
+
+/** Contains response data for the getBytes operation. */
+export type XmlGetBytesResponse = ModelWithByteProperty & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ModelWithByteProperty;
+  };
+};
+
+/** Contains response data for the getUri operation. */
+export type XmlGetUriResponse = ModelWithUrlProperty & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ModelWithUrlProperty;
   };
 };
 
