@@ -171,13 +171,19 @@ function getDefaultValue(parameter: Parameter) {
 
   if (parameter.schema.type === SchemaType.Constant) {
     const constantSchema = parameter.schema as ConstantSchema;
-    return (
-      constantSchema.defaultValue ||
-      getStringForValue(
-        constantSchema.value.value,
-        constantSchema.valueType.type
-      )
+    let defaultValue = getStringForValue(
+      constantSchema.value.value,
+      constantSchema.valueType.type
     );
+
+    if (
+      constantSchema.valueType.type !== SchemaType.String &&
+      constantSchema.defaultValue
+    ) {
+      defaultValue = constantSchema.defaultValue;
+    }
+
+    return defaultValue;
   }
 
   return undefined;

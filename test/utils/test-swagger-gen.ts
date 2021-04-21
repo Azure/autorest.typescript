@@ -409,6 +409,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
     packageName: "petstore"
+  },
+  storagefileshare: {
+    swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
+    clientName: "StorageFileShareClient",
+    packageName: "storagefileshare"
   }
 };
 
