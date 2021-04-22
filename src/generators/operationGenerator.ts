@@ -1022,11 +1022,17 @@ export function addOperationSpecs(
     hasMediaType(operation, KnownMediaType.Xml)
   );
 
-  const hasJson = operationGroupDetails.operations.some(operation =>
-    hasMediaType(operation, KnownMediaType.Json)
+  const hasNonXml = operationGroupDetails.operations.some(
+    operation =>
+      hasMediaType(operation, KnownMediaType.Json) ||
+      hasMediaType(operation, KnownMediaType.Form) ||
+      hasMediaType(operation, KnownMediaType.Binary) ||
+      hasMediaType(operation, KnownMediaType.Multipart) ||
+      hasMediaType(operation, KnownMediaType.Text) ||
+      hasMediaType(operation, KnownMediaType.Unknown)
   );
 
-  const needsDefault = !hasXml && !hasJson;
+  const needsDefault = !hasXml && !hasNonXml;
 
   file.addStatements("// Operation Specifications");
 
@@ -1034,8 +1040,8 @@ export function addOperationSpecs(
     writeSerializer(hasMappers, file, SerializerKind.Xml);
   }
 
-  if (hasJson || needsDefault) {
-    writeSerializer(hasMappers, file, SerializerKind.Json);
+  if (hasNonXml || needsDefault) {
+    writeSerializer(hasMappers, file);
   }
 
   operationGroupDetails.operations.forEach(operation => {

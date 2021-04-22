@@ -1,0 +1,3075 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Blob Storage",
+    "version": "2020-06-12",
+    "x-ms-code-generation-settings": {
+      "header": "MIT",
+      "strictSpecAdherence": false
+    }
+  },
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{url}",
+    "useSchemePrefix": false,
+    "positionInOperation": "first",
+    "parameters": [
+      {
+        "$ref": "#/parameters/Url"
+      }
+    ]
+  },
+  "securityDefinitions": {
+    "blob_shared_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "schemes": ["https"],
+  "consumes": ["application/xml"],
+  "produces": ["application/xml"],
+  "paths": {},
+  "x-ms-paths": {
+    "/{containerName}/{blob}?BlockBlob": {
+      "put": {
+        "tags": ["blob"],
+        "operationId": "BlockBlob_Upload",
+        "description": "The Upload Block Blob operation updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with Put Blob; the content of the existing blob is overwritten with the content of the new blob. To perform a partial update of the content of a block blob, use the Put Block List operation.",
+        "consumes": ["application/octet-stream"],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Body"
+          },
+          {
+            "$ref": "#/parameters/Timeout"
+          },
+          {
+            "$ref": "#/parameters/ContentMD5"
+          },
+          {
+            "$ref": "#/parameters/ContentLength"
+          },
+          {
+            "$ref": "#/parameters/BlobContentType"
+          },
+          {
+            "$ref": "#/parameters/BlobContentEncoding"
+          },
+          {
+            "$ref": "#/parameters/BlobContentLanguage"
+          },
+          {
+            "$ref": "#/parameters/BlobContentMD5"
+          },
+          {
+            "$ref": "#/parameters/BlobCacheControl"
+          },
+          {
+            "$ref": "#/parameters/Metadata"
+          },
+          {
+            "$ref": "#/parameters/LeaseIdOptional"
+          },
+          {
+            "$ref": "#/parameters/BlobContentDisposition"
+          },
+          {
+            "$ref": "#/parameters/EncryptionKey"
+          },
+          {
+            "$ref": "#/parameters/EncryptionKeySha256"
+          },
+          {
+            "$ref": "#/parameters/EncryptionAlgorithm"
+          },
+          {
+            "$ref": "#/parameters/EncryptionScope"
+          },
+          {
+            "$ref": "#/parameters/AccessTierOptional"
+          },
+          {
+            "$ref": "#/parameters/IfModifiedSince"
+          },
+          {
+            "$ref": "#/parameters/IfUnmodifiedSince"
+          },
+          {
+            "$ref": "#/parameters/IfMatch"
+          },
+          {
+            "$ref": "#/parameters/IfNoneMatch"
+          },
+          {
+            "$ref": "#/parameters/IfTags"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/ClientRequestId"
+          },
+          {
+            "$ref": "#/parameters/BlobTagsHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The blob was updated.",
+            "headers": {
+              "ETag": {
+                "type": "string",
+                "format": "etag",
+                "description": "The ETag contains a value that you can use to perform operations conditionally. If the request version is 2011-08-18 or newer, the ETag value will be in quotes."
+              },
+              "Last-Modified": {
+                "type": "string",
+                "format": "date-time-rfc1123",
+                "description": "Returns the date and time the container was last modified. Any operation that modifies the blob, including an update of the blob's metadata or properties, changes the last-modified time of the blob."
+              },
+              "Content-MD5": {
+                "type": "string",
+                "format": "byte",
+                "description": "If the blob has an MD5 hash and this operation is to read the full blob, this response header is returned so that the client can check for message content integrity."
+              },
+              "x-ms-client-request-id": {
+                "x-ms-client-name": "ClientRequestId",
+                "type": "string",
+                "description": "If a client request id header is sent in the request, this header will be present in the response with the same value."
+              },
+              "x-ms-request-id": {
+                "x-ms-client-name": "RequestId",
+                "type": "string",
+                "description": "This header uniquely identifies the request that was made and can be used for troubleshooting the request."
+              },
+              "x-ms-version": {
+                "x-ms-client-name": "Version",
+                "type": "string",
+                "description": "Indicates the version of the Blob service used to execute the request. This header is returned for requests made against version 2009-09-19 and above."
+              },
+              "x-ms-version-id": {
+                "x-ms-client-name": "VersionId",
+                "type": "string",
+                "description": "A DateTime value returned by the service that uniquely identifies the blob. The value of this header indicates the blob version, and may be used in subsequent requests to access this version of the blob."
+              },
+              "Date": {
+                "type": "string",
+                "format": "date-time-rfc1123",
+                "description": "UTC date/time value generated by the service that indicates the time at which the response was initiated"
+              },
+              "x-ms-request-server-encrypted": {
+                "x-ms-client-name": "IsServerEncrypted",
+                "type": "boolean",
+                "description": "The value of this header is set to true if the contents of the request are successfully encrypted using the specified algorithm, and false otherwise."
+              },
+              "x-ms-encryption-key-sha256": {
+                "x-ms-client-name": "EncryptionKeySha256",
+                "type": "string",
+                "description": "The SHA-256 hash of the encryption key used to encrypt the blob. This header is only returned when the blob was encrypted with a customer-provided key."
+              },
+              "x-ms-encryption-scope": {
+                "x-ms-client-name": "EncryptionScope",
+                "type": "string",
+                "description": "Returns the name of the encryption scope used to encrypt the blob contents and application metadata.  Note that the absence of this header implies use of the default account encryption scope."
+              }
+            }
+          },
+          "default": {
+            "description": "Failure",
+            "headers": {
+              "x-ms-error-code": {
+                "x-ms-client-name": "ErrorCode",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/StorageError"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "x-ms-blob-type",
+          "x-ms-client-name": "blobType",
+          "in": "header",
+          "required": true,
+          "x-ms-parameter-location": "method",
+          "description": "Specifies the type of blob to create: block blob, page blob, or append blob.",
+          "type": "string",
+          "enum": ["BlockBlob"],
+          "x-ms-enum": {
+            "name": "BlobType",
+            "modelAsString": false
+          }
+        }
+      ]
+    },
+    "/{containerName}/{blob}?BlockBlob&fromUrl": {
+      "put": {
+        "tags": ["blob"],
+        "operationId": "BlockBlob_PutBlobFromUrl",
+        "description": "The Put Blob from URL operation creates a new Block Blob where the contents of the blob are read from a given URL.  This API is supported beginning with the 2020-04-08 version. Partial updates are not supported with Put Blob from URL; the content of an existing blob is overwritten with the content of the new blob.  To perform partial updates to a block blob’s contents using a source URL, use the Put Block from URL API in conjunction with Put Block List.",
+        "consumes": ["application/octet-stream"],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Timeout"
+          },
+          {
+            "$ref": "#/parameters/ContentMD5"
+          },
+          {
+            "$ref": "#/parameters/ContentLength"
+          },
+          {
+            "$ref": "#/parameters/BlobContentType"
+          },
+          {
+            "$ref": "#/parameters/BlobContentEncoding"
+          },
+          {
+            "$ref": "#/parameters/BlobContentLanguage"
+          },
+          {
+            "$ref": "#/parameters/BlobContentMD5"
+          },
+          {
+            "$ref": "#/parameters/BlobCacheControl"
+          },
+          {
+            "$ref": "#/parameters/Metadata"
+          },
+          {
+            "$ref": "#/parameters/LeaseIdOptional"
+          },
+          {
+            "$ref": "#/parameters/BlobContentDisposition"
+          },
+          {
+            "$ref": "#/parameters/EncryptionKey"
+          },
+          {
+            "$ref": "#/parameters/EncryptionKeySha256"
+          },
+          {
+            "$ref": "#/parameters/EncryptionAlgorithm"
+          },
+          {
+            "$ref": "#/parameters/EncryptionScope"
+          },
+          {
+            "$ref": "#/parameters/AccessTierOptional"
+          },
+          {
+            "$ref": "#/parameters/IfModifiedSince"
+          },
+          {
+            "$ref": "#/parameters/IfUnmodifiedSince"
+          },
+          {
+            "$ref": "#/parameters/IfMatch"
+          },
+          {
+            "$ref": "#/parameters/IfNoneMatch"
+          },
+          {
+            "$ref": "#/parameters/IfTags"
+          },
+          {
+            "$ref": "#/parameters/SourceIfModifiedSince"
+          },
+          {
+            "$ref": "#/parameters/SourceIfUnmodifiedSince"
+          },
+          {
+            "$ref": "#/parameters/SourceIfMatch"
+          },
+          {
+            "$ref": "#/parameters/SourceIfNoneMatch"
+          },
+          {
+            "$ref": "#/parameters/SourceIfTags"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/ClientRequestId"
+          },
+          {
+            "$ref": "#/parameters/SourceContentMD5"
+          },
+          {
+            "$ref": "#/parameters/BlobTagsHeader"
+          },
+          {
+            "$ref": "#/parameters/CopySource"
+          },
+          {
+            "$ref": "#/parameters/CopySourceBlobProperties"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The blob was updated.",
+            "headers": {
+              "ETag": {
+                "type": "string",
+                "format": "etag",
+                "description": "The ETag contains a value that you can use to perform operations conditionally. If the request version is 2011-08-18 or newer, the ETag value will be in quotes."
+              },
+              "Last-Modified": {
+                "type": "string",
+                "format": "date-time-rfc1123",
+                "description": "Returns the date and time the container was last modified. Any operation that modifies the blob, including an update of the blob's metadata or properties, changes the last-modified time of the blob."
+              },
+              "Content-MD5": {
+                "type": "string",
+                "format": "byte",
+                "description": "If the blob has an MD5 hash and this operation is to read the full blob, this response header is returned so that the client can check for message content integrity."
+              },
+              "x-ms-client-request-id": {
+                "x-ms-client-name": "ClientRequestId",
+                "type": "string",
+                "description": "If a client request id header is sent in the request, this header will be present in the response with the same value."
+              },
+              "x-ms-request-id": {
+                "x-ms-client-name": "RequestId",
+                "type": "string",
+                "description": "This header uniquely identifies the request that was made and can be used for troubleshooting the request."
+              },
+              "x-ms-version": {
+                "x-ms-client-name": "Version",
+                "type": "string",
+                "description": "Indicates the version of the Blob service used to execute the request. This header is returned for requests made against version 2009-09-19 and above."
+              },
+              "x-ms-version-id": {
+                "x-ms-client-name": "VersionId",
+                "type": "string",
+                "description": "A DateTime value returned by the service that uniquely identifies the blob. The value of this header indicates the blob version, and may be used in subsequent requests to access this version of the blob."
+              },
+              "Date": {
+                "type": "string",
+                "format": "date-time-rfc1123",
+                "description": "UTC date/time value generated by the service that indicates the time at which the response was initiated"
+              },
+              "x-ms-request-server-encrypted": {
+                "x-ms-client-name": "IsServerEncrypted",
+                "type": "boolean",
+                "description": "The value of this header is set to true if the contents of the request are successfully encrypted using the specified algorithm, and false otherwise."
+              },
+              "x-ms-encryption-key-sha256": {
+                "x-ms-client-name": "EncryptionKeySha256",
+                "type": "string",
+                "description": "The SHA-256 hash of the encryption key used to encrypt the blob. This header is only returned when the blob was encrypted with a customer-provided key."
+              },
+              "x-ms-encryption-scope": {
+                "x-ms-client-name": "EncryptionScope",
+                "type": "string",
+                "description": "Returns the name of the encryption scope used to encrypt the blob contents and application metadata.  Note that the absence of this header implies use of the default account encryption scope."
+              }
+            }
+          },
+          "default": {
+            "description": "Failure",
+            "headers": {
+              "x-ms-error-code": {
+                "x-ms-client-name": "ErrorCode",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/StorageError"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "x-ms-blob-type",
+          "x-ms-client-name": "blobType",
+          "in": "header",
+          "required": true,
+          "x-ms-parameter-location": "method",
+          "description": "Specifies the type of blob to create: block blob, page blob, or append blob.",
+          "type": "string",
+          "enum": ["BlockBlob"],
+          "x-ms-enum": {
+            "name": "BlobType",
+            "modelAsString": false
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "KeyInfo": {
+      "type": "object",
+      "required": ["Start", "Expiry"],
+      "description": "Key information",
+      "properties": {
+        "Start": {
+          "description": "The date-time the key is active in ISO 8601 UTC time",
+          "type": "string"
+        },
+        "Expiry": {
+          "description": "The date-time the key expires in ISO 8601 UTC time",
+          "type": "string"
+        }
+      }
+    },
+    "UserDelegationKey": {
+      "type": "object",
+      "required": [
+        "SignedOid",
+        "SignedTid",
+        "SignedStart",
+        "SignedExpiry",
+        "SignedService",
+        "SignedVersion",
+        "Value"
+      ],
+      "description": "A user delegation key",
+      "properties": {
+        "SignedOid": {
+          "description": "The Azure Active Directory object ID in GUID format.",
+          "type": "string"
+        },
+        "SignedTid": {
+          "description": "The Azure Active Directory tenant ID in GUID format",
+          "type": "string"
+        },
+        "SignedStart": {
+          "description": "The date-time the key is active",
+          "type": "string",
+          "format": "date-time"
+        },
+        "SignedExpiry": {
+          "description": "The date-time the key expires",
+          "type": "string",
+          "format": "date-time"
+        },
+        "SignedService": {
+          "description": "Abbreviation of the Azure Storage service that accepts the key",
+          "type": "string"
+        },
+        "SignedVersion": {
+          "description": "The service version that created the key",
+          "type": "string"
+        },
+        "Value": {
+          "description": "The key as a base64 string",
+          "type": "string"
+        }
+      }
+    },
+    "PublicAccessType": {
+      "type": "string",
+      "enum": ["container", "blob"],
+      "x-ms-enum": {
+        "name": "PublicAccessType",
+        "modelAsString": true
+      }
+    },
+    "CopyStatus": {
+      "type": "string",
+      "enum": ["pending", "success", "aborted", "failed"],
+      "x-ms-enum": {
+        "name": "CopyStatusType",
+        "modelAsString": false
+      }
+    },
+    "LeaseDuration": {
+      "type": "string",
+      "enum": ["infinite", "fixed"],
+      "x-ms-enum": {
+        "name": "LeaseDurationType",
+        "modelAsString": false
+      }
+    },
+    "LeaseState": {
+      "type": "string",
+      "enum": ["available", "leased", "expired", "breaking", "broken"],
+      "x-ms-enum": {
+        "name": "LeaseStateType",
+        "modelAsString": false
+      }
+    },
+    "LeaseStatus": {
+      "type": "string",
+      "enum": ["locked", "unlocked"],
+      "x-ms-enum": {
+        "name": "LeaseStatusType",
+        "modelAsString": false
+      }
+    },
+    "StorageError": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "type": "string"
+        }
+      }
+    },
+    "DataLakeStorageError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "x-ms-client-name": "DataLakeStorageErrorDetails",
+          "description": "The service error response object.",
+          "properties": {
+            "Code": {
+              "description": "The service error code.",
+              "type": "string"
+            },
+            "Message": {
+              "description": "The service error message.",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "AccessPolicy": {
+      "type": "object",
+      "description": "An Access policy",
+      "properties": {
+        "Start": {
+          "description": "the date-time the policy is active",
+          "type": "string",
+          "format": "date-time"
+        },
+        "Expiry": {
+          "description": "the date-time the policy expires",
+          "type": "string",
+          "format": "date-time"
+        },
+        "Permission": {
+          "description": "the permissions for the acl policy",
+          "type": "string"
+        }
+      }
+    },
+    "AccessTier": {
+      "type": "string",
+      "enum": [
+        "P4",
+        "P6",
+        "P10",
+        "P15",
+        "P20",
+        "P30",
+        "P40",
+        "P50",
+        "P60",
+        "P70",
+        "P80",
+        "Hot",
+        "Cool",
+        "Archive"
+      ],
+      "x-ms-enum": {
+        "name": "AccessTier",
+        "modelAsString": true
+      }
+    },
+    "ArchiveStatus": {
+      "type": "string",
+      "enum": ["rehydrate-pending-to-hot", "rehydrate-pending-to-cool"],
+      "x-ms-enum": {
+        "name": "ArchiveStatus",
+        "modelAsString": true
+      }
+    },
+    "BlobItemInternal": {
+      "xml": {
+        "name": "Blob"
+      },
+      "description": "An Azure Storage blob",
+      "type": "object",
+      "required": ["Name", "Deleted", "Snapshot", "Properties"],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Deleted": {
+          "type": "boolean"
+        },
+        "Snapshot": {
+          "type": "string"
+        },
+        "VersionId": {
+          "type": "string"
+        },
+        "IsCurrentVersion": {
+          "type": "boolean"
+        },
+        "Properties": {
+          "$ref": "#/definitions/BlobPropertiesInternal"
+        },
+        "Metadata": {
+          "$ref": "#/definitions/BlobMetadata"
+        },
+        "BlobTags": {
+          "$ref": "#/definitions/BlobTags"
+        },
+        "ObjectReplicationMetadata": {
+          "$ref": "#/definitions/ObjectReplicationMetadata"
+        }
+      }
+    },
+    "BlobPropertiesInternal": {
+      "xml": {
+        "name": "Properties"
+      },
+      "description": "Properties of a blob",
+      "type": "object",
+      "required": ["Etag", "Last-Modified"],
+      "properties": {
+        "Creation-Time": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "Last-Modified": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "Etag": {
+          "type": "string",
+          "format": "etag"
+        },
+        "Content-Length": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Size in bytes"
+        },
+        "Content-Type": {
+          "type": "string"
+        },
+        "Content-Encoding": {
+          "type": "string"
+        },
+        "Content-Language": {
+          "type": "string"
+        },
+        "Content-MD5": {
+          "type": "string",
+          "format": "byte"
+        },
+        "Content-Disposition": {
+          "type": "string"
+        },
+        "Cache-Control": {
+          "type": "string"
+        },
+        "x-ms-blob-sequence-number": {
+          "x-ms-client-name": "blobSequenceNumber",
+          "type": "integer",
+          "format": "int64"
+        },
+        "BlobType": {
+          "type": "string",
+          "enum": ["BlockBlob", "PageBlob", "AppendBlob"],
+          "x-ms-enum": {
+            "name": "BlobType",
+            "modelAsString": false
+          }
+        },
+        "LeaseStatus": {
+          "$ref": "#/definitions/LeaseStatus"
+        },
+        "LeaseState": {
+          "$ref": "#/definitions/LeaseState"
+        },
+        "LeaseDuration": {
+          "$ref": "#/definitions/LeaseDuration"
+        },
+        "CopyId": {
+          "type": "string"
+        },
+        "CopyStatus": {
+          "$ref": "#/definitions/CopyStatus"
+        },
+        "CopySource": {
+          "type": "string"
+        },
+        "CopyProgress": {
+          "type": "string"
+        },
+        "CopyCompletionTime": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "CopyStatusDescription": {
+          "type": "string"
+        },
+        "ServerEncrypted": {
+          "type": "boolean"
+        },
+        "IncrementalCopy": {
+          "type": "boolean"
+        },
+        "DestinationSnapshot": {
+          "type": "string"
+        },
+        "DeletedTime": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "RemainingRetentionDays": {
+          "type": "integer"
+        },
+        "AccessTier": {
+          "$ref": "#/definitions/AccessTier"
+        },
+        "AccessTierInferred": {
+          "type": "boolean"
+        },
+        "ArchiveStatus": {
+          "$ref": "#/definitions/ArchiveStatus"
+        },
+        "CustomerProvidedKeySha256": {
+          "type": "string"
+        },
+        "EncryptionScope": {
+          "type": "string",
+          "description": "The name of the encryption scope under which the blob is encrypted."
+        },
+        "AccessTierChangeTime": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "TagCount": {
+          "type": "integer"
+        },
+        "Expiry-Time": {
+          "x-ms-client-name": "ExpiresOn",
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "Sealed": {
+          "x-ms-client-name": "IsSealed",
+          "type": "boolean"
+        },
+        "RehydratePriority": {
+          "$ref": "#/definitions/RehydratePriority"
+        },
+        "LastAccessTime": {
+          "x-ms-client-name": "LastAccessedOn",
+          "type": "string",
+          "format": "date-time-rfc1123"
+        }
+      }
+    },
+    "ListBlobsFlatSegmentResponse": {
+      "xml": {
+        "name": "EnumerationResults"
+      },
+      "description": "An enumeration of blobs",
+      "type": "object",
+      "required": ["ServiceEndpoint", "ContainerName", "Segment"],
+      "properties": {
+        "ServiceEndpoint": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "ContainerName": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "Marker": {
+          "type": "string"
+        },
+        "MaxResults": {
+          "type": "integer"
+        },
+        "Segment": {
+          "$ref": "#/definitions/BlobFlatListSegment"
+        },
+        "NextMarker": {
+          "type": "string"
+        }
+      }
+    },
+    "ListBlobsHierarchySegmentResponse": {
+      "xml": {
+        "name": "EnumerationResults"
+      },
+      "description": "An enumeration of blobs",
+      "type": "object",
+      "required": ["ServiceEndpoint", "ContainerName", "Segment"],
+      "properties": {
+        "ServiceEndpoint": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "ContainerName": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "Marker": {
+          "type": "string"
+        },
+        "MaxResults": {
+          "type": "integer"
+        },
+        "Delimiter": {
+          "type": "string"
+        },
+        "Segment": {
+          "$ref": "#/definitions/BlobHierarchyListSegment"
+        },
+        "NextMarker": {
+          "type": "string"
+        }
+      }
+    },
+    "BlobFlatListSegment": {
+      "xml": {
+        "name": "Blobs"
+      },
+      "required": ["BlobItems"],
+      "type": "object",
+      "properties": {
+        "BlobItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlobItemInternal"
+          }
+        }
+      }
+    },
+    "BlobHierarchyListSegment": {
+      "xml": {
+        "name": "Blobs"
+      },
+      "type": "object",
+      "required": ["BlobItems"],
+      "properties": {
+        "BlobPrefixes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlobPrefix"
+          }
+        },
+        "BlobItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlobItemInternal"
+          }
+        }
+      }
+    },
+    "BlobPrefix": {
+      "type": "object",
+      "required": ["Name"],
+      "properties": {
+        "Name": {
+          "type": "string"
+        }
+      }
+    },
+    "BlobTag": {
+      "xml": {
+        "name": "Tag"
+      },
+      "type": "object",
+      "required": ["Key", "Value"],
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "BlobTags": {
+      "type": "object",
+      "xml": {
+        "name": "Tags"
+      },
+      "description": "Blob tags",
+      "required": ["BlobTagSet"],
+      "properties": {
+        "BlobTagSet": {
+          "xml": {
+            "wrapped": true,
+            "name": "TagSet"
+          },
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlobTag"
+          }
+        }
+      }
+    },
+    "Block": {
+      "type": "object",
+      "required": ["Name", "Size"],
+      "description": "Represents a single block in a block blob.  It describes the block's ID and size.",
+      "properties": {
+        "Name": {
+          "description": "The base64 encoded block ID.",
+          "type": "string"
+        },
+        "Size": {
+          "description": "The block size in bytes.",
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "BlockList": {
+      "type": "object",
+      "properties": {
+        "CommittedBlocks": {
+          "xml": {
+            "wrapped": true
+          },
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Block"
+          }
+        },
+        "UncommittedBlocks": {
+          "xml": {
+            "wrapped": true
+          },
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Block"
+          }
+        }
+      }
+    },
+    "BlockLookupList": {
+      "type": "object",
+      "properties": {
+        "Committed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "Committed"
+            }
+          }
+        },
+        "Uncommitted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "Uncommitted"
+            }
+          }
+        },
+        "Latest": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "Latest"
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "BlockList"
+      }
+    },
+    "ContainerItem": {
+      "xml": {
+        "name": "Container"
+      },
+      "type": "object",
+      "required": ["Name", "Properties"],
+      "description": "An Azure Storage container",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Deleted": {
+          "type": "boolean"
+        },
+        "Version": {
+          "type": "string"
+        },
+        "Properties": {
+          "$ref": "#/definitions/ContainerProperties"
+        },
+        "Metadata": {
+          "$ref": "#/definitions/ContainerMetadata"
+        }
+      }
+    },
+    "ContainerProperties": {
+      "type": "object",
+      "required": ["Last-Modified", "Etag"],
+      "description": "Properties of a container",
+      "properties": {
+        "Last-Modified": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "Etag": {
+          "type": "string",
+          "format": "etag"
+        },
+        "LeaseStatus": {
+          "$ref": "#/definitions/LeaseStatus"
+        },
+        "LeaseState": {
+          "$ref": "#/definitions/LeaseState"
+        },
+        "LeaseDuration": {
+          "$ref": "#/definitions/LeaseDuration"
+        },
+        "PublicAccess": {
+          "$ref": "#/definitions/PublicAccessType"
+        },
+        "HasImmutabilityPolicy": {
+          "type": "boolean"
+        },
+        "HasLegalHold": {
+          "type": "boolean"
+        },
+        "DefaultEncryptionScope": {
+          "type": "string"
+        },
+        "DenyEncryptionScopeOverride": {
+          "type": "boolean",
+          "x-ms-client-name": "PreventEncryptionScopeOverride"
+        },
+        "DeletedTime": {
+          "type": "string",
+          "format": "date-time-rfc1123"
+        },
+        "RemainingRetentionDays": {
+          "type": "integer"
+        }
+      }
+    },
+    "DelimitedTextConfiguration": {
+      "xml": {
+        "name": "DelimitedTextConfiguration"
+      },
+      "description": "delimited text configuration",
+      "type": "object",
+      "required": [
+        "ColumnSeparator",
+        "FieldQuote",
+        "RecordSeparator",
+        "EscapeChar",
+        "HeadersPresent"
+      ],
+      "properties": {
+        "ColumnSeparator": {
+          "type": "string",
+          "description": "column separator",
+          "xml": {
+            "name": "ColumnSeparator"
+          }
+        },
+        "FieldQuote": {
+          "type": "string",
+          "description": "field quote",
+          "xml": {
+            "name": "FieldQuote"
+          }
+        },
+        "RecordSeparator": {
+          "type": "string",
+          "description": "record separator",
+          "xml": {
+            "name": "RecordSeparator"
+          }
+        },
+        "EscapeChar": {
+          "type": "string",
+          "description": "escape char",
+          "xml": {
+            "name": "EscapeChar"
+          }
+        },
+        "HeadersPresent": {
+          "type": "boolean",
+          "description": "has headers",
+          "xml": {
+            "name": "HasHeaders"
+          }
+        }
+      }
+    },
+    "JsonTextConfiguration": {
+      "xml": {
+        "name": "JsonTextConfiguration"
+      },
+      "description": "json text configuration",
+      "type": "object",
+      "required": ["RecordSeparator"],
+      "properties": {
+        "RecordSeparator": {
+          "type": "string",
+          "description": "record separator",
+          "xml": {
+            "name": "RecordSeparator"
+          }
+        }
+      }
+    },
+    "ArrowConfiguration": {
+      "xml": {
+        "name": "ArrowConfiguration"
+      },
+      "description": "arrow configuration",
+      "type": "object",
+      "required": ["Schema"],
+      "properties": {
+        "Schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArrowField"
+          },
+          "xml": {
+            "wrapped": true,
+            "name": "Schema"
+          }
+        }
+      }
+    },
+    "ArrowField": {
+      "xml": {
+        "name": "Field"
+      },
+      "description": "field of an arrow schema",
+      "type": "object",
+      "required": ["Type"],
+      "properties": {
+        "Type": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Precision": {
+          "type": "integer"
+        },
+        "Scale": {
+          "type": "integer"
+        }
+      }
+    },
+    "ListContainersSegmentResponse": {
+      "xml": {
+        "name": "EnumerationResults"
+      },
+      "description": "An enumeration of containers",
+      "type": "object",
+      "required": ["ServiceEndpoint", "ContainerItems"],
+      "properties": {
+        "ServiceEndpoint": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "Marker": {
+          "type": "string"
+        },
+        "MaxResults": {
+          "type": "integer"
+        },
+        "ContainerItems": {
+          "xml": {
+            "wrapped": true,
+            "name": "Containers"
+          },
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContainerItem"
+          }
+        },
+        "NextMarker": {
+          "type": "string"
+        }
+      }
+    },
+    "CorsRule": {
+      "description": "CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain",
+      "type": "object",
+      "required": [
+        "AllowedOrigins",
+        "AllowedMethods",
+        "AllowedHeaders",
+        "ExposedHeaders",
+        "MaxAgeInSeconds"
+      ],
+      "properties": {
+        "AllowedOrigins": {
+          "description": "The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.",
+          "type": "string"
+        },
+        "AllowedMethods": {
+          "description": "The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated)",
+          "type": "string"
+        },
+        "AllowedHeaders": {
+          "description": "the request headers that the origin domain may specify on the CORS request.",
+          "type": "string"
+        },
+        "ExposedHeaders": {
+          "description": "The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer",
+          "type": "string"
+        },
+        "MaxAgeInSeconds": {
+          "description": "The maximum amount time that a browser should cache the preflight OPTIONS request.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ErrorCode": {
+      "description": "Error codes returned by the service",
+      "type": "string",
+      "enum": [
+        "AccountAlreadyExists",
+        "AccountBeingCreated",
+        "AccountIsDisabled",
+        "AuthenticationFailed",
+        "AuthorizationFailure",
+        "ConditionHeadersNotSupported",
+        "ConditionNotMet",
+        "EmptyMetadataKey",
+        "InsufficientAccountPermissions",
+        "InternalError",
+        "InvalidAuthenticationInfo",
+        "InvalidHeaderValue",
+        "InvalidHttpVerb",
+        "InvalidInput",
+        "InvalidMd5",
+        "InvalidMetadata",
+        "InvalidQueryParameterValue",
+        "InvalidRange",
+        "InvalidResourceName",
+        "InvalidUri",
+        "InvalidXmlDocument",
+        "InvalidXmlNodeValue",
+        "Md5Mismatch",
+        "MetadataTooLarge",
+        "MissingContentLengthHeader",
+        "MissingRequiredQueryParameter",
+        "MissingRequiredHeader",
+        "MissingRequiredXmlNode",
+        "MultipleConditionHeadersNotSupported",
+        "OperationTimedOut",
+        "OutOfRangeInput",
+        "OutOfRangeQueryParameterValue",
+        "RequestBodyTooLarge",
+        "ResourceTypeMismatch",
+        "RequestUrlFailedToParse",
+        "ResourceAlreadyExists",
+        "ResourceNotFound",
+        "ServerBusy",
+        "UnsupportedHeader",
+        "UnsupportedXmlNode",
+        "UnsupportedQueryParameter",
+        "UnsupportedHttpVerb",
+        "AppendPositionConditionNotMet",
+        "BlobAlreadyExists",
+        "BlobImmutableDueToPolicy",
+        "BlobNotFound",
+        "BlobOverwritten",
+        "BlobTierInadequateForContentLength",
+        "BlockCountExceedsLimit",
+        "BlockListTooLong",
+        "CannotChangeToLowerTier",
+        "CannotVerifyCopySource",
+        "ContainerAlreadyExists",
+        "ContainerBeingDeleted",
+        "ContainerDisabled",
+        "ContainerNotFound",
+        "ContentLengthLargerThanTierLimit",
+        "CopyAcrossAccountsNotSupported",
+        "CopyIdMismatch",
+        "FeatureVersionMismatch",
+        "IncrementalCopyBlobMismatch",
+        "IncrementalCopyOfEralierVersionSnapshotNotAllowed",
+        "IncrementalCopySourceMustBeSnapshot",
+        "InfiniteLeaseDurationRequired",
+        "InvalidBlobOrBlock",
+        "InvalidBlobTier",
+        "InvalidBlobType",
+        "InvalidBlockId",
+        "InvalidBlockList",
+        "InvalidOperation",
+        "InvalidPageRange",
+        "InvalidSourceBlobType",
+        "InvalidSourceBlobUrl",
+        "InvalidVersionForPageBlobOperation",
+        "LeaseAlreadyPresent",
+        "LeaseAlreadyBroken",
+        "LeaseIdMismatchWithBlobOperation",
+        "LeaseIdMismatchWithContainerOperation",
+        "LeaseIdMismatchWithLeaseOperation",
+        "LeaseIdMissing",
+        "LeaseIsBreakingAndCannotBeAcquired",
+        "LeaseIsBreakingAndCannotBeChanged",
+        "LeaseIsBrokenAndCannotBeRenewed",
+        "LeaseLost",
+        "LeaseNotPresentWithBlobOperation",
+        "LeaseNotPresentWithContainerOperation",
+        "LeaseNotPresentWithLeaseOperation",
+        "MaxBlobSizeConditionNotMet",
+        "NoAuthenticationInformation",
+        "NoPendingCopyOperation",
+        "OperationNotAllowedOnIncrementalCopyBlob",
+        "PendingCopyOperation",
+        "PreviousSnapshotCannotBeNewer",
+        "PreviousSnapshotNotFound",
+        "PreviousSnapshotOperationNotSupported",
+        "SequenceNumberConditionNotMet",
+        "SequenceNumberIncrementTooLarge",
+        "SnapshotCountExceeded",
+        "SnaphotOperationRateExceeded",
+        "SnapshotsPresent",
+        "SourceConditionNotMet",
+        "SystemInUse",
+        "TargetConditionNotMet",
+        "UnauthorizedBlobOverwrite",
+        "BlobBeingRehydrated",
+        "BlobArchived",
+        "BlobNotArchived",
+        "AuthorizationSourceIPMismatch",
+        "AuthorizationProtocolMismatch",
+        "AuthorizationPermissionMismatch",
+        "AuthorizationServiceMismatch",
+        "AuthorizationResourceTypeMismatch"
+      ],
+      "x-ms-enum": {
+        "name": "StorageErrorCode",
+        "modelAsString": true
+      }
+    },
+    "FilterBlobItem": {
+      "xml": {
+        "name": "Blob"
+      },
+      "description": "Blob info from a Filter Blobs API call",
+      "type": "object",
+      "required": ["Name", "ContainerName", "TagValue"],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "ContainerName": {
+          "type": "string"
+        },
+        "Tags": {
+          "$ref": "#/definitions/BlobTags"
+        }
+      }
+    },
+    "FilterBlobSegment": {
+      "description": "The result of a Filter Blobs API call",
+      "xml": {
+        "name": "EnumerationResults"
+      },
+      "type": "object",
+      "required": ["ServiceEndpoint", "Where", "Blobs"],
+      "properties": {
+        "ServiceEndpoint": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        },
+        "Where": {
+          "type": "string"
+        },
+        "Blobs": {
+          "xml": {
+            "name": "Blobs",
+            "wrapped": true
+          },
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterBlobItem"
+          }
+        },
+        "NextMarker": {
+          "type": "string"
+        }
+      }
+    },
+    "GeoReplication": {
+      "description": "Geo-Replication information for the Secondary Storage Service",
+      "type": "object",
+      "required": ["Status", "LastSyncTime"],
+      "properties": {
+        "Status": {
+          "description": "The status of the secondary location",
+          "type": "string",
+          "enum": ["live", "bootstrap", "unavailable"],
+          "x-ms-enum": {
+            "name": "GeoReplicationStatusType",
+            "modelAsString": true
+          }
+        },
+        "LastSyncTime": {
+          "description": "A GMT date/time value, to the second. All primary writes preceding this value are guaranteed to be available for read operations at the secondary. Primary writes after this point in time may or may not be available for reads.",
+          "type": "string",
+          "format": "date-time-rfc1123"
+        }
+      }
+    },
+    "Logging": {
+      "description": "Azure Analytics Logging settings.",
+      "type": "object",
+      "required": ["Version", "Delete", "Read", "Write", "RetentionPolicy"],
+      "properties": {
+        "Version": {
+          "description": "The version of Storage Analytics to configure.",
+          "type": "string"
+        },
+        "Delete": {
+          "description": "Indicates whether all delete requests should be logged.",
+          "type": "boolean"
+        },
+        "Read": {
+          "description": "Indicates whether all read requests should be logged.",
+          "type": "boolean"
+        },
+        "Write": {
+          "description": "Indicates whether all write requests should be logged.",
+          "type": "boolean"
+        },
+        "RetentionPolicy": {
+          "$ref": "#/definitions/RetentionPolicy"
+        }
+      }
+    },
+    "ContainerMetadata": {
+      "type": "object",
+      "xml": {
+        "name": "Metadata"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "BlobMetadata": {
+      "type": "object",
+      "xml": {
+        "name": "Metadata"
+      },
+      "properties": {
+        "Encrypted": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "ObjectReplicationMetadata": {
+      "type": "object",
+      "xml": {
+        "name": "OrMetadata"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Metrics": {
+      "description": "a summary of request statistics grouped by API in hour or minute aggregates for blobs",
+      "required": ["Enabled"],
+      "properties": {
+        "Version": {
+          "description": "The version of Storage Analytics to configure.",
+          "type": "string"
+        },
+        "Enabled": {
+          "description": "Indicates whether metrics are enabled for the Blob service.",
+          "type": "boolean"
+        },
+        "IncludeAPIs": {
+          "description": "Indicates whether metrics should generate summary statistics for called API operations.",
+          "type": "boolean"
+        },
+        "RetentionPolicy": {
+          "$ref": "#/definitions/RetentionPolicy"
+        }
+      }
+    },
+    "PageList": {
+      "description": "the list of pages",
+      "type": "object",
+      "properties": {
+        "PageRange": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageRange"
+          }
+        },
+        "ClearRange": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClearRange"
+          }
+        }
+      }
+    },
+    "PageRange": {
+      "type": "object",
+      "required": ["Start", "End"],
+      "properties": {
+        "Start": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "name": "Start"
+          }
+        },
+        "End": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "name": "End"
+          }
+        }
+      },
+      "xml": {
+        "name": "PageRange"
+      }
+    },
+    "ClearRange": {
+      "type": "object",
+      "required": ["Start", "End"],
+      "properties": {
+        "Start": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "name": "Start"
+          }
+        },
+        "End": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "name": "End"
+          }
+        }
+      },
+      "xml": {
+        "name": "ClearRange"
+      }
+    },
+    "QueryRequest": {
+      "description": "the quick query body",
+      "type": "object",
+      "required": ["QueryType", "Expression"],
+      "properties": {
+        "QueryType": {
+          "type": "string",
+          "description": "the query type",
+          "xml": {
+            "name": "QueryType"
+          },
+          "enum": ["SQL"]
+        },
+        "Expression": {
+          "type": "string",
+          "description": "a query statement",
+          "xml": {
+            "name": "Expression"
+          }
+        },
+        "InputSerialization": {
+          "$ref": "#/definitions/QuerySerialization",
+          "xml": {
+            "name": "InputSerialization"
+          }
+        },
+        "OutputSerialization": {
+          "$ref": "#/definitions/QuerySerialization",
+          "xml": {
+            "name": "OutputSerialization"
+          }
+        }
+      },
+      "xml": {
+        "name": "QueryRequest"
+      }
+    },
+    "QueryFormat": {
+      "type": "object",
+      "required": ["QueryType"],
+      "properties": {
+        "Type": {
+          "$ref": "#/definitions/QueryType"
+        },
+        "DelimitedTextConfiguration": {
+          "$ref": "#/definitions/DelimitedTextConfiguration"
+        },
+        "JsonTextConfiguration": {
+          "$ref": "#/definitions/JsonTextConfiguration"
+        },
+        "ArrowConfiguration": {
+          "$ref": "#/definitions/ArrowConfiguration"
+        }
+      }
+    },
+    "QuerySerialization": {
+      "type": "object",
+      "required": ["Format"],
+      "properties": {
+        "Format": {
+          "$ref": "#/definitions/QueryFormat",
+          "xml": {
+            "name": "Format"
+          }
+        }
+      }
+    },
+    "QueryType": {
+      "type": "string",
+      "description": "The quick query format type.",
+      "enum": ["delimited", "json", "arrow"],
+      "x-ms-enum": {
+        "name": "QueryFormatType",
+        "modelAsString": false
+      },
+      "xml": {
+        "name": "Type"
+      }
+    },
+    "RehydratePriority": {
+      "description": "If an object is in rehydrate pending state then this header is returned with priority of rehydrate. Valid values are High and Standard.",
+      "type": "string",
+      "enum": ["High", "Standard"],
+      "x-ms-enum": {
+        "name": "RehydratePriority",
+        "modelAsString": true
+      },
+      "xml": {
+        "name": "RehydratePriority"
+      }
+    },
+    "RetentionPolicy": {
+      "description": "the retention policy which determines how long the associated data should persist",
+      "type": "object",
+      "required": ["Enabled"],
+      "properties": {
+        "Enabled": {
+          "description": "Indicates whether a retention policy is enabled for the storage service",
+          "type": "boolean"
+        },
+        "Days": {
+          "description": "Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted",
+          "type": "integer",
+          "minimum": 1
+        },
+        "AllowPermanentDelete": {
+          "description": "Indicates whether permanent delete is allowed on this storage account.",
+          "type": "boolean"
+        }
+      }
+    },
+    "SignedIdentifier": {
+      "xml": {
+        "name": "SignedIdentifier"
+      },
+      "description": "signed identifier",
+      "type": "object",
+      "required": ["Id", "AccessPolicy"],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "description": "a unique id"
+        },
+        "AccessPolicy": {
+          "$ref": "#/definitions/AccessPolicy"
+        }
+      }
+    },
+    "SignedIdentifiers": {
+      "description": "a collection of signed identifiers",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SignedIdentifier"
+      },
+      "xml": {
+        "wrapped": true,
+        "name": "SignedIdentifiers"
+      }
+    },
+    "StaticWebsite": {
+      "description": "The properties that enable an account to host a static website",
+      "type": "object",
+      "required": ["Enabled"],
+      "properties": {
+        "Enabled": {
+          "description": "Indicates whether this account is hosting a static website",
+          "type": "boolean"
+        },
+        "IndexDocument": {
+          "description": "The default name of the index page under each directory",
+          "type": "string"
+        },
+        "ErrorDocument404Path": {
+          "description": "The absolute path of the custom 404 page",
+          "type": "string"
+        },
+        "DefaultIndexDocumentPath": {
+          "description": "Absolute path of the default index page",
+          "type": "string"
+        }
+      }
+    },
+    "StorageServiceProperties": {
+      "description": "Storage Service Properties.",
+      "type": "object",
+      "properties": {
+        "Logging": {
+          "$ref": "#/definitions/Logging"
+        },
+        "HourMetrics": {
+          "$ref": "#/definitions/Metrics"
+        },
+        "MinuteMetrics": {
+          "$ref": "#/definitions/Metrics"
+        },
+        "Cors": {
+          "description": "The set of CORS rules.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CorsRule"
+          },
+          "xml": {
+            "wrapped": true
+          }
+        },
+        "DefaultServiceVersion": {
+          "description": "The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions",
+          "type": "string"
+        },
+        "DeleteRetentionPolicy": {
+          "$ref": "#/definitions/RetentionPolicy"
+        },
+        "StaticWebsite": {
+          "$ref": "#/definitions/StaticWebsite"
+        }
+      }
+    },
+    "StorageServiceStats": {
+      "description": "Stats for the storage service.",
+      "type": "object",
+      "properties": {
+        "GeoReplication": {
+          "$ref": "#/definitions/GeoReplication"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "Url": {
+      "name": "url",
+      "description": "The URL of the service account, container, or blob that is the targe of the desired operation.",
+      "required": true,
+      "type": "string",
+      "in": "path",
+      "x-ms-skip-url-encoding": true
+    },
+    "ApiVersionParameter": {
+      "name": "x-ms-version",
+      "x-ms-client-name": "version",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "description": "Specifies the version of the operation to use for this request.",
+      "enum": ["2020-06-12"]
+    },
+    "Blob": {
+      "name": "blob",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]+(?:/[a-zA-Z0-9]+)*(?:\\.[a-zA-Z0-9]+){0,1}$",
+      "minLength": 1,
+      "maxLength": 1024,
+      "x-ms-parameter-location": "method",
+      "description": "The blob name."
+    },
+    "Filesystem": {
+      "name": "filesystem",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The filesystem name."
+    },
+    "Path": {
+      "name": "path",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The namespace path to a file or directory."
+    },
+    "BlobCacheControl": {
+      "name": "x-ms-blob-cache-control",
+      "x-ms-client-name": "blobCacheControl",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. Sets the blob's cache control. If specified, this property is stored with the blob and returned with a read request."
+    },
+    "BlobConditionAppendPos": {
+      "name": "x-ms-blob-condition-appendpos",
+      "x-ms-client-name": "appendPosition",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "append-position-access-conditions"
+      },
+      "description": "Optional conditional header, used only for the Append Block operation. A number indicating the byte offset to compare. Append Block will succeed only if the append position is equal to this number. If it is not, the request will fail with the AppendPositionConditionNotMet error (HTTP status code 412 - Precondition Failed)."
+    },
+    "BlobConditionMaxSize": {
+      "name": "x-ms-blob-condition-maxsize",
+      "x-ms-client-name": "maxSize",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "append-position-access-conditions"
+      },
+      "description": "Optional conditional header. The max length in bytes permitted for the append blob. If the Append Block operation would cause the blob to exceed that limit or if the blob size is already greater than the value specified in this header, the request will fail with MaxBlobSizeConditionNotMet error (HTTP status code 412 - Precondition Failed)."
+    },
+    "BlobPublicAccess": {
+      "name": "x-ms-blob-public-access",
+      "x-ms-client-name": "access",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "description": "Specifies whether data in the container may be accessed publicly and the level of access",
+      "type": "string",
+      "enum": ["container", "blob"],
+      "x-ms-enum": {
+        "name": "PublicAccessType",
+        "modelAsString": true
+      }
+    },
+    "BlobTagsBody": {
+      "name": "Tags",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/BlobTags"
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Blob tags"
+    },
+    "BlobTagsHeader": {
+      "name": "x-ms-tags",
+      "x-ms-client-name": "BlobTagsString",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional.  Used to set blob tags in various blob operations."
+    },
+    "AccessTierRequired": {
+      "name": "x-ms-access-tier",
+      "x-ms-client-name": "tier",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "enum": [
+        "P4",
+        "P6",
+        "P10",
+        "P15",
+        "P20",
+        "P30",
+        "P40",
+        "P50",
+        "P60",
+        "P70",
+        "P80",
+        "Hot",
+        "Cool",
+        "Archive"
+      ],
+      "x-ms-enum": {
+        "name": "AccessTier",
+        "modelAsString": true
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Indicates the tier to be set on the blob."
+    },
+    "AccessTierOptional": {
+      "name": "x-ms-access-tier",
+      "x-ms-client-name": "tier",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "enum": [
+        "P4",
+        "P6",
+        "P10",
+        "P15",
+        "P20",
+        "P30",
+        "P40",
+        "P50",
+        "P60",
+        "P70",
+        "P80",
+        "Hot",
+        "Cool",
+        "Archive"
+      ],
+      "x-ms-enum": {
+        "name": "AccessTier",
+        "modelAsString": true
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Indicates the tier to be set on the blob."
+    },
+    "PremiumPageBlobAccessTierOptional": {
+      "name": "x-ms-access-tier",
+      "x-ms-client-name": "tier",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "enum": [
+        "P4",
+        "P6",
+        "P10",
+        "P15",
+        "P20",
+        "P30",
+        "P40",
+        "P50",
+        "P60",
+        "P70",
+        "P80"
+      ],
+      "x-ms-enum": {
+        "name": "PremiumPageBlobAccessTier",
+        "modelAsString": true
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Indicates the tier to be set on the page blob."
+    },
+    "RehydratePriority": {
+      "name": "x-ms-rehydrate-priority",
+      "x-ms-client-name": "rehydratePriority",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "enum": ["High", "Standard"],
+      "x-ms-enum": {
+        "name": "RehydratePriority",
+        "modelAsString": true
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Optional: Indicates the priority with which to rehydrate an archived blob."
+    },
+    "BlobContentDisposition": {
+      "name": "x-ms-blob-content-disposition",
+      "x-ms-client-name": "blobContentDisposition",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. Sets the blob's Content-Disposition header."
+    },
+    "BlobContentEncoding": {
+      "name": "x-ms-blob-content-encoding",
+      "x-ms-client-name": "blobContentEncoding",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. Sets the blob's content encoding. If specified, this property is stored with the blob and returned with a read request."
+    },
+    "BlobContentLanguage": {
+      "name": "x-ms-blob-content-language",
+      "x-ms-client-name": "blobContentLanguage",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. Set the blob's content language. If specified, this property is stored with the blob and returned with a read request."
+    },
+    "BlobContentLengthOptional": {
+      "name": "x-ms-blob-content-length",
+      "x-ms-client-name": "blobContentLength",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "description": "This header specifies the maximum size for the page blob, up to 1 TB. The page blob size must be aligned to a 512-byte boundary."
+    },
+    "BlobContentLengthRequired": {
+      "name": "x-ms-blob-content-length",
+      "x-ms-client-name": "blobContentLength",
+      "in": "header",
+      "required": true,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "description": "This header specifies the maximum size for the page blob, up to 1 TB. The page blob size must be aligned to a 512-byte boundary."
+    },
+    "BlobContentMD5": {
+      "name": "x-ms-blob-content-md5",
+      "x-ms-client-name": "blobContentMD5",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "byte",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. An MD5 hash of the blob content. Note that this hash is not validated, as the hashes for the individual blocks were validated when each was uploaded."
+    },
+    "BlobContentType": {
+      "name": "x-ms-blob-content-type",
+      "x-ms-client-name": "blobContentType",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "blob-HTTP-headers"
+      },
+      "description": "Optional. Sets the blob's content type. If specified, this property is stored with the blob and returned with a read request."
+    },
+    "BlobDeleteType": {
+      "name": "deletetype",
+      "x-ms-client-name": "blobDeleteType",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "enum": ["Permanent"],
+      "x-ms-enum": {
+        "name": "BlobDeleteType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Optional.  Only possible value is 'permanent', which specifies to permanently delete a blob if blob soft delete is enabled."
+    },
+    "BlobExpiryOptions": {
+      "name": "x-ms-expiry-option",
+      "x-ms-client-name": "ExpiryOptions",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "enum": [
+        "NeverExpire",
+        "RelativeToCreation",
+        "RelativeToNow",
+        "Absolute"
+      ],
+      "x-ms-enum": {
+        "name": "BlobExpiryOptions",
+        "modelAsString": true
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Required. Indicates mode of the expiry time"
+    },
+    "BlobExpiryTime": {
+      "name": "x-ms-expiry-time",
+      "x-ms-client-name": "ExpiresOn",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The time to set the blob to expiry"
+    },
+    "BlobSequenceNumber": {
+      "name": "x-ms-blob-sequence-number",
+      "x-ms-client-name": "blobSequenceNumber",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "default": 0,
+      "x-ms-parameter-location": "method",
+      "description": "Set for page blobs only. The sequence number is a user-controlled value that you can use to track requests. The value of the sequence number must be between 0 and 2^63 - 1."
+    },
+    "BlockId": {
+      "name": "blockid",
+      "x-ms-client-name": "blockId",
+      "in": "query",
+      "type": "string",
+      "required": true,
+      "x-ms-parameter-location": "method",
+      "description": "A valid Base64 string value that identifies the block. Prior to encoding, the string must be less than or equal to 64 bytes in size. For a given blob, the length of the value specified for the blockid parameter must be the same size for each block."
+    },
+    "BlockListType": {
+      "name": "blocklisttype",
+      "x-ms-client-name": "listType",
+      "in": "query",
+      "required": true,
+      "default": "committed",
+      "x-ms-parameter-location": "method",
+      "description": "Specifies whether to return the list of committed blocks, the list of uncommitted blocks, or both lists together.",
+      "type": "string",
+      "enum": ["committed", "uncommitted", "all"],
+      "x-ms-enum": {
+        "name": "BlockListType",
+        "modelAsString": false
+      }
+    },
+    "Body": {
+      "name": "body",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "type": "object",
+        "format": "file"
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Initial data"
+    },
+    "Continuation": {
+      "name": "continuation",
+      "x-ms-client-name": "marker",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "When renaming a directory, the number of paths that are renamed with each invocation is limited.  If the number of paths to be renamed exceeds this limit, a continuation token is returned in this response header.  When a continuation token is returned in the response, it must be specified in a subsequent invocation of the rename operation to continue renaming the directory."
+    },
+    "ContainerAcl": {
+      "name": "containerAcl",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/SignedIdentifiers"
+      },
+      "x-ms-parameter-location": "method",
+      "description": "the acls for the container"
+    },
+    "CopyId": {
+      "name": "copyid",
+      "x-ms-client-name": "copyId",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The copy identifier provided in the x-ms-copy-id header of the original Copy Blob operation."
+    },
+    "ClientRequestId": {
+      "name": "x-ms-client-request-id",
+      "x-ms-client-name": "requestId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Provides a client-generated, opaque value with a 1 KB character limit that is recorded in the analytics logs when storage analytics logging is enabled."
+    },
+    "ContainerName": {
+      "name": "containerName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The container name."
+    },
+    "ContentCrc64": {
+      "name": "x-ms-content-crc64",
+      "x-ms-client-name": "transactionalContentCrc64",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "byte",
+      "x-ms-parameter-location": "method",
+      "description": "Specify the transactional crc64 for the body, to be validated by the service."
+    },
+    "ContentLength": {
+      "name": "Content-Length",
+      "in": "header",
+      "required": true,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "description": "The length of the request."
+    },
+    "ContentMD5": {
+      "name": "Content-MD5",
+      "x-ms-client-name": "transactionalContentMD5",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "byte",
+      "x-ms-parameter-location": "method",
+      "description": "Specify the transactional md5 for the body, to be validated by the service."
+    },
+    "CopySource": {
+      "name": "x-ms-copy-source",
+      "x-ms-client-name": "copySource",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "format": "url",
+      "x-ms-parameter-location": "method",
+      "description": "Specifies the name of the source page blob snapshot. This value is a URL of up to 2 KB in length that specifies a page blob snapshot. The value should be URL-encoded as it would appear in a request URI. The source blob must either be public or must be authenticated via a shared access signature."
+    },
+    "CopySourceBlobProperties": {
+      "name": "x-ms-copy-source-blob-properties",
+      "x-ms-client-name": "copySourceBlobProperties",
+      "in": "header",
+      "required": false,
+      "type": "boolean",
+      "x-ms-parameter-location": "method",
+      "description": "Optional, default is true.  Indicates if properties from the source blob should be copied."
+    },
+    "DeleteSnapshots": {
+      "name": "x-ms-delete-snapshots",
+      "x-ms-client-name": "deleteSnapshots",
+      "description": "Required if the blob has associated snapshots. Specify one of the following two options: include: Delete the base blob and all of its snapshots. only: Delete only the blob's snapshots and not the blob itself",
+      "x-ms-parameter-location": "method",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "enum": ["include", "only"],
+      "x-ms-enum": {
+        "name": "DeleteSnapshotsOptionType",
+        "modelAsString": false
+      }
+    },
+    "Delimiter": {
+      "name": "delimiter",
+      "description": "When the request includes this parameter, the operation returns a BlobPrefix element in the response body that acts as a placeholder for all blobs whose names begin with the same substring up to the appearance of the delimiter character. The delimiter may be a single character or a string.",
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "in": "query",
+      "required": true
+    },
+    "DirectoryProperties": {
+      "name": "x-ms-properties",
+      "description": "Optional.  User-defined properties to be stored with the file or directory, in the format of a comma-separated list of name and value pairs \"n1=v1, n2=v2, ...\", where each value is base64 encoded.",
+      "x-ms-client-name": "directoryProperties",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "EncryptionKey": {
+      "name": "x-ms-encryption-key",
+      "x-ms-client-name": "encryptionKey",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "Optional. Specifies the encryption key to use to encrypt the data provided in the request. If not specified, encryption is performed with the root account encryption key.  For more information, see Encryption at Rest for Azure Storage Services."
+    },
+    "EncryptionKeySha256": {
+      "name": "x-ms-encryption-key-sha256",
+      "x-ms-client-name": "encryptionKeySha256",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The SHA-256 hash of the provided encryption key. Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "EncryptionAlgorithm": {
+      "name": "x-ms-encryption-algorithm",
+      "x-ms-client-name": "encryptionAlgorithm",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "enum": ["AES256"],
+      "x-ms-enum": {
+        "name": "EncryptionAlgorithmType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The algorithm used to produce the encryption key hash. Currently, the only accepted value is \"AES256\". Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "EncryptionScope": {
+      "name": "x-ms-encryption-scope",
+      "x-ms-client-name": "encryptionScope",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-scope-info"
+      },
+      "description": "Optional. Version 2019-07-07 and later.  Specifies the name of the encryption scope to use to encrypt the data provided in the request. If not specified, encryption is performed with the default account encryption scope.  For more information, see Encryption at Rest for Azure Storage Services."
+    },
+    "DefaultEncryptionScope": {
+      "name": "x-ms-default-encryption-scope",
+      "x-ms-client-name": "DefaultEncryptionScope",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "container-cpk-scope-info"
+      },
+      "description": "Optional.  Version 2019-07-07 and later.  Specifies the default encryption scope to set on the container and use for all future writes."
+    },
+    "DeletedContainerName": {
+      "name": "x-ms-deleted-container-name",
+      "x-ms-client-name": "DeletedContainerName",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "description": "Optional.  Version 2019-12-12 and later.  Specifies the name of the deleted container to restore."
+    },
+    "DeletedContainerVersion": {
+      "name": "x-ms-deleted-container-version",
+      "x-ms-client-name": "DeletedContainerVersion",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "description": "Optional.  Version 2019-12-12 and later.  Specifies the version of the deleted container to restore."
+    },
+    "DenyEncryptionScopeOverride": {
+      "name": "x-ms-deny-encryption-scope-override",
+      "x-ms-client-name": "PreventEncryptionScopeOverride",
+      "type": "boolean",
+      "in": "header",
+      "required": false,
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "container-cpk-scope-info"
+      },
+      "description": "Optional.  Version 2019-07-07 and newer.  If true, prevents any request from specifying a different encryption scope than the scope set on the container."
+    },
+    "FileRenameSource": {
+      "name": "x-ms-rename-source",
+      "x-ms-client-name": "renameSource",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The file or directory to be renamed. The value must have the following format: \"/{filesysystem}/{path}\".  If \"x-ms-properties\" is specified, the properties will overwrite the existing properties; otherwise, the existing properties will be preserved."
+    },
+    "FilterBlobsWhere": {
+      "name": "where",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filters the results to return only to return only blobs whose tags match the specified expression.",
+      "x-ms-parameter-location": "method"
+    },
+    "GetRangeContentMD5": {
+      "name": "x-ms-range-get-content-md5",
+      "x-ms-client-name": "rangeGetContentMD5",
+      "in": "header",
+      "required": false,
+      "type": "boolean",
+      "x-ms-parameter-location": "method",
+      "description": "When set to true and specified together with the Range, the service returns the MD5 hash for the range, as long as the range is less than or equal to 4 MB in size."
+    },
+    "GetRangeContentCRC64": {
+      "name": "x-ms-range-get-content-crc64",
+      "x-ms-client-name": "rangeGetContentCRC64",
+      "in": "header",
+      "required": false,
+      "type": "boolean",
+      "x-ms-parameter-location": "method",
+      "description": "When set to true and specified together with the Range, the service returns the CRC64 hash for the range, as long as the range is less than or equal to 4 MB in size."
+    },
+    "IfMatch": {
+      "name": "If-Match",
+      "x-ms-client-name": "ifMatch",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "etag",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "modified-access-conditions"
+      },
+      "description": "Specify an ETag value to operate only on blobs with a matching value."
+    },
+    "IfModifiedSince": {
+      "name": "If-Modified-Since",
+      "x-ms-client-name": "ifModifiedSince",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "date-time-rfc1123",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "modified-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has been modified since the specified date/time."
+    },
+    "IfNoneMatch": {
+      "name": "If-None-Match",
+      "x-ms-client-name": "ifNoneMatch",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "etag",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "modified-access-conditions"
+      },
+      "description": "Specify an ETag value to operate only on blobs without a matching value."
+    },
+    "IfUnmodifiedSince": {
+      "name": "If-Unmodified-Since",
+      "x-ms-client-name": "ifUnmodifiedSince",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "date-time-rfc1123",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "modified-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has not been modified since the specified date/time."
+    },
+    "IfSequenceNumberEqualTo": {
+      "name": "x-ms-if-sequence-number-eq",
+      "x-ms-client-name": "ifSequenceNumberEqualTo",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "sequence-number-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has the specified sequence number."
+    },
+    "IfSequenceNumberLessThan": {
+      "name": "x-ms-if-sequence-number-lt",
+      "x-ms-client-name": "ifSequenceNumberLessThan",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "sequence-number-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has a sequence number less than the specified."
+    },
+    "IfSequenceNumberLessThanOrEqualTo": {
+      "name": "x-ms-if-sequence-number-le",
+      "x-ms-client-name": "ifSequenceNumberLessThanOrEqualTo",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int64",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "sequence-number-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has a sequence number less than or equal to the specified."
+    },
+    "IfTags": {
+      "name": "x-ms-if-tags",
+      "x-ms-client-name": "ifTags",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "modified-access-conditions"
+      },
+      "description": "Specify a SQL where clause on blob tags to operate only on blobs with a matching value."
+    },
+    "KeyInfo": {
+      "name": "KeyInfo",
+      "in": "body",
+      "x-ms-parameter-location": "method",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/KeyInfo"
+      }
+    },
+    "ListBlobsInclude": {
+      "name": "include",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "collectionFormat": "csv",
+      "items": {
+        "type": "string",
+        "enum": [
+          "copy",
+          "deleted",
+          "metadata",
+          "snapshots",
+          "uncommittedblobs",
+          "versions",
+          "tags"
+        ],
+        "x-ms-enum": {
+          "name": "ListBlobsIncludeItem",
+          "modelAsString": false
+        }
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Include this parameter to specify one or more datasets to include in the response."
+    },
+    "ListContainersInclude": {
+      "name": "include",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "collectionFormat": "csv",
+      "items": {
+        "type": "string",
+        "enum": ["metadata", "deleted"],
+        "x-ms-enum": {
+          "name": "ListContainersIncludeType",
+          "modelAsString": false
+        }
+      },
+      "x-ms-parameter-location": "method",
+      "description": "Include this parameter to specify that the container's metadata be returned as part of the response body."
+    },
+    "LeaseBreakPeriod": {
+      "name": "x-ms-lease-break-period",
+      "x-ms-client-name": "breakPeriod",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "x-ms-parameter-location": "method",
+      "description": "For a break operation, proposed duration the lease should continue before it is broken, in seconds, between 0 and 60. This break period is only used if it is shorter than the time remaining on the lease. If longer, the time remaining on the lease is used. A new lease will not be available before the break period has expired, but the lease may be held for longer than the break period. If this header does not appear with a break operation, a fixed-duration lease breaks after the remaining lease period elapses, and an infinite lease breaks immediately."
+    },
+    "LeaseDuration": {
+      "name": "x-ms-lease-duration",
+      "x-ms-client-name": "duration",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "x-ms-parameter-location": "method",
+      "description": "Specifies the duration of the lease, in seconds, or negative one (-1) for a lease that never expires. A non-infinite lease can be between 15 and 60 seconds. A lease duration cannot be changed using renew or change."
+    },
+    "LeaseIdOptional": {
+      "name": "x-ms-lease-id",
+      "x-ms-client-name": "leaseId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "lease-access-conditions"
+      },
+      "description": "If specified, the operation only succeeds if the resource's lease is active and matches this ID."
+    },
+    "LeaseIdRequired": {
+      "name": "x-ms-lease-id",
+      "x-ms-client-name": "leaseId",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Specifies the current lease ID on the resource."
+    },
+    "Owner": {
+      "name": "x-ms-owner",
+      "x-ms-client-name": "owner",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "description": "Optional. The owner of the blob or directory.",
+      "x-ms-parameter-location": "method"
+    },
+    "Group": {
+      "name": "x-ms-group",
+      "x-ms-client-name": "group",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "description": "Optional. The owning group of the blob or directory.",
+      "x-ms-parameter-location": "method"
+    },
+    "Upn": {
+      "name": "upn",
+      "x-ms-client-name": "upn",
+      "in": "query",
+      "description": "Optional. Valid only when Hierarchical Namespace is enabled for the account. If \"true\", the identity values returned in the x-ms-owner, x-ms-group, and x-ms-acl response headers will be transformed from Azure Active Directory Object IDs to User Principal Names.  If \"false\", the values will be returned as Azure Active Directory Object IDs. The default value is false.",
+      "required": false,
+      "type": "boolean",
+      "x-ms-parameter-location": "method"
+    },
+    "Marker": {
+      "name": "marker",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "A string value that identifies the portion of the list of containers to be returned with the next listing operation. The operation returns the NextMarker value within the response body if the listing operation did not return all containers remaining to be listed with the current page. The NextMarker value can be used as the value for the marker parameter in a subsequent call to request the next page of list items. The marker value is opaque to the client.",
+      "x-ms-parameter-location": "method"
+    },
+    "MaxResults": {
+      "name": "maxresults",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "minimum": 1,
+      "x-ms-parameter-location": "method",
+      "description": "Specifies the maximum number of containers to return. If the request does not specify maxresults, or specifies a value greater than 5000, the server will return up to 5000 items. Note that if the listing operation crosses a partition boundary, then the service will return a continuation token for retrieving the remainder of the results. For this reason, it is possible that the service will return fewer results than specified by maxresults, or than the default of 5000."
+    },
+    "Metadata": {
+      "name": "x-ms-meta",
+      "x-ms-client-name": "metadata",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Specifies a user-defined name-value pair associated with the blob. If no name-value pairs are specified, the operation will copy the metadata from the source blob or file to the destination blob. If one or more name-value pairs are specified, the destination blob is created with the specified metadata, and metadata is not copied from the source blob or file. Note that beginning with version 2009-09-19, metadata names must adhere to the naming rules for C# identifiers. See Naming and Referencing Containers, Blobs, and Metadata for more information.",
+      "x-ms-header-collection-prefix": "x-ms-meta-"
+    },
+    "MultipartContentType": {
+      "name": "Content-Type",
+      "x-ms-client-name": "multipartContentType",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Required. The value of this header must be multipart/mixed with a batch boundary. Example header value: multipart/mixed; boundary=batch_<GUID>"
+    },
+    "ObjectReplicationPolicyId": {
+      "name": "x-ms-or-policy-id",
+      "x-ms-client-name": "objectReplicationPolicyId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Only valid when Object Replication is enabled for the storage container and on the destination blob of the replication."
+    },
+    "ObjectReplicationRules": {
+      "name": "x-ms-or",
+      "x-ms-client-name": "ObjectReplicationRules",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Only valid when Object Replication is enabled for the storage container and on the source blob of the replication. When retrieving this header, it will return the header with the policy id and rule id (e.g. x-ms-or-policyid_ruleid), and the value will be the status of the replication (e.g. complete, failed).",
+      "x-ms-header-collection-prefix": "x-ms-or-"
+    },
+    "PathRenameMode": {
+      "name": "mode",
+      "x-ms-client-name": "pathRenameMode",
+      "description": "Determines the behavior of the rename operation",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "enum": ["legacy", "posix"],
+      "x-ms-enum": {
+        "name": "PathRenameMode",
+        "modelAsString": false
+      }
+    },
+    "PosixPermissions": {
+      "name": "x-ms-permissions",
+      "description": "Optional and only valid if Hierarchical Namespace is enabled for the account. Sets POSIX access permissions for the file owner, the file owning group, and others. Each class may be granted read, write, or execute permission.  The sticky bit is also supported.  Both symbolic (rwxrw-rw-) and 4-digit octal notation (e.g. 0766) are supported.",
+      "x-ms-client-name": "posixPermissions",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "PosixAcl": {
+      "name": "x-ms-acl",
+      "description": "Sets POSIX access control rights on files and directories. The value is a comma-separated list of access control entries. Each access control entry (ACE) consists of a scope, a type, a user or group identifier, and permissions in the format \"[scope:][type]:[id]:[permissions]\".",
+      "x-ms-client-name": "posixAcl",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "PosixUmask": {
+      "name": "x-ms-umask",
+      "x-ms-client-name": "posixUmask",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Only valid if Hierarchical Namespace is enabled for the account. This umask restricts permission settings for file and directory, and will only be applied when default Acl does not exist in parent directory. If the umask bit has set, it means that the corresponding permission will be disabled. Otherwise the corresponding permission will be determined by the permission. A 4-digit octal notation (e.g. 0022) is supported here. If no umask was specified, a default umask - 0027 will be used."
+    },
+    "Prefix": {
+      "name": "prefix",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filters the results to return only containers whose name begins with the specified prefix.",
+      "x-ms-parameter-location": "method"
+    },
+    "PrevSnapshot": {
+      "name": "prevsnapshot",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional in version 2015-07-08 and newer. The prevsnapshot parameter is a DateTime value that specifies that the response will contain only pages that were changed between target blob and previous snapshot. Changed pages include both updated and cleared pages. The target blob may be a snapshot, as long as the snapshot specified by prevsnapshot is the older of the two. Note that incremental snapshots are currently supported only for blobs created on or after January 1, 2016."
+    },
+    "PrevSnapshotUrl": {
+      "name": "x-ms-previous-snapshot-url",
+      "x-ms-client-name": "prevSnapshotUrl",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "url",
+      "x-ms-parameter-location": "method",
+      "description": "Optional. This header is only supported in service versions 2019-04-19 and after and specifies the URL of a previous snapshot of the target blob. The response will only contain pages that were changed between the target blob and its previous snapshot."
+    },
+    "ProposedLeaseIdOptional": {
+      "name": "x-ms-proposed-lease-id",
+      "x-ms-client-name": "proposedLeaseId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Proposed lease ID, in a GUID string format. The Blob service returns 400 (Invalid request) if the proposed lease ID is not in the correct format. See Guid Constructor (String) for a list of valid GUID string formats."
+    },
+    "ProposedLeaseIdRequired": {
+      "name": "x-ms-proposed-lease-id",
+      "x-ms-client-name": "proposedLeaseId",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Proposed lease ID, in a GUID string format. The Blob service returns 400 (Invalid request) if the proposed lease ID is not in the correct format. See Guid Constructor (String) for a list of valid GUID string formats."
+    },
+    "QueryRequest": {
+      "name": "queryRequest",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/QueryRequest"
+      },
+      "description": "the query request"
+    },
+    "Range": {
+      "name": "x-ms-range",
+      "x-ms-client-name": "range",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Return only the bytes of the blob in the specified range."
+    },
+    "RangeRequiredPutPageFromUrl": {
+      "name": "x-ms-range",
+      "x-ms-client-name": "range",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The range of bytes to which the source range would be written. The range should be 512 aligned and range-end is required."
+    },
+    "RecursiveDirectoryDelete": {
+      "name": "recursive",
+      "x-ms-client-name": "recursiveDirectoryDelete",
+      "in": "query",
+      "required": true,
+      "type": "boolean",
+      "x-ms-parameter-location": "method",
+      "description": "If \"true\", all paths beneath the directory will be deleted. If \"false\" and the directory is non-empty, an error occurs."
+    },
+    "SequenceNumberAction": {
+      "name": "x-ms-sequence-number-action",
+      "x-ms-client-name": "sequenceNumberAction",
+      "in": "header",
+      "required": true,
+      "x-ms-parameter-location": "method",
+      "description": "Required if the x-ms-blob-sequence-number header is set for the request. This property applies to page blobs only. This property indicates how the service should modify the blob's sequence number",
+      "type": "string",
+      "enum": ["max", "update", "increment"],
+      "x-ms-enum": {
+        "name": "SequenceNumberActionType",
+        "modelAsString": false
+      }
+    },
+    "Snapshot": {
+      "name": "snapshot",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The snapshot parameter is an opaque DateTime value that, when present, specifies the blob snapshot to retrieve. For more information on working with blob snapshots, see <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/creating-a-snapshot-of-a-blob\">Creating a Snapshot of a Blob.</a>"
+    },
+    "VersionId": {
+      "name": "versionid",
+      "x-ms-client-name": "versionId",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "The version id parameter is an opaque DateTime value that, when present, specifies the version of the blob to operate on. It's for service version 2019-10-10 and newer."
+    },
+    "SealBlob": {
+      "name": "x-ms-seal-blob",
+      "x-ms-client-name": "SealBlob",
+      "in": "header",
+      "required": false,
+      "type": "boolean",
+      "x-ms-parameter-location": "method",
+      "description": "Overrides the sealed state of the destination blob.  Service version 2019-12-12 and newer."
+    },
+    "SourceContainerName": {
+      "name": "x-ms-source-container-name",
+      "x-ms-client-name": "SourceContainerName",
+      "type": "string",
+      "in": "header",
+      "required": true,
+      "x-ms-parameter-location": "method",
+      "description": "Required.  Specifies the name of the container to rename."
+    },
+    "SourceContentMD5": {
+      "name": "x-ms-source-content-md5",
+      "x-ms-client-name": "sourceContentMD5",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "byte",
+      "x-ms-parameter-location": "method",
+      "description": "Specify the md5 calculated for the range of bytes that must be read from the copy source."
+    },
+    "SourceContentCRC64": {
+      "name": "x-ms-source-content-crc64",
+      "x-ms-client-name": "sourceContentcrc64",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "byte",
+      "x-ms-parameter-location": "method",
+      "description": "Specify the crc64 calculated for the range of bytes that must be read from the copy source."
+    },
+    "SourceRange": {
+      "name": "x-ms-source-range",
+      "x-ms-client-name": "sourceRange",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Bytes of source data in the specified range."
+    },
+    "SourceRangeRequiredPutPageFromUrl": {
+      "name": "x-ms-source-range",
+      "x-ms-client-name": "sourceRange",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Bytes of source data in the specified range. The length of this range should match the ContentLength header and x-ms-range/Range destination range header."
+    },
+    "SourceIfMatch": {
+      "name": "x-ms-source-if-match",
+      "x-ms-client-name": "sourceIfMatch",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "etag",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "source-modified-access-conditions"
+      },
+      "description": "Specify an ETag value to operate only on blobs with a matching value."
+    },
+    "SourceIfModifiedSince": {
+      "name": "x-ms-source-if-modified-since",
+      "x-ms-client-name": "sourceIfModifiedSince",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "date-time-rfc1123",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "source-modified-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has been modified since the specified date/time."
+    },
+    "SourceIfNoneMatch": {
+      "name": "x-ms-source-if-none-match",
+      "x-ms-client-name": "sourceIfNoneMatch",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "etag",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "source-modified-access-conditions"
+      },
+      "description": "Specify an ETag value to operate only on blobs without a matching value."
+    },
+    "SourceIfUnmodifiedSince": {
+      "name": "x-ms-source-if-unmodified-since",
+      "x-ms-client-name": "sourceIfUnmodifiedSince",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "date-time-rfc1123",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "source-modified-access-conditions"
+      },
+      "description": "Specify this header value to operate only on a blob if it has not been modified since the specified date/time."
+    },
+    "SourceLeaseId": {
+      "name": "x-ms-source-lease-id",
+      "x-ms-client-name": "sourceLeaseId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "A lease ID for the source path. If specified, the source path must have an active lease and the lease ID must match."
+    },
+    "SourceIfTags": {
+      "name": "x-ms-source-if-tags",
+      "x-ms-client-name": "sourceIfTags",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "source-modified-access-conditions"
+      },
+      "description": "Specify a SQL where clause on blob tags to operate only on blobs with a matching value."
+    },
+    "SourceUrl": {
+      "name": "x-ms-copy-source",
+      "x-ms-client-name": "sourceUrl",
+      "in": "header",
+      "required": true,
+      "type": "string",
+      "format": "url",
+      "x-ms-parameter-location": "method",
+      "description": "Specify a URL to the copy source."
+    },
+    "StorageServiceProperties": {
+      "name": "StorageServiceProperties",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "$ref": "#/definitions/StorageServiceProperties"
+      },
+      "x-ms-parameter-location": "method",
+      "description": "The StorageService properties."
+    },
+    "Timeout": {
+      "name": "timeout",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "minimum": 0,
+      "x-ms-parameter-location": "method",
+      "description": "The timeout parameter is expressed in seconds. For more information, see <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/setting-timeouts-for-blob-service-operations\">Setting Timeouts for Blob Service Operations.</a>"
+    },
+    "XMsCacheControl": {
+      "name": "x-ms-cache-control",
+      "x-ms-client-name": "cacheControl",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "directory-http-headers"
+      },
+      "description": "Cache control for given resource"
+    },
+    "XMsContentType": {
+      "name": "x-ms-content-type",
+      "x-ms-client-name": "contentType",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "directory-http-headers"
+      },
+      "description": "Content type for given resource"
+    },
+    "XMsContentEncoding": {
+      "name": "x-ms-content-encoding",
+      "x-ms-client-name": "contentEncoding",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "directory-http-headers"
+      },
+      "description": "Content encoding for given resource"
+    },
+    "XMsContentLanguage": {
+      "name": "x-ms-content-language",
+      "x-ms-client-name": "contentLanguage",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "directory-http-headers"
+      },
+      "description": "Content language for given resource"
+    },
+    "XMsContentDisposition": {
+      "name": "x-ms-content-disposition",
+      "x-ms-client-name": "contentDisposition",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "directory-http-headers"
+      },
+      "description": "Content disposition for given resource"
+    }
+  }
+}
