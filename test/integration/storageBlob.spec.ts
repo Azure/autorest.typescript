@@ -1,4 +1,4 @@
-import { StorageBlobClient } from "./generated/storageBlob/src";
+import { StorageBlobClient } from "./generated/storageblob/src";
 import { assert } from "chai";
 
 describe("Integration tests for StorageBlob", () => {
