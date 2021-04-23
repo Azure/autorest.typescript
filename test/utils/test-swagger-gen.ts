@@ -414,6 +414,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
     clientName: "StorageFileShareClient",
     packageName: "storagefileshare"
+  },
+  storageblob: {
+    swaggerOrConfig: "test/integration/swaggers/storageblob.json",
+    clientName: "StorageBlobClient",
+    packageName: "storageblob"
   }
 };
 
