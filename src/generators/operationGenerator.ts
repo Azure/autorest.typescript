@@ -70,6 +70,12 @@ export function generateOperations(
   );
 
   operationGroups.forEach(operationDetails => {
+    operationDetails.name = checkForConflictWithDefinitions(
+      operationDetails.name,
+      clientDetails
+    )
+      ? `${operationDetails.name}Operations`
+      : operationDetails.name;
     fileNames.push(normalizeName(operationDetails.name, NameType.File));
     generateOperation(operationDetails, clientDetails, project);
   });
@@ -89,6 +95,19 @@ export function generateOperations(
       })
     );
   }
+}
+
+function checkForConflictWithDefinitions(
+  operationGroupName: string,
+  clientDetails: ClientDetails
+): boolean {
+  let conflict: boolean = false;
+  clientDetails.objects.forEach(model => {
+    if (model.name === operationGroupName) {
+      conflict = true;
+    }
+  });
+  return conflict;
 }
 
 /**

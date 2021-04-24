@@ -1,0 +1,80 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "My API"
+  },
+  "paths": {
+    "/api/v1/value": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/globalApiVersion"
+        },
+        {
+          "name": "pageRange",
+          "in": "query",
+          "description": "Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10",
+          "type": "array",
+          "collectionFormat": "csv",
+          "items": {
+            "type": "string",
+            "pattern": "^\\d+(-\\d+)?$",
+            "minLength": 1,
+            "maxLength": 24
+          }
+        }
+      ],
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "Product_ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "integer": {
+          "type": "integer"
+        },
+        "string": {
+          "type": "string"
+        }
+      }
+    },
+    "Dummy": {
+      "type": "object",
+      "properties": {
+        "integer": {
+          "type": "integer"
+        },
+        "string": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "globalApiVersion": {
+      "name": "api-version",
+      "in": "header",
+      "type": "string",
+      "enum": ["one", "two"],
+      "required": true
+    }
+  }
+}
