@@ -7197,7 +7197,7 @@ export type IpAllocation = Resource & {
   /** The address prefix for the IpAllocation. */
   prefix?: string;
   /** The address prefix length for the IpAllocation. */
-  prefixLength?: number | null;
+  prefixLength?: number;
   /** The address prefix Type for the IpAllocation. */
   prefixType?: IPVersion;
   /** The IPAM allocation ID. */
