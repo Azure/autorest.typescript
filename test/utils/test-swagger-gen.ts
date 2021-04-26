@@ -415,6 +415,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "StorageFileShareClient",
     packageName: "storagefileshare"
   },
+  optionalnull: {
+    swaggerOrConfig: "test/integration/swaggers/optionalnull.json",
+    clientName: "OptionalNullClient",
+    packageName: "optionalnull"
+  },
   storageblob: {
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
     clientName: "StorageBlobClient",
