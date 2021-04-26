@@ -419,6 +419,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
     clientName: "StorageBlobClient",
     packageName: "storageblob"
+  },
+  operationgroupclash: {
+    swaggerOrConfig: "test/integration/swaggers/operationGroupClash.json",
+    clientName: "OperationGroupClashClient",
+    packageName: "operationgroupclash"
   }
 };
 
