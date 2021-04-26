@@ -7,7 +7,7 @@ import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
 import { PackageDetails } from "./models/packageDetails";
 import { transformCodeModel } from "./transforms/transforms";
-
+import { ClientDetails } from "./models/clientDetails";
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
@@ -79,6 +79,24 @@ export async function generateTypeScriptLibrary(
 
   const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
 
+  clientDetails.operationGroups.forEach(operationGroup => {
+    const isConflict: boolean = checkForConflictWithDefinitions(
+      operationGroup.name,
+      clientDetails
+    );
+
+    if (isConflict) {
+      operationGroup.operations.forEach(operation => {
+        operation.typeDetails.typeName = operation.typeDetails.typeName.replace(
+          operationGroup.name,
+          `${operationGroup.name}Operations`
+        );
+      });
+      operationGroup.name = `${operationGroup.name}Operations`;
+      operationGroup.key = `${operationGroup.key}Operations`;
+    }
+  });
+
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
     generatePackageJson(clientDetails, packageDetails, project);
@@ -141,6 +159,19 @@ export async function generateTypeScriptLibrary(
       fileContents
     );
   }
+}
+
+function checkForConflictWithDefinitions(
+  operationGroupName: string,
+  clientDetails: ClientDetails
+): boolean {
+  let conflict: boolean = false;
+  clientDetails.objects.forEach(model => {
+    if (model.name === operationGroupName) {
+      conflict = true;
+    }
+  });
+  return conflict;
 }
 
 async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {

@@ -1,13 +1,13 @@
 import * as coreHttp from "@azure/core-http";
 import {
-  ProductApiV1ValueGetOptionalParams,
-  ProductApiV1ValueGetResponse
+  ProductOperationsApiV1ValueGetOptionalParams,
+  ProductOperationsApiV1ValueGetResponse
 } from "../models";
 
 /** Interface representing a ProductOperations. */
 export interface ProductOperations {
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ProductApiV1ValueGetOptionalParams
-  ): Promise<ProductApiV1ValueGetResponse>;
+    options?: ProductOperationsApiV1ValueGetOptionalParams
+  ): Promise<ProductOperationsApiV1ValueGetResponse>;
 }

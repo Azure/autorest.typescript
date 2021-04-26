@@ -4,8 +4,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { OperationGroupClashClientContext } from "../operationGroupClashClientContext";
 import {
-  ProductApiV1ValueGetOptionalParams,
-  ProductApiV1ValueGetResponse
+  ProductOperationsApiV1ValueGetOptionalParams,
+  ProductOperationsApiV1ValueGetResponse
 } from "../models";
 
 /** Class representing a ProductOperations. */
@@ -22,15 +22,15 @@ export class ProductOperationsImpl implements ProductOperations {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ProductApiV1ValueGetOptionalParams
-  ): Promise<ProductApiV1ValueGetResponse> {
+    options?: ProductOperationsApiV1ValueGetOptionalParams
+  ): Promise<ProductOperationsApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
     return this.client.sendOperationRequest(
       operationArguments,
       apiV1ValueGetOperationSpec
-    ) as Promise<ProductApiV1ValueGetResponse>;
+    ) as Promise<ProductOperationsApiV1ValueGetResponse>;
   }
 }
 // Operation Specifications

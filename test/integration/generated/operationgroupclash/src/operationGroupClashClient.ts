@@ -1,5 +1,5 @@
-import { ProductImpl } from "./operations";
-import { Product } from "./operationsInterfaces";
+import { ProductOperationsImpl } from "./operations";
+import { ProductOperations } from "./operationsInterfaces";
 import { OperationGroupClashClientContext } from "./operationGroupClashClientContext";
 import { OperationGroupClashClientOptionalParams, Enum0 } from "./models";
 
@@ -16,8 +16,8 @@ export class OperationGroupClashClient extends OperationGroupClashClientContext 
     options?: OperationGroupClashClientOptionalParams
   ) {
     super($host, apiVersion, options);
-    this.product = new ProductImpl(this);
+    this.productOperations = new ProductOperationsImpl(this);
   }
 
-  product: Product;
+  productOperations: ProductOperations;
 }
