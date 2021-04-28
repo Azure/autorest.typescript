@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
+import { OptionsBag } from "../../utils/optionsBag";
 
 const mitLicenseText = `
 The MIT License (MIT)
@@ -27,11 +28,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 
-export function generateLicenseFile(
-  project: Project,
-  shouldGenerateLicense: boolean
-) {
-  if (shouldGenerateLicense) {
+export function generateLicenseFile(project: Project, optionsBag: OptionsBag) {
+  if (optionsBag.shouldGenerateLicense) {
     project.createSourceFile("LICENSE.txt", mitLicenseText.trim(), {
       overwrite: true
     });

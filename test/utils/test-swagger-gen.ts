@@ -13,6 +13,7 @@ interface SwaggerConfig {
   tracing?: TracingInfo;
   disableAsyncIterators?: boolean;
   hideClients?: boolean;
+  ignoreNullableOnOptional?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -418,7 +419,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   optionalnull: {
     swaggerOrConfig: "test/integration/swaggers/optionalnull.json",
     clientName: "OptionalNullClient",
-    packageName: "optionalnull"
+    packageName: "optionalnull",
+    ignoreNullableOnOptional: true
   },
   storageblob: {
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
@@ -448,7 +450,8 @@ const generateSwaggers = async (
       tracing,
       disableAsyncIterators,
       credentialScopes,
-      hideClients
+      hideClients,
+      ignoreNullableOnOptional
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -491,7 +494,8 @@ const generateSwaggers = async (
       `--use=.`,
       `--package-name=${packageName}`,
       `--package-version=${package_version}`,
-      `--hide-clients=${!!hideClients}`
+      `--hide-clients=${!!hideClients}`,
+      `--ignore-nullable-on-optional=${!!ignoreNullableOnOptional}`
     );
     if (isDebugging) {
       commandArguments.push(`--typescript.debugger`);

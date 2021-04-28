@@ -25,6 +25,7 @@ import { generateParameters } from "./generators/parametersGenerator";
 import { generateLROFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { TracingInfo } from "./models/clientDetails";
+import { OptionsBag } from "./utils/optionsBag";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -76,22 +77,34 @@ export async function generateTypeScriptLibrary(
 
   const shouldGenerateLicense: boolean =
     (await host.GetValue("license-header")) || false;
-
   const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
+  const armLibrary: boolean =
+    (await host.GetValue("azure-arm")) ||
+    (await host.GetValue("openapi-type")) === "arm" ||
+    false;
+  const ignoreNullableOnOptional: boolean =
+    (await host.GetValue("ignore-nullable-on-optional")) || false;
+
+  const optionsBag: OptionsBag = {
+    shouldGenerateLicense,
+    hideClients,
+    armLibrary,
+    ignoreNullableOnOptional
+  };
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
     generatePackageJson(clientDetails, packageDetails, project);
-    generateLicenseFile(project, shouldGenerateLicense);
+    generateLicenseFile(project, optionsBag);
     generateReadmeFile(clientDetails, packageDetails, project);
     generateTsConfig(project);
     generateRollupConfig(clientDetails, packageDetails, project);
     generateApiExtractorConfig(clientDetails, project);
   }
 
-  generateClient(clientDetails, project, hideClients);
-  generateClientContext(clientDetails, packageDetails, project, hideClients);
-  generateModels(clientDetails, project);
+  generateClient(clientDetails, project, optionsBag);
+  generateClientContext(clientDetails, packageDetails, project, optionsBag);
+  generateModels(clientDetails, project, optionsBag);
 
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);

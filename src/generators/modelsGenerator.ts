@@ -42,8 +42,13 @@ import {
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
 import { UnionDetails } from "../models/unionDetails";
+import { OptionsBag } from "../utils/optionsBag";
 
-export function generateModels(clientDetails: ClientDetails, project: Project) {
+export function generateModels(
+  clientDetails: ClientDetails,
+  project: Project,
+  optionsBag: OptionsBag
+) {
   const modelsIndexFile = project.createSourceFile(
     `${clientDetails.srcPath}/models/index.ts`,
     undefined,
@@ -66,7 +71,7 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   }
 
   writeUniontypes(clientDetails, modelsIndexFile);
-  writeObjects(clientDetails, modelsIndexFile);
+  writeObjects(clientDetails, modelsIndexFile, optionsBag);
   writeChoices(clientDetails, modelsIndexFile);
   writeOperationModels(clientDetails, modelsIndexFile);
   writeClientModels(clientDetails, modelsIndexFile);
@@ -496,13 +501,18 @@ const writeSealedChoice = (
 
 const writeObjects = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile
-) => clientDetails.objects.forEach(writeObjectSignature(modelsIndexFile));
+  modelsIndexFile: SourceFile,
+  optionsBag: OptionsBag
+) =>
+  clientDetails.objects.forEach(
+    writeObjectSignature(modelsIndexFile, optionsBag)
+  );
 
-const writeObjectSignature = (modelsIndexFile: SourceFile) => (
-  model: ObjectDetails
-) => {
-  const properties = getPropertiesSignatures(model);
+const writeObjectSignature = (
+  modelsIndexFile: SourceFile,
+  optionsBag: OptionsBag
+) => (model: ObjectDetails) => {
+  const properties = getPropertiesSignatures(model, optionsBag);
   const parents = model.parents.map(p => p.name).join(" & ");
 
   if (parents) {
@@ -685,7 +695,8 @@ function writeOptionalParameters(
  * @param objectDetails Object description
  */
 function getProperties(
-  objectDetails: ObjectDetails
+  objectDetails: ObjectDetails,
+  optionsBag: OptionsBag
 ): PropertySignatureStructure[] {
   const { properties } = objectDetails;
   const getTypename = (property: PropertyDetails) => {
@@ -701,9 +712,14 @@ function getProperties(
       property.name === "siblings"
         ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
         : property.type;
-    return property.nullable && property.required
-      ? `${typeName} | null`
-      : typeName;
+
+    if (optionsBag.armLibrary || optionsBag.ignoreNullableOnOptional) {
+      return property.nullable && property.required
+        ? `${typeName} | null`
+        : typeName;
+    } else {
+      return property.nullable ? `${typeName} | null` : typeName;
+    }
   };
 
   return properties
@@ -796,8 +812,14 @@ function withAdditionalProperties(
  * Gets an enhanced list of Properties to construct an Object signature
  * @param objectDetails Object description
  */
-const getPropertiesSignatures = (objectDetails: ObjectDetails) =>
+const getPropertiesSignatures = (
+  objectDetails: ObjectDetails,
+  optionsBag: OptionsBag
+) =>
   withDiscriminator(
     objectDetails,
-    withAdditionalProperties(objectDetails, getProperties(objectDetails))
+    withAdditionalProperties(
+      objectDetails,
+      getProperties(objectDetails, optionsBag)
+    )
   );

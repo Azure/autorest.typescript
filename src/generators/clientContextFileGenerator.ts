@@ -16,12 +16,13 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@autorest/codemodel";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { formatJsDocParam } from "./utils/parameterUtils";
+import { OptionsBag } from "../utils/optionsBag";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project,
-  hideClients: boolean
+  optionsBag: OptionsBag
 ) {
   const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
@@ -50,7 +51,7 @@ export function generateClientContext(
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
 
-  if (hideClients) {
+  if (optionsBag.hideClients) {
     contextClass.addJsDoc({
       tags: [
         {
