@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -405,26 +404,28 @@ export type ApplicationGatewayRewriteRuleSet = SubResource & {
 export interface ApplicationGateways {
     backendHealth(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysBackendHealthOptionalParams): Promise<PollerLike<PollOperationState<ApplicationGatewaysBackendHealthResponse>, ApplicationGatewaysBackendHealthResponse>>;
     backendHealthOnDemand(resourceGroupName: string, applicationGatewayName: string, probeRequest: ApplicationGatewayOnDemandProbe, options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams): Promise<PollerLike<PollOperationState<ApplicationGatewaysBackendHealthOnDemandResponse>, ApplicationGatewaysBackendHealthOnDemandResponse>>;
-    createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: ApplicationGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ApplicationGatewaysCreateOrUpdateResponse>, ApplicationGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetResponse>;
-    getSslPredefinedPolicy(predefinedPolicyName: string, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGateway>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGateway>;
-    listAvailableRequestHeaders(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableRequestHeadersResponse>;
-    listAvailableResponseHeaders(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableResponseHeadersResponse>;
-    listAvailableServerVariables(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableServerVariablesResponse>;
-    listAvailableSslOptions(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
-    listAvailableSslPredefinedPolicies(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy>;
-    listAvailableWafRuleSets(options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
-    start(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    stop(resourceGroupName: string, applicationGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    updateTags(resourceGroupName: string, applicationGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ApplicationGatewaysUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: ApplicationGateway, options?: ApplicationGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationGatewaysCreateOrUpdateResponse>, ApplicationGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysGetOptionalParams): Promise<ApplicationGatewaysGetResponse>;
+    getSslPredefinedPolicy(predefinedPolicyName: string, options?: ApplicationGatewaysGetSslPredefinedPolicyOptionalParams): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+    list(resourceGroupName: string, options?: ApplicationGatewaysListOptionalParams): PagedAsyncIterableIterator<ApplicationGateway>;
+    listAll(options?: ApplicationGatewaysListAllOptionalParams): PagedAsyncIterableIterator<ApplicationGateway>;
+    listAvailableRequestHeaders(options?: ApplicationGatewaysListAvailableRequestHeadersOptionalParams): Promise<ApplicationGatewaysListAvailableRequestHeadersResponse>;
+    listAvailableResponseHeaders(options?: ApplicationGatewaysListAvailableResponseHeadersOptionalParams): Promise<ApplicationGatewaysListAvailableResponseHeadersResponse>;
+    listAvailableServerVariables(options?: ApplicationGatewaysListAvailableServerVariablesOptionalParams): Promise<ApplicationGatewaysListAvailableServerVariablesResponse>;
+    listAvailableSslOptions(options?: ApplicationGatewaysListAvailableSslOptionsOptionalParams): Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
+    listAvailableSslPredefinedPolicies(options?: ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy>;
+    listAvailableWafRuleSets(options?: ApplicationGatewaysListAvailableWafRuleSetsOptionalParams): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+    start(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, applicationGatewayName: string, options?: ApplicationGatewaysStopOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    updateTags(resourceGroupName: string, applicationGatewayName: string, parameters: TagsObject, options?: ApplicationGatewaysUpdateTagsOptionalParams): Promise<ApplicationGatewaysUpdateTagsResponse>;
 }
 
 // @public
 export interface ApplicationGatewaysBackendHealthOnDemandOptionalParams extends coreHttp.OperationOptions {
     expand?: string;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -432,13 +433,14 @@ export type ApplicationGatewaysBackendHealthOnDemandResponse = ApplicationGatewa
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayBackendHealthOnDemand;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface ApplicationGatewaysBackendHealthOptionalParams extends coreHttp.OperationOptions {
     expand?: string;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -446,18 +448,32 @@ export type ApplicationGatewaysBackendHealthResponse = ApplicationGatewayBackend
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayBackendHealth;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ApplicationGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ApplicationGatewaysCreateOrUpdateResponse = ApplicationGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ApplicationGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ApplicationGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysGetResponse = ApplicationGateway & {
@@ -466,6 +482,10 @@ export type ApplicationGatewaysGetResponse = ApplicationGateway & {
         parsedBody: ApplicationGateway;
     };
 };
+
+// @public
+export interface ApplicationGatewaysGetSslPredefinedPolicyOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysGetSslPredefinedPolicyResponse = ApplicationGatewaySslPredefinedPolicy & {
@@ -486,6 +506,10 @@ export interface ApplicationGatewaySku {
 export type ApplicationGatewaySkuName = string;
 
 // @public
+export interface ApplicationGatewaysListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -494,12 +518,20 @@ export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResul
 };
 
 // @public
+export interface ApplicationGatewaysListAllOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListAllResponse = ApplicationGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayListResult;
     };
 };
+
+// @public
+export interface ApplicationGatewaysListAvailableRequestHeadersOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysListAvailableRequestHeadersResponse = {
@@ -511,6 +543,10 @@ export type ApplicationGatewaysListAvailableRequestHeadersResponse = {
 };
 
 // @public
+export interface ApplicationGatewaysListAvailableResponseHeadersOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListAvailableResponseHeadersResponse = {
     body: string[];
     _response: coreHttp.HttpResponse & {
@@ -518,6 +554,10 @@ export type ApplicationGatewaysListAvailableResponseHeadersResponse = {
         parsedBody: string[];
     };
 };
+
+// @public
+export interface ApplicationGatewaysListAvailableServerVariablesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysListAvailableServerVariablesResponse = {
@@ -529,12 +569,20 @@ export type ApplicationGatewaysListAvailableServerVariablesResponse = {
 };
 
 // @public
+export interface ApplicationGatewaysListAvailableSslOptionsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListAvailableSslOptionsResponse = ApplicationGatewayAvailableSslOptions & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayAvailableSslOptions;
     };
 };
+
+// @public
+export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = ApplicationGatewayAvailableSslPredefinedPolicies & {
@@ -545,12 +593,20 @@ export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = 
 };
 
 // @public
+export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse = ApplicationGatewayAvailableSslPredefinedPolicies & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
     };
 };
+
+// @public
+export interface ApplicationGatewaysListAvailableWafRuleSetsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysListAvailableWafRuleSetsResponse = ApplicationGatewayAvailableWafRuleSetsResult & {
@@ -561,12 +617,20 @@ export type ApplicationGatewaysListAvailableWafRuleSetsResponse = ApplicationGat
 };
 
 // @public
+export interface ApplicationGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationGatewaysListNextResponse = ApplicationGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationGatewayListResult;
     };
 };
+
+// @public
+export interface ApplicationGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysListResponse = ApplicationGatewayListResult & {
@@ -615,6 +679,22 @@ export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
 
 // @public
 export type ApplicationGatewaySslProtocol = string;
+
+// @public
+export interface ApplicationGatewaysStartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ApplicationGatewaysStopOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ApplicationGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
@@ -698,12 +778,18 @@ export interface ApplicationSecurityGroupListResult {
 
 // @public
 export interface ApplicationSecurityGroups {
-    createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: ApplicationSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>, ApplicationSecurityGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, applicationSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<ApplicationSecurityGroupsGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
-    updateTags(resourceGroupName: string, applicationSecurityGroupName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ApplicationSecurityGroupsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: ApplicationSecurityGroup, options?: ApplicationSecurityGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>, ApplicationSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, applicationSecurityGroupName: string, options?: ApplicationSecurityGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, applicationSecurityGroupName: string, options?: ApplicationSecurityGroupsGetOptionalParams): Promise<ApplicationSecurityGroupsGetResponse>;
+    list(resourceGroupName: string, options?: ApplicationSecurityGroupsListOptionalParams): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
+    listAll(options?: ApplicationSecurityGroupsListAllOptionalParams): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
+    updateTags(resourceGroupName: string, applicationSecurityGroupName: string, parameters: TagsObject, options?: ApplicationSecurityGroupsUpdateTagsOptionalParams): Promise<ApplicationSecurityGroupsUpdateTagsResponse>;
+}
+
+// @public
+export interface ApplicationSecurityGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -711,9 +797,18 @@ export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurit
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationSecurityGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ApplicationSecurityGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ApplicationSecurityGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationSecurityGroupsGetResponse = ApplicationSecurityGroup & {
@@ -724,12 +819,20 @@ export type ApplicationSecurityGroupsGetResponse = ApplicationSecurityGroup & {
 };
 
 // @public
+export interface ApplicationSecurityGroupsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationSecurityGroupsListAllNextResponse = ApplicationSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationSecurityGroupListResult;
     };
 };
+
+// @public
+export interface ApplicationSecurityGroupsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationSecurityGroupsListAllResponse = ApplicationSecurityGroupListResult & {
@@ -740,6 +843,10 @@ export type ApplicationSecurityGroupsListAllResponse = ApplicationSecurityGroupL
 };
 
 // @public
+export interface ApplicationSecurityGroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationSecurityGroupsListNextResponse = ApplicationSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -748,12 +855,20 @@ export type ApplicationSecurityGroupsListNextResponse = ApplicationSecurityGroup
 };
 
 // @public
+export interface ApplicationSecurityGroupsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationSecurityGroupsListResponse = ApplicationSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ApplicationSecurityGroupListResult;
     };
 };
+
+// @public
+export interface ApplicationSecurityGroupsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationSecurityGroupsUpdateTagsResponse = ApplicationSecurityGroup & {
@@ -807,7 +922,11 @@ export interface AvailableDelegation {
 
 // @public
 export interface AvailableDelegations {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableDelegation>;
+    list(location: string, options?: AvailableDelegationsListOptionalParams): PagedAsyncIterableIterator<AvailableDelegation>;
+}
+
+// @public
+export interface AvailableDelegationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -817,6 +936,10 @@ export type AvailableDelegationsListNextResponse = AvailableDelegationsResult & 
         parsedBody: AvailableDelegationsResult;
     };
 };
+
+// @public
+export interface AvailableDelegationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailableDelegationsListResponse = AvailableDelegationsResult & {
@@ -834,7 +957,11 @@ export interface AvailableDelegationsResult {
 
 // @public
 export interface AvailableEndpointServices {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<EndpointServiceResult>;
+    list(location: string, options?: AvailableEndpointServicesListOptionalParams): PagedAsyncIterableIterator<EndpointServiceResult>;
+}
+
+// @public
+export interface AvailableEndpointServicesListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -844,6 +971,10 @@ export type AvailableEndpointServicesListNextResponse = EndpointServicesListResu
         parsedBody: EndpointServicesListResult;
     };
 };
+
+// @public
+export interface AvailableEndpointServicesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailableEndpointServicesListResponse = EndpointServicesListResult & {
@@ -863,8 +994,12 @@ export interface AvailablePrivateEndpointType {
 
 // @public
 export interface AvailablePrivateEndpointTypes {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
-    listByResourceGroup(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
+    list(location: string, options?: AvailablePrivateEndpointTypesListOptionalParams): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
+    listByResourceGroup(location: string, resourceGroupName: string, options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<AvailablePrivateEndpointType>;
+}
+
+// @public
+export interface AvailablePrivateEndpointTypesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -876,6 +1011,10 @@ export type AvailablePrivateEndpointTypesListByResourceGroupNextResponse = Avail
 };
 
 // @public
+export interface AvailablePrivateEndpointTypesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailablePrivateEndpointTypesListByResourceGroupResponse = AvailablePrivateEndpointTypesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -884,12 +1023,20 @@ export type AvailablePrivateEndpointTypesListByResourceGroupResponse = Available
 };
 
 // @public
+export interface AvailablePrivateEndpointTypesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailablePrivateEndpointTypesListNextResponse = AvailablePrivateEndpointTypesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AvailablePrivateEndpointTypesResult;
     };
 };
+
+// @public
+export interface AvailablePrivateEndpointTypesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailablePrivateEndpointTypesListResponse = AvailablePrivateEndpointTypesResult & {
@@ -940,7 +1087,11 @@ export interface AvailableProvidersListState {
 
 // @public
 export interface AvailableResourceGroupDelegations {
-    list(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableDelegation>;
+    list(location: string, resourceGroupName: string, options?: AvailableResourceGroupDelegationsListOptionalParams): PagedAsyncIterableIterator<AvailableDelegation>;
+}
+
+// @public
+export interface AvailableResourceGroupDelegationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -950,6 +1101,10 @@ export type AvailableResourceGroupDelegationsListNextResponse = AvailableDelegat
         parsedBody: AvailableDelegationsResult;
     };
 };
+
+// @public
+export interface AvailableResourceGroupDelegationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailableResourceGroupDelegationsListResponse = AvailableDelegationsResult & {
@@ -969,8 +1124,12 @@ export interface AvailableServiceAlias {
 
 // @public
 export interface AvailableServiceAliases {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableServiceAlias>;
-    listByResourceGroup(resourceGroupName: string, location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailableServiceAlias>;
+    list(location: string, options?: AvailableServiceAliasesListOptionalParams): PagedAsyncIterableIterator<AvailableServiceAlias>;
+    listByResourceGroup(resourceGroupName: string, location: string, options?: AvailableServiceAliasesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<AvailableServiceAlias>;
+}
+
+// @public
+export interface AvailableServiceAliasesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -982,6 +1141,10 @@ export type AvailableServiceAliasesListByResourceGroupNextResponse = AvailableSe
 };
 
 // @public
+export interface AvailableServiceAliasesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailableServiceAliasesListByResourceGroupResponse = AvailableServiceAliasesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -990,12 +1153,20 @@ export type AvailableServiceAliasesListByResourceGroupResponse = AvailableServic
 };
 
 // @public
+export interface AvailableServiceAliasesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailableServiceAliasesListNextResponse = AvailableServiceAliasesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AvailableServiceAliasesResult;
     };
 };
+
+// @public
+export interface AvailableServiceAliasesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailableServiceAliasesListResponse = AvailableServiceAliasesResult & {
@@ -1083,7 +1254,11 @@ export interface AzureFirewallFqdnTagListResult {
 
 // @public
 export interface AzureFirewallFqdnTags {
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewallFqdnTag>;
+    listAll(options?: AzureFirewallFqdnTagsListAllOptionalParams): PagedAsyncIterableIterator<AzureFirewallFqdnTag>;
+}
+
+// @public
+export interface AzureFirewallFqdnTagsListAllNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1093,6 +1268,10 @@ export type AzureFirewallFqdnTagsListAllNextResponse = AzureFirewallFqdnTagListR
         parsedBody: AzureFirewallFqdnTagListResult;
     };
 };
+
+// @public
+export interface AzureFirewallFqdnTagsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AzureFirewallFqdnTagsListAllResponse = AzureFirewallFqdnTagListResult & {
@@ -1198,12 +1377,18 @@ export type AzureFirewallRCActionType = string;
 
 // @public
 export interface AzureFirewalls {
-    createOrUpdate(resourceGroupName: string, azureFirewallName: string, parameters: AzureFirewall, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AzureFirewallsCreateOrUpdateResponse>, AzureFirewallsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, azureFirewallName: string, options?: coreHttp.OperationOptions): Promise<AzureFirewallsGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AzureFirewall>;
-    updateTags(resourceGroupName: string, azureFirewallName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<AzureFirewallsUpdateTagsResponse>, AzureFirewallsUpdateTagsResponse>>;
+    createOrUpdate(resourceGroupName: string, azureFirewallName: string, parameters: AzureFirewall, options?: AzureFirewallsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<AzureFirewallsCreateOrUpdateResponse>, AzureFirewallsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, azureFirewallName: string, options?: AzureFirewallsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, azureFirewallName: string, options?: AzureFirewallsGetOptionalParams): Promise<AzureFirewallsGetResponse>;
+    list(resourceGroupName: string, options?: AzureFirewallsListOptionalParams): PagedAsyncIterableIterator<AzureFirewall>;
+    listAll(options?: AzureFirewallsListAllOptionalParams): PagedAsyncIterableIterator<AzureFirewall>;
+    updateTags(resourceGroupName: string, azureFirewallName: string, parameters: TagsObject, options?: AzureFirewallsUpdateTagsOptionalParams): Promise<PollerLike<PollOperationState<AzureFirewallsUpdateTagsResponse>, AzureFirewallsUpdateTagsResponse>>;
+}
+
+// @public
+export interface AzureFirewallsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1211,9 +1396,18 @@ export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewall;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface AzureFirewallsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface AzureFirewallsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AzureFirewallsGetResponse = AzureFirewall & {
@@ -1236,12 +1430,20 @@ export type AzureFirewallSkuName = string;
 export type AzureFirewallSkuTier = string;
 
 // @public
+export interface AzureFirewallsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AzureFirewallsListAllNextResponse = AzureFirewallListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewallListResult;
     };
 };
+
+// @public
+export interface AzureFirewallsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AzureFirewallsListAllResponse = AzureFirewallListResult & {
@@ -1252,12 +1454,20 @@ export type AzureFirewallsListAllResponse = AzureFirewallListResult & {
 };
 
 // @public
+export interface AzureFirewallsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AzureFirewallsListNextResponse = AzureFirewallListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewallListResult;
     };
 };
+
+// @public
+export interface AzureFirewallsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AzureFirewallsListResponse = AzureFirewallListResult & {
@@ -1268,11 +1478,16 @@ export type AzureFirewallsListResponse = AzureFirewallListResult & {
 };
 
 // @public
+export interface AzureFirewallsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureFirewall;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1379,11 +1594,17 @@ export interface BastionHostListResult {
 
 // @public
 export interface BastionHosts {
-    createOrUpdate(resourceGroupName: string, bastionHostName: string, parameters: BastionHost, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<BastionHostsCreateOrUpdateResponse>, BastionHostsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): Promise<BastionHostsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionHost>;
+    createOrUpdate(resourceGroupName: string, bastionHostName: string, parameters: BastionHost, options?: BastionHostsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<BastionHostsCreateOrUpdateResponse>, BastionHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, bastionHostName: string, options?: BastionHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, bastionHostName: string, options?: BastionHostsGetOptionalParams): Promise<BastionHostsGetResponse>;
+    list(options?: BastionHostsListOptionalParams): PagedAsyncIterableIterator<BastionHost>;
+    listByResourceGroup(resourceGroupName: string, options?: BastionHostsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<BastionHost>;
+}
+
+// @public
+export interface BastionHostsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1391,9 +1612,18 @@ export type BastionHostsCreateOrUpdateResponse = BastionHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionHost;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface BastionHostsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface BastionHostsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BastionHostsGetResponse = BastionHost & {
@@ -1404,12 +1634,20 @@ export type BastionHostsGetResponse = BastionHost & {
 };
 
 // @public
+export interface BastionHostsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type BastionHostsListByResourceGroupNextResponse = BastionHostListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionHostListResult;
     };
 };
+
+// @public
+export interface BastionHostsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BastionHostsListByResourceGroupResponse = BastionHostListResult & {
@@ -1420,12 +1658,20 @@ export type BastionHostsListByResourceGroupResponse = BastionHostListResult & {
 };
 
 // @public
+export interface BastionHostsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type BastionHostsListNextResponse = BastionHostListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionHostListResult;
     };
 };
+
+// @public
+export interface BastionHostsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BastionHostsListResponse = BastionHostListResult & {
@@ -1499,7 +1745,11 @@ export interface BgpPeerStatusListResult {
 
 // @public
 export interface BgpServiceCommunities {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BgpServiceCommunity>;
+    list(options?: BgpServiceCommunitiesListOptionalParams): PagedAsyncIterableIterator<BgpServiceCommunity>;
+}
+
+// @public
+export interface BgpServiceCommunitiesListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1509,6 +1759,10 @@ export type BgpServiceCommunitiesListNextResponse = BgpServiceCommunityListResul
         parsedBody: BgpServiceCommunityListResult;
     };
 };
+
+// @public
+export interface BgpServiceCommunitiesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BgpServiceCommunitiesListResponse = BgpServiceCommunityListResult & {
@@ -1695,14 +1949,20 @@ export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
 
 // @public
 export interface ConnectionMonitors {
-    createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: ConnectionMonitor, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>, ConnectionMonitorsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsGetResponse>;
-    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ConnectionMonitorResult>;
-    query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ConnectionMonitorsQueryResponse>, ConnectionMonitorsQueryResponse>>;
-    start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    updateTags(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ConnectionMonitorsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: ConnectionMonitor, options?: ConnectionMonitorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>, ConnectionMonitorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: ConnectionMonitorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: ConnectionMonitorsGetOptionalParams): Promise<ConnectionMonitorsGetResponse>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: ConnectionMonitorsListOptionalParams): PagedAsyncIterableIterator<ConnectionMonitorResult>;
+    query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: ConnectionMonitorsQueryOptionalParams): Promise<PollerLike<PollOperationState<ConnectionMonitorsQueryResponse>, ConnectionMonitorsQueryResponse>>;
+    start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: ConnectionMonitorsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: ConnectionMonitorsStopOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    updateTags(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: TagsObject, options?: ConnectionMonitorsUpdateTagsOptionalParams): Promise<ConnectionMonitorsUpdateTagsResponse>;
+}
+
+// @public
+export interface ConnectionMonitorsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1710,9 +1970,18 @@ export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionMonitorResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ConnectionMonitorsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ConnectionMonitorsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ConnectionMonitorsGetResponse = ConnectionMonitorResult & {
@@ -1721,6 +1990,10 @@ export type ConnectionMonitorsGetResponse = ConnectionMonitorResult & {
         parsedBody: ConnectionMonitorResult;
     };
 };
+
+// @public
+export interface ConnectionMonitorsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ConnectionMonitorsListResponse = ConnectionMonitorListResult & {
@@ -1740,18 +2013,39 @@ export interface ConnectionMonitorSource {
 export type ConnectionMonitorSourceStatus = string;
 
 // @public
+export interface ConnectionMonitorsQueryOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionMonitorQueryResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ConnectionMonitorsStartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ConnectionMonitorsStopOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ConnectionMonitorSuccessThreshold {
     checksFailedPercent?: number;
     roundTripTimeMs?: number;
+}
+
+// @public
+export interface ConnectionMonitorsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1923,10 +2217,16 @@ export interface CustomDnsConfigPropertiesFormat {
 
 // @public
 export interface DdosCustomPolicies {
-    createOrUpdate(resourceGroupName: string, ddosCustomPolicyName: string, parameters: DdosCustomPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>, DdosCustomPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, ddosCustomPolicyName: string, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesGetResponse>;
-    updateTags(resourceGroupName: string, ddosCustomPolicyName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<DdosCustomPoliciesUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, ddosCustomPolicyName: string, parameters: DdosCustomPolicy, options?: DdosCustomPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>, DdosCustomPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosCustomPolicyName: string, options?: DdosCustomPoliciesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ddosCustomPolicyName: string, options?: DdosCustomPoliciesGetOptionalParams): Promise<DdosCustomPoliciesGetResponse>;
+    updateTags(resourceGroupName: string, ddosCustomPolicyName: string, parameters: TagsObject, options?: DdosCustomPoliciesUpdateTagsOptionalParams): Promise<DdosCustomPoliciesUpdateTagsResponse>;
+}
+
+// @public
+export interface DdosCustomPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1934,9 +2234,18 @@ export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosCustomPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DdosCustomPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DdosCustomPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DdosCustomPoliciesGetResponse = DdosCustomPolicy & {
@@ -1945,6 +2254,10 @@ export type DdosCustomPoliciesGetResponse = DdosCustomPolicy & {
         parsedBody: DdosCustomPolicy;
     };
 };
+
+// @public
+export interface DdosCustomPoliciesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DdosCustomPoliciesUpdateTagsResponse = DdosCustomPolicy & {
@@ -1992,12 +2305,18 @@ export interface DdosProtectionPlanListResult {
 
 // @public
 export interface DdosProtectionPlans {
-    createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: DdosProtectionPlan, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>, DdosProtectionPlansCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, ddosProtectionPlanName: string, options?: coreHttp.OperationOptions): Promise<DdosProtectionPlansGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DdosProtectionPlan>;
-    updateTags(resourceGroupName: string, ddosProtectionPlanName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<DdosProtectionPlansUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: DdosProtectionPlan, options?: DdosProtectionPlansCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>, DdosProtectionPlansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ddosProtectionPlanName: string, options?: DdosProtectionPlansDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, ddosProtectionPlanName: string, options?: DdosProtectionPlansGetOptionalParams): Promise<DdosProtectionPlansGetResponse>;
+    list(options?: DdosProtectionPlansListOptionalParams): PagedAsyncIterableIterator<DdosProtectionPlan>;
+    listByResourceGroup(resourceGroupName: string, options?: DdosProtectionPlansListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DdosProtectionPlan>;
+    updateTags(resourceGroupName: string, ddosProtectionPlanName: string, parameters: TagsObject, options?: DdosProtectionPlansUpdateTagsOptionalParams): Promise<DdosProtectionPlansUpdateTagsResponse>;
+}
+
+// @public
+export interface DdosProtectionPlansCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2005,9 +2324,18 @@ export type DdosProtectionPlansCreateOrUpdateResponse = DdosProtectionPlan & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosProtectionPlan;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DdosProtectionPlansDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DdosProtectionPlansGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DdosProtectionPlansGetResponse = DdosProtectionPlan & {
@@ -2018,12 +2346,20 @@ export type DdosProtectionPlansGetResponse = DdosProtectionPlan & {
 };
 
 // @public
+export interface DdosProtectionPlansListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DdosProtectionPlansListByResourceGroupNextResponse = DdosProtectionPlanListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosProtectionPlanListResult;
     };
 };
+
+// @public
+export interface DdosProtectionPlansListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DdosProtectionPlansListByResourceGroupResponse = DdosProtectionPlanListResult & {
@@ -2034,6 +2370,10 @@ export type DdosProtectionPlansListByResourceGroupResponse = DdosProtectionPlanL
 };
 
 // @public
+export interface DdosProtectionPlansListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DdosProtectionPlansListNextResponse = DdosProtectionPlanListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2042,12 +2382,20 @@ export type DdosProtectionPlansListNextResponse = DdosProtectionPlanListResult &
 };
 
 // @public
+export interface DdosProtectionPlansListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DdosProtectionPlansListResponse = DdosProtectionPlanListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DdosProtectionPlanListResult;
     };
 };
+
+// @public
+export interface DdosProtectionPlansUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DdosProtectionPlansUpdateTagsResponse = DdosProtectionPlan & {
@@ -2069,8 +2417,12 @@ export type DdosSettingsProtectionCoverage = string;
 
 // @public
 export interface DefaultSecurityRules {
-    get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options?: coreHttp.OperationOptions): Promise<DefaultSecurityRulesGetResponse>;
-    list(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityRule>;
+    get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options?: DefaultSecurityRulesGetOptionalParams): Promise<DefaultSecurityRulesGetResponse>;
+    list(resourceGroupName: string, networkSecurityGroupName: string, options?: DefaultSecurityRulesListOptionalParams): PagedAsyncIterableIterator<SecurityRule>;
+}
+
+// @public
+export interface DefaultSecurityRulesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2082,12 +2434,20 @@ export type DefaultSecurityRulesGetResponse = SecurityRule & {
 };
 
 // @public
+export interface DefaultSecurityRulesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DefaultSecurityRulesListNextResponse = SecurityRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityRuleListResult;
     };
 };
+
+// @public
+export interface DefaultSecurityRulesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DefaultSecurityRulesListResponse = SecurityRuleListResult & {
@@ -2285,10 +2645,16 @@ export type ExpressRouteCircuitAuthorization = SubResource & {
 
 // @public
 export interface ExpressRouteCircuitAuthorizations {
-    createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: ExpressRouteCircuitAuthorization, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>, ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
-    list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: ExpressRouteCircuitAuthorization, options?: ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>, ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, authorizationName: string, options?: ExpressRouteCircuitAuthorizationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: ExpressRouteCircuitAuthorizationsGetOptionalParams): Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, options?: ExpressRouteCircuitAuthorizationsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization>;
+}
+
+// @public
+export interface ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2296,9 +2662,18 @@ export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRou
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitAuthorization;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitAuthorizationsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteCircuitAuthorizationsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitAuthorizationsGetResponse = ExpressRouteCircuitAuthorization & {
@@ -2309,12 +2684,20 @@ export type ExpressRouteCircuitAuthorizationsGetResponse = ExpressRouteCircuitAu
 };
 
 // @public
+export interface ExpressRouteCircuitAuthorizationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCircuitAuthorizationsListNextResponse = AuthorizationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AuthorizationListResult;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitAuthorizationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitAuthorizationsListResponse = AuthorizationListResult & {
@@ -2346,10 +2729,16 @@ export interface ExpressRouteCircuitConnectionListResult {
 
 // @public
 export interface ExpressRouteCircuitConnections {
-    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>, ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitConnectionsGetResponse>;
-    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitConnection>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection, options?: ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>, ExpressRouteCircuitConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: ExpressRouteCircuitConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: ExpressRouteCircuitConnectionsGetOptionalParams): Promise<ExpressRouteCircuitConnectionsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: ExpressRouteCircuitConnectionsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCircuitConnection>;
+}
+
+// @public
+export interface ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2357,9 +2746,18 @@ export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = ExpressRouteC
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteCircuitConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitConnectionsGetResponse = ExpressRouteCircuitConnection & {
@@ -2370,12 +2768,20 @@ export type ExpressRouteCircuitConnectionsGetResponse = ExpressRouteCircuitConne
 };
 
 // @public
+export interface ExpressRouteCircuitConnectionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCircuitConnectionsListNextResponse = ExpressRouteCircuitConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitConnectionListResult;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitConnectionsListResponse = ExpressRouteCircuitConnectionListResult & {
@@ -2444,10 +2850,16 @@ export interface ExpressRouteCircuitPeeringListResult {
 
 // @public
 export interface ExpressRouteCircuitPeerings {
-    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: ExpressRouteCircuitPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>, ExpressRouteCircuitPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitPeeringsGetResponse>;
-    list(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuitPeering>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: ExpressRouteCircuitPeering, options?: ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>, ExpressRouteCircuitPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, peeringName: string, options?: ExpressRouteCircuitPeeringsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, peeringName: string, options?: ExpressRouteCircuitPeeringsGetOptionalParams): Promise<ExpressRouteCircuitPeeringsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, options?: ExpressRouteCircuitPeeringsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCircuitPeering>;
+}
+
+// @public
+export interface ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2455,9 +2867,18 @@ export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCirc
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitPeering;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitPeeringsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteCircuitPeeringsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitPeeringsGetResponse = ExpressRouteCircuitPeering & {
@@ -2468,12 +2889,20 @@ export type ExpressRouteCircuitPeeringsGetResponse = ExpressRouteCircuitPeering 
 };
 
 // @public
+export interface ExpressRouteCircuitPeeringsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCircuitPeeringsListNextResponse = ExpressRouteCircuitPeeringListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitPeeringListResult;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitPeeringsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitPeeringsListResponse = ExpressRouteCircuitPeeringListResult & {
@@ -2511,17 +2940,17 @@ export interface ExpressRouteCircuitRoutesTableSummary {
 
 // @public
 export interface ExpressRouteCircuits {
-    createOrUpdate(resourceGroupName: string, circuitName: string, parameters: ExpressRouteCircuit, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>, ExpressRouteCircuitsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetResponse>;
-    getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetPeeringStatsResponse>;
-    getStats(resourceGroupName: string, circuitName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsGetStatsResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCircuit>;
-    listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListArpTableResponse>, ExpressRouteCircuitsListArpTableResponse>>;
-    listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableResponse>, ExpressRouteCircuitsListRoutesTableResponse>>;
-    listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>, ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
-    updateTags(resourceGroupName: string, circuitName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCircuitsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, circuitName: string, parameters: ExpressRouteCircuit, options?: ExpressRouteCircuitsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>, ExpressRouteCircuitsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, circuitName: string, options?: ExpressRouteCircuitsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, circuitName: string, options?: ExpressRouteCircuitsGetOptionalParams): Promise<ExpressRouteCircuitsGetResponse>;
+    getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: ExpressRouteCircuitsGetPeeringStatsOptionalParams): Promise<ExpressRouteCircuitsGetPeeringStatsResponse>;
+    getStats(resourceGroupName: string, circuitName: string, options?: ExpressRouteCircuitsGetStatsOptionalParams): Promise<ExpressRouteCircuitsGetStatsResponse>;
+    list(resourceGroupName: string, options?: ExpressRouteCircuitsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCircuit>;
+    listAll(options?: ExpressRouteCircuitsListAllOptionalParams): PagedAsyncIterableIterator<ExpressRouteCircuit>;
+    listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: ExpressRouteCircuitsListArpTableOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListArpTableResponse>, ExpressRouteCircuitsListArpTableResponse>>;
+    listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: ExpressRouteCircuitsListRoutesTableOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableResponse>, ExpressRouteCircuitsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: ExpressRouteCircuitsListRoutesTableSummaryOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>, ExpressRouteCircuitsListRoutesTableSummaryResponse>>;
+    updateTags(resourceGroupName: string, circuitName: string, parameters: TagsObject, options?: ExpressRouteCircuitsUpdateTagsOptionalParams): Promise<ExpressRouteCircuitsUpdateTagsResponse>;
 }
 
 // @public
@@ -2531,19 +2960,38 @@ export interface ExpressRouteCircuitsArpTableListResult {
 }
 
 // @public
+export interface ExpressRouteCircuitsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRouteCircuitsCreateOrUpdateResponse = ExpressRouteCircuit & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuit;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ExpressRouteCircuitServiceProviderProperties {
     bandwidthInMbps?: number;
     peeringLocation?: string;
     serviceProviderName?: string;
+}
+
+// @public
+export interface ExpressRouteCircuitsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ExpressRouteCircuitsGetPeeringStatsOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2561,6 +3009,10 @@ export type ExpressRouteCircuitsGetResponse = ExpressRouteCircuit & {
         parsedBody: ExpressRouteCircuit;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitsGetStatsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitsGetStatsResponse = ExpressRouteCircuitStats & {
@@ -2584,12 +3036,20 @@ export type ExpressRouteCircuitSkuFamily = string;
 export type ExpressRouteCircuitSkuTier = string;
 
 // @public
+export interface ExpressRouteCircuitsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCircuitsListAllNextResponse = ExpressRouteCircuitListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitListResult;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitsListAllResponse = ExpressRouteCircuitListResult & {
@@ -2600,13 +3060,22 @@ export type ExpressRouteCircuitsListAllResponse = ExpressRouteCircuitListResult 
 };
 
 // @public
+export interface ExpressRouteCircuitsListArpTableOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRouteCircuitsListArpTableResponse = ExpressRouteCircuitsArpTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsArpTableListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCircuitsListNextResponse = ExpressRouteCircuitListResult & {
@@ -2617,6 +3086,10 @@ export type ExpressRouteCircuitsListNextResponse = ExpressRouteCircuitListResult
 };
 
 // @public
+export interface ExpressRouteCircuitsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCircuitsListResponse = ExpressRouteCircuitListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2625,20 +3098,30 @@ export type ExpressRouteCircuitsListResponse = ExpressRouteCircuitListResult & {
 };
 
 // @public
+export interface ExpressRouteCircuitsListRoutesTableOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRouteCircuitsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCircuitsListRoutesTableSummaryOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ExpressRouteCircuitsListRoutesTableSummaryResponse = ExpressRouteCircuitsRoutesTableSummaryListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2660,6 +3143,10 @@ export interface ExpressRouteCircuitStats {
     primarybytesOut?: number;
     secondarybytesIn?: number;
     secondarybytesOut?: number;
+}
+
+// @public
+export interface ExpressRouteCircuitsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2693,10 +3180,16 @@ export interface ExpressRouteConnectionList {
 
 // @public
 export interface ExpressRouteConnections {
-    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, putExpressRouteConnectionParameters: ExpressRouteConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>, ExpressRouteConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsGetResponse>;
-    list(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteConnectionsListResponse>;
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, putExpressRouteConnectionParameters: ExpressRouteConnection, options?: ExpressRouteConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>, ExpressRouteConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: ExpressRouteConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRouteGatewayName: string, connectionName: string, options?: ExpressRouteConnectionsGetOptionalParams): Promise<ExpressRouteConnectionsGetResponse>;
+    list(resourceGroupName: string, expressRouteGatewayName: string, options?: ExpressRouteConnectionsListOptionalParams): Promise<ExpressRouteConnectionsListResponse>;
+}
+
+// @public
+export interface ExpressRouteConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2704,9 +3197,18 @@ export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnecti
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteConnectionsGetResponse = ExpressRouteConnection & {
@@ -2715,6 +3217,10 @@ export type ExpressRouteConnectionsGetResponse = ExpressRouteConnection & {
         parsedBody: ExpressRouteConnection;
     };
 };
+
+// @public
+export interface ExpressRouteConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteConnectionsListResponse = ExpressRouteConnectionList & {
@@ -2774,10 +3280,16 @@ export interface ExpressRouteCrossConnectionPeeringList {
 
 // @public
 export interface ExpressRouteCrossConnectionPeerings {
-    createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: ExpressRouteCrossConnectionPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>, ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
-    list(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering>;
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: ExpressRouteCrossConnectionPeering, options?: ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>, ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: ExpressRouteCrossConnectionPeeringsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: ExpressRouteCrossConnectionPeeringsGetOptionalParams): Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
+    list(resourceGroupName: string, crossConnectionName: string, options?: ExpressRouteCrossConnectionPeeringsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering>;
+}
+
+// @public
+export interface ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2785,9 +3297,18 @@ export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressR
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionPeering;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionPeeringsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteCrossConnectionPeeringsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCrossConnectionPeeringsGetResponse = ExpressRouteCrossConnectionPeering & {
@@ -2798,12 +3319,20 @@ export type ExpressRouteCrossConnectionPeeringsGetResponse = ExpressRouteCrossCo
 };
 
 // @public
+export interface ExpressRouteCrossConnectionPeeringsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCrossConnectionPeeringsListNextResponse = ExpressRouteCrossConnectionPeeringList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionPeeringList;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionPeeringsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCrossConnectionPeeringsListResponse = ExpressRouteCrossConnectionPeeringList & {
@@ -2823,14 +3352,20 @@ export interface ExpressRouteCrossConnectionRoutesTableSummary {
 
 // @public
 export interface ExpressRouteCrossConnections {
-    createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: ExpressRouteCrossConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>, ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, crossConnectionName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
-    listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>, ExpressRouteCrossConnectionsListArpTableResponse>>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
-    listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>, ExpressRouteCrossConnectionsListRoutesTableResponse>>;
-    listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>, ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>>;
-    updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: ExpressRouteCrossConnection, options?: ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>, ExpressRouteCrossConnectionsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, crossConnectionName: string, options?: ExpressRouteCrossConnectionsGetOptionalParams): Promise<ExpressRouteCrossConnectionsGetResponse>;
+    list(options?: ExpressRouteCrossConnectionsListOptionalParams): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
+    listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: ExpressRouteCrossConnectionsListArpTableOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>, ExpressRouteCrossConnectionsListArpTableResponse>>;
+    listByResourceGroup(resourceGroupName: string, options?: ExpressRouteCrossConnectionsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ExpressRouteCrossConnection>;
+    listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: ExpressRouteCrossConnectionsListRoutesTableOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>, ExpressRouteCrossConnectionsListRoutesTableResponse>>;
+    listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>, ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>>;
+    updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: TagsObject, options?: ExpressRouteCrossConnectionsUpdateTagsOptionalParams): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse>;
+}
+
+// @public
+export interface ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2838,9 +3373,12 @@ export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = ExpressRouteCro
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCrossConnectionsGetResponse = ExpressRouteCrossConnection & {
@@ -2851,13 +3389,22 @@ export type ExpressRouteCrossConnectionsGetResponse = ExpressRouteCrossConnectio
 };
 
 // @public
+export interface ExpressRouteCrossConnectionsListArpTableOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRouteCrossConnectionsListArpTableResponse = ExpressRouteCircuitsArpTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsArpTableListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCrossConnectionsListByResourceGroupNextResponse = ExpressRouteCrossConnectionListResult & {
@@ -2868,12 +3415,20 @@ export type ExpressRouteCrossConnectionsListByResourceGroupNextResponse = Expres
 };
 
 // @public
+export interface ExpressRouteCrossConnectionsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCrossConnectionsListByResourceGroupResponse = ExpressRouteCrossConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionListResult;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteCrossConnectionsListNextResponse = ExpressRouteCrossConnectionListResult & {
@@ -2884,6 +3439,10 @@ export type ExpressRouteCrossConnectionsListNextResponse = ExpressRouteCrossConn
 };
 
 // @public
+export interface ExpressRouteCrossConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteCrossConnectionsListResponse = ExpressRouteCrossConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2892,20 +3451,30 @@ export type ExpressRouteCrossConnectionsListResponse = ExpressRouteCrossConnecti
 };
 
 // @public
+export interface ExpressRouteCrossConnectionsListRoutesTableOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRouteCrossConnectionsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = ExpressRouteCrossConnectionsRoutesTableSummaryListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2913,6 +3482,10 @@ export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = Express
 export interface ExpressRouteCrossConnectionsRoutesTableSummaryListResult {
     readonly nextLink?: string;
     value?: ExpressRouteCrossConnectionRoutesTableSummary[];
+}
+
+// @public
+export interface ExpressRouteCrossConnectionsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2950,11 +3523,17 @@ export interface ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds {
 
 // @public
 export interface ExpressRouteGateways {
-    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, putExpressRouteGatewayParameters: ExpressRouteGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>, ExpressRouteGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, expressRouteGatewayName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysGetResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListByResourceGroupResponse>;
-    listBySubscription(options?: coreHttp.OperationOptions): Promise<ExpressRouteGatewaysListBySubscriptionResponse>;
+    createOrUpdate(resourceGroupName: string, expressRouteGatewayName: string, putExpressRouteGatewayParameters: ExpressRouteGateway, options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>, ExpressRouteGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRouteGatewayName: string, options?: ExpressRouteGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRouteGatewayName: string, options?: ExpressRouteGatewaysGetOptionalParams): Promise<ExpressRouteGatewaysGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: ExpressRouteGatewaysListByResourceGroupOptionalParams): Promise<ExpressRouteGatewaysListByResourceGroupResponse>;
+    listBySubscription(options?: ExpressRouteGatewaysListBySubscriptionOptionalParams): Promise<ExpressRouteGatewaysListBySubscriptionResponse>;
+}
+
+// @public
+export interface ExpressRouteGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2962,9 +3541,18 @@ export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExpressRouteGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ExpressRouteGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteGatewaysGetResponse = ExpressRouteGateway & {
@@ -2975,12 +3563,20 @@ export type ExpressRouteGatewaysGetResponse = ExpressRouteGateway & {
 };
 
 // @public
+export interface ExpressRouteGatewaysListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteGatewaysListByResourceGroupResponse = ExpressRouteGatewayList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteGatewayList;
     };
 };
+
+// @public
+export interface ExpressRouteGatewaysListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteGatewaysListBySubscriptionResponse = ExpressRouteGatewayList & {
@@ -3028,8 +3624,12 @@ export interface ExpressRouteLinkMacSecConfig {
 
 // @public
 export interface ExpressRouteLinks {
-    get(resourceGroupName: string, expressRoutePortName: string, linkName: string, options?: coreHttp.OperationOptions): Promise<ExpressRouteLinksGetResponse>;
-    list(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteLink>;
+    get(resourceGroupName: string, expressRoutePortName: string, linkName: string, options?: ExpressRouteLinksGetOptionalParams): Promise<ExpressRouteLinksGetResponse>;
+    list(resourceGroupName: string, expressRoutePortName: string, options?: ExpressRouteLinksListOptionalParams): PagedAsyncIterableIterator<ExpressRouteLink>;
+}
+
+// @public
+export interface ExpressRouteLinksGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3041,12 +3641,20 @@ export type ExpressRouteLinksGetResponse = ExpressRouteLink & {
 };
 
 // @public
+export interface ExpressRouteLinksListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteLinksListNextResponse = ExpressRouteLinkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRouteLinkListResult;
     };
 };
+
+// @public
+export interface ExpressRouteLinksListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRouteLinksListResponse = ExpressRouteLinkListResult & {
@@ -3087,12 +3695,18 @@ export interface ExpressRoutePortListResult {
 
 // @public
 export interface ExpressRoutePorts {
-    createOrUpdate(resourceGroupName: string, expressRoutePortName: string, parameters: ExpressRoutePort, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>, ExpressRoutePortsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, expressRoutePortName: string, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePort>;
-    updateTags(resourceGroupName: string, expressRoutePortName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, expressRoutePortName: string, parameters: ExpressRoutePort, options?: ExpressRoutePortsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>, ExpressRoutePortsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, expressRoutePortName: string, options?: ExpressRoutePortsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, expressRoutePortName: string, options?: ExpressRoutePortsGetOptionalParams): Promise<ExpressRoutePortsGetResponse>;
+    list(options?: ExpressRoutePortsListOptionalParams): PagedAsyncIterableIterator<ExpressRoutePort>;
+    listByResourceGroup(resourceGroupName: string, options?: ExpressRoutePortsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ExpressRoutePort>;
+    updateTags(resourceGroupName: string, expressRoutePortName: string, parameters: TagsObject, options?: ExpressRoutePortsUpdateTagsOptionalParams): Promise<ExpressRoutePortsUpdateTagsResponse>;
+}
+
+// @public
+export interface ExpressRoutePortsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3100,12 +3714,21 @@ export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRoutePort;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
+export interface ExpressRoutePortsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ExpressRoutePortsEncapsulation = string;
+
+// @public
+export interface ExpressRoutePortsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRoutePortsGetResponse = ExpressRoutePort & {
@@ -3116,12 +3739,20 @@ export type ExpressRoutePortsGetResponse = ExpressRoutePort & {
 };
 
 // @public
+export interface ExpressRoutePortsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRoutePortsListByResourceGroupNextResponse = ExpressRoutePortListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRoutePortListResult;
     };
 };
+
+// @public
+export interface ExpressRoutePortsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRoutePortsListByResourceGroupResponse = ExpressRoutePortListResult & {
@@ -3132,12 +3763,20 @@ export type ExpressRoutePortsListByResourceGroupResponse = ExpressRoutePortListR
 };
 
 // @public
+export interface ExpressRoutePortsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRoutePortsListNextResponse = ExpressRoutePortListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRoutePortListResult;
     };
 };
+
+// @public
+export interface ExpressRoutePortsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRoutePortsListResponse = ExpressRoutePortListResult & {
@@ -3169,8 +3808,12 @@ export interface ExpressRoutePortsLocationListResult {
 
 // @public
 export interface ExpressRoutePortsLocations {
-    get(locationName: string, options?: coreHttp.OperationOptions): Promise<ExpressRoutePortsLocationsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRoutePortsLocation>;
+    get(locationName: string, options?: ExpressRoutePortsLocationsGetOptionalParams): Promise<ExpressRoutePortsLocationsGetResponse>;
+    list(options?: ExpressRoutePortsLocationsListOptionalParams): PagedAsyncIterableIterator<ExpressRoutePortsLocation>;
+}
+
+// @public
+export interface ExpressRoutePortsLocationsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3182,6 +3825,10 @@ export type ExpressRoutePortsLocationsGetResponse = ExpressRoutePortsLocation & 
 };
 
 // @public
+export interface ExpressRoutePortsLocationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRoutePortsLocationsListNextResponse = ExpressRoutePortsLocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3190,12 +3837,20 @@ export type ExpressRoutePortsLocationsListNextResponse = ExpressRoutePortsLocati
 };
 
 // @public
+export interface ExpressRoutePortsLocationsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRoutePortsLocationsListResponse = ExpressRoutePortsLocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExpressRoutePortsLocationListResult;
     };
 };
+
+// @public
+export interface ExpressRoutePortsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExpressRoutePortsUpdateTagsResponse = ExpressRoutePort & {
@@ -3226,7 +3881,11 @@ export interface ExpressRouteServiceProviderListResult {
 
 // @public
 export interface ExpressRouteServiceProviders {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExpressRouteServiceProvider>;
+    list(options?: ExpressRouteServiceProvidersListOptionalParams): PagedAsyncIterableIterator<ExpressRouteServiceProvider>;
+}
+
+// @public
+export interface ExpressRouteServiceProvidersListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3238,6 +3897,10 @@ export type ExpressRouteServiceProvidersListNextResponse = ExpressRouteServicePr
 };
 
 // @public
+export interface ExpressRouteServiceProvidersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProviderListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3247,11 +3910,17 @@ export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProvid
 
 // @public
 export interface FirewallPolicies {
-    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, parameters: FirewallPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FirewallPoliciesCreateOrUpdateResponse>, FirewallPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, parameters: FirewallPolicy, options?: FirewallPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<FirewallPoliciesCreateOrUpdateResponse>, FirewallPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, options?: FirewallPoliciesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, firewallPolicyName: string, options?: FirewallPoliciesGetOptionalParams): Promise<FirewallPoliciesGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicy>;
+    list(resourceGroupName: string, options?: FirewallPoliciesListOptionalParams): PagedAsyncIterableIterator<FirewallPolicy>;
+    listAll(options?: FirewallPoliciesListAllOptionalParams): PagedAsyncIterableIterator<FirewallPolicy>;
+}
+
+// @public
+export interface FirewallPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3259,9 +3928,14 @@ export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FirewallPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface FirewallPoliciesGetOptionalParams extends coreHttp.OperationOptions {
@@ -3277,12 +3951,20 @@ export type FirewallPoliciesGetResponse = FirewallPolicy & {
 };
 
 // @public
+export interface FirewallPoliciesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FirewallPoliciesListAllNextResponse = FirewallPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicyListResult;
     };
 };
+
+// @public
+export interface FirewallPoliciesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FirewallPoliciesListAllResponse = FirewallPolicyListResult & {
@@ -3293,12 +3975,20 @@ export type FirewallPoliciesListAllResponse = FirewallPolicyListResult & {
 };
 
 // @public
+export interface FirewallPoliciesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FirewallPoliciesListNextResponse = FirewallPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicyListResult;
     };
 };
+
+// @public
+export interface FirewallPoliciesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FirewallPoliciesListResponse = FirewallPolicyListResult & {
@@ -3420,10 +4110,16 @@ export interface FirewallPolicyRuleGroupListResult {
 
 // @public
 export interface FirewallPolicyRuleGroups {
-    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, parameters: FirewallPolicyRuleGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>, FirewallPolicyRuleGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: coreHttp.OperationOptions): Promise<FirewallPolicyRuleGroupsGetResponse>;
-    list(resourceGroupName: string, firewallPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallPolicyRuleGroup>;
+    createOrUpdate(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, parameters: FirewallPolicyRuleGroup, options?: FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>, FirewallPolicyRuleGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: FirewallPolicyRuleGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, firewallPolicyName: string, ruleGroupName: string, options?: FirewallPolicyRuleGroupsGetOptionalParams): Promise<FirewallPolicyRuleGroupsGetResponse>;
+    list(resourceGroupName: string, firewallPolicyName: string, options?: FirewallPolicyRuleGroupsListOptionalParams): PagedAsyncIterableIterator<FirewallPolicyRuleGroup>;
+}
+
+// @public
+export interface FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3431,9 +4127,18 @@ export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleG
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicyRuleGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FirewallPolicyRuleGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface FirewallPolicyRuleGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FirewallPolicyRuleGroupsGetResponse = FirewallPolicyRuleGroup & {
@@ -3444,12 +4149,20 @@ export type FirewallPolicyRuleGroupsGetResponse = FirewallPolicyRuleGroup & {
 };
 
 // @public
+export interface FirewallPolicyRuleGroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FirewallPolicyRuleGroupsListNextResponse = FirewallPolicyRuleGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallPolicyRuleGroupListResult;
     };
 };
+
+// @public
+export interface FirewallPolicyRuleGroupsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListResult & {
@@ -3524,10 +4237,16 @@ export interface FlowLogListResult {
 
 // @public
 export interface FlowLogs {
-    createOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FlowLogsCreateOrUpdateResponse>, FlowLogsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: coreHttp.OperationOptions): Promise<FlowLogsGetResponse>;
-    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FlowLog>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: FlowLogsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<FlowLogsCreateOrUpdateResponse>, FlowLogsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: FlowLogsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: FlowLogsGetOptionalParams): Promise<FlowLogsGetResponse>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: FlowLogsListOptionalParams): PagedAsyncIterableIterator<FlowLog>;
+}
+
+// @public
+export interface FlowLogsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3535,9 +4254,18 @@ export type FlowLogsCreateOrUpdateResponse = FlowLog & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLog;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FlowLogsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface FlowLogsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FlowLogsGetResponse = FlowLog & {
@@ -3548,12 +4276,20 @@ export type FlowLogsGetResponse = FlowLog & {
 };
 
 // @public
+export interface FlowLogsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FlowLogsListNextResponse = FlowLogListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLogListResult;
     };
 };
+
+// @public
+export interface FlowLogsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FlowLogsListResponse = FlowLogListResult & {
@@ -3657,10 +4393,16 @@ export type HubRouteTable = SubResource & {
 
 // @public
 export interface HubRouteTables {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, routeTableParameters: HubRouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<HubRouteTablesCreateOrUpdateResponse>, HubRouteTablesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<HubRouteTablesGetResponse>;
-    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HubRouteTable>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, routeTableParameters: HubRouteTable, options?: HubRouteTablesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<HubRouteTablesCreateOrUpdateResponse>, HubRouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: HubRouteTablesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: HubRouteTablesGetOptionalParams): Promise<HubRouteTablesGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: HubRouteTablesListOptionalParams): PagedAsyncIterableIterator<HubRouteTable>;
+}
+
+// @public
+export interface HubRouteTablesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3668,9 +4410,18 @@ export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: HubRouteTable;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface HubRouteTablesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface HubRouteTablesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type HubRouteTablesGetResponse = HubRouteTable & {
@@ -3681,12 +4432,20 @@ export type HubRouteTablesGetResponse = HubRouteTable & {
 };
 
 // @public
+export interface HubRouteTablesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type HubRouteTablesListNextResponse = ListHubRouteTablesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListHubRouteTablesResult;
     };
 };
+
+// @public
+export interface HubRouteTablesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type HubRouteTablesListResponse = ListHubRouteTablesResult & {
@@ -3710,8 +4469,12 @@ export type HubVirtualNetworkConnection = SubResource & {
 
 // @public
 export interface HubVirtualNetworkConnections {
-    get(resourceGroupName: string, virtualHubName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<HubVirtualNetworkConnectionsGetResponse>;
-    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<HubVirtualNetworkConnection>;
+    get(resourceGroupName: string, virtualHubName: string, connectionName: string, options?: HubVirtualNetworkConnectionsGetOptionalParams): Promise<HubVirtualNetworkConnectionsGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: HubVirtualNetworkConnectionsListOptionalParams): PagedAsyncIterableIterator<HubVirtualNetworkConnection>;
+}
+
+// @public
+export interface HubVirtualNetworkConnectionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3723,12 +4486,20 @@ export type HubVirtualNetworkConnectionsGetResponse = HubVirtualNetworkConnectio
 };
 
 // @public
+export interface HubVirtualNetworkConnectionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type HubVirtualNetworkConnectionsListNextResponse = ListHubVirtualNetworkConnectionsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListHubVirtualNetworkConnectionsResult;
     };
 };
+
+// @public
+export interface HubVirtualNetworkConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type HubVirtualNetworkConnectionsListResponse = ListHubVirtualNetworkConnectionsResult & {
@@ -3787,10 +4558,16 @@ export interface InboundNatRuleListResult {
 
 // @public
 export interface InboundNatRules {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InboundNatRulesCreateOrUpdateResponse>, InboundNatRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: InboundNatRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<InboundNatRulesCreateOrUpdateResponse>, InboundNatRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesGetOptionalParams): Promise<InboundNatRulesGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InboundNatRule>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: InboundNatRulesListOptionalParams): PagedAsyncIterableIterator<InboundNatRule>;
+}
+
+// @public
+export interface InboundNatRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3798,9 +4575,14 @@ export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InboundNatRule;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface InboundNatRulesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface InboundNatRulesGetOptionalParams extends coreHttp.OperationOptions {
@@ -3816,12 +4598,20 @@ export type InboundNatRulesGetResponse = InboundNatRule & {
 };
 
 // @public
+export interface InboundNatRulesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type InboundNatRulesListNextResponse = InboundNatRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InboundNatRuleListResult;
     };
 };
+
+// @public
+export interface InboundNatRulesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InboundNatRulesListResponse = InboundNatRuleListResult & {
@@ -3863,12 +4653,18 @@ export type IPAllocationMethod = string;
 
 // @public
 export interface IpAllocations {
-    createOrUpdate(resourceGroupName: string, ipAllocationName: string, parameters: IpAllocation, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<IpAllocationsCreateOrUpdateResponse>, IpAllocationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ipAllocationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ipAllocationName: string, parameters: IpAllocation, options?: IpAllocationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<IpAllocationsCreateOrUpdateResponse>, IpAllocationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipAllocationName: string, options?: IpAllocationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ipAllocationName: string, options?: IpAllocationsGetOptionalParams): Promise<IpAllocationsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpAllocation>;
-    updateTags(resourceGroupName: string, ipAllocationName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<IpAllocationsUpdateTagsResponse>;
+    list(options?: IpAllocationsListOptionalParams): PagedAsyncIterableIterator<IpAllocation>;
+    listByResourceGroup(resourceGroupName: string, options?: IpAllocationsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<IpAllocation>;
+    updateTags(resourceGroupName: string, ipAllocationName: string, parameters: TagsObject, options?: IpAllocationsUpdateTagsOptionalParams): Promise<IpAllocationsUpdateTagsResponse>;
+}
+
+// @public
+export interface IpAllocationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3876,9 +4672,14 @@ export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpAllocation;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface IpAllocationsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface IpAllocationsGetOptionalParams extends coreHttp.OperationOptions {
@@ -3894,12 +4695,20 @@ export type IpAllocationsGetResponse = IpAllocation & {
 };
 
 // @public
+export interface IpAllocationsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpAllocationsListByResourceGroupNextResponse = IpAllocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpAllocationListResult;
     };
 };
+
+// @public
+export interface IpAllocationsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type IpAllocationsListByResourceGroupResponse = IpAllocationListResult & {
@@ -3910,6 +4719,10 @@ export type IpAllocationsListByResourceGroupResponse = IpAllocationListResult & 
 };
 
 // @public
+export interface IpAllocationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpAllocationsListNextResponse = IpAllocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3918,12 +4731,20 @@ export type IpAllocationsListNextResponse = IpAllocationListResult & {
 };
 
 // @public
+export interface IpAllocationsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpAllocationsListResponse = IpAllocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpAllocationListResult;
     };
 };
+
+// @public
+export interface IpAllocationsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type IpAllocationsUpdateTagsResponse = IpAllocation & {
@@ -3983,12 +4804,18 @@ export interface IpGroupListResult {
 
 // @public
 export interface IpGroups {
-    createOrUpdate(resourceGroupName: string, ipGroupsName: string, parameters: IpGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<IpGroupsCreateOrUpdateResponse>, IpGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, ipGroupsName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, ipGroupsName: string, parameters: IpGroup, options?: IpGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<IpGroupsCreateOrUpdateResponse>, IpGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, ipGroupsName: string, options?: IpGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, ipGroupsName: string, options?: IpGroupsGetOptionalParams): Promise<IpGroupsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<IpGroup>;
-    updateGroups(resourceGroupName: string, ipGroupsName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<IpGroupsUpdateGroupsResponse>;
+    list(options?: IpGroupsListOptionalParams): PagedAsyncIterableIterator<IpGroup>;
+    listByResourceGroup(resourceGroupName: string, options?: IpGroupsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<IpGroup>;
+    updateGroups(resourceGroupName: string, ipGroupsName: string, parameters: TagsObject, options?: IpGroupsUpdateGroupsOptionalParams): Promise<IpGroupsUpdateGroupsResponse>;
+}
+
+// @public
+export interface IpGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3996,9 +4823,14 @@ export type IpGroupsCreateOrUpdateResponse = IpGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface IpGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface IpGroupsGetOptionalParams extends coreHttp.OperationOptions {
@@ -4014,12 +4846,20 @@ export type IpGroupsGetResponse = IpGroup & {
 };
 
 // @public
+export interface IpGroupsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpGroupsListByResourceGroupNextResponse = IpGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpGroupListResult;
     };
 };
+
+// @public
+export interface IpGroupsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type IpGroupsListByResourceGroupResponse = IpGroupListResult & {
@@ -4030,6 +4870,10 @@ export type IpGroupsListByResourceGroupResponse = IpGroupListResult & {
 };
 
 // @public
+export interface IpGroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpGroupsListNextResponse = IpGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4038,12 +4882,20 @@ export type IpGroupsListNextResponse = IpGroupListResult & {
 };
 
 // @public
+export interface IpGroupsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type IpGroupsListResponse = IpGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: IpGroupListResult;
     };
 };
+
+// @public
+export interface IpGroupsUpdateGroupsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type IpGroupsUpdateGroupsResponse = IpGroup & {
@@ -5671,10 +6523,16 @@ export interface LoadBalancerBackendAddressPoolListResult {
 
 // @public
 export interface LoadBalancerBackendAddressPools {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, parameters: BackendAddressPool, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>, LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerBackendAddressPoolsGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackendAddressPool>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, parameters: BackendAddressPool, options?: LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>, LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: LoadBalancerBackendAddressPoolsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: LoadBalancerBackendAddressPoolsGetOptionalParams): Promise<LoadBalancerBackendAddressPoolsGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerBackendAddressPoolsListOptionalParams): PagedAsyncIterableIterator<BackendAddressPool>;
+}
+
+// @public
+export interface LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5682,9 +6540,18 @@ export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddre
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackendAddressPool;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface LoadBalancerBackendAddressPoolsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LoadBalancerBackendAddressPoolsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerBackendAddressPoolsGetResponse = BackendAddressPool & {
@@ -5695,12 +6562,20 @@ export type LoadBalancerBackendAddressPoolsGetResponse = BackendAddressPool & {
 };
 
 // @public
+export interface LoadBalancerBackendAddressPoolsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancerBackendAddressPoolsListNextResponse = LoadBalancerBackendAddressPoolListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerBackendAddressPoolListResult;
     };
 };
+
+// @public
+export interface LoadBalancerBackendAddressPoolsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerBackendAddressPoolsListResponse = LoadBalancerBackendAddressPoolListResult & {
@@ -5718,8 +6593,12 @@ export interface LoadBalancerFrontendIPConfigurationListResult {
 
 // @public
 export interface LoadBalancerFrontendIPConfigurations {
-    get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerFrontendIPConfigurationsGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FrontendIPConfiguration>;
+    get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: LoadBalancerFrontendIPConfigurationsGetOptionalParams): Promise<LoadBalancerFrontendIPConfigurationsGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerFrontendIPConfigurationsListOptionalParams): PagedAsyncIterableIterator<FrontendIPConfiguration>;
+}
+
+// @public
+export interface LoadBalancerFrontendIPConfigurationsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5731,12 +6610,20 @@ export type LoadBalancerFrontendIPConfigurationsGetResponse = FrontendIPConfigur
 };
 
 // @public
+export interface LoadBalancerFrontendIPConfigurationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancerFrontendIPConfigurationsListNextResponse = LoadBalancerFrontendIPConfigurationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerFrontendIPConfigurationListResult;
     };
 };
+
+// @public
+export interface LoadBalancerFrontendIPConfigurationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerFrontendIPConfigurationsListResponse = LoadBalancerFrontendIPConfigurationListResult & {
@@ -5760,8 +6647,12 @@ export interface LoadBalancerLoadBalancingRuleListResult {
 
 // @public
 export interface LoadBalancerLoadBalancingRules {
-    get(resourceGroupName: string, loadBalancerName: string, loadBalancingRuleName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerLoadBalancingRulesGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancingRule>;
+    get(resourceGroupName: string, loadBalancerName: string, loadBalancingRuleName: string, options?: LoadBalancerLoadBalancingRulesGetOptionalParams): Promise<LoadBalancerLoadBalancingRulesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerLoadBalancingRulesListOptionalParams): PagedAsyncIterableIterator<LoadBalancingRule>;
+}
+
+// @public
+export interface LoadBalancerLoadBalancingRulesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5773,12 +6664,20 @@ export type LoadBalancerLoadBalancingRulesGetResponse = LoadBalancingRule & {
 };
 
 // @public
+export interface LoadBalancerLoadBalancingRulesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancerLoadBalancingRulesListNextResponse = LoadBalancerLoadBalancingRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerLoadBalancingRuleListResult;
     };
 };
+
+// @public
+export interface LoadBalancerLoadBalancingRulesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerLoadBalancingRulesListResponse = LoadBalancerLoadBalancingRuleListResult & {
@@ -5790,7 +6689,11 @@ export type LoadBalancerLoadBalancingRulesListResponse = LoadBalancerLoadBalanci
 
 // @public
 export interface LoadBalancerNetworkInterfaces {
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerNetworkInterfacesListOptionalParams): PagedAsyncIterableIterator<NetworkInterface>;
+}
+
+// @public
+export interface LoadBalancerNetworkInterfacesListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5800,6 +6703,10 @@ export type LoadBalancerNetworkInterfacesListNextResponse = NetworkInterfaceList
         parsedBody: NetworkInterfaceListResult;
     };
 };
+
+// @public
+export interface LoadBalancerNetworkInterfacesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerNetworkInterfacesListResponse = NetworkInterfaceListResult & {
@@ -5820,8 +6727,12 @@ export type LoadBalancerOutboundRuleProtocol = string;
 
 // @public
 export interface LoadBalancerOutboundRules {
-    get(resourceGroupName: string, loadBalancerName: string, outboundRuleName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerOutboundRulesGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<OutboundRule>;
+    get(resourceGroupName: string, loadBalancerName: string, outboundRuleName: string, options?: LoadBalancerOutboundRulesGetOptionalParams): Promise<LoadBalancerOutboundRulesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerOutboundRulesListOptionalParams): PagedAsyncIterableIterator<OutboundRule>;
+}
+
+// @public
+export interface LoadBalancerOutboundRulesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5833,12 +6744,20 @@ export type LoadBalancerOutboundRulesGetResponse = OutboundRule & {
 };
 
 // @public
+export interface LoadBalancerOutboundRulesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancerOutboundRulesListNextResponse = LoadBalancerOutboundRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerOutboundRuleListResult;
     };
 };
+
+// @public
+export interface LoadBalancerOutboundRulesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerOutboundRulesListResponse = LoadBalancerOutboundRuleListResult & {
@@ -5856,8 +6775,12 @@ export interface LoadBalancerProbeListResult {
 
 // @public
 export interface LoadBalancerProbes {
-    get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: coreHttp.OperationOptions): Promise<LoadBalancerProbesGetResponse>;
-    list(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Probe>;
+    get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: LoadBalancerProbesGetOptionalParams): Promise<LoadBalancerProbesGetResponse>;
+    list(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancerProbesListOptionalParams): PagedAsyncIterableIterator<Probe>;
+}
+
+// @public
+export interface LoadBalancerProbesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5869,12 +6792,20 @@ export type LoadBalancerProbesGetResponse = Probe & {
 };
 
 // @public
+export interface LoadBalancerProbesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancerProbesListNextResponse = LoadBalancerProbeListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerProbeListResult;
     };
 };
+
+// @public
+export interface LoadBalancerProbesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult & {
@@ -5886,12 +6817,18 @@ export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult & {
 
 // @public
 export interface LoadBalancers {
-    createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: LoadBalancer, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LoadBalancersCreateOrUpdateResponse>, LoadBalancersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, loadBalancerName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: LoadBalancer, options?: LoadBalancersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<LoadBalancersCreateOrUpdateResponse>, LoadBalancersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, loadBalancerName: string, options?: LoadBalancersGetOptionalParams): Promise<LoadBalancersGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
-    updateTags(resourceGroupName: string, loadBalancerName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LoadBalancersUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: LoadBalancersListOptionalParams): PagedAsyncIterableIterator<LoadBalancer>;
+    listAll(options?: LoadBalancersListAllOptionalParams): PagedAsyncIterableIterator<LoadBalancer>;
+    updateTags(resourceGroupName: string, loadBalancerName: string, parameters: TagsObject, options?: LoadBalancersUpdateTagsOptionalParams): Promise<LoadBalancersUpdateTagsResponse>;
+}
+
+// @public
+export interface LoadBalancersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5899,9 +6836,14 @@ export type LoadBalancersCreateOrUpdateResponse = LoadBalancer & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancer;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface LoadBalancersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface LoadBalancersGetOptionalParams extends coreHttp.OperationOptions {
@@ -5925,12 +6867,20 @@ export interface LoadBalancerSku {
 export type LoadBalancerSkuName = string;
 
 // @public
+export interface LoadBalancersListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancersListAllNextResponse = LoadBalancerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerListResult;
     };
 };
+
+// @public
+export interface LoadBalancersListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancersListAllResponse = LoadBalancerListResult & {
@@ -5941,6 +6891,10 @@ export type LoadBalancersListAllResponse = LoadBalancerListResult & {
 };
 
 // @public
+export interface LoadBalancersListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancersListNextResponse = LoadBalancerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -5949,12 +6903,20 @@ export type LoadBalancersListNextResponse = LoadBalancerListResult & {
 };
 
 // @public
+export interface LoadBalancersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LoadBalancersListResponse = LoadBalancerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LoadBalancerListResult;
     };
 };
+
+// @public
+export interface LoadBalancersUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LoadBalancersUpdateTagsResponse = LoadBalancer & {
@@ -6005,11 +6967,17 @@ export interface LocalNetworkGatewayListResult {
 
 // @public
 export interface LocalNetworkGateways {
-    createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: LocalNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>, LocalNetworkGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, localNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LocalNetworkGateway>;
-    updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<LocalNetworkGatewaysUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: LocalNetworkGateway, options?: LocalNetworkGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>, LocalNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, localNetworkGatewayName: string, options?: LocalNetworkGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, localNetworkGatewayName: string, options?: LocalNetworkGatewaysGetOptionalParams): Promise<LocalNetworkGatewaysGetResponse>;
+    list(resourceGroupName: string, options?: LocalNetworkGatewaysListOptionalParams): PagedAsyncIterableIterator<LocalNetworkGateway>;
+    updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: TagsObject, options?: LocalNetworkGatewaysUpdateTagsOptionalParams): Promise<LocalNetworkGatewaysUpdateTagsResponse>;
+}
+
+// @public
+export interface LocalNetworkGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6017,9 +6985,18 @@ export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LocalNetworkGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface LocalNetworkGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LocalNetworkGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LocalNetworkGatewaysGetResponse = LocalNetworkGateway & {
@@ -6030,6 +7007,10 @@ export type LocalNetworkGatewaysGetResponse = LocalNetworkGateway & {
 };
 
 // @public
+export interface LocalNetworkGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LocalNetworkGatewaysListNextResponse = LocalNetworkGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6038,12 +7019,20 @@ export type LocalNetworkGatewaysListNextResponse = LocalNetworkGatewayListResult
 };
 
 // @public
+export interface LocalNetworkGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LocalNetworkGatewaysListResponse = LocalNetworkGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LocalNetworkGatewayListResult;
     };
 };
+
+// @public
+export interface LocalNetworkGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LocalNetworkGatewaysUpdateTagsResponse = LocalNetworkGateway & {
@@ -6158,12 +7147,18 @@ export interface NatGatewayListResult {
 
 // @public
 export interface NatGateways {
-    createOrUpdate(resourceGroupName: string, natGatewayName: string, parameters: NatGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NatGatewaysCreateOrUpdateResponse>, NatGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, natGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, natGatewayName: string, parameters: NatGateway, options?: NatGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NatGatewaysCreateOrUpdateResponse>, NatGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, natGatewayName: string, options?: NatGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, natGatewayName: string, options?: NatGatewaysGetOptionalParams): Promise<NatGatewaysGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NatGateway>;
-    updateTags(resourceGroupName: string, natGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NatGatewaysUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: NatGatewaysListOptionalParams): PagedAsyncIterableIterator<NatGateway>;
+    listAll(options?: NatGatewaysListAllOptionalParams): PagedAsyncIterableIterator<NatGateway>;
+    updateTags(resourceGroupName: string, natGatewayName: string, parameters: TagsObject, options?: NatGatewaysUpdateTagsOptionalParams): Promise<NatGatewaysUpdateTagsResponse>;
+}
+
+// @public
+export interface NatGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6171,9 +7166,14 @@ export type NatGatewaysCreateOrUpdateResponse = NatGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NatGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NatGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface NatGatewaysGetOptionalParams extends coreHttp.OperationOptions {
@@ -6197,12 +7197,20 @@ export interface NatGatewaySku {
 export type NatGatewaySkuName = string;
 
 // @public
+export interface NatGatewaysListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NatGatewaysListAllNextResponse = NatGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NatGatewayListResult;
     };
 };
+
+// @public
+export interface NatGatewaysListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NatGatewaysListAllResponse = NatGatewayListResult & {
@@ -6213,6 +7221,10 @@ export type NatGatewaysListAllResponse = NatGatewayListResult & {
 };
 
 // @public
+export interface NatGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NatGatewaysListNextResponse = NatGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6221,12 +7233,20 @@ export type NatGatewaysListNextResponse = NatGatewayListResult & {
 };
 
 // @public
+export interface NatGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NatGatewaysListResponse = NatGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NatGatewayListResult;
     };
 };
+
+// @public
+export interface NatGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NatGatewaysUpdateTagsResponse = NatGateway & {
@@ -6352,8 +7372,12 @@ export interface NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties 
 
 // @public
 export interface NetworkInterfaceIPConfigurations {
-    get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: coreHttp.OperationOptions): Promise<NetworkInterfaceIPConfigurationsGetResponse>;
-    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
+    get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: NetworkInterfaceIPConfigurationsGetOptionalParams): Promise<NetworkInterfaceIPConfigurationsGetResponse>;
+    list(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfaceIPConfigurationsListOptionalParams): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
+}
+
+// @public
+export interface NetworkInterfaceIPConfigurationsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6365,12 +7389,20 @@ export type NetworkInterfaceIPConfigurationsGetResponse = NetworkInterfaceIPConf
 };
 
 // @public
+export interface NetworkInterfaceIPConfigurationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfaceIPConfigurationsListNextResponse = NetworkInterfaceIPConfigurationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceIPConfigurationListResult;
     };
 };
+
+// @public
+export interface NetworkInterfaceIPConfigurationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfaceIPConfigurationsListResponse = NetworkInterfaceIPConfigurationListResult & {
@@ -6394,7 +7426,11 @@ export interface NetworkInterfaceLoadBalancerListResult {
 
 // @public
 export interface NetworkInterfaceLoadBalancers {
-    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<LoadBalancer>;
+    list(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfaceLoadBalancersListOptionalParams): PagedAsyncIterableIterator<LoadBalancer>;
+}
+
+// @public
+export interface NetworkInterfaceLoadBalancersListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6406,6 +7442,10 @@ export type NetworkInterfaceLoadBalancersListNextResponse = NetworkInterfaceLoad
 };
 
 // @public
+export interface NetworkInterfaceLoadBalancersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBalancerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6415,19 +7455,25 @@ export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBala
 
 // @public
 export interface NetworkInterfaces {
-    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: NetworkInterface, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesCreateOrUpdateResponse>, NetworkInterfacesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: NetworkInterface, options?: NetworkInterfacesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NetworkInterfacesCreateOrUpdateResponse>, NetworkInterfacesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesGetOptionalParams): Promise<NetworkInterfacesGetResponse>;
-    getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>, NetworkInterfacesGetEffectiveRouteTableResponse>>;
+    getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams): Promise<PollerLike<PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>, NetworkInterfacesGetEffectiveRouteTableResponse>>;
     getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse>;
     getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
-    listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>, NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>>;
+    list(resourceGroupName: string, options?: NetworkInterfacesListOptionalParams): PagedAsyncIterableIterator<NetworkInterface>;
+    listAll(options?: NetworkInterfacesListAllOptionalParams): PagedAsyncIterableIterator<NetworkInterface>;
+    listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams): Promise<PollerLike<PollOperationState<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>, NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>>;
     listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
-    listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
-    listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterface>;
-    updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkInterfacesUpdateTagsResponse>;
+    listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams): PagedAsyncIterableIterator<NetworkInterface>;
+    listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams): PagedAsyncIterableIterator<NetworkInterface>;
+    updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: TagsObject, options?: NetworkInterfacesUpdateTagsOptionalParams): Promise<NetworkInterfacesUpdateTagsResponse>;
+}
+
+// @public
+export interface NetworkInterfacesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6435,16 +7481,26 @@ export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterface;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkInterfacesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface NetworkInterfacesGetEffectiveRouteTableOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EffectiveRouteListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6488,12 +7544,20 @@ export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse =
 };
 
 // @public
+export interface NetworkInterfacesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfacesListAllNextResponse = NetworkInterfaceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceListResult;
     };
 };
+
+// @public
+export interface NetworkInterfacesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult & {
@@ -6504,13 +7568,22 @@ export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult & {
 };
 
 // @public
+export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = EffectiveNetworkSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EffectiveNetworkSecurityGroupListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkInterfacesListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult & {
@@ -6519,6 +7592,10 @@ export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult & {
         parsedBody: NetworkInterfaceListResult;
     };
 };
+
+// @public
+export interface NetworkInterfacesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfacesListResponse = NetworkInterfaceListResult & {
@@ -6555,12 +7632,20 @@ export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse 
 };
 
 // @public
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = NetworkInterfaceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceListResult;
     };
 };
+
+// @public
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = NetworkInterfaceListResult & {
@@ -6571,6 +7656,10 @@ export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse
 };
 
 // @public
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = NetworkInterfaceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6579,12 +7668,20 @@ export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextRe
 };
 
 // @public
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = NetworkInterfaceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceListResult;
     };
 };
+
+// @public
+export interface NetworkInterfacesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfacesUpdateTagsResponse = NetworkInterface & {
@@ -6611,10 +7708,16 @@ export interface NetworkInterfaceTapConfigurationListResult {
 
 // @public
 export interface NetworkInterfaceTapConfigurations {
-    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, tapConfigurationParameters: NetworkInterfaceTapConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>, NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: coreHttp.OperationOptions): Promise<NetworkInterfaceTapConfigurationsGetResponse>;
-    list(resourceGroupName: string, networkInterfaceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration>;
+    createOrUpdate(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, tapConfigurationParameters: NetworkInterfaceTapConfiguration, options?: NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>, NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: NetworkInterfaceTapConfigurationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkInterfaceName: string, tapConfigurationName: string, options?: NetworkInterfaceTapConfigurationsGetOptionalParams): Promise<NetworkInterfaceTapConfigurationsGetResponse>;
+    list(resourceGroupName: string, networkInterfaceName: string, options?: NetworkInterfaceTapConfigurationsListOptionalParams): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration>;
+}
+
+// @public
+export interface NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6622,9 +7725,18 @@ export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInt
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceTapConfiguration;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkInterfaceTapConfigurationsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface NetworkInterfaceTapConfigurationsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfaceTapConfigurationsGetResponse = NetworkInterfaceTapConfiguration & {
@@ -6635,12 +7747,20 @@ export type NetworkInterfaceTapConfigurationsGetResponse = NetworkInterfaceTapCo
 };
 
 // @public
+export interface NetworkInterfaceTapConfigurationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkInterfaceTapConfigurationsListNextResponse = NetworkInterfaceTapConfigurationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkInterfaceTapConfigurationListResult;
     };
 };
+
+// @public
+export interface NetworkInterfaceTapConfigurationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapConfigurationListResult & {
@@ -6675,7 +7795,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHosts: BastionHosts;
     // (undocumented)
     bgpServiceCommunities: BgpServiceCommunities;
-    checkDnsNameAvailability(location: string, domainNameLabel: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse>;
+    checkDnsNameAvailability(location: string, domainNameLabel: string, options?: NetworkManagementClientCheckDnsNameAvailabilityOptionalParams): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse>;
     // (undocumented)
     connectionMonitors: ConnectionMonitors;
     // (undocumented)
@@ -6684,7 +7804,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     ddosProtectionPlans: DdosProtectionPlans;
     // (undocumented)
     defaultSecurityRules: DefaultSecurityRules;
-    deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     // (undocumented)
     expressRouteCircuitAuthorizations: ExpressRouteCircuitAuthorizations;
     // (undocumented)
@@ -6715,7 +7835,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     firewallPolicyRuleGroups: FirewallPolicyRuleGroups;
     // (undocumented)
     flowLogs: FlowLogs;
-    generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
+    generatevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams): Promise<PollerLike<PollOperationState<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
     // (undocumented)
     hubRouteTables: HubRouteTables;
     // (undocumented)
@@ -6726,10 +7846,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     ipAllocations: IpAllocations;
     // (undocumented)
     ipGroups: IpGroups;
-    listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionActiveSession>;
-    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
-    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionSessionState>;
-    listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BastionShareableLink>;
+    listActiveSessions(resourceGroupName: string, bastionHostName: string, options?: NetworkManagementClientGetActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionActiveSession>;
+    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientGetBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
+    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionSessionState>;
+    listPutBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientPutBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
     // (undocumented)
     loadBalancerBackendAddressPools: LoadBalancerBackendAddressPools;
     // (undocumented)
@@ -6806,7 +7926,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     serviceTags: ServiceTags;
     // (undocumented)
     subnets: Subnets;
-    supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<NetworkManagementClientSupportedSecurityProvidersResponse>;
+    supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: NetworkManagementClientSupportedSecurityProvidersOptionalParams): Promise<NetworkManagementClientSupportedSecurityProvidersResponse>;
     // (undocumented)
     usages: Usages;
     // (undocumented)
@@ -6852,6 +7972,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
 }
 
 // @public
+export interface NetworkManagementClientCheckDnsNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkManagementClientCheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6869,12 +7993,26 @@ export class NetworkManagementClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
+export interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface NetworkManagementClientDisconnectActiveSessionsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkManagementClientDisconnectActiveSessionsNextResponse = BastionSessionDeleteResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionSessionDeleteResult;
     };
 };
+
+// @public
+export interface NetworkManagementClientDisconnectActiveSessionsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSessionDeleteResult & {
@@ -6885,13 +8023,22 @@ export type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSes
 };
 
 // @public
+export interface NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnProfileResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkManagementClientGetActiveSessionsNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkManagementClientGetActiveSessionsNextResponse = BastionActiveSessionListResult & {
@@ -6902,13 +8049,22 @@ export type NetworkManagementClientGetActiveSessionsNextResponse = BastionActive
 };
 
 // @public
+export interface NetworkManagementClientGetActiveSessionsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSessionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionActiveSessionListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkManagementClientGetBastionShareableLinkNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkManagementClientGetBastionShareableLinkNextResponse = BastionShareableLinkListResult & {
@@ -6917,6 +8073,10 @@ export type NetworkManagementClientGetBastionShareableLinkNextResponse = Bastion
         parsedBody: BastionShareableLinkListResult;
     };
 };
+
+// @public
+export interface NetworkManagementClientGetBastionShareableLinkOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkManagementClientGetBastionShareableLinkResponse = BastionShareableLinkListResult & {
@@ -6933,6 +8093,10 @@ export interface NetworkManagementClientOptionalParams extends coreHttp.ServiceC
 }
 
 // @public
+export interface NetworkManagementClientPutBastionShareableLinkNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkManagementClientPutBastionShareableLinkNextResponse = BastionShareableLinkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6941,13 +8105,22 @@ export type NetworkManagementClientPutBastionShareableLinkNextResponse = Bastion
 };
 
 // @public
+export interface NetworkManagementClientPutBastionShareableLinkOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShareableLinkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BastionShareableLinkListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkManagementClientSupportedSecurityProvidersOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualWanSecurityProviders & {
@@ -6977,12 +8150,16 @@ export interface NetworkProfileListResult {
 
 // @public
 export interface NetworkProfiles {
-    createOrUpdate(resourceGroupName: string, networkProfileName: string, parameters: NetworkProfile, options?: coreHttp.OperationOptions): Promise<NetworkProfilesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, networkProfileName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkProfileName: string, parameters: NetworkProfile, options?: NetworkProfilesCreateOrUpdateOptionalParams): Promise<NetworkProfilesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, networkProfileName: string, options?: NetworkProfilesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkProfileName: string, options?: NetworkProfilesGetOptionalParams): Promise<NetworkProfilesGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkProfile>;
-    updateTags(resourceGroupName: string, networkProfileName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkProfilesUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: NetworkProfilesListOptionalParams): PagedAsyncIterableIterator<NetworkProfile>;
+    listAll(options?: NetworkProfilesListAllOptionalParams): PagedAsyncIterableIterator<NetworkProfile>;
+    updateTags(resourceGroupName: string, networkProfileName: string, parameters: TagsObject, options?: NetworkProfilesUpdateTagsOptionalParams): Promise<NetworkProfilesUpdateTagsResponse>;
+}
+
+// @public
+export interface NetworkProfilesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6992,6 +8169,12 @@ export type NetworkProfilesCreateOrUpdateResponse = NetworkProfile & {
         parsedBody: NetworkProfile;
     };
 };
+
+// @public
+export interface NetworkProfilesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface NetworkProfilesGetOptionalParams extends coreHttp.OperationOptions {
@@ -7007,12 +8190,20 @@ export type NetworkProfilesGetResponse = NetworkProfile & {
 };
 
 // @public
+export interface NetworkProfilesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkProfilesListAllNextResponse = NetworkProfileListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkProfileListResult;
     };
 };
+
+// @public
+export interface NetworkProfilesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkProfilesListAllResponse = NetworkProfileListResult & {
@@ -7023,6 +8214,10 @@ export type NetworkProfilesListAllResponse = NetworkProfileListResult & {
 };
 
 // @public
+export interface NetworkProfilesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkProfilesListNextResponse = NetworkProfileListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7031,12 +8226,20 @@ export type NetworkProfilesListNextResponse = NetworkProfileListResult & {
 };
 
 // @public
+export interface NetworkProfilesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkProfilesListResponse = NetworkProfileListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkProfileListResult;
     };
 };
+
+// @public
+export interface NetworkProfilesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkProfilesUpdateTagsResponse = NetworkProfile & {
@@ -7083,12 +8286,18 @@ export interface NetworkSecurityGroupResult {
 
 // @public
 export interface NetworkSecurityGroups {
-    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: NetworkSecurityGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>, NetworkSecurityGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: NetworkSecurityGroup, options?: NetworkSecurityGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>, NetworkSecurityGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, options?: NetworkSecurityGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkSecurityGroupName: string, options?: NetworkSecurityGroupsGetOptionalParams): Promise<NetworkSecurityGroupsGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkSecurityGroup>;
-    updateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkSecurityGroupsUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: NetworkSecurityGroupsListOptionalParams): PagedAsyncIterableIterator<NetworkSecurityGroup>;
+    listAll(options?: NetworkSecurityGroupsListAllOptionalParams): PagedAsyncIterableIterator<NetworkSecurityGroup>;
+    updateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: TagsObject, options?: NetworkSecurityGroupsUpdateTagsOptionalParams): Promise<NetworkSecurityGroupsUpdateTagsResponse>;
+}
+
+// @public
+export interface NetworkSecurityGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7096,9 +8305,14 @@ export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkSecurityGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkSecurityGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface NetworkSecurityGroupsGetOptionalParams extends coreHttp.OperationOptions {
@@ -7114,12 +8328,20 @@ export type NetworkSecurityGroupsGetResponse = NetworkSecurityGroup & {
 };
 
 // @public
+export interface NetworkSecurityGroupsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkSecurityGroupsListAllNextResponse = NetworkSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkSecurityGroupListResult;
     };
 };
+
+// @public
+export interface NetworkSecurityGroupsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkSecurityGroupsListAllResponse = NetworkSecurityGroupListResult & {
@@ -7130,6 +8352,10 @@ export type NetworkSecurityGroupsListAllResponse = NetworkSecurityGroupListResul
 };
 
 // @public
+export interface NetworkSecurityGroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkSecurityGroupsListNextResponse = NetworkSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7138,12 +8364,20 @@ export type NetworkSecurityGroupsListNextResponse = NetworkSecurityGroupListResu
 };
 
 // @public
+export interface NetworkSecurityGroupsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkSecurityGroupsListResponse = NetworkSecurityGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkSecurityGroupListResult;
     };
 };
+
+// @public
+export interface NetworkSecurityGroupsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkSecurityGroupsUpdateTagsResponse = NetworkSecurityGroup & {
@@ -7184,12 +8418,18 @@ export interface NetworkVirtualApplianceListResult {
 
 // @public
 export interface NetworkVirtualAppliances {
-    createOrUpdate(resourceGroupName: string, networkVirtualApplianceName: string, parameters: NetworkVirtualAppliance, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>, NetworkVirtualAppliancesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkVirtualApplianceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, networkVirtualApplianceName: string, parameters: NetworkVirtualAppliance, options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>, NetworkVirtualAppliancesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkVirtualApplianceName: string, options?: NetworkVirtualAppliancesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, networkVirtualApplianceName: string, options?: NetworkVirtualAppliancesGetOptionalParams): Promise<NetworkVirtualAppliancesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
-    updateTags(resourceGroupName: string, networkVirtualApplianceName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkVirtualAppliancesUpdateTagsResponse>;
+    list(options?: NetworkVirtualAppliancesListOptionalParams): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
+    listByResourceGroup(resourceGroupName: string, options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
+    updateTags(resourceGroupName: string, networkVirtualApplianceName: string, parameters: TagsObject, options?: NetworkVirtualAppliancesUpdateTagsOptionalParams): Promise<NetworkVirtualAppliancesUpdateTagsResponse>;
+}
+
+// @public
+export interface NetworkVirtualAppliancesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7197,9 +8437,14 @@ export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppli
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkVirtualAppliance;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkVirtualAppliancesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface NetworkVirtualAppliancesGetOptionalParams extends coreHttp.OperationOptions {
@@ -7215,12 +8460,20 @@ export type NetworkVirtualAppliancesGetResponse = NetworkVirtualAppliance & {
 };
 
 // @public
+export interface NetworkVirtualAppliancesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkVirtualAppliancesListByResourceGroupNextResponse = NetworkVirtualApplianceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkVirtualApplianceListResult;
     };
 };
+
+// @public
+export interface NetworkVirtualAppliancesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkVirtualAppliancesListByResourceGroupResponse = NetworkVirtualApplianceListResult & {
@@ -7231,6 +8484,10 @@ export type NetworkVirtualAppliancesListByResourceGroupResponse = NetworkVirtual
 };
 
 // @public
+export interface NetworkVirtualAppliancesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkVirtualAppliancesListNextResponse = NetworkVirtualApplianceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7239,12 +8496,20 @@ export type NetworkVirtualAppliancesListNextResponse = NetworkVirtualApplianceLi
 };
 
 // @public
+export interface NetworkVirtualAppliancesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkVirtualAppliancesListResponse = NetworkVirtualApplianceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkVirtualApplianceListResult;
     };
 };
+
+// @public
+export interface NetworkVirtualAppliancesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkVirtualAppliancesUpdateTagsResponse = NetworkVirtualAppliance & {
@@ -7267,24 +8532,30 @@ export interface NetworkWatcherListResult {
 
 // @public
 export interface NetworkWatchers {
-    checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: ConnectivityParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersCheckConnectivityResponse>, NetworkWatchersCheckConnectivityResponse>>;
-    createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: NetworkWatcher, options?: coreHttp.OperationOptions): Promise<NetworkWatchersCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetResponse>;
-    getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: AzureReachabilityReportParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>, NetworkWatchersGetAzureReachabilityReportResponse>>;
-    getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogStatusParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetFlowLogStatusResponse>, NetworkWatchersGetFlowLogStatusResponse>>;
-    getNetworkConfigurationDiagnostic(resourceGroupName: string, networkWatcherName: string, parameters: NetworkConfigurationDiagnosticParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>, NetworkWatchersGetNetworkConfigurationDiagnosticResponse>>;
-    getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: NextHopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetNextHopResponse>, NetworkWatchersGetNextHopResponse>>;
-    getTopology(resourceGroupName: string, networkWatcherName: string, parameters: TopologyParameters, options?: coreHttp.OperationOptions): Promise<NetworkWatchersGetTopologyResponse>;
-    getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: TroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResponse>, NetworkWatchersGetTroubleshootingResponse>>;
-    getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: QueryTroubleshootingParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>, NetworkWatchersGetTroubleshootingResultResponse>>;
-    getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: SecurityGroupViewParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>, NetworkWatchersGetVMSecurityRulesResponse>>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<NetworkWatcher>;
-    listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: AvailableProvidersListParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersListAvailableProvidersResponse>, NetworkWatchersListAvailableProvidersResponse>>;
-    setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogInformation, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>, NetworkWatchersSetFlowLogConfigurationResponse>>;
-    updateTags(resourceGroupName: string, networkWatcherName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<NetworkWatchersUpdateTagsResponse>;
-    verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: VerificationIPFlowParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<NetworkWatchersVerifyIPFlowResponse>, NetworkWatchersVerifyIPFlowResponse>>;
+    checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: ConnectivityParameters, options?: NetworkWatchersCheckConnectivityOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersCheckConnectivityResponse>, NetworkWatchersCheckConnectivityResponse>>;
+    createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: NetworkWatcher, options?: NetworkWatchersCreateOrUpdateOptionalParams): Promise<NetworkWatchersCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, networkWatcherName: string, options?: NetworkWatchersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, options?: NetworkWatchersGetOptionalParams): Promise<NetworkWatchersGetResponse>;
+    getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: AzureReachabilityReportParameters, options?: NetworkWatchersGetAzureReachabilityReportOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>, NetworkWatchersGetAzureReachabilityReportResponse>>;
+    getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogStatusParameters, options?: NetworkWatchersGetFlowLogStatusOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetFlowLogStatusResponse>, NetworkWatchersGetFlowLogStatusResponse>>;
+    getNetworkConfigurationDiagnostic(resourceGroupName: string, networkWatcherName: string, parameters: NetworkConfigurationDiagnosticParameters, options?: NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetNetworkConfigurationDiagnosticResponse>, NetworkWatchersGetNetworkConfigurationDiagnosticResponse>>;
+    getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: NextHopParameters, options?: NetworkWatchersGetNextHopOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetNextHopResponse>, NetworkWatchersGetNextHopResponse>>;
+    getTopology(resourceGroupName: string, networkWatcherName: string, parameters: TopologyParameters, options?: NetworkWatchersGetTopologyOptionalParams): Promise<NetworkWatchersGetTopologyResponse>;
+    getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: TroubleshootingParameters, options?: NetworkWatchersGetTroubleshootingOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResponse>, NetworkWatchersGetTroubleshootingResponse>>;
+    getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: QueryTroubleshootingParameters, options?: NetworkWatchersGetTroubleshootingResultOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>, NetworkWatchersGetTroubleshootingResultResponse>>;
+    getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: SecurityGroupViewParameters, options?: NetworkWatchersGetVMSecurityRulesOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>, NetworkWatchersGetVMSecurityRulesResponse>>;
+    list(resourceGroupName: string, options?: NetworkWatchersListOptionalParams): PagedAsyncIterableIterator<NetworkWatcher>;
+    listAll(options?: NetworkWatchersListAllOptionalParams): PagedAsyncIterableIterator<NetworkWatcher>;
+    listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: AvailableProvidersListParameters, options?: NetworkWatchersListAvailableProvidersOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersListAvailableProvidersResponse>, NetworkWatchersListAvailableProvidersResponse>>;
+    setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: FlowLogInformation, options?: NetworkWatchersSetFlowLogConfigurationOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>, NetworkWatchersSetFlowLogConfigurationResponse>>;
+    updateTags(resourceGroupName: string, networkWatcherName: string, parameters: TagsObject, options?: NetworkWatchersUpdateTagsOptionalParams): Promise<NetworkWatchersUpdateTagsResponse>;
+    verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: VerificationIPFlowParameters, options?: NetworkWatchersVerifyIPFlowOptionalParams): Promise<PollerLike<PollOperationState<NetworkWatchersVerifyIPFlowResponse>, NetworkWatchersVerifyIPFlowResponse>>;
+}
+
+// @public
+export interface NetworkWatchersCheckConnectivityOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7292,9 +8563,12 @@ export type NetworkWatchersCheckConnectivityResponse = ConnectivityInformation &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectivityInformation;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkWatchersCreateOrUpdateResponse = NetworkWatcher & {
@@ -7305,40 +8579,70 @@ export type NetworkWatchersCreateOrUpdateResponse = NetworkWatcher & {
 };
 
 // @public
+export interface NetworkWatchersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface NetworkWatchersGetAzureReachabilityReportOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkWatchersGetAzureReachabilityReportResponse = AzureReachabilityReport & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AzureReachabilityReport;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetFlowLogStatusOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkWatchersGetFlowLogStatusResponse = FlowLogInformation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLogInformation;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkWatchersGetNetworkConfigurationDiagnosticResponse = NetworkConfigurationDiagnosticResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NetworkConfigurationDiagnosticResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetNextHopOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkWatchersGetNextHopResponse = NextHopResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: NextHopResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkWatchersGetResponse = NetworkWatcher & {
@@ -7349,6 +8653,10 @@ export type NetworkWatchersGetResponse = NetworkWatcher & {
 };
 
 // @public
+export interface NetworkWatchersGetTopologyOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type NetworkWatchersGetTopologyResponse = Topology & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7357,31 +8665,50 @@ export type NetworkWatchersGetTopologyResponse = Topology & {
 };
 
 // @public
+export interface NetworkWatchersGetTroubleshootingOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkWatchersGetTroubleshootingResponse = TroubleshootingResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: TroubleshootingResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetTroubleshootingResultOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkWatchersGetTroubleshootingResultResponse = TroubleshootingResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: TroubleshootingResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersGetVMSecurityRulesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type NetworkWatchersGetVMSecurityRulesResponse = SecurityGroupViewResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityGroupViewResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkWatchersListAllResponse = NetworkWatcherListResult & {
@@ -7392,13 +8719,22 @@ export type NetworkWatchersListAllResponse = NetworkWatcherListResult & {
 };
 
 // @public
+export interface NetworkWatchersListAvailableProvidersOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkWatchersListAvailableProvidersResponse = AvailableProvidersList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AvailableProvidersList;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkWatchersListResponse = NetworkWatcherListResult & {
@@ -7409,13 +8745,22 @@ export type NetworkWatchersListResponse = NetworkWatcherListResult & {
 };
 
 // @public
+export interface NetworkWatchersSetFlowLogConfigurationOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkWatchersSetFlowLogConfigurationResponse = FlowLogInformation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FlowLogInformation;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface NetworkWatchersUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type NetworkWatchersUpdateTagsResponse = NetworkWatcher & {
@@ -7426,11 +8771,16 @@ export type NetworkWatchersUpdateTagsResponse = NetworkWatcher & {
 };
 
 // @public
+export interface NetworkWatchersVerifyIPFlowOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type NetworkWatchersVerifyIPFlowResponse = VerificationIPFlowResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VerificationIPFlowResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7485,7 +8835,11 @@ export interface OperationPropertiesFormatServiceSpecification {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7495,6 +8849,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -7575,16 +8933,22 @@ export type P2SVpnGateway = Resource & {
 
 // @public
 export interface P2SVpnGateways {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: P2SVpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>, P2SVpnGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    disconnectP2SVpnConnections(resourceGroupName: string, p2SVpnGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generateVpnProfile(resourceGroupName: string, gatewayName: string, parameters: P2SVpnProfileParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>, P2SVpnGatewaysGenerateVpnProfileResponse>>;
-    get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysGetResponse>;
-    getP2SVpnConnectionHealth(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
-    getP2SVpnConnectionHealthDetailed(resourceGroupName: string, gatewayName: string, request: P2SVpnConnectionHealthRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<P2SVpnGateway>;
-    updateTags(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<P2SVpnGatewaysUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: P2SVpnGateway, options?: P2SVpnGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>, P2SVpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: P2SVpnGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    disconnectP2SVpnConnections(resourceGroupName: string, p2SVpnGatewayName: string, request: P2SVpnConnectionRequest, options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generateVpnProfile(resourceGroupName: string, gatewayName: string, parameters: P2SVpnProfileParameters, options?: P2SVpnGatewaysGenerateVpnProfileOptionalParams): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>, P2SVpnGatewaysGenerateVpnProfileResponse>>;
+    get(resourceGroupName: string, gatewayName: string, options?: P2SVpnGatewaysGetOptionalParams): Promise<P2SVpnGatewaysGetResponse>;
+    getP2SVpnConnectionHealth(resourceGroupName: string, gatewayName: string, options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>>;
+    getP2SVpnConnectionHealthDetailed(resourceGroupName: string, gatewayName: string, request: P2SVpnConnectionHealthRequest, options?: P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams): Promise<PollerLike<PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>, P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse>>;
+    list(options?: P2SVpnGatewaysListOptionalParams): PagedAsyncIterableIterator<P2SVpnGateway>;
+    listByResourceGroup(resourceGroupName: string, options?: P2SVpnGatewaysListByResourceGroupOptionalParams): PagedAsyncIterableIterator<P2SVpnGateway>;
+    updateTags(resourceGroupName: string, gatewayName: string, p2SVpnGatewayParameters: TagsObject, options?: P2SVpnGatewaysUpdateTagsOptionalParams): Promise<P2SVpnGatewaysUpdateTagsResponse>;
+}
+
+// @public
+export interface P2SVpnGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7592,34 +8956,64 @@ export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface P2SVpnGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface P2SVpnGatewaysGenerateVpnProfileOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type P2SVpnGatewaysGenerateVpnProfileResponse = VpnProfileResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnProfileResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface P2SVpnGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse = P2SVpnConnectionHealth & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnConnectionHealth;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type P2SVpnGatewaysGetP2SVpnConnectionHealthResponse = P2SVpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: P2SVpnGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7632,12 +9026,20 @@ export type P2SVpnGatewaysGetResponse = P2SVpnGateway & {
 };
 
 // @public
+export interface P2SVpnGatewaysListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type P2SVpnGatewaysListByResourceGroupNextResponse = ListP2SVpnGatewaysResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListP2SVpnGatewaysResult;
     };
 };
+
+// @public
+export interface P2SVpnGatewaysListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type P2SVpnGatewaysListByResourceGroupResponse = ListP2SVpnGatewaysResult & {
@@ -7648,6 +9050,10 @@ export type P2SVpnGatewaysListByResourceGroupResponse = ListP2SVpnGatewaysResult
 };
 
 // @public
+export interface P2SVpnGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type P2SVpnGatewaysListNextResponse = ListP2SVpnGatewaysResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7656,12 +9062,20 @@ export type P2SVpnGatewaysListNextResponse = ListP2SVpnGatewaysResult & {
 };
 
 // @public
+export interface P2SVpnGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type P2SVpnGatewaysListResponse = ListP2SVpnGatewaysResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListP2SVpnGatewaysResult;
     };
 };
+
+// @public
+export interface P2SVpnGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type P2SVpnGatewaysUpdateTagsResponse = P2SVpnGateway & {
@@ -7741,12 +9155,18 @@ export type PacketCaptureResultProperties = PacketCaptureParameters & {
 
 // @public
 export interface PacketCaptures {
-    create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: PacketCapture, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PacketCapturesCreateResponse>, PacketCapturesCreateResponse>>;
-    delete(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PacketCapturesGetResponse>;
-    getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PacketCapturesGetStatusResponse>, PacketCapturesGetStatusResponse>>;
-    list(resourceGroupName: string, networkWatcherName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PacketCaptureResult>;
-    stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: PacketCapture, options?: PacketCapturesCreateOptionalParams): Promise<PollerLike<PollOperationState<PacketCapturesCreateResponse>, PacketCapturesCreateResponse>>;
+    delete(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: PacketCapturesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: PacketCapturesGetOptionalParams): Promise<PacketCapturesGetResponse>;
+    getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: PacketCapturesGetStatusOptionalParams): Promise<PollerLike<PollOperationState<PacketCapturesGetStatusResponse>, PacketCapturesGetStatusResponse>>;
+    list(resourceGroupName: string, networkWatcherName: string, options?: PacketCapturesListOptionalParams): PagedAsyncIterableIterator<PacketCaptureResult>;
+    stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: PacketCapturesStopOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface PacketCapturesCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7754,9 +9174,18 @@ export type PacketCapturesCreateResponse = PacketCaptureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PacketCaptureResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PacketCapturesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface PacketCapturesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PacketCapturesGetResponse = PacketCaptureResult & {
@@ -7767,13 +9196,22 @@ export type PacketCapturesGetResponse = PacketCaptureResult & {
 };
 
 // @public
+export interface PacketCapturesGetStatusOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type PacketCapturesGetStatusResponse = PacketCaptureQueryStatusResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PacketCaptureQueryStatusResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PacketCapturesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PacketCapturesListResponse = PacketCaptureListResult & {
@@ -7782,6 +9220,12 @@ export type PacketCapturesListResponse = PacketCaptureListResult & {
         parsedBody: PacketCaptureListResult;
     };
 };
+
+// @public
+export interface PacketCapturesStopOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface PacketCaptureStorageLocation {
@@ -7845,8 +9289,12 @@ export interface PeerExpressRouteCircuitConnectionListResult {
 
 // @public
 export interface PeerExpressRouteCircuitConnections {
-    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
-    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PeerExpressRouteCircuitConnection>;
+    get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: PeerExpressRouteCircuitConnectionsGetOptionalParams): Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
+    list(resourceGroupName: string, circuitName: string, peeringName: string, options?: PeerExpressRouteCircuitConnectionsListOptionalParams): PagedAsyncIterableIterator<PeerExpressRouteCircuitConnection>;
+}
+
+// @public
+export interface PeerExpressRouteCircuitConnectionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7858,12 +9306,20 @@ export type PeerExpressRouteCircuitConnectionsGetResponse = PeerExpressRouteCirc
 };
 
 // @public
+export interface PeerExpressRouteCircuitConnectionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PeerExpressRouteCircuitConnectionsListNextResponse = PeerExpressRouteCircuitConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PeerExpressRouteCircuitConnectionListResult;
     };
 };
+
+// @public
+export interface PeerExpressRouteCircuitConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PeerExpressRouteCircuitConnectionsListResponse = PeerExpressRouteCircuitConnectionListResult & {
@@ -7917,10 +9373,16 @@ export interface PrivateDnsZoneGroupListResult {
 
 // @public
 export interface PrivateDnsZoneGroups {
-    createOrUpdate(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, parameters: PrivateDnsZoneGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>, PrivateDnsZoneGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: coreHttp.OperationOptions): Promise<PrivateDnsZoneGroupsGetResponse>;
-    list(privateEndpointName: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateDnsZoneGroup>;
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, parameters: PrivateDnsZoneGroup, options?: PrivateDnsZoneGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>, PrivateDnsZoneGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: PrivateDnsZoneGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, privateEndpointName: string, privateDnsZoneGroupName: string, options?: PrivateDnsZoneGroupsGetOptionalParams): Promise<PrivateDnsZoneGroupsGetResponse>;
+    list(privateEndpointName: string, resourceGroupName: string, options?: PrivateDnsZoneGroupsListOptionalParams): PagedAsyncIterableIterator<PrivateDnsZoneGroup>;
+}
+
+// @public
+export interface PrivateDnsZoneGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7928,9 +9390,18 @@ export type PrivateDnsZoneGroupsCreateOrUpdateResponse = PrivateDnsZoneGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateDnsZoneGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PrivateDnsZoneGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface PrivateDnsZoneGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateDnsZoneGroupsGetResponse = PrivateDnsZoneGroup & {
@@ -7941,12 +9412,20 @@ export type PrivateDnsZoneGroupsGetResponse = PrivateDnsZoneGroup & {
 };
 
 // @public
+export interface PrivateDnsZoneGroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateDnsZoneGroupsListNextResponse = PrivateDnsZoneGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateDnsZoneGroupListResult;
     };
 };
+
+// @public
+export interface PrivateDnsZoneGroupsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateDnsZoneGroupsListResponse = PrivateDnsZoneGroupListResult & {
@@ -7992,11 +9471,17 @@ export interface PrivateEndpointListResult {
 
 // @public
 export interface PrivateEndpoints {
-    createOrUpdate(resourceGroupName: string, privateEndpointName: string, parameters: PrivateEndpoint, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateEndpointsCreateOrUpdateResponse>, PrivateEndpointsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, privateEndpointName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, privateEndpointName: string, parameters: PrivateEndpoint, options?: PrivateEndpointsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointsCreateOrUpdateResponse>, PrivateEndpointsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, privateEndpointName: string, options?: PrivateEndpointsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, privateEndpointName: string, options?: PrivateEndpointsGetOptionalParams): Promise<PrivateEndpointsGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpoint>;
+    list(resourceGroupName: string, options?: PrivateEndpointsListOptionalParams): PagedAsyncIterableIterator<PrivateEndpoint>;
+    listBySubscription(options?: PrivateEndpointsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<PrivateEndpoint>;
+}
+
+// @public
+export interface PrivateEndpointsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8004,9 +9489,14 @@ export type PrivateEndpointsCreateOrUpdateResponse = PrivateEndpoint & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpoint;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PrivateEndpointsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface PrivateEndpointsGetOptionalParams extends coreHttp.OperationOptions {
@@ -8022,12 +9512,20 @@ export type PrivateEndpointsGetResponse = PrivateEndpoint & {
 };
 
 // @public
+export interface PrivateEndpointsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateEndpointsListBySubscriptionNextResponse = PrivateEndpointListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointListResult;
     };
 };
+
+// @public
+export interface PrivateEndpointsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateEndpointsListBySubscriptionResponse = PrivateEndpointListResult & {
@@ -8038,12 +9536,20 @@ export type PrivateEndpointsListBySubscriptionResponse = PrivateEndpointListResu
 };
 
 // @public
+export interface PrivateEndpointsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateEndpointsListNextResponse = PrivateEndpointListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointListResult;
     };
 };
+
+// @public
+export interface PrivateEndpointsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateEndpointsListResponse = PrivateEndpointListResult & {
@@ -8114,19 +9620,23 @@ export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
 
 // @public
 export interface PrivateLinkServices {
-    checkPrivateLinkServiceVisibility(location: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
-    checkPrivateLinkServiceVisibilityByResourceGroup(location: string, resourceGroupName: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse>;
-    createOrUpdate(resourceGroupName: string, serviceName: string, parameters: PrivateLinkService, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>, PrivateLinkServicesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deletePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    checkPrivateLinkServiceVisibility(location: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
+    checkPrivateLinkServiceVisibilityByResourceGroup(location: string, resourceGroupName: string, parameters: CheckPrivateLinkServiceVisibilityRequest, options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse>;
+    createOrUpdate(resourceGroupName: string, serviceName: string, parameters: PrivateLinkService, options?: PrivateLinkServicesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>, PrivateLinkServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceName: string, options?: PrivateLinkServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deletePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, serviceName: string, options?: PrivateLinkServicesGetOptionalParams): Promise<PrivateLinkServicesGetResponse>;
     getPrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, options?: PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams): Promise<PrivateLinkServicesGetPrivateEndpointConnectionResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkService>;
-    listAutoApprovedPrivateLinkServices(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
-    listAutoApprovedPrivateLinkServicesByResourceGroup(location: string, resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkService>;
-    listPrivateEndpointConnections(resourceGroupName: string, serviceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnection>;
-    updatePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, parameters: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse>;
+    list(resourceGroupName: string, options?: PrivateLinkServicesListOptionalParams): PagedAsyncIterableIterator<PrivateLinkService>;
+    listAutoApprovedPrivateLinkServices(location: string, options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
+    listAutoApprovedPrivateLinkServicesByResourceGroup(location: string, resourceGroupName: string, options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
+    listBySubscription(options?: PrivateLinkServicesListBySubscriptionOptionalParams): PagedAsyncIterableIterator<PrivateLinkService>;
+    listPrivateEndpointConnections(resourceGroupName: string, serviceName: string, options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+    updatePrivateEndpointConnection(resourceGroupName: string, serviceName: string, peConnectionName: string, parameters: PrivateEndpointConnection, options?: PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse>;
+}
+
+// @public
+export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -8138,6 +9648,10 @@ export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupR
 };
 
 // @public
+export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse = PrivateLinkServiceVisibility & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8146,13 +9660,30 @@ export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse = Priva
 };
 
 // @public
+export interface PrivateLinkServicesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type PrivateLinkServicesCreateOrUpdateResponse = PrivateLinkService & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateLinkService;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PrivateLinkServicesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface PrivateLinkServicesGetOptionalParams extends coreHttp.OperationOptions {
@@ -8181,12 +9712,20 @@ export type PrivateLinkServicesGetResponse = PrivateLinkService & {
 };
 
 // @public
+export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse = AutoApprovedPrivateLinkServicesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AutoApprovedPrivateLinkServicesResult;
     };
 };
+
+// @public
+export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse = AutoApprovedPrivateLinkServicesResult & {
@@ -8197,12 +9736,20 @@ export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGrou
 };
 
 // @public
+export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse = AutoApprovedPrivateLinkServicesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AutoApprovedPrivateLinkServicesResult;
     };
 };
+
+// @public
+export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse = AutoApprovedPrivateLinkServicesResult & {
@@ -8213,12 +9760,20 @@ export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse = Aut
 };
 
 // @public
+export interface PrivateLinkServicesListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesListBySubscriptionNextResponse = PrivateLinkServiceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateLinkServiceListResult;
     };
 };
+
+// @public
+export interface PrivateLinkServicesListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkServicesListBySubscriptionResponse = PrivateLinkServiceListResult & {
@@ -8229,6 +9784,10 @@ export type PrivateLinkServicesListBySubscriptionResponse = PrivateLinkServiceLi
 };
 
 // @public
+export interface PrivateLinkServicesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesListNextResponse = PrivateLinkServiceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8237,12 +9796,24 @@ export type PrivateLinkServicesListNextResponse = PrivateLinkServiceListResult &
 };
 
 // @public
+export interface PrivateLinkServicesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkServicesListPrivateEndpointConnectionsNextResponse = PrivateEndpointConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnectionListResult;
     };
 };
+
+// @public
+export interface PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkServicesListPrivateEndpointConnectionsResponse = PrivateEndpointConnectionListResult & {
@@ -8259,6 +9830,10 @@ export type PrivateLinkServicesListResponse = PrivateLinkServiceListResult & {
         parsedBody: PrivateLinkServiceListResult;
     };
 };
+
+// @public
+export interface PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkServicesUpdatePrivateEndpointConnectionResponse = PrivateEndpointConnection & {
@@ -8345,15 +9920,21 @@ export interface PublicIPAddressDnsSettings {
 
 // @public
 export interface PublicIPAddresses {
-    createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: PublicIPAddress, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PublicIPAddressesCreateOrUpdateResponse>, PublicIPAddressesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, publicIpAddressName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: PublicIPAddress, options?: PublicIPAddressesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PublicIPAddressesCreateOrUpdateResponse>, PublicIPAddressesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpAddressName: string, options?: PublicIPAddressesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, publicIpAddressName: string, options?: PublicIPAddressesGetOptionalParams): Promise<PublicIPAddressesGetResponse>;
     getVirtualMachineScaleSetPublicIPAddress(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, publicIpAddressName: string, options?: PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams): Promise<PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
-    listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
-    listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPAddress>;
-    updateTags(resourceGroupName: string, publicIpAddressName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PublicIPAddressesUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: PublicIPAddressesListOptionalParams): PagedAsyncIterableIterator<PublicIPAddress>;
+    listAll(options?: PublicIPAddressesListAllOptionalParams): PagedAsyncIterableIterator<PublicIPAddress>;
+    listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams): PagedAsyncIterableIterator<PublicIPAddress>;
+    listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams): PagedAsyncIterableIterator<PublicIPAddress>;
+    updateTags(resourceGroupName: string, publicIpAddressName: string, parameters: TagsObject, options?: PublicIPAddressesUpdateTagsOptionalParams): Promise<PublicIPAddressesUpdateTagsResponse>;
+}
+
+// @public
+export interface PublicIPAddressesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8361,9 +9942,14 @@ export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddress;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PublicIPAddressesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface PublicIPAddressesGetOptionalParams extends coreHttp.OperationOptions {
@@ -8392,12 +9978,20 @@ export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = 
 };
 
 // @public
+export interface PublicIPAddressesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPAddressesListAllNextResponse = PublicIPAddressListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddressListResult;
     };
 };
+
+// @public
+export interface PublicIPAddressesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPAddressesListAllResponse = PublicIPAddressListResult & {
@@ -8408,12 +10002,20 @@ export type PublicIPAddressesListAllResponse = PublicIPAddressListResult & {
 };
 
 // @public
+export interface PublicIPAddressesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPAddressesListNextResponse = PublicIPAddressListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddressListResult;
     };
 };
+
+// @public
+export interface PublicIPAddressesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPAddressesListResponse = PublicIPAddressListResult & {
@@ -8424,12 +10026,20 @@ export type PublicIPAddressesListResponse = PublicIPAddressListResult & {
 };
 
 // @public
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = PublicIPAddressListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddressListResult;
     };
 };
+
+// @public
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = PublicIPAddressListResult & {
@@ -8440,6 +10050,10 @@ export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
 };
 
 // @public
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = PublicIPAddressListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8448,12 +10062,20 @@ export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextRe
 };
 
 // @public
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = PublicIPAddressListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPAddressListResult;
     };
 };
+
+// @public
+export interface PublicIPAddressesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPAddressesUpdateTagsResponse = PublicIPAddress & {
@@ -8494,12 +10116,18 @@ export type PublicIPPrefix = Resource & {
 
 // @public
 export interface PublicIPPrefixes {
-    createOrUpdate(resourceGroupName: string, publicIpPrefixName: string, parameters: PublicIPPrefix, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PublicIPPrefixesCreateOrUpdateResponse>, PublicIPPrefixesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, publicIpPrefixName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, publicIpPrefixName: string, parameters: PublicIPPrefix, options?: PublicIPPrefixesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PublicIPPrefixesCreateOrUpdateResponse>, PublicIPPrefixesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, publicIpPrefixName: string, options?: PublicIPPrefixesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, publicIpPrefixName: string, options?: PublicIPPrefixesGetOptionalParams): Promise<PublicIPPrefixesGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PublicIPPrefix>;
-    updateTags(resourceGroupName: string, publicIpPrefixName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PublicIPPrefixesUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: PublicIPPrefixesListOptionalParams): PagedAsyncIterableIterator<PublicIPPrefix>;
+    listAll(options?: PublicIPPrefixesListAllOptionalParams): PagedAsyncIterableIterator<PublicIPPrefix>;
+    updateTags(resourceGroupName: string, publicIpPrefixName: string, parameters: TagsObject, options?: PublicIPPrefixesUpdateTagsOptionalParams): Promise<PublicIPPrefixesUpdateTagsResponse>;
+}
+
+// @public
+export interface PublicIPPrefixesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8507,9 +10135,14 @@ export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPPrefix;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PublicIPPrefixesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface PublicIPPrefixesGetOptionalParams extends coreHttp.OperationOptions {
@@ -8525,12 +10158,20 @@ export type PublicIPPrefixesGetResponse = PublicIPPrefix & {
 };
 
 // @public
+export interface PublicIPPrefixesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPPrefixesListAllNextResponse = PublicIPPrefixListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPPrefixListResult;
     };
 };
+
+// @public
+export interface PublicIPPrefixesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPPrefixesListAllResponse = PublicIPPrefixListResult & {
@@ -8541,6 +10182,10 @@ export type PublicIPPrefixesListAllResponse = PublicIPPrefixListResult & {
 };
 
 // @public
+export interface PublicIPPrefixesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPPrefixesListNextResponse = PublicIPPrefixListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8549,12 +10194,20 @@ export type PublicIPPrefixesListNextResponse = PublicIPPrefixListResult & {
 };
 
 // @public
+export interface PublicIPPrefixesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PublicIPPrefixesListResponse = PublicIPPrefixListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PublicIPPrefixListResult;
     };
 };
+
+// @public
+export interface PublicIPPrefixesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PublicIPPrefixesUpdateTagsResponse = PublicIPPrefix & {
@@ -8631,7 +10284,11 @@ export type ResourceNavigationLink = SubResource & {
 
 // @public
 export interface ResourceNavigationLinks {
-    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<ResourceNavigationLinksListResponse>;
+    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: ResourceNavigationLinksListOptionalParams): Promise<ResourceNavigationLinksListResponse>;
+}
+
+// @public
+export interface ResourceNavigationLinksListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -8703,10 +10360,16 @@ export interface RouteFilterRuleListResult {
 
 // @public
 export interface RouteFilterRules {
-    createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: RouteFilterRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteFilterRulesCreateOrUpdateResponse>, RouteFilterRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: coreHttp.OperationOptions): Promise<RouteFilterRulesGetResponse>;
-    listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilterRule>;
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: RouteFilterRule, options?: RouteFilterRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<RouteFilterRulesCreateOrUpdateResponse>, RouteFilterRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: RouteFilterRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: RouteFilterRulesGetOptionalParams): Promise<RouteFilterRulesGetResponse>;
+    listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: RouteFilterRulesListByRouteFilterOptionalParams): PagedAsyncIterableIterator<RouteFilterRule>;
+}
+
+// @public
+export interface RouteFilterRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8714,9 +10377,18 @@ export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilterRule;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface RouteFilterRulesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface RouteFilterRulesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteFilterRulesGetResponse = RouteFilterRule & {
@@ -8727,12 +10399,20 @@ export type RouteFilterRulesGetResponse = RouteFilterRule & {
 };
 
 // @public
+export interface RouteFilterRulesListByRouteFilterNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteFilterRulesListByRouteFilterNextResponse = RouteFilterRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilterRuleListResult;
     };
 };
+
+// @public
+export interface RouteFilterRulesListByRouteFilterOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResult & {
@@ -8747,12 +10427,18 @@ export type RouteFilterRuleType = string;
 
 // @public
 export interface RouteFilters {
-    createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: RouteFilter, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteFiltersCreateOrUpdateResponse>, RouteFiltersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeFilterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: RouteFilter, options?: RouteFiltersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<RouteFiltersCreateOrUpdateResponse>, RouteFiltersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeFilterName: string, options?: RouteFiltersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeFilterName: string, options?: RouteFiltersGetOptionalParams): Promise<RouteFiltersGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteFilter>;
-    updateTags(resourceGroupName: string, routeFilterName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<RouteFiltersUpdateTagsResponse>;
+    list(options?: RouteFiltersListOptionalParams): PagedAsyncIterableIterator<RouteFilter>;
+    listByResourceGroup(resourceGroupName: string, options?: RouteFiltersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<RouteFilter>;
+    updateTags(resourceGroupName: string, routeFilterName: string, parameters: TagsObject, options?: RouteFiltersUpdateTagsOptionalParams): Promise<RouteFiltersUpdateTagsResponse>;
+}
+
+// @public
+export interface RouteFiltersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8760,9 +10446,14 @@ export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilter;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface RouteFiltersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface RouteFiltersGetOptionalParams extends coreHttp.OperationOptions {
@@ -8778,12 +10469,20 @@ export type RouteFiltersGetResponse = RouteFilter & {
 };
 
 // @public
+export interface RouteFiltersListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteFiltersListByResourceGroupNextResponse = RouteFilterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilterListResult;
     };
 };
+
+// @public
+export interface RouteFiltersListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteFiltersListByResourceGroupResponse = RouteFilterListResult & {
@@ -8794,6 +10493,10 @@ export type RouteFiltersListByResourceGroupResponse = RouteFilterListResult & {
 };
 
 // @public
+export interface RouteFiltersListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteFiltersListNextResponse = RouteFilterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8802,12 +10505,20 @@ export type RouteFiltersListNextResponse = RouteFilterListResult & {
 };
 
 // @public
+export interface RouteFiltersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteFiltersListResponse = RouteFilterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteFilterListResult;
     };
 };
+
+// @public
+export interface RouteFiltersUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteFiltersUpdateTagsResponse = RouteFilter & {
@@ -8828,10 +10539,16 @@ export type RouteNextHopType = string;
 
 // @public
 export interface Routes {
-    createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Route, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RoutesCreateOrUpdateResponse>, RoutesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, routeTableName: string, routeName: string, options?: coreHttp.OperationOptions): Promise<RoutesGetResponse>;
-    list(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Route>;
+    createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Route, options?: RoutesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<RoutesCreateOrUpdateResponse>, RoutesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, routeName: string, options?: RoutesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, routeTableName: string, routeName: string, options?: RoutesGetOptionalParams): Promise<RoutesGetResponse>;
+    list(resourceGroupName: string, routeTableName: string, options?: RoutesListOptionalParams): PagedAsyncIterableIterator<Route>;
+}
+
+// @public
+export interface RoutesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8839,9 +10556,18 @@ export type RoutesCreateOrUpdateResponse = Route & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Route;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface RoutesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface RoutesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RoutesGetResponse = Route & {
@@ -8852,12 +10578,20 @@ export type RoutesGetResponse = Route & {
 };
 
 // @public
+export interface RoutesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RoutesListNextResponse = RouteListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteListResult;
     };
 };
+
+// @public
+export interface RoutesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RoutesListResponse = RouteListResult & {
@@ -8884,12 +10618,18 @@ export interface RouteTableListResult {
 
 // @public
 export interface RouteTables {
-    createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: RouteTable, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RouteTablesCreateOrUpdateResponse>, RouteTablesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: RouteTable, options?: RouteTablesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<RouteTablesCreateOrUpdateResponse>, RouteTablesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, routeTableName: string, options?: RouteTablesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, routeTableName: string, options?: RouteTablesGetOptionalParams): Promise<RouteTablesGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RouteTable>;
-    updateTags(resourceGroupName: string, routeTableName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<RouteTablesUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: RouteTablesListOptionalParams): PagedAsyncIterableIterator<RouteTable>;
+    listAll(options?: RouteTablesListAllOptionalParams): PagedAsyncIterableIterator<RouteTable>;
+    updateTags(resourceGroupName: string, routeTableName: string, parameters: TagsObject, options?: RouteTablesUpdateTagsOptionalParams): Promise<RouteTablesUpdateTagsResponse>;
+}
+
+// @public
+export interface RouteTablesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -8897,9 +10637,14 @@ export type RouteTablesCreateOrUpdateResponse = RouteTable & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteTable;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface RouteTablesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface RouteTablesGetOptionalParams extends coreHttp.OperationOptions {
@@ -8915,12 +10660,20 @@ export type RouteTablesGetResponse = RouteTable & {
 };
 
 // @public
+export interface RouteTablesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteTablesListAllNextResponse = RouteTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteTableListResult;
     };
 };
+
+// @public
+export interface RouteTablesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteTablesListAllResponse = RouteTableListResult & {
@@ -8931,6 +10684,10 @@ export type RouteTablesListAllResponse = RouteTableListResult & {
 };
 
 // @public
+export interface RouteTablesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteTablesListNextResponse = RouteTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -8939,12 +10696,20 @@ export type RouteTablesListNextResponse = RouteTableListResult & {
 };
 
 // @public
+export interface RouteTablesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RouteTablesListResponse = RouteTableListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RouteTableListResult;
     };
 };
+
+// @public
+export interface RouteTablesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RouteTablesUpdateTagsResponse = RouteTable & {
@@ -8997,12 +10762,18 @@ export interface SecurityPartnerProviderListResult {
 
 // @public
 export interface SecurityPartnerProviders {
-    createOrUpdate(resourceGroupName: string, securityPartnerProviderName: string, parameters: SecurityPartnerProvider, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>, SecurityPartnerProvidersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, securityPartnerProviderName: string, options?: coreHttp.OperationOptions): Promise<SecurityPartnerProvidersGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityPartnerProvider>;
-    updateTags(resourceGroupName: string, securityPartnerProviderName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<SecurityPartnerProvidersUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, securityPartnerProviderName: string, parameters: SecurityPartnerProvider, options?: SecurityPartnerProvidersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>, SecurityPartnerProvidersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, securityPartnerProviderName: string, options?: SecurityPartnerProvidersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, securityPartnerProviderName: string, options?: SecurityPartnerProvidersGetOptionalParams): Promise<SecurityPartnerProvidersGetResponse>;
+    list(options?: SecurityPartnerProvidersListOptionalParams): PagedAsyncIterableIterator<SecurityPartnerProvider>;
+    listByResourceGroup(resourceGroupName: string, options?: SecurityPartnerProvidersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<SecurityPartnerProvider>;
+    updateTags(resourceGroupName: string, securityPartnerProviderName: string, parameters: TagsObject, options?: SecurityPartnerProvidersUpdateTagsOptionalParams): Promise<SecurityPartnerProvidersUpdateTagsResponse>;
+}
+
+// @public
+export interface SecurityPartnerProvidersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9010,9 +10781,18 @@ export type SecurityPartnerProvidersCreateOrUpdateResponse = SecurityPartnerProv
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityPartnerProvider;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SecurityPartnerProvidersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SecurityPartnerProvidersGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SecurityPartnerProvidersGetResponse = SecurityPartnerProvider & {
@@ -9023,12 +10803,20 @@ export type SecurityPartnerProvidersGetResponse = SecurityPartnerProvider & {
 };
 
 // @public
+export interface SecurityPartnerProvidersListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SecurityPartnerProvidersListByResourceGroupNextResponse = SecurityPartnerProviderListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityPartnerProviderListResult;
     };
 };
+
+// @public
+export interface SecurityPartnerProvidersListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SecurityPartnerProvidersListByResourceGroupResponse = SecurityPartnerProviderListResult & {
@@ -9039,6 +10827,10 @@ export type SecurityPartnerProvidersListByResourceGroupResponse = SecurityPartne
 };
 
 // @public
+export interface SecurityPartnerProvidersListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SecurityPartnerProvidersListNextResponse = SecurityPartnerProviderListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9047,12 +10839,20 @@ export type SecurityPartnerProvidersListNextResponse = SecurityPartnerProviderLi
 };
 
 // @public
+export interface SecurityPartnerProvidersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SecurityPartnerProvidersListResponse = SecurityPartnerProviderListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityPartnerProviderListResult;
     };
 };
+
+// @public
+export interface SecurityPartnerProvidersUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SecurityPartnerProvidersUpdateTagsResponse = SecurityPartnerProvider & {
@@ -9112,10 +10912,16 @@ export type SecurityRuleProtocol = string;
 
 // @public
 export interface SecurityRules {
-    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: SecurityRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SecurityRulesCreateOrUpdateResponse>, SecurityRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: coreHttp.OperationOptions): Promise<SecurityRulesGetResponse>;
-    list(resourceGroupName: string, networkSecurityGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SecurityRule>;
+    createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: SecurityRule, options?: SecurityRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SecurityRulesCreateOrUpdateResponse>, SecurityRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: SecurityRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: SecurityRulesGetOptionalParams): Promise<SecurityRulesGetResponse>;
+    list(resourceGroupName: string, networkSecurityGroupName: string, options?: SecurityRulesListOptionalParams): PagedAsyncIterableIterator<SecurityRule>;
+}
+
+// @public
+export interface SecurityRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9123,9 +10929,18 @@ export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityRule;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SecurityRulesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SecurityRulesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SecurityRulesGetResponse = SecurityRule & {
@@ -9136,12 +10951,20 @@ export type SecurityRulesGetResponse = SecurityRule & {
 };
 
 // @public
+export interface SecurityRulesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SecurityRulesListNextResponse = SecurityRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SecurityRuleListResult;
     };
 };
+
+// @public
+export interface SecurityRulesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SecurityRulesListResponse = SecurityRuleListResult & {
@@ -9165,7 +10988,11 @@ export type ServiceAssociationLink = SubResource & {
 
 // @public
 export interface ServiceAssociationLinks {
-    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<ServiceAssociationLinksListResponse>;
+    list(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: ServiceAssociationLinksListOptionalParams): Promise<ServiceAssociationLinksListResponse>;
+}
+
+// @public
+export interface ServiceAssociationLinksListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -9184,12 +11011,18 @@ export interface ServiceAssociationLinksListResult {
 
 // @public
 export interface ServiceEndpointPolicies {
-    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: ServiceEndpointPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>, ServiceEndpointPoliciesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: ServiceEndpointPolicy, options?: ServiceEndpointPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>, ServiceEndpointPoliciesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, options?: ServiceEndpointPoliciesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, serviceEndpointPolicyName: string, options?: ServiceEndpointPoliciesGetOptionalParams): Promise<ServiceEndpointPoliciesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
-    updateTags(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<ServiceEndpointPoliciesUpdateTagsResponse>;
+    list(options?: ServiceEndpointPoliciesListOptionalParams): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
+    listByResourceGroup(resourceGroupName: string, options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
+    updateTags(resourceGroupName: string, serviceEndpointPolicyName: string, parameters: TagsObject, options?: ServiceEndpointPoliciesUpdateTagsOptionalParams): Promise<ServiceEndpointPoliciesUpdateTagsResponse>;
+}
+
+// @public
+export interface ServiceEndpointPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9197,9 +11030,14 @@ export type ServiceEndpointPoliciesCreateOrUpdateResponse = ServiceEndpointPolic
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServiceEndpointPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ServiceEndpointPoliciesGetOptionalParams extends coreHttp.OperationOptions {
@@ -9215,12 +11053,20 @@ export type ServiceEndpointPoliciesGetResponse = ServiceEndpointPolicy & {
 };
 
 // @public
+export interface ServiceEndpointPoliciesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServiceEndpointPoliciesListByResourceGroupNextResponse = ServiceEndpointPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicyListResult;
     };
 };
+
+// @public
+export interface ServiceEndpointPoliciesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceEndpointPoliciesListByResourceGroupResponse = ServiceEndpointPolicyListResult & {
@@ -9231,6 +11077,10 @@ export type ServiceEndpointPoliciesListByResourceGroupResponse = ServiceEndpoint
 };
 
 // @public
+export interface ServiceEndpointPoliciesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServiceEndpointPoliciesListNextResponse = ServiceEndpointPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9239,12 +11089,20 @@ export type ServiceEndpointPoliciesListNextResponse = ServiceEndpointPolicyListR
 };
 
 // @public
+export interface ServiceEndpointPoliciesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServiceEndpointPoliciesListResponse = ServiceEndpointPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicyListResult;
     };
 };
+
+// @public
+export interface ServiceEndpointPoliciesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceEndpointPoliciesUpdateTagsResponse = ServiceEndpointPolicy & {
@@ -9281,10 +11139,16 @@ export interface ServiceEndpointPolicyDefinitionListResult {
 
 // @public
 export interface ServiceEndpointPolicyDefinitions {
-    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>, ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
-    listByResourceGroup(resourceGroupName: string, serviceEndpointPolicyName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition>;
+    createOrUpdate(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition, options?: ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>, ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: ServiceEndpointPolicyDefinitionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serviceEndpointPolicyName: string, serviceEndpointPolicyDefinitionName: string, options?: ServiceEndpointPolicyDefinitionsGetOptionalParams): Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, serviceEndpointPolicyName: string, options?: ServiceEndpointPolicyDefinitionsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition>;
+}
+
+// @public
+export interface ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9292,9 +11156,18 @@ export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndp
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicyDefinition;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServiceEndpointPolicyDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServiceEndpointPolicyDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceEndpointPolicyDefinitionsGetResponse = ServiceEndpointPolicyDefinition & {
@@ -9305,12 +11178,20 @@ export type ServiceEndpointPolicyDefinitionsGetResponse = ServiceEndpointPolicyD
 };
 
 // @public
+export interface ServiceEndpointPolicyDefinitionsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse = ServiceEndpointPolicyDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServiceEndpointPolicyDefinitionListResult;
     };
 };
+
+// @public
+export interface ServiceEndpointPolicyDefinitionsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceEndpointPolicyDefinitionsListByResourceGroupResponse = ServiceEndpointPolicyDefinitionListResult & {
@@ -9353,7 +11234,11 @@ export interface ServiceTagInformationPropertiesFormat {
 
 // @public
 export interface ServiceTags {
-    list(location: string, options?: coreHttp.OperationOptions): Promise<ServiceTagsListResponse>;
+    list(location: string, options?: ServiceTagsListOptionalParams): Promise<ServiceTagsListResponse>;
+}
+
+// @public
+export interface ServiceTagsListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -9427,12 +11312,18 @@ export interface SubnetListResult {
 
 // @public
 export interface Subnets {
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Subnet, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SubnetsCreateOrUpdateResponse>, SubnetsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Subnet, options?: SubnetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SubnetsCreateOrUpdateResponse>, SubnetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: SubnetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: SubnetsGetOptionalParams): Promise<SubnetsGetResponse>;
-    list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Subnet>;
-    prepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    unprepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    list(resourceGroupName: string, virtualNetworkName: string, options?: SubnetsListOptionalParams): PagedAsyncIterableIterator<Subnet>;
+    prepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest, options?: SubnetsPrepareNetworkPoliciesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    unprepareNetworkPolicies(resourceGroupName: string, virtualNetworkName: string, subnetName: string, unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest, options?: SubnetsUnprepareNetworkPoliciesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface SubnetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9440,9 +11331,14 @@ export type SubnetsCreateOrUpdateResponse = Subnet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Subnet;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SubnetsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface SubnetsGetOptionalParams extends coreHttp.OperationOptions {
@@ -9458,6 +11354,10 @@ export type SubnetsGetResponse = Subnet & {
 };
 
 // @public
+export interface SubnetsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SubnetsListNextResponse = SubnetListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9466,12 +11366,28 @@ export type SubnetsListNextResponse = SubnetListResult & {
 };
 
 // @public
+export interface SubnetsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SubnetsListResponse = SubnetListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SubnetListResult;
     };
 };
+
+// @public
+export interface SubnetsPrepareNetworkPoliciesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SubnetsUnprepareNetworkPoliciesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface SubResource {
@@ -9604,7 +11520,11 @@ export interface UsageName {
 
 // @public
 export interface Usages {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Usage>;
+    list(location: string, options?: UsagesListOptionalParams): PagedAsyncIterableIterator<Usage>;
+}
+
+// @public
+export interface UsagesListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -9614,6 +11534,10 @@ export type UsagesListNextResponse = UsagesListResult & {
         parsedBody: UsagesListResult;
     };
 };
+
+// @public
+export interface UsagesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UsagesListResponse = UsagesListResult & {
@@ -9712,10 +11636,16 @@ export type VirtualHubRouteTableV2 = SubResource & {
 
 // @public
 export interface VirtualHubRouteTableV2S {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>, VirtualHubRouteTableV2SCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubRouteTableV2SGetResponse>;
-    list(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHubRouteTableV2>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, routeTableName: string, virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2, options?: VirtualHubRouteTableV2SCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>, VirtualHubRouteTableV2SCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: VirtualHubRouteTableV2SDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, routeTableName: string, options?: VirtualHubRouteTableV2SGetOptionalParams): Promise<VirtualHubRouteTableV2SGetResponse>;
+    list(resourceGroupName: string, virtualHubName: string, options?: VirtualHubRouteTableV2SListOptionalParams): PagedAsyncIterableIterator<VirtualHubRouteTableV2>;
+}
+
+// @public
+export interface VirtualHubRouteTableV2SCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9723,9 +11653,18 @@ export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTable
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualHubRouteTableV2;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualHubRouteTableV2SDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualHubRouteTableV2SGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualHubRouteTableV2SGetResponse = VirtualHubRouteTableV2 & {
@@ -9736,12 +11675,20 @@ export type VirtualHubRouteTableV2SGetResponse = VirtualHubRouteTableV2 & {
 };
 
 // @public
+export interface VirtualHubRouteTableV2SListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualHubRouteTableV2SListNextResponse = ListVirtualHubRouteTableV2SResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVirtualHubRouteTableV2SResult;
     };
 };
+
+// @public
+export interface VirtualHubRouteTableV2SListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualHubRouteTableV2SListResponse = ListVirtualHubRouteTableV2SResult & {
@@ -9761,12 +11708,18 @@ export interface VirtualHubRouteV2 {
 
 // @public
 export interface VirtualHubs {
-    createOrUpdate(resourceGroupName: string, virtualHubName: string, virtualHubParameters: VirtualHub, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualHubsCreateOrUpdateResponse>, VirtualHubsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualHubName: string, options?: coreHttp.OperationOptions): Promise<VirtualHubsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualHub>;
-    updateTags(resourceGroupName: string, virtualHubName: string, virtualHubParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualHubsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, virtualHubName: string, virtualHubParameters: VirtualHub, options?: VirtualHubsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualHubsCreateOrUpdateResponse>, VirtualHubsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualHubName: string, options?: VirtualHubsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualHubName: string, options?: VirtualHubsGetOptionalParams): Promise<VirtualHubsGetResponse>;
+    list(options?: VirtualHubsListOptionalParams): PagedAsyncIterableIterator<VirtualHub>;
+    listByResourceGroup(resourceGroupName: string, options?: VirtualHubsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualHub>;
+    updateTags(resourceGroupName: string, virtualHubName: string, virtualHubParameters: TagsObject, options?: VirtualHubsUpdateTagsOptionalParams): Promise<VirtualHubsUpdateTagsResponse>;
+}
+
+// @public
+export interface VirtualHubsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9774,9 +11727,18 @@ export type VirtualHubsCreateOrUpdateResponse = VirtualHub & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualHub;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualHubsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualHubsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualHubsGetResponse = VirtualHub & {
@@ -9787,12 +11749,20 @@ export type VirtualHubsGetResponse = VirtualHub & {
 };
 
 // @public
+export interface VirtualHubsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualHubsListByResourceGroupNextResponse = ListVirtualHubsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVirtualHubsResult;
     };
 };
+
+// @public
+export interface VirtualHubsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualHubsListByResourceGroupResponse = ListVirtualHubsResult & {
@@ -9803,6 +11773,10 @@ export type VirtualHubsListByResourceGroupResponse = ListVirtualHubsResult & {
 };
 
 // @public
+export interface VirtualHubsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualHubsListNextResponse = ListVirtualHubsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9811,12 +11785,20 @@ export type VirtualHubsListNextResponse = ListVirtualHubsResult & {
 };
 
 // @public
+export interface VirtualHubsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualHubsListResponse = ListVirtualHubsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVirtualHubsResult;
     };
 };
+
+// @public
+export interface VirtualHubsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualHubsUpdateTagsResponse = VirtualHub & {
@@ -9937,16 +11919,22 @@ export type VirtualNetworkGatewayConnectionProtocol = string;
 
 // @public
 export interface VirtualNetworkGatewayConnections {
-    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VirtualNetworkGatewayConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>, VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetResponse>;
-    getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection>;
-    resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionResetSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>, VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
-    setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionSharedKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>, VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VirtualNetworkGatewayConnection, options?: VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>, VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsGetOptionalParams): Promise<VirtualNetworkGatewayConnectionsGetResponse>;
+    getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
+    list(resourceGroupName: string, options?: VirtualNetworkGatewayConnectionsListOptionalParams): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection>;
+    resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionResetSharedKey, options?: VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>, VirtualNetworkGatewayConnectionsResetSharedKeyResponse>>;
+    setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: ConnectionSharedKey, options?: VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>, VirtualNetworkGatewayConnectionsSetSharedKeyResponse>>;
     startPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStartPacketCaptureResponse>>;
-    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>>;
-    updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>, VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnPacketCaptureStopParameters, options?: VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>, VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: TagsObject, options?: VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>, VirtualNetworkGatewayConnectionsUpdateTagsResponse>>;
+}
+
+// @public
+export interface VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -9954,9 +11942,18 @@ export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetw
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewayConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkGatewayConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewayConnectionsGetResponse = VirtualNetworkGatewayConnection & {
@@ -9967,12 +11964,20 @@ export type VirtualNetworkGatewayConnectionsGetResponse = VirtualNetworkGatewayC
 };
 
 // @public
+export interface VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkGatewayConnectionsGetSharedKeyResponse = ConnectionSharedKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionSharedKey;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewayConnectionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewayConnectionsListNextResponse = VirtualNetworkGatewayConnectionListResult & {
@@ -9983,6 +11988,10 @@ export type VirtualNetworkGatewayConnectionsListNextResponse = VirtualNetworkGat
 };
 
 // @public
+export interface VirtualNetworkGatewayConnectionsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkGatewayConnectionsListResponse = VirtualNetworkGatewayConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -9991,26 +12000,38 @@ export type VirtualNetworkGatewayConnectionsListResponse = VirtualNetworkGateway
 };
 
 // @public
+export interface VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = ConnectionResetSharedKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionResetSharedKey;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = ConnectionSharedKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ConnectionSharedKey;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams extends coreHttp.OperationOptions {
     parameters?: VpnPacketCaptureStartParameters;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10019,9 +12040,14 @@ export type VirtualNetworkGatewayConnectionsStartPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
@@ -10029,7 +12055,6 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -10037,11 +12062,16 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
 export type VirtualNetworkGatewayConnectionStatus = string;
 
 // @public
+export interface VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkGatewayConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -10073,28 +12103,34 @@ export interface VirtualNetworkGatewayListResult {
 
 // @public
 export interface VirtualNetworkGateways {
-    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VirtualNetworkGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>, VirtualNetworkGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    disconnectVirtualNetworkGatewayVpnConnections(resourceGroupName: string, virtualNetworkGatewayName: string, request: P2SVpnConnectionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>, VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
-    generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>, VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
-    get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysGetResponse>;
-    getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>, VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VirtualNetworkGateway, options?: VirtualNetworkGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>, VirtualNetworkGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    disconnectVirtualNetworkGatewayVpnConnections(resourceGroupName: string, virtualNetworkGatewayName: string, request: P2SVpnConnectionRequest, options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGeneratevpnclientpackageResponse>, VirtualNetworkGatewaysGeneratevpnclientpackageResponse>>;
+    generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnClientParameters, options?: VirtualNetworkGatewaysGenerateVpnProfileOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>, VirtualNetworkGatewaysGenerateVpnProfileResponse>>;
+    get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetOptionalParams): Promise<VirtualNetworkGatewaysGetResponse>;
+    getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>, VirtualNetworkGatewaysGetAdvertisedRoutesResponse>>;
     getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetBgpPeerStatusResponse>, VirtualNetworkGatewaysGetBgpPeerStatusResponse>>;
-    getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>, VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
-    getVpnclientConnectionHealth(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>, VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>>;
-    getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>>;
-    getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>, VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGateway>;
-    listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity>;
+    getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>, VirtualNetworkGatewaysGetLearnedRoutesResponse>>;
+    getVpnclientConnectionHealth(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>, VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse>>;
+    getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>>;
+    getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>, VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>>;
+    list(resourceGroupName: string, options?: VirtualNetworkGatewaysListOptionalParams): PagedAsyncIterableIterator<VirtualNetworkGateway>;
+    listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysListConnectionsOptionalParams): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity>;
     reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysResetOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysResetResponse>, VirtualNetworkGatewaysResetResponse>>;
-    resetVpnClientSharedKey(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: VpnClientIPsecParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>>;
+    resetVpnClientSharedKey(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: VpnClientIPsecParameters, options?: VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>, VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>>;
     startPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysStartPacketCaptureResponse>, VirtualNetworkGatewaysStartPacketCaptureResponse>>;
-    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnPacketCaptureStopParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>, VirtualNetworkGatewaysStopPacketCaptureResponse>>;
-    supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
-    updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>, VirtualNetworkGatewaysUpdateTagsResponse>>;
-    vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnDeviceScriptParameters, options?: coreHttp.OperationOptions): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
+    stopPacketCapture(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: VpnPacketCaptureStopParameters, options?: VirtualNetworkGatewaysStopPacketCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>, VirtualNetworkGatewaysStopPacketCaptureResponse>>;
+    supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
+    updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: TagsObject, options?: VirtualNetworkGatewaysUpdateTagsOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>, VirtualNetworkGatewaysUpdateTagsResponse>>;
+    vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: VpnDeviceScriptParameters, options?: VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
+}
+
+// @public
+export interface VirtualNetworkGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10102,9 +12138,26 @@ export type VirtualNetworkGatewaysCreateOrUpdateResponse = VirtualNetworkGateway
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
@@ -10112,9 +12165,14 @@ export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGenerateVpnProfileOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
@@ -10122,22 +12180,28 @@ export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = GatewayRouteListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GatewayRouteListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams extends coreHttp.OperationOptions {
     peer?: string;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10145,18 +12209,26 @@ export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = BgpPeerStatusListRe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BgpPeerStatusListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGetLearnedRoutesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGetLearnedRoutesResponse = GatewayRouteListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GatewayRouteListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewaysGetResponse = VirtualNetworkGateway & {
@@ -10167,22 +12239,38 @@ export type VirtualNetworkGatewaysGetResponse = VirtualNetworkGateway & {
 };
 
 // @public
+export interface VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse = VpnClientConnectionHealthDetailListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientConnectionHealthDetailListResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = VpnClientIPsecParameters & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientIPsecParameters;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
@@ -10190,7 +12278,6 @@ export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -10208,12 +12295,20 @@ export type VirtualNetworkGatewaySkuName = string;
 export type VirtualNetworkGatewaySkuTier = string;
 
 // @public
+export interface VirtualNetworkGatewaysListConnectionsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkGatewaysListConnectionsNextResponse = VirtualNetworkGatewayListConnectionsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayListConnectionsResult;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysListConnectionsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewaysListConnectionsResponse = VirtualNetworkGatewayListConnectionsResult & {
@@ -10224,12 +12319,20 @@ export type VirtualNetworkGatewaysListConnectionsResponse = VirtualNetworkGatewa
 };
 
 // @public
+export interface VirtualNetworkGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkGatewaysListNextResponse = VirtualNetworkGatewayListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGatewayListResult;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewaysListResponse = VirtualNetworkGatewayListResult & {
@@ -10242,6 +12345,8 @@ export type VirtualNetworkGatewaysListResponse = VirtualNetworkGatewayListResult
 // @public
 export interface VirtualNetworkGatewaysResetOptionalParams extends coreHttp.OperationOptions {
     gatewayVip?: string;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10249,22 +12354,34 @@ export type VirtualNetworkGatewaysResetResponse = VirtualNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = VpnClientIPsecParameters & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnClientIPsecParameters;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface VirtualNetworkGatewaysStartPacketCaptureOptionalParams extends coreHttp.OperationOptions {
     parameters?: VpnPacketCaptureStartParameters;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10273,9 +12390,14 @@ export type VirtualNetworkGatewaysStartPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysStopPacketCaptureOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualNetworkGatewaysStopPacketCaptureResponse = {
@@ -10283,9 +12405,12 @@ export type VirtualNetworkGatewaysStopPacketCaptureResponse = {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: string;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewaysSupportedVpnDevicesResponse = {
@@ -10297,13 +12422,22 @@ export type VirtualNetworkGatewaysSupportedVpnDevicesResponse = {
 };
 
 // @public
+export interface VirtualNetworkGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualNetworkGatewaysUpdateTagsResponse = VirtualNetworkGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse = {
@@ -10351,10 +12485,16 @@ export interface VirtualNetworkPeeringListResult {
 
 // @public
 export interface VirtualNetworkPeerings {
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: VirtualNetworkPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>, VirtualNetworkPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkPeeringsGetResponse>;
-    list(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkPeering>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: VirtualNetworkPeering, options?: VirtualNetworkPeeringsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>, VirtualNetworkPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: VirtualNetworkPeeringsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: VirtualNetworkPeeringsGetOptionalParams): Promise<VirtualNetworkPeeringsGetResponse>;
+    list(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworkPeeringsListOptionalParams): PagedAsyncIterableIterator<VirtualNetworkPeering>;
+}
+
+// @public
+export interface VirtualNetworkPeeringsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10362,9 +12502,18 @@ export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkPeering;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkPeeringsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkPeeringsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkPeeringsGetResponse = VirtualNetworkPeering & {
@@ -10375,12 +12524,20 @@ export type VirtualNetworkPeeringsGetResponse = VirtualNetworkPeering & {
 };
 
 // @public
+export interface VirtualNetworkPeeringsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkPeeringsListNextResponse = VirtualNetworkPeeringListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkPeeringListResult;
     };
 };
+
+// @public
+export interface VirtualNetworkPeeringsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult & {
@@ -10395,14 +12552,18 @@ export type VirtualNetworkPeeringState = string;
 
 // @public
 export interface VirtualNetworks {
-    checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, ipAddress: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: VirtualNetwork, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworksCreateOrUpdateResponse>, VirtualNetworksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, ipAddress: string, options?: VirtualNetworksCheckIPAddressAvailabilityOptionalParams): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: VirtualNetwork, options?: VirtualNetworksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworksCreateOrUpdateResponse>, VirtualNetworksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworksDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworksGetOptionalParams): Promise<VirtualNetworksGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetwork>;
-    listUsage(resourceGroupName: string, virtualNetworkName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkUsage>;
-    updateTags(resourceGroupName: string, virtualNetworkName: string, parameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualNetworksUpdateTagsResponse>;
+    list(resourceGroupName: string, options?: VirtualNetworksListOptionalParams): PagedAsyncIterableIterator<VirtualNetwork>;
+    listAll(options?: VirtualNetworksListAllOptionalParams): PagedAsyncIterableIterator<VirtualNetwork>;
+    listUsage(resourceGroupName: string, virtualNetworkName: string, options?: VirtualNetworksListUsageOptionalParams): PagedAsyncIterableIterator<VirtualNetworkUsage>;
+    updateTags(resourceGroupName: string, virtualNetworkName: string, parameters: TagsObject, options?: VirtualNetworksUpdateTagsOptionalParams): Promise<VirtualNetworksUpdateTagsResponse>;
+}
+
+// @public
+export interface VirtualNetworksCheckIPAddressAvailabilityOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -10414,13 +12575,24 @@ export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailab
 };
 
 // @public
+export interface VirtualNetworksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualNetworksCreateOrUpdateResponse = VirtualNetwork & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetwork;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworksDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualNetworksGetOptionalParams extends coreHttp.OperationOptions {
@@ -10436,12 +12608,20 @@ export type VirtualNetworksGetResponse = VirtualNetwork & {
 };
 
 // @public
+export interface VirtualNetworksListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworksListAllNextResponse = VirtualNetworkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkListResult;
     };
 };
+
+// @public
+export interface VirtualNetworksListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworksListAllResponse = VirtualNetworkListResult & {
@@ -10452,12 +12632,20 @@ export type VirtualNetworksListAllResponse = VirtualNetworkListResult & {
 };
 
 // @public
+export interface VirtualNetworksListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworksListNextResponse = VirtualNetworkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkListResult;
     };
 };
+
+// @public
+export interface VirtualNetworksListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworksListResponse = VirtualNetworkListResult & {
@@ -10468,6 +12656,10 @@ export type VirtualNetworksListResponse = VirtualNetworkListResult & {
 };
 
 // @public
+export interface VirtualNetworksListUsageNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworksListUsageNextResponse = VirtualNetworkListUsageResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -10476,12 +12668,20 @@ export type VirtualNetworksListUsageNextResponse = VirtualNetworkListUsageResult
 };
 
 // @public
+export interface VirtualNetworksListUsageOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworksListUsageResponse = VirtualNetworkListUsageResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkListUsageResult;
     };
 };
+
+// @public
+export interface VirtualNetworksUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworksUpdateTagsResponse = VirtualNetwork & {
@@ -10510,12 +12710,18 @@ export interface VirtualNetworkTapListResult {
 
 // @public
 export interface VirtualNetworkTaps {
-    createOrUpdate(resourceGroupName: string, tapName: string, parameters: VirtualNetworkTap, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>, VirtualNetworkTapsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, tapName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkTapsGetResponse>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkTap>;
-    updateTags(resourceGroupName: string, tapName: string, tapParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualNetworkTapsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, tapName: string, parameters: VirtualNetworkTap, options?: VirtualNetworkTapsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>, VirtualNetworkTapsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, tapName: string, options?: VirtualNetworkTapsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, tapName: string, options?: VirtualNetworkTapsGetOptionalParams): Promise<VirtualNetworkTapsGetResponse>;
+    listAll(options?: VirtualNetworkTapsListAllOptionalParams): PagedAsyncIterableIterator<VirtualNetworkTap>;
+    listByResourceGroup(resourceGroupName: string, options?: VirtualNetworkTapsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualNetworkTap>;
+    updateTags(resourceGroupName: string, tapName: string, tapParameters: TagsObject, options?: VirtualNetworkTapsUpdateTagsOptionalParams): Promise<VirtualNetworkTapsUpdateTagsResponse>;
+}
+
+// @public
+export interface VirtualNetworkTapsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10523,9 +12729,18 @@ export type VirtualNetworkTapsCreateOrUpdateResponse = VirtualNetworkTap & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkTap;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkTapsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkTapsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkTapsGetResponse = VirtualNetworkTap & {
@@ -10536,12 +12751,20 @@ export type VirtualNetworkTapsGetResponse = VirtualNetworkTap & {
 };
 
 // @public
+export interface VirtualNetworkTapsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkTapsListAllNextResponse = VirtualNetworkTapListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkTapListResult;
     };
 };
+
+// @public
+export interface VirtualNetworkTapsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkTapsListAllResponse = VirtualNetworkTapListResult & {
@@ -10552,6 +12775,10 @@ export type VirtualNetworkTapsListAllResponse = VirtualNetworkTapListResult & {
 };
 
 // @public
+export interface VirtualNetworkTapsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkTapsListByResourceGroupNextResponse = VirtualNetworkTapListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -10560,12 +12787,20 @@ export type VirtualNetworkTapsListByResourceGroupNextResponse = VirtualNetworkTa
 };
 
 // @public
+export interface VirtualNetworkTapsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkTapsListByResourceGroupResponse = VirtualNetworkTapListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkTapListResult;
     };
 };
+
+// @public
+export interface VirtualNetworkTapsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkTapsUpdateTagsResponse = VirtualNetworkTap & {
@@ -10625,10 +12860,16 @@ export interface VirtualRouterPeeringListResult {
 
 // @public
 export interface VirtualRouterPeerings {
-    createOrUpdate(resourceGroupName: string, virtualRouterName: string, peeringName: string, parameters: VirtualRouterPeering, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualRouterPeeringsCreateOrUpdateResponse>, VirtualRouterPeeringsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: coreHttp.OperationOptions): Promise<VirtualRouterPeeringsGetResponse>;
-    list(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouterPeering>;
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, peeringName: string, parameters: VirtualRouterPeering, options?: VirtualRouterPeeringsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualRouterPeeringsCreateOrUpdateResponse>, VirtualRouterPeeringsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: VirtualRouterPeeringsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualRouterName: string, peeringName: string, options?: VirtualRouterPeeringsGetOptionalParams): Promise<VirtualRouterPeeringsGetResponse>;
+    list(resourceGroupName: string, virtualRouterName: string, options?: VirtualRouterPeeringsListOptionalParams): PagedAsyncIterableIterator<VirtualRouterPeering>;
+}
+
+// @public
+export interface VirtualRouterPeeringsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10636,9 +12877,18 @@ export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering &
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouterPeering;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualRouterPeeringsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualRouterPeeringsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualRouterPeeringsGetResponse = VirtualRouterPeering & {
@@ -10649,12 +12899,20 @@ export type VirtualRouterPeeringsGetResponse = VirtualRouterPeering & {
 };
 
 // @public
+export interface VirtualRouterPeeringsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualRouterPeeringsListNextResponse = VirtualRouterPeeringListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouterPeeringListResult;
     };
 };
+
+// @public
+export interface VirtualRouterPeeringsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult & {
@@ -10666,11 +12924,17 @@ export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult &
 
 // @public
 export interface VirtualRouters {
-    createOrUpdate(resourceGroupName: string, virtualRouterName: string, parameters: VirtualRouter, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualRoutersCreateOrUpdateResponse>, VirtualRoutersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualRouterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, virtualRouterName: string, parameters: VirtualRouter, options?: VirtualRoutersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualRoutersCreateOrUpdateResponse>, VirtualRoutersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualRouterName: string, options?: VirtualRoutersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, virtualRouterName: string, options?: VirtualRoutersGetOptionalParams): Promise<VirtualRoutersGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualRouter>;
+    list(options?: VirtualRoutersListOptionalParams): PagedAsyncIterableIterator<VirtualRouter>;
+    listByResourceGroup(resourceGroupName: string, options?: VirtualRoutersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualRouter>;
+}
+
+// @public
+export interface VirtualRoutersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10678,9 +12942,14 @@ export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouter;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualRoutersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualRoutersGetOptionalParams extends coreHttp.OperationOptions {
@@ -10696,12 +12965,20 @@ export type VirtualRoutersGetResponse = VirtualRouter & {
 };
 
 // @public
+export interface VirtualRoutersListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualRoutersListByResourceGroupNextResponse = VirtualRouterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouterListResult;
     };
 };
+
+// @public
+export interface VirtualRoutersListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualRoutersListByResourceGroupResponse = VirtualRouterListResult & {
@@ -10712,12 +12989,20 @@ export type VirtualRoutersListByResourceGroupResponse = VirtualRouterListResult 
 };
 
 // @public
+export interface VirtualRoutersListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualRoutersListNextResponse = VirtualRouterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualRouterListResult;
     };
 };
+
+// @public
+export interface VirtualRoutersListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualRoutersListResponse = VirtualRouterListResult & {
@@ -10742,12 +13027,18 @@ export type VirtualWAN = Resource & {
 
 // @public
 export interface VirtualWans {
-    createOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<VirtualWansGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualWAN>;
-    updateTags(resourceGroupName: string, virtualWANName: string, wANParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VirtualWansUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, virtualWANName: string, options?: VirtualWansDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualWANName: string, options?: VirtualWansGetOptionalParams): Promise<VirtualWansGetResponse>;
+    list(options?: VirtualWansListOptionalParams): PagedAsyncIterableIterator<VirtualWAN>;
+    listByResourceGroup(resourceGroupName: string, options?: VirtualWansListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualWAN>;
+    updateTags(resourceGroupName: string, virtualWANName: string, wANParameters: TagsObject, options?: VirtualWansUpdateTagsOptionalParams): Promise<VirtualWansUpdateTagsResponse>;
+}
+
+// @public
+export interface VirtualWansCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10755,9 +13046,14 @@ export type VirtualWansCreateOrUpdateResponse = VirtualWAN & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualWAN;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualWansDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualWanSecurityProvider {
@@ -10775,12 +13071,20 @@ export interface VirtualWanSecurityProviders {
 export type VirtualWanSecurityProviderType = string;
 
 // @public
+export interface VirtualWansGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualWansGetResponse = VirtualWAN & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualWAN;
     };
 };
+
+// @public
+export interface VirtualWansListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualWansListByResourceGroupNextResponse = ListVirtualWANsResult & {
@@ -10791,12 +13095,20 @@ export type VirtualWansListByResourceGroupNextResponse = ListVirtualWANsResult &
 };
 
 // @public
+export interface VirtualWansListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualWansListByResourceGroupResponse = ListVirtualWANsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVirtualWANsResult;
     };
 };
+
+// @public
+export interface VirtualWansListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualWansListNextResponse = ListVirtualWANsResult & {
@@ -10807,12 +13119,20 @@ export type VirtualWansListNextResponse = ListVirtualWANsResult & {
 };
 
 // @public
+export interface VirtualWansListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualWansListResponse = ListVirtualWANsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVirtualWANsResult;
     };
 };
+
+// @public
+export interface VirtualWansUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualWansUpdateTagsResponse = VirtualWAN & {
@@ -10948,10 +13268,16 @@ export type VpnConnection = SubResource & {
 
 // @public
 export interface VpnConnections {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, connectionName: string, vpnConnectionParameters: VpnConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnConnectionsCreateOrUpdateResponse>, VpnConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): Promise<VpnConnectionsGetResponse>;
-    listByVpnGateway(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnConnection>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, connectionName: string, vpnConnectionParameters: VpnConnection, options?: VpnConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VpnConnectionsCreateOrUpdateResponse>, VpnConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, connectionName: string, options?: VpnConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, gatewayName: string, connectionName: string, options?: VpnConnectionsGetOptionalParams): Promise<VpnConnectionsGetResponse>;
+    listByVpnGateway(resourceGroupName: string, gatewayName: string, options?: VpnConnectionsListByVpnGatewayOptionalParams): PagedAsyncIterableIterator<VpnConnection>;
+}
+
+// @public
+export interface VpnConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -10959,9 +13285,18 @@ export type VpnConnectionsCreateOrUpdateResponse = VpnConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VpnConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnConnectionsGetResponse = VpnConnection & {
@@ -10972,12 +13307,20 @@ export type VpnConnectionsGetResponse = VpnConnection & {
 };
 
 // @public
+export interface VpnConnectionsListByVpnGatewayNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnConnectionsListByVpnGatewayNextResponse = ListVpnConnectionsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnConnectionsResult;
     };
 };
+
+// @public
+export interface VpnConnectionsListByVpnGatewayOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnConnectionsListByVpnGatewayResponse = ListVpnConnectionsResult & {
@@ -11012,13 +13355,19 @@ export type VpnGatewayGeneration = string;
 
 // @public
 export interface VpnGateways {
-    createOrUpdate(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: VpnGateway, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnGatewaysCreateOrUpdateResponse>, VpnGatewaysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<VpnGatewaysGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnGateway>;
-    reset(resourceGroupName: string, gatewayName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnGatewaysResetResponse>, VpnGatewaysResetResponse>>;
-    updateTags(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnGatewaysUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: VpnGateway, options?: VpnGatewaysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VpnGatewaysCreateOrUpdateResponse>, VpnGatewaysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, gatewayName: string, options?: VpnGatewaysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, gatewayName: string, options?: VpnGatewaysGetOptionalParams): Promise<VpnGatewaysGetResponse>;
+    list(options?: VpnGatewaysListOptionalParams): PagedAsyncIterableIterator<VpnGateway>;
+    listByResourceGroup(resourceGroupName: string, options?: VpnGatewaysListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VpnGateway>;
+    reset(resourceGroupName: string, gatewayName: string, options?: VpnGatewaysResetOptionalParams): Promise<PollerLike<PollOperationState<VpnGatewaysResetResponse>, VpnGatewaysResetResponse>>;
+    updateTags(resourceGroupName: string, gatewayName: string, vpnGatewayParameters: TagsObject, options?: VpnGatewaysUpdateTagsOptionalParams): Promise<VpnGatewaysUpdateTagsResponse>;
+}
+
+// @public
+export interface VpnGatewaysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -11026,9 +13375,18 @@ export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnGatewaysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VpnGatewaysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnGatewaysGetResponse = VpnGateway & {
@@ -11039,12 +13397,20 @@ export type VpnGatewaysGetResponse = VpnGateway & {
 };
 
 // @public
+export interface VpnGatewaysListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnGatewaysListByResourceGroupNextResponse = ListVpnGatewaysResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnGatewaysResult;
     };
 };
+
+// @public
+export interface VpnGatewaysListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnGatewaysListByResourceGroupResponse = ListVpnGatewaysResult & {
@@ -11055,12 +13421,20 @@ export type VpnGatewaysListByResourceGroupResponse = ListVpnGatewaysResult & {
 };
 
 // @public
+export interface VpnGatewaysListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnGatewaysListNextResponse = ListVpnGatewaysResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnGatewaysResult;
     };
 };
+
+// @public
+export interface VpnGatewaysListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnGatewaysListResponse = ListVpnGatewaysResult & {
@@ -11071,13 +13445,22 @@ export type VpnGatewaysListResponse = ListVpnGatewaysResult & {
 };
 
 // @public
+export interface VpnGatewaysResetOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VpnGatewaysResetResponse = VpnGateway & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnGateway;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnGatewaysUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnGatewaysUpdateTagsResponse = VpnGateway & {
@@ -11098,7 +13481,11 @@ export interface VpnLinkBgpSettings {
 
 // @public
 export interface VpnLinkConnections {
-    listByVpnConnection(resourceGroupName: string, gatewayName: string, connectionName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSiteLinkConnection>;
+    listByVpnConnection(resourceGroupName: string, gatewayName: string, connectionName: string, options?: VpnLinkConnectionsListByVpnConnectionOptionalParams): PagedAsyncIterableIterator<VpnSiteLinkConnection>;
+}
+
+// @public
+export interface VpnLinkConnectionsListByVpnConnectionNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -11108,6 +13495,10 @@ export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkC
         parsedBody: ListVpnSiteLinkConnectionsResult;
     };
 };
+
+// @public
+export interface VpnLinkConnectionsListByVpnConnectionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnLinkConnectionsListByVpnConnectionResponse = ListVpnSiteLinkConnectionsResult & {
@@ -11172,17 +13563,23 @@ export type VpnServerConfiguration = Resource & {
 
 // @public
 export interface VpnServerConfigurations {
-    createOrUpdate(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: VpnServerConfiguration, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnServerConfigurationsCreateOrUpdateResponse>, VpnServerConfigurationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, vpnServerConfigurationName: string, options?: coreHttp.OperationOptions): Promise<VpnServerConfigurationsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnServerConfiguration>;
-    updateTags(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnServerConfigurationsUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: VpnServerConfiguration, options?: VpnServerConfigurationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VpnServerConfigurationsCreateOrUpdateResponse>, VpnServerConfigurationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnServerConfigurationName: string, options?: VpnServerConfigurationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vpnServerConfigurationName: string, options?: VpnServerConfigurationsGetOptionalParams): Promise<VpnServerConfigurationsGetResponse>;
+    list(options?: VpnServerConfigurationsListOptionalParams): PagedAsyncIterableIterator<VpnServerConfiguration>;
+    listByResourceGroup(resourceGroupName: string, options?: VpnServerConfigurationsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VpnServerConfiguration>;
+    updateTags(resourceGroupName: string, vpnServerConfigurationName: string, vpnServerConfigurationParameters: TagsObject, options?: VpnServerConfigurationsUpdateTagsOptionalParams): Promise<VpnServerConfigurationsUpdateTagsResponse>;
 }
 
 // @public
 export interface VpnServerConfigurationsAssociatedWithVirtualWan {
-    list(resourceGroupName: string, virtualWANName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>, VpnServerConfigurationsAssociatedWithVirtualWanListResponse>>;
+    list(resourceGroupName: string, virtualWANName: string, options?: VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams): Promise<PollerLike<PollOperationState<VpnServerConfigurationsAssociatedWithVirtualWanListResponse>, VpnServerConfigurationsAssociatedWithVirtualWanListResponse>>;
+}
+
+// @public
+export interface VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -11190,18 +13587,32 @@ export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnSer
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnServerConfigurationsResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnServerConfigurationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VpnServerConfigurationsCreateOrUpdateResponse = VpnServerConfiguration & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnServerConfiguration;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnServerConfigurationsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VpnServerConfigurationsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnServerConfigurationsGetResponse = VpnServerConfiguration & {
@@ -11212,12 +13623,20 @@ export type VpnServerConfigurationsGetResponse = VpnServerConfiguration & {
 };
 
 // @public
+export interface VpnServerConfigurationsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnServerConfigurationsListByResourceGroupNextResponse = ListVpnServerConfigurationsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnServerConfigurationsResult;
     };
 };
+
+// @public
+export interface VpnServerConfigurationsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnServerConfigurationsListByResourceGroupResponse = ListVpnServerConfigurationsResult & {
@@ -11228,12 +13647,20 @@ export type VpnServerConfigurationsListByResourceGroupResponse = ListVpnServerCo
 };
 
 // @public
+export interface VpnServerConfigurationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnServerConfigurationsListNextResponse = ListVpnServerConfigurationsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnServerConfigurationsResult;
     };
 };
+
+// @public
+export interface VpnServerConfigurationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnServerConfigurationsListResponse = ListVpnServerConfigurationsResult & {
@@ -11246,6 +13673,10 @@ export type VpnServerConfigurationsListResponse = ListVpnServerConfigurationsRes
 // @public
 export interface VpnServerConfigurationsResponse {
     vpnServerConfigurationResourceIds?: string[];
+}
+
+// @public
+export interface VpnServerConfigurationsUpdateTagsOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -11322,7 +13753,11 @@ export type VpnSiteLinkConnection = SubResource & {
 
 // @public
 export interface VpnSiteLinkConnections {
-    get(resourceGroupName: string, gatewayName: string, connectionName: string, linkConnectionName: string, options?: coreHttp.OperationOptions): Promise<VpnSiteLinkConnectionsGetResponse>;
+    get(resourceGroupName: string, gatewayName: string, connectionName: string, linkConnectionName: string, options?: VpnSiteLinkConnectionsGetOptionalParams): Promise<VpnSiteLinkConnectionsGetResponse>;
+}
+
+// @public
+export interface VpnSiteLinkConnectionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -11335,8 +13770,12 @@ export type VpnSiteLinkConnectionsGetResponse = VpnSiteLinkConnection & {
 
 // @public
 export interface VpnSiteLinks {
-    get(resourceGroupName: string, vpnSiteName: string, vpnSiteLinkName: string, options?: coreHttp.OperationOptions): Promise<VpnSiteLinksGetResponse>;
-    listByVpnSite(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSiteLink>;
+    get(resourceGroupName: string, vpnSiteName: string, vpnSiteLinkName: string, options?: VpnSiteLinksGetOptionalParams): Promise<VpnSiteLinksGetResponse>;
+    listByVpnSite(resourceGroupName: string, vpnSiteName: string, options?: VpnSiteLinksListByVpnSiteOptionalParams): PagedAsyncIterableIterator<VpnSiteLink>;
+}
+
+// @public
+export interface VpnSiteLinksGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -11348,12 +13787,20 @@ export type VpnSiteLinksGetResponse = VpnSiteLink & {
 };
 
 // @public
+export interface VpnSiteLinksListByVpnSiteNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnSiteLinksListByVpnSiteNextResponse = ListVpnSiteLinksResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnSiteLinksResult;
     };
 };
+
+// @public
+export interface VpnSiteLinksListByVpnSiteOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult & {
@@ -11365,17 +13812,29 @@ export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult & {
 
 // @public
 export interface VpnSites {
-    createOrUpdate(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: VpnSite, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VpnSitesCreateOrUpdateResponse>, VpnSitesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, vpnSiteName: string, options?: coreHttp.OperationOptions): Promise<VpnSitesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VpnSite>;
-    updateTags(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: TagsObject, options?: coreHttp.OperationOptions): Promise<VpnSitesUpdateTagsResponse>;
+    createOrUpdate(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: VpnSite, options?: VpnSitesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VpnSitesCreateOrUpdateResponse>, VpnSitesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vpnSiteName: string, options?: VpnSitesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vpnSiteName: string, options?: VpnSitesGetOptionalParams): Promise<VpnSitesGetResponse>;
+    list(options?: VpnSitesListOptionalParams): PagedAsyncIterableIterator<VpnSite>;
+    listByResourceGroup(resourceGroupName: string, options?: VpnSitesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VpnSite>;
+    updateTags(resourceGroupName: string, vpnSiteName: string, vpnSiteParameters: TagsObject, options?: VpnSitesUpdateTagsOptionalParams): Promise<VpnSitesUpdateTagsResponse>;
 }
 
 // @public
 export interface VpnSitesConfiguration {
-    download(resourceGroupName: string, virtualWANName: string, request: GetVpnSitesConfigurationRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    download(resourceGroupName: string, virtualWANName: string, request: GetVpnSitesConfigurationRequest, options?: VpnSitesConfigurationDownloadOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface VpnSitesConfigurationDownloadOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VpnSitesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -11383,9 +13842,18 @@ export type VpnSitesCreateOrUpdateResponse = VpnSite & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VpnSite;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VpnSitesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VpnSitesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnSitesGetResponse = VpnSite & {
@@ -11396,12 +13864,20 @@ export type VpnSitesGetResponse = VpnSite & {
 };
 
 // @public
+export interface VpnSitesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnSitesListByResourceGroupNextResponse = ListVpnSitesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnSitesResult;
     };
 };
+
+// @public
+export interface VpnSitesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnSitesListByResourceGroupResponse = ListVpnSitesResult & {
@@ -11412,6 +13888,10 @@ export type VpnSitesListByResourceGroupResponse = ListVpnSitesResult & {
 };
 
 // @public
+export interface VpnSitesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnSitesListNextResponse = ListVpnSitesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -11420,12 +13900,20 @@ export type VpnSitesListNextResponse = ListVpnSitesResult & {
 };
 
 // @public
+export interface VpnSitesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VpnSitesListResponse = ListVpnSitesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListVpnSitesResult;
     };
 };
+
+// @public
+export interface VpnSitesUpdateTagsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VpnSitesUpdateTagsResponse = VpnSite & {
@@ -11465,11 +13953,15 @@ export type WebApplicationFirewallOperator = string;
 
 // @public
 export interface WebApplicationFirewallPolicies {
-    createOrUpdate(resourceGroupName: string, policyName: string, parameters: WebApplicationFirewallPolicy, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, policyName: string, options?: coreHttp.OperationOptions): Promise<WebApplicationFirewallPoliciesGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
+    createOrUpdate(resourceGroupName: string, policyName: string, parameters: WebApplicationFirewallPolicy, options?: WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, policyName: string, options?: WebApplicationFirewallPoliciesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, policyName: string, options?: WebApplicationFirewallPoliciesGetOptionalParams): Promise<WebApplicationFirewallPoliciesGetResponse>;
+    list(resourceGroupName: string, options?: WebApplicationFirewallPoliciesListOptionalParams): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
+    listAll(options?: WebApplicationFirewallPoliciesListAllOptionalParams): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
+}
+
+// @public
+export interface WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -11481,12 +13973,26 @@ export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicatio
 };
 
 // @public
+export interface WebApplicationFirewallPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface WebApplicationFirewallPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type WebApplicationFirewallPoliciesGetResponse = WebApplicationFirewallPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WebApplicationFirewallPolicy;
     };
 };
+
+// @public
+export interface WebApplicationFirewallPoliciesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WebApplicationFirewallPoliciesListAllNextResponse = WebApplicationFirewallPolicyListResult & {
@@ -11497,6 +14003,10 @@ export type WebApplicationFirewallPoliciesListAllNextResponse = WebApplicationFi
 };
 
 // @public
+export interface WebApplicationFirewallPoliciesListAllOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type WebApplicationFirewallPoliciesListAllResponse = WebApplicationFirewallPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -11505,12 +14015,20 @@ export type WebApplicationFirewallPoliciesListAllResponse = WebApplicationFirewa
 };
 
 // @public
+export interface WebApplicationFirewallPoliciesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type WebApplicationFirewallPoliciesListNextResponse = WebApplicationFirewallPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WebApplicationFirewallPolicyListResult;
     };
 };
+
+// @public
+export interface WebApplicationFirewallPoliciesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WebApplicationFirewallPoliciesListResponse = WebApplicationFirewallPolicyListResult & {
@@ -11548,10 +14066,6 @@ export type WebApplicationFirewallRuleType = string;
 // @public
 export type WebApplicationFirewallTransform = string;
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:10779:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

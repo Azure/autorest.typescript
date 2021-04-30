@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -112,16 +111,20 @@ export interface DeploymentOperationProperties {
 
 // @public
 export interface DeploymentOperations {
-    get(resourceGroupName: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetResponse>;
-    getAtManagementGroupScope(groupId: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse>;
-    getAtScope(scope: string, deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtScopeResponse>;
-    getAtSubscriptionScope(deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse>;
-    getAtTenantScope(deploymentName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<DeploymentOperationsGetAtTenantScopeResponse>;
+    get(resourceGroupName: string, deploymentName: string, operationId: string, options?: DeploymentOperationsGetOptionalParams): Promise<DeploymentOperationsGetResponse>;
+    getAtManagementGroupScope(groupId: string, deploymentName: string, operationId: string, options?: DeploymentOperationsGetAtManagementGroupScopeOptionalParams): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse>;
+    getAtScope(scope: string, deploymentName: string, operationId: string, options?: DeploymentOperationsGetAtScopeOptionalParams): Promise<DeploymentOperationsGetAtScopeResponse>;
+    getAtSubscriptionScope(deploymentName: string, operationId: string, options?: DeploymentOperationsGetAtSubscriptionScopeOptionalParams): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse>;
+    getAtTenantScope(deploymentName: string, operationId: string, options?: DeploymentOperationsGetAtTenantScopeOptionalParams): Promise<DeploymentOperationsGetAtTenantScopeResponse>;
     list(resourceGroupName: string, deploymentName: string, options?: DeploymentOperationsListOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
     listAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
     listAtScope(scope: string, deploymentName: string, options?: DeploymentOperationsListAtScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
     listAtSubscriptionScope(deploymentName: string, options?: DeploymentOperationsListAtSubscriptionScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
     listAtTenantScope(deploymentName: string, options?: DeploymentOperationsListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<DeploymentOperation>;
+}
+
+// @public
+export interface DeploymentOperationsGetAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -133,12 +136,20 @@ export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOp
 };
 
 // @public
+export interface DeploymentOperationsGetAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentOperationsGetAtScopeResponse = DeploymentOperation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentOperation;
     };
 };
+
+// @public
+export interface DeploymentOperationsGetAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation & {
@@ -149,12 +160,20 @@ export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOpera
 };
 
 // @public
+export interface DeploymentOperationsGetAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentOperationsGetAtTenantScopeResponse = DeploymentOperation & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentOperation;
     };
 };
+
+// @public
+export interface DeploymentOperationsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentOperationsGetResponse = DeploymentOperation & {
@@ -331,49 +350,53 @@ export interface DeploymentPropertiesExtended {
 
 // @public
 export interface Deployments {
-    calculateTemplateHash(template: any, options?: coreHttp.OperationOptions): Promise<DeploymentsCalculateTemplateHashResponse>;
-    cancel(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    cancelAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    cancelAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    cancelAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    cancelAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistence(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistenceAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistenceAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistenceAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistenceAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
-    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
-    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
-    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
-    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
-    delete(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    exportTemplate(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateResponse>;
-    exportTemplateAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
-    exportTemplateAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtScopeResponse>;
-    exportTemplateAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse>;
-    exportTemplateAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsExportTemplateAtTenantScopeResponse>;
-    get(resourceGroupName: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetResponse>;
-    getAtManagementGroupScope(groupId: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtManagementGroupScopeResponse>;
-    getAtScope(scope: string, deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtScopeResponse>;
-    getAtSubscriptionScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtSubscriptionScopeResponse>;
-    getAtTenantScope(deploymentName: string, options?: coreHttp.OperationOptions): Promise<DeploymentsGetAtTenantScopeResponse>;
+    calculateTemplateHash(template: any, options?: DeploymentsCalculateTemplateHashOptionalParams): Promise<DeploymentsCalculateTemplateHashResponse>;
+    cancel(resourceGroupName: string, deploymentName: string, options?: DeploymentsCancelOptionalParams): Promise<coreHttp.RestResponse>;
+    cancelAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsCancelAtManagementGroupScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    cancelAtScope(scope: string, deploymentName: string, options?: DeploymentsCancelAtScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    cancelAtSubscriptionScope(deploymentName: string, options?: DeploymentsCancelAtSubscriptionScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    cancelAtTenantScope(deploymentName: string, options?: DeploymentsCancelAtTenantScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistence(resourceGroupName: string, deploymentName: string, options?: DeploymentsCheckExistenceOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistenceAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistenceAtScope(scope: string, deploymentName: string, options?: DeploymentsCheckExistenceAtScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistenceAtSubscriptionScope(deploymentName: string, options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistenceAtTenantScope(deploymentName: string, options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
+    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
+    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
+    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
+    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
+    delete(resourceGroupName: string, deploymentName: string, options?: DeploymentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtScope(scope: string, deploymentName: string, options?: DeploymentsDeleteAtScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtSubscriptionScope(deploymentName: string, options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteAtTenantScope(deploymentName: string, options?: DeploymentsDeleteAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    exportTemplate(resourceGroupName: string, deploymentName: string, options?: DeploymentsExportTemplateOptionalParams): Promise<DeploymentsExportTemplateResponse>;
+    exportTemplateAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
+    exportTemplateAtScope(scope: string, deploymentName: string, options?: DeploymentsExportTemplateAtScopeOptionalParams): Promise<DeploymentsExportTemplateAtScopeResponse>;
+    exportTemplateAtSubscriptionScope(deploymentName: string, options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse>;
+    exportTemplateAtTenantScope(deploymentName: string, options?: DeploymentsExportTemplateAtTenantScopeOptionalParams): Promise<DeploymentsExportTemplateAtTenantScopeResponse>;
+    get(resourceGroupName: string, deploymentName: string, options?: DeploymentsGetOptionalParams): Promise<DeploymentsGetResponse>;
+    getAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsGetAtManagementGroupScopeOptionalParams): Promise<DeploymentsGetAtManagementGroupScopeResponse>;
+    getAtScope(scope: string, deploymentName: string, options?: DeploymentsGetAtScopeOptionalParams): Promise<DeploymentsGetAtScopeResponse>;
+    getAtSubscriptionScope(deploymentName: string, options?: DeploymentsGetAtSubscriptionScopeOptionalParams): Promise<DeploymentsGetAtSubscriptionScopeResponse>;
+    getAtTenantScope(deploymentName: string, options?: DeploymentsGetAtTenantScopeOptionalParams): Promise<DeploymentsGetAtTenantScopeResponse>;
     listAtManagementGroupScope(groupId: string, options?: DeploymentsListAtManagementGroupScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
     listAtScope(scope: string, options?: DeploymentsListAtScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
     listAtSubscriptionScope(options?: DeploymentsListAtSubscriptionScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
     listAtTenantScope(options?: DeploymentsListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
     listByResourceGroup(resourceGroupName: string, options?: DeploymentsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DeploymentExtended>;
-    validate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateResponse>;
-    validateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
-    validateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtScopeResponse>;
-    validateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
-    validateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: coreHttp.OperationOptions): Promise<DeploymentsValidateAtTenantScopeResponse>;
-    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
-    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
+    validate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: DeploymentsValidateOptionalParams): Promise<DeploymentsValidateResponse>;
+    validateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsValidateAtManagementGroupScopeOptionalParams): Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
+    validateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: DeploymentsValidateAtScopeOptionalParams): Promise<DeploymentsValidateAtScopeResponse>;
+    validateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: DeploymentsValidateAtSubscriptionScopeOptionalParams): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
+    validateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsValidateAtTenantScopeOptionalParams): Promise<DeploymentsValidateAtTenantScopeResponse>;
+    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
+    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
+}
+
+// @public
+export interface DeploymentsCalculateTemplateHashOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -385,49 +408,148 @@ export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult & {
 };
 
 // @public
+export interface DeploymentsCancelAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCancelAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCancelAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCancelAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCancelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCheckExistenceAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCheckExistenceAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCheckExistenceOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentsCreateOrUpdateAtScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentsCreateOrUpdateAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentsDeleteAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeploymentsDeleteAtScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeploymentsDeleteAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeploymentsDeleteAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeploymentsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeploymentsExportTemplateAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult & {
@@ -438,12 +560,20 @@ export type DeploymentsExportTemplateAtManagementGroupScopeResponse = Deployment
 };
 
 // @public
+export interface DeploymentsExportTemplateAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsExportTemplateAtScopeResponse = DeploymentExportResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExportResult;
     };
 };
+
+// @public
+export interface DeploymentsExportTemplateAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult & {
@@ -454,12 +584,20 @@ export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExp
 };
 
 // @public
+export interface DeploymentsExportTemplateAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExportResult;
     };
 };
+
+// @public
+export interface DeploymentsExportTemplateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsExportTemplateResponse = DeploymentExportResult & {
@@ -470,12 +608,20 @@ export type DeploymentsExportTemplateResponse = DeploymentExportResult & {
 };
 
 // @public
+export interface DeploymentsGetAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
     };
 };
+
+// @public
+export interface DeploymentsGetAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
@@ -486,6 +632,10 @@ export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
 };
 
 // @public
+export interface DeploymentsGetAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -494,12 +644,20 @@ export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
 };
 
 // @public
+export interface DeploymentsGetAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentExtended;
     };
 };
+
+// @public
+export interface DeploymentsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsGetResponse = DeploymentExtended & {
@@ -650,12 +808,20 @@ export type DeploymentsListByResourceGroupResponse = DeploymentListResult & {
 };
 
 // @public
+export interface DeploymentsValidateAtManagementGroupScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentValidateResult;
     };
 };
+
+// @public
+export interface DeploymentsValidateAtScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
@@ -666,6 +832,10 @@ export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
 };
 
 // @public
+export interface DeploymentsValidateAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -674,12 +844,20 @@ export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateR
 };
 
 // @public
+export interface DeploymentsValidateAtTenantScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentValidateResult;
     };
 };
+
+// @public
+export interface DeploymentsValidateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentsValidateResponse = DeploymentValidateResult & {
@@ -696,11 +874,16 @@ export interface DeploymentsWhatIfAtSubscriptionScopeHeaders {
 }
 
 // @public
+export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WhatIfOperationResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -711,11 +894,16 @@ export interface DeploymentsWhatIfHeaders {
 }
 
 // @public
+export interface DeploymentsWhatIfOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WhatIfOperationResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -839,7 +1027,11 @@ export interface OperationListResult {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -849,6 +1041,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -909,8 +1105,8 @@ export interface Providers {
     getAtTenantScope(resourceProviderNamespace: string, options?: ProvidersGetAtTenantScopeOptionalParams): Promise<ProvidersGetAtTenantScopeResponse>;
     list(options?: ProvidersListOptionalParams): PagedAsyncIterableIterator<Provider>;
     listAtTenantScope(options?: ProvidersListAtTenantScopeOptionalParams): PagedAsyncIterableIterator<Provider>;
-    register(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): Promise<ProvidersRegisterResponse>;
-    unregister(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): Promise<ProvidersUnregisterResponse>;
+    register(resourceProviderNamespace: string, options?: ProvidersRegisterOptionalParams): Promise<ProvidersRegisterResponse>;
+    unregister(resourceProviderNamespace: string, options?: ProvidersUnregisterOptionalParams): Promise<ProvidersUnregisterResponse>;
 }
 
 // @public
@@ -996,12 +1192,20 @@ export type ProvidersListResponse = ProviderListResult & {
 };
 
 // @public
+export interface ProvidersRegisterOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ProvidersRegisterResponse = Provider & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Provider;
     };
 };
+
+// @public
+export interface ProvidersUnregisterOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ProvidersUnregisterResponse = Provider & {
@@ -1070,13 +1274,21 @@ export interface ResourceGroupProperties {
 
 // @public
 export interface ResourceGroups {
-    checkExistence(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, parameters: ResourceGroup, options?: coreHttp.OperationOptions): Promise<ResourceGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
-    get(resourceGroupName: string, options?: coreHttp.OperationOptions): Promise<ResourceGroupsGetResponse>;
+    checkExistence(resourceGroupName: string, options?: ResourceGroupsCheckExistenceOptionalParams): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, parameters: ResourceGroup, options?: ResourceGroupsCreateOrUpdateOptionalParams): Promise<ResourceGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, options?: ResourceGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: ResourceGroupsExportTemplateOptionalParams): Promise<PollerLike<PollOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
+    get(resourceGroupName: string, options?: ResourceGroupsGetOptionalParams): Promise<ResourceGroupsGetResponse>;
     list(options?: ResourceGroupsListOptionalParams): PagedAsyncIterableIterator<ResourceGroup>;
-    update(resourceGroupName: string, parameters: ResourceGroupPatchable, options?: coreHttp.OperationOptions): Promise<ResourceGroupsUpdateResponse>;
+    update(resourceGroupName: string, parameters: ResourceGroupPatchable, options?: ResourceGroupsUpdateOptionalParams): Promise<ResourceGroupsUpdateResponse>;
+}
+
+// @public
+export interface ResourceGroupsCheckExistenceOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ResourceGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1088,13 +1300,28 @@ export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
 };
 
 // @public
+export interface ResourceGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ResourceGroupsExportTemplateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ResourceGroupExportResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ResourceGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ResourceGroupsGetResponse = ResourceGroup & {
@@ -1131,6 +1358,10 @@ export type ResourceGroupsListResponse = ResourceGroupListResult & {
         parsedBody: ResourceGroupListResult;
     };
 };
+
+// @public
+export interface ResourceGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ResourceGroupsUpdateResponse = ResourceGroup & {
@@ -1197,20 +1428,34 @@ export interface ResourceProviderOperationDisplayProperties {
 
 // @public
 export interface Resources {
-    checkExistence(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    checkExistenceById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
-    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetResponse>;
-    getById(resourceId: string, apiVersion: string, options?: coreHttp.OperationOptions): Promise<ResourcesGetByIdResponse>;
+    checkExistence(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesCheckExistenceOptionalParams): Promise<coreHttp.RestResponse>;
+    checkExistenceById(resourceId: string, apiVersion: string, options?: ResourcesCheckExistenceByIdOptionalParams): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
+    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
+    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteById(resourceId: string, apiVersion: string, options?: ResourcesDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesGetOptionalParams): Promise<ResourcesGetResponse>;
+    getById(resourceId: string, apiVersion: string, options?: ResourcesGetByIdOptionalParams): Promise<ResourcesGetByIdResponse>;
     list(options?: ResourcesListOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
     listByResourceGroup(resourceGroupName: string, options?: ResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
-    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
-    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
-    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
+    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
+    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesValidateMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface ResourcesCheckExistenceByIdOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ResourcesCheckExistenceOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ResourcesCreateOrUpdateByIdOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1218,18 +1463,38 @@ export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ResourcesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ResourcesCreateOrUpdateResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ResourcesDeleteByIdOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ResourcesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ResourcesGetByIdOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ResourcesGetByIdResponse = GenericResource & {
@@ -1238,6 +1503,10 @@ export type ResourcesGetByIdResponse = GenericResource & {
         parsedBody: GenericResource;
     };
 };
+
+// @public
+export interface ResourcesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ResourcesGetResponse = GenericResource & {
@@ -1314,22 +1583,44 @@ export interface ResourcesMoveInfo {
 }
 
 // @public
+export interface ResourcesMoveResourcesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ResourcesUpdateByIdOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ResourcesUpdateByIdResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ResourcesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ResourcesUpdateResponse = GenericResource & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GenericResource;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ResourcesValidateMoveResourcesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ScopedDeployment {
@@ -1368,11 +1659,15 @@ export interface TagDetails {
 
 // @public
 export interface Tags {
-    createOrUpdate(tagName: string, options?: coreHttp.OperationOptions): Promise<TagsCreateOrUpdateResponse>;
-    createOrUpdateValue(tagName: string, tagValue: string, options?: coreHttp.OperationOptions): Promise<TagsCreateOrUpdateValueResponse>;
-    delete(tagName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteValue(tagName: string, tagValue: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TagDetails>;
+    createOrUpdate(tagName: string, options?: TagsCreateOrUpdateOptionalParams): Promise<TagsCreateOrUpdateResponse>;
+    createOrUpdateValue(tagName: string, tagValue: string, options?: TagsCreateOrUpdateValueOptionalParams): Promise<TagsCreateOrUpdateValueResponse>;
+    delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteValue(tagName: string, tagValue: string, options?: TagsDeleteValueOptionalParams): Promise<coreHttp.RestResponse>;
+    list(options?: TagsListOptionalParams): PagedAsyncIterableIterator<TagDetails>;
+}
+
+// @public
+export interface TagsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1384,6 +1679,10 @@ export type TagsCreateOrUpdateResponse = TagDetails & {
 };
 
 // @public
+export interface TagsCreateOrUpdateValueOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type TagsCreateOrUpdateValueResponse = TagValue & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1392,12 +1691,28 @@ export type TagsCreateOrUpdateValueResponse = TagValue & {
 };
 
 // @public
+export interface TagsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface TagsDeleteValueOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface TagsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type TagsListNextResponse = TagsListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: TagsListResult;
     };
 };
+
+// @public
+export interface TagsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type TagsListResponse = TagsListResult & {
@@ -1467,10 +1782,6 @@ export interface WhatIfPropertyChange {
 // @public
 export type WhatIfResultFormat = "ResourceIdOnly" | "FullResourcePayloads";
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:1028:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

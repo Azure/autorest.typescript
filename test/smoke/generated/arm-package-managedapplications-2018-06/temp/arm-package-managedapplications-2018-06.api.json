@@ -809,13 +809,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -872,8 +868,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 20
+                "startIndex": 9,
+                "endIndex": 19
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -903,7 +899,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 7,
-                    "endIndex": 9
+                    "endIndex": 8
                   }
                 }
               ],
@@ -936,13 +932,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsCreateOrUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -999,8 +991,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 18
+                "startIndex": 7,
+                "endIndex": 17
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1023,7 +1015,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1055,13 +1047,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1118,8 +1106,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 18
+                "startIndex": 7,
+                "endIndex": 17
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1142,7 +1130,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1166,13 +1154,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1229,8 +1213,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 16
+                "startIndex": 5,
+                "endIndex": 15
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1246,7 +1230,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1278,13 +1262,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsGetOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1314,8 +1294,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1338,7 +1318,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1362,13 +1342,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsGetByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1398,8 +1374,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1415,7 +1391,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1439,13 +1415,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationDefinitionsListByResourceGroupOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1475,8 +1447,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1492,7 +1464,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1500,6 +1472,90 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsCreateOrUpdateByIdOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1535,24 +1591,6 @@
             },
             {
               "kind": "Content",
-              "text": ";\n        ["
-            },
-            {
-              "kind": "Reference",
-              "text": "LROSYM",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
-            },
-            {
-              "kind": "Content",
-              "text": "]: "
-            },
-            {
-              "kind": "Reference",
-              "text": "LROResponseInfo",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
-            },
-            {
-              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1564,8 +1602,92 @@
           "name": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 11
+            "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsCreateOrUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsCreateOrUpdateOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1601,24 +1723,6 @@
             },
             {
               "kind": "Content",
-              "text": ";\n        ["
-            },
-            {
-              "kind": "Reference",
-              "text": "LROSYM",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
-            },
-            {
-              "kind": "Content",
-              "text": "]: "
-            },
-            {
-              "kind": "Reference",
-              "text": "LROResponseInfo",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
-            },
-            {
-              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -1630,8 +1734,209 @@
           "name": "ApplicationDefinitionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 11
+            "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsDeleteByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsDeleteByIdOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsDeleteOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsGetByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsGetByIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1682,6 +1987,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
@@ -1730,6 +2068,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
@@ -1776,6 +2147,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDefinitionsListByResourceGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDefinitionsListByResourceGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2083,13 +2487,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2146,8 +2546,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 20
+                "startIndex": 9,
+                "endIndex": 19
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2177,7 +2577,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 7,
-                    "endIndex": 9
+                    "endIndex": 8
                   }
                 }
               ],
@@ -2210,13 +2610,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsCreateOrUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2273,8 +2669,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 18
+                "startIndex": 7,
+                "endIndex": 17
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2297,7 +2693,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2329,13 +2725,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2392,8 +2784,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 18
+                "startIndex": 7,
+                "endIndex": 17
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2416,7 +2808,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2440,13 +2832,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2503,8 +2891,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 16
+                "startIndex": 5,
+                "endIndex": 15
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2520,7 +2908,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -2552,13 +2940,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsGetOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2588,8 +2972,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2612,7 +2996,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2636,13 +3020,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsGetByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2672,8 +3052,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2689,7 +3069,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -2713,13 +3093,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListByResourceGroupOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2749,8 +3125,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2766,7 +3142,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -2782,13 +3158,9 @@
                   "text": "listBySubscription(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListBySubscriptionOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2818,8 +3190,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2828,7 +3200,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -2999,6 +3371,90 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsCreateOrUpdateByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsCreateOrUpdateByIdOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateById operation.\n */\n",
@@ -3032,24 +3488,6 @@
             },
             {
               "kind": "Content",
-              "text": ";\n        ["
-            },
-            {
-              "kind": "Reference",
-              "text": "LROSYM",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
-            },
-            {
-              "kind": "Content",
-              "text": "]: "
-            },
-            {
-              "kind": "Reference",
-              "text": "LROResponseInfo",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
-            },
-            {
-              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3061,8 +3499,92 @@
           "name": "ApplicationsCreateOrUpdateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 11
+            "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsCreateOrUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsCreateOrUpdateOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -3098,24 +3620,6 @@
             },
             {
               "kind": "Content",
-              "text": ";\n        ["
-            },
-            {
-              "kind": "Reference",
-              "text": "LROSYM",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROSYM"
-            },
-            {
-              "kind": "Content",
-              "text": "]: "
-            },
-            {
-              "kind": "Reference",
-              "text": "LROResponseInfo",
-              "canonicalReference": "arm-package-managedapplications-2018-06!LROResponseInfo:interface"
-            },
-            {
-              "kind": "Content",
               "text": ";\n    };\n}"
             },
             {
@@ -3127,8 +3631,209 @@
           "name": "ApplicationsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 11
+            "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsDeleteByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsDeleteByIdOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsDeleteOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#resumeFrom:member",
+              "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resumeFrom?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resumeFrom",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#updateIntervalInMs:member",
+              "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateIntervalInMs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "updateIntervalInMs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsGetByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsGetByIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -3179,6 +3884,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
@@ -3225,6 +3963,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -3275,6 +4046,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListByResourceGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListByResourceGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
@@ -3323,6 +4127,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscriptionNext operation.\n */\n",
@@ -3369,6 +4206,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListBySubscriptionOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListBySubscriptionOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",

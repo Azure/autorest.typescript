@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -328,7 +327,11 @@ export interface OperationListResult {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -338,6 +341,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -381,9 +388,9 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnections {
-    delete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
-    get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
-    put(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsPutResponse>;
+    delete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
+    get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
+    put(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: PrivateEndpointConnectionsPutOptionalParams): Promise<PrivateEndpointConnectionsPutResponse>;
 }
 
 // @public
@@ -393,13 +400,22 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
 }
 
 // @public
+export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PrivateEndpointConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -413,6 +429,10 @@ export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & 
 export interface PrivateEndpointConnectionsPutHeaders {
     azureAsyncOperation?: string;
     retryAfter?: number;
+}
+
+// @public
+export interface PrivateEndpointConnectionsPutOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -441,7 +461,11 @@ export interface PrivateLinkResourceListResult {
 
 // @public
 export interface PrivateLinkResources {
-    listByVault(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesListByVaultResponse>;
+    listByVault(resourceGroupName: string, vaultName: string, options?: PrivateLinkResourcesListByVaultOptionalParams): Promise<PrivateLinkResourcesListByVaultResponse>;
+}
+
+// @public
+export interface PrivateLinkResourcesListByVaultOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -593,18 +617,22 @@ export interface VaultProperties {
 
 // @public
 export interface Vaults {
-    checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: coreHttp.OperationOptions): Promise<VaultsCheckNameAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, vaultName: string, options?: coreHttp.OperationOptions): Promise<VaultsGetResponse>;
-    getDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<VaultsGetDeletedResponse>;
+    checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: VaultsCheckNameAvailabilityOptionalParams): Promise<VaultsCheckNameAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vaultName: string, options?: VaultsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, vaultName: string, options?: VaultsGetOptionalParams): Promise<VaultsGetResponse>;
+    getDeleted(vaultName: string, location: string, options?: VaultsGetDeletedOptionalParams): Promise<VaultsGetDeletedResponse>;
     list(options?: VaultsListOptionalParams): PagedAsyncIterableIterator<Resource>;
     listByResourceGroup(resourceGroupName: string, options?: VaultsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Vault>;
     listBySubscription(options?: VaultsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Vault>;
-    listDeleted(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeletedVault>;
-    purgeDeleted(vaultName: string, location: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vaultName: string, parameters: VaultPatchParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateResponse>;
-    updateAccessPolicy(resourceGroupName: string, vaultName: string, operationKind: AccessPolicyUpdateKind, parameters: VaultAccessPolicyParameters, options?: coreHttp.OperationOptions): Promise<VaultsUpdateAccessPolicyResponse>;
+    listDeleted(options?: VaultsListDeletedOptionalParams): PagedAsyncIterableIterator<DeletedVault>;
+    purgeDeleted(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vaultName: string, parameters: VaultPatchParameters, options?: VaultsUpdateOptionalParams): Promise<VaultsUpdateResponse>;
+    updateAccessPolicy(resourceGroupName: string, vaultName: string, operationKind: AccessPolicyUpdateKind, parameters: VaultAccessPolicyParameters, options?: VaultsUpdateAccessPolicyOptionalParams): Promise<VaultsUpdateAccessPolicyResponse>;
+}
+
+// @public
+export interface VaultsCheckNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -616,13 +644,26 @@ export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & 
 };
 
 // @public
+export interface VaultsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VaultsCreateOrUpdateResponse = Vault & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Vault;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VaultsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VaultsGetDeletedOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VaultsGetDeletedResponse = DeletedVault & {
@@ -631,6 +672,10 @@ export type VaultsGetDeletedResponse = DeletedVault & {
         parsedBody: DeletedVault;
     };
 };
+
+// @public
+export interface VaultsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VaultsGetResponse = Vault & {
@@ -693,12 +738,20 @@ export type VaultsListBySubscriptionResponse = VaultListResult & {
 };
 
 // @public
+export interface VaultsListDeletedNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VaultsListDeletedNextResponse = DeletedVaultListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeletedVaultListResult;
     };
 };
+
+// @public
+export interface VaultsListDeletedOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VaultsListDeletedResponse = DeletedVaultListResult & {
@@ -735,12 +788,26 @@ export type VaultsListResponse = ResourceListResult & {
 };
 
 // @public
+export interface VaultsPurgeDeletedOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VaultsUpdateAccessPolicyOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VaultAccessPolicyParameters;
     };
 };
+
+// @public
+export interface VaultsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VaultsUpdateResponse = Vault & {
@@ -755,10 +822,6 @@ export interface VirtualNetworkRule {
     id: string;
 }
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:983:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

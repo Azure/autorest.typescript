@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -90,13 +89,17 @@ export interface AvailabilitySetListResult {
 
 // @public
 export interface AvailabilitySets {
-    createOrUpdate(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySet, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsGetResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<AvailabilitySet>;
-    listAvailableSizes(resourceGroupName: string, availabilitySetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
+    createOrUpdate(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySet, options?: AvailabilitySetsCreateOrUpdateOptionalParams): Promise<AvailabilitySetsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsGetOptionalParams): Promise<AvailabilitySetsGetResponse>;
+    list(resourceGroupName: string, options?: AvailabilitySetsListOptionalParams): PagedAsyncIterableIterator<AvailabilitySet>;
+    listAvailableSizes(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsListAvailableSizesOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
     listBySubscription(options?: AvailabilitySetsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<AvailabilitySet>;
-    update(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySetUpdate, options?: coreHttp.OperationOptions): Promise<AvailabilitySetsUpdateResponse>;
+    update(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySetUpdate, options?: AvailabilitySetsUpdateOptionalParams): Promise<AvailabilitySetsUpdateResponse>;
+}
+
+// @public
+export interface AvailabilitySetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -108,6 +111,14 @@ export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet & {
 };
 
 // @public
+export interface AvailabilitySetsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface AvailabilitySetsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailabilitySetsGetResponse = AvailabilitySet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -117,6 +128,10 @@ export type AvailabilitySetsGetResponse = AvailabilitySet & {
 
 // @public
 export type AvailabilitySetSkuTypes = string;
+
+// @public
+export interface AvailabilitySetsListAvailableSizesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListResult & {
@@ -153,6 +168,10 @@ export type AvailabilitySetsListBySubscriptionResponse = AvailabilitySetListResu
 };
 
 // @public
+export interface AvailabilitySetsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailabilitySetsListNextResponse = AvailabilitySetListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -161,12 +180,20 @@ export type AvailabilitySetsListNextResponse = AvailabilitySetListResult & {
 };
 
 // @public
+export interface AvailabilitySetsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type AvailabilitySetsListResponse = AvailabilitySetListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AvailabilitySetListResult;
     };
 };
+
+// @public
+export interface AvailabilitySetsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AvailabilitySetsUpdateResponse = AvailabilitySet & {
@@ -386,11 +413,17 @@ export interface ContainerServicePrincipalProfile {
 
 // @public
 export interface ContainerServices {
-    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, containerServiceName: string, options?: coreHttp.OperationOptions): Promise<ContainerServicesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ContainerService>;
+    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: ContainerServicesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesGetOptionalParams): Promise<ContainerServicesGetResponse>;
+    list(options?: ContainerServicesListOptionalParams): PagedAsyncIterableIterator<ContainerService>;
+    listByResourceGroup(resourceGroupName: string, options?: ContainerServicesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ContainerService>;
+}
+
+// @public
+export interface ContainerServicesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -398,9 +431,18 @@ export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ContainerService;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ContainerServicesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ContainerServicesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ContainerServicesGetResponse = ContainerService & {
@@ -411,12 +453,20 @@ export type ContainerServicesGetResponse = ContainerService & {
 };
 
 // @public
+export interface ContainerServicesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ContainerServicesListByResourceGroupNextResponse = ContainerServiceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ContainerServiceListResult;
     };
 };
+
+// @public
+export interface ContainerServicesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ContainerServicesListByResourceGroupResponse = ContainerServiceListResult & {
@@ -427,12 +477,20 @@ export type ContainerServicesListByResourceGroupResponse = ContainerServiceListR
 };
 
 // @public
+export interface ContainerServicesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ContainerServicesListNextResponse = ContainerServiceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ContainerServiceListResult;
     };
 };
+
+// @public
+export interface ContainerServicesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ContainerServicesListResponse = ContainerServiceListResult & {
@@ -544,12 +602,16 @@ export interface DedicatedHostGroupListResult {
 
 // @public
 export interface DedicatedHostGroups {
-    createOrUpdate(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroup, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsGetResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHostGroup>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHostGroup>;
-    update(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroupUpdate, options?: coreHttp.OperationOptions): Promise<DedicatedHostGroupsUpdateResponse>;
+    createOrUpdate(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroup, options?: DedicatedHostGroupsCreateOrUpdateOptionalParams): Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostGroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostGroupsGetOptionalParams): Promise<DedicatedHostGroupsGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: DedicatedHostGroupsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DedicatedHostGroup>;
+    listBySubscription(options?: DedicatedHostGroupsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<DedicatedHostGroup>;
+    update(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroupUpdate, options?: DedicatedHostGroupsUpdateOptionalParams): Promise<DedicatedHostGroupsUpdateResponse>;
+}
+
+// @public
+export interface DedicatedHostGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -561,12 +623,24 @@ export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup & {
 };
 
 // @public
+export interface DedicatedHostGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DedicatedHostGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DedicatedHostGroupsGetResponse = DedicatedHostGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHostGroup;
     };
 };
+
+// @public
+export interface DedicatedHostGroupsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGroupListResult & {
@@ -577,12 +651,20 @@ export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGr
 };
 
 // @public
+export interface DedicatedHostGroupsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DedicatedHostGroupsListByResourceGroupResponse = DedicatedHostGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHostGroupListResult;
     };
 };
+
+// @public
+export interface DedicatedHostGroupsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGroupListResult & {
@@ -593,12 +675,20 @@ export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGro
 };
 
 // @public
+export interface DedicatedHostGroupsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DedicatedHostGroupsListBySubscriptionResponse = DedicatedHostGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHostGroupListResult;
     };
 };
+
+// @public
+export interface DedicatedHostGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DedicatedHostGroupsUpdateResponse = DedicatedHostGroup & {
@@ -633,11 +723,17 @@ export interface DedicatedHostListResult {
 
 // @public
 export interface DedicatedHosts {
-    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: coreHttp.OperationOptions): Promise<DedicatedHostsGetResponse>;
-    listByHostGroup(resourceGroupName: string, hostGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DedicatedHost>;
-    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: DedicatedHostsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsGetOptionalParams): Promise<DedicatedHostsGetResponse>;
+    listByHostGroup(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostsListByHostGroupOptionalParams): PagedAsyncIterableIterator<DedicatedHost>;
+    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: DedicatedHostsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
+}
+
+// @public
+export interface DedicatedHostsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -645,9 +741,18 @@ export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHost;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DedicatedHostsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DedicatedHostsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DedicatedHostsGetResponse = DedicatedHost & {
@@ -658,12 +763,20 @@ export type DedicatedHostsGetResponse = DedicatedHost & {
 };
 
 // @public
+export interface DedicatedHostsListByHostGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DedicatedHostsListByHostGroupNextResponse = DedicatedHostListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHostListResult;
     };
 };
+
+// @public
+export interface DedicatedHostsListByHostGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult & {
@@ -674,11 +787,16 @@ export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult & {
 };
 
 // @public
+export interface DedicatedHostsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DedicatedHostsUpdateResponse = DedicatedHost & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DedicatedHost;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -769,12 +887,18 @@ export type DiskEncryptionSetParameters = SubResource & {};
 
 // @public
 export interface DiskEncryptionSets {
-    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, diskEncryptionSetName: string, options?: coreHttp.OperationOptions): Promise<DiskEncryptionSetsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DiskEncryptionSet>;
-    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: DiskEncryptionSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsGetOptionalParams): Promise<DiskEncryptionSetsGetResponse>;
+    list(options?: DiskEncryptionSetsListOptionalParams): PagedAsyncIterableIterator<DiskEncryptionSet>;
+    listByResourceGroup(resourceGroupName: string, options?: DiskEncryptionSetsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DiskEncryptionSet>;
+    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: DiskEncryptionSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
+}
+
+// @public
+export interface DiskEncryptionSetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -782,9 +906,18 @@ export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSet;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DiskEncryptionSetsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DiskEncryptionSetsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DiskEncryptionSetsGetResponse = DiskEncryptionSet & {
@@ -795,12 +928,20 @@ export type DiskEncryptionSetsGetResponse = DiskEncryptionSet & {
 };
 
 // @public
+export interface DiskEncryptionSetsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DiskEncryptionSetsListByResourceGroupNextResponse = DiskEncryptionSetList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSetList;
     };
 };
+
+// @public
+export interface DiskEncryptionSetsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetList & {
@@ -811,12 +952,20 @@ export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetLis
 };
 
 // @public
+export interface DiskEncryptionSetsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DiskEncryptionSetsListNextResponse = DiskEncryptionSetList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSetList;
     };
 };
+
+// @public
+export interface DiskEncryptionSetsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DiskEncryptionSetsListResponse = DiskEncryptionSetList & {
@@ -827,11 +976,16 @@ export type DiskEncryptionSetsListResponse = DiskEncryptionSetList & {
 };
 
 // @public
+export interface DiskEncryptionSetsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskEncryptionSet;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -870,14 +1024,20 @@ export interface DiskList {
 
 // @public
 export interface Disks {
-    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<DisksGetResponse>;
-    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
-    revokeAccess(resourceGroupName: string, diskName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: DisksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams): Promise<DisksGetResponse>;
+    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: DisksGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
+    list(options?: DisksListOptionalParams): PagedAsyncIterableIterator<Disk>;
+    listByResourceGroup(resourceGroupName: string, options?: DisksListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Disk>;
+    revokeAccess(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: DisksUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
+}
+
+// @public
+export interface DisksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -885,9 +1045,18 @@ export type DisksCreateOrUpdateResponse = Disk & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Disk;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DisksDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DisksGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DisksGetResponse = Disk & {
@@ -898,11 +1067,16 @@ export type DisksGetResponse = Disk & {
 };
 
 // @public
+export interface DisksGrantAccessOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DisksGrantAccessResponse = AccessUri & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AccessUri;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -910,6 +1084,10 @@ export type DisksGrantAccessResponse = AccessUri & {
 export interface DiskSku {
     name?: DiskStorageAccountTypes;
     readonly tier?: string;
+}
+
+// @public
+export interface DisksListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -921,12 +1099,20 @@ export type DisksListByResourceGroupNextResponse = DiskList & {
 };
 
 // @public
+export interface DisksListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DisksListByResourceGroupResponse = DiskList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DiskList;
     };
 };
+
+// @public
+export interface DisksListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DisksListNextResponse = DiskList & {
@@ -937,6 +1123,10 @@ export type DisksListNextResponse = DiskList & {
 };
 
 // @public
+export interface DisksListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DisksListResponse = DiskList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -945,17 +1135,28 @@ export type DisksListResponse = DiskList & {
 };
 
 // @public
+export interface DisksRevokeAccessOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DiskState = string;
 
 // @public
 export type DiskStorageAccountTypes = string;
 
 // @public
+export interface DisksUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DisksUpdateResponse = Disk & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Disk;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1016,12 +1217,18 @@ export type Enum31 = number;
 
 // @public
 export interface Galleries {
-    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): Promise<GalleriesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Gallery>;
-    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, options?: GalleriesGetOptionalParams): Promise<GalleriesGetResponse>;
+    list(options?: GalleriesListOptionalParams): PagedAsyncIterableIterator<Gallery>;
+    listByResourceGroup(resourceGroupName: string, options?: GalleriesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Gallery>;
+    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: GalleriesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
+}
+
+// @public
+export interface GalleriesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1029,9 +1236,18 @@ export type GalleriesCreateOrUpdateResponse = Gallery & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Gallery;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface GalleriesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface GalleriesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleriesGetResponse = Gallery & {
@@ -1042,12 +1258,20 @@ export type GalleriesGetResponse = Gallery & {
 };
 
 // @public
+export interface GalleriesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleriesListByResourceGroupNextResponse = GalleryList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryList;
     };
 };
+
+// @public
+export interface GalleriesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleriesListByResourceGroupResponse = GalleryList & {
@@ -1058,12 +1282,20 @@ export type GalleriesListByResourceGroupResponse = GalleryList & {
 };
 
 // @public
+export interface GalleriesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleriesListNextResponse = GalleryList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryList;
     };
 };
+
+// @public
+export interface GalleriesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleriesListResponse = GalleryList & {
@@ -1074,11 +1306,16 @@ export type GalleriesListResponse = GalleryList & {
 };
 
 // @public
+export interface GalleriesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type GalleriesUpdateResponse = Gallery & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Gallery;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1107,11 +1344,17 @@ export interface GalleryApplicationList {
 
 // @public
 export interface GalleryApplications {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): Promise<GalleryApplicationsGetResponse>;
-    listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplication>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: GalleryApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsGetOptionalParams): Promise<GalleryApplicationsGetResponse>;
+    listByGallery(resourceGroupName: string, galleryName: string, options?: GalleryApplicationsListByGalleryOptionalParams): PagedAsyncIterableIterator<GalleryApplication>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: GalleryApplicationsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
+}
+
+// @public
+export interface GalleryApplicationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1119,9 +1362,18 @@ export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplication;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface GalleryApplicationsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface GalleryApplicationsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryApplicationsGetResponse = GalleryApplication & {
@@ -1132,12 +1384,20 @@ export type GalleryApplicationsGetResponse = GalleryApplication & {
 };
 
 // @public
+export interface GalleryApplicationsListByGalleryNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleryApplicationsListByGalleryNextResponse = GalleryApplicationList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationList;
     };
 };
+
+// @public
+export interface GalleryApplicationsListByGalleryOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList & {
@@ -1148,11 +1408,16 @@ export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList & 
 };
 
 // @public
+export interface GalleryApplicationsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type GalleryApplicationsUpdateResponse = GalleryApplication & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplication;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1191,11 +1456,17 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
 
 // @public
 export interface GalleryApplicationVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsGetOptionalParams): Promise<GalleryApplicationVersionsGetResponse>;
-    listByGalleryApplication(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryApplicationVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
+    listByGalleryApplication(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams): PagedAsyncIterableIterator<GalleryApplicationVersion>;
+    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: GalleryApplicationVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
+}
+
+// @public
+export interface GalleryApplicationVersionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1203,9 +1474,14 @@ export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicatio
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationVersion;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface GalleryApplicationVersionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface GalleryApplicationVersionsGetOptionalParams extends coreHttp.OperationOptions {
@@ -1221,12 +1497,20 @@ export type GalleryApplicationVersionsGetResponse = GalleryApplicationVersion & 
 };
 
 // @public
+export interface GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleryApplicationVersionsListByGalleryApplicationNextResponse = GalleryApplicationVersionList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationVersionList;
     };
 };
+
+// @public
+export interface GalleryApplicationVersionsListByGalleryApplicationOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryApplicationVersionsListByGalleryApplicationResponse = GalleryApplicationVersionList & {
@@ -1237,11 +1521,16 @@ export type GalleryApplicationVersionsListByGalleryApplicationResponse = Gallery
 };
 
 // @public
+export interface GalleryApplicationVersionsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryApplicationVersion;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1324,11 +1613,17 @@ export type GalleryImagePropertiesProvisioningState = string;
 
 // @public
 export interface GalleryImages {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): Promise<GalleryImagesGetResponse>;
-    listByGallery(resourceGroupName: string, galleryName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImage>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: GalleryImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesGetOptionalParams): Promise<GalleryImagesGetResponse>;
+    listByGallery(resourceGroupName: string, galleryName: string, options?: GalleryImagesListByGalleryOptionalParams): PagedAsyncIterableIterator<GalleryImage>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: GalleryImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
+}
+
+// @public
+export interface GalleryImagesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1336,9 +1631,18 @@ export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImage;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface GalleryImagesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface GalleryImagesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryImagesGetResponse = GalleryImage & {
@@ -1349,12 +1653,20 @@ export type GalleryImagesGetResponse = GalleryImage & {
 };
 
 // @public
+export interface GalleryImagesListByGalleryNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleryImagesListByGalleryNextResponse = GalleryImageList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageList;
     };
 };
+
+// @public
+export interface GalleryImagesListByGalleryOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryImagesListByGalleryResponse = GalleryImageList & {
@@ -1365,11 +1677,16 @@ export type GalleryImagesListByGalleryResponse = GalleryImageList & {
 };
 
 // @public
+export interface GalleryImagesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type GalleryImagesUpdateResponse = GalleryImage & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImage;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1412,11 +1729,17 @@ export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProf
 
 // @public
 export interface GalleryImageVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: GalleryImageVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsGetOptionalParams): Promise<GalleryImageVersionsGetResponse>;
-    listByGalleryImage(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GalleryImageVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
+    listByGalleryImage(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImageVersionsListByGalleryImageOptionalParams): PagedAsyncIterableIterator<GalleryImageVersion>;
+    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: GalleryImageVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
+}
+
+// @public
+export interface GalleryImageVersionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1424,9 +1747,14 @@ export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageVersion;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface GalleryImageVersionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface GalleryImageVersionsGetOptionalParams extends coreHttp.OperationOptions {
@@ -1442,12 +1770,20 @@ export type GalleryImageVersionsGetResponse = GalleryImageVersion & {
 };
 
 // @public
+export interface GalleryImageVersionsListByGalleryImageNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GalleryImageVersionsListByGalleryImageNextResponse = GalleryImageVersionList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageVersionList;
     };
 };
+
+// @public
+export interface GalleryImageVersionsListByGalleryImageOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersionList & {
@@ -1465,11 +1801,16 @@ export interface GalleryImageVersionStorageProfile {
 }
 
 // @public
+export interface GalleryImageVersionsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GalleryImageVersion;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1586,12 +1927,18 @@ export type ImageReference = SubResource & {
 
 // @public
 export interface Images {
-    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, imageName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image_2>;
-    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
+    list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image_2>;
+    listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image_2>;
+    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
+}
+
+// @public
+export interface ImagesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1599,9 +1946,14 @@ export type ImagesCreateOrUpdateResponse = Image_2 & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Image_2;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ImagesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ImagesGetOptionalParams extends coreHttp.OperationOptions {
@@ -1617,12 +1969,20 @@ export type ImagesGetResponse = Image_2 & {
 };
 
 // @public
+export interface ImagesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ImagesListByResourceGroupNextResponse = ImageListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImageListResult;
     };
 };
+
+// @public
+export interface ImagesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ImagesListByResourceGroupResponse = ImageListResult & {
@@ -1633,12 +1993,20 @@ export type ImagesListByResourceGroupResponse = ImageListResult & {
 };
 
 // @public
+export interface ImagesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ImagesListNextResponse = ImageListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImageListResult;
     };
 };
+
+// @public
+export interface ImagesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ImagesListResponse = ImageListResult & {
@@ -1656,11 +2024,16 @@ export interface ImageStorageProfile {
 }
 
 // @public
+export interface ImagesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ImagesUpdateResponse = Image_2 & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Image_2;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2474,8 +2847,14 @@ export interface ListUsagesResult {
 
 // @public
 export interface LogAnalytics {
-    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>, LogAnalyticsExportRequestRateByIntervalResponse>>;
-    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<LogAnalyticsExportThrottledRequestsResponse>, LogAnalyticsExportThrottledRequestsResponse>>;
+    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: LogAnalyticsExportRequestRateByIntervalOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>, LogAnalyticsExportRequestRateByIntervalResponse>>;
+    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: LogAnalyticsExportThrottledRequestsOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportThrottledRequestsResponse>, LogAnalyticsExportThrottledRequestsResponse>>;
+}
+
+// @public
+export interface LogAnalyticsExportRequestRateByIntervalOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2483,16 +2862,20 @@ export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperat
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LogAnalyticsOperationResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface LogAnalyticsExportThrottledRequestsOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LogAnalyticsOperationResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2559,7 +2942,11 @@ export type OperatingSystemTypes = "Windows" | "Linux";
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ComputeOperationValue>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<ComputeOperationValue>;
+}
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2655,12 +3042,16 @@ export interface ProximityPlacementGroupListResult {
 
 // @public
 export interface ProximityPlacementGroups {
-    createOrUpdate(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroup, options?: coreHttp.OperationOptions): Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, proximityPlacementGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroup, options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams): Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsGetOptionalParams): Promise<ProximityPlacementGroupsGetResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProximityPlacementGroup>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ProximityPlacementGroup>;
-    update(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroupUpdate, options?: coreHttp.OperationOptions): Promise<ProximityPlacementGroupsUpdateResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: ProximityPlacementGroupsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ProximityPlacementGroup>;
+    listBySubscription(options?: ProximityPlacementGroupsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<ProximityPlacementGroup>;
+    update(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroupUpdate, options?: ProximityPlacementGroupsUpdateOptionalParams): Promise<ProximityPlacementGroupsUpdateResponse>;
+}
+
+// @public
+export interface ProximityPlacementGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2670,6 +3061,10 @@ export type ProximityPlacementGroupsCreateOrUpdateResponse = ProximityPlacementG
         parsedBody: ProximityPlacementGroup;
     };
 };
+
+// @public
+export interface ProximityPlacementGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export interface ProximityPlacementGroupsGetOptionalParams extends coreHttp.OperationOptions {
@@ -2685,12 +3080,20 @@ export type ProximityPlacementGroupsGetResponse = ProximityPlacementGroup & {
 };
 
 // @public
+export interface ProximityPlacementGroupsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ProximityPlacementGroupsListByResourceGroupNextResponse = ProximityPlacementGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ProximityPlacementGroupListResult;
     };
 };
+
+// @public
+export interface ProximityPlacementGroupsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlacementGroupListResult & {
@@ -2701,6 +3104,10 @@ export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlace
 };
 
 // @public
+export interface ProximityPlacementGroupsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPlacementGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2709,12 +3116,20 @@ export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPl
 };
 
 // @public
+export interface ProximityPlacementGroupsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ProximityPlacementGroupsListBySubscriptionResponse = ProximityPlacementGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ProximityPlacementGroupListResult;
     };
 };
+
+// @public
+export interface ProximityPlacementGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup & {
@@ -3047,14 +3462,20 @@ export interface SnapshotList {
 
 // @public
 export interface Snapshots {
-    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<SnapshotsGetResponse>;
-    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Snapshot>;
-    revokeAccess(resourceGroupName: string, snapshotName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: SnapshotsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, snapshotName: string, options?: SnapshotsGetOptionalParams): Promise<SnapshotsGetResponse>;
+    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: SnapshotsGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
+    list(options?: SnapshotsListOptionalParams): PagedAsyncIterableIterator<Snapshot>;
+    listByResourceGroup(resourceGroupName: string, options?: SnapshotsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Snapshot>;
+    revokeAccess(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: SnapshotsUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
+}
+
+// @public
+export interface SnapshotsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3062,9 +3483,18 @@ export type SnapshotsCreateOrUpdateResponse = Snapshot & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Snapshot;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SnapshotsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SnapshotsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SnapshotsGetResponse = Snapshot & {
@@ -3075,11 +3505,16 @@ export type SnapshotsGetResponse = Snapshot & {
 };
 
 // @public
+export interface SnapshotsGrantAccessOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type SnapshotsGrantAccessResponse = AccessUri & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AccessUri;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3087,6 +3522,10 @@ export type SnapshotsGrantAccessResponse = AccessUri & {
 export interface SnapshotSku {
     name?: SnapshotStorageAccountTypes;
     readonly tier?: string;
+}
+
+// @public
+export interface SnapshotsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3098,12 +3537,20 @@ export type SnapshotsListByResourceGroupNextResponse = SnapshotList & {
 };
 
 // @public
+export interface SnapshotsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SnapshotsListByResourceGroupResponse = SnapshotList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SnapshotList;
     };
 };
+
+// @public
+export interface SnapshotsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SnapshotsListNextResponse = SnapshotList & {
@@ -3114,6 +3561,10 @@ export type SnapshotsListNextResponse = SnapshotList & {
 };
 
 // @public
+export interface SnapshotsListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SnapshotsListResponse = SnapshotList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3122,14 +3573,25 @@ export type SnapshotsListResponse = SnapshotList & {
 };
 
 // @public
+export interface SnapshotsRevokeAccessOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type SnapshotStorageAccountTypes = string;
+
+// @public
+export interface SnapshotsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type SnapshotsUpdateResponse = Snapshot & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Snapshot;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3175,13 +3637,17 @@ export type SshPublicKeyResource = Resource & {
 
 // @public
 export interface SshPublicKeys {
-    create(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyResource, options?: coreHttp.OperationOptions): Promise<SshPublicKeysCreateResponse>;
-    delete(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    generateKeyPair(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<SshPublicKeysGenerateKeyPairResponse>;
-    get(resourceGroupName: string, sshPublicKeyName: string, options?: coreHttp.OperationOptions): Promise<SshPublicKeysGetResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SshPublicKeyResource>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SshPublicKeyResource>;
-    update(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyUpdateResource, options?: coreHttp.OperationOptions): Promise<SshPublicKeysUpdateResponse>;
+    create(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyResource, options?: SshPublicKeysCreateOptionalParams): Promise<SshPublicKeysCreateResponse>;
+    delete(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    generateKeyPair(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysGenerateKeyPairOptionalParams): Promise<SshPublicKeysGenerateKeyPairResponse>;
+    get(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysGetOptionalParams): Promise<SshPublicKeysGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: SshPublicKeysListByResourceGroupOptionalParams): PagedAsyncIterableIterator<SshPublicKeyResource>;
+    listBySubscription(options?: SshPublicKeysListBySubscriptionOptionalParams): PagedAsyncIterableIterator<SshPublicKeyResource>;
+    update(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyUpdateResource, options?: SshPublicKeysUpdateOptionalParams): Promise<SshPublicKeysUpdateResponse>;
+}
+
+// @public
+export interface SshPublicKeysCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3193,12 +3659,24 @@ export type SshPublicKeysCreateResponse = SshPublicKeyResource & {
 };
 
 // @public
+export interface SshPublicKeysDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface SshPublicKeysGenerateKeyPairOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SshPublicKeysGenerateKeyPairResponse = SshPublicKeyGenerateKeyPairResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SshPublicKeyGenerateKeyPairResult;
     };
 };
+
+// @public
+export interface SshPublicKeysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SshPublicKeysGetResponse = SshPublicKeyResource & {
@@ -3215,12 +3693,20 @@ export interface SshPublicKeysGroupListResult {
 }
 
 // @public
+export interface SshPublicKeysListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SshPublicKeysListByResourceGroupNextResponse = SshPublicKeysGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SshPublicKeysGroupListResult;
     };
 };
+
+// @public
+export interface SshPublicKeysListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListResult & {
@@ -3231,6 +3717,10 @@ export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListRes
 };
 
 // @public
+export interface SshPublicKeysListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3239,12 +3729,20 @@ export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupList
 };
 
 // @public
+export interface SshPublicKeysListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SshPublicKeysListBySubscriptionResponse = SshPublicKeysGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SshPublicKeysGroupListResult;
     };
 };
+
+// @public
+export interface SshPublicKeysUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SshPublicKeysUpdateResponse = SshPublicKeyResource & {
@@ -3366,7 +3864,7 @@ export type UpgradeState = "RollingForward" | "Cancelled" | "Completed" | "Fault
 
 // @public
 export interface Usage {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<UsageDef>;
+    list(location: string, options?: UsageListOptionalParams): PagedAsyncIterableIterator<UsageDef>;
 }
 
 // @public
@@ -3378,12 +3876,20 @@ export interface UsageDef {
 }
 
 // @public
+export interface UsageListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UsageListNextResponse = ListUsagesResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ListUsagesResult;
     };
 };
+
+// @public
+export interface UsageListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UsageListResponse = ListUsagesResult & {
@@ -3503,9 +4009,13 @@ export type VirtualMachineExtensionImage = Resource & {
 
 // @public
 export interface VirtualMachineExtensionImages {
-    get(location: string, publisherName: string, version: string, typeParam: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineExtensionImagesGetResponse>;
-    listTypes(location: string, publisherName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineExtensionImagesListTypesResponse>;
+    get(location: string, publisherName: string, version: string, typeParam: string, options?: VirtualMachineExtensionImagesGetOptionalParams): Promise<VirtualMachineExtensionImagesGetResponse>;
+    listTypes(location: string, publisherName: string, options?: VirtualMachineExtensionImagesListTypesOptionalParams): Promise<VirtualMachineExtensionImagesListTypesResponse>;
     listVersions(location: string, publisherName: string, typeParam: string, options?: VirtualMachineExtensionImagesListVersionsOptionalParams): Promise<VirtualMachineExtensionImagesListVersionsResponse>;
+}
+
+// @public
+export interface VirtualMachineExtensionImagesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3515,6 +4025,10 @@ export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionIm
         parsedBody: VirtualMachineExtensionImage;
     };
 };
+
+// @public
+export interface VirtualMachineExtensionImagesListTypesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineExtensionImagesListTypesResponse = VirtualMachineExtensionImage[] & {
@@ -3552,11 +4066,17 @@ export interface VirtualMachineExtensionInstanceView {
 
 // @public
 export interface VirtualMachineExtensions {
-    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsGetOptionalParams): Promise<VirtualMachineExtensionsGetResponse>;
     list(resourceGroupName: string, vmName: string, options?: VirtualMachineExtensionsListOptionalParams): Promise<VirtualMachineExtensionsListResponse>;
-    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
+    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
+}
+
+// @public
+export interface VirtualMachineExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3564,9 +4084,14 @@ export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExten
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachineExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualMachineExtensionsGetOptionalParams extends coreHttp.OperationOptions {
@@ -3600,11 +4125,16 @@ export interface VirtualMachineExtensionsListResult {
 }
 
 // @public
+export interface VirtualMachineExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -3654,11 +4184,15 @@ export type VirtualMachineImageResource = SubResource & {
 
 // @public
 export interface VirtualMachineImages {
-    get(location: string, publisherName: string, offer: string, skus: string, version: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesGetResponse>;
+    get(location: string, publisherName: string, offer: string, skus: string, version: string, options?: VirtualMachineImagesGetOptionalParams): Promise<VirtualMachineImagesGetResponse>;
     list(location: string, publisherName: string, offer: string, skus: string, options?: VirtualMachineImagesListOptionalParams): Promise<VirtualMachineImagesListResponse>;
-    listOffers(location: string, publisherName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListOffersResponse>;
-    listPublishers(location: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListPublishersResponse>;
-    listSkus(location: string, publisherName: string, offer: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineImagesListSkusResponse>;
+    listOffers(location: string, publisherName: string, options?: VirtualMachineImagesListOffersOptionalParams): Promise<VirtualMachineImagesListOffersResponse>;
+    listPublishers(location: string, options?: VirtualMachineImagesListPublishersOptionalParams): Promise<VirtualMachineImagesListPublishersResponse>;
+    listSkus(location: string, publisherName: string, offer: string, options?: VirtualMachineImagesListSkusOptionalParams): Promise<VirtualMachineImagesListSkusResponse>;
+}
+
+// @public
+export interface VirtualMachineImagesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3668,6 +4202,10 @@ export type VirtualMachineImagesGetResponse = VirtualMachineImage & {
         parsedBody: VirtualMachineImage;
     };
 };
+
+// @public
+export interface VirtualMachineImagesListOffersOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineImagesListOffersResponse = VirtualMachineImageResource[] & {
@@ -3687,6 +4225,10 @@ export interface VirtualMachineImagesListOptionalParams extends coreHttp.Operati
 }
 
 // @public
+export interface VirtualMachineImagesListPublishersOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineImagesListPublishersResponse = VirtualMachineImageResource[] & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -3701,6 +4243,10 @@ export type VirtualMachineImagesListResponse = VirtualMachineImageResource[] & {
         parsedBody: VirtualMachineImageResource[];
     };
 };
+
+// @public
+export interface VirtualMachineImagesListSkusOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineImagesListSkusResponse = VirtualMachineImageResource[] & {
@@ -3743,8 +4289,12 @@ export interface VirtualMachineReimageParameters {
 
 // @public
 export interface VirtualMachineRunCommands {
-    get(location: string, commandId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineRunCommandsGetResponse>;
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RunCommandDocumentBase>;
+    get(location: string, commandId: string, options?: VirtualMachineRunCommandsGetOptionalParams): Promise<VirtualMachineRunCommandsGetResponse>;
+    list(location: string, options?: VirtualMachineRunCommandsListOptionalParams): PagedAsyncIterableIterator<RunCommandDocumentBase>;
+}
+
+// @public
+export interface VirtualMachineRunCommandsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -3756,12 +4306,20 @@ export type VirtualMachineRunCommandsGetResponse = RunCommandDocument & {
 };
 
 // @public
+export interface VirtualMachineRunCommandsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineRunCommandsListNextResponse = RunCommandListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RunCommandListResult;
     };
 };
+
+// @public
+export interface VirtualMachineRunCommandsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
@@ -3773,28 +4331,28 @@ export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
 
 // @public
 export interface VirtualMachines {
-    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
-    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
-    deallocate(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generalize(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesGetResponse>;
-    instanceView(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachinesInstanceViewResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachine>;
+    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: VirtualMachinesCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
+    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
+    deallocate(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generalize(resourceGroupName: string, vmName: string, options?: VirtualMachinesGeneralizeOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams): Promise<VirtualMachinesGetResponse>;
+    instanceView(resourceGroupName: string, vmName: string, options?: VirtualMachinesInstanceViewOptionalParams): Promise<VirtualMachinesInstanceViewResponse>;
+    list(resourceGroupName: string, options?: VirtualMachinesListOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
     listAll(options?: VirtualMachinesListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
-    listAvailableSizes(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
-    listByLocation(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachine>;
-    performMaintenance(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    listAvailableSizes(resourceGroupName: string, vmName: string, options?: VirtualMachinesListAvailableSizesOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
+    listByLocation(location: string, options?: VirtualMachinesListByLocationOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
+    performMaintenance(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     powerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reapply(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    reapply(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     reimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
-    simulateEviction(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
+    restart(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: VirtualMachinesRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
+    simulateEviction(resourceGroupName: string, vmName: string, options?: VirtualMachinesSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
+    start(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: VirtualMachinesUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
 }
 
 // @public
@@ -3859,11 +4417,17 @@ export interface VirtualMachineScaleSetExtensionProfile {
 
 // @public
 export interface VirtualMachineScaleSetExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetExtensionsGetResponse>;
-    list(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
-    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
+    list(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetExtensionsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
+    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3871,9 +4435,14 @@ export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMach
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualMachineScaleSetExtensionsGetOptionalParams extends coreHttp.OperationOptions {
@@ -3889,12 +4458,20 @@ export type VirtualMachineScaleSetExtensionsGetResponse = VirtualMachineScaleSet
 };
 
 // @public
+export interface VirtualMachineScaleSetExtensionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetExtensionsListNextResponse = VirtualMachineScaleSetExtensionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetExtensionListResult;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetExtensionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSetExtensionListResult & {
@@ -3905,11 +4482,16 @@ export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSe
 };
 
 // @public
+export interface VirtualMachineScaleSetExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScaleSetExtension & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4069,10 +4651,20 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 
 // @public
 export interface VirtualMachineScaleSetRollingUpgrades {
-    cancel(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    getLatest(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
-    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    cancel(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    getLatest(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
+    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface VirtualMachineScaleSetRollingUpgradesCancelOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4084,46 +4676,85 @@ export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgr
 };
 
 // @public
+export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface VirtualMachineScaleSets {
-    convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
+    convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
     deallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
-    get(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetResponse>;
-    getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
-    list(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
-    listOSUpgradeHistory(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
-    listSkus(resourceGroupName: string, vmScaleSetName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
+    delete(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
+    get(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetOptionalParams): Promise<VirtualMachineScaleSetsGetResponse>;
+    getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
+    list(resourceGroupName: string, options?: VirtualMachineScaleSetsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
+    listAll(options?: VirtualMachineScaleSetsListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
+    listOSUpgradeHistory(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
+    listSkus(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsListSkusOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
     performMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     powerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     redeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     reimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     reimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     restart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     start(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
-    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: VirtualMachineScaleSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
+    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
 export type VirtualMachineScaleSetScaleInRules = string;
 
 // @public
+export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VirtualMachineScaleSetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSet;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface VirtualMachineScaleSetsDeallocateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+}
+
+// @public
+export interface VirtualMachineScaleSetsDeleteInstancesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4135,6 +4766,10 @@ export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomai
 };
 
 // @public
+export interface VirtualMachineScaleSetsGetInstanceViewOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScaleSetInstanceView & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4143,12 +4778,24 @@ export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScale
 };
 
 // @public
+export interface VirtualMachineScaleSetsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetListOSUpgradeHistory;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetsGetOSUpgradeHistoryResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
@@ -4185,12 +4832,20 @@ export interface VirtualMachineScaleSetSkuCapacity {
 export type VirtualMachineScaleSetSkuScaleType = "Automatic" | "None";
 
 // @public
+export interface VirtualMachineScaleSetsListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetsListAllNextResponse = VirtualMachineScaleSetListWithLinkResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetListWithLinkResult;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetsListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListWithLinkResult & {
@@ -4201,12 +4856,20 @@ export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListW
 };
 
 // @public
+export interface VirtualMachineScaleSetsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetsListNextResponse = VirtualMachineScaleSetListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetListResult;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResult & {
@@ -4217,12 +4880,20 @@ export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResu
 };
 
 // @public
+export interface VirtualMachineScaleSetsListSkusNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachineScaleSetsListSkusNextResponse = VirtualMachineScaleSetListSkusResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetListSkusResult;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetsListSkusOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetListSkusResult & {
@@ -4234,37 +4905,57 @@ export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetList
 
 // @public
 export interface VirtualMachineScaleSetsPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
 export interface VirtualMachineScaleSetsPowerOffOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
     skipShutdown?: boolean;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
 export interface VirtualMachineScaleSetsRedeployOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
 export interface VirtualMachineScaleSetsReimageAllOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
 export interface VirtualMachineScaleSetsReimageOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmScaleSetReimageInput?: VirtualMachineScaleSetReimageParameters;
 }
 
 // @public
 export interface VirtualMachineScaleSetsRestartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
+export interface VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface VirtualMachineScaleSetsStartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
@@ -4276,11 +4967,22 @@ export interface VirtualMachineScaleSetStorageProfile {
 }
 
 // @public
+export interface VirtualMachineScaleSetsUpdateInstancesOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSet;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4400,11 +5102,17 @@ export type VirtualMachineScaleSetVM = Resource & {
 
 // @public
 export interface VirtualMachineScaleSetVMExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsGetResponse>;
     list(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMExtensionsListOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsListResponse>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4412,9 +5120,14 @@ export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMa
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetVMExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualMachineScaleSetVMExtensionsGetOptionalParams extends coreHttp.OperationOptions {
@@ -4449,11 +5162,16 @@ export interface VirtualMachineScaleSetVMExtensionsSummary {
 }
 
 // @public
+export interface VirtualMachineScaleSetVMExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExtension & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineExtension;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4518,21 +5236,37 @@ export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimagePar
 
 // @public
 export interface VirtualMachineScaleSetVMs {
-    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetResponse>;
-    getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
+    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetOptionalParams): Promise<VirtualMachineScaleSetVMsGetResponse>;
+    getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
     list(resourceGroupName: string, virtualMachineScaleSetName: string, options?: VirtualMachineScaleSetVMsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetVM>;
-    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     powerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     reimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
-    simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
+    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: VirtualMachineScaleSetVMsRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
+    simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
+    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: VirtualMachineScaleSetVMsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsDeallocateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsGetInstanceViewOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4542,6 +5276,10 @@ export type VirtualMachineScaleSetVMsGetInstanceViewResponse = VirtualMachineSca
         parsedBody: VirtualMachineScaleSetVMInstanceView;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetVMsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM & {
@@ -4582,13 +5320,47 @@ export type VirtualMachineScaleSetVMsListResponse = VirtualMachineScaleSetVMList
 };
 
 // @public
+export interface VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface VirtualMachineScaleSetVMsPowerOffOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
     skipShutdown?: boolean;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsRedeployOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsReimageAllOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
 export interface VirtualMachineScaleSetVMsReimageOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
     vmScaleSetVMReimageInput?: VirtualMachineScaleSetVMReimageParameters;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsRestartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsRunCommandOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4596,36 +5368,86 @@ export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RunCommandResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachineScaleSetVMsSimulateEvictionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsStartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetVMsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineScaleSetVM;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachinesCaptureOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineCaptureResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachinesConvertToManagedDisksOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachine;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachinesDeallocateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesGeneralizeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VirtualMachinesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachinesGetResponse = VirtualMachine & {
@@ -4634,6 +5456,10 @@ export type VirtualMachinesGetResponse = VirtualMachine & {
         parsedBody: VirtualMachine;
     };
 };
+
+// @public
+export interface VirtualMachinesInstanceViewOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachinesInstanceViewResponse = VirtualMachineInstanceView & {
@@ -4660,7 +5486,11 @@ export interface VirtualMachineSizeListResult {
 
 // @public
 export interface VirtualMachineSizes {
-    list(location: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualMachineSize>;
+    list(location: string, options?: VirtualMachineSizesListOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
+}
+
+// @public
+export interface VirtualMachineSizesListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4701,12 +5531,20 @@ export type VirtualMachinesListAllResponse = VirtualMachineListResult & {
 };
 
 // @public
+export interface VirtualMachinesListAvailableSizesOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachinesListAvailableSizesResponse = VirtualMachineSizeListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineSizeListResult;
     };
 };
+
+// @public
+export interface VirtualMachinesListByLocationNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult & {
@@ -4717,12 +5555,20 @@ export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult
 };
 
 // @public
+export interface VirtualMachinesListByLocationOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachinesListByLocationResponse = VirtualMachineListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachineListResult;
     };
 };
+
+// @public
+export interface VirtualMachinesListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualMachinesListNextResponse = VirtualMachineListResult & {
@@ -4733,6 +5579,10 @@ export type VirtualMachinesListNextResponse = VirtualMachineListResult & {
 };
 
 // @public
+export interface VirtualMachinesListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualMachinesListResponse = VirtualMachineListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4741,13 +5591,47 @@ export type VirtualMachinesListResponse = VirtualMachineListResult & {
 };
 
 // @public
+export interface VirtualMachinesPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface VirtualMachinesPowerOffOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
     skipShutdown?: boolean;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesReapplyOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesRedeployOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
 export interface VirtualMachinesReimageOptionalParams extends coreHttp.OperationOptions {
     parameters?: VirtualMachineReimageParameters;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesRestartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesRunCommandOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4755,9 +5639,18 @@ export type VirtualMachinesRunCommandResponse = RunCommandResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RunCommandResult;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualMachinesSimulateEvictionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface VirtualMachinesStartOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface VirtualMachineStatusCodeCount {
@@ -4766,11 +5659,16 @@ export interface VirtualMachineStatusCodeCount {
 }
 
 // @public
+export interface VirtualMachinesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualMachinesUpdateResponse = VirtualMachine & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualMachine;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4823,10 +5721,6 @@ export interface WinRMListener {
     protocol?: ProtocolTypes;
 }
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:6898:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

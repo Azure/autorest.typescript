@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -71,9 +70,15 @@ export interface AutoPauseDelayTimeRange {
 
 // @public
 export interface BackupLongTermRetentionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: BackupLongTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>, BackupLongTermRetentionPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<BackupLongTermRetentionPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, parameters: BackupLongTermRetentionPolicy, options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>, BackupLongTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: LongTermRetentionPolicyName, options?: BackupLongTermRetentionPoliciesGetOptionalParams): Promise<BackupLongTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: BackupLongTermRetentionPoliciesListByDatabaseOptionalParams): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
+}
+
+// @public
+export interface BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -81,9 +86,12 @@ export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupLongTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface BackupLongTermRetentionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetentionPolicy & {
@@ -92,6 +100,10 @@ export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetention
         parsedBody: BackupLongTermRetentionPolicy;
     };
 };
+
+// @public
+export interface BackupLongTermRetentionPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTermRetentionPolicy & {
@@ -111,10 +123,16 @@ export type BackupLongTermRetentionPolicy = ProxyResource & {
 
 // @public
 export interface BackupShortTermRetentionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>, BackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<BackupShortTermRetentionPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>, BackupShortTermRetentionPoliciesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>, BackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, options?: BackupShortTermRetentionPoliciesGetOptionalParams): Promise<BackupShortTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, policyName: ShortTermRetentionPolicyName, parameters: BackupShortTermRetentionPolicy, options?: BackupShortTermRetentionPoliciesUpdateOptionalParams): Promise<PollerLike<PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>, BackupShortTermRetentionPoliciesUpdateResponse>>;
+}
+
+// @public
+export interface BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -122,9 +140,12 @@ export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShort
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface BackupShortTermRetentionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetentionPolicy & {
@@ -135,12 +156,20 @@ export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetenti
 };
 
 // @public
+export interface BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse = BackupShortTermRetentionPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupShortTermRetentionPolicyListResult;
     };
 };
+
+// @public
+export interface BackupShortTermRetentionPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShortTermRetentionPolicyListResult & {
@@ -151,11 +180,16 @@ export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShort
 };
 
 // @public
+export interface BackupShortTermRetentionPoliciesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRetentionPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: BackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -275,8 +309,8 @@ export type Database = TrackedResource & {
 
 // @public
 export interface DatabaseAutomaticTuning {
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabaseAutomaticTuningGetResponse>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuningDef, options?: coreHttp.OperationOptions): Promise<DatabaseAutomaticTuningUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAutomaticTuningGetOptionalParams): Promise<DatabaseAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuningDef, options?: DatabaseAutomaticTuningUpdateOptionalParams): Promise<DatabaseAutomaticTuningUpdateResponse>;
 }
 
 // @public
@@ -289,12 +323,20 @@ export type DatabaseAutomaticTuningDef = ProxyResource & {
 };
 
 // @public
+export interface DatabaseAutomaticTuningGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseAutomaticTuningDef;
     };
 };
+
+// @public
+export interface DatabaseAutomaticTuningUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef & {
@@ -306,9 +348,13 @@ export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef &
 
 // @public
 export interface DatabaseBlobAuditingPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseBlobAuditingPolicy, options?: DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseBlobAuditingPoliciesGetOptionalParams): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
+}
+
+// @public
+export interface DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -320,6 +366,10 @@ export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAud
 };
 
 // @public
+export interface DatabaseBlobAuditingPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -328,12 +378,20 @@ export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy
 };
 
 // @public
+export interface DatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse = DatabaseBlobAuditingPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseBlobAuditingPolicyListResult;
     };
 };
+
+// @public
+export interface DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAuditingPolicyListResult & {
@@ -401,8 +459,16 @@ export interface DatabaseOperationListResult {
 
 // @public
 export interface DatabaseOperations {
-    cancel(resourceGroupName: string, serverName: string, databaseName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseOperation>;
+    cancel(resourceGroupName: string, serverName: string, databaseName: string, operationId: string, options?: DatabaseOperationsCancelOptionalParams): Promise<coreHttp.RestResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseOperationsListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseOperation>;
+}
+
+// @public
+export interface DatabaseOperationsCancelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DatabaseOperationsListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -412,6 +478,10 @@ export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationList
         parsedBody: DatabaseOperationListResult;
     };
 };
+
+// @public
+export interface DatabaseOperationsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResult & {
@@ -426,22 +496,28 @@ export type DatabaseReadScale = string;
 
 // @public
 export interface Databases {
-    createImportOperation(resourceGroupName: string, serverName: string, databaseName: string, extensionName: ExtensionName, parameters: ImportExtensionRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesCreateImportOperationResponse>, DatabasesCreateImportOperationResponse>>;
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: Database, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesCreateOrUpdateResponse>, DatabasesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    export(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesExportResponse>, DatabasesExportResponse>>;
+    createImportOperation(resourceGroupName: string, serverName: string, databaseName: string, extensionName: ExtensionName, parameters: ImportExtensionRequest, options?: DatabasesCreateImportOperationOptionalParams): Promise<PollerLike<PollOperationState<DatabasesCreateImportOperationResponse>, DatabasesCreateImportOperationResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: Database, options?: DatabasesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabasesCreateOrUpdateResponse>, DatabasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    export(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExportRequest, options?: DatabasesExportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesExportResponse>, DatabasesExportResponse>>;
     failover(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DatabasesGetResponse>;
-    import(resourceGroupName: string, serverName: string, parameters: ImportRequest, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesImportResponse>, DatabasesImportResponse>>;
-    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Database>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Database>;
-    listMetricDefinitions(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
-    listMetrics(resourceGroupName: string, serverName: string, databaseName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
-    pause(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesPauseResponse>, DatabasesPauseResponse>>;
-    rename(resourceGroupName: string, serverName: string, databaseName: string, parameters: ResourceMoveDefinition, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    resume(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesResumeResponse>, DatabasesResumeResponse>>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DatabasesUpdateResponse>, DatabasesUpdateResponse>>;
-    upgradeDataWarehouse(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesGetOptionalParams): Promise<DatabasesGetResponse>;
+    import(resourceGroupName: string, serverName: string, parameters: ImportRequest, options?: DatabasesImportOptionalParams): Promise<PollerLike<PollOperationState<DatabasesImportResponse>, DatabasesImportResponse>>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: DatabasesListByElasticPoolOptionalParams): PagedAsyncIterableIterator<Database>;
+    listByServer(resourceGroupName: string, serverName: string, options?: DatabasesListByServerOptionalParams): PagedAsyncIterableIterator<Database>;
+    listMetricDefinitions(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesListMetricDefinitionsOptionalParams): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, serverName: string, databaseName: string, filter: string, options?: DatabasesListMetricsOptionalParams): PagedAsyncIterableIterator<Metric>;
+    pause(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesPauseOptionalParams): Promise<PollerLike<PollOperationState<DatabasesPauseResponse>, DatabasesPauseResponse>>;
+    rename(resourceGroupName: string, serverName: string, databaseName: string, parameters: ResourceMoveDefinition, options?: DatabasesRenameOptionalParams): Promise<coreHttp.RestResponse>;
+    resume(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesResumeOptionalParams): Promise<PollerLike<PollOperationState<DatabasesResumeResponse>, DatabasesResumeResponse>>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseUpdate, options?: DatabasesUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabasesUpdateResponse>, DatabasesUpdateResponse>>;
+    upgradeDataWarehouse(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabasesUpgradeDataWarehouseOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface DatabasesCreateImportOperationOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -449,18 +525,28 @@ export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DatabasesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DatabasesCreateOrUpdateResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DatabasesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DatabaseSecurityAlertPolicy = ProxyResource & {
@@ -477,17 +563,28 @@ export type DatabaseSecurityAlertPolicy = ProxyResource & {
 };
 
 // @public
+export interface DatabasesExportOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DatabasesExportResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface DatabasesFailoverOptionalParams extends coreHttp.OperationOptions {
     replicaType?: ReplicaType;
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DatabasesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -499,13 +596,22 @@ export type DatabasesGetResponse = Database & {
 };
 
 // @public
+export interface DatabasesImportOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DatabasesImportResponse = ImportExportResponse & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ImportExportResponse;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DatabasesListByElasticPoolNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabasesListByElasticPoolNextResponse = DatabaseListResult & {
@@ -516,12 +622,20 @@ export type DatabasesListByElasticPoolNextResponse = DatabaseListResult & {
 };
 
 // @public
+export interface DatabasesListByElasticPoolOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabasesListByElasticPoolResponse = DatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseListResult;
     };
 };
+
+// @public
+export interface DatabasesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabasesListByServerNextResponse = DatabaseListResult & {
@@ -532,12 +646,20 @@ export type DatabasesListByServerNextResponse = DatabaseListResult & {
 };
 
 // @public
+export interface DatabasesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabasesListByServerResponse = DatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseListResult;
     };
 };
+
+// @public
+export interface DatabasesListMetricDefinitionsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabasesListMetricDefinitionsResponse = MetricDefinitionListResult & {
@@ -548,6 +670,10 @@ export type DatabasesListMetricDefinitionsResponse = MetricDefinitionListResult 
 };
 
 // @public
+export interface DatabasesListMetricsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabasesListMetricsResponse = MetricListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -556,20 +682,34 @@ export type DatabasesListMetricsResponse = MetricListResult & {
 };
 
 // @public
+export interface DatabasesPauseOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DatabasesPauseResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DatabasesRenameOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DatabasesResumeOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type DatabasesResumeResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -580,18 +720,33 @@ export type DatabaseState = string;
 export type DatabaseStatus = string;
 
 // @public
+export interface DatabasesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DatabasesUpdateResponse = Database & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Database;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
+export interface DatabasesUpgradeDataWarehouseOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface DatabaseThreatDetectionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: DatabaseSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: coreHttp.OperationOptions): Promise<DatabaseThreatDetectionPoliciesGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: DatabaseSecurityAlertPolicy, options?: DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: DatabaseThreatDetectionPoliciesGetOptionalParams): Promise<DatabaseThreatDetectionPoliciesGetResponse>;
+}
+
+// @public
+export interface DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -601,6 +756,10 @@ export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecu
         parsedBody: DatabaseSecurityAlertPolicy;
     };
 };
+
+// @public
+export interface DatabaseThreatDetectionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseThreatDetectionPoliciesGetResponse = DatabaseSecurityAlertPolicy & {
@@ -667,7 +826,11 @@ export interface DatabaseUsageListResult {
 
 // @public
 export interface DatabaseUsages {
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseUsage>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseUsagesListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseUsage>;
+}
+
+// @public
+export interface DatabaseUsagesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -704,9 +867,13 @@ export interface DatabaseVulnerabilityAssessmentRuleBaselineItem {
 
 // @public
 export interface DatabaseVulnerabilityAssessmentRuleBaselines {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: DatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: DatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams): Promise<DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+}
+
+// @public
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -718,6 +885,14 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse =
 };
 
 // @public
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -727,24 +902,28 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVu
 
 // @public
 export interface DatabaseVulnerabilityAssessments {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: DatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams): Promise<DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: DatabaseVulnerabilityAssessmentsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: DatabaseVulnerabilityAssessmentsGetOptionalParams): Promise<DatabaseVulnerabilityAssessmentsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
 }
 
 // @public
 export interface DatabaseVulnerabilityAssessmentScans {
-    export(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentScansExportResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<DatabaseVulnerabilityAssessmentScansGetResponse>;
-    initiateScan(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
+    export(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: DatabaseVulnerabilityAssessmentScansExportOptionalParams): Promise<DatabaseVulnerabilityAssessmentScansExportResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: DatabaseVulnerabilityAssessmentScansGetOptionalParams): Promise<DatabaseVulnerabilityAssessmentScansGetResponse>;
+    initiateScan(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: DatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: DatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
 }
 
 // @public
 export type DatabaseVulnerabilityAssessmentScansExport = ProxyResource & {
     readonly exportedReportLocation?: string;
 };
+
+// @public
+export interface DatabaseVulnerabilityAssessmentScansExportOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
@@ -755,12 +934,26 @@ export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnera
 };
 
 // @public
+export interface DatabaseVulnerabilityAssessmentScansGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VulnerabilityAssessmentScanRecord;
     };
 };
+
+// @public
+export interface DatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
@@ -771,12 +964,20 @@ export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = Vul
 };
 
 // @public
+export interface DatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VulnerabilityAssessmentScanRecordListResult;
     };
 };
+
+// @public
+export interface DatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
@@ -787,6 +988,14 @@ export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVul
 };
 
 // @public
+export interface DatabaseVulnerabilityAssessmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DatabaseVulnerabilityAssessmentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -795,12 +1004,20 @@ export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityA
 };
 
 // @public
+export interface DatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseVulnerabilityAssessmentListResult;
     };
 };
+
+// @public
+export interface DatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
@@ -815,8 +1032,12 @@ export type DataMaskingFunction = "Default" | "CCN" | "Email" | "Number" | "SSN"
 
 // @public
 export interface DataMaskingPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DataMaskingPolicy, options?: coreHttp.OperationOptions): Promise<DataMaskingPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<DataMaskingPoliciesGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: DataMaskingPolicy, options?: DataMaskingPoliciesCreateOrUpdateOptionalParams): Promise<DataMaskingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DataMaskingPoliciesGetOptionalParams): Promise<DataMaskingPoliciesGetResponse>;
+}
+
+// @public
+export interface DataMaskingPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -826,6 +1047,10 @@ export type DataMaskingPoliciesCreateOrUpdateResponse = DataMaskingPolicy & {
         parsedBody: DataMaskingPolicy;
     };
 };
+
+// @public
+export interface DataMaskingPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DataMaskingPoliciesGetResponse = DataMaskingPolicy & {
@@ -870,8 +1095,12 @@ export interface DataMaskingRuleListResult {
 
 // @public
 export interface DataMaskingRules {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, dataMaskingRuleName: string, parameters: DataMaskingRule, options?: coreHttp.OperationOptions): Promise<DataMaskingRulesCreateOrUpdateResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DataMaskingRule>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, dataMaskingRuleName: string, parameters: DataMaskingRule, options?: DataMaskingRulesCreateOrUpdateOptionalParams): Promise<DataMaskingRulesCreateOrUpdateResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: DataMaskingRulesListByDatabaseOptionalParams): PagedAsyncIterableIterator<DataMaskingRule>;
+}
+
+// @public
+export interface DataMaskingRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -881,6 +1110,10 @@ export type DataMaskingRulesCreateOrUpdateResponse = DataMaskingRule & {
         parsedBody: DataMaskingRule;
     };
 };
+
+// @public
+export interface DataMaskingRulesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DataMaskingRulesListByDatabaseResponse = DataMaskingRuleListResult & {
@@ -921,7 +1154,11 @@ export type ElasticPool = TrackedResource & {
 
 // @public
 export interface ElasticPoolActivities {
-    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolActivity>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolActivitiesListByElasticPoolOptionalParams): PagedAsyncIterableIterator<ElasticPoolActivity>;
+}
+
+// @public
+export interface ElasticPoolActivitiesListByElasticPoolOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -964,7 +1201,11 @@ export interface ElasticPoolActivityListResult {
 
 // @public
 export interface ElasticPoolDatabaseActivities {
-    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolDatabaseActivity>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams): PagedAsyncIterableIterator<ElasticPoolDatabaseActivity>;
+}
+
+// @public
+export interface ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1047,8 +1288,16 @@ export interface ElasticPoolOperationListResult {
 
 // @public
 export interface ElasticPoolOperations {
-    cancel(resourceGroupName: string, serverName: string, elasticPoolName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ElasticPoolOperation>;
+    cancel(resourceGroupName: string, serverName: string, elasticPoolName: string, operationId: string, options?: ElasticPoolOperationsCancelOptionalParams): Promise<coreHttp.RestResponse>;
+    listByElasticPool(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolOperationsListByElasticPoolOptionalParams): PagedAsyncIterableIterator<ElasticPoolOperation>;
+}
+
+// @public
+export interface ElasticPoolOperationsCancelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ElasticPoolOperationsListByElasticPoolNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1058,6 +1307,10 @@ export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOper
         parsedBody: ElasticPoolOperationListResult;
     };
 };
+
+// @public
+export interface ElasticPoolOperationsListByElasticPoolOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ElasticPoolOperationsListByElasticPoolResponse = ElasticPoolOperationListResult & {
@@ -1107,14 +1360,20 @@ export interface ElasticPoolPerformanceLevelCapability {
 
 // @public
 export interface ElasticPools {
-    createOrUpdate(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPool, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ElasticPoolsCreateOrUpdateResponse>, ElasticPoolsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    failover(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): Promise<ElasticPoolsGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPool, options?: ElasticPoolsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ElasticPoolsCreateOrUpdateResponse>, ElasticPoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolsFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolsGetOptionalParams): Promise<ElasticPoolsGetResponse>;
     listByServer(resourceGroupName: string, serverName: string, options?: ElasticPoolsListByServerOptionalParams): PagedAsyncIterableIterator<ElasticPool>;
-    listMetricDefinitions(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<MetricDefinition>;
-    listMetrics(resourceGroupName: string, serverName: string, elasticPoolName: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Metric>;
-    update(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPoolUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ElasticPoolsUpdateResponse>, ElasticPoolsUpdateResponse>>;
+    listMetricDefinitions(resourceGroupName: string, serverName: string, elasticPoolName: string, options?: ElasticPoolsListMetricDefinitionsOptionalParams): PagedAsyncIterableIterator<MetricDefinition>;
+    listMetrics(resourceGroupName: string, serverName: string, elasticPoolName: string, filter: string, options?: ElasticPoolsListMetricsOptionalParams): PagedAsyncIterableIterator<Metric>;
+    update(resourceGroupName: string, serverName: string, elasticPoolName: string, parameters: ElasticPoolUpdate, options?: ElasticPoolsUpdateOptionalParams): Promise<PollerLike<PollOperationState<ElasticPoolsUpdateResponse>, ElasticPoolsUpdateResponse>>;
+}
+
+// @public
+export interface ElasticPoolsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1122,9 +1381,24 @@ export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ElasticPool;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ElasticPoolsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ElasticPoolsFailoverOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ElasticPoolsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ElasticPoolsGetResponse = ElasticPool & {
@@ -1161,12 +1435,20 @@ export type ElasticPoolsListByServerResponse = ElasticPoolListResult & {
 };
 
 // @public
+export interface ElasticPoolsListMetricDefinitionsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ElasticPoolsListMetricDefinitionsResponse = MetricDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: MetricDefinitionListResult;
     };
 };
+
+// @public
+export interface ElasticPoolsListMetricsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ElasticPoolsListMetricsResponse = MetricListResult & {
@@ -1180,11 +1462,16 @@ export type ElasticPoolsListMetricsResponse = MetricListResult & {
 export type ElasticPoolState = string;
 
 // @public
+export interface ElasticPoolsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ElasticPoolsUpdateResponse = ElasticPool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ElasticPool;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1222,10 +1509,16 @@ export type EncryptionProtectorName = string;
 
 // @public
 export interface EncryptionProtectors {
-    createOrUpdate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, parameters: EncryptionProtector, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>, EncryptionProtectorsCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<EncryptionProtectorsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<EncryptionProtector>;
-    revalidate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, parameters: EncryptionProtector, options?: EncryptionProtectorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>, EncryptionProtectorsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: EncryptionProtectorsGetOptionalParams): Promise<EncryptionProtectorsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: EncryptionProtectorsListByServerOptionalParams): PagedAsyncIterableIterator<EncryptionProtector>;
+    revalidate(resourceGroupName: string, serverName: string, encryptionProtectorName: EncryptionProtectorName, options?: EncryptionProtectorsRevalidateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface EncryptionProtectorsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1233,9 +1526,12 @@ export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EncryptionProtector;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface EncryptionProtectorsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type EncryptionProtectorsGetResponse = EncryptionProtector & {
@@ -1246,6 +1542,10 @@ export type EncryptionProtectorsGetResponse = EncryptionProtector & {
 };
 
 // @public
+export interface EncryptionProtectorsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1254,12 +1554,22 @@ export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorLi
 };
 
 // @public
+export interface EncryptionProtectorsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: EncryptionProtectorListResult;
     };
 };
+
+// @public
+export interface EncryptionProtectorsRevalidateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type Enum21 = string;
@@ -1276,9 +1586,13 @@ export interface ExportRequest {
 
 // @public
 export interface ExtendedDatabaseBlobAuditingPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExtendedDatabaseBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, parameters: ExtendedDatabaseBlobAuditingPolicy, options?: ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy>;
+}
+
+// @public
+export interface ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1290,6 +1604,10 @@ export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse = Extende
 };
 
 // @public
+export interface ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBlobAuditingPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1298,12 +1616,20 @@ export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBl
 };
 
 // @public
+export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExtendedDatabaseBlobAuditingPolicyListResult;
     };
 };
+
+// @public
+export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
@@ -1335,9 +1661,15 @@ export interface ExtendedDatabaseBlobAuditingPolicyListResult {
 
 // @public
 export interface ExtendedServerBlobAuditingPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ExtendedServerBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>, ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ExtendedServerBlobAuditingPolicy, options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>, ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
+}
+
+// @public
+export interface ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1345,9 +1677,12 @@ export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedS
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExtendedServerBlobAuditingPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ExtendedServerBlobAuditingPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAuditingPolicy & {
@@ -1358,12 +1693,20 @@ export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAu
 };
 
 // @public
+export interface ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse = ExtendedServerBlobAuditingPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ExtendedServerBlobAuditingPolicyListResult;
     };
 };
+
+// @public
+export interface ExtendedServerBlobAuditingPoliciesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedServerBlobAuditingPolicyListResult & {
@@ -1432,13 +1775,19 @@ export type FailoverGroupReplicationRole = string;
 
 // @public
 export interface FailoverGroups {
-    createOrUpdate(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FailoverGroupsCreateOrUpdateResponse>, FailoverGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    failover(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FailoverGroupsFailoverResponse>, FailoverGroupsFailoverResponse>>;
-    forceFailoverAllowDataLoss(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>, FailoverGroupsForceFailoverAllowDataLossResponse>>;
-    get(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<FailoverGroupsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FailoverGroup>;
-    update(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroupUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<FailoverGroupsUpdateResponse>, FailoverGroupsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroup, options?: FailoverGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<FailoverGroupsCreateOrUpdateResponse>, FailoverGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: FailoverGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: FailoverGroupsFailoverOptionalParams): Promise<PollerLike<PollOperationState<FailoverGroupsFailoverResponse>, FailoverGroupsFailoverResponse>>;
+    forceFailoverAllowDataLoss(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams): Promise<PollerLike<PollOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>, FailoverGroupsForceFailoverAllowDataLossResponse>>;
+    get(resourceGroupName: string, serverName: string, failoverGroupName: string, options?: FailoverGroupsGetOptionalParams): Promise<FailoverGroupsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: FailoverGroupsListByServerOptionalParams): PagedAsyncIterableIterator<FailoverGroup>;
+    update(resourceGroupName: string, serverName: string, failoverGroupName: string, parameters: FailoverGroupUpdate, options?: FailoverGroupsUpdateOptionalParams): Promise<PollerLike<PollOperationState<FailoverGroupsUpdateResponse>, FailoverGroupsUpdateResponse>>;
+}
+
+// @public
+export interface FailoverGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1446,27 +1795,46 @@ export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FailoverGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface FailoverGroupsFailoverOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type FailoverGroupsFailoverResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FailoverGroupsForceFailoverAllowDataLossOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface FailoverGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FailoverGroupsGetResponse = FailoverGroup & {
@@ -1477,12 +1845,20 @@ export type FailoverGroupsGetResponse = FailoverGroup & {
 };
 
 // @public
+export interface FailoverGroupsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FailoverGroupsListByServerNextResponse = FailoverGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroupListResult;
     };
 };
+
+// @public
+export interface FailoverGroupsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FailoverGroupsListByServerResponse = FailoverGroupListResult & {
@@ -1493,11 +1869,16 @@ export type FailoverGroupsListByServerResponse = FailoverGroupListResult & {
 };
 
 // @public
+export interface FailoverGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type FailoverGroupsUpdateResponse = FailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1526,10 +1907,14 @@ export interface FirewallRuleListResult {
 
 // @public
 export interface FirewallRules {
-    createOrUpdate(resourceGroupName: string, serverName: string, firewallRuleName: string, parameters: FirewallRule, options?: coreHttp.OperationOptions): Promise<FirewallRulesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: coreHttp.OperationOptions): Promise<FirewallRulesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FirewallRule>;
+    createOrUpdate(resourceGroupName: string, serverName: string, firewallRuleName: string, parameters: FirewallRule, options?: FirewallRulesCreateOrUpdateOptionalParams): Promise<FirewallRulesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: FirewallRulesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams): Promise<FirewallRulesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: FirewallRulesListByServerOptionalParams): PagedAsyncIterableIterator<FirewallRule>;
+}
+
+// @public
+export interface FirewallRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1541,12 +1926,24 @@ export type FirewallRulesCreateOrUpdateResponse = FirewallRule & {
 };
 
 // @public
+export interface FirewallRulesDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface FirewallRulesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FirewallRulesGetResponse = FirewallRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FirewallRule;
     };
 };
+
+// @public
+export interface FirewallRulesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
@@ -1558,9 +1955,13 @@ export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
 
 // @public
 export interface GeoBackupPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, parameters: GeoBackupPolicy, options?: coreHttp.OperationOptions): Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, options?: coreHttp.OperationOptions): Promise<GeoBackupPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<GeoBackupPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, parameters: GeoBackupPolicy, options?: GeoBackupPoliciesCreateOrUpdateOptionalParams): Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, geoBackupPolicyName: GeoBackupPolicyName, options?: GeoBackupPoliciesGetOptionalParams): Promise<GeoBackupPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: GeoBackupPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<GeoBackupPolicy>;
+}
+
+// @public
+export interface GeoBackupPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1572,12 +1973,20 @@ export type GeoBackupPoliciesCreateOrUpdateResponse = GeoBackupPolicy & {
 };
 
 // @public
+export interface GeoBackupPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GeoBackupPoliciesGetResponse = GeoBackupPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GeoBackupPolicy;
     };
 };
+
+// @public
+export interface GeoBackupPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GeoBackupPoliciesListByDatabaseResponse = GeoBackupPolicyListResult & {
@@ -1680,12 +2089,18 @@ export type InstanceFailoverGroupReplicationRole = string;
 
 // @public
 export interface InstanceFailoverGroups {
-    createOrUpdate(resourceGroupName: string, locationName: string, failoverGroupName: string, parameters: InstanceFailoverGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>, InstanceFailoverGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    failover(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsFailoverResponse>, InstanceFailoverGroupsFailoverResponse>>;
-    forceFailoverAllowDataLoss(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>, InstanceFailoverGroupsForceFailoverAllowDataLossResponse>>;
-    get(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: coreHttp.OperationOptions): Promise<InstanceFailoverGroupsGetResponse>;
-    listByLocation(resourceGroupName: string, locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstanceFailoverGroup>;
+    createOrUpdate(resourceGroupName: string, locationName: string, failoverGroupName: string, parameters: InstanceFailoverGroup, options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>, InstanceFailoverGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: InstanceFailoverGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failover(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: InstanceFailoverGroupsFailoverOptionalParams): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsFailoverResponse>, InstanceFailoverGroupsFailoverResponse>>;
+    forceFailoverAllowDataLoss(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams): Promise<PollerLike<PollOperationState<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>, InstanceFailoverGroupsForceFailoverAllowDataLossResponse>>;
+    get(resourceGroupName: string, locationName: string, failoverGroupName: string, options?: InstanceFailoverGroupsGetOptionalParams): Promise<InstanceFailoverGroupsGetResponse>;
+    listByLocation(resourceGroupName: string, locationName: string, options?: InstanceFailoverGroupsListByLocationOptionalParams): PagedAsyncIterableIterator<InstanceFailoverGroup>;
+}
+
+// @public
+export interface InstanceFailoverGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1693,27 +2108,46 @@ export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface InstanceFailoverGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface InstanceFailoverGroupsFailoverOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceFailoverGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface InstanceFailoverGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InstanceFailoverGroupsGetResponse = InstanceFailoverGroup & {
@@ -1724,12 +2158,20 @@ export type InstanceFailoverGroupsGetResponse = InstanceFailoverGroup & {
 };
 
 // @public
+export interface InstanceFailoverGroupsListByLocationNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type InstanceFailoverGroupsListByLocationNextResponse = InstanceFailoverGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstanceFailoverGroupListResult;
     };
 };
+
+// @public
+export interface InstanceFailoverGroupsListByLocationOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InstanceFailoverGroupsListByLocationResponse = InstanceFailoverGroupListResult & {
@@ -1775,12 +2217,18 @@ export interface InstancePoolListResult {
 
 // @public
 export interface InstancePools {
-    createOrUpdate(resourceGroupName: string, instancePoolName: string, parameters: InstancePool, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InstancePoolsCreateOrUpdateResponse>, InstancePoolsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): Promise<InstancePoolsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstancePool>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<InstancePool>;
-    update(resourceGroupName: string, instancePoolName: string, parameters: InstancePoolUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<InstancePoolsUpdateResponse>, InstancePoolsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, instancePoolName: string, parameters: InstancePool, options?: InstancePoolsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<InstancePoolsCreateOrUpdateResponse>, InstancePoolsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, instancePoolName: string, options?: InstancePoolsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, instancePoolName: string, options?: InstancePoolsGetOptionalParams): Promise<InstancePoolsGetResponse>;
+    list(options?: InstancePoolsListOptionalParams): PagedAsyncIterableIterator<InstancePool>;
+    listByResourceGroup(resourceGroupName: string, options?: InstancePoolsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<InstancePool>;
+    update(resourceGroupName: string, instancePoolName: string, parameters: InstancePoolUpdate, options?: InstancePoolsUpdateOptionalParams): Promise<PollerLike<PollOperationState<InstancePoolsUpdateResponse>, InstancePoolsUpdateResponse>>;
+}
+
+// @public
+export interface InstancePoolsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1788,9 +2236,18 @@ export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePool;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface InstancePoolsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface InstancePoolsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InstancePoolsGetResponse = InstancePool & {
@@ -1801,12 +2258,20 @@ export type InstancePoolsGetResponse = InstancePool & {
 };
 
 // @public
+export interface InstancePoolsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type InstancePoolsListByResourceGroupNextResponse = InstancePoolListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePoolListResult;
     };
 };
+
+// @public
+export interface InstancePoolsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InstancePoolsListByResourceGroupResponse = InstancePoolListResult & {
@@ -1817,12 +2282,20 @@ export type InstancePoolsListByResourceGroupResponse = InstancePoolListResult & 
 };
 
 // @public
+export interface InstancePoolsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type InstancePoolsListNextResponse = InstancePoolListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePoolListResult;
     };
 };
+
+// @public
+export interface InstancePoolsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type InstancePoolsListResponse = InstancePoolListResult & {
@@ -1833,11 +2306,16 @@ export type InstancePoolsListResponse = InstancePoolListResult & {
 };
 
 // @public
+export interface InstancePoolsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type InstancePoolsUpdateResponse = InstancePool & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: InstancePool;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1879,11 +2357,17 @@ export interface JobAgentListResult {
 
 // @public
 export interface JobAgents {
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgent, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<JobAgentsCreateOrUpdateResponse>, JobAgentsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): Promise<JobAgentsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobAgent>;
-    update(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgentUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<JobAgentsUpdateResponse>, JobAgentsUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgent, options?: JobAgentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<JobAgentsCreateOrUpdateResponse>, JobAgentsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobAgentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobAgentsGetOptionalParams): Promise<JobAgentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: JobAgentsListByServerOptionalParams): PagedAsyncIterableIterator<JobAgent>;
+    update(resourceGroupName: string, serverName: string, jobAgentName: string, parameters: JobAgentUpdate, options?: JobAgentsUpdateOptionalParams): Promise<PollerLike<PollOperationState<JobAgentsUpdateResponse>, JobAgentsUpdateResponse>>;
+}
+
+// @public
+export interface JobAgentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -1891,9 +2375,18 @@ export type JobAgentsCreateOrUpdateResponse = JobAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobAgent;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface JobAgentsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface JobAgentsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobAgentsGetResponse = JobAgent & {
@@ -1904,12 +2397,20 @@ export type JobAgentsGetResponse = JobAgent & {
 };
 
 // @public
+export interface JobAgentsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobAgentsListByServerNextResponse = JobAgentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobAgentListResult;
     };
 };
+
+// @public
+export interface JobAgentsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobAgentsListByServerResponse = JobAgentListResult & {
@@ -1923,11 +2424,16 @@ export type JobAgentsListByServerResponse = JobAgentListResult & {
 export type JobAgentState = string;
 
 // @public
+export interface JobAgentsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type JobAgentsUpdateResponse = JobAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobAgent;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -1952,10 +2458,14 @@ export interface JobCredentialListResult {
 
 // @public
 export interface JobCredentials {
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, parameters: JobCredential, options?: coreHttp.OperationOptions): Promise<JobCredentialsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: coreHttp.OperationOptions): Promise<JobCredentialsGetResponse>;
-    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobCredential>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, parameters: JobCredential, options?: JobCredentialsCreateOrUpdateOptionalParams): Promise<JobCredentialsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: JobCredentialsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, credentialName: string, options?: JobCredentialsGetOptionalParams): Promise<JobCredentialsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobCredentialsListByAgentOptionalParams): PagedAsyncIterableIterator<JobCredential>;
+}
+
+// @public
+export interface JobCredentialsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -1967,6 +2477,14 @@ export type JobCredentialsCreateOrUpdateResponse = JobCredential & {
 };
 
 // @public
+export interface JobCredentialsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface JobCredentialsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobCredentialsGetResponse = JobCredential & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1975,12 +2493,20 @@ export type JobCredentialsGetResponse = JobCredential & {
 };
 
 // @public
+export interface JobCredentialsListByAgentNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobCredentialsListByAgentNextResponse = JobCredentialListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobCredentialListResult;
     };
 };
+
+// @public
+export interface JobCredentialsListByAgentOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobCredentialsListByAgentResponse = JobCredentialListResult & {
@@ -2018,12 +2544,28 @@ export interface JobExecutionListResult {
 
 // @public
 export interface JobExecutions {
-    cancel(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    create(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<JobExecutionsCreateResponse>, JobExecutionsCreateResponse>>;
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<JobExecutionsCreateOrUpdateResponse>, JobExecutionsCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: coreHttp.OperationOptions): Promise<JobExecutionsGetResponse>;
+    cancel(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobExecutionsCancelOptionalParams): Promise<coreHttp.RestResponse>;
+    create(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobExecutionsCreateOptionalParams): Promise<PollerLike<PollOperationState<JobExecutionsCreateResponse>, JobExecutionsCreateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobExecutionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<JobExecutionsCreateOrUpdateResponse>, JobExecutionsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobExecutionsGetOptionalParams): Promise<JobExecutionsGetResponse>;
     listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobExecutionsListByAgentOptionalParams): PagedAsyncIterableIterator<JobExecution>;
     listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobExecutionsListByJobOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+}
+
+// @public
+export interface JobExecutionsCancelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface JobExecutionsCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface JobExecutionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -2031,7 +2573,6 @@ export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobExecution;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -2040,9 +2581,12 @@ export type JobExecutionsCreateResponse = JobExecution & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobExecution;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface JobExecutionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobExecutionsGetResponse = JobExecution & {
@@ -2143,10 +2687,10 @@ export interface JobListResult {
 
 // @public
 export interface Jobs {
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, parameters: Job, options?: coreHttp.OperationOptions): Promise<JobsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): Promise<JobsGetResponse>;
-    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Job>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, parameters: Job, options?: JobsCreateOrUpdateOptionalParams): Promise<JobsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobsGetOptionalParams): Promise<JobsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobsListByAgentOptionalParams): PagedAsyncIterableIterator<Job>;
 }
 
 // @public
@@ -2162,12 +2706,24 @@ export interface JobSchedule {
 export type JobScheduleType = "Once" | "Recurring";
 
 // @public
+export interface JobsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobsCreateOrUpdateResponse = Job & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Job;
     };
 };
+
+// @public
+export interface JobsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface JobsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobsGetResponse = Job & {
@@ -2178,12 +2734,20 @@ export type JobsGetResponse = Job & {
 };
 
 // @public
+export interface JobsListByAgentNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobsListByAgentNextResponse = JobListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobListResult;
     };
 };
+
+// @public
+export interface JobsListByAgentOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobsListByAgentResponse = JobListResult & {
@@ -2227,8 +2791,12 @@ export interface JobStepExecutionOptions {
 
 // @public
 export interface JobStepExecutions {
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepExecutionsGetResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, options?: JobStepExecutionsGetOptionalParams): Promise<JobStepExecutionsGetResponse>;
     listByJobExecution(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobStepExecutionsListByJobExecutionOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+}
+
+// @public
+export interface JobStepExecutionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2300,12 +2868,16 @@ export type JobStepOutputType = string;
 
 // @public
 export interface JobSteps {
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, parameters: JobStep, options?: coreHttp.OperationOptions): Promise<JobStepsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepsGetResponse>;
-    getByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, stepName: string, options?: coreHttp.OperationOptions): Promise<JobStepsGetByVersionResponse>;
-    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobStep>;
-    listByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobStep>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, parameters: JobStep, options?: JobStepsCreateOrUpdateOptionalParams): Promise<JobStepsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: JobStepsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, stepName: string, options?: JobStepsGetOptionalParams): Promise<JobStepsGetResponse>;
+    getByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, stepName: string, options?: JobStepsGetByVersionOptionalParams): Promise<JobStepsGetByVersionResponse>;
+    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobStepsListByJobOptionalParams): PagedAsyncIterableIterator<JobStep>;
+    listByVersion(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: JobStepsListByVersionOptionalParams): PagedAsyncIterableIterator<JobStep>;
+}
+
+// @public
+export interface JobStepsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2317,12 +2889,24 @@ export type JobStepsCreateOrUpdateResponse = JobStep & {
 };
 
 // @public
+export interface JobStepsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface JobStepsGetByVersionOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobStepsGetByVersionResponse = JobStep & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobStep;
     };
 };
+
+// @public
+export interface JobStepsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobStepsGetResponse = JobStep & {
@@ -2333,12 +2917,20 @@ export type JobStepsGetResponse = JobStep & {
 };
 
 // @public
+export interface JobStepsListByJobNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobStepsListByJobNextResponse = JobStepListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobStepListResult;
     };
 };
+
+// @public
+export interface JobStepsListByJobOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobStepsListByJobResponse = JobStepListResult & {
@@ -2349,12 +2941,20 @@ export type JobStepsListByJobResponse = JobStepListResult & {
 };
 
 // @public
+export interface JobStepsListByVersionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobStepsListByVersionNextResponse = JobStepListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobStepListResult;
     };
 };
+
+// @public
+export interface JobStepsListByVersionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobStepsListByVersionResponse = JobStepListResult & {
@@ -2377,9 +2977,13 @@ export interface JobTarget {
 
 // @public
 export interface JobTargetExecutions {
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, targetId: string, options?: coreHttp.OperationOptions): Promise<JobTargetExecutionsGetResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, targetId: string, options?: JobTargetExecutionsGetOptionalParams): Promise<JobTargetExecutionsGetResponse>;
     listByJobExecution(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, options?: JobTargetExecutionsListByJobExecutionOptionalParams): PagedAsyncIterableIterator<JobExecution>;
     listByStep(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobExecutionId: string, stepName: string, options?: JobTargetExecutionsListByStepOptionalParams): PagedAsyncIterableIterator<JobExecution>;
+}
+
+// @public
+export interface JobTargetExecutionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2482,10 +3086,14 @@ export type JobTargetGroupMembershipType = "Include" | "Exclude";
 
 // @public
 export interface JobTargetGroups {
-    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, parameters: JobTargetGroup, options?: coreHttp.OperationOptions): Promise<JobTargetGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: coreHttp.OperationOptions): Promise<JobTargetGroupsGetResponse>;
-    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobTargetGroup>;
+    createOrUpdate(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, parameters: JobTargetGroup, options?: JobTargetGroupsCreateOrUpdateOptionalParams): Promise<JobTargetGroupsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: JobTargetGroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, targetGroupName: string, options?: JobTargetGroupsGetOptionalParams): Promise<JobTargetGroupsGetResponse>;
+    listByAgent(resourceGroupName: string, serverName: string, jobAgentName: string, options?: JobTargetGroupsListByAgentOptionalParams): PagedAsyncIterableIterator<JobTargetGroup>;
+}
+
+// @public
+export interface JobTargetGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2497,6 +3105,14 @@ export type JobTargetGroupsCreateOrUpdateResponse = JobTargetGroup & {
 };
 
 // @public
+export interface JobTargetGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface JobTargetGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobTargetGroupsGetResponse = JobTargetGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -2505,12 +3121,20 @@ export type JobTargetGroupsGetResponse = JobTargetGroup & {
 };
 
 // @public
+export interface JobTargetGroupsListByAgentNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobTargetGroupsListByAgentNextResponse = JobTargetGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobTargetGroupListResult;
     };
 };
+
+// @public
+export interface JobTargetGroupsListByAgentOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
@@ -2534,8 +3158,12 @@ export interface JobVersionListResult {
 
 // @public
 export interface JobVersions {
-    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: coreHttp.OperationOptions): Promise<JobVersionsGetResponse>;
-    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<JobVersion>;
+    get(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, jobVersion: number, options?: JobVersionsGetOptionalParams): Promise<JobVersionsGetResponse>;
+    listByJob(resourceGroupName: string, serverName: string, jobAgentName: string, jobName: string, options?: JobVersionsListByJobOptionalParams): PagedAsyncIterableIterator<JobVersion>;
+}
+
+// @public
+export interface JobVersionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -2547,12 +3175,20 @@ export type JobVersionsGetResponse = JobVersion & {
 };
 
 // @public
+export interface JobVersionsListByJobNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type JobVersionsListByJobNextResponse = JobVersionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: JobVersionListResult;
     };
 };
+
+// @public
+export interface JobVersionsListByJobOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type JobVersionsListByJobResponse = JobVersionListResult & {
@@ -3577,10 +4213,10 @@ export interface LongTermRetentionBackupListResult {
 
 // @public
 export interface LongTermRetentionBackups {
-    delete(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionBackupsGetResponse>;
-    getByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
+    delete(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsGetOptionalParams): Promise<LongTermRetentionBackupsGetResponse>;
+    getByResourceGroup(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, backupName: string, options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams): Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
     listByDatabase(locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, options?: LongTermRetentionBackupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
     listByLocation(locationName: string, options?: LongTermRetentionBackupsListByLocationOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
     listByResourceGroupDatabase(resourceGroupName: string, locationName: string, longTermRetentionServerName: string, longTermRetentionDatabaseName: string, options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams): PagedAsyncIterableIterator<LongTermRetentionBackup>;
@@ -3590,12 +4226,32 @@ export interface LongTermRetentionBackups {
 }
 
 // @public
+export interface LongTermRetentionBackupsDeleteByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LongTermRetentionBackupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LongTermRetentionBackupsGetByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetentionBackup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LongTermRetentionBackup;
     };
 };
+
+// @public
+export interface LongTermRetentionBackupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup & {
@@ -3778,10 +4434,10 @@ export type LongTermRetentionDatabaseState = string;
 
 // @public
 export interface LongTermRetentionManagedInstanceBackups {
-    delete(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionManagedInstanceBackupsGetResponse>;
-    getByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: coreHttp.OperationOptions): Promise<LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse>;
+    delete(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: LongTermRetentionManagedInstanceBackupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    deleteByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: LongTermRetentionManagedInstanceBackupsGetOptionalParams): Promise<LongTermRetentionManagedInstanceBackupsGetResponse>;
+    getByResourceGroup(resourceGroupName: string, locationName: string, managedInstanceName: string, databaseName: string, backupName: string, options?: LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams): Promise<LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse>;
     listByDatabase(locationName: string, managedInstanceName: string, databaseName: string, options?: LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
     listByInstance(locationName: string, managedInstanceName: string, options?: LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
     listByLocation(locationName: string, options?: LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionBackup>;
@@ -3791,12 +4447,32 @@ export interface LongTermRetentionManagedInstanceBackups {
 }
 
 // @public
+export interface LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LongTermRetentionManagedInstanceBackupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceLongTermRetentionBackup;
     };
 };
+
+// @public
+export interface LongTermRetentionManagedInstanceBackupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstanceLongTermRetentionBackup & {
@@ -3979,10 +4655,16 @@ export type LongTermRetentionPolicyName = string;
 
 // @public
 export interface ManagedBackupShortTermRetentionPolicies {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>, ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
-    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedBackupShortTermRetentionPoliciesUpdateResponse>, ManagedBackupShortTermRetentionPoliciesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>, ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, options?: ManagedBackupShortTermRetentionPoliciesGetOptionalParams): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedBackupShortTermRetentionPoliciesUpdateResponse>, ManagedBackupShortTermRetentionPoliciesUpdateResponse>>;
+}
+
+// @public
+export interface ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -3990,9 +4672,12 @@ export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = Mana
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedBackupShortTermRetentionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -4003,12 +4688,20 @@ export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupSh
 };
 
 // @public
+export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
     };
 };
+
+// @public
+export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
@@ -4019,11 +4712,16 @@ export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = Mana
 };
 
 // @public
+export interface ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4068,7 +4766,11 @@ export interface ManagedDatabaseListResult {
 
 // @public
 export interface ManagedDatabaseRestoreDetails {
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, restoreDetailsName: RestoreDetailsName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseRestoreDetailsGetResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, restoreDetailsName: RestoreDetailsName, options?: ManagedDatabaseRestoreDetailsGetOptionalParams): Promise<ManagedDatabaseRestoreDetailsGetResponse>;
+}
+
+// @public
+export interface ManagedDatabaseRestoreDetailsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4095,13 +4797,25 @@ export type ManagedDatabaseRestoreDetailsResult = ProxyResource & {
 
 // @public
 export interface ManagedDatabases {
-    completeRestore(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: CompleteDatabaseRestoreDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabase, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedDatabasesCreateOrUpdateResponse>, ManagedDatabasesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabasesGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabase>;
-    listInaccessibleByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabase>;
-    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabaseUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedDatabasesUpdateResponse>, ManagedDatabasesUpdateResponse>>;
+    completeRestore(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: CompleteDatabaseRestoreDefinition, options?: ManagedDatabasesCompleteRestoreOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabase, options?: ManagedDatabasesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedDatabasesCreateOrUpdateResponse>, ManagedDatabasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabasesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabasesGetOptionalParams): Promise<ManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedDatabasesListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedDatabase>;
+    listInaccessibleByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedDatabase>;
+    update(resourceGroupName: string, managedInstanceName: string, databaseName: string, parameters: ManagedDatabaseUpdate, options?: ManagedDatabasesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedDatabasesUpdateResponse>, ManagedDatabasesUpdateResponse>>;
+}
+
+// @public
+export interface ManagedDatabasesCompleteRestoreOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedDatabasesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4109,15 +4823,24 @@ export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabase;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
+export interface ManagedDatabasesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface ManagedDatabaseSecurityAlertPolicies {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ManagedDatabaseSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, parameters: ManagedDatabaseSecurityAlertPolicy, options?: ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, securityAlertPolicyName: SecurityAlertPolicyName, options?: ManagedDatabaseSecurityAlertPoliciesGetOptionalParams): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy>;
+}
+
+// @public
+export interface ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4129,6 +4852,10 @@ export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = Managed
 };
 
 // @public
+export interface ManagedDatabaseSecurityAlertPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSecurityAlertPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4137,12 +4864,20 @@ export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSec
 };
 
 // @public
+export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabaseSecurityAlertPolicyListResult;
     };
 };
+
+// @public
+export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
@@ -4172,13 +4907,17 @@ export interface ManagedDatabaseSecurityAlertPolicyListResult {
 
 // @public
 export interface ManagedDatabaseSensitivityLabels {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    disableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    enableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    disableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams): Promise<coreHttp.RestResponse>;
+    enableRecommendation(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: ManagedDatabaseSensitivityLabelsGetOptionalParams): Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
     listCurrentByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
     listRecommendedByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+}
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4188,6 +4927,22 @@ export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse = Sensitivity
         parsedBody: SensitivityLabel;
     };
 };
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedDatabaseSensitivityLabelsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel & {
@@ -4256,12 +5011,20 @@ export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse = 
 };
 
 // @public
+export interface ManagedDatabasesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabasesGetResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabase;
     };
 };
+
+// @public
+export interface ManagedDatabasesListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResult & {
@@ -4272,6 +5035,10 @@ export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResu
 };
 
 // @public
+export interface ManagedDatabasesListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabasesListByInstanceResponse = ManagedDatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4280,12 +5047,20 @@ export type ManagedDatabasesListByInstanceResponse = ManagedDatabaseListResult &
 };
 
 // @public
+export interface ManagedDatabasesListInaccessibleByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabasesListInaccessibleByInstanceNextResponse = ManagedDatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabaseListResult;
     };
 };
+
+// @public
+export interface ManagedDatabasesListInaccessibleByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabaseListResult & {
@@ -4299,11 +5074,16 @@ export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabase
 export type ManagedDatabaseStatus = string;
 
 // @public
+export interface ManagedDatabasesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedDatabase;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -4331,9 +5111,13 @@ export interface ManagedDatabaseUpdate {
 
 // @public
 export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselines {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, parameters: DatabaseVulnerabilityAssessmentRuleBaseline, options?: ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: ManagedDatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, ruleId: string, baselineName: VulnerabilityAssessmentPolicyBaselineName, options?: ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse>;
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4345,6 +5129,14 @@ export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateRes
 };
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4354,18 +5146,22 @@ export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = Dat
 
 // @public
 export interface ManagedDatabaseVulnerabilityAssessments {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentsGetResponse>;
-    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: DatabaseVulnerabilityAssessment, options?: ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ManagedDatabaseVulnerabilityAssessmentsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ManagedDatabaseVulnerabilityAssessmentsGetOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentsGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedDatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams): PagedAsyncIterableIterator<DatabaseVulnerabilityAssessment>;
 }
 
 // @public
 export interface ManagedDatabaseVulnerabilityAssessmentScans {
-    export(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentScansExportResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<ManagedDatabaseVulnerabilityAssessmentScansGetResponse>;
-    initiateScan(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
+    export(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: ManagedDatabaseVulnerabilityAssessmentScansExportOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentScansExportResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: ManagedDatabaseVulnerabilityAssessmentScansGetOptionalParams): Promise<ManagedDatabaseVulnerabilityAssessmentScansGetResponse>;
+    initiateScan(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, scanId: string, options?: ManagedDatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams): PagedAsyncIterableIterator<VulnerabilityAssessmentScanRecord>;
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentScansExportOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4377,12 +5173,26 @@ export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = Database
 };
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentScansGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VulnerabilityAssessmentScanRecord;
     };
 };
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
@@ -4393,12 +5203,20 @@ export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextRespons
 };
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VulnerabilityAssessmentScanRecordListResult;
     };
 };
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
@@ -4409,6 +5227,14 @@ export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = Data
 };
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4417,12 +5243,20 @@ export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnera
 };
 
 // @public
+export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DatabaseVulnerabilityAssessmentListResult;
     };
 };
+
+// @public
+export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
@@ -4473,10 +5307,16 @@ export interface ManagedInstanceAdministratorListResult {
 
 // @public
 export interface ManagedInstanceAdministrators {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceAdministrator, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>, ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceAdministratorsGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceAdministrator, options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>, ManagedInstanceAdministratorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsGetOptionalParams): Promise<ManagedInstanceAdministratorsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceAdministratorsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
+}
+
+// @public
+export interface ManagedInstanceAdministratorsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4484,9 +5324,18 @@ export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanc
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceAdministrator;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedInstanceAdministratorsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedInstanceAdministratorsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministrator & {
@@ -4497,12 +5346,20 @@ export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministra
 };
 
 // @public
+export interface ManagedInstanceAdministratorsListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceAdministratorsListByInstanceNextResponse = ManagedInstanceAdministratorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceAdministratorListResult;
     };
 };
+
+// @public
+export interface ManagedInstanceAdministratorsListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanceAdministratorListResult & {
@@ -4540,10 +5397,16 @@ export interface ManagedInstanceEncryptionProtectorListResult {
 
 // @public
 export interface ManagedInstanceEncryptionProtectors {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, parameters: ManagedInstanceEncryptionProtector, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>, ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector>;
-    revalidate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, parameters: ManagedInstanceEncryptionProtector, options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>, ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: ManagedInstanceEncryptionProtectorsGetOptionalParams): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector>;
+    revalidate(resourceGroupName: string, managedInstanceName: string, encryptionProtectorName: EncryptionProtectorName, options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4551,9 +5414,12 @@ export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedI
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceEncryptionProtector;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedInstanceEncryptionProtectorsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncryptionProtector & {
@@ -4564,6 +5430,10 @@ export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncr
 };
 
 // @public
+export interface ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = ManagedInstanceEncryptionProtectorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4572,12 +5442,22 @@ export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = Mana
 };
 
 // @public
+export interface ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceEncryptionProtectorsListByInstanceResponse = ManagedInstanceEncryptionProtectorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceEncryptionProtectorListResult;
     };
 };
+
+// @public
+export interface ManagedInstanceEncryptionProtectorsRevalidateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ManagedInstanceFamilyCapability {
@@ -4606,10 +5486,16 @@ export interface ManagedInstanceKeyListResult {
 
 // @public
 export interface ManagedInstanceKeys {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, keyName: string, parameters: ManagedInstanceKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>, ManagedInstanceKeysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceKeysGetResponse>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, keyName: string, parameters: ManagedInstanceKey, options?: ManagedInstanceKeysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>, ManagedInstanceKeysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: ManagedInstanceKeysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, keyName: string, options?: ManagedInstanceKeysGetOptionalParams): Promise<ManagedInstanceKeysGetResponse>;
     listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceKeysListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceKey>;
+}
+
+// @public
+export interface ManagedInstanceKeysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4617,9 +5503,18 @@ export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceKey;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedInstanceKeysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedInstanceKeysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceKeysGetResponse = ManagedInstanceKey & {
@@ -4682,9 +5577,15 @@ export interface ManagedInstanceLongTermRetentionBackupListResult {
 
 // @public
 export interface ManagedInstanceLongTermRetentionPolicies {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, parameters: ManagedInstanceLongTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>, ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse>;
-    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, parameters: ManagedInstanceLongTermRetentionPolicy, options?: ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>, ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, databaseName: string, policyName: ManagedInstanceLongTermRetentionPolicyName, options?: ManagedInstanceLongTermRetentionPoliciesGetOptionalParams): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse>;
+    listByDatabase(resourceGroupName: string, managedInstanceName: string, databaseName: string, options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy>;
+}
+
+// @public
+export interface ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4692,9 +5593,12 @@ export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = Man
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceLongTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedInstanceLongTermRetentionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanceLongTermRetentionPolicy & {
@@ -4705,12 +5609,20 @@ export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanc
 };
 
 // @public
+export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceLongTermRetentionPolicyListResult;
     };
 };
+
+// @public
+export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
@@ -4762,9 +5674,17 @@ export interface ManagedInstanceOperationListResult {
 
 // @public
 export interface ManagedInstanceOperations {
-    cancel(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: coreHttp.OperationOptions): Promise<ManagedInstanceOperationsGetResponse>;
-    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceOperation>;
+    cancel(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: ManagedInstanceOperationsCancelOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, operationId: string, options?: ManagedInstanceOperationsGetOptionalParams): Promise<ManagedInstanceOperationsGetResponse>;
+    listByManagedInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceOperation>;
+}
+
+// @public
+export interface ManagedInstanceOperationsCancelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedInstanceOperationsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4776,12 +5696,20 @@ export type ManagedInstanceOperationsGetResponse = ManagedInstanceOperation & {
 };
 
 // @public
+export interface ManagedInstanceOperationsListByManagedInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceOperationsListByManagedInstanceNextResponse = ManagedInstanceOperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceOperationListResult;
     };
 };
+
+// @public
+export interface ManagedInstanceOperationsListByManagedInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInstanceOperationListResult & {
@@ -4802,13 +5730,19 @@ export type ManagedInstanceProxyOverride = string;
 
 // @public
 export interface ManagedInstances {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstance, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstancesCreateOrUpdateResponse>, ManagedInstancesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): Promise<ManagedInstancesGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
-    listByInstancePool(resourceGroupName: string, instancePoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstance>;
-    update(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedInstancesUpdateResponse>, ManagedInstancesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstance, options?: ManagedInstancesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstancesCreateOrUpdateResponse>, ManagedInstancesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstancesGetOptionalParams): Promise<ManagedInstancesGetResponse>;
+    list(options?: ManagedInstancesListOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
+    listByInstancePool(resourceGroupName: string, instancePoolName: string, options?: ManagedInstancesListByInstancePoolOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
+    listByResourceGroup(resourceGroupName: string, options?: ManagedInstancesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ManagedInstance>;
+    update(resourceGroupName: string, managedInstanceName: string, parameters: ManagedInstanceUpdate, options?: ManagedInstancesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedInstancesUpdateResponse>, ManagedInstancesUpdateResponse>>;
+}
+
+// @public
+export interface ManagedInstancesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4816,9 +5750,18 @@ export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstance;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedInstancesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ManagedInstancesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstancesGetResponse = ManagedInstance & {
@@ -4829,12 +5772,20 @@ export type ManagedInstancesGetResponse = ManagedInstance & {
 };
 
 // @public
+export interface ManagedInstancesListByInstancePoolNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceListResult;
     };
 };
+
+// @public
+export interface ManagedInstancesListByInstancePoolOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResult & {
@@ -4845,12 +5796,20 @@ export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResu
 };
 
 // @public
+export interface ManagedInstancesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceListResult;
     };
 };
+
+// @public
+export interface ManagedInstancesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListResult & {
@@ -4861,12 +5820,20 @@ export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListRes
 };
 
 // @public
+export interface ManagedInstancesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstancesListNextResponse = ManagedInstanceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceListResult;
     };
 };
+
+// @public
+export interface ManagedInstancesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstancesListResponse = ManagedInstanceListResult & {
@@ -4877,17 +5844,28 @@ export type ManagedInstancesListResponse = ManagedInstanceListResult & {
 };
 
 // @public
+export interface ManagedInstancesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ManagedInstancesUpdateResponse = ManagedInstance & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstance;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
 export interface ManagedInstanceTdeCertificates {
-    create(resourceGroupName: string, managedInstanceName: string, parameters: TdeCertificate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    create(resourceGroupName: string, managedInstanceName: string, parameters: TdeCertificate, options?: ManagedInstanceTdeCertificatesCreateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface ManagedInstanceTdeCertificatesCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -4954,10 +5932,14 @@ export interface ManagedInstanceVulnerabilityAssessmentListResult {
 
 // @public
 export interface ManagedInstanceVulnerabilityAssessments {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ManagedInstanceVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ManagedInstanceVulnerabilityAssessmentsGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedInstanceVulnerabilityAssessment>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ManagedInstanceVulnerabilityAssessment, options?: ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateOptionalParams): Promise<ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ManagedInstanceVulnerabilityAssessmentsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, managedInstanceName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ManagedInstanceVulnerabilityAssessmentsGetOptionalParams): Promise<ManagedInstanceVulnerabilityAssessmentsGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedInstanceVulnerabilityAssessmentsListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedInstanceVulnerabilityAssessment>;
+}
+
+// @public
+export interface ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -4969,6 +5951,14 @@ export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = Mana
 };
 
 // @public
+export interface ManagedInstanceVulnerabilityAssessmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagedInstanceVulnerabilityAssessmentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstanceVulnerabilityAssessment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -4977,12 +5967,20 @@ export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstance
 };
 
 // @public
+export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedInstanceVulnerabilityAssessmentListResult;
     };
 };
+
+// @public
+export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
@@ -4994,10 +5992,16 @@ export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = Mana
 
 // @public
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse>, ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, options?: coreHttp.OperationOptions): Promise<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse>;
-    listByRestorableDroppedDatabase(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
-    update(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse>, ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse>, ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams): Promise<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse>;
+    listByRestorableDroppedDatabase(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
+    update(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, policyName: ManagedShortTermRetentionPolicyName, parameters: ManagedBackupShortTermRetentionPolicy, options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse>, ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse>>;
+}
+
+// @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5005,9 +6009,12 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCrea
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -5018,12 +6025,20 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetR
 };
 
 // @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
     };
 };
+
+// @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
@@ -5034,11 +6049,16 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesList
 };
 
 // @public
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedBackupShortTermRetentionPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -5047,9 +6067,15 @@ export type ManagedServerCreateMode = string;
 
 // @public
 export interface ManagedServerSecurityAlertPolicies {
-    createOrUpdate(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ManagedServerSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>, ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: coreHttp.OperationOptions): Promise<ManagedServerSecurityAlertPoliciesGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy>;
+    createOrUpdate(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ManagedServerSecurityAlertPolicy, options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>, ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, managedInstanceName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: ManagedServerSecurityAlertPoliciesGetOptionalParams): Promise<ManagedServerSecurityAlertPoliciesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams): PagedAsyncIterableIterator<ManagedServerSecurityAlertPolicy>;
+}
+
+// @public
+export interface ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5057,9 +6083,12 @@ export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedSe
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedServerSecurityAlertPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ManagedServerSecurityAlertPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurityAlertPolicy & {
@@ -5070,12 +6099,20 @@ export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurit
 };
 
 // @public
+export interface ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagedServerSecurityAlertPoliciesListByInstanceNextResponse = ManagedServerSecurityAlertPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagedServerSecurityAlertPolicyListResult;
     };
 };
+
+// @public
+export interface ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedServerSecurityAlertPolicyListResult & {
@@ -5229,7 +6266,11 @@ export type OperationOrigin = string;
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5239,6 +6280,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -5298,10 +6343,16 @@ export interface PrivateEndpointConnectionProperties {
 
 // @public
 export interface PrivateEndpointConnections {
-    createOrUpdate(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnection, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>, PrivateEndpointConnectionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: coreHttp.OperationOptions): Promise<PrivateEndpointConnectionsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+    createOrUpdate(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnection, options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>, PrivateEndpointConnectionsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: PrivateEndpointConnectionsListByServerOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnection>;
+}
+
+// @public
+export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5309,9 +6360,18 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointCo
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnection;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface PrivateEndpointConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -5322,12 +6382,20 @@ export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & 
 };
 
 // @public
+export interface PrivateEndpointConnectionsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateEndpointConnectionsListByServerNextResponse = PrivateEndpointConnectionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateEndpointConnectionListResult;
     };
 };
+
+// @public
+export interface PrivateEndpointConnectionsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateEndpointConnectionsListByServerResponse = PrivateEndpointConnectionListResult & {
@@ -5364,8 +6432,12 @@ export interface PrivateLinkResourceProperties {
 
 // @public
 export interface PrivateLinkResources {
-    get(resourceGroupName: string, serverName: string, groupName: string, options?: coreHttp.OperationOptions): Promise<PrivateLinkResourcesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PrivateLinkResource>;
+    get(resourceGroupName: string, serverName: string, groupName: string, options?: PrivateLinkResourcesGetOptionalParams): Promise<PrivateLinkResourcesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: PrivateLinkResourcesListByServerOptionalParams): PagedAsyncIterableIterator<PrivateLinkResource>;
+}
+
+// @public
+export interface PrivateLinkResourcesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5377,12 +6449,20 @@ export type PrivateLinkResourcesGetResponse = PrivateLinkResource & {
 };
 
 // @public
+export interface PrivateLinkResourcesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PrivateLinkResourcesListByServerNextResponse = PrivateLinkResourceListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PrivateLinkResourceListResult;
     };
 };
+
+// @public
+export interface PrivateLinkResourcesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListResult & {
@@ -5465,9 +6545,13 @@ export interface RecommendedElasticPoolMetric {
 
 // @public
 export interface RecommendedElasticPools {
-    get(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: coreHttp.OperationOptions): Promise<RecommendedElasticPoolsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecommendedElasticPool>;
-    listMetrics(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecommendedElasticPoolMetric>;
+    get(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: RecommendedElasticPoolsGetOptionalParams): Promise<RecommendedElasticPoolsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: RecommendedElasticPoolsListByServerOptionalParams): PagedAsyncIterableIterator<RecommendedElasticPool>;
+    listMetrics(resourceGroupName: string, serverName: string, recommendedElasticPoolName: string, options?: RecommendedElasticPoolsListMetricsOptionalParams): PagedAsyncIterableIterator<RecommendedElasticPoolMetric>;
+}
+
+// @public
+export interface RecommendedElasticPoolsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5479,12 +6563,20 @@ export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool & {
 };
 
 // @public
+export interface RecommendedElasticPoolsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RecommendedElasticPoolsListByServerResponse = RecommendedElasticPoolListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RecommendedElasticPoolListResult;
     };
 };
+
+// @public
+export interface RecommendedElasticPoolsListMetricsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolListMetricsResult & {
@@ -5534,8 +6626,12 @@ export interface RecoverableDatabaseListResult {
 
 // @public
 export interface RecoverableDatabases {
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): Promise<RecoverableDatabasesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecoverableDatabase>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: RecoverableDatabasesGetOptionalParams): Promise<RecoverableDatabasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: RecoverableDatabasesListByServerOptionalParams): PagedAsyncIterableIterator<RecoverableDatabase>;
+}
+
+// @public
+export interface RecoverableDatabasesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5545,6 +6641,10 @@ export type RecoverableDatabasesGetResponse = RecoverableDatabase & {
         parsedBody: RecoverableDatabase;
     };
 };
+
+// @public
+export interface RecoverableDatabasesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListResult & {
@@ -5567,8 +6667,12 @@ export interface RecoverableManagedDatabaseListResult {
 
 // @public
 export interface RecoverableManagedDatabases {
-    get(resourceGroupName: string, managedInstanceName: string, recoverableDatabaseName: string, options?: coreHttp.OperationOptions): Promise<RecoverableManagedDatabasesGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RecoverableManagedDatabase>;
+    get(resourceGroupName: string, managedInstanceName: string, recoverableDatabaseName: string, options?: RecoverableManagedDatabasesGetOptionalParams): Promise<RecoverableManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: RecoverableManagedDatabasesListByInstanceOptionalParams): PagedAsyncIterableIterator<RecoverableManagedDatabase>;
+}
+
+// @public
+export interface RecoverableManagedDatabasesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5580,12 +6684,20 @@ export type RecoverableManagedDatabasesGetResponse = RecoverableManagedDatabase 
 };
 
 // @public
+export interface RecoverableManagedDatabasesListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RecoverableManagedDatabasesListByInstanceNextResponse = RecoverableManagedDatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RecoverableManagedDatabaseListResult;
     };
 };
+
+// @public
+export interface RecoverableManagedDatabasesListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManagedDatabaseListResult & {
@@ -5617,12 +6729,32 @@ export interface ReplicationLinkListResult {
 
 // @public
 export interface ReplicationLinks {
-    delete(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    failover(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    failoverAllowDataLoss(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: coreHttp.OperationOptions): Promise<ReplicationLinksGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ReplicationLink>;
-    unlink(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, parameters: UnlinkParameters, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    failover(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    failoverAllowDataLoss(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksFailoverAllowDataLossOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, options?: ReplicationLinksGetOptionalParams): Promise<ReplicationLinksGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: ReplicationLinksListByDatabaseOptionalParams): PagedAsyncIterableIterator<ReplicationLink>;
+    unlink(resourceGroupName: string, serverName: string, databaseName: string, linkId: string, parameters: UnlinkParameters, options?: ReplicationLinksUnlinkOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface ReplicationLinksDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ReplicationLinksFailoverAllowDataLossOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ReplicationLinksFailoverOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ReplicationLinksGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5634,12 +6766,22 @@ export type ReplicationLinksGetResponse = ReplicationLink & {
 };
 
 // @public
+export interface ReplicationLinksListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ReplicationLinkListResult;
     };
 };
+
+// @public
+export interface ReplicationLinksUnlinkOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ReplicationRole = "Primary" | "Secondary" | "NonReadableSecondary" | "Source" | "Copy";
@@ -5689,8 +6831,12 @@ export interface RestorableDroppedDatabaseListResult {
 
 // @public
 export interface RestorableDroppedDatabases {
-    get(resourceGroupName: string, serverName: string, restorableDroppededDatabaseId: string, options?: coreHttp.OperationOptions): Promise<RestorableDroppedDatabasesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
+    get(resourceGroupName: string, serverName: string, restorableDroppededDatabaseId: string, options?: RestorableDroppedDatabasesGetOptionalParams): Promise<RestorableDroppedDatabasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: RestorableDroppedDatabasesListByServerOptionalParams): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
+}
+
+// @public
+export interface RestorableDroppedDatabasesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5700,6 +6846,10 @@ export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase & 
         parsedBody: RestorableDroppedDatabase;
     };
 };
+
+// @public
+export interface RestorableDroppedDatabasesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RestorableDroppedDatabasesListByServerResponse = RestorableDroppedDatabaseListResult & {
@@ -5725,8 +6875,12 @@ export interface RestorableDroppedManagedDatabaseListResult {
 
 // @public
 export interface RestorableDroppedManagedDatabases {
-    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: coreHttp.OperationOptions): Promise<RestorableDroppedManagedDatabasesGetResponse>;
-    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase>;
+    get(resourceGroupName: string, managedInstanceName: string, restorableDroppedDatabaseId: string, options?: RestorableDroppedManagedDatabasesGetOptionalParams): Promise<RestorableDroppedManagedDatabasesGetResponse>;
+    listByInstance(resourceGroupName: string, managedInstanceName: string, options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase>;
+}
+
+// @public
+export interface RestorableDroppedManagedDatabasesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5738,12 +6892,20 @@ export type RestorableDroppedManagedDatabasesGetResponse = RestorableDroppedMana
 };
 
 // @public
+export interface RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type RestorableDroppedManagedDatabasesListByInstanceNextResponse = RestorableDroppedManagedDatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RestorableDroppedManagedDatabaseListResult;
     };
 };
+
+// @public
+export interface RestorableDroppedManagedDatabasesListByInstanceOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RestorableDroppedManagedDatabasesListByInstanceResponse = RestorableDroppedManagedDatabaseListResult & {
@@ -5773,10 +6935,16 @@ export interface RestorePointListResult {
 
 // @public
 export interface RestorePoints {
-    create(resourceGroupName: string, serverName: string, databaseName: string, parameters: CreateDatabaseRestorePointDefinition, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<RestorePointsCreateResponse>, RestorePointsCreateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: coreHttp.OperationOptions): Promise<RestorePointsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<RestorePoint>;
+    create(resourceGroupName: string, serverName: string, databaseName: string, parameters: CreateDatabaseRestorePointDefinition, options?: RestorePointsCreateOptionalParams): Promise<PollerLike<PollOperationState<RestorePointsCreateResponse>, RestorePointsCreateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: RestorePointsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, restorePointName: string, options?: RestorePointsGetOptionalParams): Promise<RestorePointsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: RestorePointsListByDatabaseOptionalParams): PagedAsyncIterableIterator<RestorePoint>;
+}
+
+// @public
+export interface RestorePointsCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -5784,9 +6952,16 @@ export type RestorePointsCreateResponse = RestorePoint & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: RestorePoint;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface RestorePointsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface RestorePointsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RestorePointsGetResponse = RestorePoint & {
@@ -5795,6 +6970,10 @@ export type RestorePointsGetResponse = RestorePoint & {
         parsedBody: RestorePoint;
     };
 };
+
+// @public
+export interface RestorePointsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
@@ -5846,13 +7025,17 @@ export type SensitivityLabelRank = "None" | "Low" | "Medium" | "High" | "Critica
 
 // @public
 export interface SensitivityLabels {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: coreHttp.OperationOptions): Promise<SensitivityLabelsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    disableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    enableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: coreHttp.OperationOptions): Promise<SensitivityLabelsGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, parameters: SensitivityLabel, options?: SensitivityLabelsCreateOrUpdateOptionalParams): Promise<SensitivityLabelsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: SensitivityLabelsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    disableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: SensitivityLabelsDisableRecommendationOptionalParams): Promise<coreHttp.RestResponse>;
+    enableRecommendation(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, options?: SensitivityLabelsEnableRecommendationOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, schemaName: string, tableName: string, columnName: string, sensitivityLabelSource: SensitivityLabelSource, options?: SensitivityLabelsGetOptionalParams): Promise<SensitivityLabelsGetResponse>;
     listCurrentByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListCurrentByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
     listRecommendedByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SensitivityLabelsListRecommendedByDatabaseOptionalParams): PagedAsyncIterableIterator<SensitivityLabel>;
+}
+
+// @public
+export interface SensitivityLabelsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -5862,6 +7045,22 @@ export type SensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
         parsedBody: SensitivityLabel;
     };
 };
+
+// @public
+export interface SensitivityLabelsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface SensitivityLabelsDisableRecommendationOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface SensitivityLabelsEnableRecommendationOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface SensitivityLabelsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SensitivityLabelsGetResponse = SensitivityLabel & {
@@ -5948,8 +7147,8 @@ export type Server = TrackedResource & {
 
 // @public
 export interface ServerAutomaticTuning {
-    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServerAutomaticTuningGetResponse>;
-    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuningDef, options?: coreHttp.OperationOptions): Promise<ServerAutomaticTuningUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, options?: ServerAutomaticTuningGetOptionalParams): Promise<ServerAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuningDef, options?: ServerAutomaticTuningUpdateOptionalParams): Promise<ServerAutomaticTuningUpdateResponse>;
 }
 
 // @public
@@ -5962,12 +7161,20 @@ export type ServerAutomaticTuningDef = ProxyResource & {
 };
 
 // @public
+export interface ServerAutomaticTuningGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerAutomaticTuningDef;
     };
 };
+
+// @public
+export interface ServerAutomaticTuningUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef & {
@@ -5988,11 +7195,17 @@ export type ServerAzureADAdministrator = ProxyResource & {
 
 // @public
 export interface ServerAzureADAdministrators {
-    createOrUpdate(resourceGroupName: string, serverName: string, administratorName: AdministratorName, parameters: ServerAzureADAdministrator, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>, ServerAzureADAdministratorsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    disableAzureADOnlyAuthentication(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>, ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>>;
-    get(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: coreHttp.OperationOptions): Promise<ServerAzureADAdministratorsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerAzureADAdministrator>;
+    createOrUpdate(resourceGroupName: string, serverName: string, administratorName: AdministratorName, parameters: ServerAzureADAdministrator, options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>, ServerAzureADAdministratorsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: ServerAzureADAdministratorsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    disableAzureADOnlyAuthentication(resourceGroupName: string, serverName: string, options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams): Promise<PollerLike<PollOperationState<ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>, ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse>>;
+    get(resourceGroupName: string, serverName: string, administratorName: AdministratorName, options?: ServerAzureADAdministratorsGetOptionalParams): Promise<ServerAzureADAdministratorsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerAzureADAdministratorsListByServerOptionalParams): PagedAsyncIterableIterator<ServerAzureADAdministrator>;
+}
+
+// @public
+export interface ServerAzureADAdministratorsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6000,18 +7213,32 @@ export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdm
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerAzureADAdministrator;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerAzureADAdministratorsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse = ServerAzureADAdministrator & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerAzureADAdministrator;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerAzureADAdministratorsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerAzureADAdministratorsGetResponse = ServerAzureADAdministrator & {
@@ -6022,12 +7249,20 @@ export type ServerAzureADAdministratorsGetResponse = ServerAzureADAdministrator 
 };
 
 // @public
+export interface ServerAzureADAdministratorsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerAzureADAdministratorsListByServerNextResponse = AdministratorListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: AdministratorListResult;
     };
 };
+
+// @public
+export interface ServerAzureADAdministratorsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerAzureADAdministratorsListByServerResponse = AdministratorListResult & {
@@ -6039,9 +7274,15 @@ export type ServerAzureADAdministratorsListByServerResponse = AdministratorListR
 
 // @public
 export interface ServerBlobAuditingPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ServerBlobAuditingPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>, ServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServerBlobAuditingPoliciesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: ServerBlobAuditingPolicy, options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>, ServerBlobAuditingPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: ServerBlobAuditingPoliciesGetOptionalParams): Promise<ServerBlobAuditingPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerBlobAuditingPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
+}
+
+// @public
+export interface ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6049,9 +7290,12 @@ export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditin
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerBlobAuditingPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerBlobAuditingPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerBlobAuditingPoliciesGetResponse = ServerBlobAuditingPolicy & {
@@ -6062,12 +7306,20 @@ export type ServerBlobAuditingPoliciesGetResponse = ServerBlobAuditingPolicy & {
 };
 
 // @public
+export interface ServerBlobAuditingPoliciesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerBlobAuditingPoliciesListByServerNextResponse = ServerBlobAuditingPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerBlobAuditingPolicyListResult;
     };
 };
+
+// @public
+export interface ServerBlobAuditingPoliciesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingPolicyListResult & {
@@ -6111,10 +7363,16 @@ export interface ServerCommunicationLinkListResult {
 
 // @public
 export interface ServerCommunicationLinks {
-    createOrUpdate(resourceGroupName: string, serverName: string, communicationLinkName: string, parameters: ServerCommunicationLink, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>, ServerCommunicationLinksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: coreHttp.OperationOptions): Promise<ServerCommunicationLinksGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerCommunicationLink>;
+    createOrUpdate(resourceGroupName: string, serverName: string, communicationLinkName: string, parameters: ServerCommunicationLink, options?: ServerCommunicationLinksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>, ServerCommunicationLinksCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: ServerCommunicationLinksDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, communicationLinkName: string, options?: ServerCommunicationLinksGetOptionalParams): Promise<ServerCommunicationLinksGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerCommunicationLinksListByServerOptionalParams): PagedAsyncIterableIterator<ServerCommunicationLink>;
+}
+
+// @public
+export interface ServerCommunicationLinksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6122,9 +7380,16 @@ export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunication
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerCommunicationLink;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerCommunicationLinksDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ServerCommunicationLinksGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerCommunicationLinksGetResponse = ServerCommunicationLink & {
@@ -6133,6 +7398,10 @@ export type ServerCommunicationLinksGetResponse = ServerCommunicationLink & {
         parsedBody: ServerCommunicationLink;
     };
 };
+
+// @public
+export interface ServerCommunicationLinksListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLinkListResult & {
@@ -6144,8 +7413,12 @@ export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLi
 
 // @public
 export interface ServerConnectionPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: coreHttp.OperationOptions): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, options?: coreHttp.OperationOptions): Promise<ServerConnectionPoliciesGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, parameters: ServerConnectionPolicy, options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, connectionPolicyName: ConnectionPolicyName, options?: ServerConnectionPoliciesGetOptionalParams): Promise<ServerConnectionPoliciesGetResponse>;
+}
+
+// @public
+export interface ServerConnectionPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6155,6 +7428,10 @@ export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPol
         parsedBody: ServerConnectionPolicy;
     };
 };
+
+// @public
+export interface ServerConnectionPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy & {
@@ -6186,11 +7463,23 @@ export interface ServerDnsAliasAcquisition {
 
 // @public
 export interface ServerDnsAliases {
-    acquire(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    createOrUpdate(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>, ServerDnsAliasesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: coreHttp.OperationOptions): Promise<ServerDnsAliasesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerDnsAlias>;
+    acquire(resourceGroupName: string, serverName: string, dnsAliasName: string, parameters: ServerDnsAliasAcquisition, options?: ServerDnsAliasesAcquireOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>, ServerDnsAliasesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, dnsAliasName: string, options?: ServerDnsAliasesGetOptionalParams): Promise<ServerDnsAliasesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerDnsAliasesListByServerOptionalParams): PagedAsyncIterableIterator<ServerDnsAlias>;
+}
+
+// @public
+export interface ServerDnsAliasesAcquireOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerDnsAliasesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6198,9 +7487,18 @@ export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerDnsAlias;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerDnsAliasesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerDnsAliasesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerDnsAliasesGetResponse = ServerDnsAlias & {
@@ -6211,12 +7509,20 @@ export type ServerDnsAliasesGetResponse = ServerDnsAlias & {
 };
 
 // @public
+export interface ServerDnsAliasesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerDnsAliasesListByServerNextResponse = ServerDnsAliasListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerDnsAliasListResult;
     };
 };
+
+// @public
+export interface ServerDnsAliasesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerDnsAliasesListByServerResponse = ServerDnsAliasListResult & {
@@ -6251,10 +7557,16 @@ export interface ServerKeyListResult {
 
 // @public
 export interface ServerKeys {
-    createOrUpdate(resourceGroupName: string, serverName: string, keyName: string, parameters: ServerKey, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerKeysCreateOrUpdateResponse>, ServerKeysCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, keyName: string, options?: coreHttp.OperationOptions): Promise<ServerKeysGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerKey>;
+    createOrUpdate(resourceGroupName: string, serverName: string, keyName: string, parameters: ServerKey, options?: ServerKeysCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerKeysCreateOrUpdateResponse>, ServerKeysCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, keyName: string, options?: ServerKeysDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, keyName: string, options?: ServerKeysGetOptionalParams): Promise<ServerKeysGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerKeysListByServerOptionalParams): PagedAsyncIterableIterator<ServerKey>;
+}
+
+// @public
+export interface ServerKeysCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6262,9 +7574,18 @@ export type ServerKeysCreateOrUpdateResponse = ServerKey & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerKey;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerKeysDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface ServerKeysGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerKeysGetResponse = ServerKey & {
@@ -6275,12 +7596,20 @@ export type ServerKeysGetResponse = ServerKey & {
 };
 
 // @public
+export interface ServerKeysListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerKeysListByServerNextResponse = ServerKeyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerKeyListResult;
     };
 };
+
+// @public
+export interface ServerKeysListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerKeysListByServerResponse = ServerKeyListResult & {
@@ -6310,13 +7639,17 @@ export type ServerPublicNetworkAccess = string;
 
 // @public
 export interface Servers {
-    checkNameAvailability(parameters: CheckNameAvailabilityRequest, options?: coreHttp.OperationOptions): Promise<ServersCheckNameAvailabilityResponse>;
-    createOrUpdate(resourceGroupName: string, serverName: string, parameters: Server, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServersCreateOrUpdateResponse>, ServersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): Promise<ServersGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Server>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Server>;
-    update(resourceGroupName: string, serverName: string, parameters: ServerUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>>;
+    checkNameAvailability(parameters: CheckNameAvailabilityRequest, options?: ServersCheckNameAvailabilityOptionalParams): Promise<ServersCheckNameAvailabilityResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, parameters: Server, options?: ServersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServersCreateOrUpdateResponse>, ServersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, options?: ServersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, options?: ServersGetOptionalParams): Promise<ServersGetResponse>;
+    list(options?: ServersListOptionalParams): PagedAsyncIterableIterator<Server>;
+    listByResourceGroup(resourceGroupName: string, options?: ServersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Server>;
+    update(resourceGroupName: string, serverName: string, parameters: ServerUpdate, options?: ServersUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>>;
+}
+
+// @public
+export interface ServersCheckNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6328,19 +7661,36 @@ export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse
 };
 
 // @public
+export interface ServersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ServersCreateOrUpdateResponse = Server & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Server;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
 // @public
+export interface ServersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface ServerSecurityAlertPolicies {
-    createOrUpdate(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ServerSecurityAlertPolicy, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<ServerSecurityAlertPoliciesCreateOrUpdateResponse>, ServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
-    get(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: coreHttp.OperationOptions): Promise<ServerSecurityAlertPoliciesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
+    createOrUpdate(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, parameters: ServerSecurityAlertPolicy, options?: ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ServerSecurityAlertPoliciesCreateOrUpdateResponse>, ServerSecurityAlertPoliciesCreateOrUpdateResponse>>;
+    get(resourceGroupName: string, serverName: string, securityAlertPolicyName: SecurityAlertPolicyNameAutoGenerated, options?: ServerSecurityAlertPoliciesGetOptionalParams): Promise<ServerSecurityAlertPoliciesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerSecurityAlertPoliciesListByServerOptionalParams): PagedAsyncIterableIterator<ServerSecurityAlertPolicy>;
+}
+
+// @public
+export interface ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6348,9 +7698,12 @@ export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAl
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerSecurityAlertPolicy;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface ServerSecurityAlertPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerSecurityAlertPoliciesGetResponse = ServerSecurityAlertPolicy & {
@@ -6361,12 +7714,20 @@ export type ServerSecurityAlertPoliciesGetResponse = ServerSecurityAlertPolicy &
 };
 
 // @public
+export interface ServerSecurityAlertPoliciesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerSecurityAlertPoliciesListByServerNextResponse = LogicalServerSecurityAlertPolicyListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: LogicalServerSecurityAlertPolicyListResult;
     };
 };
+
+// @public
+export interface ServerSecurityAlertPoliciesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecurityAlertPolicyListResult & {
@@ -6389,12 +7750,20 @@ export type ServerSecurityAlertPolicy = ProxyResource & {
 };
 
 // @public
+export interface ServersGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServersGetResponse = Server & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Server;
     };
 };
+
+// @public
+export interface ServersListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServersListByResourceGroupNextResponse = ServerListResult & {
@@ -6405,12 +7774,20 @@ export type ServersListByResourceGroupNextResponse = ServerListResult & {
 };
 
 // @public
+export interface ServersListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServersListByResourceGroupResponse = ServerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerListResult;
     };
 };
+
+// @public
+export interface ServersListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServersListNextResponse = ServerListResult & {
@@ -6421,6 +7798,10 @@ export type ServersListNextResponse = ServerListResult & {
 };
 
 // @public
+export interface ServersListOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServersListResponse = ServerListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6429,11 +7810,16 @@ export type ServersListResponse = ServerListResult & {
 };
 
 // @public
+export interface ServersUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type ServersUpdateResponse = Server & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Server;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -6470,7 +7856,11 @@ export interface ServerUsageListResult {
 
 // @public
 export interface ServerUsages {
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerUsage>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerUsagesListByServerOptionalParams): PagedAsyncIterableIterator<ServerUsage>;
+}
+
+// @public
+export interface ServerUsagesListByServerOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6506,10 +7896,14 @@ export interface ServerVulnerabilityAssessmentListResult {
 
 // @public
 export interface ServerVulnerabilityAssessments {
-    createOrUpdate(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ServerVulnerabilityAssessment, options?: coreHttp.OperationOptions): Promise<ServerVulnerabilityAssessmentsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: coreHttp.OperationOptions): Promise<ServerVulnerabilityAssessmentsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServerVulnerabilityAssessment>;
+    createOrUpdate(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, parameters: ServerVulnerabilityAssessment, options?: ServerVulnerabilityAssessmentsCreateOrUpdateOptionalParams): Promise<ServerVulnerabilityAssessmentsCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ServerVulnerabilityAssessmentsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, serverName: string, vulnerabilityAssessmentName: VulnerabilityAssessmentName, options?: ServerVulnerabilityAssessmentsGetOptionalParams): Promise<ServerVulnerabilityAssessmentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServerVulnerabilityAssessmentsListByServerOptionalParams): PagedAsyncIterableIterator<ServerVulnerabilityAssessment>;
+}
+
+// @public
+export interface ServerVulnerabilityAssessmentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6521,6 +7915,14 @@ export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse = ServerVulnera
 };
 
 // @public
+export interface ServerVulnerabilityAssessmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ServerVulnerabilityAssessmentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAssessment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -6529,12 +7931,20 @@ export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAsses
 };
 
 // @public
+export interface ServerVulnerabilityAssessmentsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServerVulnerabilityAssessmentsListByServerNextResponse = ServerVulnerabilityAssessmentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ServerVulnerabilityAssessmentListResult;
     };
 };
+
+// @public
+export interface ServerVulnerabilityAssessmentsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabilityAssessmentListResult & {
@@ -6580,8 +7990,12 @@ export type ServiceObjectiveName = string;
 
 // @public
 export interface ServiceObjectives {
-    get(resourceGroupName: string, serverName: string, serviceObjectiveName: string, options?: coreHttp.OperationOptions): Promise<ServiceObjectivesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceObjective>;
+    get(resourceGroupName: string, serverName: string, serviceObjectiveName: string, options?: ServiceObjectivesGetOptionalParams): Promise<ServiceObjectivesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: ServiceObjectivesListByServerOptionalParams): PagedAsyncIterableIterator<ServiceObjective>;
+}
+
+// @public
+export interface ServiceObjectivesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6591,6 +8005,10 @@ export type ServiceObjectivesGetResponse = ServiceObjective & {
         parsedBody: ServiceObjective;
     };
 };
+
+// @public
+export interface ServiceObjectivesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult & {
@@ -6630,8 +8048,12 @@ export interface ServiceTierAdvisorListResult {
 
 // @public
 export interface ServiceTierAdvisors {
-    get(resourceGroupName: string, serverName: string, databaseName: string, serviceTierAdvisorName: string, options?: coreHttp.OperationOptions): Promise<ServiceTierAdvisorsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServiceTierAdvisor>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, serviceTierAdvisorName: string, options?: ServiceTierAdvisorsGetOptionalParams): Promise<ServiceTierAdvisorsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: ServiceTierAdvisorsListByDatabaseOptionalParams): PagedAsyncIterableIterator<ServiceTierAdvisor>;
+}
+
+// @public
+export interface ServiceTierAdvisorsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6641,6 +8063,10 @@ export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor & {
         parsedBody: ServiceTierAdvisor;
     };
 };
+
+// @public
+export interface ServiceTierAdvisorsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListResult & {
@@ -6900,8 +8326,12 @@ export interface SubscriptionUsageListResult {
 
 // @public
 export interface SubscriptionUsages {
-    get(locationName: string, usageName: string, options?: coreHttp.OperationOptions): Promise<SubscriptionUsagesGetResponse>;
-    listByLocation(locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SubscriptionUsage>;
+    get(locationName: string, usageName: string, options?: SubscriptionUsagesGetOptionalParams): Promise<SubscriptionUsagesGetResponse>;
+    listByLocation(locationName: string, options?: SubscriptionUsagesListByLocationOptionalParams): PagedAsyncIterableIterator<SubscriptionUsage>;
+}
+
+// @public
+export interface SubscriptionUsagesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -6913,12 +8343,20 @@ export type SubscriptionUsagesGetResponse = SubscriptionUsage & {
 };
 
 // @public
+export interface SubscriptionUsagesListByLocationNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SubscriptionUsagesListByLocationNextResponse = SubscriptionUsageListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SubscriptionUsageListResult;
     };
 };
+
+// @public
+export interface SubscriptionUsagesListByLocationOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResult & {
@@ -6968,12 +8406,18 @@ export interface SyncAgentListResult {
 
 // @public
 export interface SyncAgents {
-    createOrUpdate(resourceGroupName: string, serverName: string, syncAgentName: string, parameters: SyncAgent, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SyncAgentsCreateOrUpdateResponse>, SyncAgentsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    generateKey(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<SyncAgentsGenerateKeyResponse>;
-    get(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): Promise<SyncAgentsGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncAgent>;
-    listLinkedDatabases(resourceGroupName: string, serverName: string, syncAgentName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncAgentLinkedDatabase>;
+    createOrUpdate(resourceGroupName: string, serverName: string, syncAgentName: string, parameters: SyncAgent, options?: SyncAgentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SyncAgentsCreateOrUpdateResponse>, SyncAgentsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, syncAgentName: string, options?: SyncAgentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    generateKey(resourceGroupName: string, serverName: string, syncAgentName: string, options?: SyncAgentsGenerateKeyOptionalParams): Promise<SyncAgentsGenerateKeyResponse>;
+    get(resourceGroupName: string, serverName: string, syncAgentName: string, options?: SyncAgentsGetOptionalParams): Promise<SyncAgentsGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: SyncAgentsListByServerOptionalParams): PagedAsyncIterableIterator<SyncAgent>;
+    listLinkedDatabases(resourceGroupName: string, serverName: string, syncAgentName: string, options?: SyncAgentsListLinkedDatabasesOptionalParams): PagedAsyncIterableIterator<SyncAgentLinkedDatabase>;
+}
+
+// @public
+export interface SyncAgentsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -6981,9 +8425,18 @@ export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncAgent;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SyncAgentsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SyncAgentsGenerateKeyOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncAgentsGenerateKeyResponse = SyncAgentKeyProperties & {
@@ -6994,12 +8447,20 @@ export type SyncAgentsGenerateKeyResponse = SyncAgentKeyProperties & {
 };
 
 // @public
+export interface SyncAgentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncAgentsGetResponse = SyncAgent & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncAgent;
     };
 };
+
+// @public
+export interface SyncAgentsListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncAgentsListByServerNextResponse = SyncAgentListResult & {
@@ -7010,6 +8471,10 @@ export type SyncAgentsListByServerNextResponse = SyncAgentListResult & {
 };
 
 // @public
+export interface SyncAgentsListByServerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncAgentsListByServerResponse = SyncAgentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -7018,12 +8483,20 @@ export type SyncAgentsListByServerResponse = SyncAgentListResult & {
 };
 
 // @public
+export interface SyncAgentsListLinkedDatabasesNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncAgentsListLinkedDatabasesNextResponse = SyncAgentLinkedDatabaseListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncAgentLinkedDatabaseListResult;
     };
 };
+
+// @public
+export interface SyncAgentsListLinkedDatabasesOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListResult & {
@@ -7124,17 +8597,21 @@ export type SyncGroupLogType = string;
 
 // @public
 export interface SyncGroups {
-    cancelSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SyncGroupsCreateOrUpdateResponse>, SyncGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<SyncGroupsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncGroup>;
-    listHubSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
+    cancelSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsCancelSyncOptionalParams): Promise<coreHttp.RestResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: SyncGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SyncGroupsCreateOrUpdateResponse>, SyncGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsGetOptionalParams): Promise<SyncGroupsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: SyncGroupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<SyncGroup>;
+    listHubSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsListHubSchemasOptionalParams): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
     listLogs(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, startTime: string, endTime: string, typeParam: Enum21, options?: SyncGroupsListLogsOptionalParams): PagedAsyncIterableIterator<SyncGroupLogProperties>;
-    listSyncDatabaseIds(locationName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
-    refreshHubSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    triggerSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SyncGroupsUpdateResponse>, SyncGroupsUpdateResponse>>;
+    listSyncDatabaseIds(locationName: string, options?: SyncGroupsListSyncDatabaseIdsOptionalParams): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
+    refreshHubSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsRefreshHubSchemaOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    triggerSync(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncGroupsTriggerSyncOptionalParams): Promise<coreHttp.RestResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, parameters: SyncGroup, options?: SyncGroupsUpdateOptionalParams): Promise<PollerLike<PollOperationState<SyncGroupsUpdateResponse>, SyncGroupsUpdateResponse>>;
+}
+
+// @public
+export interface SyncGroupsCancelSyncOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7157,13 +8634,28 @@ export interface SyncGroupSchemaTableColumn {
 }
 
 // @public
+export interface SyncGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SyncGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SyncGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncGroupsGetResponse = SyncGroup & {
@@ -7174,12 +8666,20 @@ export type SyncGroupsGetResponse = SyncGroup & {
 };
 
 // @public
+export interface SyncGroupsListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncGroupsListByDatabaseNextResponse = SyncGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncGroupListResult;
     };
 };
+
+// @public
+export interface SyncGroupsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncGroupsListByDatabaseResponse = SyncGroupListResult & {
@@ -7190,12 +8690,20 @@ export type SyncGroupsListByDatabaseResponse = SyncGroupListResult & {
 };
 
 // @public
+export interface SyncGroupsListHubSchemasNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncGroupsListHubSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncFullSchemaPropertiesListResult;
     };
 };
+
+// @public
+export interface SyncGroupsListHubSchemasOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncGroupsListHubSchemasResponse = SyncFullSchemaPropertiesListResult & {
@@ -7232,12 +8740,20 @@ export type SyncGroupsListLogsResponse = SyncGroupLogListResult & {
 };
 
 // @public
+export interface SyncGroupsListSyncDatabaseIdsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncGroupsListSyncDatabaseIdsNextResponse = SyncDatabaseIdListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncDatabaseIdListResult;
     };
 };
+
+// @public
+export interface SyncGroupsListSyncDatabaseIdsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
@@ -7248,14 +8764,29 @@ export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
 };
 
 // @public
+export interface SyncGroupsRefreshHubSchemaOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type SyncGroupState = string;
+
+// @public
+export interface SyncGroupsTriggerSyncOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface SyncGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type SyncGroupsUpdateResponse = SyncGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7283,13 +8814,19 @@ export interface SyncMemberListResult {
 
 // @public
 export interface SyncMembers {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SyncMembersCreateOrUpdateResponse>, SyncMembersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<SyncMembersGetResponse>;
-    listBySyncGroup(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncMember>;
-    listMemberSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
-    refreshMemberSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<SyncMembersUpdateResponse>, SyncMembersUpdateResponse>>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: SyncMembersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SyncMembersCreateOrUpdateResponse>, SyncMembersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: SyncMembersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: SyncMembersGetOptionalParams): Promise<SyncMembersGetResponse>;
+    listBySyncGroup(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, options?: SyncMembersListBySyncGroupOptionalParams): PagedAsyncIterableIterator<SyncMember>;
+    listMemberSchemas(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: SyncMembersListMemberSchemasOptionalParams): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
+    refreshMemberSchema(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, options?: SyncMembersRefreshMemberSchemaOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, syncGroupName: string, syncMemberName: string, parameters: SyncMember, options?: SyncMembersUpdateOptionalParams): Promise<PollerLike<PollOperationState<SyncMembersUpdateResponse>, SyncMembersUpdateResponse>>;
+}
+
+// @public
+export interface SyncMembersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7297,9 +8834,18 @@ export type SyncMembersCreateOrUpdateResponse = SyncMember & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncMember;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface SyncMembersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SyncMembersGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncMembersGetResponse = SyncMember & {
@@ -7310,12 +8856,20 @@ export type SyncMembersGetResponse = SyncMember & {
 };
 
 // @public
+export interface SyncMembersListBySyncGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncMembersListBySyncGroupNextResponse = SyncMemberListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncMemberListResult;
     };
 };
+
+// @public
+export interface SyncMembersListBySyncGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncMembersListBySyncGroupResponse = SyncMemberListResult & {
@@ -7326,12 +8880,20 @@ export type SyncMembersListBySyncGroupResponse = SyncMemberListResult & {
 };
 
 // @public
+export interface SyncMembersListMemberSchemasNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SyncMembersListMemberSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncFullSchemaPropertiesListResult;
     };
 };
+
+// @public
+export interface SyncMembersListMemberSchemasOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListResult & {
@@ -7342,14 +8904,25 @@ export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListR
 };
 
 // @public
+export interface SyncMembersRefreshMemberSchemaOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type SyncMemberState = string;
+
+// @public
+export interface SyncMembersUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export type SyncMembersUpdateResponse = SyncMember & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SyncMember;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7361,7 +8934,13 @@ export type TdeCertificate = ProxyResource & {
 
 // @public
 export interface TdeCertificates {
-    create(resourceGroupName: string, serverName: string, parameters: TdeCertificate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    create(resourceGroupName: string, serverName: string, parameters: TdeCertificate, options?: TdeCertificatesCreateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+}
+
+// @public
+export interface TdeCertificatesCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7380,7 +8959,11 @@ export type TransparentDataEncryption = ProxyResource & {
 
 // @public
 export interface TransparentDataEncryptionActivities {
-    listByConfiguration(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
+    listByConfiguration(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
+}
+
+// @public
+export interface TransparentDataEncryptionActivitiesListByConfigurationOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7411,8 +8994,12 @@ export type TransparentDataEncryptionName = string;
 
 // @public
 export interface TransparentDataEncryptions {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, parameters: TransparentDataEncryption, options?: coreHttp.OperationOptions): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: coreHttp.OperationOptions): Promise<TransparentDataEncryptionsGetResponse>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, parameters: TransparentDataEncryption, options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, transparentDataEncryptionName: TransparentDataEncryptionName, options?: TransparentDataEncryptionsGetOptionalParams): Promise<TransparentDataEncryptionsGetResponse>;
+}
+
+// @public
+export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7422,6 +9009,10 @@ export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEn
         parsedBody: TransparentDataEncryption;
     };
 };
+
+// @public
+export interface TransparentDataEncryptionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & {
@@ -7508,11 +9099,21 @@ export interface VirtualClusterListResult {
 
 // @public
 export interface VirtualClusters {
-    delete(resourceGroupName: string, virtualClusterName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, virtualClusterName: string, options?: coreHttp.OperationOptions): Promise<VirtualClustersGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualCluster>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualCluster>;
-    update(resourceGroupName: string, virtualClusterName: string, parameters: VirtualClusterUpdate, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualClustersUpdateResponse>, VirtualClustersUpdateResponse>>;
+    delete(resourceGroupName: string, virtualClusterName: string, options?: VirtualClustersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, virtualClusterName: string, options?: VirtualClustersGetOptionalParams): Promise<VirtualClustersGetResponse>;
+    list(options?: VirtualClustersListOptionalParams): PagedAsyncIterableIterator<VirtualCluster>;
+    listByResourceGroup(resourceGroupName: string, options?: VirtualClustersListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualCluster>;
+    update(resourceGroupName: string, virtualClusterName: string, parameters: VirtualClusterUpdate, options?: VirtualClustersUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualClustersUpdateResponse>, VirtualClustersUpdateResponse>>;
+}
+
+// @public
+export interface VirtualClustersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualClustersGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -7524,12 +9125,20 @@ export type VirtualClustersGetResponse = VirtualCluster & {
 };
 
 // @public
+export interface VirtualClustersListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualClustersListByResourceGroupNextResponse = VirtualClusterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualClusterListResult;
     };
 };
+
+// @public
+export interface VirtualClustersListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResult & {
@@ -7540,12 +9149,20 @@ export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResul
 };
 
 // @public
+export interface VirtualClustersListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualClustersListNextResponse = VirtualClusterListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualClusterListResult;
     };
 };
+
+// @public
+export interface VirtualClustersListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualClustersListResponse = VirtualClusterListResult & {
@@ -7556,11 +9173,16 @@ export type VirtualClustersListResponse = VirtualClusterListResult & {
 };
 
 // @public
+export interface VirtualClustersUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type VirtualClustersUpdateResponse = VirtualCluster & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualCluster;
-        [LROSYM]: LROResponseInfo;
     };
 };
 
@@ -7589,10 +9211,16 @@ export interface VirtualNetworkRuleListResult {
 
 // @public
 export interface VirtualNetworkRules {
-    createOrUpdate(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, parameters: VirtualNetworkRule, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>, VirtualNetworkRulesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: coreHttp.OperationOptions): Promise<VirtualNetworkRulesGetResponse>;
-    listByServer(resourceGroupName: string, serverName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<VirtualNetworkRule>;
+    createOrUpdate(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, parameters: VirtualNetworkRule, options?: VirtualNetworkRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>, VirtualNetworkRulesCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: VirtualNetworkRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, virtualNetworkRuleName: string, options?: VirtualNetworkRulesGetOptionalParams): Promise<VirtualNetworkRulesGetResponse>;
+    listByServer(resourceGroupName: string, serverName: string, options?: VirtualNetworkRulesListByServerOptionalParams): PagedAsyncIterableIterator<VirtualNetworkRule>;
+}
+
+// @public
+export interface VirtualNetworkRulesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7600,9 +9228,18 @@ export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkRule;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface VirtualNetworkRulesDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualNetworkRulesGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkRulesGetResponse = VirtualNetworkRule & {
@@ -7613,12 +9250,20 @@ export type VirtualNetworkRulesGetResponse = VirtualNetworkRule & {
 };
 
 // @public
+export interface VirtualNetworkRulesListByServerNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type VirtualNetworkRulesListByServerNextResponse = VirtualNetworkRuleListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: VirtualNetworkRuleListResult;
     };
 };
+
+// @public
+export interface VirtualNetworkRulesListByServerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResult & {
@@ -7692,10 +9337,16 @@ export interface WorkloadClassifierListResult {
 
 // @public
 export interface WorkloadClassifiers {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, parameters: WorkloadClassifier, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WorkloadClassifiersCreateOrUpdateResponse>, WorkloadClassifiersCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: coreHttp.OperationOptions): Promise<WorkloadClassifiersGetResponse>;
-    listByWorkloadGroup(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkloadClassifier>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, parameters: WorkloadClassifier, options?: WorkloadClassifiersCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<WorkloadClassifiersCreateOrUpdateResponse>, WorkloadClassifiersCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: WorkloadClassifiersDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, workloadClassifierName: string, options?: WorkloadClassifiersGetOptionalParams): Promise<WorkloadClassifiersGetResponse>;
+    listByWorkloadGroup(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: WorkloadClassifiersListByWorkloadGroupOptionalParams): PagedAsyncIterableIterator<WorkloadClassifier>;
+}
+
+// @public
+export interface WorkloadClassifiersCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7703,9 +9354,18 @@ export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadClassifier;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface WorkloadClassifiersDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface WorkloadClassifiersGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WorkloadClassifiersGetResponse = WorkloadClassifier & {
@@ -7716,12 +9376,20 @@ export type WorkloadClassifiersGetResponse = WorkloadClassifier & {
 };
 
 // @public
+export interface WorkloadClassifiersListByWorkloadGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type WorkloadClassifiersListByWorkloadGroupNextResponse = WorkloadClassifierListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadClassifierListResult;
     };
 };
+
+// @public
+export interface WorkloadClassifiersListByWorkloadGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierListResult & {
@@ -7749,10 +9417,16 @@ export interface WorkloadGroupListResult {
 
 // @public
 export interface WorkloadGroups {
-    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, parameters: WorkloadGroup, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<WorkloadGroupsCreateOrUpdateResponse>, WorkloadGroupsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: coreHttp.OperationOptions): Promise<WorkloadGroupsGetResponse>;
-    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<WorkloadGroup>;
+    createOrUpdate(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, parameters: WorkloadGroup, options?: WorkloadGroupsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<WorkloadGroupsCreateOrUpdateResponse>, WorkloadGroupsCreateOrUpdateResponse>>;
+    delete(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: WorkloadGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    get(resourceGroupName: string, serverName: string, databaseName: string, workloadGroupName: string, options?: WorkloadGroupsGetOptionalParams): Promise<WorkloadGroupsGetResponse>;
+    listByDatabase(resourceGroupName: string, serverName: string, databaseName: string, options?: WorkloadGroupsListByDatabaseOptionalParams): PagedAsyncIterableIterator<WorkloadGroup>;
+}
+
+// @public
+export interface WorkloadGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -7760,9 +9434,18 @@ export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadGroup;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface WorkloadGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface WorkloadGroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WorkloadGroupsGetResponse = WorkloadGroup & {
@@ -7773,12 +9456,20 @@ export type WorkloadGroupsGetResponse = WorkloadGroup & {
 };
 
 // @public
+export interface WorkloadGroupsListByDatabaseNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type WorkloadGroupsListByDatabaseNextResponse = WorkloadGroupListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: WorkloadGroupListResult;
     };
 };
+
+// @public
+export interface WorkloadGroupsListByDatabaseOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
@@ -7788,10 +9479,6 @@ export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
     };
 };
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:10145:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
