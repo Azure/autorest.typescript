@@ -17,8 +17,11 @@ import {
   LrosaDsPutNonRetry201Creating400InvalidJsonResponse,
   LrosaDsPutAsyncRelativeRetry400OptionalParams,
   LrosaDsPutAsyncRelativeRetry400Response,
+  LrosaDsDeleteNonRetry400OptionalParams,
   LrosaDsDeleteNonRetry400Response,
+  LrosaDsDelete202NonRetry400OptionalParams,
   LrosaDsDelete202NonRetry400Response,
+  LrosaDsDeleteAsyncRelativeRetry400OptionalParams,
   LrosaDsDeleteAsyncRelativeRetry400Response,
   LrosaDsPostNonRetry400OptionalParams,
   LrosaDsPostNonRetry400Response,
@@ -32,6 +35,8 @@ import {
   LrosaDsPutAsyncRelativeRetryNoStatusResponse,
   LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams,
   LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse,
+  LrosaDsDelete204SucceededOptionalParams,
+  LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams,
   LrosaDsDeleteAsyncRelativeRetryNoStatusResponse,
   LrosaDsPost202NoLocationOptionalParams,
   LrosaDsPost202NoLocationResponse,
@@ -43,8 +48,11 @@ import {
   LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse,
   LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse,
+  LrosaDsDelete202RetryInvalidHeaderOptionalParams,
   LrosaDsDelete202RetryInvalidHeaderResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams,
   LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse,
   LrosaDsPost202RetryInvalidHeaderOptionalParams,
   LrosaDsPost202RetryInvalidHeaderResponse,
@@ -112,7 +120,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   deleteNonRetry400(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDeleteNonRetry400OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDeleteNonRetry400Response>,
@@ -124,7 +132,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   delete202NonRetry400(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDelete202NonRetry400OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDelete202NonRetry400Response>,
@@ -137,7 +145,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   deleteAsyncRelativeRetry400(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
@@ -226,7 +234,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   delete204Succeeded(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDelete204SucceededOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -236,7 +244,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   deleteAsyncRelativeRetryNoStatus(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
@@ -317,7 +325,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   delete202RetryInvalidHeader(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
@@ -330,7 +338,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   deleteAsyncRelativeRetryInvalidHeader(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
@@ -343,7 +351,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   deleteAsyncRelativeRetryInvalidJsonPolling(
-    options?: coreHttp.OperationOptions
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

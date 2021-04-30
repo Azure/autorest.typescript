@@ -13,8 +13,11 @@ import {
   LRORetrysPut201CreatingSucceeded200Response,
   LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysPutAsyncRelativeRetrySucceededResponse,
+  LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
   LRORetrysDeleteProvisioning202Accepted200SucceededResponse,
+  LRORetrysDelete202Retry200OptionalParams,
   LRORetrysDelete202Retry200Response,
+  LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysDeleteAsyncRelativeRetrySucceededResponse,
   LRORetrysPost202Retry200OptionalParams,
   LRORetrysPost202Retry200Response,
@@ -59,7 +62,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   deleteProvisioning202Accepted200Succeeded(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -74,7 +77,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   delete202Retry200(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LRORetrysDelete202Retry200Response>,
@@ -87,7 +90,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   deleteAsyncRelativeRetrySucceeded(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,

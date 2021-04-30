@@ -13,6 +13,7 @@ import {
   LROsPut200SucceededResponse,
   LROsPut201SucceededOptionalParams,
   LROsPut201SucceededResponse,
+  LROsPost202ListOptionalParams,
   LROsPost202ListResponse,
   LROsPut200SucceededNoStateOptionalParams,
   LROsPut200SucceededNoStateResponse,
@@ -46,24 +47,40 @@ import {
   LROsPutSubResourceResponse,
   LROsPutAsyncSubResourceOptionalParams,
   LROsPutAsyncSubResourceResponse,
+  LROsDeleteProvisioning202Accepted200SucceededOptionalParams,
   LROsDeleteProvisioning202Accepted200SucceededResponse,
+  LROsDeleteProvisioning202DeletingFailed200OptionalParams,
   LROsDeleteProvisioning202DeletingFailed200Response,
+  LROsDeleteProvisioning202Deletingcanceled200OptionalParams,
   LROsDeleteProvisioning202Deletingcanceled200Response,
+  LROsDelete204SucceededOptionalParams,
+  LROsDelete202Retry200OptionalParams,
   LROsDelete202Retry200Response,
+  LROsDelete202NoRetry204OptionalParams,
   LROsDelete202NoRetry204Response,
+  LROsDeleteNoHeaderInRetryOptionalParams,
   LROsDeleteNoHeaderInRetryResponse,
+  LROsDeleteAsyncNoHeaderInRetryOptionalParams,
   LROsDeleteAsyncNoHeaderInRetryResponse,
+  LROsDeleteAsyncRetrySucceededOptionalParams,
   LROsDeleteAsyncRetrySucceededResponse,
+  LROsDeleteAsyncNoRetrySucceededOptionalParams,
   LROsDeleteAsyncNoRetrySucceededResponse,
+  LROsDeleteAsyncRetryFailedOptionalParams,
   LROsDeleteAsyncRetryFailedResponse,
+  LROsDeleteAsyncRetrycanceledOptionalParams,
   LROsDeleteAsyncRetrycanceledResponse,
+  LROsPost200WithPayloadOptionalParams,
   LROsPost200WithPayloadResponse,
   LROsPost202Retry200OptionalParams,
   LROsPost202Retry200Response,
   LROsPost202NoRetry204OptionalParams,
   LROsPost202NoRetry204Response,
+  LROsPostDoubleHeadersFinalLocationGetOptionalParams,
   LROsPostDoubleHeadersFinalLocationGetResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams,
   LROsPostDoubleHeadersFinalAzureHeaderGetResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams,
   LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
   LROsPostAsyncRetrySucceededOptionalParams,
   LROsPostAsyncRetrySucceededResponse,
@@ -109,7 +126,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   post202List(
-    options?: coreHttp.OperationOptions
+    options?: LROsPost202ListOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsPost202ListResponse>,
@@ -335,7 +352,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteProvisioning202Accepted200Succeeded(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
@@ -349,7 +366,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteProvisioning202DeletingFailed200(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
@@ -363,7 +380,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteProvisioning202Deletingcanceled200(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
@@ -375,7 +392,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   delete204Succeeded(
-    options?: coreHttp.OperationOptions
+    options?: LROsDelete204SucceededOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -385,7 +402,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   delete202Retry200(
-    options?: coreHttp.OperationOptions
+    options?: LROsDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDelete202Retry200Response>,
@@ -398,7 +415,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   delete202NoRetry204(
-    options?: coreHttp.OperationOptions
+    options?: LROsDelete202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDelete202NoRetry204Response>,
@@ -411,7 +428,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteNoHeaderInRetry(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteNoHeaderInRetryResponse>,
@@ -424,7 +441,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteAsyncNoHeaderInRetry(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
@@ -437,7 +454,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteAsyncRetrySucceeded(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteAsyncRetrySucceededResponse>,
@@ -450,7 +467,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteAsyncNoRetrySucceeded(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
@@ -463,7 +480,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteAsyncRetryFailed(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteAsyncRetryFailedResponse>,
@@ -476,7 +493,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   deleteAsyncRetrycanceled(
-    options?: coreHttp.OperationOptions
+    options?: LROsDeleteAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsDeleteAsyncRetrycanceledResponse>,
@@ -489,7 +506,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   post200WithPayload(
-    options?: coreHttp.OperationOptions
+    options?: LROsPost200WithPayloadOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsPost200WithPayloadResponse>,
@@ -528,7 +545,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   postDoubleHeadersFinalLocationGet(
-    options?: coreHttp.OperationOptions
+    options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
@@ -542,7 +559,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   postDoubleHeadersFinalAzureHeaderGet(
-    options?: coreHttp.OperationOptions
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
@@ -556,7 +573,7 @@ export interface LROs {
    * @param options The options parameters.
    */
   postDoubleHeadersFinalAzureHeaderGetDefault(
-    options?: coreHttp.OperationOptions
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

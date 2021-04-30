@@ -359,18 +359,10 @@ function getOptionsParameter(
     includeGroupedParameters: true
   });
 
-  const hasOptionalParameters = operationParameters.some(
-    ({ required, parameter: { groupedBy } }) => !groupedBy && !required
-  );
-  const hasOptionalGroups = operationParameters.some(
-    ({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required
-  );
+  const mediaPrefix = mediaType ? `$${mediaType}` : "";
+  type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
+  importedModels.add(type);
 
-  if (hasOptionalParameters || hasOptionalGroups) {
-    const mediaPrefix = mediaType ? `$${mediaType}` : "";
-    type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
-    importedModels.add(type);
-  }
   return {
     name: "options",
     type,

@@ -63,16 +63,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      putAsyncRetrySucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: putAsyncRetrySucceededOperationSpec,
-      initialOperationResult,
+      putAsyncRetrySucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -102,16 +98,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      put201CreatingSucceeded200OperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: put201CreatingSucceeded200OperationSpec,
-      initialOperationResult,
+      put201CreatingSucceeded200OperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -140,16 +132,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      post202Retry200OperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: post202Retry200OperationSpec,
-      initialOperationResult,
+      post202Retry200OperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -179,16 +167,12 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      postAsyncRetrySucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: postAsyncRetrySucceededOperationSpec,
-      initialOperationResult,
+      postAsyncRetrySucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

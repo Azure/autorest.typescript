@@ -10,7 +10,9 @@ import {
   Writers,
   WriterFunction,
   OptionalKind,
-  WriterFunctionOrValue
+  WriterFunctionOrValue,
+  InterfaceDeclarationStructure,
+  InterfaceDeclaration
 } from "ts-morph";
 import { keys, pull, isEqual } from "lodash";
 import {
@@ -54,16 +56,6 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
   });
-
-  // Import LRO Symbol if any of the operations is an LRO one
-  if (
-    clientDetails.operationGroups.some(og => og.operations.some(o => o.isLRO))
-  ) {
-    modelsIndexFile.addImportDeclaration({
-      namedImports: ["LROSYM", "LROResponseInfo"],
-      moduleSpecifier: "../lro/models"
-    });
-  }
 
   writeUniontypes(clientDetails, modelsIndexFile);
   writeObjects(clientDetails, modelsIndexFile);
@@ -145,7 +137,8 @@ function writeOptionsParameter(
     sourceFile,
     {
       mediaTypes: operationRequestMediaTypes,
-      operationFullName: operation.fullName
+      operationFullName: operation.fullName,
+      operationIsLro: operation.isLRO
     }
   );
 }
@@ -329,20 +322,10 @@ function buildResponseType(
   // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
-  const lroProperties: OptionalKind<PropertySignatureStructure>[] = isLro
-    ? [
-        {
-          name: "[LROSYM]",
-          docs: ["The parsed HTTP response headers."],
-          type: "LROResponseInfo"
-        }
-      ]
-    : [];
 
   const innerResponseProperties = [
     ...(bodyProperties?.internalResponseProperties || []),
-    ...(headersProperties?.internalResponseProperties || []),
-    ...lroProperties
+    ...(headersProperties?.internalResponseProperties || [])
   ];
   const innerTypeWriter = Writers.objectType({
     properties: [
@@ -577,6 +560,7 @@ interface WriteOptionalParametersOptions {
    * Useful for getting parameter description.
    */
   operationFullName?: string;
+  operationIsLro?: boolean;
 }
 
 function getOptionalGroups(
@@ -620,64 +604,91 @@ function writeOptionalParameters(
   operationName: string,
   optionalParams: ParameterDetails[],
   modelsIndexFile: SourceFile,
-  { baseClass, mediaTypes, operationFullName }: WriteOptionalParametersOptions
+  {
+    baseClass,
+    mediaTypes,
+    operationFullName,
+    operationIsLro
+  }: WriteOptionalParametersOptions
 ) {
-  if (!optionalParams || !optionalParams.length) {
-    return;
+  const optionalGroupDeclarations = getOptionalGroups(optionalParams);
+  function buildParamDetails(p: ParameterDetails): PropertySignatureStructure {
+    const description = getParameterDescription(p, operationFullName);
+    return {
+      name: p.name,
+      hasQuestionToken: true,
+      type: p.typeDetails.typeName,
+      docs: description ? [description] : undefined,
+      kind: StructureKind.PropertySignature
+    };
   }
 
-  const optionalGroupDeclarations = getOptionalGroups(optionalParams);
-
-  const mediaTypesCount = mediaTypes?.size ?? 0;
-  if (mediaTypesCount > 1) {
-    // Create an optional params for each media type.
-    const interfaceNames: string[] = [];
-    for (const mediaType of mediaTypes!.values()) {
-      const name = `${operationGroupName}${operationName}$${mediaType}OptionalParams`;
-      interfaceNames.push(name);
-      modelsIndexFile.addInterface({
-        name: name,
-        docs: ["Optional parameters."],
-        isExported: true,
-        extends: [baseClass || "coreHttp.OperationOptions"],
-        properties: [
-          ...optionalGroupDeclarations,
-          ...optionalParams
-            .filter(p => !p.targetMediaType || p.targetMediaType === mediaType)
-            .map<PropertySignatureStructure>(p => {
-              const description = getParameterDescription(p, operationFullName);
-              return {
-                name: p.name,
-                hasQuestionToken: true,
-                type: p.typeDetails.typeName,
-                docs: description ? [description] : undefined,
-                kind: StructureKind.PropertySignature
-              };
-            })
-        ]
-      });
-    }
-  } else {
-    modelsIndexFile.addInterface({
-      name: `${operationGroupName}${operationName}OptionalParams`,
+  function buildOptionsInterface(
+    name: string,
+    properties: OptionalKind<PropertySignatureStructure>[]
+  ): OptionalKind<InterfaceDeclarationStructure> {
+    return {
+      name: name,
       docs: ["Optional parameters."],
       isExported: true,
       extends: [baseClass || "coreHttp.OperationOptions"],
-      properties: [
-        ...optionalGroupDeclarations,
-        ...optionalParams.map<PropertySignatureStructure>(p => {
-          const description = getParameterDescription(p, operationFullName);
-          return {
-            name: p.name,
-            hasQuestionToken: true,
-            type: p.typeDetails.typeName,
-            docs: description ? [description] : undefined,
-            kind: StructureKind.PropertySignature
-          };
-        })
-      ]
-    });
+      properties: properties
+    };
   }
+
+  const mediaTypesCount = mediaTypes?.size ?? 0;
+  const interfaces: InterfaceDeclaration[] = [];
+  if (mediaTypesCount > 1) {
+    // Create an optional params for each media type.
+    for (const mediaType of mediaTypes!.values()) {
+      interfaces.push(
+        modelsIndexFile.addInterface(
+          buildOptionsInterface(
+            `${operationGroupName}${operationName}$${mediaType}OptionalParams`,
+            [
+              ...optionalGroupDeclarations,
+              ...optionalParams
+                .filter(
+                  p => !p.targetMediaType || p.targetMediaType === mediaType
+                )
+                .map<PropertySignatureStructure>(buildParamDetails)
+            ]
+          )
+        )
+      );
+    }
+  } else {
+    interfaces.push(
+      modelsIndexFile.addInterface(
+        buildOptionsInterface(
+          `${operationGroupName}${operationName}OptionalParams`,
+          [
+            ...optionalGroupDeclarations,
+            ...optionalParams.map<PropertySignatureStructure>(buildParamDetails)
+          ]
+        )
+      )
+    );
+  }
+  if (operationIsLro)
+    interfaces.forEach(iface => {
+      iface.addProperties([
+        {
+          name: "updateIntervalInMs",
+          type: "number",
+          hasQuestionToken: true,
+          docs: ["Delay to wait until next poll, in milliseconds."]
+        },
+        {
+          name: "resumeFrom",
+          type: "string",
+          hasQuestionToken: true,
+          docs: [
+            "A serialized poller which can be used to resume an existing paused Long-Running-Operation."
+          ]
+        }
+      ]);
+    });
 }
 
 /**
