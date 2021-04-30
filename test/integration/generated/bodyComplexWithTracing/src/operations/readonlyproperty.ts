@@ -13,7 +13,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
-import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
+import {
+  ReadonlypropertyGetValidOptionalParams,
+  ReadonlypropertyGetValidResponse,
+  ReadonlyObj,
+  ReadonlypropertyPutValidOptionalParams
+} from "../models";
 
 /** Class representing a Readonlyproperty. */
 export class ReadonlypropertyImpl implements Readonlyproperty {
@@ -32,7 +37,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -67,7 +72,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    */
   async putValid(
     complexBody: ReadonlyObj,
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",

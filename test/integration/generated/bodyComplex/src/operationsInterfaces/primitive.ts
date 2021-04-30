@@ -8,28 +8,50 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
   IntWrapper,
+  PrimitivePutIntOptionalParams,
+  PrimitiveGetLongOptionalParams,
   PrimitiveGetLongResponse,
   LongWrapper,
+  PrimitivePutLongOptionalParams,
+  PrimitiveGetFloatOptionalParams,
   PrimitiveGetFloatResponse,
   FloatWrapper,
+  PrimitivePutFloatOptionalParams,
+  PrimitiveGetDoubleOptionalParams,
   PrimitiveGetDoubleResponse,
   DoubleWrapper,
+  PrimitivePutDoubleOptionalParams,
+  PrimitiveGetBoolOptionalParams,
   PrimitiveGetBoolResponse,
   BooleanWrapper,
+  PrimitivePutBoolOptionalParams,
+  PrimitiveGetStringOptionalParams,
   PrimitiveGetStringResponse,
   StringWrapper,
+  PrimitivePutStringOptionalParams,
+  PrimitiveGetDateOptionalParams,
   PrimitiveGetDateResponse,
   DateWrapper,
+  PrimitivePutDateOptionalParams,
+  PrimitiveGetDateTimeOptionalParams,
   PrimitiveGetDateTimeResponse,
   DatetimeWrapper,
+  PrimitivePutDateTimeOptionalParams,
+  PrimitiveGetDateTimeRfc1123OptionalParams,
   PrimitiveGetDateTimeRfc1123Response,
   Datetimerfc1123Wrapper,
+  PrimitivePutDateTimeRfc1123OptionalParams,
+  PrimitiveGetDurationOptionalParams,
   PrimitiveGetDurationResponse,
   DurationWrapper,
+  PrimitivePutDurationOptionalParams,
+  PrimitiveGetByteOptionalParams,
   PrimitiveGetByteResponse,
-  ByteWrapper
+  ByteWrapper,
+  PrimitivePutByteOptionalParams
 } from "../models";
 
 /** Interface representing a Primitive. */
@@ -38,7 +60,9 @@ export interface Primitive {
    * Get complex types with integer properties
    * @param options The options parameters.
    */
-  getInt(options?: coreHttp.OperationOptions): Promise<PrimitiveGetIntResponse>;
+  getInt(
+    options?: PrimitiveGetIntOptionalParams
+  ): Promise<PrimitiveGetIntResponse>;
   /**
    * Put complex types with integer properties
    * @param complexBody Please put -1 and 2
@@ -46,14 +70,14 @@ export interface Primitive {
    */
   putInt(
     complexBody: IntWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutIntOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with long properties
    * @param options The options parameters.
    */
   getLong(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse>;
   /**
    * Put complex types with long properties
@@ -62,14 +86,14 @@ export interface Primitive {
    */
   putLong(
     complexBody: LongWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutLongOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with float properties
    * @param options The options parameters.
    */
   getFloat(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse>;
   /**
    * Put complex types with float properties
@@ -78,14 +102,14 @@ export interface Primitive {
    */
   putFloat(
     complexBody: FloatWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutFloatOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with double properties
    * @param options The options parameters.
    */
   getDouble(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse>;
   /**
    * Put complex types with double properties
@@ -95,14 +119,14 @@ export interface Primitive {
    */
   putDouble(
     complexBody: DoubleWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDoubleOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with bool properties
    * @param options The options parameters.
    */
   getBool(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse>;
   /**
    * Put complex types with bool properties
@@ -111,14 +135,14 @@ export interface Primitive {
    */
   putBool(
     complexBody: BooleanWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutBoolOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with string properties
    * @param options The options parameters.
    */
   getString(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse>;
   /**
    * Put complex types with string properties
@@ -127,14 +151,14 @@ export interface Primitive {
    */
   putString(
     complexBody: StringWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutStringOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with date properties
    * @param options The options parameters.
    */
   getDate(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse>;
   /**
    * Put complex types with date properties
@@ -143,14 +167,14 @@ export interface Primitive {
    */
   putDate(
     complexBody: DateWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with datetime properties
    * @param options The options parameters.
    */
   getDateTime(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse>;
   /**
    * Put complex types with datetime properties
@@ -159,14 +183,14 @@ export interface Primitive {
    */
   putDateTime(
     complexBody: DatetimeWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with datetimeRfc1123 properties
    * @param options The options parameters.
    */
   getDateTimeRfc1123(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response>;
   /**
    * Put complex types with datetimeRfc1123 properties
@@ -175,14 +199,14 @@ export interface Primitive {
    */
   putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with duration properties
    * @param options The options parameters.
    */
   getDuration(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse>;
   /**
    * Put complex types with duration properties
@@ -191,14 +215,14 @@ export interface Primitive {
    */
   putDuration(
     complexBody: DurationWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDurationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with byte properties
    * @param options The options parameters.
    */
   getByte(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse>;
   /**
    * Put complex types with byte properties
@@ -207,6 +231,6 @@ export interface Primitive {
    */
   putByte(
     complexBody: ByteWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutByteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

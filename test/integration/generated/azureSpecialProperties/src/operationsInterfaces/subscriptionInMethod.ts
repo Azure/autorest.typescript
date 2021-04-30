@@ -7,6 +7,12 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import {
+  SubscriptionInMethodPostMethodLocalValidOptionalParams,
+  SubscriptionInMethodPostMethodLocalNullOptionalParams,
+  SubscriptionInMethodPostPathLocalValidOptionalParams,
+  SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+} from "../models";
 
 /** Interface representing a SubscriptionInMethod. */
 export interface SubscriptionInMethod {
@@ -18,7 +24,7 @@ export interface SubscriptionInMethod {
    */
   postMethodLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side
@@ -29,7 +35,7 @@ export interface SubscriptionInMethod {
    */
   postMethodLocalNull(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
@@ -39,7 +45,7 @@ export interface SubscriptionInMethod {
    */
   postPathLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostPathLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
@@ -50,6 +56,6 @@ export interface SubscriptionInMethod {
    */
   postSwaggerLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

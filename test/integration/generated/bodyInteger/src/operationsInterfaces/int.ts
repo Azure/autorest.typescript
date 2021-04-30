@@ -8,14 +8,28 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  IntGetNullOptionalParams,
   IntGetNullResponse,
+  IntGetInvalidOptionalParams,
   IntGetInvalidResponse,
+  IntGetOverflowInt32OptionalParams,
   IntGetOverflowInt32Response,
+  IntGetUnderflowInt32OptionalParams,
   IntGetUnderflowInt32Response,
+  IntGetOverflowInt64OptionalParams,
   IntGetOverflowInt64Response,
+  IntGetUnderflowInt64OptionalParams,
   IntGetUnderflowInt64Response,
+  IntPutMax32OptionalParams,
+  IntPutMax64OptionalParams,
+  IntPutMin32OptionalParams,
+  IntPutMin64OptionalParams,
+  IntGetUnixTimeOptionalParams,
   IntGetUnixTimeResponse,
+  IntPutUnixTimeDateOptionalParams,
+  IntGetInvalidUnixTimeOptionalParams,
   IntGetInvalidUnixTimeResponse,
+  IntGetNullUnixTimeOptionalParams,
   IntGetNullUnixTimeResponse
 } from "../models";
 
@@ -25,41 +39,41 @@ export interface Int {
    * Get null Int value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<IntGetNullResponse>;
+  getNull(options?: IntGetNullOptionalParams): Promise<IntGetNullResponse>;
   /**
    * Get invalid Int value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: IntGetInvalidOptionalParams
   ): Promise<IntGetInvalidResponse>;
   /**
    * Get overflow Int32 value
    * @param options The options parameters.
    */
   getOverflowInt32(
-    options?: coreHttp.OperationOptions
+    options?: IntGetOverflowInt32OptionalParams
   ): Promise<IntGetOverflowInt32Response>;
   /**
    * Get underflow Int32 value
    * @param options The options parameters.
    */
   getUnderflowInt32(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnderflowInt32OptionalParams
   ): Promise<IntGetUnderflowInt32Response>;
   /**
    * Get overflow Int64 value
    * @param options The options parameters.
    */
   getOverflowInt64(
-    options?: coreHttp.OperationOptions
+    options?: IntGetOverflowInt64OptionalParams
   ): Promise<IntGetOverflowInt64Response>;
   /**
    * Get underflow Int64 value
    * @param options The options parameters.
    */
   getUnderflowInt64(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnderflowInt64OptionalParams
   ): Promise<IntGetUnderflowInt64Response>;
   /**
    * Put max int32 value
@@ -68,7 +82,7 @@ export interface Int {
    */
   putMax32(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMax32OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Put max int64 value
@@ -77,7 +91,7 @@ export interface Int {
    */
   putMax64(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMax64OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Put min int32 value
@@ -86,7 +100,7 @@ export interface Int {
    */
   putMin32(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMin32OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Put min int64 value
@@ -95,14 +109,14 @@ export interface Int {
    */
   putMin64(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMin64OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get datetime encoded as Unix time value
    * @param options The options parameters.
    */
   getUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnixTimeOptionalParams
   ): Promise<IntGetUnixTimeResponse>;
   /**
    * Put datetime encoded as Unix time
@@ -111,20 +125,20 @@ export interface Int {
    */
   putUnixTimeDate(
     intBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: IntPutUnixTimeDateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get invalid Unix time value
    * @param options The options parameters.
    */
   getInvalidUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetInvalidUnixTimeOptionalParams
   ): Promise<IntGetInvalidUnixTimeResponse>;
   /**
    * Get null Unix time value
    * @param options The options parameters.
    */
   getNullUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetNullUnixTimeOptionalParams
   ): Promise<IntGetNullUnixTimeResponse>;
 }

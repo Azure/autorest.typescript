@@ -8,12 +8,21 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
+  Datetimerfc1123GetInvalidOptionalParams,
   Datetimerfc1123GetInvalidResponse,
+  Datetimerfc1123GetOverflowOptionalParams,
   Datetimerfc1123GetOverflowResponse,
+  Datetimerfc1123GetUnderflowOptionalParams,
   Datetimerfc1123GetUnderflowResponse,
+  Datetimerfc1123PutUtcMaxDateTimeOptionalParams,
+  Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams,
   Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse,
+  Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams,
   Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse,
+  Datetimerfc1123PutUtcMinDateTimeOptionalParams,
+  Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeResponse
 } from "../models";
 
@@ -24,28 +33,28 @@ export interface Datetimerfc1123 {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetNullOptionalParams
   ): Promise<Datetimerfc1123GetNullResponse>;
   /**
    * Get invalid datetime value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetInvalidOptionalParams
   ): Promise<Datetimerfc1123GetInvalidResponse>;
   /**
    * Get overflow datetime value
    * @param options The options parameters.
    */
   getOverflow(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetOverflowOptionalParams
   ): Promise<Datetimerfc1123GetOverflowResponse>;
   /**
    * Get underflow datetime value
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUnderflowOptionalParams
   ): Promise<Datetimerfc1123GetUnderflowResponse>;
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
@@ -54,21 +63,21 @@ export interface Datetimerfc1123 {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get max datetime value fri, 31 dec 9999 23:59:59 gmt
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   /**
    * Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
@@ -77,13 +86,13 @@ export interface Datetimerfc1123 {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse>;
 }

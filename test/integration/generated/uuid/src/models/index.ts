@@ -8,6 +8,9 @@
 
 import * as coreHttp from "@azure/core-http";
 
+/** Optional parameters. */
+export interface GetUuidOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the uuid operation. */
 export type GetUuidResponse = {
   /** The parsed response body. */

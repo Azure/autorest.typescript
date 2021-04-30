@@ -10,6 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import {
   FloatPutOptionalParams,
   FloatPutResponse,
+  FloatGetOptionalParams,
   FloatGetResponse
 } from "../models";
 
@@ -24,5 +25,5 @@ export interface Float {
    * Get a float enum
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<FloatGetResponse>;
+  get(options?: FloatGetOptionalParams): Promise<FloatGetResponse>;
 }

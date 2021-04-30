@@ -12,8 +12,12 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDurationClientContext } from "../bodyDurationClientContext";
 import {
+  DurationGetNullOptionalParams,
   DurationGetNullResponse,
+  DurationPutPositiveDurationOptionalParams,
+  DurationGetPositiveDurationOptionalParams,
   DurationGetPositiveDurationResponse,
+  DurationGetInvalidOptionalParams,
   DurationGetInvalidResponse
 } from "../models";
 
@@ -34,7 +38,7 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetNullOptionalParams
   ): Promise<DurationGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -52,7 +56,7 @@ export class DurationImpl implements Duration {
    */
   putPositiveDuration(
     durationBody: string,
-    options?: coreHttp.OperationOptions
+    options?: DurationPutPositiveDurationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       durationBody,
@@ -69,7 +73,7 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getPositiveDuration(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetPositiveDurationOptionalParams
   ): Promise<DurationGetPositiveDurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -85,7 +89,7 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetInvalidOptionalParams
   ): Promise<DurationGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

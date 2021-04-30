@@ -14,6 +14,7 @@ import * as Mappers from "./models/mappers";
 import { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";
 import {
   LroParametrizedEndpointsClientOptionalParams,
+  LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams,
   LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
 } from "./models";
 
@@ -45,7 +46,7 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    */
   async pollWithParameterizedEndpoints(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -67,17 +68,13 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      pollWithParameterizedEndpointsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: pollWithParameterizedEndpointsOperationSpec,
-      initialOperationResult,
+      pollWithParameterizedEndpointsOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 }
 // Operation Specifications

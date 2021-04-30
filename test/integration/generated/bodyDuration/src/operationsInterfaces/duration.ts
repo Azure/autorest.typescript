@@ -8,8 +8,12 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  DurationGetNullOptionalParams,
   DurationGetNullResponse,
+  DurationPutPositiveDurationOptionalParams,
+  DurationGetPositiveDurationOptionalParams,
   DurationGetPositiveDurationResponse,
+  DurationGetInvalidOptionalParams,
   DurationGetInvalidResponse
 } from "../models";
 
@@ -20,7 +24,7 @@ export interface Duration {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetNullOptionalParams
   ): Promise<DurationGetNullResponse>;
   /**
    * Put a positive duration value
@@ -29,20 +33,20 @@ export interface Duration {
    */
   putPositiveDuration(
     durationBody: string,
-    options?: coreHttp.OperationOptions
+    options?: DurationPutPositiveDurationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a positive duration value
    * @param options The options parameters.
    */
   getPositiveDuration(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetPositiveDurationOptionalParams
   ): Promise<DurationGetPositiveDurationResponse>;
   /**
    * Get an invalid duration value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DurationGetInvalidOptionalParams
   ): Promise<DurationGetInvalidResponse>;
 }

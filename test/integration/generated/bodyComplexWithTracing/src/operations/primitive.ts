@@ -14,28 +14,50 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
+  PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
   IntWrapper,
+  PrimitivePutIntOptionalParams,
+  PrimitiveGetLongOptionalParams,
   PrimitiveGetLongResponse,
   LongWrapper,
+  PrimitivePutLongOptionalParams,
+  PrimitiveGetFloatOptionalParams,
   PrimitiveGetFloatResponse,
   FloatWrapper,
+  PrimitivePutFloatOptionalParams,
+  PrimitiveGetDoubleOptionalParams,
   PrimitiveGetDoubleResponse,
   DoubleWrapper,
+  PrimitivePutDoubleOptionalParams,
+  PrimitiveGetBoolOptionalParams,
   PrimitiveGetBoolResponse,
   BooleanWrapper,
+  PrimitivePutBoolOptionalParams,
+  PrimitiveGetStringOptionalParams,
   PrimitiveGetStringResponse,
   StringWrapper,
+  PrimitivePutStringOptionalParams,
+  PrimitiveGetDateOptionalParams,
   PrimitiveGetDateResponse,
   DateWrapper,
+  PrimitivePutDateOptionalParams,
+  PrimitiveGetDateTimeOptionalParams,
   PrimitiveGetDateTimeResponse,
   DatetimeWrapper,
+  PrimitivePutDateTimeOptionalParams,
+  PrimitiveGetDateTimeRfc1123OptionalParams,
   PrimitiveGetDateTimeRfc1123Response,
   Datetimerfc1123Wrapper,
+  PrimitivePutDateTimeRfc1123OptionalParams,
+  PrimitiveGetDurationOptionalParams,
   PrimitiveGetDurationResponse,
   DurationWrapper,
+  PrimitivePutDurationOptionalParams,
+  PrimitiveGetByteOptionalParams,
   PrimitiveGetByteResponse,
-  ByteWrapper
+  ByteWrapper,
+  PrimitivePutByteOptionalParams
 } from "../models";
 
 /** Class representing a Primitive. */
@@ -55,7 +77,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getInt(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetIntOptionalParams
   ): Promise<PrimitiveGetIntResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getInt",
@@ -90,7 +112,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putInt(
     complexBody: IntWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutIntOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putInt",
@@ -124,7 +146,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getLong(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getLong",
@@ -159,7 +181,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putLong(
     complexBody: LongWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutLongOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putLong",
@@ -193,7 +215,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getFloat(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getFloat",
@@ -228,7 +250,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putFloat(
     complexBody: FloatWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutFloatOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putFloat",
@@ -262,7 +284,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDouble(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDouble",
@@ -298,7 +320,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDouble(
     complexBody: DoubleWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDoubleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDouble",
@@ -332,7 +354,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getBool(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getBool",
@@ -367,7 +389,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putBool(
     complexBody: BooleanWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutBoolOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putBool",
@@ -401,7 +423,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getString(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getString",
@@ -436,7 +458,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putString(
     complexBody: StringWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutStringOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putString",
@@ -470,7 +492,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDate(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDate",
@@ -505,7 +527,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDate(
     complexBody: DateWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDate",
@@ -539,7 +561,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDateTime(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDateTime",
@@ -574,7 +596,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDateTime(
     complexBody: DatetimeWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDateTime",
@@ -608,7 +630,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDateTimeRfc1123(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDateTimeRfc1123",
@@ -643,7 +665,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDateTimeRfc1123",
@@ -677,7 +699,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDuration(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDuration",
@@ -712,7 +734,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDuration(
     complexBody: DurationWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDurationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putDuration",
@@ -746,7 +768,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getByte(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getByte",
@@ -781,7 +803,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putByte(
     complexBody: ByteWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putByte",

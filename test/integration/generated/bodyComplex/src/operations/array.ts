@@ -12,9 +12,14 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
+  ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
   ArrayWrapper,
+  ArrayPutValidOptionalParams,
+  ArrayGetEmptyOptionalParams,
   ArrayGetEmptyResponse,
+  ArrayPutEmptyOptionalParams,
+  ArrayGetNotProvidedOptionalParams,
   ArrayGetNotProvidedResponse
 } from "../models";
 
@@ -35,7 +40,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetValidOptionalParams
   ): Promise<ArrayGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -54,7 +59,7 @@ export class ArrayImpl implements Array {
    */
   putValid(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -71,7 +76,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -89,7 +94,7 @@ export class ArrayImpl implements Array {
    */
   putEmpty(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -106,7 +111,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

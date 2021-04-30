@@ -7,7 +7,12 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { InheritanceGetValidResponse, Siamese } from "../models";
+import {
+  InheritanceGetValidOptionalParams,
+  InheritanceGetValidResponse,
+  Siamese,
+  InheritancePutValidOptionalParams
+} from "../models";
 
 /** Interface representing a Inheritance. */
 export interface Inheritance {
@@ -16,7 +21,7 @@ export interface Inheritance {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: InheritanceGetValidOptionalParams
   ): Promise<InheritanceGetValidResponse>;
   /**
    * Put complex types that extend others
@@ -27,6 +32,6 @@ export interface Inheritance {
    */
   putValid(
     complexBody: Siamese,
-    options?: coreHttp.OperationOptions
+    options?: InheritancePutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

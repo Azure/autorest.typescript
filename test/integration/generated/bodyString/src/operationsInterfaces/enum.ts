@@ -8,11 +8,17 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
   Colors,
+  EnumPutNotExpandableOptionalParams,
+  EnumGetReferencedOptionalParams,
   EnumGetReferencedResponse,
+  EnumPutReferencedOptionalParams,
+  EnumGetReferencedConstantOptionalParams,
   EnumGetReferencedConstantResponse,
-  RefColorConstant
+  RefColorConstant,
+  EnumPutReferencedConstantOptionalParams
 } from "../models";
 
 /** Interface representing a Enum. */
@@ -22,7 +28,7 @@ export interface Enum {
    * @param options The options parameters.
    */
   getNotExpandable(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetNotExpandableOptionalParams
   ): Promise<EnumGetNotExpandableResponse>;
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
@@ -31,14 +37,14 @@ export interface Enum {
    */
   putNotExpandable(
     stringBody: Colors,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutNotExpandableOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    * @param options The options parameters.
    */
   getReferenced(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetReferencedOptionalParams
   ): Promise<EnumGetReferencedResponse>;
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
@@ -47,14 +53,14 @@ export interface Enum {
    */
   putReferenced(
     enumStringBody: Colors,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutReferencedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get value 'green-color' from the constant.
    * @param options The options parameters.
    */
   getReferencedConstant(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetReferencedConstantOptionalParams
   ): Promise<EnumGetReferencedConstantResponse>;
   /**
    * Sends value 'green-color' from a constant
@@ -63,6 +69,6 @@ export interface Enum {
    */
   putReferencedConstant(
     enumStringBody: RefColorConstant,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutReferencedConstantOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -13,6 +13,7 @@ import * as Parameters from "../models/parameters";
 import { AzureParameterGroupingClientContext } from "../azureParameterGroupingClientContext";
 import {
   ParameterGroupingPostRequiredParameters,
+  ParameterGroupingPostRequiredOptionalParams,
   ParameterGroupingPostOptionalOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
@@ -37,7 +38,7 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    */
   postRequired(
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
-    options?: coreHttp.OperationOptions
+    options?: ParameterGroupingPostRequiredOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameterGroupingPostRequiredParameters,

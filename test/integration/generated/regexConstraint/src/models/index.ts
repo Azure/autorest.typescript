@@ -8,6 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 
+/** Optional parameters. */
+export interface RegexConstraintApiV1ValueGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the apiV1ValueGet operation. */
 export type RegexConstraintApiV1ValueGetResponse = {
   /** The parsed response body. */

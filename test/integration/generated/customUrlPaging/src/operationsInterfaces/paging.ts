@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { Product } from "../models";
+import {
+  Product,
+  PagingGetPagesPartialUrlNextOptionalParams,
+  PagingGetPagesPartialUrlOptionalParams,
+  PagingGetPagesPartialUrlOperationNextOptionalParams,
+  PagingGetPagesPartialUrlOperationOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Paging. */
@@ -21,7 +27,7 @@ export interface Paging {
    */
   listPagesPartialUrl(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagesPartialUrlOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that combines custom url, paging and partial URL with next operation
@@ -30,7 +36,7 @@ export interface Paging {
    */
   listPagesPartialUrlOperation(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagesPartialUrlOperationOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that combines custom url, paging and partial URL
@@ -41,6 +47,6 @@ export interface Paging {
   listPagesPartialUrlOperationNext(
     accountName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagesPartialUrlOperationNextOptionalParams
   ): PagedAsyncIterableIterator<Product>;
 }

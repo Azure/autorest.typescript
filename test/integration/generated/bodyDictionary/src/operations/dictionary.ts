@@ -12,57 +12,122 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDictionaryClientContext } from "../bodyDictionaryClientContext";
 import {
+  DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
+  DictionaryGetEmptyOptionalParams,
   DictionaryGetEmptyResponse,
+  DictionaryPutEmptyOptionalParams,
+  DictionaryGetNullValueOptionalParams,
   DictionaryGetNullValueResponse,
+  DictionaryGetNullKeyOptionalParams,
   DictionaryGetNullKeyResponse,
+  DictionaryGetEmptyStringKeyOptionalParams,
   DictionaryGetEmptyStringKeyResponse,
+  DictionaryGetInvalidOptionalParams,
   DictionaryGetInvalidResponse,
+  DictionaryGetBooleanTfftOptionalParams,
   DictionaryGetBooleanTfftResponse,
+  DictionaryPutBooleanTfftOptionalParams,
+  DictionaryGetBooleanInvalidNullOptionalParams,
   DictionaryGetBooleanInvalidNullResponse,
+  DictionaryGetBooleanInvalidStringOptionalParams,
   DictionaryGetBooleanInvalidStringResponse,
+  DictionaryGetIntegerValidOptionalParams,
   DictionaryGetIntegerValidResponse,
+  DictionaryPutIntegerValidOptionalParams,
+  DictionaryGetIntInvalidNullOptionalParams,
   DictionaryGetIntInvalidNullResponse,
+  DictionaryGetIntInvalidStringOptionalParams,
   DictionaryGetIntInvalidStringResponse,
+  DictionaryGetLongValidOptionalParams,
   DictionaryGetLongValidResponse,
+  DictionaryPutLongValidOptionalParams,
+  DictionaryGetLongInvalidNullOptionalParams,
   DictionaryGetLongInvalidNullResponse,
+  DictionaryGetLongInvalidStringOptionalParams,
   DictionaryGetLongInvalidStringResponse,
+  DictionaryGetFloatValidOptionalParams,
   DictionaryGetFloatValidResponse,
+  DictionaryPutFloatValidOptionalParams,
+  DictionaryGetFloatInvalidNullOptionalParams,
   DictionaryGetFloatInvalidNullResponse,
+  DictionaryGetFloatInvalidStringOptionalParams,
   DictionaryGetFloatInvalidStringResponse,
+  DictionaryGetDoubleValidOptionalParams,
   DictionaryGetDoubleValidResponse,
+  DictionaryPutDoubleValidOptionalParams,
+  DictionaryGetDoubleInvalidNullOptionalParams,
   DictionaryGetDoubleInvalidNullResponse,
+  DictionaryGetDoubleInvalidStringOptionalParams,
   DictionaryGetDoubleInvalidStringResponse,
+  DictionaryGetStringValidOptionalParams,
   DictionaryGetStringValidResponse,
+  DictionaryPutStringValidOptionalParams,
+  DictionaryGetStringWithNullOptionalParams,
   DictionaryGetStringWithNullResponse,
+  DictionaryGetStringWithInvalidOptionalParams,
   DictionaryGetStringWithInvalidResponse,
+  DictionaryGetDateValidOptionalParams,
   DictionaryGetDateValidResponse,
+  DictionaryPutDateValidOptionalParams,
+  DictionaryGetDateInvalidNullOptionalParams,
   DictionaryGetDateInvalidNullResponse,
+  DictionaryGetDateInvalidCharsOptionalParams,
   DictionaryGetDateInvalidCharsResponse,
+  DictionaryGetDateTimeValidOptionalParams,
   DictionaryGetDateTimeValidResponse,
+  DictionaryPutDateTimeValidOptionalParams,
+  DictionaryGetDateTimeInvalidNullOptionalParams,
   DictionaryGetDateTimeInvalidNullResponse,
+  DictionaryGetDateTimeInvalidCharsOptionalParams,
   DictionaryGetDateTimeInvalidCharsResponse,
+  DictionaryGetDateTimeRfc1123ValidOptionalParams,
   DictionaryGetDateTimeRfc1123ValidResponse,
+  DictionaryPutDateTimeRfc1123ValidOptionalParams,
+  DictionaryGetDurationValidOptionalParams,
   DictionaryGetDurationValidResponse,
+  DictionaryPutDurationValidOptionalParams,
+  DictionaryGetByteValidOptionalParams,
   DictionaryGetByteValidResponse,
+  DictionaryPutByteValidOptionalParams,
+  DictionaryGetByteInvalidNullOptionalParams,
   DictionaryGetByteInvalidNullResponse,
+  DictionaryGetBase64UrlOptionalParams,
   DictionaryGetBase64UrlResponse,
+  DictionaryGetComplexNullOptionalParams,
   DictionaryGetComplexNullResponse,
+  DictionaryGetComplexEmptyOptionalParams,
   DictionaryGetComplexEmptyResponse,
+  DictionaryGetComplexItemNullOptionalParams,
   DictionaryGetComplexItemNullResponse,
+  DictionaryGetComplexItemEmptyOptionalParams,
   DictionaryGetComplexItemEmptyResponse,
+  DictionaryGetComplexValidOptionalParams,
   DictionaryGetComplexValidResponse,
   Widget,
+  DictionaryPutComplexValidOptionalParams,
+  DictionaryGetArrayNullOptionalParams,
   DictionaryGetArrayNullResponse,
+  DictionaryGetArrayEmptyOptionalParams,
   DictionaryGetArrayEmptyResponse,
+  DictionaryGetArrayItemNullOptionalParams,
   DictionaryGetArrayItemNullResponse,
+  DictionaryGetArrayItemEmptyOptionalParams,
   DictionaryGetArrayItemEmptyResponse,
+  DictionaryGetArrayValidOptionalParams,
   DictionaryGetArrayValidResponse,
+  DictionaryPutArrayValidOptionalParams,
+  DictionaryGetDictionaryNullOptionalParams,
   DictionaryGetDictionaryNullResponse,
+  DictionaryGetDictionaryEmptyOptionalParams,
   DictionaryGetDictionaryEmptyResponse,
+  DictionaryGetDictionaryItemNullOptionalParams,
   DictionaryGetDictionaryItemNullResponse,
+  DictionaryGetDictionaryItemEmptyOptionalParams,
   DictionaryGetDictionaryItemEmptyResponse,
-  DictionaryGetDictionaryValidResponse
+  DictionaryGetDictionaryValidOptionalParams,
+  DictionaryGetDictionaryValidResponse,
+  DictionaryPutDictionaryValidOptionalParams
 } from "../models";
 
 /** Class representing a Dictionary. */
@@ -82,7 +147,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -98,7 +163,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -116,7 +181,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putEmpty(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -133,7 +198,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNullValue(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullValueOptionalParams
   ): Promise<DictionaryGetNullValueResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -149,7 +214,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNullKey(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullKeyOptionalParams
   ): Promise<DictionaryGetNullKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -165,7 +230,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getEmptyStringKey(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyStringKeyOptionalParams
   ): Promise<DictionaryGetEmptyStringKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -181,7 +246,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetInvalidOptionalParams
   ): Promise<DictionaryGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -197,7 +262,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanTfftOptionalParams
   ): Promise<DictionaryGetBooleanTfftResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -215,7 +280,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putBooleanTfft(
     arrayBody: { [propertyName: string]: boolean },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutBooleanTfftOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -232,7 +297,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanInvalidNullOptionalParams
   ): Promise<DictionaryGetBooleanInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -248,7 +313,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanInvalidStringOptionalParams
   ): Promise<DictionaryGetBooleanInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -264,7 +329,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntegerValidOptionalParams
   ): Promise<DictionaryGetIntegerValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -282,7 +347,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putIntegerValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutIntegerValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -299,7 +364,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntInvalidNullOptionalParams
   ): Promise<DictionaryGetIntInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -315,7 +380,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntInvalidStringOptionalParams
   ): Promise<DictionaryGetIntInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -331,7 +396,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongValidOptionalParams
   ): Promise<DictionaryGetLongValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -349,7 +414,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putLongValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutLongValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -366,7 +431,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongInvalidNullOptionalParams
   ): Promise<DictionaryGetLongInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -382,7 +447,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongInvalidStringOptionalParams
   ): Promise<DictionaryGetLongInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -398,7 +463,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatValidOptionalParams
   ): Promise<DictionaryGetFloatValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -416,7 +481,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putFloatValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutFloatValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -433,7 +498,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatInvalidNullOptionalParams
   ): Promise<DictionaryGetFloatInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -449,7 +514,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatInvalidStringOptionalParams
   ): Promise<DictionaryGetFloatInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -465,7 +530,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleValidOptionalParams
   ): Promise<DictionaryGetDoubleValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -483,7 +548,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDoubleValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDoubleValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -500,7 +565,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleInvalidNullOptionalParams
   ): Promise<DictionaryGetDoubleInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -516,7 +581,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleInvalidStringOptionalParams
   ): Promise<DictionaryGetDoubleInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -532,7 +597,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringValidOptionalParams
   ): Promise<DictionaryGetStringValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -550,7 +615,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putStringValid(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutStringValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -567,7 +632,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringWithNullOptionalParams
   ): Promise<DictionaryGetStringWithNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -583,7 +648,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringWithInvalidOptionalParams
   ): Promise<DictionaryGetStringWithInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -599,7 +664,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateValidOptionalParams
   ): Promise<DictionaryGetDateValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -617,7 +682,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -634,7 +699,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateInvalidNullOptionalParams
   ): Promise<DictionaryGetDateInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -650,7 +715,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateInvalidCharsOptionalParams
   ): Promise<DictionaryGetDateInvalidCharsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -667,7 +732,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeValidOptionalParams
   ): Promise<DictionaryGetDateTimeValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -687,7 +752,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateTimeValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -704,7 +769,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeInvalidNullOptionalParams
   ): Promise<DictionaryGetDateTimeInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -720,7 +785,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeInvalidCharsOptionalParams
   ): Promise<DictionaryGetDateTimeInvalidCharsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -737,7 +802,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeRfc1123ValidOptionalParams
   ): Promise<DictionaryGetDateTimeRfc1123ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -757,7 +822,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateTimeRfc1123Valid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateTimeRfc1123ValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -774,7 +839,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDurationValidOptionalParams
   ): Promise<DictionaryGetDurationValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -792,7 +857,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDurationValid(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDurationValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -810,7 +875,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetByteValidOptionalParams
   ): Promise<DictionaryGetByteValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -830,7 +895,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putByteValid(
     arrayBody: { [propertyName: string]: Uint8Array },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutByteValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -847,7 +912,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetByteInvalidNullOptionalParams
   ): Promise<DictionaryGetByteInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -864,7 +929,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBase64UrlOptionalParams
   ): Promise<DictionaryGetBase64UrlResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -880,7 +945,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexNullOptionalParams
   ): Promise<DictionaryGetComplexNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -896,7 +961,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexEmptyOptionalParams
   ): Promise<DictionaryGetComplexEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -913,7 +978,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexItemNullOptionalParams
   ): Promise<DictionaryGetComplexItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -930,7 +995,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexItemEmptyOptionalParams
   ): Promise<DictionaryGetComplexItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -947,7 +1012,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexValidOptionalParams
   ): Promise<DictionaryGetComplexValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -967,7 +1032,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putComplexValid(
     arrayBody: { [propertyName: string]: Widget },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutComplexValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -984,7 +1049,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayNullOptionalParams
   ): Promise<DictionaryGetArrayNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1000,7 +1065,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayEmptyOptionalParams
   ): Promise<DictionaryGetArrayEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1016,7 +1081,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayItemNullOptionalParams
   ): Promise<DictionaryGetArrayItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1032,7 +1097,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayItemEmptyOptionalParams
   ): Promise<DictionaryGetArrayItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1048,7 +1113,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayValidOptionalParams
   ): Promise<DictionaryGetArrayValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1067,7 +1132,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putArrayValid(
     arrayBody: { [propertyName: string]: string[] },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutArrayValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -1084,7 +1149,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryNullOptionalParams
   ): Promise<DictionaryGetDictionaryNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1100,7 +1165,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryEmptyOptionalParams
   ): Promise<DictionaryGetDictionaryEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1117,7 +1182,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryItemNullOptionalParams
   ): Promise<DictionaryGetDictionaryItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1134,7 +1199,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryItemEmptyOptionalParams
   ): Promise<DictionaryGetDictionaryItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1152,7 +1217,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryValidOptionalParams
   ): Promise<DictionaryGetDictionaryValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1174,7 +1239,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: { [propertyName: string]: string } },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDictionaryValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,

@@ -13,21 +13,33 @@ import * as Parameters from "../models/parameters";
 import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
+  ExplicitPutRequiredBinaryBodyOptionalParams,
+  ExplicitPostRequiredIntegerParameterOptionalParams,
   ExplicitPostOptionalIntegerParameterOptionalParams,
   IntWrapper,
+  ExplicitPostRequiredIntegerPropertyOptionalParams,
   ExplicitPostOptionalIntegerPropertyOptionalParams,
+  ExplicitPostRequiredIntegerHeaderOptionalParams,
   ExplicitPostOptionalIntegerHeaderOptionalParams,
+  ExplicitPostRequiredStringParameterOptionalParams,
   ExplicitPostOptionalStringParameterOptionalParams,
   StringWrapper,
+  ExplicitPostRequiredStringPropertyOptionalParams,
   ExplicitPostOptionalStringPropertyOptionalParams,
+  ExplicitPostRequiredStringHeaderOptionalParams,
   ExplicitPostOptionalStringHeaderOptionalParams,
   Product,
+  ExplicitPostRequiredClassParameterOptionalParams,
   ExplicitPostOptionalClassParameterOptionalParams,
   ClassWrapper,
+  ExplicitPostRequiredClassPropertyOptionalParams,
   ExplicitPostOptionalClassPropertyOptionalParams,
+  ExplicitPostRequiredArrayParameterOptionalParams,
   ExplicitPostOptionalArrayParameterOptionalParams,
   ArrayWrapper,
+  ExplicitPostRequiredArrayPropertyOptionalParams,
   ExplicitPostOptionalArrayPropertyOptionalParams,
+  ExplicitPostRequiredArrayHeaderOptionalParams,
   ExplicitPostOptionalArrayHeaderOptionalParams
 } from "../models";
 
@@ -66,7 +78,7 @@ export class ExplicitImpl implements Explicit {
    */
   putRequiredBinaryBody(
     bodyParameter: coreHttp.HttpRequestBody,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPutRequiredBinaryBodyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -86,7 +98,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerParameter(
     bodyParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -122,7 +134,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerProperty(
     bodyParameter: IntWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -158,7 +170,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerHeader(
     headerParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       headerParameter,
@@ -194,7 +206,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringParameter(
     bodyParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -230,7 +242,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringProperty(
     bodyParameter: StringWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -266,7 +278,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringHeader(
     headerParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       headerParameter,
@@ -302,7 +314,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredClassParameter(
     bodyParameter: Product,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredClassParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -338,7 +350,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredClassProperty(
     bodyParameter: ClassWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredClassPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -374,7 +386,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayParameter(
     bodyParameter: string[],
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayParameterOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -410,7 +422,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayProperty(
     bodyParameter: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayPropertyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bodyParameter,
@@ -446,7 +458,7 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayHeader(
     headerParameter: string[],
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayHeaderOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       headerParameter,

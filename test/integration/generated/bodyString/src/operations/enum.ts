@@ -12,11 +12,17 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClientContext } from "../bodyStringClientContext";
 import {
+  EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
   Colors,
+  EnumPutNotExpandableOptionalParams,
+  EnumGetReferencedOptionalParams,
   EnumGetReferencedResponse,
+  EnumPutReferencedOptionalParams,
+  EnumGetReferencedConstantOptionalParams,
   EnumGetReferencedConstantResponse,
-  RefColorConstant
+  RefColorConstant,
+  EnumPutReferencedConstantOptionalParams
 } from "../models";
 
 /** Class representing a Enum. */
@@ -36,7 +42,7 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getNotExpandable(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetNotExpandableOptionalParams
   ): Promise<EnumGetNotExpandableResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -54,7 +60,7 @@ export class EnumImpl implements Enum {
    */
   putNotExpandable(
     stringBody: Colors,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutNotExpandableOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       stringBody,
@@ -71,7 +77,7 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getReferenced(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetReferencedOptionalParams
   ): Promise<EnumGetReferencedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -89,7 +95,7 @@ export class EnumImpl implements Enum {
    */
   putReferenced(
     enumStringBody: Colors,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutReferencedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       enumStringBody,
@@ -106,7 +112,7 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getReferencedConstant(
-    options?: coreHttp.OperationOptions
+    options?: EnumGetReferencedConstantOptionalParams
   ): Promise<EnumGetReferencedConstantResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -124,7 +130,7 @@ export class EnumImpl implements Enum {
    */
   putReferencedConstant(
     enumStringBody: RefColorConstant,
-    options?: coreHttp.OperationOptions
+    options?: EnumPutReferencedConstantOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       enumStringBody,

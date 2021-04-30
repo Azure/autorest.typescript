@@ -13,7 +13,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
-import { PolymorphicrecursiveGetValidResponse, FishUnion } from "../models";
+import {
+  PolymorphicrecursiveGetValidOptionalParams,
+  PolymorphicrecursiveGetValidResponse,
+  FishUnion,
+  PolymorphicrecursivePutValidOptionalParams
+} from "../models";
 
 /** Class representing a Polymorphicrecursive. */
 export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
@@ -32,7 +37,7 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphicrecursiveGetValidOptionalParams
   ): Promise<PolymorphicrecursiveGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -119,7 +124,7 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
    */
   async putValid(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphicrecursivePutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",

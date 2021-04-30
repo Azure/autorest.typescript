@@ -7,13 +7,16 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
   extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -21,6 +24,10 @@ export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
   extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */

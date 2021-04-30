@@ -12,6 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ExtensibleEnumsClientContext } from "../extensibleEnumsClientContext";
 import {
+  PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
   PetAddPetResponse
@@ -36,7 +37,7 @@ export class PetImpl implements Pet {
    */
   getByPetId(
     petId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetGetByPetIdOptionalParams
   ): Promise<PetGetByPetIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,

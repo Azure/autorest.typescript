@@ -20,6 +20,10 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface GroupGetSampleResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSampleResourceGroup operation. */
 export type GroupGetSampleResourceGroupResponse = SampleResourceGroup & {
   /** The underlying HTTP response. */

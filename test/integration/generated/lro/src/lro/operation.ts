@@ -40,7 +40,7 @@ import {
  *    - Response doesn't contain any of the following headers Location, Azure-AsyncOperation or Operation-Location
  *    - Last operation method is PUT
  */
-async function getPollingStrategy<TResult extends BaseResult>(
+async function createPollingMethod<TResult extends BaseResult>(
   sendOperationFn: SendOperationFn<TResult>,
   args: OperationArguments,
   spec: OperationSpec,
@@ -139,7 +139,7 @@ export class GenericPollOperation<TResult extends BaseResult>
         this.config = inferLROMode(this.initialResponse);
       }
       if (this.poll === undefined) {
-        this.poll = await getPollingStrategy(
+        this.poll = await createPollingMethod(
           this.sendOperation,
           this.initialOperationArguments,
           this.initialOperationSpec,

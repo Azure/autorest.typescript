@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
-import { FlattencomplexGetValidResponse } from "../models";
+import {
+  FlattencomplexGetValidOptionalParams,
+  FlattencomplexGetValidResponse
+} from "../models";
 
 /** Class representing a Flattencomplex. */
 export class FlattencomplexImpl implements Flattencomplex {
@@ -27,7 +30,7 @@ export class FlattencomplexImpl implements Flattencomplex {
 
   /** @param options The options parameters. */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: FlattencomplexGetValidOptionalParams
   ): Promise<FlattencomplexGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -125,6 +125,10 @@ export interface HttpRedirectsDelete307Headers {
   location?: "/http/success/delete/200";
 }
 
+/** Optional parameters. */
+export interface HttpFailureGetEmptyErrorOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmptyError operation. */
 export type HttpFailureGetEmptyErrorResponse = {
   /** The parsed response body. */
@@ -139,6 +143,10 @@ export type HttpFailureGetEmptyErrorResponse = {
     parsedBody: boolean;
   };
 };
+
+/** Optional parameters. */
+export interface HttpFailureGetNoModelErrorOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNoModelError operation. */
 export type HttpFailureGetNoModelErrorResponse = {
@@ -155,6 +163,10 @@ export type HttpFailureGetNoModelErrorResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface HttpFailureGetNoModelEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNoModelEmpty operation. */
 export type HttpFailureGetNoModelEmptyResponse = {
   /** The parsed response body. */
@@ -169,6 +181,14 @@ export type HttpFailureGetNoModelEmptyResponse = {
     parsedBody: boolean;
   };
 };
+
+/** Optional parameters. */
+export interface HttpSuccessHead200OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessGet200OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200 operation. */
 export type HttpSuccessGet200Response = {
@@ -185,6 +205,10 @@ export type HttpSuccessGet200Response = {
   };
 };
 
+/** Optional parameters. */
+export interface HttpSuccessOptions200OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the options200 operation. */
 export type HttpSuccessOptions200Response = {
   /** The parsed response body. */
@@ -200,6 +224,74 @@ export type HttpSuccessOptions200Response = {
   };
 };
 
+/** Optional parameters. */
+export interface HttpSuccessPut200OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPatch200OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPost200OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessDelete200OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPut201OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPost201OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPut202OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPatch202OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPost202OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessDelete202OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessHead204OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPut204OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPatch204OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessPost204OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessDelete204OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpSuccessHead404OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRedirectsHead300OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the head300 operation. */
 export type HttpRedirectsHead300Response = HttpRedirectsHead300Headers & {
   /** The underlying HTTP response. */
@@ -208,6 +300,10 @@ export type HttpRedirectsHead300Response = HttpRedirectsHead300Headers & {
     parsedHeaders: HttpRedirectsHead300Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsGet300OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get300 operation. */
 export type HttpRedirectsGet300Response = HttpRedirectsGet300Headers & {
@@ -226,6 +322,10 @@ export type HttpRedirectsGet300Response = HttpRedirectsGet300Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsHead301OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the head301 operation. */
 export type HttpRedirectsHead301Response = HttpRedirectsHead301Headers & {
   /** The underlying HTTP response. */
@@ -234,6 +334,10 @@ export type HttpRedirectsHead301Response = HttpRedirectsHead301Headers & {
     parsedHeaders: HttpRedirectsHead301Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsGet301OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get301 operation. */
 export type HttpRedirectsGet301Response = HttpRedirectsGet301Headers & {
@@ -244,6 +348,10 @@ export type HttpRedirectsGet301Response = HttpRedirectsGet301Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsPut301OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the put301 operation. */
 export type HttpRedirectsPut301Response = HttpRedirectsPut301Headers & {
   /** The underlying HTTP response. */
@@ -252,6 +360,10 @@ export type HttpRedirectsPut301Response = HttpRedirectsPut301Headers & {
     parsedHeaders: HttpRedirectsPut301Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsHead302OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the head302 operation. */
 export type HttpRedirectsHead302Response = HttpRedirectsHead302Headers & {
@@ -262,6 +374,10 @@ export type HttpRedirectsHead302Response = HttpRedirectsHead302Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsGet302OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get302 operation. */
 export type HttpRedirectsGet302Response = HttpRedirectsGet302Headers & {
   /** The underlying HTTP response. */
@@ -270,6 +386,10 @@ export type HttpRedirectsGet302Response = HttpRedirectsGet302Headers & {
     parsedHeaders: HttpRedirectsGet302Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsPatch302OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the patch302 operation. */
 export type HttpRedirectsPatch302Response = HttpRedirectsPatch302Headers & {
@@ -280,6 +400,10 @@ export type HttpRedirectsPatch302Response = HttpRedirectsPatch302Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsPost303OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the post303 operation. */
 export type HttpRedirectsPost303Response = HttpRedirectsPost303Headers & {
   /** The underlying HTTP response. */
@@ -288,6 +412,10 @@ export type HttpRedirectsPost303Response = HttpRedirectsPost303Headers & {
     parsedHeaders: HttpRedirectsPost303Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsHead307OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the head307 operation. */
 export type HttpRedirectsHead307Response = HttpRedirectsHead307Headers & {
@@ -298,6 +426,10 @@ export type HttpRedirectsHead307Response = HttpRedirectsHead307Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsGet307OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get307 operation. */
 export type HttpRedirectsGet307Response = HttpRedirectsGet307Headers & {
   /** The underlying HTTP response. */
@@ -306,6 +438,10 @@ export type HttpRedirectsGet307Response = HttpRedirectsGet307Headers & {
     parsedHeaders: HttpRedirectsGet307Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsOptions307OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the options307 operation. */
 export type HttpRedirectsOptions307Response = HttpRedirectsOptions307Headers & {
@@ -316,6 +452,10 @@ export type HttpRedirectsOptions307Response = HttpRedirectsOptions307Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsPut307OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the put307 operation. */
 export type HttpRedirectsPut307Response = HttpRedirectsPut307Headers & {
   /** The underlying HTTP response. */
@@ -324,6 +464,10 @@ export type HttpRedirectsPut307Response = HttpRedirectsPut307Headers & {
     parsedHeaders: HttpRedirectsPut307Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpRedirectsPatch307OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the patch307 operation. */
 export type HttpRedirectsPatch307Response = HttpRedirectsPatch307Headers & {
@@ -334,6 +478,10 @@ export type HttpRedirectsPatch307Response = HttpRedirectsPatch307Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsPost307OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the post307 operation. */
 export type HttpRedirectsPost307Response = HttpRedirectsPost307Headers & {
   /** The underlying HTTP response. */
@@ -343,6 +491,10 @@ export type HttpRedirectsPost307Response = HttpRedirectsPost307Headers & {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRedirectsDelete307OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the delete307 operation. */
 export type HttpRedirectsDelete307Response = HttpRedirectsDelete307Headers & {
   /** The underlying HTTP response. */
@@ -351,6 +503,146 @@ export type HttpRedirectsDelete307Response = HttpRedirectsDelete307Headers & {
     parsedHeaders: HttpRedirectsDelete307Headers;
   };
 };
+
+/** Optional parameters. */
+export interface HttpClientFailureHead400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureOptions400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePut400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePatch400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePost400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureDelete400OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureHead401OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet402OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureOptions403OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet403OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePut404OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePatch405OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePost406OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureDelete407OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePut409OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureHead410OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet411OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureOptions412OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet412OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePut413OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePatch414OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailurePost415OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureGet416OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureDelete417OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpClientFailureHead429OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpServerFailureHead501OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpServerFailureGet501OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpServerFailurePost505OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpServerFailureDelete505OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryHead408OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryPut500OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryPatch500OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryGet502OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryOptions502OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the options502 operation. */
 export type HttpRetryOptions502Response = {
@@ -367,6 +659,26 @@ export type HttpRetryOptions502Response = {
   };
 };
 
+/** Optional parameters. */
+export interface HttpRetryPost503OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryDelete503OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryPut504OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface HttpRetryPatch504OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200Model204NoModelDefaultError200Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -378,6 +690,10 @@ export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse =
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError204Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = MyException & {
@@ -391,6 +707,10 @@ export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse =
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200Model204NoModelDefaultError201Invalid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -402,6 +722,10 @@ export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError202None operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = MyException & {
@@ -415,6 +739,10 @@ export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = 
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200Model204NoModelDefaultError400Valid operation. */
 export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -426,6 +754,10 @@ export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse =
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200Model201ModelDefaultError200Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = MyException & {
@@ -439,6 +771,10 @@ export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = M
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200Model201ModelDefaultError201Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -450,6 +786,10 @@ export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = M
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200Model201ModelDefaultError400Valid operation. */
 export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = MyException & {
@@ -463,6 +803,10 @@ export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = M
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError200Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -474,6 +818,10 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidR
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError201Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse = MyException & {
@@ -487,6 +835,10 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidR
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError404Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -498,6 +850,10 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidR
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError400Valid operation. */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse = MyException & {
@@ -511,6 +867,38 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidR
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultModelA200ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDefaultModelA200Valid operation. */
 export type MultipleResponsesGetDefaultModelA200ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -522,6 +910,10 @@ export type MultipleResponsesGetDefaultModelA200ValidResponse = MyException & {
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultModelA200NoneOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDefaultModelA200None operation. */
 export type MultipleResponsesGetDefaultModelA200NoneResponse = MyException & {
@@ -535,6 +927,34 @@ export type MultipleResponsesGetDefaultModelA200NoneResponse = MyException & {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultModelA400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultModelA400NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultNone200InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultNone200NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultNone400InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGetDefaultNone400NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA200NoneOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA200None operation. */
 export type MultipleResponsesGet200ModelA200NoneResponse = MyException & {
   /** The underlying HTTP response. */
@@ -546,6 +966,10 @@ export type MultipleResponsesGet200ModelA200NoneResponse = MyException & {
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA200ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200ModelA200Valid operation. */
 export type MultipleResponsesGet200ModelA200ValidResponse = MyException & {
@@ -559,6 +983,10 @@ export type MultipleResponsesGet200ModelA200ValidResponse = MyException & {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA200InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA200Invalid operation. */
 export type MultipleResponsesGet200ModelA200InvalidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -570,6 +998,10 @@ export type MultipleResponsesGet200ModelA200InvalidResponse = MyException & {
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA400NoneOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200ModelA400None operation. */
 export type MultipleResponsesGet200ModelA400NoneResponse = MyException & {
@@ -583,6 +1015,10 @@ export type MultipleResponsesGet200ModelA400NoneResponse = MyException & {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA400ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA400Valid operation. */
 export type MultipleResponsesGet200ModelA400ValidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -595,6 +1031,10 @@ export type MultipleResponsesGet200ModelA400ValidResponse = MyException & {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA400InvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get200ModelA400Invalid operation. */
 export type MultipleResponsesGet200ModelA400InvalidResponse = MyException & {
   /** The underlying HTTP response. */
@@ -606,6 +1046,10 @@ export type MultipleResponsesGet200ModelA400InvalidResponse = MyException & {
     parsedBody: MyException;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleResponsesGet200ModelA202ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get200ModelA202Valid operation. */
 export type MultipleResponsesGet200ModelA202ValidResponse = MyException & {

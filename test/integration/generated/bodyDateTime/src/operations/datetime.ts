@@ -12,20 +12,42 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeClientContext } from "../bodyDateTimeClientContext";
 import {
+  DatetimeGetNullOptionalParams,
   DatetimeGetNullResponse,
+  DatetimeGetInvalidOptionalParams,
   DatetimeGetInvalidResponse,
+  DatetimeGetOverflowOptionalParams,
   DatetimeGetOverflowResponse,
+  DatetimeGetUnderflowOptionalParams,
   DatetimeGetUnderflowResponse,
+  DatetimePutUtcMaxDateTimeOptionalParams,
+  DatetimePutUtcMaxDateTime7DigitsOptionalParams,
+  DatetimeGetUtcLowercaseMaxDateTimeOptionalParams,
   DatetimeGetUtcLowercaseMaxDateTimeResponse,
+  DatetimeGetUtcUppercaseMaxDateTimeOptionalParams,
   DatetimeGetUtcUppercaseMaxDateTimeResponse,
+  DatetimeGetUtcUppercaseMaxDateTime7DigitsOptionalParams,
   DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse,
+  DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams,
+  DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeOptionalParams,
   DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse,
+  DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeOptionalParams,
   DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse,
+  DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams,
+  DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeOptionalParams,
   DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse,
+  DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeOptionalParams,
   DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse,
+  DatetimePutUtcMinDateTimeOptionalParams,
+  DatetimeGetUtcMinDateTimeOptionalParams,
   DatetimeGetUtcMinDateTimeResponse,
+  DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams,
+  DatetimeGetLocalPositiveOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalPositiveOffsetMinDateTimeResponse,
+  DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams,
+  DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalNegativeOffsetMinDateTimeResponse,
+  DatetimeGetLocalNoOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalNoOffsetMinDateTimeResponse
 } from "../models";
 
@@ -46,7 +68,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetNullOptionalParams
   ): Promise<DatetimeGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -62,7 +84,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetInvalidOptionalParams
   ): Promise<DatetimeGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -78,7 +100,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getOverflow(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetOverflowOptionalParams
   ): Promise<DatetimeGetOverflowResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -94,7 +116,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetUnderflowOptionalParams
   ): Promise<DatetimeGetUnderflowResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -112,7 +134,7 @@ export class DatetimeImpl implements Datetime {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutUtcMaxDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -132,7 +154,7 @@ export class DatetimeImpl implements Datetime {
    */
   putUtcMaxDateTime7Digits(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutUtcMaxDateTime7DigitsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -149,7 +171,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetUtcLowercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetUtcLowercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -165,7 +187,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetUtcUppercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetUtcUppercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -182,7 +204,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime7Digits(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetUtcUppercaseMaxDateTime7DigitsOptionalParams
   ): Promise<DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -200,7 +222,7 @@ export class DatetimeImpl implements Datetime {
    */
   putLocalPositiveOffsetMaxDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -217,7 +239,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalPositiveOffsetLowercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -233,7 +255,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalPositiveOffsetUppercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -251,7 +273,7 @@ export class DatetimeImpl implements Datetime {
    */
   putLocalNegativeOffsetMaxDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -268,7 +290,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalNegativeOffsetUppercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -284,7 +306,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalNegativeOffsetLowercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeOptionalParams
   ): Promise<DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -302,7 +324,7 @@ export class DatetimeImpl implements Datetime {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutUtcMinDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -319,7 +341,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetUtcMinDateTimeOptionalParams
   ): Promise<DatetimeGetUtcMinDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -337,7 +359,7 @@ export class DatetimeImpl implements Datetime {
    */
   putLocalPositiveOffsetMinDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -354,7 +376,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalPositiveOffsetMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalPositiveOffsetMinDateTimeOptionalParams
   ): Promise<DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -372,7 +394,7 @@ export class DatetimeImpl implements Datetime {
    */
   putLocalNegativeOffsetMinDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -389,7 +411,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalNegativeOffsetMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams
   ): Promise<DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -405,7 +427,7 @@ export class DatetimeImpl implements Datetime {
    * @param options The options parameters.
    */
   getLocalNoOffsetMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: DatetimeGetLocalNoOffsetMinDateTimeOptionalParams
   ): Promise<DatetimeGetLocalNoOffsetMinDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

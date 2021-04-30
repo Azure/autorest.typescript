@@ -65,6 +65,10 @@ export type CatAPTrue = PetAPTrue & {
   friendly?: boolean;
 };
 
+/** Optional parameters. */
+export interface PetsCreateAPTrueOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createAPTrue operation. */
 export type PetsCreateAPTrueResponse = PetAPTrue & {
   /** The underlying HTTP response. */
@@ -76,6 +80,10 @@ export type PetsCreateAPTrueResponse = PetAPTrue & {
     parsedBody: PetAPTrue;
   };
 };
+
+/** Optional parameters. */
+export interface PetsCreateCatAPTrueOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createCatAPTrue operation. */
 export type PetsCreateCatAPTrueResponse = CatAPTrue & {
@@ -89,6 +97,10 @@ export type PetsCreateCatAPTrueResponse = CatAPTrue & {
   };
 };
 
+/** Optional parameters. */
+export interface PetsCreateAPObjectOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createAPObject operation. */
 export type PetsCreateAPObjectResponse = PetAPObject & {
   /** The underlying HTTP response. */
@@ -100,6 +112,10 @@ export type PetsCreateAPObjectResponse = PetAPObject & {
     parsedBody: PetAPObject;
   };
 };
+
+/** Optional parameters. */
+export interface PetsCreateAPStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPString operation. */
 export type PetsCreateAPStringResponse = PetAPString & {
@@ -113,6 +129,10 @@ export type PetsCreateAPStringResponse = PetAPString & {
   };
 };
 
+/** Optional parameters. */
+export interface PetsCreateAPInPropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createAPInProperties operation. */
 export type PetsCreateAPInPropertiesResponse = PetAPInProperties & {
   /** The underlying HTTP response. */
@@ -124,6 +144,10 @@ export type PetsCreateAPInPropertiesResponse = PetAPInProperties & {
     parsedBody: PetAPInProperties;
   };
 };
+
+/** Optional parameters. */
+export interface PetsCreateAPInPropertiesWithAPStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPInPropertiesWithAPString operation. */
 export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString & {

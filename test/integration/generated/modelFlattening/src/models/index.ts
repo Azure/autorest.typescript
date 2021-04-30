@@ -156,6 +156,10 @@ export interface ModelFlatteningClientPutArrayOptionalParams
   resourceArray?: Resource[];
 }
 
+/** Optional parameters. */
+export interface ModelFlatteningClientGetArrayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getArray operation. */
 export type ModelFlatteningClientGetArrayResponse = FlattenedProduct[] & {
   /** The underlying HTTP response. */
@@ -175,6 +179,10 @@ export interface ModelFlatteningClientPutWrappedArrayOptionalParams
   resourceArray?: WrappedProduct[];
 }
 
+/** Optional parameters. */
+export interface ModelFlatteningClientGetWrappedArrayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getWrappedArray operation. */
 export type ModelFlatteningClientGetWrappedArrayResponse = ProductWrapper[] & {
   /** The underlying HTTP response. */
@@ -193,6 +201,10 @@ export interface ModelFlatteningClientPutDictionaryOptionalParams
   /** External Resource as a Dictionary to put */
   resourceDictionary?: { [propertyName: string]: FlattenedProduct };
 }
+
+/** Optional parameters. */
+export interface ModelFlatteningClientGetDictionaryOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionary operation. */
 export type ModelFlatteningClientGetDictionaryResponse = {
@@ -214,6 +226,10 @@ export interface ModelFlatteningClientPutResourceCollectionOptionalParams
   /** External Resource as a ResourceCollection to put */
   resourceComplexObject?: ResourceCollection;
 }
+
+/** Optional parameters. */
+export interface ModelFlatteningClientGetResourceCollectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getResourceCollection operation. */
 export type ModelFlatteningClientGetResourceCollectionResponse = ResourceCollection & {

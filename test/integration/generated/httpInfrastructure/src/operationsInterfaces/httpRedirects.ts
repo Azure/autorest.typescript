@@ -8,21 +8,37 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  HttpRedirectsHead300OptionalParams,
   HttpRedirectsHead300Response,
+  HttpRedirectsGet300OptionalParams,
   HttpRedirectsGet300Response,
+  HttpRedirectsHead301OptionalParams,
   HttpRedirectsHead301Response,
+  HttpRedirectsGet301OptionalParams,
   HttpRedirectsGet301Response,
+  HttpRedirectsPut301OptionalParams,
   HttpRedirectsPut301Response,
+  HttpRedirectsHead302OptionalParams,
   HttpRedirectsHead302Response,
+  HttpRedirectsGet302OptionalParams,
   HttpRedirectsGet302Response,
+  HttpRedirectsPatch302OptionalParams,
   HttpRedirectsPatch302Response,
+  HttpRedirectsPost303OptionalParams,
   HttpRedirectsPost303Response,
+  HttpRedirectsHead307OptionalParams,
   HttpRedirectsHead307Response,
+  HttpRedirectsGet307OptionalParams,
   HttpRedirectsGet307Response,
+  HttpRedirectsOptions307OptionalParams,
   HttpRedirectsOptions307Response,
+  HttpRedirectsPut307OptionalParams,
   HttpRedirectsPut307Response,
+  HttpRedirectsPatch307OptionalParams,
   HttpRedirectsPatch307Response,
+  HttpRedirectsPost307OptionalParams,
   HttpRedirectsPost307Response,
+  HttpRedirectsDelete307OptionalParams,
   HttpRedirectsDelete307Response
 } from "../models";
 
@@ -33,28 +49,28 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   head300(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead300OptionalParams
   ): Promise<HttpRedirectsHead300Response>;
   /**
    * Return 300 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get300(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet300OptionalParams
   ): Promise<HttpRedirectsGet300Response>;
   /**
    * Return 301 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   head301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead301OptionalParams
   ): Promise<HttpRedirectsHead301Response>;
   /**
    * Return 301 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet301OptionalParams
   ): Promise<HttpRedirectsGet301Response>;
   /**
    * Put true Boolean value in request returns 301.  This request should not be automatically redirected,
@@ -62,21 +78,21 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   put301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPut301OptionalParams
   ): Promise<HttpRedirectsPut301Response>;
   /**
    * Return 302 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   head302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead302OptionalParams
   ): Promise<HttpRedirectsHead302Response>;
   /**
    * Return 302 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet302OptionalParams
   ): Promise<HttpRedirectsGet302Response>;
   /**
    * Patch true Boolean value in request returns 302.  This request should not be automatically
@@ -84,7 +100,7 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   patch302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPatch302OptionalParams
   ): Promise<HttpRedirectsPatch302Response>;
   /**
    * Post true Boolean value in request returns 303.  This request should be automatically redirected
@@ -92,55 +108,55 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   post303(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPost303OptionalParams
   ): Promise<HttpRedirectsPost303Response>;
   /**
    * Redirect with 307, resulting in a 200 success
    * @param options The options parameters.
    */
   head307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead307OptionalParams
   ): Promise<HttpRedirectsHead307Response>;
   /**
    * Redirect get with 307, resulting in a 200 success
    * @param options The options parameters.
    */
   get307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet307OptionalParams
   ): Promise<HttpRedirectsGet307Response>;
   /**
    * options redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   options307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsOptions307OptionalParams
   ): Promise<HttpRedirectsOptions307Response>;
   /**
    * Put redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   put307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPut307OptionalParams
   ): Promise<HttpRedirectsPut307Response>;
   /**
    * Patch redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   patch307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPatch307OptionalParams
   ): Promise<HttpRedirectsPatch307Response>;
   /**
    * Post redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   post307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPost307OptionalParams
   ): Promise<HttpRedirectsPost307Response>;
   /**
    * Delete redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   delete307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsDelete307OptionalParams
   ): Promise<HttpRedirectsDelete307Response>;
 }

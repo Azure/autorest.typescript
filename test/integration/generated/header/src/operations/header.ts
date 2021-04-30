@@ -12,23 +12,49 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HeaderClientContext } from "../headerClientContext";
 import {
+  HeaderParamExistingKeyOptionalParams,
+  HeaderResponseExistingKeyOptionalParams,
   HeaderResponseExistingKeyResponse,
+  HeaderParamProtectedKeyOptionalParams,
+  HeaderResponseProtectedKeyOptionalParams,
   HeaderResponseProtectedKeyResponse,
+  HeaderParamIntegerOptionalParams,
+  HeaderResponseIntegerOptionalParams,
   HeaderResponseIntegerResponse,
+  HeaderParamLongOptionalParams,
+  HeaderResponseLongOptionalParams,
   HeaderResponseLongResponse,
+  HeaderParamFloatOptionalParams,
+  HeaderResponseFloatOptionalParams,
   HeaderResponseFloatResponse,
+  HeaderParamDoubleOptionalParams,
+  HeaderResponseDoubleOptionalParams,
   HeaderResponseDoubleResponse,
+  HeaderParamBoolOptionalParams,
+  HeaderResponseBoolOptionalParams,
   HeaderResponseBoolResponse,
   HeaderParamStringOptionalParams,
+  HeaderResponseStringOptionalParams,
   HeaderResponseStringResponse,
+  HeaderParamDateOptionalParams,
+  HeaderResponseDateOptionalParams,
   HeaderResponseDateResponse,
+  HeaderParamDatetimeOptionalParams,
+  HeaderResponseDatetimeOptionalParams,
   HeaderResponseDatetimeResponse,
   HeaderParamDatetimeRfc1123OptionalParams,
+  HeaderResponseDatetimeRfc1123OptionalParams,
   HeaderResponseDatetimeRfc1123Response,
+  HeaderParamDurationOptionalParams,
+  HeaderResponseDurationOptionalParams,
   HeaderResponseDurationResponse,
+  HeaderParamByteOptionalParams,
+  HeaderResponseByteOptionalParams,
   HeaderResponseByteResponse,
   HeaderParamEnumOptionalParams,
-  HeaderResponseEnumResponse
+  HeaderResponseEnumOptionalParams,
+  HeaderResponseEnumResponse,
+  HeaderCustomRequestIdOptionalParams
 } from "../models";
 
 /** Class representing a Header. */
@@ -50,7 +76,7 @@ export class HeaderImpl implements Header {
    */
   paramExistingKey(
     userAgent: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamExistingKeyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       userAgent,
@@ -67,7 +93,7 @@ export class HeaderImpl implements Header {
    * @param options The options parameters.
    */
   responseExistingKey(
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseExistingKeyOptionalParams
   ): Promise<HeaderResponseExistingKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -85,7 +111,7 @@ export class HeaderImpl implements Header {
    */
   paramProtectedKey(
     contentType: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamProtectedKeyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       contentType,
@@ -102,7 +128,7 @@ export class HeaderImpl implements Header {
    * @param options The options parameters.
    */
   responseProtectedKey(
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseProtectedKeyOptionalParams
   ): Promise<HeaderResponseProtectedKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -123,7 +149,7 @@ export class HeaderImpl implements Header {
   paramInteger(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamIntegerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -143,7 +169,7 @@ export class HeaderImpl implements Header {
    */
   responseInteger(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseIntegerOptionalParams
   ): Promise<HeaderResponseIntegerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -165,7 +191,7 @@ export class HeaderImpl implements Header {
   paramLong(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamLongOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -185,7 +211,7 @@ export class HeaderImpl implements Header {
    */
   responseLong(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseLongOptionalParams
   ): Promise<HeaderResponseLongResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -207,7 +233,7 @@ export class HeaderImpl implements Header {
   paramFloat(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamFloatOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -227,7 +253,7 @@ export class HeaderImpl implements Header {
    */
   responseFloat(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseFloatOptionalParams
   ): Promise<HeaderResponseFloatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -249,7 +275,7 @@ export class HeaderImpl implements Header {
   paramDouble(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDoubleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -269,7 +295,7 @@ export class HeaderImpl implements Header {
    */
   responseDouble(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDoubleOptionalParams
   ): Promise<HeaderResponseDoubleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -291,7 +317,7 @@ export class HeaderImpl implements Header {
   paramBool(
     scenario: string,
     value: boolean,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamBoolOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -311,7 +337,7 @@ export class HeaderImpl implements Header {
    */
   responseBool(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseBoolOptionalParams
   ): Promise<HeaderResponseBoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -350,7 +376,7 @@ export class HeaderImpl implements Header {
    */
   responseString(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseStringOptionalParams
   ): Promise<HeaderResponseStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -372,7 +398,7 @@ export class HeaderImpl implements Header {
   paramDate(
     scenario: string,
     value: Date,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -392,7 +418,7 @@ export class HeaderImpl implements Header {
    */
   responseDate(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDateOptionalParams
   ): Promise<HeaderResponseDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -414,7 +440,7 @@ export class HeaderImpl implements Header {
   paramDatetime(
     scenario: string,
     value: Date,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDatetimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -434,7 +460,7 @@ export class HeaderImpl implements Header {
    */
   responseDatetime(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDatetimeOptionalParams
   ): Promise<HeaderResponseDatetimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -473,7 +499,7 @@ export class HeaderImpl implements Header {
    */
   responseDatetimeRfc1123(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDatetimeRfc1123OptionalParams
   ): Promise<HeaderResponseDatetimeRfc1123Response> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -494,7 +520,7 @@ export class HeaderImpl implements Header {
   paramDuration(
     scenario: string,
     value: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDurationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -514,7 +540,7 @@ export class HeaderImpl implements Header {
    */
   responseDuration(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDurationOptionalParams
   ): Promise<HeaderResponseDurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -535,7 +561,7 @@ export class HeaderImpl implements Header {
   paramByte(
     scenario: string,
     value: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -555,7 +581,7 @@ export class HeaderImpl implements Header {
    */
   responseByte(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseByteOptionalParams
   ): Promise<HeaderResponseByteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -594,7 +620,7 @@ export class HeaderImpl implements Header {
    */
   responseEnum(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseEnumOptionalParams
   ): Promise<HeaderResponseEnumResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scenario,
@@ -611,7 +637,7 @@ export class HeaderImpl implements Header {
    * @param options The options parameters.
    */
   customRequestId(
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomRequestIdOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -12,35 +12,69 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmlServiceClientContext } from "../xmlServiceClientContext";
 import {
+  XmlGetComplexTypeRefNoMetaOptionalParams,
   XmlGetComplexTypeRefNoMetaResponse,
   RootWithRefAndNoMeta,
+  XmlPutComplexTypeRefNoMetaOptionalParams,
+  XmlGetComplexTypeRefWithMetaOptionalParams,
   XmlGetComplexTypeRefWithMetaResponse,
   RootWithRefAndMeta,
+  XmlPutComplexTypeRefWithMetaOptionalParams,
+  XmlGetSimpleOptionalParams,
   XmlGetSimpleResponse,
   Slideshow,
+  XmlPutSimpleOptionalParams,
+  XmlGetWrappedListsOptionalParams,
   XmlGetWrappedListsResponse,
   AppleBarrel,
+  XmlPutWrappedListsOptionalParams,
+  XmlGetHeadersOptionalParams,
   XmlGetHeadersResponse,
+  XmlGetEmptyListOptionalParams,
   XmlGetEmptyListResponse,
+  XmlPutEmptyListOptionalParams,
+  XmlGetEmptyWrappedListsOptionalParams,
   XmlGetEmptyWrappedListsResponse,
+  XmlPutEmptyWrappedListsOptionalParams,
+  XmlGetRootListOptionalParams,
   XmlGetRootListResponse,
   Banana,
+  XmlPutRootListOptionalParams,
+  XmlGetRootListSingleItemOptionalParams,
   XmlGetRootListSingleItemResponse,
+  XmlPutRootListSingleItemOptionalParams,
+  XmlGetEmptyRootListOptionalParams,
   XmlGetEmptyRootListResponse,
+  XmlPutEmptyRootListOptionalParams,
+  XmlGetEmptyChildElementOptionalParams,
   XmlGetEmptyChildElementResponse,
+  XmlPutEmptyChildElementOptionalParams,
+  XmlListContainersOptionalParams,
   XmlListContainersResponse,
+  XmlGetServicePropertiesOptionalParams,
   XmlGetServicePropertiesResponse,
   StorageServiceProperties,
+  XmlPutServicePropertiesOptionalParams,
+  XmlGetAclsOptionalParams,
   XmlGetAclsResponse,
   SignedIdentifier,
+  XmlPutAclsOptionalParams,
+  XmlListBlobsOptionalParams,
   XmlListBlobsResponse,
   JsonInput,
+  XmlJsonInputOptionalParams,
+  XmlJsonOutputOptionalParams,
   XmlJsonOutputResponse,
+  XmlGetXMsTextOptionalParams,
   XmlGetXMsTextResponse,
+  XmlGetBytesOptionalParams,
   XmlGetBytesResponse,
   ModelWithByteProperty,
+  XmlPutBinaryOptionalParams,
+  XmlGetUriOptionalParams,
   XmlGetUriResponse,
-  ModelWithUrlProperty
+  ModelWithUrlProperty,
+  XmlPutUriOptionalParams
 } from "../models";
 
 /** Class representing a Xml. */
@@ -60,7 +94,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getComplexTypeRefNoMeta(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetComplexTypeRefNoMetaOptionalParams
   ): Promise<XmlGetComplexTypeRefNoMetaResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -78,7 +112,7 @@ export class XmlImpl implements Xml {
    */
   putComplexTypeRefNoMeta(
     model: RootWithRefAndNoMeta,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutComplexTypeRefNoMetaOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       model,
@@ -95,7 +129,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getComplexTypeRefWithMeta(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetComplexTypeRefWithMetaOptionalParams
   ): Promise<XmlGetComplexTypeRefWithMetaResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -113,7 +147,7 @@ export class XmlImpl implements Xml {
    */
   putComplexTypeRefWithMeta(
     model: RootWithRefAndMeta,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutComplexTypeRefWithMetaOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       model,
@@ -130,7 +164,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getSimple(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetSimpleOptionalParams
   ): Promise<XmlGetSimpleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -148,7 +182,7 @@ export class XmlImpl implements Xml {
    */
   putSimple(
     slideshow: Slideshow,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutSimpleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       slideshow,
@@ -165,7 +199,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getWrappedLists(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetWrappedListsOptionalParams
   ): Promise<XmlGetWrappedListsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -183,7 +217,7 @@ export class XmlImpl implements Xml {
    */
   putWrappedLists(
     wrappedLists: AppleBarrel,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutWrappedListsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       wrappedLists,
@@ -200,7 +234,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getHeaders(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetHeadersOptionalParams
   ): Promise<XmlGetHeadersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -216,7 +250,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getEmptyList(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetEmptyListOptionalParams
   ): Promise<XmlGetEmptyListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -234,7 +268,7 @@ export class XmlImpl implements Xml {
    */
   putEmptyList(
     slideshow: Slideshow,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutEmptyListOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       slideshow,
@@ -251,7 +285,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getEmptyWrappedLists(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetEmptyWrappedListsOptionalParams
   ): Promise<XmlGetEmptyWrappedListsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -269,7 +303,7 @@ export class XmlImpl implements Xml {
    */
   putEmptyWrappedLists(
     appleBarrel: AppleBarrel,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutEmptyWrappedListsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       appleBarrel,
@@ -286,7 +320,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getRootList(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetRootListOptionalParams
   ): Promise<XmlGetRootListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -304,7 +338,7 @@ export class XmlImpl implements Xml {
    */
   putRootList(
     bananas: Banana[],
-    options?: coreHttp.OperationOptions
+    options?: XmlPutRootListOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bananas,
@@ -321,7 +355,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getRootListSingleItem(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetRootListSingleItemOptionalParams
   ): Promise<XmlGetRootListSingleItemResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -339,7 +373,7 @@ export class XmlImpl implements Xml {
    */
   putRootListSingleItem(
     bananas: Banana[],
-    options?: coreHttp.OperationOptions
+    options?: XmlPutRootListSingleItemOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bananas,
@@ -356,7 +390,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getEmptyRootList(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetEmptyRootListOptionalParams
   ): Promise<XmlGetEmptyRootListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -374,7 +408,7 @@ export class XmlImpl implements Xml {
    */
   putEmptyRootList(
     bananas: Banana[],
-    options?: coreHttp.OperationOptions
+    options?: XmlPutEmptyRootListOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bananas,
@@ -391,7 +425,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getEmptyChildElement(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetEmptyChildElementOptionalParams
   ): Promise<XmlGetEmptyChildElementResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -409,7 +443,7 @@ export class XmlImpl implements Xml {
    */
   putEmptyChildElement(
     banana: Banana,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutEmptyChildElementOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       banana,
@@ -426,7 +460,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   listContainers(
-    options?: coreHttp.OperationOptions
+    options?: XmlListContainersOptionalParams
   ): Promise<XmlListContainersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -442,7 +476,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getServiceProperties(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetServicePropertiesOptionalParams
   ): Promise<XmlGetServicePropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -460,7 +494,7 @@ export class XmlImpl implements Xml {
    */
   putServiceProperties(
     properties: StorageServiceProperties,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutServicePropertiesOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       properties,
@@ -476,7 +510,7 @@ export class XmlImpl implements Xml {
    * Gets storage ACLs for a container.
    * @param options The options parameters.
    */
-  getAcls(options?: coreHttp.OperationOptions): Promise<XmlGetAclsResponse> {
+  getAcls(options?: XmlGetAclsOptionalParams): Promise<XmlGetAclsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -493,7 +527,7 @@ export class XmlImpl implements Xml {
    */
   putAcls(
     properties: SignedIdentifier[],
-    options?: coreHttp.OperationOptions
+    options?: XmlPutAclsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       properties,
@@ -510,7 +544,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   listBlobs(
-    options?: coreHttp.OperationOptions
+    options?: XmlListBlobsOptionalParams
   ): Promise<XmlListBlobsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -529,7 +563,7 @@ export class XmlImpl implements Xml {
    */
   jsonInput(
     properties: JsonInput,
-    options?: coreHttp.OperationOptions
+    options?: XmlJsonInputOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       properties,
@@ -546,7 +580,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   jsonOutput(
-    options?: coreHttp.OperationOptions
+    options?: XmlJsonOutputOptionalParams
   ): Promise<XmlJsonOutputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -563,7 +597,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getXMsText(
-    options?: coreHttp.OperationOptions
+    options?: XmlGetXMsTextOptionalParams
   ): Promise<XmlGetXMsTextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -578,7 +612,7 @@ export class XmlImpl implements Xml {
    * Get an XML document with binary property
    * @param options The options parameters.
    */
-  getBytes(options?: coreHttp.OperationOptions): Promise<XmlGetBytesResponse> {
+  getBytes(options?: XmlGetBytesOptionalParams): Promise<XmlGetBytesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -595,7 +629,7 @@ export class XmlImpl implements Xml {
    */
   putBinary(
     slideshow: ModelWithByteProperty,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutBinaryOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       slideshow,
@@ -611,7 +645,7 @@ export class XmlImpl implements Xml {
    * Get an XML document with uri property
    * @param options The options parameters.
    */
-  getUri(options?: coreHttp.OperationOptions): Promise<XmlGetUriResponse> {
+  getUri(options?: XmlGetUriOptionalParams): Promise<XmlGetUriResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -628,7 +662,7 @@ export class XmlImpl implements Xml {
    */
   putUri(
     model: ModelWithUrlProperty,
-    options?: coreHttp.OperationOptions
+    options?: XmlPutUriOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       model,

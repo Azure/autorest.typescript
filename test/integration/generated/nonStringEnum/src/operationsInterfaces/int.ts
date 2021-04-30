@@ -10,6 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import {
   IntPutOptionalParams,
   IntPutResponse,
+  IntGetOptionalParams,
   IntGetResponse
 } from "../models";
 
@@ -24,5 +25,5 @@ export interface Int {
    * Get an int enum
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<IntGetResponse>;
+  get(options?: IntGetOptionalParams): Promise<IntGetResponse>;
 }

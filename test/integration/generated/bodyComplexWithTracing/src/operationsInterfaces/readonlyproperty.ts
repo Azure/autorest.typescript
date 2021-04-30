@@ -9,7 +9,12 @@
 import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
 import * as coreHttp from "@azure/core-http";
-import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
+import {
+  ReadonlypropertyGetValidOptionalParams,
+  ReadonlypropertyGetValidResponse,
+  ReadonlyObj,
+  ReadonlypropertyPutValidOptionalParams
+} from "../models";
 
 /** Interface representing a Readonlyproperty. */
 export interface Readonlyproperty {
@@ -18,7 +23,7 @@ export interface Readonlyproperty {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse>;
   /**
    * Put complex types that have readonly properties
@@ -27,6 +32,6 @@ export interface Readonlyproperty {
    */
   putValid(
     complexBody: ReadonlyObj,
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyPutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

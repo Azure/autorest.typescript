@@ -8,9 +8,14 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ByteGetNullOptionalParams,
   ByteGetNullResponse,
+  ByteGetEmptyOptionalParams,
   ByteGetEmptyResponse,
+  ByteGetNonAsciiOptionalParams,
   ByteGetNonAsciiResponse,
+  BytePutNonAsciiOptionalParams,
+  ByteGetInvalidOptionalParams,
   ByteGetInvalidResponse
 } from "../models";
 
@@ -20,18 +25,18 @@ export interface Byte {
    * Get null byte value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<ByteGetNullResponse>;
+  getNull(options?: ByteGetNullOptionalParams): Promise<ByteGetNullResponse>;
   /**
    * Get empty byte value ''
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.OperationOptions): Promise<ByteGetEmptyResponse>;
+  getEmpty(options?: ByteGetEmptyOptionalParams): Promise<ByteGetEmptyResponse>;
   /**
    * Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    * @param options The options parameters.
    */
   getNonAscii(
-    options?: coreHttp.OperationOptions
+    options?: ByteGetNonAsciiOptionalParams
   ): Promise<ByteGetNonAsciiResponse>;
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
@@ -40,13 +45,13 @@ export interface Byte {
    */
   putNonAscii(
     byteBody: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: BytePutNonAsciiOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get invalid byte value ':::SWAGGER::::'
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ByteGetInvalidOptionalParams
   ): Promise<ByteGetInvalidResponse>;
 }

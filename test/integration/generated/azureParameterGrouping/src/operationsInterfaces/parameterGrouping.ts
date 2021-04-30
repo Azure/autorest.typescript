@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import {
   ParameterGroupingPostRequiredParameters,
+  ParameterGroupingPostRequiredOptionalParams,
   ParameterGroupingPostOptionalOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
@@ -23,7 +24,7 @@ export interface ParameterGrouping {
    */
   postRequired(
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
-    options?: coreHttp.OperationOptions
+    options?: ParameterGroupingPostRequiredOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Post a bunch of optional parameters grouped

@@ -9,21 +9,33 @@
 import * as coreHttp from "@azure/core-http";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
+  ExplicitPutRequiredBinaryBodyOptionalParams,
+  ExplicitPostRequiredIntegerParameterOptionalParams,
   ExplicitPostOptionalIntegerParameterOptionalParams,
   IntWrapper,
+  ExplicitPostRequiredIntegerPropertyOptionalParams,
   ExplicitPostOptionalIntegerPropertyOptionalParams,
+  ExplicitPostRequiredIntegerHeaderOptionalParams,
   ExplicitPostOptionalIntegerHeaderOptionalParams,
+  ExplicitPostRequiredStringParameterOptionalParams,
   ExplicitPostOptionalStringParameterOptionalParams,
   StringWrapper,
+  ExplicitPostRequiredStringPropertyOptionalParams,
   ExplicitPostOptionalStringPropertyOptionalParams,
+  ExplicitPostRequiredStringHeaderOptionalParams,
   ExplicitPostOptionalStringHeaderOptionalParams,
   Product,
+  ExplicitPostRequiredClassParameterOptionalParams,
   ExplicitPostOptionalClassParameterOptionalParams,
   ClassWrapper,
+  ExplicitPostRequiredClassPropertyOptionalParams,
   ExplicitPostOptionalClassPropertyOptionalParams,
+  ExplicitPostRequiredArrayParameterOptionalParams,
   ExplicitPostOptionalArrayParameterOptionalParams,
   ArrayWrapper,
+  ExplicitPostRequiredArrayPropertyOptionalParams,
   ExplicitPostOptionalArrayPropertyOptionalParams,
+  ExplicitPostRequiredArrayHeaderOptionalParams,
   ExplicitPostOptionalArrayHeaderOptionalParams
 } from "../models";
 
@@ -43,7 +55,7 @@ export interface Explicit {
    */
   putRequiredBinaryBody(
     bodyParameter: coreHttp.HttpRequestBody,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPutRequiredBinaryBodyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly required integer. Please put null and the client library should throw before the
@@ -53,7 +65,7 @@ export interface Explicit {
    */
   postRequiredIntegerParameter(
     bodyParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerParameterOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional integer. Please put null.
@@ -70,7 +82,7 @@ export interface Explicit {
    */
   postRequiredIntegerProperty(
     bodyParameter: IntWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerPropertyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -87,7 +99,7 @@ export interface Explicit {
    */
   postRequiredIntegerHeader(
     headerParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredIntegerHeaderOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
@@ -104,7 +116,7 @@ export interface Explicit {
    */
   postRequiredStringParameter(
     bodyParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringParameterOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional string. Please put null.
@@ -121,7 +133,7 @@ export interface Explicit {
    */
   postRequiredStringProperty(
     bodyParameter: StringWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringPropertyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -138,7 +150,7 @@ export interface Explicit {
    */
   postRequiredStringHeader(
     headerParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredStringHeaderOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional string. Please put a header 'headerParameter' => null.
@@ -155,7 +167,7 @@ export interface Explicit {
    */
   postRequiredClassParameter(
     bodyParameter: Product,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredClassParameterOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional complex object. Please put null.
@@ -172,7 +184,7 @@ export interface Explicit {
    */
   postRequiredClassProperty(
     bodyParameter: ClassWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredClassPropertyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -189,7 +201,7 @@ export interface Explicit {
    */
   postRequiredArrayParameter(
     bodyParameter: string[],
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayParameterOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional array. Please put null.
@@ -206,7 +218,7 @@ export interface Explicit {
    */
   postRequiredArrayProperty(
     bodyParameter: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayPropertyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -223,7 +235,7 @@ export interface Explicit {
    */
   postRequiredArrayHeader(
     headerParameter: string[],
-    options?: coreHttp.OperationOptions
+    options?: ExplicitPostRequiredArrayHeaderOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.

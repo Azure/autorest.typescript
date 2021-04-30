@@ -7,7 +7,12 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { ApiVersionLocalGetMethodLocalNullOptionalParams } from "../models";
+import {
+  ApiVersionLocalGetMethodLocalValidOptionalParams,
+  ApiVersionLocalGetMethodLocalNullOptionalParams,
+  ApiVersionLocalGetPathLocalValidOptionalParams,
+  ApiVersionLocalGetSwaggerLocalValidOptionalParams
+} from "../models";
 
 /** Interface representing a ApiVersionLocal. */
 export interface ApiVersionLocal {
@@ -16,7 +21,7 @@ export interface ApiVersionLocal {
    * @param options The options parameters.
    */
   getMethodLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetMethodLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = null to succeed
@@ -30,13 +35,13 @@ export interface ApiVersionLocal {
    * @param options The options parameters.
    */
   getPathLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetPathLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    * @param options The options parameters.
    */
   getSwaggerLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

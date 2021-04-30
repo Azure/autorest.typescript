@@ -13,6 +13,7 @@ import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
   IntPutOptionalParams,
   IntPutResponse,
+  IntGetOptionalParams,
   IntGetResponse
 } from "../models";
 
@@ -46,7 +47,7 @@ export class IntImpl implements Int {
    * Get an int enum
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<IntGetResponse> {
+  get(options?: IntGetOptionalParams): Promise<IntGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };

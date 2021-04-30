@@ -11,7 +11,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyTimeClientContext } from "../bodyTimeClientContext";
-import { TimeGetResponse, TimePutResponse } from "../models";
+import {
+  TimeGetOptionalParams,
+  TimeGetResponse,
+  TimePutOptionalParams,
+  TimePutResponse
+} from "../models";
 
 /** Class representing a Time. */
 export class TimeImpl implements Time {
@@ -29,7 +34,7 @@ export class TimeImpl implements Time {
    * Get time value "11:34:56"
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<TimeGetResponse> {
+  get(options?: TimeGetOptionalParams): Promise<TimeGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -48,7 +53,7 @@ export class TimeImpl implements Time {
    */
   put(
     timeBody: string,
-    options?: coreHttp.OperationOptions
+    options?: TimePutOptionalParams
   ): Promise<TimePutResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       timeBody,

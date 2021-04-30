@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export interface ProductResultValue {
   value?: Product[];
@@ -119,6 +118,10 @@ export const enum KnownOperationResultStatus {
  */
 export type OperationResultStatus = string;
 
+/** Optional parameters. */
+export interface PagingGetNoItemNamePagesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNoItemNamePages operation. */
 export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
   /** The underlying HTTP response. */
@@ -130,6 +133,10 @@ export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
     parsedBody: ProductResultValue;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetNullNextLinkNamePagesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNullNextLinkNamePages operation. */
 export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
@@ -143,6 +150,10 @@ export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetSinglePagesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSinglePages operation. */
 export type PagingGetSinglePagesResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -154,6 +165,10 @@ export type PagingGetSinglePagesResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingFirstResponseEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the firstResponseEmpty operation. */
 export type PagingFirstResponseEmptyResponse = ProductResultValue & {
@@ -187,6 +202,10 @@ export type PagingGetMultiplePagesResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetWithQueryParamsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getWithQueryParams operation. */
 export type PagingGetWithQueryParamsResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -198,6 +217,10 @@ export type PagingGetWithQueryParamsResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingNextOperationWithQueryParamsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the nextOperationWithQueryParams operation. */
 export type PagingNextOperationWithQueryParamsResponse = ProductResult & {
@@ -253,6 +276,10 @@ export type PagingGetMultiplePagesWithOffsetResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetMultiplePagesRetryFirstOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMultiplePagesRetryFirst operation. */
 export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -264,6 +291,10 @@ export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetMultiplePagesRetrySecondOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetrySecond operation. */
 export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
@@ -277,6 +308,10 @@ export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetSinglePagesFailureOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSinglePagesFailure operation. */
 export type PagingGetSinglePagesFailureResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -288,6 +323,10 @@ export type PagingGetSinglePagesFailureResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFailureOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailure operation. */
 export type PagingGetMultiplePagesFailureResponse = ProductResult & {
@@ -301,6 +340,10 @@ export type PagingGetMultiplePagesFailureResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFailureUriOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMultiplePagesFailureUri operation. */
 export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -313,6 +356,10 @@ export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFragmentNextLinkOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMultiplePagesFragmentNextLink operation. */
 export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult & {
   /** The underlying HTTP response. */
@@ -324,6 +371,10 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult 
     parsedBody: OdataProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFragmentWithGroupingNextLink operation. */
 export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult & {
@@ -343,6 +394,10 @@ export interface PagingGetMultiplePagesLROOptionalParams
   /** Parameter group */
   pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the getMultiplePagesLRO operation. */
@@ -354,10 +409,12 @@ export type PagingGetMultiplePagesLROResponse = ProductResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ProductResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface PagingNextFragmentOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the nextFragment operation. */
 export type PagingNextFragmentResponse = OdataProductResult & {
@@ -371,6 +428,10 @@ export type PagingNextFragmentResponse = OdataProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingNextFragmentWithGroupingOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the nextFragmentWithGrouping operation. */
 export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
   /** The underlying HTTP response. */
@@ -382,6 +443,10 @@ export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
     parsedBody: OdataProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientName operation. */
 export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName & {
@@ -395,6 +460,10 @@ export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductR
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetNoItemNamePagesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNoItemNamePagesNext operation. */
 export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
   /** The underlying HTTP response. */
@@ -407,6 +476,10 @@ export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetSinglePagesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSinglePagesNext operation. */
 export type PagingGetSinglePagesNextResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -418,6 +491,10 @@ export type PagingGetSinglePagesNextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingFirstResponseEmptyNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the firstResponseEmptyNext operation. */
 export type PagingFirstResponseEmptyNextResponse = ProductResultValue & {
@@ -493,6 +570,10 @@ export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetMultiplePagesRetryFirstNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMultiplePagesRetryFirstNext operation. */
 export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -504,6 +585,10 @@ export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetMultiplePagesRetrySecondNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetrySecondNext operation. */
 export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
@@ -517,6 +602,10 @@ export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetSinglePagesFailureNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSinglePagesFailureNext operation. */
 export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -529,6 +618,10 @@ export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFailureNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMultiplePagesFailureNext operation. */
 export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -540,6 +633,10 @@ export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetMultiplePagesFailureUriNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailureUriNext operation. */
 export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
@@ -572,6 +669,10 @@ export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientNameNext operation. */
 export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName & {

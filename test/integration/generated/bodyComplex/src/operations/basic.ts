@@ -12,11 +12,17 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
+  BasicGetValidOptionalParams,
   BasicGetValidResponse,
   BasicDef,
+  BasicPutValidOptionalParams,
+  BasicGetInvalidOptionalParams,
   BasicGetInvalidResponse,
+  BasicGetEmptyOptionalParams,
   BasicGetEmptyResponse,
+  BasicGetNullOptionalParams,
   BasicGetNullResponse,
+  BasicGetNotProvidedOptionalParams,
   BasicGetNotProvidedResponse
 } from "../models";
 
@@ -37,7 +43,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetValidOptionalParams
   ): Promise<BasicGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -55,7 +61,7 @@ export class BasicImpl implements Basic {
    */
   putValid(
     complexBody: BasicDef,
-    options?: coreHttp.OperationOptions
+    options?: BasicPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -72,7 +78,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetInvalidOptionalParams
   ): Promise<BasicGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -88,7 +94,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetEmptyOptionalParams
   ): Promise<BasicGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -103,7 +109,7 @@ export class BasicImpl implements Basic {
    * Get a basic complex type whose properties are null
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<BasicGetNullResponse> {
+  getNull(options?: BasicGetNullOptionalParams): Promise<BasicGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -118,7 +124,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetNotProvidedOptionalParams
   ): Promise<BasicGetNotProvidedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

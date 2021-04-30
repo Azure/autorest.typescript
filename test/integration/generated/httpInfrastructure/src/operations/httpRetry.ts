@@ -11,7 +11,18 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
-import { HttpRetryOptions502Response } from "../models";
+import {
+  HttpRetryHead408OptionalParams,
+  HttpRetryPut500OptionalParams,
+  HttpRetryPatch500OptionalParams,
+  HttpRetryGet502OptionalParams,
+  HttpRetryOptions502OptionalParams,
+  HttpRetryOptions502Response,
+  HttpRetryPost503OptionalParams,
+  HttpRetryDelete503OptionalParams,
+  HttpRetryPut504OptionalParams,
+  HttpRetryPatch504OptionalParams
+} from "../models";
 
 /** Class representing a HttpRetry. */
 export class HttpRetryImpl implements HttpRetry {
@@ -29,7 +40,9 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 408 status code, then 200 after retry
    * @param options The options parameters.
    */
-  head408(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  head408(
+    options?: HttpRetryHead408OptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -43,7 +56,9 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 500 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put500(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  put500(
+    options?: HttpRetryPut500OptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -58,7 +73,7 @@ export class HttpRetryImpl implements HttpRetry {
    * @param options The options parameters.
    */
   patch500(
-    options?: coreHttp.OperationOptions
+    options?: HttpRetryPatch500OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -73,7 +88,9 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 502 status code, then 200 after retry
    * @param options The options parameters.
    */
-  get502(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  get502(
+    options?: HttpRetryGet502OptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -88,7 +105,7 @@ export class HttpRetryImpl implements HttpRetry {
    * @param options The options parameters.
    */
   options502(
-    options?: coreHttp.OperationOptions
+    options?: HttpRetryOptions502OptionalParams
   ): Promise<HttpRetryOptions502Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -103,7 +120,9 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 503 status code, then 200 after retry
    * @param options The options parameters.
    */
-  post503(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  post503(
+    options?: HttpRetryPost503OptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -118,7 +137,7 @@ export class HttpRetryImpl implements HttpRetry {
    * @param options The options parameters.
    */
   delete503(
-    options?: coreHttp.OperationOptions
+    options?: HttpRetryDelete503OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -133,7 +152,9 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 504 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put504(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  put504(
+    options?: HttpRetryPut504OptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -148,7 +169,7 @@ export class HttpRetryImpl implements HttpRetry {
    * @param options The options parameters.
    */
   patch504(
-    options?: coreHttp.OperationOptions
+    options?: HttpRetryPatch504OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

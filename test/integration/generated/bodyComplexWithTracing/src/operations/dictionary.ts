@@ -14,10 +14,16 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
+  DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
   DictionaryWrapper,
+  DictionaryPutValidOptionalParams,
+  DictionaryGetEmptyOptionalParams,
   DictionaryGetEmptyResponse,
+  DictionaryPutEmptyOptionalParams,
+  DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
+  DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse
 } from "../models";
 
@@ -38,7 +44,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetValidOptionalParams
   ): Promise<DictionaryGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -74,7 +80,7 @@ export class DictionaryImpl implements Dictionary {
    */
   async putValid(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
@@ -108,7 +114,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getEmpty",
@@ -143,7 +149,7 @@ export class DictionaryImpl implements Dictionary {
    */
   async putEmpty(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putEmpty",
@@ -177,7 +183,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNull",
@@ -210,7 +216,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNotProvidedOptionalParams
   ): Promise<DictionaryGetNotProvidedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNotProvided",

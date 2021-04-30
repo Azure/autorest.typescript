@@ -13,6 +13,7 @@ import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
   FloatPutOptionalParams,
   FloatPutResponse,
+  FloatGetOptionalParams,
   FloatGetResponse
 } from "../models";
 
@@ -46,7 +47,7 @@ export class FloatImpl implements Float {
    * Get a float enum
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<FloatGetResponse> {
+  get(options?: FloatGetOptionalParams): Promise<FloatGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };

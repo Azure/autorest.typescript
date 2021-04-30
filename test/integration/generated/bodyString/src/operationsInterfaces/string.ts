@@ -8,14 +8,26 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  StringGetNullOptionalParams,
   StringGetNullResponse,
   StringPutNullOptionalParams,
+  StringGetEmptyOptionalParams,
   StringGetEmptyResponse,
+  StringPutEmptyOptionalParams,
+  StringGetMbcsOptionalParams,
   StringGetMbcsResponse,
+  StringPutMbcsOptionalParams,
+  StringGetWhitespaceOptionalParams,
   StringGetWhitespaceResponse,
+  StringPutWhitespaceOptionalParams,
+  StringGetNotProvidedOptionalParams,
   StringGetNotProvidedResponse,
+  StringGetBase64EncodedOptionalParams,
   StringGetBase64EncodedResponse,
+  StringGetBase64UrlEncodedOptionalParams,
   StringGetBase64UrlEncodedResponse,
+  StringPutBase64UrlEncodedOptionalParams,
+  StringGetNullBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedResponse
 } from "../models";
 
@@ -25,7 +37,9 @@ export interface StringOperations {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<StringGetNullResponse>;
+  getNull(
+    options?: StringGetNullOptionalParams
+  ): Promise<StringGetNullResponse>;
   /**
    * Set string value null
    * @param options The options parameters.
@@ -38,30 +52,36 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: StringGetEmptyOptionalParams
   ): Promise<StringGetEmptyResponse>;
   /**
    * Set string value empty ''
    * @param options The options parameters.
    */
-  putEmpty(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  putEmpty(
+    options?: StringPutEmptyOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(options?: coreHttp.OperationOptions): Promise<StringGetMbcsResponse>;
+  getMbcs(
+    options?: StringGetMbcsOptionalParams
+  ): Promise<StringGetMbcsResponse>;
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  putMbcs(
+    options?: StringPutMbcsOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all
    * good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
   getWhitespace(
-    options?: coreHttp.OperationOptions
+    options?: StringGetWhitespaceOptionalParams
   ): Promise<StringGetWhitespaceResponse>;
   /**
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all
@@ -69,28 +89,28 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   putWhitespace(
-    options?: coreHttp.OperationOptions
+    options?: StringPutWhitespaceOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get String value when no string value is sent in response payload
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: StringGetNotProvidedOptionalParams
   ): Promise<StringGetNotProvidedResponse>;
   /**
    * Get value that is base64 encoded
    * @param options The options parameters.
    */
   getBase64Encoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetBase64EncodedOptionalParams
   ): Promise<StringGetBase64EncodedResponse>;
   /**
    * Get value that is base64url encoded
    * @param options The options parameters.
    */
   getBase64UrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetBase64UrlEncodedOptionalParams
   ): Promise<StringGetBase64UrlEncodedResponse>;
   /**
    * Put value that is base64url encoded
@@ -99,13 +119,13 @@ export interface StringOperations {
    */
   putBase64UrlEncoded(
     stringBody: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: StringPutBase64UrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null value that is expected to be base64url encoded
    * @param options The options parameters.
    */
   getNullBase64UrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetNullBase64UrlEncodedOptionalParams
   ): Promise<StringGetNullBase64UrlEncodedResponse>;
 }

@@ -9,16 +9,22 @@
 import * as coreHttp from "@azure/core-http";
 import {
   PetAPTrue,
+  PetsCreateAPTrueOptionalParams,
   PetsCreateAPTrueResponse,
   CatAPTrue,
+  PetsCreateCatAPTrueOptionalParams,
   PetsCreateCatAPTrueResponse,
   PetAPObject,
+  PetsCreateAPObjectOptionalParams,
   PetsCreateAPObjectResponse,
   PetAPString,
+  PetsCreateAPStringOptionalParams,
   PetsCreateAPStringResponse,
   PetAPInProperties,
+  PetsCreateAPInPropertiesOptionalParams,
   PetsCreateAPInPropertiesResponse,
   PetAPInPropertiesWithAPString,
+  PetsCreateAPInPropertiesWithAPStringOptionalParams,
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "../models";
 
@@ -31,7 +37,7 @@ export interface Pets {
    */
   createAPTrue(
     createParameters: PetAPTrue,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPTrueOptionalParams
   ): Promise<PetsCreateAPTrueResponse>;
   /**
    * Create a CatAPTrue which contains more properties than what is defined.
@@ -40,7 +46,7 @@ export interface Pets {
    */
   createCatAPTrue(
     createParameters: CatAPTrue,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateCatAPTrueOptionalParams
   ): Promise<PetsCreateCatAPTrueResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -49,7 +55,7 @@ export interface Pets {
    */
   createAPObject(
     createParameters: PetAPObject,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPObjectOptionalParams
   ): Promise<PetsCreateAPObjectResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -58,7 +64,7 @@ export interface Pets {
    */
   createAPString(
     createParameters: PetAPString,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPStringOptionalParams
   ): Promise<PetsCreateAPStringResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -67,7 +73,7 @@ export interface Pets {
    */
   createAPInProperties(
     createParameters: PetAPInProperties,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPInPropertiesOptionalParams
   ): Promise<PetsCreateAPInPropertiesResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -76,6 +82,6 @@ export interface Pets {
    */
   createAPInPropertiesWithAPString(
     createParameters: PetAPInPropertiesWithAPString,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse>;
 }

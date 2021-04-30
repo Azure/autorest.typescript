@@ -12,28 +12,50 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
+  PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
   IntWrapper,
+  PrimitivePutIntOptionalParams,
+  PrimitiveGetLongOptionalParams,
   PrimitiveGetLongResponse,
   LongWrapper,
+  PrimitivePutLongOptionalParams,
+  PrimitiveGetFloatOptionalParams,
   PrimitiveGetFloatResponse,
   FloatWrapper,
+  PrimitivePutFloatOptionalParams,
+  PrimitiveGetDoubleOptionalParams,
   PrimitiveGetDoubleResponse,
   DoubleWrapper,
+  PrimitivePutDoubleOptionalParams,
+  PrimitiveGetBoolOptionalParams,
   PrimitiveGetBoolResponse,
   BooleanWrapper,
+  PrimitivePutBoolOptionalParams,
+  PrimitiveGetStringOptionalParams,
   PrimitiveGetStringResponse,
   StringWrapper,
+  PrimitivePutStringOptionalParams,
+  PrimitiveGetDateOptionalParams,
   PrimitiveGetDateResponse,
   DateWrapper,
+  PrimitivePutDateOptionalParams,
+  PrimitiveGetDateTimeOptionalParams,
   PrimitiveGetDateTimeResponse,
   DatetimeWrapper,
+  PrimitivePutDateTimeOptionalParams,
+  PrimitiveGetDateTimeRfc1123OptionalParams,
   PrimitiveGetDateTimeRfc1123Response,
   Datetimerfc1123Wrapper,
+  PrimitivePutDateTimeRfc1123OptionalParams,
+  PrimitiveGetDurationOptionalParams,
   PrimitiveGetDurationResponse,
   DurationWrapper,
+  PrimitivePutDurationOptionalParams,
+  PrimitiveGetByteOptionalParams,
   PrimitiveGetByteResponse,
-  ByteWrapper
+  ByteWrapper,
+  PrimitivePutByteOptionalParams
 } from "../models";
 
 /** Class representing a Primitive. */
@@ -53,7 +75,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getInt(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetIntOptionalParams
   ): Promise<PrimitiveGetIntResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -71,7 +93,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putInt(
     complexBody: IntWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutIntOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -88,7 +110,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getLong(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -106,7 +128,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putLong(
     complexBody: LongWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutLongOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -123,7 +145,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getFloat(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -141,7 +163,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putFloat(
     complexBody: FloatWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutFloatOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -158,7 +180,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getDouble(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -177,7 +199,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putDouble(
     complexBody: DoubleWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDoubleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -194,7 +216,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getBool(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -212,7 +234,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putBool(
     complexBody: BooleanWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutBoolOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -229,7 +251,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getString(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -247,7 +269,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putString(
     complexBody: StringWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutStringOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -264,7 +286,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getDate(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -282,7 +304,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putDate(
     complexBody: DateWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -299,7 +321,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getDateTime(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -317,7 +339,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putDateTime(
     complexBody: DatetimeWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -334,7 +356,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getDateTimeRfc1123(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -352,7 +374,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDateTimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -369,7 +391,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getDuration(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -387,7 +409,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putDuration(
     complexBody: DurationWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutDurationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -404,7 +426,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   getByte(
-    options?: coreHttp.OperationOptions
+    options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -422,7 +444,7 @@ export class PrimitiveImpl implements Primitive {
    */
   putByte(
     complexBody: ByteWrapper,
-    options?: coreHttp.OperationOptions
+    options?: PrimitivePutByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,

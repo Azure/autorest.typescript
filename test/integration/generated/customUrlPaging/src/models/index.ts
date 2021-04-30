@@ -27,6 +27,10 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface PagingGetPagesPartialUrlOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPagesPartialUrl operation. */
 export type PagingGetPagesPartialUrlResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -38,6 +42,10 @@ export type PagingGetPagesPartialUrlResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetPagesPartialUrlOperationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagesPartialUrlOperation operation. */
 export type PagingGetPagesPartialUrlOperationResponse = ProductResult & {
@@ -51,6 +59,10 @@ export type PagingGetPagesPartialUrlOperationResponse = ProductResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PagingGetPagesPartialUrlOperationNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPagesPartialUrlOperationNext operation. */
 export type PagingGetPagesPartialUrlOperationNextResponse = ProductResult & {
   /** The underlying HTTP response. */
@@ -62,6 +74,10 @@ export type PagingGetPagesPartialUrlOperationNextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/** Optional parameters. */
+export interface PagingGetPagesPartialUrlNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagesPartialUrlNext operation. */
 export type PagingGetPagesPartialUrlNextResponse = ProductResult & {

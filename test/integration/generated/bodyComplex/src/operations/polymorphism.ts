@@ -12,14 +12,23 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
+  PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
   FishUnion,
+  PolymorphismPutValidOptionalParams,
+  PolymorphismGetDotSyntaxOptionalParams,
   PolymorphismGetDotSyntaxResponse,
+  PolymorphismGetComposedWithDiscriminatorOptionalParams,
   PolymorphismGetComposedWithDiscriminatorResponse,
+  PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   PolymorphismGetComposedWithoutDiscriminatorResponse,
+  PolymorphismGetComplicatedOptionalParams,
   PolymorphismGetComplicatedResponse,
   SalmonUnion,
-  PolymorphismPutMissingDiscriminatorResponse
+  PolymorphismPutComplicatedOptionalParams,
+  PolymorphismPutMissingDiscriminatorOptionalParams,
+  PolymorphismPutMissingDiscriminatorResponse,
+  PolymorphismPutValidMissingRequiredOptionalParams
 } from "../models";
 
 /** Class representing a Polymorphism. */
@@ -39,7 +48,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -89,7 +98,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putValid(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -106,7 +115,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getDotSyntax(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -124,7 +133,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -142,7 +151,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithoutDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -159,7 +168,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComplicated(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -178,7 +187,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putComplicated(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutComplicatedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -197,7 +206,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -243,7 +252,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putValidMissingRequired(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidMissingRequiredOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,

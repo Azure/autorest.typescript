@@ -11,7 +11,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
-import { ReadonlypropertyGetValidResponse, ReadonlyObj } from "../models";
+import {
+  ReadonlypropertyGetValidOptionalParams,
+  ReadonlypropertyGetValidResponse,
+  ReadonlyObj,
+  ReadonlypropertyPutValidOptionalParams
+} from "../models";
 
 /** Class representing a Readonlyproperty. */
 export class ReadonlypropertyImpl implements Readonlyproperty {
@@ -30,7 +35,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -48,7 +53,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    */
   putValid(
     complexBody: ReadonlyObj,
-    options?: coreHttp.OperationOptions
+    options?: ReadonlypropertyPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,

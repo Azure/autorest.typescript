@@ -12,26 +12,60 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
+  MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse,
+  MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model201ModelDefaultError200ValidResponse,
+  MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams,
   MultipleResponsesGet200Model201ModelDefaultError201ValidResponse,
+  MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams,
   MultipleResponsesGet200Model201ModelDefaultError400ValidResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse,
+  MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams,
+  MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams,
+  MultipleResponsesGetDefaultModelA200ValidOptionalParams,
   MultipleResponsesGetDefaultModelA200ValidResponse,
+  MultipleResponsesGetDefaultModelA200NoneOptionalParams,
   MultipleResponsesGetDefaultModelA200NoneResponse,
+  MultipleResponsesGetDefaultModelA400ValidOptionalParams,
+  MultipleResponsesGetDefaultModelA400NoneOptionalParams,
+  MultipleResponsesGetDefaultNone200InvalidOptionalParams,
+  MultipleResponsesGetDefaultNone200NoneOptionalParams,
+  MultipleResponsesGetDefaultNone400InvalidOptionalParams,
+  MultipleResponsesGetDefaultNone400NoneOptionalParams,
+  MultipleResponsesGet200ModelA200NoneOptionalParams,
   MultipleResponsesGet200ModelA200NoneResponse,
+  MultipleResponsesGet200ModelA200ValidOptionalParams,
   MultipleResponsesGet200ModelA200ValidResponse,
+  MultipleResponsesGet200ModelA200InvalidOptionalParams,
   MultipleResponsesGet200ModelA200InvalidResponse,
+  MultipleResponsesGet200ModelA400NoneOptionalParams,
   MultipleResponsesGet200ModelA400NoneResponse,
+  MultipleResponsesGet200ModelA400ValidOptionalParams,
   MultipleResponsesGet200ModelA400ValidResponse,
+  MultipleResponsesGet200ModelA400InvalidOptionalParams,
   MultipleResponsesGet200ModelA400InvalidResponse,
+  MultipleResponsesGet200ModelA202ValidOptionalParams,
   MultipleResponsesGet200ModelA202ValidResponse
 } from "../models";
 
@@ -52,7 +86,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError200Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse
   > {
@@ -72,7 +106,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError204Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse
   > {
@@ -92,7 +126,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError201Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
   > {
@@ -112,7 +146,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError202None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse
   > {
@@ -132,7 +166,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse
   > {
@@ -152,7 +186,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError200Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -170,7 +204,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError201Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -188,7 +222,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -206,7 +240,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError200Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse
   > {
@@ -226,7 +260,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError201Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse
   > {
@@ -246,7 +280,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError404Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse
   > {
@@ -266,7 +300,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams
   ): Promise<
     MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse
   > {
@@ -286,7 +320,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultError202None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -302,7 +336,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultError204None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -318,7 +352,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultError400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -334,7 +368,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone202Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -350,7 +384,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone204None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -366,7 +400,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -382,7 +416,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -398,7 +432,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultModelA200Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultModelA200ValidOptionalParams
   ): Promise<MultipleResponsesGetDefaultModelA200ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -414,7 +448,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultModelA200None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultModelA200NoneOptionalParams
   ): Promise<MultipleResponsesGetDefaultModelA200NoneResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -430,7 +464,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultModelA400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultModelA400ValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -446,7 +480,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultModelA400None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultModelA400NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -462,7 +496,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultNone200Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultNone200InvalidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -478,7 +512,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultNone200None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultNone200NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -494,7 +528,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultNone400Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultNone400InvalidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -510,7 +544,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   getDefaultNone400None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGetDefaultNone400NoneOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -527,7 +561,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA200None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA200NoneOptionalParams
   ): Promise<MultipleResponsesGet200ModelA200NoneResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -543,7 +577,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA200Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA200ValidOptionalParams
   ): Promise<MultipleResponsesGet200ModelA200ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -559,7 +593,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA200Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA200InvalidOptionalParams
   ): Promise<MultipleResponsesGet200ModelA200InvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -575,7 +609,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA400None(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA400NoneOptionalParams
   ): Promise<MultipleResponsesGet200ModelA400NoneResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -591,7 +625,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA400Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA400ValidOptionalParams
   ): Promise<MultipleResponsesGet200ModelA400ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -607,7 +641,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA400Invalid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA400InvalidOptionalParams
   ): Promise<MultipleResponsesGet200ModelA400InvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -623,7 +657,7 @@ export class MultipleResponsesImpl implements MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA202Valid(
-    options?: coreHttp.OperationOptions
+    options?: MultipleResponsesGet200ModelA202ValidOptionalParams
   ): Promise<MultipleResponsesGet200ModelA202ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

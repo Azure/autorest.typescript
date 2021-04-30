@@ -11,22 +11,30 @@ import {
   PetStoreFindPetsByStatusResponse,
   PetStoreFindPetsByTagsOptionalParams,
   PetStoreFindPetsByTagsResponse,
+  PetStoreFindPetsWithByteArrayOptionalParams,
   PetStoreFindPetsWithByteArrayResponse,
+  PetStoreGetPetByIdOptionalParams,
   PetStoreGetPetByIdResponse,
   PetStoreUpdatePetWithFormOptionalParams,
   PetStoreDeletePetOptionalParams,
   PetStoreUploadFileOptionalParams,
+  PetStoreGetInventoryOptionalParams,
   PetStoreGetInventoryResponse,
   PetStorePlaceOrderOptionalParams,
   PetStorePlaceOrderResponse,
+  PetStoreGetOrderByIdOptionalParams,
   PetStoreGetOrderByIdResponse,
+  PetStoreDeleteOrderOptionalParams,
   PetStoreCreateUserOptionalParams,
   PetStoreCreateUsersWithArrayInputOptionalParams,
   PetStoreCreateUsersWithListInputOptionalParams,
   PetStoreLoginUserOptionalParams,
   PetStoreLoginUserResponse,
+  PetStoreLogoutUserOptionalParams,
+  PetStoreGetUserByNameOptionalParams,
   PetStoreGetUserByNameResponse,
-  PetStoreUpdateUserOptionalParams
+  PetStoreUpdateUserOptionalParams,
+  PetStoreDeleteUserOptionalParams
 } from "./models";
 
 export class PetStore extends PetStoreContext {
@@ -125,7 +133,7 @@ export class PetStore extends PetStoreContext {
    */
   findPetsWithByteArray(
     petId: number,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreFindPetsWithByteArrayOptionalParams
   ): Promise<PetStoreFindPetsWithByteArrayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,
@@ -144,7 +152,7 @@ export class PetStore extends PetStoreContext {
    */
   getPetById(
     petId: number,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreGetPetByIdOptionalParams
   ): Promise<PetStoreGetPetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,
@@ -218,7 +226,7 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   getInventory(
-    options?: coreHttp.OperationOptions
+    options?: PetStoreGetInventoryOptionalParams
   ): Promise<PetStoreGetInventoryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -252,7 +260,7 @@ export class PetStore extends PetStoreContext {
    */
   getOrderById(
     orderId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreGetOrderByIdOptionalParams
   ): Promise<PetStoreGetOrderByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       orderId,
@@ -272,7 +280,7 @@ export class PetStore extends PetStoreContext {
    */
   deleteOrder(
     orderId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreDeleteOrderOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       orderId,
@@ -353,7 +361,7 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   logoutUser(
-    options?: coreHttp.OperationOptions
+    options?: PetStoreLogoutUserOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -371,7 +379,7 @@ export class PetStore extends PetStoreContext {
    */
   getUserByName(
     username: string,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreGetUserByNameOptionalParams
   ): Promise<PetStoreGetUserByNameResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       username,
@@ -409,7 +417,7 @@ export class PetStore extends PetStoreContext {
    */
   deleteUser(
     username: string,
-    options?: coreHttp.OperationOptions
+    options?: PetStoreDeleteUserOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       username,

@@ -13,6 +13,10 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface Datetimerfc1123GetNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type Datetimerfc1123GetNullResponse = {
   /** The parsed response body. */
@@ -27,6 +31,10 @@ export type Datetimerfc1123GetNullResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface Datetimerfc1123GetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type Datetimerfc1123GetInvalidResponse = {
@@ -43,6 +51,10 @@ export type Datetimerfc1123GetInvalidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface Datetimerfc1123GetOverflowOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOverflow operation. */
 export type Datetimerfc1123GetOverflowResponse = {
   /** The parsed response body. */
@@ -57,6 +69,10 @@ export type Datetimerfc1123GetOverflowResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface Datetimerfc1123GetUnderflowOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflow operation. */
 export type Datetimerfc1123GetUnderflowResponse = {
@@ -73,6 +89,14 @@ export type Datetimerfc1123GetUnderflowResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface Datetimerfc1123PutUtcMaxDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUtcLowercaseMaxDateTime operation. */
 export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
   /** The parsed response body. */
@@ -88,6 +112,10 @@ export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUtcUppercaseMaxDateTime operation. */
 export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
   /** The parsed response body. */
@@ -102,6 +130,14 @@ export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface Datetimerfc1123PutUtcMinDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface Datetimerfc1123GetUtcMinDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcMinDateTime operation. */
 export type Datetimerfc1123GetUtcMinDateTimeResponse = {

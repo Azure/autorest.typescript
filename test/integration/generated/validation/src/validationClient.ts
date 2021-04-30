@@ -12,9 +12,11 @@ import * as Mappers from "./models/mappers";
 import { ValidationClientContext } from "./validationClientContext";
 import {
   ValidationClientOptionalParams,
+  ValidationClientValidationOfMethodParametersOptionalParams,
   ValidationClientValidationOfMethodParametersResponse,
   ValidationClientValidationOfBodyOptionalParams,
   ValidationClientValidationOfBodyResponse,
+  ValidationClientGetWithConstantInPathOptionalParams,
   ValidationClientPostWithConstantInBodyOptionalParams,
   ValidationClientPostWithConstantInBodyResponse
 } from "./models";
@@ -41,7 +43,7 @@ export class ValidationClient extends ValidationClientContext {
   validationOfMethodParameters(
     resourceGroupName: string,
     id: number,
-    options?: coreHttp.OperationOptions
+    options?: ValidationClientValidationOfMethodParametersOptionalParams
   ): Promise<ValidationClientValidationOfMethodParametersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -78,7 +80,7 @@ export class ValidationClient extends ValidationClientContext {
 
   /** @param options The options parameters. */
   getWithConstantInPath(
-    options?: coreHttp.OperationOptions
+    options?: ValidationClientGetWithConstantInPathOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

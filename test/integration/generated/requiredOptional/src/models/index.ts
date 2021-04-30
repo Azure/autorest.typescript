@@ -51,6 +51,10 @@ export interface ArrayOptionalWrapper {
 }
 
 /** Optional parameters. */
+export interface ImplicitGetRequiredPathOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ImplicitPutOptionalQueryOptionalParams
   extends coreHttp.OperationOptions {
   queryParameter?: string;
@@ -75,10 +79,30 @@ export interface ImplicitPutOptionalBinaryBodyOptionalParams
 }
 
 /** Optional parameters. */
+export interface ImplicitGetRequiredGlobalPathOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ImplicitGetRequiredGlobalQueryOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ImplicitGetOptionalGlobalQueryOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPutOptionalBinaryBodyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: coreHttp.HttpRequestBody;
 }
+
+/** Optional parameters. */
+export interface ExplicitPutRequiredBinaryBodyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredIntegerParameterOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalIntegerParameterOptionalParams
@@ -87,10 +111,18 @@ export interface ExplicitPostOptionalIntegerParameterOptionalParams
 }
 
 /** Optional parameters. */
+export interface ExplicitPostRequiredIntegerPropertyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalIntegerPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: IntOptionalWrapper;
 }
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredIntegerHeaderOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalIntegerHeaderOptionalParams
@@ -99,10 +131,18 @@ export interface ExplicitPostOptionalIntegerHeaderOptionalParams
 }
 
 /** Optional parameters. */
+export interface ExplicitPostRequiredStringParameterOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalStringParameterOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: string;
 }
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredStringPropertyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalStringPropertyOptionalParams
@@ -111,10 +151,18 @@ export interface ExplicitPostOptionalStringPropertyOptionalParams
 }
 
 /** Optional parameters. */
+export interface ExplicitPostRequiredStringHeaderOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalStringHeaderOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: string;
 }
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredClassParameterOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalClassParameterOptionalParams
@@ -123,10 +171,18 @@ export interface ExplicitPostOptionalClassParameterOptionalParams
 }
 
 /** Optional parameters. */
+export interface ExplicitPostRequiredClassPropertyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalClassPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: ClassOptionalWrapper;
 }
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredArrayParameterOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalArrayParameterOptionalParams
@@ -136,10 +192,18 @@ export interface ExplicitPostOptionalArrayParameterOptionalParams
 }
 
 /** Optional parameters. */
+export interface ExplicitPostRequiredArrayPropertyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface ExplicitPostOptionalArrayPropertyOptionalParams
   extends coreHttp.OperationOptions {
   bodyParameter?: ArrayOptionalWrapper;
 }
+
+/** Optional parameters. */
+export interface ExplicitPostRequiredArrayHeaderOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalArrayHeaderOptionalParams

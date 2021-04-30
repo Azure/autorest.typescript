@@ -10,7 +10,7 @@ import { Get } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { UuidClientContext } from "../uuidClientContext";
-import { GetUuidResponse } from "../models";
+import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Class representing a Get. */
 export class GetImpl implements Get {
@@ -30,7 +30,7 @@ export class GetImpl implements Get {
    */
   uuid(
     testUuid: string,
-    options?: coreHttp.OperationOptions
+    options?: GetUuidOptionalParams
   ): Promise<GetUuidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       testUuid,

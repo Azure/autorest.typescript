@@ -277,6 +277,10 @@ export type KeyVaultClientSetSecretResponse = SecretBundle & {
   };
 };
 
+/** Optional parameters. */
+export interface KeyVaultClientDeleteSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the deleteSecret operation. */
 export type KeyVaultClientDeleteSecretResponse = DeletedSecretBundle & {
   /** The underlying HTTP response. */
@@ -311,6 +315,10 @@ export type KeyVaultClientUpdateSecretResponse = SecretBundle & {
     parsedBody: SecretBundle;
   };
 };
+
+/** Optional parameters. */
+export interface KeyVaultClientGetSecretOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSecret operation. */
 export type KeyVaultClientGetSecretResponse = SecretBundle & {
@@ -381,6 +389,10 @@ export type KeyVaultClientGetDeletedSecretsResponse = DeletedSecretListResult & 
   };
 };
 
+/** Optional parameters. */
+export interface KeyVaultClientGetDeletedSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDeletedSecret operation. */
 export type KeyVaultClientGetDeletedSecretResponse = DeletedSecretBundle & {
   /** The underlying HTTP response. */
@@ -392,6 +404,14 @@ export type KeyVaultClientGetDeletedSecretResponse = DeletedSecretBundle & {
     parsedBody: DeletedSecretBundle;
   };
 };
+
+/** Optional parameters. */
+export interface KeyVaultClientPurgeDeletedSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface KeyVaultClientRecoverDeletedSecretOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the recoverDeletedSecret operation. */
 export type KeyVaultClientRecoverDeletedSecretResponse = SecretBundle & {
@@ -405,6 +425,10 @@ export type KeyVaultClientRecoverDeletedSecretResponse = SecretBundle & {
   };
 };
 
+/** Optional parameters. */
+export interface KeyVaultClientBackupSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the backupSecret operation. */
 export type KeyVaultClientBackupSecretResponse = BackupSecretResult & {
   /** The underlying HTTP response. */
@@ -416,6 +440,10 @@ export type KeyVaultClientBackupSecretResponse = BackupSecretResult & {
     parsedBody: BackupSecretResult;
   };
 };
+
+/** Optional parameters. */
+export interface KeyVaultClientRestoreSecretOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the restoreSecret operation. */
 export type KeyVaultClientRestoreSecretResponse = SecretBundle & {

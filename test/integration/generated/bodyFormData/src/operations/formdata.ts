@@ -12,8 +12,11 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyFormDataClientContext } from "../bodyFormDataClientContext";
 import {
+  FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
+  FormdataUploadFileViaBodyOptionalParams,
   FormdataUploadFileViaBodyResponse,
+  FormdataUploadFilesOptionalParams,
   FormdataUploadFilesResponse
 } from "../models";
 
@@ -38,7 +41,7 @@ export class FormdataImpl implements Formdata {
   uploadFile(
     fileContent: coreHttp.HttpRequestBody,
     fileName: string,
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFileOptionalParams
   ): Promise<FormdataUploadFileResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       fileContent,
@@ -58,7 +61,7 @@ export class FormdataImpl implements Formdata {
    */
   uploadFileViaBody(
     fileContent: coreHttp.HttpRequestBody,
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFileViaBodyOptionalParams
   ): Promise<FormdataUploadFileViaBodyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       fileContent,
@@ -77,7 +80,7 @@ export class FormdataImpl implements Formdata {
    */
   uploadFiles(
     fileContent: coreHttp.HttpRequestBody[],
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFilesOptionalParams
   ): Promise<FormdataUploadFilesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       fileContent,

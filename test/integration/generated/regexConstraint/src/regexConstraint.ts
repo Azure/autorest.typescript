@@ -11,6 +11,7 @@ import * as Parameters from "./models/parameters";
 import { RegexConstraintContext } from "./regexConstraintContext";
 import {
   RegexConstraintOptionalParams,
+  RegexConstraintApiV1ValueGetOptionalParams,
   RegexConstraintApiV1ValueGetResponse
 } from "./models";
 
@@ -31,7 +32,7 @@ export class RegexConstraint extends RegexConstraintContext {
    */
   apiV1ValueGet(
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RegexConstraintApiV1ValueGetOptionalParams
   ): Promise<RegexConstraintApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       serverName,

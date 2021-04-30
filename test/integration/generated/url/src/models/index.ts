@@ -17,11 +17,135 @@ export interface ErrorModel {
 export type UriColor = "red color" | "green color" | "blue color";
 
 /** Optional parameters. */
+export interface PathsGetBooleanTrueOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsGetBooleanFalseOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsGetIntOneMillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsGetIntNegativeOneMillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsGetTenBillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsGetNegativeTenBillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsFloatScientificPositiveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsFloatScientificNegativeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDoubleDecimalPositiveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDoubleDecimalNegativeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsStringUnicodeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsStringUrlEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsStringUrlNonEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsStringEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsStringNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsEnumValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsEnumNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsByteMultiByteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsByteEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsByteNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDateNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsDateTimeNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsBase64UrlOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsArrayCsvInPathOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PathsUnixTimeUrlOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesGetBooleanTrueOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesGetBooleanFalseOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface QueriesGetBooleanNullOptionalParams
   extends coreHttp.OperationOptions {
   /** null boolean value */
   boolQuery?: boolean;
 }
+
+/** Optional parameters. */
+export interface QueriesGetIntOneMillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesGetIntNegativeOneMillionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetIntNullOptionalParams
@@ -31,11 +155,27 @@ export interface QueriesGetIntNullOptionalParams
 }
 
 /** Optional parameters. */
+export interface QueriesGetTenBillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesGetNegativeTenBillionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface QueriesGetLongNullOptionalParams
   extends coreHttp.OperationOptions {
   /** null 64 bit integer value */
   longQuery?: number;
 }
+
+/** Optional parameters. */
+export interface QueriesFloatScientificPositiveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesFloatScientificNegativeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesFloatNullOptionalParams
@@ -45,11 +185,31 @@ export interface QueriesFloatNullOptionalParams
 }
 
 /** Optional parameters. */
+export interface QueriesDoubleDecimalPositiveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesDoubleDecimalNegativeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface QueriesDoubleNullOptionalParams
   extends coreHttp.OperationOptions {
   /** null numeric value */
   doubleQuery?: number;
 }
+
+/** Optional parameters. */
+export interface QueriesStringUnicodeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesStringUrlEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface QueriesStringEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesStringNullOptionalParams
@@ -80,6 +240,10 @@ export interface QueriesByteMultiByteOptionalParams
 }
 
 /** Optional parameters. */
+export interface QueriesByteEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface QueriesByteNullOptionalParams
   extends coreHttp.OperationOptions {
   /** null as byte array (no query parameters in uri) */
@@ -87,11 +251,19 @@ export interface QueriesByteNullOptionalParams
 }
 
 /** Optional parameters. */
+export interface QueriesDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface QueriesDateNullOptionalParams
   extends coreHttp.OperationOptions {
   /** null as date (no query parameters in uri) */
   dateQuery?: Date;
 }
+
+/** Optional parameters. */
+export interface QueriesDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesDateTimeNullOptionalParams

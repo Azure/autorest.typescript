@@ -10,7 +10,7 @@ import { Get } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
-import { GetUrlResponse } from "../models";
+import { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
 /** Class representing a Get. */
 export class GetImpl implements Get {
@@ -30,7 +30,7 @@ export class GetImpl implements Get {
    */
   url(
     testUrl: string,
-    options?: coreHttp.OperationOptions
+    options?: GetUrlOptionalParams
   ): Promise<GetUrlResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       testUrl,

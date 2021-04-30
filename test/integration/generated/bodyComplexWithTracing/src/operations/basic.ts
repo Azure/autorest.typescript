@@ -14,11 +14,17 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
+  BasicGetValidOptionalParams,
   BasicGetValidResponse,
   BasicDef,
+  BasicPutValidOptionalParams,
+  BasicGetInvalidOptionalParams,
   BasicGetInvalidResponse,
+  BasicGetEmptyOptionalParams,
   BasicGetEmptyResponse,
+  BasicGetNullOptionalParams,
   BasicGetNullResponse,
+  BasicGetNotProvidedOptionalParams,
   BasicGetNotProvidedResponse
 } from "../models";
 
@@ -39,7 +45,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetValidOptionalParams
   ): Promise<BasicGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -74,7 +80,7 @@ export class BasicImpl implements Basic {
    */
   async putValid(
     complexBody: BasicDef,
-    options?: coreHttp.OperationOptions
+    options?: BasicPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
@@ -108,7 +114,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   async getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetInvalidOptionalParams
   ): Promise<BasicGetInvalidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getInvalid",
@@ -141,7 +147,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   async getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetEmptyOptionalParams
   ): Promise<BasicGetEmptyResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getEmpty",
@@ -174,7 +180,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   async getNull(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetNullOptionalParams
   ): Promise<BasicGetNullResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNull",
@@ -207,7 +213,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   async getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: BasicGetNotProvidedOptionalParams
   ): Promise<BasicGetNotProvidedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNotProvided",

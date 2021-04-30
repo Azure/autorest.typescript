@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface ByteGetNullOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type ByteGetNullResponse = {
   /** The parsed response body. */
@@ -27,6 +30,9 @@ export type ByteGetNullResponse = {
     parsedBody: Uint8Array;
   };
 };
+
+/** Optional parameters. */
+export interface ByteGetEmptyOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
 export type ByteGetEmptyResponse = {
@@ -43,6 +49,10 @@ export type ByteGetEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ByteGetNonAsciiOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNonAscii operation. */
 export type ByteGetNonAsciiResponse = {
   /** The parsed response body. */
@@ -57,6 +67,14 @@ export type ByteGetNonAsciiResponse = {
     parsedBody: Uint8Array;
   };
 };
+
+/** Optional parameters. */
+export interface BytePutNonAsciiOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ByteGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type ByteGetInvalidResponse = {

@@ -13,6 +13,7 @@ import { ODataDiscriminatorClientContext } from "./oDataDiscriminatorClientConte
 import {
   ODataDiscriminatorClientOptionalParams,
   Enum0,
+  ODataDiscriminatorClientApiV1ValueGetOptionalParams,
   ODataDiscriminatorClientApiV1ValueGetResponse
 } from "./models";
 
@@ -33,7 +34,7 @@ export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: coreHttp.OperationOptions
+    options?: ODataDiscriminatorClientApiV1ValueGetOptionalParams
   ): Promise<ODataDiscriminatorClientApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

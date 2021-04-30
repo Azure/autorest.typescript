@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export interface ErrorModel {
   status?: number;
@@ -18,6 +17,15 @@ export interface ErrorModel {
 export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders {
   /** Url to retrieve the final update resource. Is a relative link */
   location?: string;
+}
+
+/** Optional parameters. */
+export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the pollWithParameterizedEndpoints operation. */
@@ -32,8 +40,6 @@ export type LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
 
     /** The response body as parsed JSON or XML */
     parsedBody: string;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 

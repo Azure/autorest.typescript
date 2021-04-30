@@ -8,17 +8,33 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  QueriesGetBooleanTrueOptionalParams,
+  QueriesGetBooleanFalseOptionalParams,
   QueriesGetBooleanNullOptionalParams,
+  QueriesGetIntOneMillionOptionalParams,
+  QueriesGetIntNegativeOneMillionOptionalParams,
   QueriesGetIntNullOptionalParams,
+  QueriesGetTenBillionOptionalParams,
+  QueriesGetNegativeTenBillionOptionalParams,
   QueriesGetLongNullOptionalParams,
+  QueriesFloatScientificPositiveOptionalParams,
+  QueriesFloatScientificNegativeOptionalParams,
   QueriesFloatNullOptionalParams,
+  QueriesDoubleDecimalPositiveOptionalParams,
+  QueriesDoubleDecimalNegativeOptionalParams,
   QueriesDoubleNullOptionalParams,
+  QueriesStringUnicodeOptionalParams,
+  QueriesStringUrlEncodedOptionalParams,
+  QueriesStringEmptyOptionalParams,
   QueriesStringNullOptionalParams,
   QueriesEnumValidOptionalParams,
   QueriesEnumNullOptionalParams,
   QueriesByteMultiByteOptionalParams,
+  QueriesByteEmptyOptionalParams,
   QueriesByteNullOptionalParams,
+  QueriesDateValidOptionalParams,
   QueriesDateNullOptionalParams,
+  QueriesDateTimeValidOptionalParams,
   QueriesDateTimeNullOptionalParams,
   QueriesArrayStringCsvValidOptionalParams,
   QueriesArrayStringCsvNullOptionalParams,
@@ -36,14 +52,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetBooleanTrueOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get false Boolean value on path
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetBooleanFalseOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null Boolean value on query (query string should be absent)
@@ -57,14 +73,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetIntOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetIntNegativeOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null integer value (no query parameter)
@@ -78,14 +94,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-10000000000' 64 bit integer value
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetNegativeTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get 'null 64 bit integer value (no query param in uri)
@@ -99,14 +115,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.OperationOptions
+    options?: QueriesFloatScientificPositiveOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.OperationOptions
+    options?: QueriesFloatScientificNegativeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null numeric value (no query parameter)
@@ -120,14 +136,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDoubleDecimalPositiveOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDoubleDecimalNegativeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null numeric value (no query parameter)
@@ -141,21 +157,21 @@ export interface Queries {
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringUnicodeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringUrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get ''
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null (no query parameter in url)
@@ -190,7 +206,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.OperationOptions
+    options?: QueriesByteEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as byte array (no query parameters in uri)
@@ -204,7 +220,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDateValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as date - this should result in no query parameters in uri
@@ -218,7 +234,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as date-time, should result in no query parameters in uri

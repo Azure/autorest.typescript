@@ -121,16 +121,12 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      operationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: operationSpec,
-      initialOperationResult,
+      operationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

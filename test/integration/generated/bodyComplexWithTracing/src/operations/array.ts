@@ -14,9 +14,14 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
+  ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
   ArrayWrapper,
+  ArrayPutValidOptionalParams,
+  ArrayGetEmptyOptionalParams,
   ArrayGetEmptyResponse,
+  ArrayPutEmptyOptionalParams,
+  ArrayGetNotProvidedOptionalParams,
   ArrayGetNotProvidedResponse
 } from "../models";
 
@@ -37,7 +42,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetValidOptionalParams
   ): Promise<ArrayGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -73,7 +78,7 @@ export class ArrayImpl implements Array {
    */
   async putValid(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
@@ -107,7 +112,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getEmpty",
@@ -142,7 +147,7 @@ export class ArrayImpl implements Array {
    */
   async putEmpty(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putEmpty",
@@ -176,7 +181,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getNotProvided",

@@ -13,7 +13,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
-import { FlattencomplexGetValidResponse } from "../models";
+import {
+  FlattencomplexGetValidOptionalParams,
+  FlattencomplexGetValidResponse
+} from "../models";
 
 /** Class representing a Flattencomplex. */
 export class FlattencomplexImpl implements Flattencomplex {
@@ -29,7 +32,7 @@ export class FlattencomplexImpl implements Flattencomplex {
 
   /** @param options The options parameters. */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: FlattencomplexGetValidOptionalParams
   ): Promise<FlattencomplexGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",

@@ -8,57 +8,122 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
+  DictionaryGetEmptyOptionalParams,
   DictionaryGetEmptyResponse,
+  DictionaryPutEmptyOptionalParams,
+  DictionaryGetNullValueOptionalParams,
   DictionaryGetNullValueResponse,
+  DictionaryGetNullKeyOptionalParams,
   DictionaryGetNullKeyResponse,
+  DictionaryGetEmptyStringKeyOptionalParams,
   DictionaryGetEmptyStringKeyResponse,
+  DictionaryGetInvalidOptionalParams,
   DictionaryGetInvalidResponse,
+  DictionaryGetBooleanTfftOptionalParams,
   DictionaryGetBooleanTfftResponse,
+  DictionaryPutBooleanTfftOptionalParams,
+  DictionaryGetBooleanInvalidNullOptionalParams,
   DictionaryGetBooleanInvalidNullResponse,
+  DictionaryGetBooleanInvalidStringOptionalParams,
   DictionaryGetBooleanInvalidStringResponse,
+  DictionaryGetIntegerValidOptionalParams,
   DictionaryGetIntegerValidResponse,
+  DictionaryPutIntegerValidOptionalParams,
+  DictionaryGetIntInvalidNullOptionalParams,
   DictionaryGetIntInvalidNullResponse,
+  DictionaryGetIntInvalidStringOptionalParams,
   DictionaryGetIntInvalidStringResponse,
+  DictionaryGetLongValidOptionalParams,
   DictionaryGetLongValidResponse,
+  DictionaryPutLongValidOptionalParams,
+  DictionaryGetLongInvalidNullOptionalParams,
   DictionaryGetLongInvalidNullResponse,
+  DictionaryGetLongInvalidStringOptionalParams,
   DictionaryGetLongInvalidStringResponse,
+  DictionaryGetFloatValidOptionalParams,
   DictionaryGetFloatValidResponse,
+  DictionaryPutFloatValidOptionalParams,
+  DictionaryGetFloatInvalidNullOptionalParams,
   DictionaryGetFloatInvalidNullResponse,
+  DictionaryGetFloatInvalidStringOptionalParams,
   DictionaryGetFloatInvalidStringResponse,
+  DictionaryGetDoubleValidOptionalParams,
   DictionaryGetDoubleValidResponse,
+  DictionaryPutDoubleValidOptionalParams,
+  DictionaryGetDoubleInvalidNullOptionalParams,
   DictionaryGetDoubleInvalidNullResponse,
+  DictionaryGetDoubleInvalidStringOptionalParams,
   DictionaryGetDoubleInvalidStringResponse,
+  DictionaryGetStringValidOptionalParams,
   DictionaryGetStringValidResponse,
+  DictionaryPutStringValidOptionalParams,
+  DictionaryGetStringWithNullOptionalParams,
   DictionaryGetStringWithNullResponse,
+  DictionaryGetStringWithInvalidOptionalParams,
   DictionaryGetStringWithInvalidResponse,
+  DictionaryGetDateValidOptionalParams,
   DictionaryGetDateValidResponse,
+  DictionaryPutDateValidOptionalParams,
+  DictionaryGetDateInvalidNullOptionalParams,
   DictionaryGetDateInvalidNullResponse,
+  DictionaryGetDateInvalidCharsOptionalParams,
   DictionaryGetDateInvalidCharsResponse,
+  DictionaryGetDateTimeValidOptionalParams,
   DictionaryGetDateTimeValidResponse,
+  DictionaryPutDateTimeValidOptionalParams,
+  DictionaryGetDateTimeInvalidNullOptionalParams,
   DictionaryGetDateTimeInvalidNullResponse,
+  DictionaryGetDateTimeInvalidCharsOptionalParams,
   DictionaryGetDateTimeInvalidCharsResponse,
+  DictionaryGetDateTimeRfc1123ValidOptionalParams,
   DictionaryGetDateTimeRfc1123ValidResponse,
+  DictionaryPutDateTimeRfc1123ValidOptionalParams,
+  DictionaryGetDurationValidOptionalParams,
   DictionaryGetDurationValidResponse,
+  DictionaryPutDurationValidOptionalParams,
+  DictionaryGetByteValidOptionalParams,
   DictionaryGetByteValidResponse,
+  DictionaryPutByteValidOptionalParams,
+  DictionaryGetByteInvalidNullOptionalParams,
   DictionaryGetByteInvalidNullResponse,
+  DictionaryGetBase64UrlOptionalParams,
   DictionaryGetBase64UrlResponse,
+  DictionaryGetComplexNullOptionalParams,
   DictionaryGetComplexNullResponse,
+  DictionaryGetComplexEmptyOptionalParams,
   DictionaryGetComplexEmptyResponse,
+  DictionaryGetComplexItemNullOptionalParams,
   DictionaryGetComplexItemNullResponse,
+  DictionaryGetComplexItemEmptyOptionalParams,
   DictionaryGetComplexItemEmptyResponse,
+  DictionaryGetComplexValidOptionalParams,
   DictionaryGetComplexValidResponse,
   Widget,
+  DictionaryPutComplexValidOptionalParams,
+  DictionaryGetArrayNullOptionalParams,
   DictionaryGetArrayNullResponse,
+  DictionaryGetArrayEmptyOptionalParams,
   DictionaryGetArrayEmptyResponse,
+  DictionaryGetArrayItemNullOptionalParams,
   DictionaryGetArrayItemNullResponse,
+  DictionaryGetArrayItemEmptyOptionalParams,
   DictionaryGetArrayItemEmptyResponse,
+  DictionaryGetArrayValidOptionalParams,
   DictionaryGetArrayValidResponse,
+  DictionaryPutArrayValidOptionalParams,
+  DictionaryGetDictionaryNullOptionalParams,
   DictionaryGetDictionaryNullResponse,
+  DictionaryGetDictionaryEmptyOptionalParams,
   DictionaryGetDictionaryEmptyResponse,
+  DictionaryGetDictionaryItemNullOptionalParams,
   DictionaryGetDictionaryItemNullResponse,
+  DictionaryGetDictionaryItemEmptyOptionalParams,
   DictionaryGetDictionaryItemEmptyResponse,
-  DictionaryGetDictionaryValidResponse
+  DictionaryGetDictionaryValidOptionalParams,
+  DictionaryGetDictionaryValidResponse,
+  DictionaryPutDictionaryValidOptionalParams
 } from "../models";
 
 /** Interface representing a Dictionary. */
@@ -68,14 +133,14 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse>;
   /**
    * Get empty dictionary value {}
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse>;
   /**
    * Set dictionary value empty {}
@@ -84,42 +149,42 @@ export interface Dictionary {
    */
   putEmpty(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get Dictionary with null value
    * @param options The options parameters.
    */
   getNullValue(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullValueOptionalParams
   ): Promise<DictionaryGetNullValueResponse>;
   /**
    * Get Dictionary with null key
    * @param options The options parameters.
    */
   getNullKey(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullKeyOptionalParams
   ): Promise<DictionaryGetNullKeyResponse>;
   /**
    * Get Dictionary with key as empty string
    * @param options The options parameters.
    */
   getEmptyStringKey(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyStringKeyOptionalParams
   ): Promise<DictionaryGetEmptyStringKeyResponse>;
   /**
    * Get invalid Dictionary value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetInvalidOptionalParams
   ): Promise<DictionaryGetInvalidResponse>;
   /**
    * Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanTfftOptionalParams
   ): Promise<DictionaryGetBooleanTfftResponse>;
   /**
    * Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }
@@ -128,28 +193,28 @@ export interface Dictionary {
    */
   putBooleanTfft(
     arrayBody: { [propertyName: string]: boolean },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutBooleanTfftOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get boolean dictionary value {"0": true, "1": null, "2": false }
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanInvalidNullOptionalParams
   ): Promise<DictionaryGetBooleanInvalidNullResponse>;
   /**
    * Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBooleanInvalidStringOptionalParams
   ): Promise<DictionaryGetBooleanInvalidStringResponse>;
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntegerValidOptionalParams
   ): Promise<DictionaryGetIntegerValidResponse>;
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
@@ -158,28 +223,28 @@ export interface Dictionary {
    */
   putIntegerValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutIntegerValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get integer dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntInvalidNullOptionalParams
   ): Promise<DictionaryGetIntInvalidNullResponse>;
   /**
    * Get integer dictionary value {"0": 1, "1": "integer", "2": 0}
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetIntInvalidStringOptionalParams
   ): Promise<DictionaryGetIntInvalidStringResponse>;
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param options The options parameters.
    */
   getLongValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongValidOptionalParams
   ): Promise<DictionaryGetLongValidResponse>;
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
@@ -188,28 +253,28 @@ export interface Dictionary {
    */
   putLongValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutLongValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get long dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongInvalidNullOptionalParams
   ): Promise<DictionaryGetLongInvalidNullResponse>;
   /**
    * Get long dictionary value {"0": 1, "1": "integer", "2": 0}
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetLongInvalidStringOptionalParams
   ): Promise<DictionaryGetLongInvalidStringResponse>;
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatValidOptionalParams
   ): Promise<DictionaryGetFloatValidResponse>;
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
@@ -218,28 +283,28 @@ export interface Dictionary {
    */
   putFloatValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutFloatValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatInvalidNullOptionalParams
   ): Promise<DictionaryGetFloatInvalidNullResponse>;
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetFloatInvalidStringOptionalParams
   ): Promise<DictionaryGetFloatInvalidStringResponse>;
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleValidOptionalParams
   ): Promise<DictionaryGetDoubleValidResponse>;
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
@@ -248,28 +313,28 @@ export interface Dictionary {
    */
   putDoubleValid(
     arrayBody: { [propertyName: string]: number },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDoubleValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleInvalidNullOptionalParams
   ): Promise<DictionaryGetDoubleInvalidNullResponse>;
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDoubleInvalidStringOptionalParams
   ): Promise<DictionaryGetDoubleInvalidStringResponse>;
   /**
    * Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
    * @param options The options parameters.
    */
   getStringValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringValidOptionalParams
   ): Promise<DictionaryGetStringValidResponse>;
   /**
    * Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
@@ -278,28 +343,28 @@ export interface Dictionary {
    */
   putStringValid(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutStringValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringWithNullOptionalParams
   ): Promise<DictionaryGetStringWithNullResponse>;
   /**
    * Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetStringWithInvalidOptionalParams
   ): Promise<DictionaryGetStringWithInvalidResponse>;
   /**
    * Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
    * @param options The options parameters.
    */
   getDateValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateValidOptionalParams
   ): Promise<DictionaryGetDateValidResponse>;
   /**
    * Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
@@ -308,21 +373,21 @@ export interface Dictionary {
    */
   putDateValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateInvalidNullOptionalParams
   ): Promise<DictionaryGetDateInvalidNullResponse>;
   /**
    * Get date dictionary value {"0": "2011-03-22", "1": "date"}
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateInvalidCharsOptionalParams
   ): Promise<DictionaryGetDateInvalidCharsResponse>;
   /**
    * Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
@@ -330,7 +395,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeValidOptionalParams
   ): Promise<DictionaryGetDateTimeValidResponse>;
   /**
    * Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
@@ -341,21 +406,21 @@ export interface Dictionary {
    */
   putDateTimeValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeInvalidNullOptionalParams
   ): Promise<DictionaryGetDateTimeInvalidNullResponse>;
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeInvalidCharsOptionalParams
   ): Promise<DictionaryGetDateTimeInvalidCharsResponse>;
   /**
    * Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
@@ -363,7 +428,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDateTimeRfc1123ValidOptionalParams
   ): Promise<DictionaryGetDateTimeRfc1123ValidResponse>;
   /**
    * Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35
@@ -374,14 +439,14 @@ export interface Dictionary {
    */
   putDateTimeRfc1123Valid(
     arrayBody: { [propertyName: string]: Date },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDateTimeRfc1123ValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDurationValidOptionalParams
   ): Promise<DictionaryGetDurationValidResponse>;
   /**
    * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
@@ -390,7 +455,7 @@ export interface Dictionary {
    */
   putDurationValid(
     arrayBody: { [propertyName: string]: string },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDurationValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
@@ -398,7 +463,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetByteValidOptionalParams
   ): Promise<DictionaryGetByteValidResponse>;
   /**
    * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
@@ -409,14 +474,14 @@ export interface Dictionary {
    */
   putByteValid(
     arrayBody: { [propertyName: string]: Uint8Array },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutByteValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetByteInvalidNullOptionalParams
   ): Promise<DictionaryGetByteInvalidNullResponse>;
   /**
    * Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
@@ -424,21 +489,21 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetBase64UrlOptionalParams
   ): Promise<DictionaryGetBase64UrlResponse>;
   /**
    * Get dictionary of complex type null value
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexNullOptionalParams
   ): Promise<DictionaryGetComplexNullResponse>;
   /**
    * Get empty dictionary of complex type {}
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexEmptyOptionalParams
   ): Promise<DictionaryGetComplexEmptyResponse>;
   /**
    * Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2":
@@ -446,7 +511,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexItemNullOptionalParams
   ): Promise<DictionaryGetComplexItemNullResponse>;
   /**
    * Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2":
@@ -454,7 +519,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexItemEmptyOptionalParams
   ): Promise<DictionaryGetComplexItemEmptyResponse>;
   /**
    * Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
@@ -462,7 +527,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetComplexValidOptionalParams
   ): Promise<DictionaryGetComplexValidResponse>;
   /**
    * Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer":
@@ -473,42 +538,42 @@ export interface Dictionary {
    */
   putComplexValid(
     arrayBody: { [propertyName: string]: Widget },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutComplexValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a null array
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayNullOptionalParams
   ): Promise<DictionaryGetArrayNullResponse>;
   /**
    * Get an empty dictionary {}
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayEmptyOptionalParams
   ): Promise<DictionaryGetArrayEmptyResponse>;
   /**
    * Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayItemNullOptionalParams
   ): Promise<DictionaryGetArrayItemNullResponse>;
   /**
    * Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayItemEmptyOptionalParams
   ): Promise<DictionaryGetArrayItemEmptyResponse>;
   /**
    * Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetArrayValidOptionalParams
   ): Promise<DictionaryGetArrayValidResponse>;
   /**
    * Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}
@@ -518,21 +583,21 @@ export interface Dictionary {
    */
   putArrayValid(
     arrayBody: { [propertyName: string]: string[] },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutArrayValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get an dictionaries of dictionaries with value null
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryNullOptionalParams
   ): Promise<DictionaryGetDictionaryNullResponse>;
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {}
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryEmptyOptionalParams
   ): Promise<DictionaryGetDictionaryEmptyResponse>;
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -540,7 +605,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryItemNullOptionalParams
   ): Promise<DictionaryGetDictionaryItemNullResponse>;
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -548,7 +613,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryItemEmptyOptionalParams
   ): Promise<DictionaryGetDictionaryItemEmptyResponse>;
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -557,7 +622,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetDictionaryValidOptionalParams
   ): Promise<DictionaryGetDictionaryValidResponse>;
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -570,6 +635,6 @@ export interface Dictionary {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: { [propertyName: string]: string } },
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutDictionaryValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

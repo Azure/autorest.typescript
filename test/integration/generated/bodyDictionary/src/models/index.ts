@@ -18,6 +18,10 @@ export interface Widget {
   string?: string;
 }
 
+/** Optional parameters. */
+export interface DictionaryGetNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type DictionaryGetNullResponse = { [propertyName: string]: number } & {
   /** The underlying HTTP response. */
@@ -30,6 +34,10 @@ export type DictionaryGetNullResponse = { [propertyName: string]: number } & {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmpty operation. */
 export type DictionaryGetEmptyResponse = { [propertyName: string]: number } & {
   /** The underlying HTTP response. */
@@ -41,6 +49,14 @@ export type DictionaryGetEmptyResponse = { [propertyName: string]: number } & {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetNullValueOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNullValue operation. */
 export type DictionaryGetNullValueResponse = {
@@ -56,6 +72,10 @@ export type DictionaryGetNullValueResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetNullKeyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNullKey operation. */
 export type DictionaryGetNullKeyResponse = {
   [propertyName: string]: string;
@@ -69,6 +89,10 @@ export type DictionaryGetNullKeyResponse = {
     parsedBody: { [propertyName: string]: string };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetEmptyStringKeyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyStringKey operation. */
 export type DictionaryGetEmptyStringKeyResponse = {
@@ -84,6 +108,10 @@ export type DictionaryGetEmptyStringKeyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInvalid operation. */
 export type DictionaryGetInvalidResponse = {
   [propertyName: string]: string;
@@ -97,6 +125,10 @@ export type DictionaryGetInvalidResponse = {
     parsedBody: { [propertyName: string]: string };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetBooleanTfftOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanTfft operation. */
 export type DictionaryGetBooleanTfftResponse = {
@@ -112,6 +144,14 @@ export type DictionaryGetBooleanTfftResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutBooleanTfftOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetBooleanInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBooleanInvalidNull operation. */
 export type DictionaryGetBooleanInvalidNullResponse = {
   [propertyName: string]: boolean;
@@ -125,6 +165,10 @@ export type DictionaryGetBooleanInvalidNullResponse = {
     parsedBody: { [propertyName: string]: boolean };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetBooleanInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidString operation. */
 export type DictionaryGetBooleanInvalidStringResponse = {
@@ -140,6 +184,10 @@ export type DictionaryGetBooleanInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetIntegerValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getIntegerValid operation. */
 export type DictionaryGetIntegerValidResponse = {
   [propertyName: string]: number;
@@ -153,6 +201,14 @@ export type DictionaryGetIntegerValidResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutIntegerValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetIntInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getIntInvalidNull operation. */
 export type DictionaryGetIntInvalidNullResponse = {
@@ -168,6 +224,10 @@ export type DictionaryGetIntInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetIntInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getIntInvalidString operation. */
 export type DictionaryGetIntInvalidStringResponse = {
   [propertyName: string]: number;
@@ -181,6 +241,10 @@ export type DictionaryGetIntInvalidStringResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetLongValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongValid operation. */
 export type DictionaryGetLongValidResponse = {
@@ -196,6 +260,14 @@ export type DictionaryGetLongValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutLongValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetLongInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getLongInvalidNull operation. */
 export type DictionaryGetLongInvalidNullResponse = {
   [propertyName: string]: number;
@@ -209,6 +281,10 @@ export type DictionaryGetLongInvalidNullResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetLongInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongInvalidString operation. */
 export type DictionaryGetLongInvalidStringResponse = {
@@ -224,6 +300,10 @@ export type DictionaryGetLongInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetFloatValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFloatValid operation. */
 export type DictionaryGetFloatValidResponse = {
   [propertyName: string]: number;
@@ -237,6 +317,14 @@ export type DictionaryGetFloatValidResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutFloatValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetFloatInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidNull operation. */
 export type DictionaryGetFloatInvalidNullResponse = {
@@ -252,6 +340,10 @@ export type DictionaryGetFloatInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetFloatInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFloatInvalidString operation. */
 export type DictionaryGetFloatInvalidStringResponse = {
   [propertyName: string]: number;
@@ -265,6 +357,10 @@ export type DictionaryGetFloatInvalidStringResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDoubleValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleValid operation. */
 export type DictionaryGetDoubleValidResponse = {
@@ -280,6 +376,14 @@ export type DictionaryGetDoubleValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutDoubleValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetDoubleInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDoubleInvalidNull operation. */
 export type DictionaryGetDoubleInvalidNullResponse = {
   [propertyName: string]: number;
@@ -293,6 +397,10 @@ export type DictionaryGetDoubleInvalidNullResponse = {
     parsedBody: { [propertyName: string]: number };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDoubleInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidString operation. */
 export type DictionaryGetDoubleInvalidStringResponse = {
@@ -308,6 +416,10 @@ export type DictionaryGetDoubleInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetStringValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStringValid operation. */
 export type DictionaryGetStringValidResponse = {
   [propertyName: string]: string;
@@ -321,6 +433,14 @@ export type DictionaryGetStringValidResponse = {
     parsedBody: { [propertyName: string]: string };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutStringValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetStringWithNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringWithNull operation. */
 export type DictionaryGetStringWithNullResponse = {
@@ -336,6 +456,10 @@ export type DictionaryGetStringWithNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetStringWithInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStringWithInvalid operation. */
 export type DictionaryGetStringWithInvalidResponse = {
   [propertyName: string]: string;
@@ -349,6 +473,10 @@ export type DictionaryGetStringWithInvalidResponse = {
     parsedBody: { [propertyName: string]: string };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateValid operation. */
 export type DictionaryGetDateValidResponse = {
@@ -364,6 +492,14 @@ export type DictionaryGetDateValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetDateInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateInvalidNull operation. */
 export type DictionaryGetDateInvalidNullResponse = {
   [propertyName: string]: Date;
@@ -377,6 +513,10 @@ export type DictionaryGetDateInvalidNullResponse = {
     parsedBody: { [propertyName: string]: Date };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDateInvalidCharsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateInvalidChars operation. */
 export type DictionaryGetDateInvalidCharsResponse = {
@@ -392,6 +532,10 @@ export type DictionaryGetDateInvalidCharsResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateTimeValid operation. */
 export type DictionaryGetDateTimeValidResponse = {
   [propertyName: string]: Date;
@@ -405,6 +549,14 @@ export type DictionaryGetDateTimeValidResponse = {
     parsedBody: { [propertyName: string]: Date };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetDateTimeInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidNull operation. */
 export type DictionaryGetDateTimeInvalidNullResponse = {
@@ -420,6 +572,10 @@ export type DictionaryGetDateTimeInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetDateTimeInvalidCharsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateTimeInvalidChars operation. */
 export type DictionaryGetDateTimeInvalidCharsResponse = {
   [propertyName: string]: Date;
@@ -433,6 +589,10 @@ export type DictionaryGetDateTimeInvalidCharsResponse = {
     parsedBody: { [propertyName: string]: Date };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDateTimeRfc1123ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123Valid operation. */
 export type DictionaryGetDateTimeRfc1123ValidResponse = {
@@ -448,6 +608,14 @@ export type DictionaryGetDateTimeRfc1123ValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutDateTimeRfc1123ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetDurationValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDurationValid operation. */
 export type DictionaryGetDurationValidResponse = {
   [propertyName: string]: string;
@@ -461,6 +629,14 @@ export type DictionaryGetDurationValidResponse = {
     parsedBody: { [propertyName: string]: string };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutDurationValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetByteValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByteValid operation. */
 export type DictionaryGetByteValidResponse = {
@@ -476,6 +652,14 @@ export type DictionaryGetByteValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutByteValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetByteInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByteInvalidNull operation. */
 export type DictionaryGetByteInvalidNullResponse = {
   [propertyName: string]: Uint8Array;
@@ -489,6 +673,10 @@ export type DictionaryGetByteInvalidNullResponse = {
     parsedBody: { [propertyName: string]: Uint8Array };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetBase64UrlOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBase64Url operation. */
 export type DictionaryGetBase64UrlResponse = {
@@ -504,6 +692,10 @@ export type DictionaryGetBase64UrlResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetComplexNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexNull operation. */
 export type DictionaryGetComplexNullResponse = {
   [propertyName: string]: Widget;
@@ -517,6 +709,10 @@ export type DictionaryGetComplexNullResponse = {
     parsedBody: { [propertyName: string]: Widget };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetComplexEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexEmpty operation. */
 export type DictionaryGetComplexEmptyResponse = {
@@ -532,6 +728,10 @@ export type DictionaryGetComplexEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetComplexItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexItemNull operation. */
 export type DictionaryGetComplexItemNullResponse = {
   [propertyName: string]: Widget | null;
@@ -545,6 +745,10 @@ export type DictionaryGetComplexItemNullResponse = {
     parsedBody: { [propertyName: string]: Widget | null };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetComplexItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexItemEmpty operation. */
 export type DictionaryGetComplexItemEmptyResponse = {
@@ -560,6 +764,10 @@ export type DictionaryGetComplexItemEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetComplexValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexValid operation. */
 export type DictionaryGetComplexValidResponse = {
   [propertyName: string]: Widget;
@@ -573,6 +781,14 @@ export type DictionaryGetComplexValidResponse = {
     parsedBody: { [propertyName: string]: Widget };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutComplexValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetArrayNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayNull operation. */
 export type DictionaryGetArrayNullResponse = {
@@ -588,6 +804,10 @@ export type DictionaryGetArrayNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetArrayEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getArrayEmpty operation. */
 export type DictionaryGetArrayEmptyResponse = {
   [propertyName: string]: string[];
@@ -601,6 +821,10 @@ export type DictionaryGetArrayEmptyResponse = {
     parsedBody: { [propertyName: string]: string[] };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetArrayItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayItemNull operation. */
 export type DictionaryGetArrayItemNullResponse = {
@@ -616,6 +840,10 @@ export type DictionaryGetArrayItemNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetArrayItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getArrayItemEmpty operation. */
 export type DictionaryGetArrayItemEmptyResponse = {
   [propertyName: string]: string[];
@@ -629,6 +857,10 @@ export type DictionaryGetArrayItemEmptyResponse = {
     parsedBody: { [propertyName: string]: string[] };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetArrayValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayValid operation. */
 export type DictionaryGetArrayValidResponse = {
@@ -644,6 +876,14 @@ export type DictionaryGetArrayValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutArrayValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetDictionaryNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryNull operation. */
 export type DictionaryGetDictionaryNullResponse = {
   [propertyName: string]: { [propertyName: string]: string };
@@ -658,6 +898,10 @@ export type DictionaryGetDictionaryNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetDictionaryEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryEmpty operation. */
 export type DictionaryGetDictionaryEmptyResponse = {
   [propertyName: string]: { [propertyName: string]: string };
@@ -671,6 +915,10 @@ export type DictionaryGetDictionaryEmptyResponse = {
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetDictionaryItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemNull operation. */
 export type DictionaryGetDictionaryItemNullResponse = {
@@ -688,6 +936,10 @@ export type DictionaryGetDictionaryItemNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetDictionaryItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryItemEmpty operation. */
 export type DictionaryGetDictionaryItemEmptyResponse = {
   [propertyName: string]: { [propertyName: string]: string };
@@ -702,6 +954,10 @@ export type DictionaryGetDictionaryItemEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetDictionaryValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryValid operation. */
 export type DictionaryGetDictionaryValidResponse = {
   [propertyName: string]: { [propertyName: string]: string };
@@ -715,6 +971,10 @@ export type DictionaryGetDictionaryValidResponse = {
     parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutDictionaryValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface BodyDictionaryClientOptionalParams

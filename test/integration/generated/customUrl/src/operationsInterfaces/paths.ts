@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import { PathsGetEmptyOptionalParams } from "../models";
 
 /** Interface representing a Paths. */
 export interface Paths {
@@ -17,6 +18,6 @@ export interface Paths {
    */
   getEmpty(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PathsGetEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -10,10 +10,16 @@ import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
 import * as coreHttp from "@azure/core-http";
 import {
+  DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
   DictionaryWrapper,
+  DictionaryPutValidOptionalParams,
+  DictionaryGetEmptyOptionalParams,
   DictionaryGetEmptyResponse,
+  DictionaryPutEmptyOptionalParams,
+  DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
+  DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse
 } from "../models";
 
@@ -24,7 +30,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetValidOptionalParams
   ): Promise<DictionaryGetValidResponse>;
   /**
    * Put complex types with dictionary property
@@ -34,14 +40,14 @@ export interface Dictionary {
    */
   putValid(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with dictionary property which is empty
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse>;
   /**
    * Put complex types with dictionary property which is empty
@@ -50,20 +56,20 @@ export interface Dictionary {
    */
   putEmpty(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with dictionary property which is null
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse>;
   /**
    * Get complex types with dictionary property while server doesn't provide a response payload
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNotProvidedOptionalParams
   ): Promise<DictionaryGetNotProvidedResponse>;
 }

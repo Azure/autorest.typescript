@@ -65,6 +65,10 @@ export type PetHungryOrThirstyError = PetSadError & {
   hungryOrThirsty?: string;
 };
 
+/** Optional parameters. */
+export interface PetGetPetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPetById operation. */
 export type PetGetPetByIdResponse = PetDef & {
   /** The underlying HTTP response. */
@@ -76,6 +80,10 @@ export type PetGetPetByIdResponse = PetDef & {
     parsedBody: PetDef;
   };
 };
+
+/** Optional parameters. */
+export interface PetDoSomethingOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the doSomething operation. */
 export type PetDoSomethingResponse = PetAction & {

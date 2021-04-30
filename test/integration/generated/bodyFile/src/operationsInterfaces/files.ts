@@ -8,8 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  FilesGetFileOptionalParams,
   FilesGetFileResponse,
+  FilesGetFileLargeOptionalParams,
   FilesGetFileLargeResponse,
+  FilesGetEmptyFileOptionalParams,
   FilesGetEmptyFileResponse
 } from "../models";
 
@@ -19,19 +22,19 @@ export interface Files {
    * Get file
    * @param options The options parameters.
    */
-  getFile(options?: coreHttp.OperationOptions): Promise<FilesGetFileResponse>;
+  getFile(options?: FilesGetFileOptionalParams): Promise<FilesGetFileResponse>;
   /**
    * Get a large file
    * @param options The options parameters.
    */
   getFileLarge(
-    options?: coreHttp.OperationOptions
+    options?: FilesGetFileLargeOptionalParams
   ): Promise<FilesGetFileLargeResponse>;
   /**
    * Get empty file
    * @param options The options parameters.
    */
   getEmptyFile(
-    options?: coreHttp.OperationOptions
+    options?: FilesGetEmptyFileOptionalParams
   ): Promise<FilesGetEmptyFileResponse>;
 }

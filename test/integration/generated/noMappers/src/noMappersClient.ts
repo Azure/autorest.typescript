@@ -12,6 +12,7 @@ import { NoMappersClientContext } from "./noMappersClientContext";
 import {
   NoMappersClientOptionalParams,
   Enum0,
+  NoMappersClientApiV1ValueGetOptionalParams,
   NoMappersClientApiV1ValueGetResponse
 } from "./models";
 
@@ -32,7 +33,7 @@ export class NoMappersClient extends NoMappersClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: coreHttp.OperationOptions
+    options?: NoMappersClientApiV1ValueGetOptionalParams
   ): Promise<NoMappersClientApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -50,6 +50,10 @@ export interface ErrorModel {
   fields?: string;
 }
 
+/** Optional parameters. */
+export interface ValidationClientValidationOfMethodParametersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validationOfMethodParameters operation. */
 export type ValidationClientValidationOfMethodParametersResponse = Product & {
   /** The underlying HTTP response. */
@@ -80,6 +84,10 @@ export type ValidationClientValidationOfBodyResponse = Product & {
     parsedBody: Product;
   };
 };
+
+/** Optional parameters. */
+export interface ValidationClientGetWithConstantInPathOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ValidationClientPostWithConstantInBodyOptionalParams

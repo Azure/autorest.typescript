@@ -35,6 +35,10 @@ export type Kitten = Cat & {
   eatsMiceYet?: boolean;
 };
 
+/** Optional parameters. */
+export interface MultipleInheritanceClientGetHorseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getHorse operation. */
 export type MultipleInheritanceClientGetHorseResponse = Horse & {
   /** The underlying HTTP response. */
@@ -46,6 +50,10 @@ export type MultipleInheritanceClientGetHorseResponse = Horse & {
     parsedBody: Horse;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleInheritanceClientPutHorseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putHorse operation. */
 export type MultipleInheritanceClientPutHorseResponse = {
@@ -62,6 +70,10 @@ export type MultipleInheritanceClientPutHorseResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleInheritanceClientGetPetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPet operation. */
 export type MultipleInheritanceClientGetPetResponse = Pet & {
   /** The underlying HTTP response. */
@@ -73,6 +85,10 @@ export type MultipleInheritanceClientGetPetResponse = Pet & {
     parsedBody: Pet;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleInheritanceClientPutPetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putPet operation. */
 export type MultipleInheritanceClientPutPetResponse = {
@@ -89,6 +105,10 @@ export type MultipleInheritanceClientPutPetResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleInheritanceClientGetFelineOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFeline operation. */
 export type MultipleInheritanceClientGetFelineResponse = Feline & {
   /** The underlying HTTP response. */
@@ -100,6 +120,10 @@ export type MultipleInheritanceClientGetFelineResponse = Feline & {
     parsedBody: Feline;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleInheritanceClientPutFelineOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putFeline operation. */
 export type MultipleInheritanceClientPutFelineResponse = {
@@ -116,6 +140,10 @@ export type MultipleInheritanceClientPutFelineResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleInheritanceClientGetCatOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getCat operation. */
 export type MultipleInheritanceClientGetCatResponse = Cat & {
   /** The underlying HTTP response. */
@@ -127,6 +155,10 @@ export type MultipleInheritanceClientGetCatResponse = Cat & {
     parsedBody: Cat;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleInheritanceClientPutCatOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putCat operation. */
 export type MultipleInheritanceClientPutCatResponse = {
@@ -143,6 +175,10 @@ export type MultipleInheritanceClientPutCatResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface MultipleInheritanceClientGetKittenOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getKitten operation. */
 export type MultipleInheritanceClientGetKittenResponse = Kitten & {
   /** The underlying HTTP response. */
@@ -154,6 +190,10 @@ export type MultipleInheritanceClientGetKittenResponse = Kitten & {
     parsedBody: Kitten;
   };
 };
+
+/** Optional parameters. */
+export interface MultipleInheritanceClientPutKittenOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putKitten operation. */
 export type MultipleInheritanceClientPutKittenResponse = {

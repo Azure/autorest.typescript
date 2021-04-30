@@ -8,9 +8,12 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  HeaderCustomNamedRequestIdOptionalParams,
   HeaderCustomNamedRequestIdResponse,
   HeaderCustomNamedRequestIdParamGroupingParameters,
+  HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   HeaderCustomNamedRequestIdParamGroupingResponse,
+  HeaderCustomNamedRequestIdHeadOptionalParams,
   HeaderCustomNamedRequestIdHeadResponse
 } from "../models";
 
@@ -23,7 +26,7 @@ export interface Header {
    */
   customNamedRequestId(
     fooClientRequestId: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdOptionalParams
   ): Promise<HeaderCustomNamedRequestIdResponse>;
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via
@@ -33,7 +36,7 @@ export interface Header {
    */
   customNamedRequestIdParamGrouping(
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse>;
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
@@ -42,6 +45,6 @@ export interface Header {
    */
   customNamedRequestIdHead(
     fooClientRequestId: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdHeadOptionalParams
   ): Promise<HeaderCustomNamedRequestIdHeadResponse>;
 }
