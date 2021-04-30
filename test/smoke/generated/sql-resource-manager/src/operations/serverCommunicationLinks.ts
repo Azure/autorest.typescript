@@ -17,7 +17,11 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerCommunicationLink,
+  ServerCommunicationLinksListByServerOptionalParams,
+  ServerCommunicationLinksDeleteOptionalParams,
+  ServerCommunicationLinksGetOptionalParams,
   ServerCommunicationLinksGetResponse,
+  ServerCommunicationLinksCreateOrUpdateOptionalParams,
   ServerCommunicationLinksCreateOrUpdateResponse,
   ServerCommunicationLinksListByServerResponse
 } from "../models";
@@ -45,7 +49,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerCommunicationLink> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -72,7 +76,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksListByServerOptionalParams
   ): AsyncIterableIterator<ServerCommunicationLink[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -85,7 +89,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksListByServerOptionalParams
   ): AsyncIterableIterator<ServerCommunicationLink> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -108,7 +112,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -134,7 +138,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksGetOptionalParams
   ): Promise<ServerCommunicationLinksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -162,7 +166,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
     serverName: string,
     communicationLinkName: string,
     parameters: ServerCommunicationLink,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>,
@@ -185,16 +189,12 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -207,7 +207,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksListByServerOptionalParams
   ): Promise<ServerCommunicationLinksListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -17,17 +17,30 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterface,
+  NetworkInterfacesListAllNextOptionalParams,
+  NetworkInterfacesListAllOptionalParams,
+  NetworkInterfacesListNextOptionalParams,
+  NetworkInterfacesListOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
   NetworkInterfaceIPConfiguration,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
+  NetworkInterfacesDeleteOptionalParams,
   NetworkInterfacesGetOptionalParams,
   NetworkInterfacesGetResponse,
+  NetworkInterfacesCreateOrUpdateOptionalParams,
   NetworkInterfacesCreateOrUpdateResponse,
   TagsObject,
+  NetworkInterfacesUpdateTagsOptionalParams,
   NetworkInterfacesUpdateTagsResponse,
   NetworkInterfacesListAllResponse,
   NetworkInterfacesListResponse,
+  NetworkInterfacesGetEffectiveRouteTableOptionalParams,
   NetworkInterfacesGetEffectiveRouteTableResponse,
+  NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams,
   NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse,
@@ -61,7 +74,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -78,7 +91,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllOptionalParams
   ): AsyncIterableIterator<NetworkInterface[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -91,7 +104,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllOptionalParams
   ): AsyncIterableIterator<NetworkInterface> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -105,7 +118,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -123,7 +136,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListOptionalParams
   ): AsyncIterableIterator<NetworkInterface[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -141,7 +154,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListOptionalParams
   ): AsyncIterableIterator<NetworkInterface> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -159,7 +172,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listVirtualMachineScaleSetVMNetworkInterfacesPagingAll(
       resourceGroupName,
@@ -189,7 +202,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
   ): AsyncIterableIterator<NetworkInterface[]> {
     let result = await this._listVirtualMachineScaleSetVMNetworkInterfaces(
       resourceGroupName,
@@ -216,7 +229,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
   ): AsyncIterableIterator<NetworkInterface> {
     for await (const page of this.listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
       resourceGroupName,
@@ -237,7 +250,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   public listVirtualMachineScaleSetNetworkInterfaces(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface> {
     const iter = this.listVirtualMachineScaleSetNetworkInterfacesPagingAll(
       resourceGroupName,
@@ -264,7 +277,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private async *listVirtualMachineScaleSetNetworkInterfacesPagingPage(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
   ): AsyncIterableIterator<NetworkInterface[]> {
     let result = await this._listVirtualMachineScaleSetNetworkInterfaces(
       resourceGroupName,
@@ -288,7 +301,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private async *listVirtualMachineScaleSetNetworkInterfacesPagingAll(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
   ): AsyncIterableIterator<NetworkInterface> {
     for await (const page of this.listVirtualMachineScaleSetNetworkInterfacesPagingPage(
       resourceGroupName,
@@ -397,7 +410,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   async delete(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -415,17 +428,13 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -461,7 +470,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: NetworkInterface,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkInterfacesCreateOrUpdateResponse>,
@@ -483,17 +492,13 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -507,7 +512,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesUpdateTagsOptionalParams
   ): Promise<NetworkInterfacesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -526,7 +531,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllOptionalParams
   ): Promise<NetworkInterfacesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -544,7 +549,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListOptionalParams
   ): Promise<NetworkInterfacesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -565,7 +570,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   async getEffectiveRouteTable(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
@@ -586,17 +591,13 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getEffectiveRouteTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getEffectiveRouteTableOperationSpec,
-      initialOperationResult,
+      getEffectiveRouteTableOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -608,7 +609,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   async listEffectiveNetworkSecurityGroups(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -631,17 +632,13 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listEffectiveNetworkSecurityGroupsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listEffectiveNetworkSecurityGroupsOperationSpec,
-      initialOperationResult,
+      listEffectiveNetworkSecurityGroupsOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -655,7 +652,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse
   > {
@@ -682,7 +679,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private _listVirtualMachineScaleSetNetworkInterfaces(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse
   > {
@@ -805,7 +802,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllNextOptionalParams
   ): Promise<NetworkInterfacesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -826,7 +823,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListNextOptionalParams
   ): Promise<NetworkInterfacesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -853,7 +850,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse
   > {
@@ -884,7 +881,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse
   > {

@@ -14,6 +14,8 @@ import {
   ProviderGetAvailableStacksNextOptionalParams,
   ProviderGetAvailableStacksOptionalParams,
   CsmOperationDescription,
+  ProviderListOperationsNextOptionalParams,
+  ProviderListOperationsOptionalParams,
   ProviderGetAvailableStacksOnPremNextOptionalParams,
   ProviderGetAvailableStacksOnPremOptionalParams
 } from "../models";
@@ -34,7 +36,7 @@ export interface Provider {
    * @param options The options parameters.
    */
   listOperations(
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsOptionalParams
   ): PagedAsyncIterableIterator<CsmOperationDescription>;
   /**
    * Description for Get available application frameworks and their versions

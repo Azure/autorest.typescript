@@ -17,12 +17,21 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncMember,
+  SyncMembersListBySyncGroupNextOptionalParams,
+  SyncMembersListBySyncGroupOptionalParams,
   SyncFullSchemaProperties,
+  SyncMembersListMemberSchemasNextOptionalParams,
+  SyncMembersListMemberSchemasOptionalParams,
+  SyncMembersGetOptionalParams,
   SyncMembersGetResponse,
+  SyncMembersCreateOrUpdateOptionalParams,
   SyncMembersCreateOrUpdateResponse,
+  SyncMembersDeleteOptionalParams,
+  SyncMembersUpdateOptionalParams,
   SyncMembersUpdateResponse,
   SyncMembersListBySyncGroupResponse,
   SyncMembersListMemberSchemasResponse,
+  SyncMembersRefreshMemberSchemaOptionalParams,
   SyncMembersListBySyncGroupNextResponse,
   SyncMembersListMemberSchemasNextResponse
 } from "../models";
@@ -54,7 +63,7 @@ export class SyncMembersImpl implements SyncMembers {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupOptionalParams
   ): PagedAsyncIterableIterator<SyncMember> {
     const iter = this.listBySyncGroupPagingAll(
       resourceGroupName,
@@ -87,7 +96,7 @@ export class SyncMembersImpl implements SyncMembers {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupOptionalParams
   ): AsyncIterableIterator<SyncMember[]> {
     let result = await this._listBySyncGroup(
       resourceGroupName,
@@ -117,7 +126,7 @@ export class SyncMembersImpl implements SyncMembers {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupOptionalParams
   ): AsyncIterableIterator<SyncMember> {
     for await (const page of this.listBySyncGroupPagingPage(
       resourceGroupName,
@@ -146,7 +155,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasOptionalParams
   ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
     const iter = this.listMemberSchemasPagingAll(
       resourceGroupName,
@@ -182,7 +191,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasOptionalParams
   ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
     let result = await this._listMemberSchemas(
       resourceGroupName,
@@ -215,7 +224,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasOptionalParams
   ): AsyncIterableIterator<SyncFullSchemaProperties> {
     for await (const page of this.listMemberSchemasPagingPage(
       resourceGroupName,
@@ -245,7 +254,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersGetOptionalParams
   ): Promise<SyncMembersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -279,7 +288,7 @@ export class SyncMembersImpl implements SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     parameters: SyncMember,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncMembersCreateOrUpdateResponse>,
@@ -304,16 +313,12 @@ export class SyncMembersImpl implements SyncMembers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -332,7 +337,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -353,16 +358,12 @@ export class SyncMembersImpl implements SyncMembers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -383,7 +384,7 @@ export class SyncMembersImpl implements SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     parameters: SyncMember,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncMembersUpdateResponse>,
@@ -408,16 +409,12 @@ export class SyncMembersImpl implements SyncMembers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -434,7 +431,7 @@ export class SyncMembersImpl implements SyncMembers {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupOptionalParams
   ): Promise<SyncMembersListBySyncGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -465,7 +462,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasOptionalParams
   ): Promise<SyncMembersListMemberSchemasResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -497,7 +494,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersRefreshMemberSchemaOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -518,16 +515,12 @@ export class SyncMembersImpl implements SyncMembers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      refreshMemberSchemaOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: refreshMemberSchemaOperationSpec,
-      initialOperationResult,
+      refreshMemberSchemaOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -546,7 +539,7 @@ export class SyncMembersImpl implements SyncMembers {
     databaseName: string,
     syncGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupNextOptionalParams
   ): Promise<SyncMembersListBySyncGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -580,7 +573,7 @@ export class SyncMembersImpl implements SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasNextOptionalParams
   ): Promise<SyncMembersListMemberSchemasNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

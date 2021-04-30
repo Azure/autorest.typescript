@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServiceEndpointPolicy,
+  ServiceEndpointPoliciesListNextOptionalParams,
+  ServiceEndpointPoliciesListOptionalParams,
+  ServiceEndpointPoliciesListByResourceGroupNextOptionalParams,
+  ServiceEndpointPoliciesListByResourceGroupOptionalParams,
+  ServiceEndpointPoliciesDeleteOptionalParams,
   ServiceEndpointPoliciesGetOptionalParams,
   ServiceEndpointPoliciesGetResponse,
+  ServiceEndpointPoliciesCreateOrUpdateOptionalParams,
   ServiceEndpointPoliciesCreateOrUpdateResponse,
   TagsObject,
+  ServiceEndpointPoliciesUpdateTagsOptionalParams,
   ServiceEndpointPoliciesUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface ServiceEndpointPolicies {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
   /**
    * Gets all service endpoint Policies in a resource group.
@@ -36,7 +43,7 @@ export interface ServiceEndpointPolicies {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ServiceEndpointPolicy>;
   /**
    * Deletes the specified service endpoint policy.
@@ -47,7 +54,7 @@ export interface ServiceEndpointPolicies {
   delete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface ServiceEndpointPolicies {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     parameters: ServiceEndpointPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface ServiceEndpointPolicies {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesUpdateTagsOptionalParams
   ): Promise<ServiceEndpointPoliciesUpdateTagsResponse>;
 }

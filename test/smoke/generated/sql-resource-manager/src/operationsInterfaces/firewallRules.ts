@@ -11,7 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   FirewallRule,
+  FirewallRulesListByServerOptionalParams,
+  FirewallRulesCreateOrUpdateOptionalParams,
   FirewallRulesCreateOrUpdateResponse,
+  FirewallRulesDeleteOptionalParams,
+  FirewallRulesGetOptionalParams,
   FirewallRulesGetResponse
 } from "../models";
 
@@ -28,7 +32,7 @@ export interface FirewallRules {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesListByServerOptionalParams
   ): PagedAsyncIterableIterator<FirewallRule>;
   /**
    * Creates or updates a firewall rule.
@@ -44,7 +48,7 @@ export interface FirewallRules {
     serverName: string,
     firewallRuleName: string,
     parameters: FirewallRule,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesCreateOrUpdateOptionalParams
   ): Promise<FirewallRulesCreateOrUpdateResponse>;
   /**
    * Deletes a firewall rule.
@@ -58,7 +62,7 @@ export interface FirewallRules {
     resourceGroupName: string,
     serverName: string,
     firewallRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a firewall rule.
@@ -72,6 +76,6 @@ export interface FirewallRules {
     resourceGroupName: string,
     serverName: string,
     firewallRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesGetOptionalParams
   ): Promise<FirewallRulesGetResponse>;
 }

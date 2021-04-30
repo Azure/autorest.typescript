@@ -15,11 +15,19 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   Certificate,
+  CertificatesListNextOptionalParams,
+  CertificatesListOptionalParams,
+  CertificatesListByResourceGroupNextOptionalParams,
+  CertificatesListByResourceGroupOptionalParams,
   CertificatesListResponse,
   CertificatesListByResourceGroupResponse,
+  CertificatesGetOptionalParams,
   CertificatesGetResponse,
+  CertificatesCreateOrUpdateOptionalParams,
   CertificatesCreateOrUpdateResponse,
+  CertificatesDeleteOptionalParams,
   CertificatePatchResource,
+  CertificatesUpdateOptionalParams,
   CertificatesUpdateResponse,
   CertificatesListNextResponse,
   CertificatesListByResourceGroupNextResponse
@@ -43,7 +51,7 @@ export class CertificatesImpl implements Certificates {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListOptionalParams
   ): PagedAsyncIterableIterator<Certificate> {
     const iter = this.listPagingAll(options);
     return {
@@ -60,7 +68,7 @@ export class CertificatesImpl implements Certificates {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListOptionalParams
   ): AsyncIterableIterator<Certificate[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -73,7 +81,7 @@ export class CertificatesImpl implements Certificates {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListOptionalParams
   ): AsyncIterableIterator<Certificate> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -87,7 +95,7 @@ export class CertificatesImpl implements Certificates {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Certificate> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -105,7 +113,7 @@ export class CertificatesImpl implements Certificates {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Certificate[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -123,7 +131,7 @@ export class CertificatesImpl implements Certificates {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Certificate> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -138,7 +146,7 @@ export class CertificatesImpl implements Certificates {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListOptionalParams
   ): Promise<CertificatesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -156,7 +164,7 @@ export class CertificatesImpl implements Certificates {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupOptionalParams
   ): Promise<CertificatesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -177,7 +185,7 @@ export class CertificatesImpl implements Certificates {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesGetOptionalParams
   ): Promise<CertificatesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -201,7 +209,7 @@ export class CertificatesImpl implements Certificates {
     resourceGroupName: string,
     name: string,
     certificateEnvelope: Certificate,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesCreateOrUpdateOptionalParams
   ): Promise<CertificatesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -224,7 +232,7 @@ export class CertificatesImpl implements Certificates {
   delete(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -248,7 +256,7 @@ export class CertificatesImpl implements Certificates {
     resourceGroupName: string,
     name: string,
     certificateEnvelope: CertificatePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesUpdateOptionalParams
   ): Promise<CertificatesUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -269,7 +277,7 @@ export class CertificatesImpl implements Certificates {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListNextOptionalParams
   ): Promise<CertificatesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -290,7 +298,7 @@ export class CertificatesImpl implements Certificates {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupNextOptionalParams
   ): Promise<CertificatesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

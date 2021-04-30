@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { DirectoryObjectUnion, SignedInUserGetResponse } from "../models";
+import {
+  DirectoryObjectUnion,
+  SignedInUserListOwnedObjectsNextOptionalParams,
+  SignedInUserListOwnedObjectsOptionalParams,
+  SignedInUserGetOptionalParams,
+  SignedInUserGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a SignedInUser. */
@@ -19,7 +25,7 @@ export interface SignedInUser {
    * @param options The options parameters.
    */
   listOwnedObjects(
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the list of directory objects that are owned by the user.
@@ -28,11 +34,13 @@ export interface SignedInUser {
    */
   listOwnedObjectsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets the details for the currently logged-in user.
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<SignedInUserGetResponse>;
+  get(
+    options?: SignedInUserGetOptionalParams
+  ): Promise<SignedInUserGetResponse>;
 }

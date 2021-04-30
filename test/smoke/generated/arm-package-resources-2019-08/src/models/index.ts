@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -849,6 +848,10 @@ export type ResourceIdentityType =
   | "SystemAssigned, UserAssigned"
   | "None";
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -860,6 +863,10 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
@@ -873,6 +880,28 @@ export type OperationsListNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsDeleteAtScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DeploymentsCheckExistenceAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsCreateOrUpdateAtScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateAtScope operation. */
 export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
   /** The underlying HTTP response. */
@@ -882,10 +911,12 @@ export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsGetAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtScope operation. */
 export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
@@ -899,6 +930,14 @@ export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsCancelAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsValidateAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validateAtScope operation. */
 export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
   /** The underlying HTTP response. */
@@ -910,6 +949,10 @@ export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
     parsedBody: DeploymentValidateResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsExportTemplateAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtScope operation. */
 export type DeploymentsExportTemplateAtScopeResponse = DeploymentExportResult & {
@@ -944,6 +987,28 @@ export type DeploymentsListAtScopeResponse = DeploymentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsDeleteAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DeploymentsCheckExistenceAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateAtTenantScope operation. */
 export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended & {
   /** The underlying HTTP response. */
@@ -953,10 +1018,12 @@ export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended 
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsGetAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtTenantScope operation. */
 export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended & {
@@ -970,6 +1037,14 @@ export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsCancelAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsValidateAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validateAtTenantScope operation. */
 export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult & {
   /** The underlying HTTP response. */
@@ -981,6 +1056,10 @@ export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult 
     parsedBody: DeploymentValidateResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsExportTemplateAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtTenantScope operation. */
 export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult & {
@@ -1015,6 +1094,28 @@ export type DeploymentsListAtTenantScopeResponse = DeploymentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsDeleteAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateAtManagementGroupScope operation. */
 export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended & {
   /** The underlying HTTP response. */
@@ -1024,10 +1125,12 @@ export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = Deployment
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsGetAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroupScope operation. */
 export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended & {
@@ -1041,6 +1144,14 @@ export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended & 
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsCancelAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsValidateAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validateAtManagementGroupScope operation. */
 export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult & {
   /** The underlying HTTP response. */
@@ -1052,6 +1163,10 @@ export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValida
     parsedBody: DeploymentValidateResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtManagementGroupScope operation. */
 export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult & {
@@ -1086,6 +1201,28 @@ export type DeploymentsListAtManagementGroupScopeResponse = DeploymentListResult
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsDeleteAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateAtSubscriptionScope operation. */
 export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended & {
   /** The underlying HTTP response. */
@@ -1095,10 +1232,12 @@ export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExt
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsGetAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionScope operation. */
 export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
@@ -1112,6 +1251,14 @@ export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsCancelAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsValidateAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validateAtSubscriptionScope operation. */
 export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult & {
   /** The underlying HTTP response. */
@@ -1124,6 +1271,15 @@ export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateR
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the whatIfAtSubscriptionScope operation. */
 export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult & {
   /** The underlying HTTP response. */
@@ -1133,10 +1289,12 @@ export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult
 
     /** The response body as parsed JSON or XML */
     parsedBody: WhatIfOperationResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtSubscriptionScope operation. */
 export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult & {
@@ -1171,6 +1329,28 @@ export type DeploymentsListAtSubscriptionScopeResponse = DeploymentListResult & 
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DeploymentsCheckExistenceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
   /** The underlying HTTP response. */
@@ -1180,10 +1360,12 @@ export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentExtended;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DeploymentsGetResponse = DeploymentExtended & {
@@ -1197,6 +1379,14 @@ export type DeploymentsGetResponse = DeploymentExtended & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsCancelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentsValidateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validate operation. */
 export type DeploymentsValidateResponse = DeploymentValidateResult & {
   /** The underlying HTTP response. */
@@ -1209,6 +1399,15 @@ export type DeploymentsValidateResponse = DeploymentValidateResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentsWhatIfOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the whatIf operation. */
 export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
   /** The underlying HTTP response. */
@@ -1218,10 +1417,12 @@ export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WhatIfOperationResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsExportTemplateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the exportTemplate operation. */
 export type DeploymentsExportTemplateResponse = DeploymentExportResult & {
@@ -1255,6 +1456,10 @@ export type DeploymentsListByResourceGroupResponse = DeploymentListResult & {
     parsedBody: DeploymentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentsCalculateTemplateHashOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the calculateTemplateHash operation. */
 export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult & {
@@ -1373,6 +1578,10 @@ export type DeploymentsListByResourceGroupNextResponse = DeploymentListResult & 
   };
 };
 
+/** Optional parameters. */
+export interface ProvidersUnregisterOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the unregister operation. */
 export type ProvidersUnregisterResponse = Provider & {
   /** The underlying HTTP response. */
@@ -1384,6 +1593,10 @@ export type ProvidersUnregisterResponse = Provider & {
     parsedBody: Provider;
   };
 };
+
+/** Optional parameters. */
+export interface ProvidersRegisterOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the register operation. */
 export type ProvidersRegisterResponse = Provider & {
@@ -1541,6 +1754,24 @@ export type ResourcesListByResourceGroupResponse = ResourceListResult & {
 };
 
 /** Optional parameters. */
+export interface ResourcesMoveResourcesOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ResourcesValidateMoveResourcesOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
 export interface ResourcesListOptionalParams extends coreHttp.OperationOptions {
   /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
@@ -1562,6 +1793,28 @@ export type ResourcesListResponse = ResourceListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourcesCheckExistenceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ResourcesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ResourcesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ResourcesCreateOrUpdateResponse = GenericResource & {
   /** The underlying HTTP response. */
@@ -1571,10 +1824,17 @@ export type ResourcesCreateOrUpdateResponse = GenericResource & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ResourcesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ResourcesUpdateResponse = GenericResource & {
@@ -1585,10 +1845,11 @@ export type ResourcesUpdateResponse = GenericResource & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ResourcesGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ResourcesGetResponse = GenericResource & {
@@ -1602,6 +1863,28 @@ export type ResourcesGetResponse = GenericResource & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourcesCheckExistenceByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ResourcesDeleteByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ResourcesCreateOrUpdateByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateById operation. */
 export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
   /** The underlying HTTP response. */
@@ -1611,10 +1894,17 @@ export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ResourcesUpdateByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the updateById operation. */
 export type ResourcesUpdateByIdResponse = GenericResource & {
@@ -1625,10 +1915,12 @@ export type ResourcesUpdateByIdResponse = GenericResource & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GenericResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ResourcesGetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getById operation. */
 export type ResourcesGetByIdResponse = GenericResource & {
@@ -1688,6 +1980,14 @@ export type ResourcesListNextResponse = ResourceListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceGroupsCheckExistenceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ResourceGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
   /** The underlying HTTP response. */
@@ -1699,6 +1999,19 @@ export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
     parsedBody: ResourceGroup;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ResourceGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ResourceGroupsGetResponse = ResourceGroup & {
@@ -1712,6 +2025,10 @@ export type ResourceGroupsGetResponse = ResourceGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceGroupsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type ResourceGroupsUpdateResponse = ResourceGroup & {
   /** The underlying HTTP response. */
@@ -1724,6 +2041,15 @@ export type ResourceGroupsUpdateResponse = ResourceGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceGroupsExportTemplateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the exportTemplate operation. */
 export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
   /** The underlying HTTP response. */
@@ -1733,8 +2059,6 @@ export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ResourceGroupExportResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -1780,6 +2104,14 @@ export type ResourceGroupsListNextResponse = ResourceGroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface TagsDeleteValueOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface TagsCreateOrUpdateValueOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateValue operation. */
 export type TagsCreateOrUpdateValueResponse = TagValue & {
   /** The underlying HTTP response. */
@@ -1791,6 +2123,10 @@ export type TagsCreateOrUpdateValueResponse = TagValue & {
     parsedBody: TagValue;
   };
 };
+
+/** Optional parameters. */
+export interface TagsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type TagsCreateOrUpdateResponse = TagDetails & {
@@ -1804,6 +2140,12 @@ export type TagsCreateOrUpdateResponse = TagDetails & {
   };
 };
 
+/** Optional parameters. */
+export interface TagsDeleteOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface TagsListOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type TagsListResponse = TagsListResult & {
   /** The underlying HTTP response. */
@@ -1816,6 +2158,9 @@ export type TagsListResponse = TagsListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface TagsListNextOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type TagsListNextResponse = TagsListResult & {
   /** The underlying HTTP response. */
@@ -1827,6 +2172,10 @@ export type TagsListNextResponse = TagsListResult & {
     parsedBody: TagsListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentOperationsGetAtScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtScope operation. */
 export type DeploymentOperationsGetAtScopeResponse = DeploymentOperation & {
@@ -1859,6 +2208,10 @@ export type DeploymentOperationsListAtScopeResponse = DeploymentOperationsListRe
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentOperationsGetAtTenantScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAtTenantScope operation. */
 export type DeploymentOperationsGetAtTenantScopeResponse = DeploymentOperation & {
   /** The underlying HTTP response. */
@@ -1889,6 +2242,10 @@ export type DeploymentOperationsListAtTenantScopeResponse = DeploymentOperations
     parsedBody: DeploymentOperationsListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentOperationsGetAtManagementGroupScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroupScope operation. */
 export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation & {
@@ -1921,6 +2278,10 @@ export type DeploymentOperationsListAtManagementGroupScopeResponse = DeploymentO
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentOperationsGetAtSubscriptionScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAtSubscriptionScope operation. */
 export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation & {
   /** The underlying HTTP response. */
@@ -1951,6 +2312,10 @@ export type DeploymentOperationsListAtSubscriptionScopeResponse = DeploymentOper
     parsedBody: DeploymentOperationsListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentOperationsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DeploymentOperationsGetResponse = DeploymentOperation & {

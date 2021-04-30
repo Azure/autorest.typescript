@@ -11,7 +11,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { MonitorClientContext } from "../monitorClientContext";
-import { AzureMetricsDocument, MetricsCreateResponse } from "../models";
+import {
+  AzureMetricsDocument,
+  MetricsCreateOptionalParams,
+  MetricsCreateResponse
+} from "../models";
 
 /** Class representing a Metrics. */
 export class MetricsImpl implements Metrics {
@@ -49,7 +53,7 @@ export class MetricsImpl implements Metrics {
     resourceTypeName: string,
     resourceName: string,
     body: AzureMetricsDocument,
-    options?: coreHttp.OperationOptions
+    options?: MetricsCreateOptionalParams
   ): Promise<MetricsCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       contentType,

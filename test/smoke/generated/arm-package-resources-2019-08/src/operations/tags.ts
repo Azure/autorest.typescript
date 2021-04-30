@@ -15,8 +15,14 @@ import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import {
   TagDetails,
+  TagsListNextOptionalParams,
+  TagsListOptionalParams,
+  TagsDeleteValueOptionalParams,
+  TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
+  TagsCreateOrUpdateOptionalParams,
   TagsCreateOrUpdateResponse,
+  TagsDeleteOptionalParams,
   TagsListResponse,
   TagsListNextResponse
 } from "../models";
@@ -39,7 +45,7 @@ export class TagsImpl implements Tags {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: TagsListOptionalParams
   ): PagedAsyncIterableIterator<TagDetails> {
     const iter = this.listPagingAll(options);
     return {
@@ -56,7 +62,7 @@ export class TagsImpl implements Tags {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: TagsListOptionalParams
   ): AsyncIterableIterator<TagDetails[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -69,7 +75,7 @@ export class TagsImpl implements Tags {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: TagsListOptionalParams
   ): AsyncIterableIterator<TagDetails> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -85,7 +91,7 @@ export class TagsImpl implements Tags {
   deleteValue(
     tagName: string,
     tagValue: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsDeleteValueOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       tagName,
@@ -107,7 +113,7 @@ export class TagsImpl implements Tags {
   createOrUpdateValue(
     tagName: string,
     tagValue: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsCreateOrUpdateValueOptionalParams
   ): Promise<TagsCreateOrUpdateValueResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       tagName,
@@ -129,7 +135,7 @@ export class TagsImpl implements Tags {
    */
   createOrUpdate(
     tagName: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsCreateOrUpdateOptionalParams
   ): Promise<TagsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       tagName,
@@ -148,7 +154,7 @@ export class TagsImpl implements Tags {
    */
   delete(
     tagName: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       tagName,
@@ -164,9 +170,7 @@ export class TagsImpl implements Tags {
    * Gets the names and values of all resource tags that are defined in a subscription.
    * @param options The options parameters.
    */
-  private _list(
-    options?: coreHttp.OperationOptions
-  ): Promise<TagsListResponse> {
+  private _list(options?: TagsListOptionalParams): Promise<TagsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -183,7 +187,7 @@ export class TagsImpl implements Tags {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsListNextOptionalParams
   ): Promise<TagsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -11,10 +11,23 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PolicyDefinition,
+  PolicyDefinitionsListNextOptionalParams,
+  PolicyDefinitionsListOptionalParams,
+  PolicyDefinitionsListBuiltInNextOptionalParams,
+  PolicyDefinitionsListBuiltInOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupOptionalParams,
+  PolicyDefinitionsCreateOrUpdateOptionalParams,
   PolicyDefinitionsCreateOrUpdateResponse,
+  PolicyDefinitionsDeleteOptionalParams,
+  PolicyDefinitionsGetOptionalParams,
   PolicyDefinitionsGetResponse,
+  PolicyDefinitionsGetBuiltInOptionalParams,
   PolicyDefinitionsGetBuiltInResponse,
+  PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse,
+  PolicyDefinitionsDeleteAtManagementGroupOptionalParams,
+  PolicyDefinitionsGetAtManagementGroupOptionalParams,
   PolicyDefinitionsGetAtManagementGroupResponse
 } from "../models";
 
@@ -26,14 +39,14 @@ export interface PolicyDefinitions {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition>;
   /**
    * This operation retrieves a list of all the built-in policy definitions.
    * @param options The options parameters.
    */
   listBuiltIn(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition>;
   /**
    * This operation retrieves a list of all the policy definitions in a given management group.
@@ -42,7 +55,7 @@ export interface PolicyDefinitions {
    */
   listByManagementGroup(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition>;
   /**
    * This operation creates or updates a policy definition in the given subscription with the given name.
@@ -53,7 +66,7 @@ export interface PolicyDefinitions {
   createOrUpdate(
     policyDefinitionName: string,
     parameters: PolicyDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsCreateOrUpdateOptionalParams
   ): Promise<PolicyDefinitionsCreateOrUpdateResponse>;
   /**
    * This operation deletes the policy definition in the given subscription with the given name.
@@ -62,7 +75,7 @@ export interface PolicyDefinitions {
    */
   delete(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * This operation retrieves the policy definition in the given subscription with the given name.
@@ -71,7 +84,7 @@ export interface PolicyDefinitions {
    */
   get(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetOptionalParams
   ): Promise<PolicyDefinitionsGetResponse>;
   /**
    * This operation retrieves the built-in policy definition with the given name.
@@ -80,7 +93,7 @@ export interface PolicyDefinitions {
    */
   getBuiltIn(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetBuiltInOptionalParams
   ): Promise<PolicyDefinitionsGetBuiltInResponse>;
   /**
    * This operation creates or updates a policy definition in the given management group with the given
@@ -94,7 +107,7 @@ export interface PolicyDefinitions {
     policyDefinitionName: string,
     managementGroupId: string,
     parameters: PolicyDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   ): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse>;
   /**
    * This operation deletes the policy definition in the given management group with the given name.
@@ -105,7 +118,7 @@ export interface PolicyDefinitions {
   deleteAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * This operation retrieves the policy definition in the given management group with the given name.
@@ -116,6 +129,6 @@ export interface PolicyDefinitions {
   getAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetAtManagementGroupOptionalParams
   ): Promise<PolicyDefinitionsGetAtManagementGroupResponse>;
 }

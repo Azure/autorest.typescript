@@ -1498,13 +1498,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsCreateOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1534,8 +1530,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
+                "startIndex": 9,
+                "endIndex": 13
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1565,7 +1561,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 7,
-                    "endIndex": 9
+                    "endIndex": 8
                   }
                 }
               ],
@@ -1598,13 +1594,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsCreateByIdOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1634,8 +1626,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1658,7 +1650,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1690,13 +1682,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1726,8 +1714,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1750,7 +1738,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1774,13 +1762,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1810,8 +1794,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1827,7 +1811,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1859,13 +1843,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsGetOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1895,8 +1875,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1919,7 +1899,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1943,13 +1923,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsGetByIdOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1979,8 +1955,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1996,7 +1972,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -2086,13 +2062,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyAssignmentsListForManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2122,8 +2094,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2146,7 +2118,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2362,6 +2334,39 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsCreateByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsCreateByIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the createById operation.\n */\n",
@@ -2408,6 +2413,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsCreateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsCreateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2458,6 +2496,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsDeleteByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsDeleteByIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdResponse:type",
           "docComment": "/**\n * Contains response data for the deleteById operation.\n */\n",
@@ -2504,6 +2575,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2554,6 +2658,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsGetByIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsGetByIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdResponse:type",
           "docComment": "/**\n * Contains response data for the getById operation.\n */\n",
@@ -2600,6 +2737,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2650,6 +2820,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsListForManagementGroupNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsListForManagementGroupNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listForManagementGroupNext operation.\n */\n",
@@ -2696,6 +2899,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyAssignmentsListForManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyAssignmentsListForManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -4520,13 +4756,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4556,8 +4788,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4580,7 +4812,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -4621,13 +4853,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4657,8 +4885,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
+                "startIndex": 9,
+                "endIndex": 13
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4688,7 +4916,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 7,
-                    "endIndex": 9
+                    "endIndex": 8
                   }
                 }
               ],
@@ -4712,13 +4940,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4748,8 +4972,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4765,7 +4989,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -4797,13 +5021,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsDeleteAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4833,8 +5053,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4857,7 +5077,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -4881,13 +5101,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsGetOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4917,8 +5133,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4934,7 +5150,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -4966,13 +5182,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsGetAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5002,8 +5214,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5026,7 +5238,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -5050,13 +5262,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsGetBuiltInOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5086,8 +5294,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5103,7 +5311,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -5119,13 +5327,9 @@
                   "text": "list(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsListOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5155,8 +5359,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5165,7 +5369,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -5181,13 +5385,9 @@
                   "text": "listBuiltIn(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsListBuiltInOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5217,8 +5417,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5227,7 +5427,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -5251,13 +5451,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicyDefinitionsListByManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5287,8 +5483,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5304,7 +5500,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -5312,6 +5508,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5362,6 +5591,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsCreateOrUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsCreateOrUpdateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
@@ -5408,6 +5670,105 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsDeleteAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsGetAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsGetAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5458,6 +5819,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsGetBuiltInOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsGetBuiltInOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the getBuiltIn operation.\n */\n",
@@ -5504,6 +5898,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5554,6 +5981,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListBuiltInNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListBuiltInNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltInNext operation.\n */\n",
@@ -5600,6 +6060,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListBuiltInOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListBuiltInOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5650,6 +6143,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListByManagementGroupNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListByManagementGroupNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroupNext operation.\n */\n",
@@ -5696,6 +6222,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListByManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListByManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5746,6 +6305,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
@@ -5792,6 +6384,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicyDefinitionsListOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicyDefinitionsListOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -6238,13 +6863,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6274,8 +6895,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6298,7 +6919,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6339,13 +6960,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6375,8 +6992,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 10,
-                "endIndex": 14
+                "startIndex": 9,
+                "endIndex": 13
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6406,7 +7023,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 7,
-                    "endIndex": 9
+                    "endIndex": 8
                   }
                 }
               ],
@@ -6430,13 +7047,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6466,8 +7079,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6483,7 +7096,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6515,13 +7128,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsDeleteAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6551,8 +7160,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6575,7 +7184,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6599,13 +7208,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsGetOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6635,8 +7240,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6652,7 +7257,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6684,13 +7289,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsGetAtManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6720,8 +7321,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6744,7 +7345,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6768,13 +7369,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsGetBuiltInOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6804,8 +7401,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6821,7 +7418,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6837,13 +7434,9 @@
                   "text": "list(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsListOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6873,8 +7466,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6883,7 +7476,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -6899,13 +7492,9 @@
                   "text": "listBuiltIn(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsListBuiltInOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6935,8 +7524,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6945,7 +7534,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -6969,13 +7558,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "PolicySetDefinitionsListByManagementGroupOptionalParams",
+                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7005,8 +7590,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7022,7 +7607,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -7030,6 +7615,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7080,6 +7698,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsCreateOrUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsCreateOrUpdateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
@@ -7126,6 +7777,105 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsDeleteAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsGetAtManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7176,6 +7926,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsGetBuiltInOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsGetBuiltInOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the getBuiltIn operation.\n */\n",
@@ -7222,6 +8005,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7272,6 +8088,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListBuiltInNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListBuiltInNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltInNext operation.\n */\n",
@@ -7318,6 +8167,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListBuiltInOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListBuiltInOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7368,6 +8250,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListByManagementGroupNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroupNext operation.\n */\n",
@@ -7414,6 +8329,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListByManagementGroupOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListByManagementGroupOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7464,6 +8412,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
@@ -7510,6 +8491,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PolicySetDefinitionsListOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PolicySetDefinitionsListOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",

@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServiceEndpointPolicyDefinition,
+  ServiceEndpointPolicyDefinitionsListByResourceGroupNextOptionalParams,
+  ServiceEndpointPolicyDefinitionsListByResourceGroupOptionalParams,
+  ServiceEndpointPolicyDefinitionsDeleteOptionalParams,
+  ServiceEndpointPolicyDefinitionsGetOptionalParams,
   ServiceEndpointPolicyDefinitionsGetResponse,
+  ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams,
   ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface ServiceEndpointPolicyDefinitions {
   listByResourceGroup(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPolicyDefinitionsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ServiceEndpointPolicyDefinition>;
   /**
    * Deletes the specified ServiceEndpoint policy definitions.
@@ -41,7 +46,7 @@ export interface ServiceEndpointPolicyDefinitions {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPolicyDefinitionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface ServiceEndpointPolicyDefinitions {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPolicyDefinitionsGetOptionalParams
   ): Promise<ServiceEndpointPolicyDefinitionsGetResponse>;
   /**
    * Creates or updates a service endpoint policy definition in the specified service endpoint policy.
@@ -72,7 +77,7 @@ export interface ServiceEndpointPolicyDefinitions {
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
     serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

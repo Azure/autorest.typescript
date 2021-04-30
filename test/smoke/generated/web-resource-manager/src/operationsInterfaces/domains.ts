@@ -12,19 +12,37 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Domain,
+  DomainsListNextOptionalParams,
+  DomainsListOptionalParams,
   NameIdentifier,
   DomainRecommendationSearchParameters,
+  DomainsListRecommendationsNextOptionalParams,
+  DomainsListRecommendationsOptionalParams,
+  DomainsListByResourceGroupNextOptionalParams,
+  DomainsListByResourceGroupOptionalParams,
   DomainOwnershipIdentifier,
+  DomainsListOwnershipIdentifiersNextOptionalParams,
+  DomainsListOwnershipIdentifiersOptionalParams,
+  DomainsCheckAvailabilityOptionalParams,
   DomainsCheckAvailabilityResponse,
+  DomainsGetControlCenterSsoRequestOptionalParams,
   DomainsGetControlCenterSsoRequestResponse,
+  DomainsGetOptionalParams,
   DomainsGetResponse,
+  DomainsCreateOrUpdateOptionalParams,
   DomainsCreateOrUpdateResponse,
   DomainsDeleteOptionalParams,
   DomainPatchResource,
+  DomainsUpdateOptionalParams,
   DomainsUpdateResponse,
+  DomainsGetOwnershipIdentifierOptionalParams,
   DomainsGetOwnershipIdentifierResponse,
+  DomainsCreateOrUpdateOwnershipIdentifierOptionalParams,
   DomainsCreateOrUpdateOwnershipIdentifierResponse,
-  DomainsUpdateOwnershipIdentifierResponse
+  DomainsDeleteOwnershipIdentifierOptionalParams,
+  DomainsUpdateOwnershipIdentifierOptionalParams,
+  DomainsUpdateOwnershipIdentifierResponse,
+  DomainsRenewOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +52,7 @@ export interface Domains {
    * Description for Get all domains in a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Domain>;
+  list(options?: DomainsListOptionalParams): PagedAsyncIterableIterator<Domain>;
   /**
    * Description for Get domain name recommendations based on keywords.
    * @param parameters Search parameters for domain name recommendations.
@@ -42,7 +60,7 @@ export interface Domains {
    */
   listRecommendations(
     parameters: DomainRecommendationSearchParameters,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsOptionalParams
   ): PagedAsyncIterableIterator<NameIdentifier>;
   /**
    * Description for Get all domains in a resource group.
@@ -51,7 +69,7 @@ export interface Domains {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Domain>;
   /**
    * Description for Lists domain ownership identifiers.
@@ -62,7 +80,7 @@ export interface Domains {
   listOwnershipIdentifiers(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<DomainOwnershipIdentifier>;
   /**
    * Description for Check if a domain is available for registration.
@@ -71,14 +89,14 @@ export interface Domains {
    */
   checkAvailability(
     identifier: NameIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCheckAvailabilityOptionalParams
   ): Promise<DomainsCheckAvailabilityResponse>;
   /**
    * Description for Generate a single sign-on request for the domain management portal.
    * @param options The options parameters.
    */
   getControlCenterSsoRequest(
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetControlCenterSsoRequestOptionalParams
   ): Promise<DomainsGetControlCenterSsoRequestResponse>;
   /**
    * Description for Get a domain.
@@ -89,7 +107,7 @@ export interface Domains {
   get(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOptionalParams
   ): Promise<DomainsGetResponse>;
   /**
    * Description for Creates or updates a domain.
@@ -102,7 +120,7 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     domain: Domain,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DomainsCreateOrUpdateResponse>,
@@ -131,7 +149,7 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     domain: DomainPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: DomainsUpdateOptionalParams
   ): Promise<DomainsUpdateResponse>;
   /**
    * Description for Get ownership identifier for domain
@@ -144,7 +162,7 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOwnershipIdentifierOptionalParams
   ): Promise<DomainsGetOwnershipIdentifierResponse>;
   /**
    * Description for Creates an ownership identifier for a domain or updates identifier details for an
@@ -160,7 +178,7 @@ export interface Domains {
     domainName: string,
     name: string,
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCreateOrUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
   /**
    * Description for Delete ownership identifier for domain
@@ -173,7 +191,7 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsDeleteOwnershipIdentifierOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates an ownership identifier for a domain or updates identifier details for an
@@ -189,7 +207,7 @@ export interface Domains {
     domainName: string,
     name: string,
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsUpdateOwnershipIdentifierResponse>;
   /**
    * Description for Renew a domain.
@@ -200,6 +218,6 @@ export interface Domains {
   renew(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsRenewOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

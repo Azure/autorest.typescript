@@ -12,11 +12,16 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryApplicationVersion,
+  GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams,
+  GalleryApplicationVersionsListByGalleryApplicationOptionalParams,
+  GalleryApplicationVersionsCreateOrUpdateOptionalParams,
   GalleryApplicationVersionsCreateOrUpdateResponse,
   GalleryApplicationVersionUpdate,
+  GalleryApplicationVersionsUpdateOptionalParams,
   GalleryApplicationVersionsUpdateResponse,
   GalleryApplicationVersionsGetOptionalParams,
-  GalleryApplicationVersionsGetResponse
+  GalleryApplicationVersionsGetResponse,
+  GalleryApplicationVersionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -35,7 +40,7 @@ export interface GalleryApplicationVersions {
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
   ): PagedAsyncIterableIterator<GalleryApplicationVersion>;
   /**
    * Create or update a gallery Application Version.
@@ -57,7 +62,7 @@ export interface GalleryApplicationVersions {
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersion,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>,
@@ -84,7 +89,7 @@ export interface GalleryApplicationVersions {
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsUpdateResponse>,
@@ -123,7 +128,7 @@ export interface GalleryApplicationVersions {
     galleryName: string,
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

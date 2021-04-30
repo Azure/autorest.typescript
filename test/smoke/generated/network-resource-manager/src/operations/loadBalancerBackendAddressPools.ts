@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BackendAddressPool,
+  LoadBalancerBackendAddressPoolsListNextOptionalParams,
+  LoadBalancerBackendAddressPoolsListOptionalParams,
   LoadBalancerBackendAddressPoolsListResponse,
+  LoadBalancerBackendAddressPoolsGetOptionalParams,
   LoadBalancerBackendAddressPoolsGetResponse,
+  LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams,
   LoadBalancerBackendAddressPoolsCreateOrUpdateResponse,
+  LoadBalancerBackendAddressPoolsDeleteOptionalParams,
   LoadBalancerBackendAddressPoolsListNextResponse
 } from "../models";
 
@@ -46,7 +51,7 @@ export class LoadBalancerBackendAddressPoolsImpl
   public list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListOptionalParams
   ): PagedAsyncIterableIterator<BackendAddressPool> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -73,7 +78,7 @@ export class LoadBalancerBackendAddressPoolsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListOptionalParams
   ): AsyncIterableIterator<BackendAddressPool[]> {
     let result = await this._list(resourceGroupName, loadBalancerName, options);
     yield result.value || [];
@@ -93,7 +98,7 @@ export class LoadBalancerBackendAddressPoolsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListOptionalParams
   ): AsyncIterableIterator<BackendAddressPool> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -113,7 +118,7 @@ export class LoadBalancerBackendAddressPoolsImpl
   private _list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListOptionalParams
   ): Promise<LoadBalancerBackendAddressPoolsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -137,7 +142,7 @@ export class LoadBalancerBackendAddressPoolsImpl
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsGetOptionalParams
   ): Promise<LoadBalancerBackendAddressPoolsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -165,7 +170,7 @@ export class LoadBalancerBackendAddressPoolsImpl
     loadBalancerName: string,
     backendAddressPoolName: string,
     parameters: BackendAddressPool,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>,
@@ -188,17 +193,13 @@ export class LoadBalancerBackendAddressPoolsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -212,7 +213,7 @@ export class LoadBalancerBackendAddressPoolsImpl
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -231,17 +232,13 @@ export class LoadBalancerBackendAddressPoolsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -255,7 +252,7 @@ export class LoadBalancerBackendAddressPoolsImpl
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListNextOptionalParams
   ): Promise<LoadBalancerBackendAddressPoolsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

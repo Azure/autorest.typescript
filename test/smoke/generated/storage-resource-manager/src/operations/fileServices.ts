@@ -12,9 +12,12 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
+  FileServicesListOptionalParams,
   FileServicesListResponse,
   FileServiceProperties,
+  FileServicesSetServicePropertiesOptionalParams,
   FileServicesSetServicePropertiesResponse,
+  FileServicesGetServicePropertiesOptionalParams,
   FileServicesGetServicePropertiesResponse
 } from "../models";
 
@@ -42,7 +45,7 @@ export class FileServicesImpl implements FileServices {
   list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesListOptionalParams
   ): Promise<FileServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -71,7 +74,7 @@ export class FileServicesImpl implements FileServices {
     resourceGroupName: string,
     accountName: string,
     parameters: FileServiceProperties,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesSetServicePropertiesOptionalParams
   ): Promise<FileServicesSetServicePropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -98,7 +101,7 @@ export class FileServicesImpl implements FileServices {
   getServiceProperties(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesGetServicePropertiesOptionalParams
   ): Promise<FileServicesGetServicePropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnConnection,
+  VpnConnectionsListByVpnGatewayNextOptionalParams,
+  VpnConnectionsListByVpnGatewayOptionalParams,
+  VpnConnectionsGetOptionalParams,
   VpnConnectionsGetResponse,
+  VpnConnectionsCreateOrUpdateOptionalParams,
   VpnConnectionsCreateOrUpdateResponse,
+  VpnConnectionsDeleteOptionalParams,
   VpnConnectionsListByVpnGatewayResponse,
   VpnConnectionsListByVpnGatewayNextResponse
 } from "../models";
@@ -45,7 +50,7 @@ export class VpnConnectionsImpl implements VpnConnections {
   public listByVpnGateway(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): PagedAsyncIterableIterator<VpnConnection> {
     const iter = this.listByVpnGatewayPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class VpnConnectionsImpl implements VpnConnections {
   private async *listByVpnGatewayPagingPage(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): AsyncIterableIterator<VpnConnection[]> {
     let result = await this._listByVpnGateway(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class VpnConnectionsImpl implements VpnConnections {
   private async *listByVpnGatewayPagingAll(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): AsyncIterableIterator<VpnConnection> {
     for await (const page of this.listByVpnGatewayPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class VpnConnectionsImpl implements VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsGetOptionalParams
   ): Promise<VpnConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -146,7 +151,7 @@ export class VpnConnectionsImpl implements VpnConnections {
     gatewayName: string,
     connectionName: string,
     vpnConnectionParameters: VpnConnection,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnConnectionsCreateOrUpdateResponse>,
@@ -169,17 +174,13 @@ export class VpnConnectionsImpl implements VpnConnections {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -193,7 +194,7 @@ export class VpnConnectionsImpl implements VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -212,17 +213,13 @@ export class VpnConnectionsImpl implements VpnConnections {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -234,7 +231,7 @@ export class VpnConnectionsImpl implements VpnConnections {
   private _listByVpnGateway(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): Promise<VpnConnectionsListByVpnGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -258,7 +255,7 @@ export class VpnConnectionsImpl implements VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayNextOptionalParams
   ): Promise<VpnConnectionsListByVpnGatewayNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

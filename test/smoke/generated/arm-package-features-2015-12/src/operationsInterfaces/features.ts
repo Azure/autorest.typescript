@@ -11,8 +11,15 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   FeatureResult,
+  FeaturesListAllNextOptionalParams,
+  FeaturesListAllOptionalParams,
+  FeaturesListNextOptionalParams,
+  FeaturesListOptionalParams,
+  FeaturesGetOptionalParams,
   FeaturesGetResponse,
+  FeaturesRegisterOptionalParams,
   FeaturesRegisterResponse,
+  FeaturesUnregisterOptionalParams,
   FeaturesUnregisterResponse
 } from "../models";
 
@@ -24,7 +31,7 @@ export interface Features {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllOptionalParams
   ): PagedAsyncIterableIterator<FeatureResult>;
   /**
    * Gets all the preview features in a provider namespace that are available through AFEC for the
@@ -34,7 +41,7 @@ export interface Features {
    */
   list(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListOptionalParams
   ): PagedAsyncIterableIterator<FeatureResult>;
   /**
    * Gets the preview feature with the specified name.
@@ -45,7 +52,7 @@ export interface Features {
   get(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesGetOptionalParams
   ): Promise<FeaturesGetResponse>;
   /**
    * Registers the preview feature for the subscription.
@@ -56,7 +63,7 @@ export interface Features {
   register(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesRegisterOptionalParams
   ): Promise<FeaturesRegisterResponse>;
   /**
    * Unregisters the preview feature for the subscription.
@@ -67,6 +74,6 @@ export interface Features {
   unregister(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesUnregisterOptionalParams
   ): Promise<FeaturesUnregisterResponse>;
 }

@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPPrefix,
+  PublicIPPrefixesListAllNextOptionalParams,
+  PublicIPPrefixesListAllOptionalParams,
+  PublicIPPrefixesListNextOptionalParams,
+  PublicIPPrefixesListOptionalParams,
+  PublicIPPrefixesDeleteOptionalParams,
   PublicIPPrefixesGetOptionalParams,
   PublicIPPrefixesGetResponse,
+  PublicIPPrefixesCreateOrUpdateOptionalParams,
   PublicIPPrefixesCreateOrUpdateResponse,
   TagsObject,
+  PublicIPPrefixesUpdateTagsOptionalParams,
   PublicIPPrefixesUpdateTagsResponse,
   PublicIPPrefixesListAllResponse,
   PublicIPPrefixesListResponse,
@@ -46,7 +53,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllOptionalParams
   ): PagedAsyncIterableIterator<PublicIPPrefix> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllOptionalParams
   ): AsyncIterableIterator<PublicIPPrefix[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllOptionalParams
   ): AsyncIterableIterator<PublicIPPrefix> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListOptionalParams
   ): PagedAsyncIterableIterator<PublicIPPrefix> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListOptionalParams
   ): AsyncIterableIterator<PublicIPPrefix[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListOptionalParams
   ): AsyncIterableIterator<PublicIPPrefix> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
   async delete(
     resourceGroupName: string,
     publicIpPrefixName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PublicIPPrefixesCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -252,7 +251,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesUpdateTagsOptionalParams
   ): Promise<PublicIPPrefixesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +270,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllOptionalParams
   ): Promise<PublicIPPrefixesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -289,7 +288,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListOptionalParams
   ): Promise<PublicIPPrefixesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +307,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllNextOptionalParams
   ): Promise<PublicIPPrefixesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -329,7 +328,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListNextOptionalParams
   ): Promise<PublicIPPrefixesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

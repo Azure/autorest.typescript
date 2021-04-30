@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstancePool,
+  InstancePoolsListByResourceGroupNextOptionalParams,
+  InstancePoolsListByResourceGroupOptionalParams,
+  InstancePoolsListNextOptionalParams,
+  InstancePoolsListOptionalParams,
+  InstancePoolsGetOptionalParams,
   InstancePoolsGetResponse,
+  InstancePoolsCreateOrUpdateOptionalParams,
   InstancePoolsCreateOrUpdateResponse,
+  InstancePoolsDeleteOptionalParams,
   InstancePoolUpdate,
+  InstancePoolsUpdateOptionalParams,
   InstancePoolsUpdateResponse,
   InstancePoolsListByResourceGroupResponse,
   InstancePoolsListResponse,
@@ -48,7 +56,7 @@ export class InstancePoolsImpl implements InstancePools {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +74,7 @@ export class InstancePoolsImpl implements InstancePools {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<InstancePool[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +92,7 @@ export class InstancePoolsImpl implements InstancePools {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<InstancePool> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -99,7 +107,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListOptionalParams
   ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listPagingAll(options);
     return {
@@ -116,7 +124,7 @@ export class InstancePoolsImpl implements InstancePools {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListOptionalParams
   ): AsyncIterableIterator<InstancePool[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -129,7 +137,7 @@ export class InstancePoolsImpl implements InstancePools {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListOptionalParams
   ): AsyncIterableIterator<InstancePool> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -146,7 +154,7 @@ export class InstancePoolsImpl implements InstancePools {
   get(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsGetOptionalParams
   ): Promise<InstancePoolsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -171,7 +179,7 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstancePoolsCreateOrUpdateResponse>,
@@ -193,16 +201,12 @@ export class InstancePoolsImpl implements InstancePools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -215,7 +219,7 @@ export class InstancePoolsImpl implements InstancePools {
   async delete(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -233,16 +237,12 @@ export class InstancePoolsImpl implements InstancePools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -257,7 +257,7 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstancePoolsUpdateResponse>,
@@ -279,16 +279,12 @@ export class InstancePoolsImpl implements InstancePools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -299,7 +295,7 @@ export class InstancePoolsImpl implements InstancePools {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupOptionalParams
   ): Promise<InstancePoolsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -316,7 +312,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListOptionalParams
   ): Promise<InstancePoolsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -337,7 +333,7 @@ export class InstancePoolsImpl implements InstancePools {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupNextOptionalParams
   ): Promise<InstancePoolsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -357,7 +353,7 @@ export class InstancePoolsImpl implements InstancePools {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListNextOptionalParams
   ): Promise<InstancePoolsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

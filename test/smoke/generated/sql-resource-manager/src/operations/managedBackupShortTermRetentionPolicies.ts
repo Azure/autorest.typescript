@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
+  ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
   ManagedShortTermRetentionPolicyName,
+  ManagedBackupShortTermRetentionPoliciesGetOptionalParams,
   ManagedBackupShortTermRetentionPoliciesGetResponse,
+  ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams,
   ManagedBackupShortTermRetentionPoliciesUpdateResponse,
   ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse,
   ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse
@@ -51,7 +56,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -81,7 +86,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -108,7 +113,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -134,7 +139,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -165,7 +170,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -191,16 +196,12 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -219,7 +220,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedBackupShortTermRetentionPoliciesUpdateResponse>,
@@ -243,16 +244,12 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -267,7 +264,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -295,7 +292,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
   ): Promise<
     ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse
   > {

@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   VpnSiteLink,
+  VpnSiteLinksListByVpnSiteNextOptionalParams,
+  VpnSiteLinksListByVpnSiteOptionalParams,
+  VpnSiteLinksGetOptionalParams,
   VpnSiteLinksGetResponse,
   VpnSiteLinksListByVpnSiteResponse,
   VpnSiteLinksListByVpnSiteNextResponse
@@ -42,7 +45,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
   public listByVpnSite(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): PagedAsyncIterableIterator<VpnSiteLink> {
     const iter = this.listByVpnSitePagingAll(
       resourceGroupName,
@@ -69,7 +72,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
   private async *listByVpnSitePagingPage(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): AsyncIterableIterator<VpnSiteLink[]> {
     let result = await this._listByVpnSite(
       resourceGroupName,
@@ -93,7 +96,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
   private async *listByVpnSitePagingAll(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): AsyncIterableIterator<VpnSiteLink> {
     for await (const page of this.listByVpnSitePagingPage(
       resourceGroupName,
@@ -115,7 +118,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksGetOptionalParams
   ): Promise<VpnSiteLinksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -138,7 +141,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
   private _listByVpnSite(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): Promise<VpnSiteLinksListByVpnSiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -162,7 +165,7 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
     resourceGroupName: string,
     vpnSiteName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteNextOptionalParams
   ): Promise<VpnSiteLinksListByVpnSiteNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,8 +11,13 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   JobTargetGroup,
+  JobTargetGroupsListByAgentNextOptionalParams,
+  JobTargetGroupsListByAgentOptionalParams,
+  JobTargetGroupsGetOptionalParams,
   JobTargetGroupsGetResponse,
-  JobTargetGroupsCreateOrUpdateResponse
+  JobTargetGroupsCreateOrUpdateOptionalParams,
+  JobTargetGroupsCreateOrUpdateResponse,
+  JobTargetGroupsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +35,7 @@ export interface JobTargetGroups {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobTargetGroupsListByAgentOptionalParams
   ): PagedAsyncIterableIterator<JobTargetGroup>;
   /**
    * Gets a target group.
@@ -46,7 +51,7 @@ export interface JobTargetGroups {
     serverName: string,
     jobAgentName: string,
     targetGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobTargetGroupsGetOptionalParams
   ): Promise<JobTargetGroupsGetResponse>;
   /**
    * Creates or updates a target group.
@@ -64,7 +69,7 @@ export interface JobTargetGroups {
     jobAgentName: string,
     targetGroupName: string,
     parameters: JobTargetGroup,
-    options?: coreHttp.OperationOptions
+    options?: JobTargetGroupsCreateOrUpdateOptionalParams
   ): Promise<JobTargetGroupsCreateOrUpdateResponse>;
   /**
    * Deletes a target group.
@@ -80,6 +85,6 @@ export interface JobTargetGroups {
     serverName: string,
     jobAgentName: string,
     targetGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobTargetGroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

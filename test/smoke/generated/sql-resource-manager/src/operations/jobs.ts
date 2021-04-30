@@ -15,9 +15,14 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   Job,
+  JobsListByAgentNextOptionalParams,
+  JobsListByAgentOptionalParams,
   JobsListByAgentResponse,
+  JobsGetOptionalParams,
   JobsGetResponse,
+  JobsCreateOrUpdateOptionalParams,
   JobsCreateOrUpdateResponse,
+  JobsDeleteOptionalParams,
   JobsListByAgentNextResponse
 } from "../models";
 
@@ -46,7 +51,7 @@ export class JobsImpl implements Jobs {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentOptionalParams
   ): PagedAsyncIterableIterator<Job> {
     const iter = this.listByAgentPagingAll(
       resourceGroupName,
@@ -76,7 +81,7 @@ export class JobsImpl implements Jobs {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentOptionalParams
   ): AsyncIterableIterator<Job[]> {
     let result = await this._listByAgent(
       resourceGroupName,
@@ -103,7 +108,7 @@ export class JobsImpl implements Jobs {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentOptionalParams
   ): AsyncIterableIterator<Job> {
     for await (const page of this.listByAgentPagingPage(
       resourceGroupName,
@@ -127,7 +132,7 @@ export class JobsImpl implements Jobs {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentOptionalParams
   ): Promise<JobsListByAgentResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -155,7 +160,7 @@ export class JobsImpl implements Jobs {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsGetOptionalParams
   ): Promise<JobsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -186,7 +191,7 @@ export class JobsImpl implements Jobs {
     jobAgentName: string,
     jobName: string,
     parameters: Job,
-    options?: coreHttp.OperationOptions
+    options?: JobsCreateOrUpdateOptionalParams
   ): Promise<JobsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -216,7 +221,7 @@ export class JobsImpl implements Jobs {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -245,7 +250,7 @@ export class JobsImpl implements Jobs {
     serverName: string,
     jobAgentName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentNextOptionalParams
   ): Promise<JobsListByAgentNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

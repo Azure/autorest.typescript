@@ -12,8 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ContainerService,
+  ContainerServicesListNextOptionalParams,
+  ContainerServicesListOptionalParams,
+  ContainerServicesListByResourceGroupNextOptionalParams,
+  ContainerServicesListByResourceGroupOptionalParams,
+  ContainerServicesCreateOrUpdateOptionalParams,
   ContainerServicesCreateOrUpdateResponse,
-  ContainerServicesGetResponse
+  ContainerServicesGetOptionalParams,
+  ContainerServicesGetResponse,
+  ContainerServicesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -26,7 +33,7 @@ export interface ContainerServices {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListOptionalParams
   ): PagedAsyncIterableIterator<ContainerService>;
   /**
    * Gets a list of container services in the specified subscription and resource group. The operation
@@ -37,7 +44,7 @@ export interface ContainerServices {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ContainerService>;
   /**
    * Creates or updates a container service with the specified configuration of orchestrator, masters,
@@ -52,7 +59,7 @@ export interface ContainerServices {
     resourceGroupName: string,
     containerServiceName: string,
     parameters: ContainerService,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ContainerServicesCreateOrUpdateResponse>,
@@ -71,7 +78,7 @@ export interface ContainerServices {
   get(
     resourceGroupName: string,
     containerServiceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesGetOptionalParams
   ): Promise<ContainerServicesGetResponse>;
   /**
    * Deletes the specified container service in the specified subscription and resource group. The
@@ -86,7 +93,7 @@ export interface ContainerServices {
   delete(
     resourceGroupName: string,
     containerServiceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

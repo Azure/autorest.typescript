@@ -12,11 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   TableGetResults,
+  TableResourcesListTablesOptionalParams,
+  TableResourcesGetTableOptionalParams,
   TableResourcesGetTableResponse,
   TableCreateUpdateParameters,
+  TableResourcesCreateUpdateTableOptionalParams,
   TableResourcesCreateUpdateTableResponse,
+  TableResourcesDeleteTableOptionalParams,
+  TableResourcesGetTableThroughputOptionalParams,
   TableResourcesGetTableThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  TableResourcesUpdateTableThroughputOptionalParams,
   TableResourcesUpdateTableThroughputResponse
 } from "../models";
 
@@ -32,7 +38,7 @@ export interface TableResources {
   listTables(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesListTablesOptionalParams
   ): PagedAsyncIterableIterator<TableGetResults>;
   /**
    * Gets the Tables under an existing Azure Cosmos DB database account with the provided name.
@@ -45,7 +51,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesGetTableOptionalParams
   ): Promise<TableResourcesGetTableResponse>;
   /**
    * Create or update an Azure Cosmos DB Table
@@ -60,7 +66,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesCreateUpdateTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<TableResourcesCreateUpdateTableResponse>,
@@ -78,7 +84,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesDeleteTableOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -94,7 +100,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesGetTableThroughputOptionalParams
   ): Promise<TableResourcesGetTableThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB Table
@@ -110,7 +116,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesUpdateTableThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<TableResourcesUpdateTableThroughputResponse>,

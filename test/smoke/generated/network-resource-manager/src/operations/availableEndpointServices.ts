@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   EndpointServiceResult,
+  AvailableEndpointServicesListNextOptionalParams,
+  AvailableEndpointServicesListOptionalParams,
   AvailableEndpointServicesListResponse,
   AvailableEndpointServicesListNextResponse
 } from "../models";
@@ -40,7 +42,7 @@ export class AvailableEndpointServicesImpl
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListOptionalParams
   ): PagedAsyncIterableIterator<EndpointServiceResult> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -58,7 +60,7 @@ export class AvailableEndpointServicesImpl
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListOptionalParams
   ): AsyncIterableIterator<EndpointServiceResult[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -72,7 +74,7 @@ export class AvailableEndpointServicesImpl
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListOptionalParams
   ): AsyncIterableIterator<EndpointServiceResult> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -86,7 +88,7 @@ export class AvailableEndpointServicesImpl
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListOptionalParams
   ): Promise<AvailableEndpointServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -107,7 +109,7 @@ export class AvailableEndpointServicesImpl
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListNextOptionalParams
   ): Promise<AvailableEndpointServicesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

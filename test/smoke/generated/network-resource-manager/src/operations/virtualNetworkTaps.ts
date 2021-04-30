@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkTap,
+  VirtualNetworkTapsListAllNextOptionalParams,
+  VirtualNetworkTapsListAllOptionalParams,
+  VirtualNetworkTapsListByResourceGroupNextOptionalParams,
+  VirtualNetworkTapsListByResourceGroupOptionalParams,
+  VirtualNetworkTapsDeleteOptionalParams,
+  VirtualNetworkTapsGetOptionalParams,
   VirtualNetworkTapsGetResponse,
+  VirtualNetworkTapsCreateOrUpdateOptionalParams,
   VirtualNetworkTapsCreateOrUpdateResponse,
   TagsObject,
+  VirtualNetworkTapsUpdateTagsOptionalParams,
   VirtualNetworkTapsUpdateTagsResponse,
   VirtualNetworkTapsListAllResponse,
   VirtualNetworkTapsListByResourceGroupResponse,
@@ -45,7 +53,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkTap> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -62,7 +70,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllOptionalParams
   ): AsyncIterableIterator<VirtualNetworkTap[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -75,7 +83,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllOptionalParams
   ): AsyncIterableIterator<VirtualNetworkTap> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -89,7 +97,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkTap> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -107,7 +115,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualNetworkTap[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -125,7 +133,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualNetworkTap> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -144,7 +152,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   async delete(
     resourceGroupName: string,
     tapName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -162,17 +170,13 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -184,7 +188,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   get(
     resourceGroupName: string,
     tapName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsGetOptionalParams
   ): Promise<VirtualNetworkTapsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +212,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>,
@@ -230,17 +234,13 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -254,7 +254,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     tapParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsUpdateTagsOptionalParams
   ): Promise<VirtualNetworkTapsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -273,7 +273,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllOptionalParams
   ): Promise<VirtualNetworkTapsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -291,7 +291,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupOptionalParams
   ): Promise<VirtualNetworkTapsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -310,7 +310,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllNextOptionalParams
   ): Promise<VirtualNetworkTapsListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -331,7 +331,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupNextOptionalParams
   ): Promise<VirtualNetworkTapsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -17,9 +17,15 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LocalNetworkGateway,
+  LocalNetworkGatewaysListNextOptionalParams,
+  LocalNetworkGatewaysListOptionalParams,
+  LocalNetworkGatewaysCreateOrUpdateOptionalParams,
   LocalNetworkGatewaysCreateOrUpdateResponse,
+  LocalNetworkGatewaysGetOptionalParams,
   LocalNetworkGatewaysGetResponse,
+  LocalNetworkGatewaysDeleteOptionalParams,
   TagsObject,
+  LocalNetworkGatewaysUpdateTagsOptionalParams,
   LocalNetworkGatewaysUpdateTagsResponse,
   LocalNetworkGatewaysListResponse,
   LocalNetworkGatewaysListNextResponse
@@ -45,7 +51,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<LocalNetworkGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -63,7 +69,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListOptionalParams
   ): AsyncIterableIterator<LocalNetworkGateway[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -81,7 +87,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListOptionalParams
   ): AsyncIterableIterator<LocalNetworkGateway> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -99,7 +105,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>,
@@ -121,17 +127,13 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -143,7 +145,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
   get(
     resourceGroupName: string,
     localNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysGetOptionalParams
   ): Promise<LocalNetworkGatewaysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -165,7 +167,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
   async delete(
     resourceGroupName: string,
     localNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -183,17 +185,13 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -207,7 +205,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysUpdateTagsOptionalParams
   ): Promise<LocalNetworkGatewaysUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -228,7 +226,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListOptionalParams
   ): Promise<LocalNetworkGatewaysListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -249,7 +247,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListNextOptionalParams
   ): Promise<LocalNetworkGatewaysListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

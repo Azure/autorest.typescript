@@ -18,6 +18,8 @@ import {
   ProviderGetAvailableStacksNextOptionalParams,
   ProviderGetAvailableStacksOptionalParams,
   CsmOperationDescription,
+  ProviderListOperationsNextOptionalParams,
+  ProviderListOperationsOptionalParams,
   ProviderGetAvailableStacksOnPremNextOptionalParams,
   ProviderGetAvailableStacksOnPremOptionalParams,
   ProviderGetAvailableStacksResponse,
@@ -89,7 +91,7 @@ export class ProviderImpl implements Provider {
    * @param options The options parameters.
    */
   public listOperations(
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsOptionalParams
   ): PagedAsyncIterableIterator<CsmOperationDescription> {
     const iter = this.listOperationsPagingAll(options);
     return {
@@ -106,7 +108,7 @@ export class ProviderImpl implements Provider {
   }
 
   private async *listOperationsPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsOptionalParams
   ): AsyncIterableIterator<CsmOperationDescription[]> {
     let result = await this._listOperations(options);
     yield result.value || [];
@@ -119,7 +121,7 @@ export class ProviderImpl implements Provider {
   }
 
   private async *listOperationsPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsOptionalParams
   ): AsyncIterableIterator<CsmOperationDescription> {
     for await (const page of this.listOperationsPagingPage(options)) {
       yield* page;
@@ -193,7 +195,7 @@ export class ProviderImpl implements Provider {
    * @param options The options parameters.
    */
   private _listOperations(
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsOptionalParams
   ): Promise<ProviderListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -246,7 +248,7 @@ export class ProviderImpl implements Provider {
    */
   private _listOperationsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ProviderListOperationsNextOptionalParams
   ): Promise<ProviderListOperationsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

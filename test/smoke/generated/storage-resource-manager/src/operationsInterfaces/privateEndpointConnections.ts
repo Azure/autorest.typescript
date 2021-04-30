@@ -11,8 +11,12 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsListOptionalParams,
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsPutResponse
+  PrivateEndpointConnectionsPutOptionalParams,
+  PrivateEndpointConnectionsPutResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +34,7 @@ export interface PrivateEndpointConnections {
   list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection>;
   /**
    * Gets the specified private endpoint connection associated with the storage account.
@@ -47,7 +51,7 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse>;
   /**
    * Update the state of specified private endpoint connection associated with the storage account.
@@ -66,7 +70,7 @@ export interface PrivateEndpointConnections {
     accountName: string,
     privateEndpointConnectionName: string,
     properties: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsPutOptionalParams
   ): Promise<PrivateEndpointConnectionsPutResponse>;
   /**
    * Deletes the specified private endpoint connection associated with the storage account.
@@ -83,6 +87,6 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

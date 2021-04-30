@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentScriptUnion,
+  DeploymentScriptsListBySubscriptionNextOptionalParams,
+  DeploymentScriptsListBySubscriptionOptionalParams,
+  DeploymentScriptsListByResourceGroupNextOptionalParams,
+  DeploymentScriptsListByResourceGroupOptionalParams,
+  DeploymentScriptsCreateOptionalParams,
   DeploymentScriptsCreateResponse,
   DeploymentScriptsUpdateOptionalParams,
   DeploymentScriptsUpdateResponse,
+  DeploymentScriptsGetOptionalParams,
   DeploymentScriptsGetResponse,
+  DeploymentScriptsDeleteOptionalParams,
+  DeploymentScriptsGetLogsOptionalParams,
   DeploymentScriptsGetLogsResponse,
   DeploymentScriptsGetLogsDefaultOptionalParams,
   DeploymentScriptsGetLogsDefaultResponse
@@ -29,7 +37,7 @@ export interface DeploymentScripts {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
   /**
    * Lists deployments scripts.
@@ -38,7 +46,7 @@ export interface DeploymentScripts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
   /**
    * Creates a deployment script.
@@ -51,7 +59,7 @@ export interface DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentScriptsCreateResponse>,
@@ -78,7 +86,7 @@ export interface DeploymentScripts {
   get(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsGetOptionalParams
   ): Promise<DeploymentScriptsGetResponse>;
   /**
    * Deletes a deployment script. When operation completes, status code 200 returned without content.
@@ -89,7 +97,7 @@ export interface DeploymentScripts {
   delete(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets deployment script logs for a given deployment script name.
@@ -100,7 +108,7 @@ export interface DeploymentScripts {
   getLogs(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsGetLogsOptionalParams
   ): Promise<DeploymentScriptsGetLogsResponse>;
   /**
    * Gets deployment script logs for a given deployment script name.

@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Result of the request to list Storage operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -2259,6 +2258,10 @@ export type HttpProtocol = "https,http" | "https";
 /** Defines values for PublicAccess. */
 export type PublicAccess = "Container" | "Blob" | "None";
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -2270,6 +2273,9 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SkusListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type SkusListResponse = StorageSkuListResult & {
@@ -2283,6 +2289,10 @@ export type SkusListResponse = StorageSkuListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsCheckNameAvailabilityOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the checkNameAvailability operation. */
 export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
   /** The underlying HTTP response. */
@@ -2295,6 +2305,15 @@ export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailability
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the create operation. */
 export type StorageAccountsCreateResponse = StorageAccount & {
   /** The underlying HTTP response. */
@@ -2304,10 +2323,12 @@ export type StorageAccountsCreateResponse = StorageAccount & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: StorageAccount;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface StorageAccountsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface StorageAccountsGetPropertiesOptionalParams
@@ -2328,6 +2349,10 @@ export type StorageAccountsGetPropertiesResponse = StorageAccount & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type StorageAccountsUpdateResponse = StorageAccount & {
   /** The underlying HTTP response. */
@@ -2339,6 +2364,10 @@ export type StorageAccountsUpdateResponse = StorageAccount & {
     parsedBody: StorageAccount;
   };
 };
+
+/** Optional parameters. */
+export interface StorageAccountsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type StorageAccountsListResponse = StorageAccountListResult & {
@@ -2352,6 +2381,10 @@ export type StorageAccountsListResponse = StorageAccountListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult & {
   /** The underlying HTTP response. */
@@ -2363,6 +2396,10 @@ export type StorageAccountsListByResourceGroupResponse = StorageAccountListResul
     parsedBody: StorageAccountListResult;
   };
 };
+
+/** Optional parameters. */
+export interface StorageAccountsListKeysOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listKeys operation. */
 export type StorageAccountsListKeysResponse = StorageAccountListKeysResult & {
@@ -2376,6 +2413,10 @@ export type StorageAccountsListKeysResponse = StorageAccountListKeysResult & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsRegenerateKeyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the regenerateKey operation. */
 export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult & {
   /** The underlying HTTP response. */
@@ -2387,6 +2428,10 @@ export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult 
     parsedBody: StorageAccountListKeysResult;
   };
 };
+
+/** Optional parameters. */
+export interface StorageAccountsListAccountSASOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAccountSAS operation. */
 export type StorageAccountsListAccountSASResponse = ListAccountSasResponse & {
@@ -2400,6 +2445,10 @@ export type StorageAccountsListAccountSASResponse = ListAccountSasResponse & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsListServiceSASOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listServiceSAS operation. */
 export type StorageAccountsListServiceSASResponse = ListServiceSasResponse & {
   /** The underlying HTTP response. */
@@ -2412,6 +2461,24 @@ export type StorageAccountsListServiceSASResponse = ListServiceSasResponse & {
   };
 };
 
+/** Optional parameters. */
+export interface StorageAccountsFailoverOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface StorageAccountsRestoreBlobRangesOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the restoreBlobRanges operation. */
 export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
   /** The underlying HTTP response. */
@@ -2421,10 +2488,16 @@ export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: BlobRestoreStatus;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface StorageAccountsRevokeUserDelegationKeysOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StorageAccountsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type StorageAccountsListNextResponse = StorageAccountListResult & {
@@ -2438,6 +2511,10 @@ export type StorageAccountsListNextResponse = StorageAccountListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface UsagesListByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByLocation operation. */
 export type UsagesListByLocationResponse = UsageListResult & {
   /** The underlying HTTP response. */
@@ -2449,6 +2526,10 @@ export type UsagesListByLocationResponse = UsageListResult & {
     parsedBody: UsageListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagementPoliciesGetResponse = ManagementPolicy & {
@@ -2462,6 +2543,10 @@ export type ManagementPoliciesGetResponse = ManagementPolicy & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagementPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
   /** The underlying HTTP response. */
@@ -2473,6 +2558,14 @@ export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
     parsedBody: ManagementPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementPoliciesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult & {
@@ -2486,6 +2579,10 @@ export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionLi
   };
 };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
   /** The underlying HTTP response. */
@@ -2497,6 +2594,10 @@ export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & 
     parsedBody: PrivateEndpointConnection;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsPutOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the put operation. */
 export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & {
@@ -2510,6 +2611,14 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & 
   };
 };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrivateLinkResourcesListByStorageAccountOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByStorageAccount operation. */
 export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult & {
   /** The underlying HTTP response. */
@@ -2521,6 +2630,10 @@ export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResour
     parsedBody: PrivateLinkResourceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ObjectReplicationPoliciesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef & {
@@ -2534,6 +2647,10 @@ export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef
   };
 };
 
+/** Optional parameters. */
+export interface ObjectReplicationPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
   /** The underlying HTTP response. */
@@ -2545,6 +2662,10 @@ export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
     parsedBody: ObjectReplicationPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy & {
@@ -2558,6 +2679,14 @@ export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationP
   };
 };
 
+/** Optional parameters. */
+export interface ObjectReplicationPoliciesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface EncryptionScopesPutOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the put operation. */
 export type EncryptionScopesPutResponse = EncryptionScope & {
   /** The underlying HTTP response. */
@@ -2569,6 +2698,10 @@ export type EncryptionScopesPutResponse = EncryptionScope & {
     parsedBody: EncryptionScope;
   };
 };
+
+/** Optional parameters. */
+export interface EncryptionScopesPatchOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the patch operation. */
 export type EncryptionScopesPatchResponse = EncryptionScope & {
@@ -2582,6 +2715,10 @@ export type EncryptionScopesPatchResponse = EncryptionScope & {
   };
 };
 
+/** Optional parameters. */
+export interface EncryptionScopesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type EncryptionScopesGetResponse = EncryptionScope & {
   /** The underlying HTTP response. */
@@ -2593,6 +2730,10 @@ export type EncryptionScopesGetResponse = EncryptionScope & {
     parsedBody: EncryptionScope;
   };
 };
+
+/** Optional parameters. */
+export interface EncryptionScopesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type EncryptionScopesListResponse = EncryptionScopeListResult & {
@@ -2606,6 +2747,10 @@ export type EncryptionScopesListResponse = EncryptionScopeListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface EncryptionScopesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type EncryptionScopesListNextResponse = EncryptionScopeListResult & {
   /** The underlying HTTP response. */
@@ -2617,6 +2762,10 @@ export type EncryptionScopesListNextResponse = EncryptionScopeListResult & {
     parsedBody: EncryptionScopeListResult;
   };
 };
+
+/** Optional parameters. */
+export interface BlobServicesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type BlobServicesListResponse = BlobServiceItems & {
@@ -2630,6 +2779,10 @@ export type BlobServicesListResponse = BlobServiceItems & {
   };
 };
 
+/** Optional parameters. */
+export interface BlobServicesSetServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the setServiceProperties operation. */
 export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
   /** The underlying HTTP response. */
@@ -2641,6 +2794,10 @@ export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
     parsedBody: BlobServiceProperties;
   };
 };
+
+/** Optional parameters. */
+export interface BlobServicesGetServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getServiceProperties operation. */
 export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties & {
@@ -2675,6 +2832,10 @@ export type BlobContainersListResponse = ListContainerItems & {
   };
 };
 
+/** Optional parameters. */
+export interface BlobContainersCreateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the create operation. */
 export type BlobContainersCreateResponse = BlobContainer & {
   /** The underlying HTTP response. */
@@ -2686,6 +2847,10 @@ export type BlobContainersCreateResponse = BlobContainer & {
     parsedBody: BlobContainer;
   };
 };
+
+/** Optional parameters. */
+export interface BlobContainersUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type BlobContainersUpdateResponse = BlobContainer & {
@@ -2699,6 +2864,10 @@ export type BlobContainersUpdateResponse = BlobContainer & {
   };
 };
 
+/** Optional parameters. */
+export interface BlobContainersGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type BlobContainersGetResponse = BlobContainer & {
   /** The underlying HTTP response. */
@@ -2711,6 +2880,14 @@ export type BlobContainersGetResponse = BlobContainer & {
   };
 };
 
+/** Optional parameters. */
+export interface BlobContainersDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface BlobContainersSetLegalHoldOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the setLegalHold operation. */
 export type BlobContainersSetLegalHoldResponse = LegalHold & {
   /** The underlying HTTP response. */
@@ -2722,6 +2899,10 @@ export type BlobContainersSetLegalHoldResponse = LegalHold & {
     parsedBody: LegalHold;
   };
 };
+
+/** Optional parameters. */
+export interface BlobContainersClearLegalHoldOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the clearLegalHold operation. */
 export type BlobContainersClearLegalHoldResponse = LegalHold & {
@@ -2781,6 +2962,10 @@ export type BlobContainersGetImmutabilityPolicyResponse = BlobContainersGetImmut
     };
   };
 
+/** Optional parameters. */
+export interface BlobContainersDeleteImmutabilityPolicyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the deleteImmutabilityPolicy operation. */
 export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDeleteImmutabilityPolicyHeaders &
   ImmutabilityPolicy & {
@@ -2795,6 +2980,10 @@ export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDelet
       parsedHeaders: BlobContainersDeleteImmutabilityPolicyHeaders;
     };
   };
+
+/** Optional parameters. */
+export interface BlobContainersLockImmutabilityPolicyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the lockImmutabilityPolicy operation. */
 export type BlobContainersLockImmutabilityPolicyResponse = BlobContainersLockImmutabilityPolicyHeaders &
@@ -2873,6 +3062,10 @@ export type BlobContainersListNextResponse = ListContainerItems & {
   };
 };
 
+/** Optional parameters. */
+export interface FileServicesListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type FileServicesListResponse = FileServiceItems & {
   /** The underlying HTTP response. */
@@ -2885,6 +3078,10 @@ export type FileServicesListResponse = FileServiceItems & {
   };
 };
 
+/** Optional parameters. */
+export interface FileServicesSetServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the setServiceProperties operation. */
 export type FileServicesSetServicePropertiesResponse = FileServiceProperties & {
   /** The underlying HTTP response. */
@@ -2896,6 +3093,10 @@ export type FileServicesSetServicePropertiesResponse = FileServiceProperties & {
     parsedBody: FileServiceProperties;
   };
 };
+
+/** Optional parameters. */
+export interface FileServicesGetServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getServiceProperties operation. */
 export type FileServicesGetServicePropertiesResponse = FileServiceProperties & {
@@ -2930,6 +3131,10 @@ export type FileSharesListResponse = FileShareItems & {
   };
 };
 
+/** Optional parameters. */
+export interface FileSharesCreateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the create operation. */
 export type FileSharesCreateResponse = FileShare & {
   /** The underlying HTTP response. */
@@ -2941,6 +3146,10 @@ export type FileSharesCreateResponse = FileShare & {
     parsedBody: FileShare;
   };
 };
+
+/** Optional parameters. */
+export interface FileSharesUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type FileSharesUpdateResponse = FileShare & {
@@ -2954,6 +3163,10 @@ export type FileSharesUpdateResponse = FileShare & {
   };
 };
 
+/** Optional parameters. */
+export interface FileSharesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type FileSharesGetResponse = FileShare & {
   /** The underlying HTTP response. */
@@ -2965,6 +3178,14 @@ export type FileSharesGetResponse = FileShare & {
     parsedBody: FileShare;
   };
 };
+
+/** Optional parameters. */
+export interface FileSharesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface FileSharesRestoreOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface FileSharesListNextOptionalParams

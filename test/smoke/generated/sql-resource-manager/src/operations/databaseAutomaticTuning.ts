@@ -12,8 +12,10 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
+  DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
   DatabaseAutomaticTuningDef,
+  DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -41,7 +43,7 @@ export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAutomaticTuningGetOptionalParams
   ): Promise<DatabaseAutomaticTuningGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -69,7 +71,7 @@ export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
     serverName: string,
     databaseName: string,
     parameters: DatabaseAutomaticTuningDef,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAutomaticTuningUpdateOptionalParams
   ): Promise<DatabaseAutomaticTuningUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

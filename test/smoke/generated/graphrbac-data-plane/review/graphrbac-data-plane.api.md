@@ -107,20 +107,28 @@ export interface ApplicationListResult {
 
 // @public
 export interface Applications {
-    addOwner(applicationObjectId: string, parameters: AddOwnerParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    create(parameters: ApplicationCreateParameters, options?: coreHttp.OperationOptions): Promise<ApplicationsCreateResponse>;
-    delete(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetResponse>;
-    getServicePrincipalsIdByAppId(applicationID: string, options?: coreHttp.OperationOptions): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
+    addOwner(applicationObjectId: string, parameters: AddOwnerParameters, options?: ApplicationsAddOwnerOptionalParams): Promise<coreHttp.RestResponse>;
+    create(parameters: ApplicationCreateParameters, options?: ApplicationsCreateOptionalParams): Promise<ApplicationsCreateResponse>;
+    delete(applicationObjectId: string, options?: ApplicationsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(applicationObjectId: string, options?: ApplicationsGetOptionalParams): Promise<ApplicationsGetResponse>;
+    getServicePrincipalsIdByAppId(applicationID: string, options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
     list(options?: ApplicationsListOptionalParams): PagedAsyncIterableIterator<Application>;
-    listKeyCredentials(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<KeyCredential>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
-    listOwners(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listPasswordCredentials(applicationObjectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PasswordCredential>;
-    patch(applicationObjectId: string, parameters: ApplicationUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    removeOwner(applicationObjectId: string, ownerObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    updateKeyCredentials(applicationObjectId: string, parameters: KeyCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    updatePasswordCredentials(applicationObjectId: string, parameters: PasswordCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listKeyCredentials(applicationObjectId: string, options?: ApplicationsListKeyCredentialsOptionalParams): PagedAsyncIterableIterator<KeyCredential>;
+    listNext(nextLink: string, options?: ApplicationsListNextOptionalParams): PagedAsyncIterableIterator<Application>;
+    listOwners(applicationObjectId: string, options?: ApplicationsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listPasswordCredentials(applicationObjectId: string, options?: ApplicationsListPasswordCredentialsOptionalParams): PagedAsyncIterableIterator<PasswordCredential>;
+    patch(applicationObjectId: string, parameters: ApplicationUpdateParameters, options?: ApplicationsPatchOptionalParams): Promise<coreHttp.RestResponse>;
+    removeOwner(applicationObjectId: string, ownerObjectId: string, options?: ApplicationsRemoveOwnerOptionalParams): Promise<coreHttp.RestResponse>;
+    updateKeyCredentials(applicationObjectId: string, parameters: KeyCredentialsUpdateParameters, options?: ApplicationsUpdateKeyCredentialsOptionalParams): Promise<coreHttp.RestResponse>;
+    updatePasswordCredentials(applicationObjectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ApplicationsUpdatePasswordCredentialsOptionalParams): Promise<coreHttp.RestResponse>;
+}
+
+// @public
+export interface ApplicationsAddOwnerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ApplicationsCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -132,12 +140,24 @@ export type ApplicationsCreateResponse = Application & {
 };
 
 // @public
+export interface ApplicationsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ApplicationsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationsGetResponse = Application & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Application;
     };
 };
+
+// @public
+export interface ApplicationsGetServicePrincipalsIdByAppIdOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult & {
@@ -148,12 +168,20 @@ export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipal
 };
 
 // @public
+export interface ApplicationsListKeyCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: KeyCredentialListResult;
     };
 };
+
+// @public
+export interface ApplicationsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationsListNextResponse = ApplicationListResult & {
@@ -169,6 +197,10 @@ export interface ApplicationsListOptionalParams extends coreHttp.OperationOption
 }
 
 // @public
+export interface ApplicationsListOwnersNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -177,12 +209,20 @@ export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
 };
 
 // @public
+export interface ApplicationsListOwnersOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ApplicationsListOwnersResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface ApplicationsListPasswordCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult & {
@@ -199,6 +239,22 @@ export type ApplicationsListResponse = ApplicationListResult & {
         parsedBody: ApplicationListResult;
     };
 };
+
+// @public
+export interface ApplicationsPatchOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ApplicationsRemoveOwnerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ApplicationsUpdateKeyCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ApplicationsUpdatePasswordCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ApplicationUpdateParameters = ApplicationBase & {
@@ -234,10 +290,18 @@ export type ConsentType = string;
 
 // @public
 export interface DeletedApplications {
-    hardDelete(applicationObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    hardDelete(applicationObjectId: string, options?: DeletedApplicationsHardDeleteOptionalParams): Promise<coreHttp.RestResponse>;
     list(options?: DeletedApplicationsListOptionalParams): PagedAsyncIterableIterator<Application>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Application>;
-    restore(objectId: string, options?: coreHttp.OperationOptions): Promise<DeletedApplicationsRestoreResponse>;
+    listNext(nextLink: string, options?: DeletedApplicationsListNextOptionalParams): PagedAsyncIterableIterator<Application>;
+    restore(objectId: string, options?: DeletedApplicationsRestoreOptionalParams): Promise<DeletedApplicationsRestoreResponse>;
+}
+
+// @public
+export interface DeletedApplicationsHardDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface DeletedApplicationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -260,6 +324,10 @@ export type DeletedApplicationsListResponse = ApplicationListResult & {
         parsedBody: ApplicationListResult;
     };
 };
+
+// @public
+export interface DeletedApplicationsRestoreOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeletedApplicationsRestoreResponse = Application & {
@@ -302,8 +370,12 @@ export interface DomainListResult {
 
 // @public
 export interface Domains {
-    get(domainName: string, options?: coreHttp.OperationOptions): Promise<DomainsGetResponse>;
+    get(domainName: string, options?: DomainsGetOptionalParams): Promise<DomainsGetResponse>;
     list(options?: DomainsListOptionalParams): PagedAsyncIterableIterator<Domain>;
+}
+
+// @public
+export interface DomainsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -419,20 +491,32 @@ export type GroupMembershipClaimTypes = string;
 
 // @public
 export interface Groups {
-    addMember(groupObjectId: string, parameters: GroupAddMemberParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    addOwner(objectId: string, parameters: AddOwnerParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    create(parameters: GroupCreateParameters, options?: coreHttp.OperationOptions): Promise<GroupsCreateResponse>;
-    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(objectId: string, options?: coreHttp.OperationOptions): Promise<GroupsGetResponse>;
-    isMemberOf(parameters: CheckGroupMembershipParameters, options?: coreHttp.OperationOptions): Promise<GroupsIsMemberOfResponse>;
+    addMember(groupObjectId: string, parameters: GroupAddMemberParameters, options?: GroupsAddMemberOptionalParams): Promise<coreHttp.RestResponse>;
+    addOwner(objectId: string, parameters: AddOwnerParameters, options?: GroupsAddOwnerOptionalParams): Promise<coreHttp.RestResponse>;
+    create(parameters: GroupCreateParameters, options?: GroupsCreateOptionalParams): Promise<GroupsCreateResponse>;
+    delete(objectId: string, options?: GroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(objectId: string, options?: GroupsGetOptionalParams): Promise<GroupsGetResponse>;
+    isMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
     list(options?: GroupsListOptionalParams): PagedAsyncIterableIterator<ADGroup>;
-    listGroupMembers(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listGroupMembersNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listMemberGroups(objectId: string, parameters: GroupGetMemberGroupsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<string>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ADGroup>;
-    listOwners(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    removeMember(groupObjectId: string, memberObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    removeOwner(objectId: string, ownerObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listGroupMembers(objectId: string, options?: GroupsGetGroupMembersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listGroupMembersNext(nextLink: string, options?: GroupsGetGroupMembersNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listMemberGroups(objectId: string, parameters: GroupGetMemberGroupsParameters, options?: GroupsGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listNext(nextLink: string, options?: GroupsListNextOptionalParams): PagedAsyncIterableIterator<ADGroup>;
+    listOwners(objectId: string, options?: GroupsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    removeMember(groupObjectId: string, memberObjectId: string, options?: GroupsRemoveMemberOptionalParams): Promise<coreHttp.RestResponse>;
+    removeOwner(objectId: string, ownerObjectId: string, options?: GroupsRemoveOwnerOptionalParams): Promise<coreHttp.RestResponse>;
+}
+
+// @public
+export interface GroupsAddMemberOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface GroupsAddOwnerOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface GroupsCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -444,12 +528,24 @@ export type GroupsCreateResponse = ADGroup & {
 };
 
 // @public
+export interface GroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface GroupsGetGroupMembersNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface GroupsGetGroupMembersOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
@@ -460,12 +556,20 @@ export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
 };
 
 // @public
+export interface GroupsGetMemberGroupsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: GroupGetMemberGroupsResult;
     };
 };
+
+// @public
+export interface GroupsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GroupsGetResponse = ADGroup & {
@@ -476,12 +580,20 @@ export type GroupsGetResponse = ADGroup & {
 };
 
 // @public
+export interface GroupsIsMemberOfOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GroupsIsMemberOfResponse = CheckGroupMembershipResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: CheckGroupMembershipResult;
     };
 };
+
+// @public
+export interface GroupsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GroupsListNextResponse = GroupListResult & {
@@ -497,12 +609,20 @@ export interface GroupsListOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
+export interface GroupsListOwnersNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type GroupsListOwnersNextResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface GroupsListOwnersOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type GroupsListOwnersResponse = DirectoryObjectListResult & {
@@ -519,6 +639,14 @@ export type GroupsListResponse = GroupListResult & {
         parsedBody: GroupListResult;
     };
 };
+
+// @public
+export interface GroupsRemoveMemberOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface GroupsRemoveOwnerOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export interface InformationalUrl {
@@ -591,9 +719,9 @@ export interface OAuth2Permission {
 // @public
 export interface OAuth2PermissionGrant {
     create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
-    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    delete(objectId: string, options?: OAuth2PermissionGrantDeleteOptionalParams): Promise<coreHttp.RestResponse>;
     list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
+    listNext(nextLink: string, options?: OAuth2PermissionGrantListNextOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
 }
 
 // @public
@@ -620,6 +748,14 @@ export interface OAuth2PermissionGrantDef {
     resourceId?: string;
     scope?: string;
     startTime?: string;
+}
+
+// @public
+export interface OAuth2PermissionGrantDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface OAuth2PermissionGrantListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -651,8 +787,12 @@ export interface OAuth2PermissionGrantListResult {
 
 // @public
 export interface Objects {
-    listObjectsByObjectIds(parameters: GetObjectsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listObjectsByObjectIdsNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listObjectsByObjectIds(parameters: GetObjectsParameters, options?: ObjectsGetObjectsByObjectIdsOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listObjectsByObjectIdsNext(nextLink: string, options?: ObjectsGetObjectsByObjectIdsNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+}
+
+// @public
+export interface ObjectsGetObjectsByObjectIdsNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -662,6 +802,10 @@ export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface ObjectsGetObjectsByObjectIdsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult & {
@@ -800,17 +944,21 @@ export interface ServicePrincipalObjectResult {
 
 // @public
 export interface ServicePrincipals {
-    create(parameters: ServicePrincipalCreateParameters, options?: coreHttp.OperationOptions): Promise<ServicePrincipalsCreateResponse>;
-    delete(objectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(objectId: string, options?: coreHttp.OperationOptions): Promise<ServicePrincipalsGetResponse>;
+    create(parameters: ServicePrincipalCreateParameters, options?: ServicePrincipalsCreateOptionalParams): Promise<ServicePrincipalsCreateResponse>;
+    delete(objectId: string, options?: ServicePrincipalsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(objectId: string, options?: ServicePrincipalsGetOptionalParams): Promise<ServicePrincipalsGetResponse>;
     list(options?: ServicePrincipalsListOptionalParams): PagedAsyncIterableIterator<ServicePrincipal>;
-    listKeyCredentials(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<KeyCredential>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ServicePrincipal>;
-    listOwners(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listPasswordCredentials(objectId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PasswordCredential>;
-    update(objectId: string, parameters: ServicePrincipalUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    updateKeyCredentials(objectId: string, parameters: KeyCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    updatePasswordCredentials(objectId: string, parameters: PasswordCredentialsUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listKeyCredentials(objectId: string, options?: ServicePrincipalsListKeyCredentialsOptionalParams): PagedAsyncIterableIterator<KeyCredential>;
+    listNext(nextLink: string, options?: ServicePrincipalsListNextOptionalParams): PagedAsyncIterableIterator<ServicePrincipal>;
+    listOwners(objectId: string, options?: ServicePrincipalsListOwnersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listPasswordCredentials(objectId: string, options?: ServicePrincipalsListPasswordCredentialsOptionalParams): PagedAsyncIterableIterator<PasswordCredential>;
+    update(objectId: string, parameters: ServicePrincipalUpdateParameters, options?: ServicePrincipalsUpdateOptionalParams): Promise<coreHttp.RestResponse>;
+    updateKeyCredentials(objectId: string, parameters: KeyCredentialsUpdateParameters, options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams): Promise<coreHttp.RestResponse>;
+    updatePasswordCredentials(objectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams): Promise<coreHttp.RestResponse>;
+}
+
+// @public
+export interface ServicePrincipalsCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -822,6 +970,14 @@ export type ServicePrincipalsCreateResponse = ServicePrincipal & {
 };
 
 // @public
+export interface ServicePrincipalsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ServicePrincipalsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServicePrincipalsGetResponse = ServicePrincipal & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -830,12 +986,20 @@ export type ServicePrincipalsGetResponse = ServicePrincipal & {
 };
 
 // @public
+export interface ServicePrincipalsListKeyCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: KeyCredentialListResult;
     };
 };
+
+// @public
+export interface ServicePrincipalsListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServicePrincipalsListNextResponse = ServicePrincipalListResult & {
@@ -851,6 +1015,10 @@ export interface ServicePrincipalsListOptionalParams extends coreHttp.OperationO
 }
 
 // @public
+export interface ServicePrincipalsListOwnersNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -859,12 +1027,20 @@ export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult 
 };
 
 // @public
+export interface ServicePrincipalsListOwnersOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface ServicePrincipalsListPasswordCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult & {
@@ -883,13 +1059,29 @@ export type ServicePrincipalsListResponse = ServicePrincipalListResult & {
 };
 
 // @public
+export interface ServicePrincipalsUpdateKeyCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ServicePrincipalsUpdateOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ServicePrincipalUpdateParameters = ServicePrincipalBase & {};
 
 // @public
 export interface SignedInUser {
-    get(options?: coreHttp.OperationOptions): Promise<SignedInUserGetResponse>;
-    listOwnedObjects(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
-    listOwnedObjectsNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    get(options?: SignedInUserGetOptionalParams): Promise<SignedInUserGetResponse>;
+    listOwnedObjects(options?: SignedInUserListOwnedObjectsOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+    listOwnedObjectsNext(nextLink: string, options?: SignedInUserListOwnedObjectsNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
+}
+
+// @public
+export interface SignedInUserGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -901,12 +1093,20 @@ export type SignedInUserGetResponse = User & {
 };
 
 // @public
+export interface SignedInUserListOwnedObjectsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DirectoryObjectListResult;
     };
 };
+
+// @public
+export interface SignedInUserListOwnedObjectsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult & {
@@ -978,13 +1178,17 @@ export interface UserListResult {
 
 // @public
 export interface Users {
-    create(parameters: UserCreateParameters, options?: coreHttp.OperationOptions): Promise<UsersCreateResponse>;
-    delete(upnOrObjectId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(upnOrObjectId: string, options?: coreHttp.OperationOptions): Promise<UsersGetResponse>;
+    create(parameters: UserCreateParameters, options?: UsersCreateOptionalParams): Promise<UsersCreateResponse>;
+    delete(upnOrObjectId: string, options?: UsersDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(upnOrObjectId: string, options?: UsersGetOptionalParams): Promise<UsersGetResponse>;
     list(options?: UsersListOptionalParams): PagedAsyncIterableIterator<User>;
-    listMemberGroups(objectId: string, parameters: UserGetMemberGroupsParameters, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<string>;
-    listNext(nextLink: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<User>;
-    update(upnOrObjectId: string, parameters: UserUpdateParameters, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+    listMemberGroups(objectId: string, parameters: UserGetMemberGroupsParameters, options?: UsersGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listNext(nextLink: string, options?: UsersListNextOptionalParams): PagedAsyncIterableIterator<User>;
+    update(upnOrObjectId: string, parameters: UserUpdateParameters, options?: UsersUpdateOptionalParams): Promise<coreHttp.RestResponse>;
+}
+
+// @public
+export interface UsersCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -996,6 +1200,14 @@ export type UsersCreateResponse = User & {
 };
 
 // @public
+export interface UsersDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface UsersGetMemberGroupsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -1004,12 +1216,20 @@ export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
 };
 
 // @public
+export interface UsersGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UsersGetResponse = User & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: User;
     };
 };
+
+// @public
+export interface UsersListNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UsersListNextResponse = UserListResult & {
@@ -1032,6 +1252,10 @@ export type UsersListResponse = UserListResult & {
         parsedBody: UserListResult;
     };
 };
+
+// @public
+export interface UsersUpdateOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UserType = string;

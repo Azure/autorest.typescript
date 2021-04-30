@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LoadBalancer,
+  LoadBalancersListAllNextOptionalParams,
+  LoadBalancersListAllOptionalParams,
+  LoadBalancersListNextOptionalParams,
+  LoadBalancersListOptionalParams,
+  LoadBalancersDeleteOptionalParams,
   LoadBalancersGetOptionalParams,
   LoadBalancersGetResponse,
+  LoadBalancersCreateOrUpdateOptionalParams,
   LoadBalancersCreateOrUpdateResponse,
   TagsObject,
+  LoadBalancersUpdateTagsOptionalParams,
   LoadBalancersUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface LoadBalancers {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancer>;
   /**
    * Gets all the load balancers in a resource group.
@@ -36,7 +43,7 @@ export interface LoadBalancers {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancer>;
   /**
    * Deletes the specified load balancer.
@@ -47,7 +54,7 @@ export interface LoadBalancers {
   delete(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LoadBalancersCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersUpdateTagsOptionalParams
   ): Promise<LoadBalancersUpdateTagsResponse>;
 }

@@ -332,6 +332,10 @@ export type ParameterType = string;
 /** Defines values for ResourceIdentityType. */
 export type ResourceIdentityType = "SystemAssigned" | "None";
 
+/** Optional parameters. */
+export interface PolicyAssignmentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the delete operation. */
 export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
   /** The underlying HTTP response. */
@@ -344,6 +348,10 @@ export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyAssignmentsCreateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the create operation. */
 export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
   /** The underlying HTTP response. */
@@ -355,6 +363,10 @@ export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
     parsedBody: PolicyAssignment;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyAssignmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type PolicyAssignmentsGetResponse = PolicyAssignment & {
@@ -406,6 +418,10 @@ export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResul
   };
 };
 
+/** Optional parameters. */
+export interface PolicyAssignmentsListForManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listForManagementGroup operation. */
 export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult & {
   /** The underlying HTTP response. */
@@ -437,6 +453,10 @@ export type PolicyAssignmentsListResponse = PolicyAssignmentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyAssignmentsDeleteByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the deleteById operation. */
 export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
   /** The underlying HTTP response. */
@@ -449,6 +469,10 @@ export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyAssignmentsCreateByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createById operation. */
 export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
   /** The underlying HTTP response. */
@@ -460,6 +484,10 @@ export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
     parsedBody: PolicyAssignment;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyAssignmentsGetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getById operation. */
 export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
@@ -511,6 +539,10 @@ export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListR
   };
 };
 
+/** Optional parameters. */
+export interface PolicyAssignmentsListForManagementGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listForManagementGroupNext operation. */
 export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult & {
   /** The underlying HTTP response. */
@@ -542,6 +574,10 @@ export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
   /** The underlying HTTP response. */
@@ -553,6 +589,14 @@ export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
     parsedBody: PolicyDefinition;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyDefinitionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolicyDefinitionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type PolicyDefinitionsGetResponse = PolicyDefinition & {
@@ -566,6 +610,10 @@ export type PolicyDefinitionsGetResponse = PolicyDefinition & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsGetBuiltInOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBuiltIn operation. */
 export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
   /** The underlying HTTP response. */
@@ -577,6 +625,10 @@ export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
     parsedBody: PolicyDefinition;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
 export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition & {
@@ -590,6 +642,14 @@ export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDef
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolicyDefinitionsGetAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAtManagementGroup operation. */
 export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
   /** The underlying HTTP response. */
@@ -601,6 +661,10 @@ export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
     parsedBody: PolicyDefinition;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyDefinitionsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
@@ -614,6 +678,10 @@ export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsListBuiltInOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBuiltIn operation. */
 export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -625,6 +693,10 @@ export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & 
     parsedBody: PolicyDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyDefinitionsListByManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByManagementGroup operation. */
 export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult & {
@@ -638,6 +710,10 @@ export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionLis
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -649,6 +725,10 @@ export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
     parsedBody: PolicyDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicyDefinitionsListBuiltInNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBuiltInNext operation. */
 export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult & {
@@ -662,6 +742,10 @@ export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResul
   };
 };
 
+/** Optional parameters. */
+export interface PolicyDefinitionsListByManagementGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByManagementGroupNext operation. */
 export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -673,6 +757,10 @@ export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitio
     parsedBody: PolicyDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
@@ -686,6 +774,14 @@ export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicySetDefinitionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
   /** The underlying HTTP response. */
@@ -697,6 +793,10 @@ export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
     parsedBody: PolicySetDefinition;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsGetBuiltInOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBuiltIn operation. */
 export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
@@ -710,6 +810,10 @@ export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
   };
 };
 
+/** Optional parameters. */
+export interface PolicySetDefinitionsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -721,6 +825,10 @@ export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {
     parsedBody: PolicySetDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsListBuiltInOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBuiltIn operation. */
 export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult & {
@@ -734,6 +842,10 @@ export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListRes
   };
 };
 
+/** Optional parameters. */
+export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
 export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition & {
   /** The underlying HTTP response. */
@@ -745,6 +857,14 @@ export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = Policy
     parsedBody: PolicySetDefinition;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroup operation. */
 export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition & {
@@ -758,6 +878,10 @@ export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefiniti
   };
 };
 
+/** Optional parameters. */
+export interface PolicySetDefinitionsListByManagementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByManagementGroup operation. */
 export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -769,6 +893,10 @@ export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinit
     parsedBody: PolicySetDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult & {
@@ -782,6 +910,10 @@ export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult
   };
 };
 
+/** Optional parameters. */
+export interface PolicySetDefinitionsListBuiltInNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBuiltInNext operation. */
 export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -793,6 +925,10 @@ export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionLis
     parsedBody: PolicySetDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByManagementGroupNext operation. */
 export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult & {

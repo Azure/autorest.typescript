@@ -14,7 +14,9 @@ import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   TransparentDataEncryption,
   TransparentDataEncryptionName,
+  TransparentDataEncryptionsCreateOrUpdateOptionalParams,
   TransparentDataEncryptionsCreateOrUpdateResponse,
+  TransparentDataEncryptionsGetOptionalParams,
   TransparentDataEncryptionsGetResponse
 } from "../models";
 
@@ -48,7 +50,7 @@ export class TransparentDataEncryptionsImpl
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
     parameters: TransparentDataEncryption,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -78,7 +80,7 @@ export class TransparentDataEncryptionsImpl
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionsGetOptionalParams
   ): Promise<TransparentDataEncryptionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

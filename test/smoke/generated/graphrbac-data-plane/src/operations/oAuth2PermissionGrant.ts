@@ -15,10 +15,12 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   OAuth2PermissionGrantDef,
+  OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantListResponse,
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
+  OAuth2PermissionGrantDeleteOptionalParams,
   OAuth2PermissionGrantListNextResponse
 } from "../models";
 
@@ -84,7 +86,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantListNextOptionalParams
   ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -102,7 +104,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantListNextOptionalParams
   ): AsyncIterableIterator<OAuth2PermissionGrantDef[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -116,7 +118,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantListNextOptionalParams
   ): AsyncIterableIterator<OAuth2PermissionGrantDef> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -162,7 +164,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -181,7 +183,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantListNextOptionalParams
   ): Promise<OAuth2PermissionGrantListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

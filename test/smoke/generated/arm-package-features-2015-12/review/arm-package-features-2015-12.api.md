@@ -12,7 +12,7 @@ export class FeatureClient extends FeatureClientContext {
     constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: FeatureClientOptionalParams);
     // (undocumented)
     features: Features;
-    listOperations(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    listOperations(options?: FeatureClientListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
     }
 
 // @public (undocumented)
@@ -27,12 +27,20 @@ export class FeatureClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
+export interface FeatureClientListOperationsNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FeatureClientListOperationsNextResponse = OperationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface FeatureClientListOperationsOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FeatureClientListOperationsResponse = OperationListResult & {
@@ -70,11 +78,15 @@ export interface FeatureResult {
 
 // @public
 export interface Features {
-    get(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesGetResponse>;
-    list(resourceProviderNamespace: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FeatureResult>;
-    listAll(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<FeatureResult>;
-    register(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesRegisterResponse>;
-    unregister(resourceProviderNamespace: string, featureName: string, options?: coreHttp.OperationOptions): Promise<FeaturesUnregisterResponse>;
+    get(resourceProviderNamespace: string, featureName: string, options?: FeaturesGetOptionalParams): Promise<FeaturesGetResponse>;
+    list(resourceProviderNamespace: string, options?: FeaturesListOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    listAll(options?: FeaturesListAllOptionalParams): PagedAsyncIterableIterator<FeatureResult>;
+    register(resourceProviderNamespace: string, featureName: string, options?: FeaturesRegisterOptionalParams): Promise<FeaturesRegisterResponse>;
+    unregister(resourceProviderNamespace: string, featureName: string, options?: FeaturesUnregisterOptionalParams): Promise<FeaturesUnregisterResponse>;
+}
+
+// @public
+export interface FeaturesGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -86,12 +98,20 @@ export type FeaturesGetResponse = FeatureResult & {
 };
 
 // @public
+export interface FeaturesListAllNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FeatureOperationsListResult;
     };
 };
+
+// @public
+export interface FeaturesListAllOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FeaturesListAllResponse = FeatureOperationsListResult & {
@@ -102,12 +122,20 @@ export type FeaturesListAllResponse = FeatureOperationsListResult & {
 };
 
 // @public
+export interface FeaturesListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FeaturesListNextResponse = FeatureOperationsListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FeatureOperationsListResult;
     };
 };
+
+// @public
+export interface FeaturesListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FeaturesListResponse = FeatureOperationsListResult & {
@@ -118,12 +146,20 @@ export type FeaturesListResponse = FeatureOperationsListResult & {
 };
 
 // @public
+export interface FeaturesRegisterOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type FeaturesRegisterResponse = FeatureResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: FeatureResult;
     };
 };
+
+// @public
+export interface FeaturesUnregisterOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type FeaturesUnregisterResponse = FeatureResult & {

@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkProfile,
+  NetworkProfilesListAllNextOptionalParams,
+  NetworkProfilesListAllOptionalParams,
+  NetworkProfilesListNextOptionalParams,
+  NetworkProfilesListOptionalParams,
+  NetworkProfilesDeleteOptionalParams,
   NetworkProfilesGetOptionalParams,
   NetworkProfilesGetResponse,
+  NetworkProfilesCreateOrUpdateOptionalParams,
   NetworkProfilesCreateOrUpdateResponse,
   TagsObject,
+  NetworkProfilesUpdateTagsOptionalParams,
   NetworkProfilesUpdateTagsResponse,
   NetworkProfilesListAllResponse,
   NetworkProfilesListResponse,
@@ -46,7 +53,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkProfile> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllOptionalParams
   ): AsyncIterableIterator<NetworkProfile[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllOptionalParams
   ): AsyncIterableIterator<NetworkProfile> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkProfile> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListOptionalParams
   ): AsyncIterableIterator<NetworkProfile[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListOptionalParams
   ): AsyncIterableIterator<NetworkProfile> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
   async delete(
     resourceGroupName: string,
     networkProfileName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class NetworkProfilesImpl implements NetworkProfiles {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
     resourceGroupName: string,
     networkProfileName: string,
     parameters: NetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesCreateOrUpdateOptionalParams
   ): Promise<NetworkProfilesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -231,7 +234,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
     resourceGroupName: string,
     networkProfileName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesUpdateTagsOptionalParams
   ): Promise<NetworkProfilesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -250,7 +253,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllOptionalParams
   ): Promise<NetworkProfilesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -268,7 +271,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListOptionalParams
   ): Promise<NetworkProfilesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -287,7 +290,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllNextOptionalParams
   ): Promise<NetworkProfilesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -308,7 +311,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListNextOptionalParams
   ): Promise<NetworkProfilesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

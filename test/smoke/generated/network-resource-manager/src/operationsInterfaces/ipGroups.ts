@@ -12,11 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   IpGroup,
+  IpGroupsListByResourceGroupNextOptionalParams,
+  IpGroupsListByResourceGroupOptionalParams,
+  IpGroupsListNextOptionalParams,
+  IpGroupsListOptionalParams,
   IpGroupsGetOptionalParams,
   IpGroupsGetResponse,
+  IpGroupsCreateOrUpdateOptionalParams,
   IpGroupsCreateOrUpdateResponse,
   TagsObject,
-  IpGroupsUpdateGroupsResponse
+  IpGroupsUpdateGroupsOptionalParams,
+  IpGroupsUpdateGroupsResponse,
+  IpGroupsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,14 +36,14 @@ export interface IpGroups {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<IpGroup>;
   /**
    * Gets all IpGroups in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListOptionalParams
   ): PagedAsyncIterableIterator<IpGroup>;
   /**
    * Gets the specified ipGroups.
@@ -60,7 +67,7 @@ export interface IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: IpGroup,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<IpGroupsCreateOrUpdateResponse>,
@@ -78,7 +85,7 @@ export interface IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsUpdateGroupsOptionalParams
   ): Promise<IpGroupsUpdateGroupsResponse>;
   /**
    * Deletes the specified ipGroups.
@@ -89,7 +96,7 @@ export interface IpGroups {
   delete(
     resourceGroupName: string,
     ipGroupsName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

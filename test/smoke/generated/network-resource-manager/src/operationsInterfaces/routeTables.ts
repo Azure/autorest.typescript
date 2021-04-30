@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteTable,
+  RouteTablesListNextOptionalParams,
+  RouteTablesListOptionalParams,
+  RouteTablesListAllNextOptionalParams,
+  RouteTablesListAllOptionalParams,
+  RouteTablesDeleteOptionalParams,
   RouteTablesGetOptionalParams,
   RouteTablesGetResponse,
+  RouteTablesCreateOrUpdateOptionalParams,
   RouteTablesCreateOrUpdateResponse,
   TagsObject,
+  RouteTablesUpdateTagsOptionalParams,
   RouteTablesUpdateTagsResponse
 } from "../models";
 
@@ -29,14 +36,14 @@ export interface RouteTables {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListOptionalParams
   ): PagedAsyncIterableIterator<RouteTable>;
   /**
    * Gets all route tables in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllOptionalParams
   ): PagedAsyncIterableIterator<RouteTable>;
   /**
    * Deletes the specified route table.
@@ -47,7 +54,7 @@ export interface RouteTables {
   delete(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface RouteTables {
     resourceGroupName: string,
     routeTableName: string,
     parameters: RouteTable,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteTablesCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface RouteTables {
     resourceGroupName: string,
     routeTableName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesUpdateTagsOptionalParams
   ): Promise<RouteTablesUpdateTagsResponse>;
 }

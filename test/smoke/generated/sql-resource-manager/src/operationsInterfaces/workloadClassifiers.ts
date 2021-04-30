@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WorkloadClassifier,
+  WorkloadClassifiersListByWorkloadGroupNextOptionalParams,
+  WorkloadClassifiersListByWorkloadGroupOptionalParams,
+  WorkloadClassifiersGetOptionalParams,
   WorkloadClassifiersGetResponse,
-  WorkloadClassifiersCreateOrUpdateResponse
+  WorkloadClassifiersCreateOrUpdateOptionalParams,
+  WorkloadClassifiersCreateOrUpdateResponse,
+  WorkloadClassifiersDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +38,7 @@ export interface WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
   ): PagedAsyncIterableIterator<WorkloadClassifier>;
   /**
    * Gets a workload classifier
@@ -51,7 +56,7 @@ export interface WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     workloadClassifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersGetOptionalParams
   ): Promise<WorkloadClassifiersGetResponse>;
   /**
    * Creates or updates a workload classifier.
@@ -71,7 +76,7 @@ export interface WorkloadClassifiers {
     workloadGroupName: string,
     workloadClassifierName: string,
     parameters: WorkloadClassifier,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WorkloadClassifiersCreateOrUpdateResponse>,
@@ -94,7 +99,7 @@ export interface WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     workloadClassifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -17,35 +17,59 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
+  SqlResourcesListSqlDatabasesOptionalParams,
   SqlContainerGetResults,
+  SqlResourcesListSqlContainersOptionalParams,
   SqlStoredProcedureGetResults,
+  SqlResourcesListSqlStoredProceduresOptionalParams,
   SqlUserDefinedFunctionGetResults,
+  SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   SqlTriggerGetResults,
+  SqlResourcesListSqlTriggersOptionalParams,
   SqlResourcesListSqlDatabasesResponse,
+  SqlResourcesGetSqlDatabaseOptionalParams,
   SqlResourcesGetSqlDatabaseResponse,
   SqlDatabaseCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlDatabaseOptionalParams,
   SqlResourcesCreateUpdateSqlDatabaseResponse,
+  SqlResourcesDeleteSqlDatabaseOptionalParams,
+  SqlResourcesGetSqlDatabaseThroughputOptionalParams,
   SqlResourcesGetSqlDatabaseThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  SqlResourcesUpdateSqlDatabaseThroughputOptionalParams,
   SqlResourcesUpdateSqlDatabaseThroughputResponse,
   SqlResourcesListSqlContainersResponse,
+  SqlResourcesGetSqlContainerOptionalParams,
   SqlResourcesGetSqlContainerResponse,
   SqlContainerCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlContainerOptionalParams,
   SqlResourcesCreateUpdateSqlContainerResponse,
+  SqlResourcesDeleteSqlContainerOptionalParams,
+  SqlResourcesGetSqlContainerThroughputOptionalParams,
   SqlResourcesGetSqlContainerThroughputResponse,
+  SqlResourcesUpdateSqlContainerThroughputOptionalParams,
   SqlResourcesUpdateSqlContainerThroughputResponse,
   SqlResourcesListSqlStoredProceduresResponse,
+  SqlResourcesGetSqlStoredProcedureOptionalParams,
   SqlResourcesGetSqlStoredProcedureResponse,
   SqlStoredProcedureCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams,
   SqlResourcesCreateUpdateSqlStoredProcedureResponse,
+  SqlResourcesDeleteSqlStoredProcedureOptionalParams,
   SqlResourcesListSqlUserDefinedFunctionsResponse,
+  SqlResourcesGetSqlUserDefinedFunctionOptionalParams,
   SqlResourcesGetSqlUserDefinedFunctionResponse,
   SqlUserDefinedFunctionCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams,
   SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse,
+  SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams,
   SqlResourcesListSqlTriggersResponse,
+  SqlResourcesGetSqlTriggerOptionalParams,
   SqlResourcesGetSqlTriggerResponse,
   SqlTriggerCreateUpdateParameters,
-  SqlResourcesCreateUpdateSqlTriggerResponse
+  SqlResourcesCreateUpdateSqlTriggerOptionalParams,
+  SqlResourcesCreateUpdateSqlTriggerResponse,
+  SqlResourcesDeleteSqlTriggerOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -70,7 +94,7 @@ export class SqlResourcesImpl implements SqlResources {
   public listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlDatabasesOptionalParams
   ): PagedAsyncIterableIterator<SqlDatabaseGetResults> {
     const iter = this.listSqlDatabasesPagingAll(
       resourceGroupName,
@@ -97,7 +121,7 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlDatabasesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlDatabasesOptionalParams
   ): AsyncIterableIterator<SqlDatabaseGetResults[]> {
     let result = await this._listSqlDatabases(
       resourceGroupName,
@@ -110,7 +134,7 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlDatabasesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlDatabasesOptionalParams
   ): AsyncIterableIterator<SqlDatabaseGetResults> {
     for await (const page of this.listSqlDatabasesPagingPage(
       resourceGroupName,
@@ -132,7 +156,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlContainersOptionalParams
   ): PagedAsyncIterableIterator<SqlContainerGetResults> {
     const iter = this.listSqlContainersPagingAll(
       resourceGroupName,
@@ -162,7 +186,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlContainersOptionalParams
   ): AsyncIterableIterator<SqlContainerGetResults[]> {
     let result = await this._listSqlContainers(
       resourceGroupName,
@@ -177,7 +201,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlContainersOptionalParams
   ): AsyncIterableIterator<SqlContainerGetResults> {
     for await (const page of this.listSqlContainersPagingPage(
       resourceGroupName,
@@ -202,7 +226,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams
   ): PagedAsyncIterableIterator<SqlStoredProcedureGetResults> {
     const iter = this.listSqlStoredProceduresPagingAll(
       resourceGroupName,
@@ -235,7 +259,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams
   ): AsyncIterableIterator<SqlStoredProcedureGetResults[]> {
     let result = await this._listSqlStoredProcedures(
       resourceGroupName,
@@ -252,7 +276,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams
   ): AsyncIterableIterator<SqlStoredProcedureGetResults> {
     for await (const page of this.listSqlStoredProceduresPagingPage(
       resourceGroupName,
@@ -278,7 +302,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   ): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
     const iter = this.listSqlUserDefinedFunctionsPagingAll(
       resourceGroupName,
@@ -311,7 +335,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults[]> {
     let result = await this._listSqlUserDefinedFunctions(
       resourceGroupName,
@@ -328,7 +352,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
     for await (const page of this.listSqlUserDefinedFunctionsPagingPage(
       resourceGroupName,
@@ -354,7 +378,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlTriggersOptionalParams
   ): PagedAsyncIterableIterator<SqlTriggerGetResults> {
     const iter = this.listSqlTriggersPagingAll(
       resourceGroupName,
@@ -387,7 +411,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlTriggersOptionalParams
   ): AsyncIterableIterator<SqlTriggerGetResults[]> {
     let result = await this._listSqlTriggers(
       resourceGroupName,
@@ -404,7 +428,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlTriggersOptionalParams
   ): AsyncIterableIterator<SqlTriggerGetResults> {
     for await (const page of this.listSqlTriggersPagingPage(
       resourceGroupName,
@@ -426,7 +450,7 @@ export class SqlResourcesImpl implements SqlResources {
   private _listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlDatabasesOptionalParams
   ): Promise<SqlResourcesListSqlDatabasesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -450,7 +474,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlDatabaseOptionalParams
   ): Promise<SqlResourcesGetSqlDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -477,7 +501,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
@@ -500,16 +524,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateSqlDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateSqlDatabaseOperationSpec,
-      initialOperationResult,
+      createUpdateSqlDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -523,7 +543,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlDatabaseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -542,16 +562,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteSqlDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteSqlDatabaseOperationSpec,
-      initialOperationResult,
+      deleteSqlDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -566,7 +582,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlDatabaseThroughputOptionalParams
   ): Promise<SqlResourcesGetSqlDatabaseThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -594,7 +610,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
@@ -617,16 +633,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateSqlDatabaseThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateSqlDatabaseThroughputOperationSpec,
-      initialOperationResult,
+      updateSqlDatabaseThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -640,7 +652,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlContainersOptionalParams
   ): Promise<SqlResourcesListSqlContainersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -667,7 +679,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlContainerOptionalParams
   ): Promise<SqlResourcesGetSqlContainerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -697,7 +709,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
@@ -721,16 +733,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateSqlContainerOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateSqlContainerOperationSpec,
-      initialOperationResult,
+      createUpdateSqlContainerOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -746,7 +754,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlContainerOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -766,16 +774,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteSqlContainerOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteSqlContainerOperationSpec,
-      initialOperationResult,
+      deleteSqlContainerOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -791,7 +795,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlContainerThroughputOptionalParams
   ): Promise<SqlResourcesGetSqlContainerThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -822,7 +826,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
@@ -846,16 +850,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateSqlContainerThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateSqlContainerThroughputOperationSpec,
-      initialOperationResult,
+      updateSqlContainerThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -871,7 +871,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams
   ): Promise<SqlResourcesListSqlStoredProceduresResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -901,7 +901,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlStoredProcedureOptionalParams
   ): Promise<SqlResourcesGetSqlStoredProcedureResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -935,7 +935,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
@@ -960,16 +960,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateSqlStoredProcedureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateSqlStoredProcedureOperationSpec,
-      initialOperationResult,
+      createUpdateSqlStoredProcedureOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -987,7 +983,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1008,16 +1004,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteSqlStoredProcedureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteSqlStoredProcedureOperationSpec,
-      initialOperationResult,
+      deleteSqlStoredProcedureOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1033,7 +1025,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   ): Promise<SqlResourcesListSqlUserDefinedFunctionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1063,7 +1055,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlUserDefinedFunctionOptionalParams
   ): Promise<SqlResourcesGetSqlUserDefinedFunctionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1097,7 +1089,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -1124,16 +1116,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateSqlUserDefinedFunctionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateSqlUserDefinedFunctionOperationSpec,
-      initialOperationResult,
+      createUpdateSqlUserDefinedFunctionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1151,7 +1139,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1172,16 +1160,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteSqlUserDefinedFunctionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteSqlUserDefinedFunctionOperationSpec,
-      initialOperationResult,
+      deleteSqlUserDefinedFunctionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1197,7 +1181,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlTriggersOptionalParams
   ): Promise<SqlResourcesListSqlTriggersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1227,7 +1211,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlTriggerOptionalParams
   ): Promise<SqlResourcesGetSqlTriggerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1260,7 +1244,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
@@ -1285,16 +1269,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateSqlTriggerOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateSqlTriggerOperationSpec,
-      initialOperationResult,
+      createUpdateSqlTriggerOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1312,7 +1292,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlTriggerOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1333,16 +1313,12 @@ export class SqlResourcesImpl implements SqlResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteSqlTriggerOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteSqlTriggerOperationSpec,
-      initialOperationResult,
+      deleteSqlTriggerOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

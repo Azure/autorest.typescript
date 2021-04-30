@@ -12,11 +12,20 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Server,
+  ServersListByResourceGroupNextOptionalParams,
+  ServersListByResourceGroupOptionalParams,
+  ServersListNextOptionalParams,
+  ServersListOptionalParams,
+  ServersGetOptionalParams,
   ServersGetResponse,
+  ServersCreateOrUpdateOptionalParams,
   ServersCreateOrUpdateResponse,
+  ServersDeleteOptionalParams,
   ServerUpdate,
+  ServersUpdateOptionalParams,
   ServersUpdateResponse,
   CheckNameAvailabilityRequest,
+  ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse
 } from "../models";
 
@@ -31,13 +40,13 @@ export interface Servers {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Server>;
   /**
    * Gets a list of all servers in the subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Server>;
+  list(options?: ServersListOptionalParams): PagedAsyncIterableIterator<Server>;
   /**
    * Gets a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -48,7 +57,7 @@ export interface Servers {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersGetOptionalParams
   ): Promise<ServersGetResponse>;
   /**
    * Creates or updates a server.
@@ -62,7 +71,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
-    options?: coreHttp.OperationOptions
+    options?: ServersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServersCreateOrUpdateResponse>,
@@ -79,7 +88,7 @@ export interface Servers {
   delete(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -95,7 +104,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ServersUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   >;
@@ -106,6 +115,6 @@ export interface Servers {
    */
   checkNameAvailability(
     parameters: CheckNameAvailabilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: ServersCheckNameAvailabilityOptionalParams
   ): Promise<ServersCheckNameAvailabilityResponse>;
 }

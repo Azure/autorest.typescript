@@ -15,9 +15,11 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   Metric,
+  DatabaseListMetricsOptionalParams,
   Usage,
   DatabaseListUsagesOptionalParams,
   MetricDefinition,
+  DatabaseListMetricDefinitionsOptionalParams,
   DatabaseListMetricsResponse,
   DatabaseListUsagesResponse,
   DatabaseListMetricDefinitionsResponse
@@ -51,7 +53,7 @@ export class DatabaseImpl implements Database {
     accountName: string,
     databaseRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -84,7 +86,7 @@ export class DatabaseImpl implements Database {
     accountName: string,
     databaseRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -101,7 +103,7 @@ export class DatabaseImpl implements Database {
     accountName: string,
     databaseRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -193,7 +195,7 @@ export class DatabaseImpl implements Database {
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -223,7 +225,7 @@ export class DatabaseImpl implements Database {
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result = await this._listMetricDefinitions(
       resourceGroupName,
@@ -238,7 +240,7 @@ export class DatabaseImpl implements Database {
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -265,7 +267,7 @@ export class DatabaseImpl implements Database {
     accountName: string,
     databaseRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricsOptionalParams
   ): Promise<DatabaseListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -316,7 +318,7 @@ export class DatabaseImpl implements Database {
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricDefinitionsOptionalParams
   ): Promise<DatabaseListMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

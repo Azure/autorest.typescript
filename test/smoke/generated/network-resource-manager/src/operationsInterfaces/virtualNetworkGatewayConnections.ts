@@ -12,18 +12,28 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGatewayConnection,
+  VirtualNetworkGatewayConnectionsListNextOptionalParams,
+  VirtualNetworkGatewayConnectionsListOptionalParams,
+  VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams,
   VirtualNetworkGatewayConnectionsCreateOrUpdateResponse,
+  VirtualNetworkGatewayConnectionsGetOptionalParams,
   VirtualNetworkGatewayConnectionsGetResponse,
+  VirtualNetworkGatewayConnectionsDeleteOptionalParams,
   TagsObject,
+  VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams,
   VirtualNetworkGatewayConnectionsUpdateTagsResponse,
   ConnectionSharedKey,
+  VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsSetSharedKeyResponse,
+  VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsGetSharedKeyResponse,
   ConnectionResetSharedKey,
+  VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsResetSharedKeyResponse,
   VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams,
   VirtualNetworkGatewayConnectionsStartPacketCaptureResponse,
   VpnPacketCaptureStopParameters,
+  VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams,
   VirtualNetworkGatewayConnectionsStopPacketCaptureResponse
 } from "../models";
 
@@ -38,7 +48,7 @@ export interface VirtualNetworkGatewayConnections {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection>;
   /**
    * Creates or updates a virtual network gateway connection in the specified resource group.
@@ -52,7 +62,7 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VirtualNetworkGatewayConnection,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -70,7 +80,7 @@ export interface VirtualNetworkGatewayConnections {
   get(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsGetOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsGetResponse>;
   /**
    * Deletes the specified virtual network Gateway connection.
@@ -81,7 +91,7 @@ export interface VirtualNetworkGatewayConnections {
   delete(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -96,7 +106,7 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
@@ -117,7 +127,7 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
@@ -134,7 +144,7 @@ export interface VirtualNetworkGatewayConnections {
   getSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
   /**
    * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
@@ -151,7 +161,7 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionResetSharedKey,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -190,7 +200,7 @@ export interface VirtualNetworkGatewayConnections {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnPacketCaptureStopParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

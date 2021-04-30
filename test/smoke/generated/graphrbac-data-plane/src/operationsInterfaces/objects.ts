@@ -9,7 +9,12 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { DirectoryObjectUnion, GetObjectsParameters } from "../models";
+import {
+  DirectoryObjectUnion,
+  ObjectsGetObjectsByObjectIdsNextOptionalParams,
+  GetObjectsParameters,
+  ObjectsGetObjectsByObjectIdsOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Objects. */
@@ -22,7 +27,7 @@ export interface Objects {
    */
   listObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets AD group membership for the specified AD object IDs.
@@ -31,6 +36,6 @@ export interface Objects {
    */
   listObjectsByObjectIdsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
 }

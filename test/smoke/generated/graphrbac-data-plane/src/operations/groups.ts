@@ -15,20 +15,34 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   ADGroup,
+  GroupsListNextOptionalParams,
   GroupsListOptionalParams,
   DirectoryObjectUnion,
+  GroupsGetGroupMembersNextOptionalParams,
+  GroupsGetGroupMembersOptionalParams,
   GroupGetMemberGroupsParameters,
+  GroupsGetMemberGroupsOptionalParams,
+  GroupsListOwnersNextOptionalParams,
+  GroupsListOwnersOptionalParams,
   CheckGroupMembershipParameters,
+  GroupsIsMemberOfOptionalParams,
   GroupsIsMemberOfResponse,
+  GroupsRemoveMemberOptionalParams,
   GroupAddMemberParameters,
+  GroupsAddMemberOptionalParams,
   GroupCreateParameters,
+  GroupsCreateOptionalParams,
   GroupsCreateResponse,
   GroupsListResponse,
   GroupsGetGroupMembersResponse,
+  GroupsGetOptionalParams,
   GroupsGetResponse,
+  GroupsDeleteOptionalParams,
   GroupsGetMemberGroupsResponse,
   GroupsListOwnersResponse,
   AddOwnerParameters,
+  GroupsAddOwnerOptionalParams,
+  GroupsRemoveOwnerOptionalParams,
   GroupsListNextResponse,
   GroupsGetGroupMembersNextResponse,
   GroupsListOwnersNextResponse
@@ -96,7 +110,7 @@ export class GroupsImpl implements Groups {
    */
   public listGroupMembers(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersPagingAll(objectId, options);
     return {
@@ -114,7 +128,7 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersPagingPage(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._getGroupMembers(objectId, options);
     yield result.value || [];
@@ -128,7 +142,7 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersPagingAll(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getGroupMembersPagingPage(
       objectId,
@@ -147,7 +161,7 @@ export class GroupsImpl implements Groups {
   public listMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
@@ -166,7 +180,7 @@ export class GroupsImpl implements Groups {
   private async *getMemberGroupsPagingPage(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
     let result = await this._getMemberGroups(objectId, parameters, options);
     yield result.value || [];
@@ -175,7 +189,7 @@ export class GroupsImpl implements Groups {
   private async *getMemberGroupsPagingAll(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
@@ -193,7 +207,7 @@ export class GroupsImpl implements Groups {
    */
   public listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
@@ -211,7 +225,7 @@ export class GroupsImpl implements Groups {
 
   private async *listOwnersPagingPage(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._listOwners(objectId, options);
     yield result.value || [];
@@ -225,7 +239,7 @@ export class GroupsImpl implements Groups {
 
   private async *listOwnersPagingAll(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnersPagingPage(objectId, options)) {
       yield* page;
@@ -239,7 +253,7 @@ export class GroupsImpl implements Groups {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListNextOptionalParams
   ): PagedAsyncIterableIterator<ADGroup> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -257,7 +271,7 @@ export class GroupsImpl implements Groups {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListNextOptionalParams
   ): AsyncIterableIterator<ADGroup[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -271,7 +285,7 @@ export class GroupsImpl implements Groups {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListNextOptionalParams
   ): AsyncIterableIterator<ADGroup> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -285,7 +299,7 @@ export class GroupsImpl implements Groups {
    */
   public listGroupMembersNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersNextPagingAll(nextLink, options);
     return {
@@ -303,7 +317,7 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._getGroupMembersNext(nextLink, options);
     yield result.value || [];
@@ -317,7 +331,7 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getGroupMembersNextPagingPage(
       nextLink,
@@ -335,7 +349,7 @@ export class GroupsImpl implements Groups {
    */
   isMemberOf(
     parameters: CheckGroupMembershipParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -356,7 +370,7 @@ export class GroupsImpl implements Groups {
   removeMember(
     groupObjectId: string,
     memberObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsRemoveMemberOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupObjectId,
@@ -379,7 +393,7 @@ export class GroupsImpl implements Groups {
   addMember(
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsAddMemberOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupObjectId,
@@ -399,7 +413,7 @@ export class GroupsImpl implements Groups {
    */
   create(
     parameters: GroupCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsCreateOptionalParams
   ): Promise<GroupsCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -434,7 +448,7 @@ export class GroupsImpl implements Groups {
    */
   private _getGroupMembers(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersOptionalParams
   ): Promise<GroupsGetGroupMembersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -453,7 +467,7 @@ export class GroupsImpl implements Groups {
    */
   get(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetOptionalParams
   ): Promise<GroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -472,7 +486,7 @@ export class GroupsImpl implements Groups {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -493,7 +507,7 @@ export class GroupsImpl implements Groups {
   private _getMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetMemberGroupsOptionalParams
   ): Promise<GroupsGetMemberGroupsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -513,7 +527,7 @@ export class GroupsImpl implements Groups {
    */
   private _listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersOptionalParams
   ): Promise<GroupsListOwnersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -535,7 +549,7 @@ export class GroupsImpl implements Groups {
   addOwner(
     objectId: string,
     parameters: AddOwnerParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsAddOwnerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -557,7 +571,7 @@ export class GroupsImpl implements Groups {
   removeOwner(
     objectId: string,
     ownerObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsRemoveOwnerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -577,7 +591,7 @@ export class GroupsImpl implements Groups {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListNextOptionalParams
   ): Promise<GroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -596,7 +610,7 @@ export class GroupsImpl implements Groups {
    */
   private _getGroupMembersNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersNextOptionalParams
   ): Promise<GroupsGetGroupMembersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -617,7 +631,7 @@ export class GroupsImpl implements Groups {
   private _listOwnersNext(
     objectId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersNextOptionalParams
   ): Promise<GroupsListOwnersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,

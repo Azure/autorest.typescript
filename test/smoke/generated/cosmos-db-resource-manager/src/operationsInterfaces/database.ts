@@ -11,9 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Metric,
+  DatabaseListMetricsOptionalParams,
   Usage,
   DatabaseListUsagesOptionalParams,
-  MetricDefinition
+  MetricDefinition,
+  DatabaseListMetricDefinitionsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +36,7 @@ export interface Database {
     accountName: string,
     databaseRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Retrieves the usages (most recent data) for the given database.
@@ -60,6 +62,6 @@ export interface Database {
     resourceGroupName: string,
     accountName: string,
     databaseRid: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition>;
 }

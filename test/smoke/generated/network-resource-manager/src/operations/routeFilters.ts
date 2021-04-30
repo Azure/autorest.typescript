@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilter,
+  RouteFiltersListByResourceGroupNextOptionalParams,
+  RouteFiltersListByResourceGroupOptionalParams,
+  RouteFiltersListNextOptionalParams,
+  RouteFiltersListOptionalParams,
+  RouteFiltersDeleteOptionalParams,
   RouteFiltersGetOptionalParams,
   RouteFiltersGetResponse,
+  RouteFiltersCreateOrUpdateOptionalParams,
   RouteFiltersCreateOrUpdateResponse,
   TagsObject,
+  RouteFiltersUpdateTagsOptionalParams,
   RouteFiltersUpdateTagsResponse,
   RouteFiltersListByResourceGroupResponse,
   RouteFiltersListResponse,
@@ -48,7 +55,7 @@ export class RouteFiltersImpl implements RouteFilters {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<RouteFilter> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +73,7 @@ export class RouteFiltersImpl implements RouteFilters {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<RouteFilter[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +91,7 @@ export class RouteFiltersImpl implements RouteFilters {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<RouteFilter> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -99,7 +106,7 @@ export class RouteFiltersImpl implements RouteFilters {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListOptionalParams
   ): PagedAsyncIterableIterator<RouteFilter> {
     const iter = this.listPagingAll(options);
     return {
@@ -116,7 +123,7 @@ export class RouteFiltersImpl implements RouteFilters {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListOptionalParams
   ): AsyncIterableIterator<RouteFilter[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -129,7 +136,7 @@ export class RouteFiltersImpl implements RouteFilters {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListOptionalParams
   ): AsyncIterableIterator<RouteFilter> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -145,7 +152,7 @@ export class RouteFiltersImpl implements RouteFilters {
   async delete(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -163,17 +170,13 @@ export class RouteFiltersImpl implements RouteFilters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -209,7 +212,7 @@ export class RouteFiltersImpl implements RouteFilters {
     resourceGroupName: string,
     routeFilterName: string,
     routeFilterParameters: RouteFilter,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteFiltersCreateOrUpdateResponse>,
@@ -231,17 +234,13 @@ export class RouteFiltersImpl implements RouteFilters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -255,7 +254,7 @@ export class RouteFiltersImpl implements RouteFilters {
     resourceGroupName: string,
     routeFilterName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersUpdateTagsOptionalParams
   ): Promise<RouteFiltersUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -276,7 +275,7 @@ export class RouteFiltersImpl implements RouteFilters {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupOptionalParams
   ): Promise<RouteFiltersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -293,7 +292,7 @@ export class RouteFiltersImpl implements RouteFilters {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListOptionalParams
   ): Promise<RouteFiltersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -313,7 +312,7 @@ export class RouteFiltersImpl implements RouteFilters {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupNextOptionalParams
   ): Promise<RouteFiltersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -333,7 +332,7 @@ export class RouteFiltersImpl implements RouteFilters {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListNextOptionalParams
   ): Promise<RouteFiltersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -17,13 +17,22 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Server,
+  ServersListByResourceGroupNextOptionalParams,
+  ServersListByResourceGroupOptionalParams,
+  ServersListNextOptionalParams,
+  ServersListOptionalParams,
   ServersListByResourceGroupResponse,
+  ServersGetOptionalParams,
   ServersGetResponse,
+  ServersCreateOrUpdateOptionalParams,
   ServersCreateOrUpdateResponse,
+  ServersDeleteOptionalParams,
   ServerUpdate,
+  ServersUpdateOptionalParams,
   ServersUpdateResponse,
   ServersListResponse,
   CheckNameAvailabilityRequest,
+  ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse,
   ServersListByResourceGroupNextResponse,
   ServersListNextResponse
@@ -50,7 +59,7 @@ export class ServersImpl implements Servers {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Server> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -68,7 +77,7 @@ export class ServersImpl implements Servers {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Server[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -86,7 +95,7 @@ export class ServersImpl implements Servers {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Server> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -101,7 +110,7 @@ export class ServersImpl implements Servers {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ServersListOptionalParams
   ): PagedAsyncIterableIterator<Server> {
     const iter = this.listPagingAll(options);
     return {
@@ -118,7 +127,7 @@ export class ServersImpl implements Servers {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ServersListOptionalParams
   ): AsyncIterableIterator<Server[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -131,7 +140,7 @@ export class ServersImpl implements Servers {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ServersListOptionalParams
   ): AsyncIterableIterator<Server> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -146,7 +155,7 @@ export class ServersImpl implements Servers {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupOptionalParams
   ): Promise<ServersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -168,7 +177,7 @@ export class ServersImpl implements Servers {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersGetOptionalParams
   ): Promise<ServersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -193,7 +202,7 @@ export class ServersImpl implements Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
-    options?: coreHttp.OperationOptions
+    options?: ServersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServersCreateOrUpdateResponse>,
@@ -215,16 +224,12 @@ export class ServersImpl implements Servers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -237,7 +242,7 @@ export class ServersImpl implements Servers {
   async delete(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -255,16 +260,12 @@ export class ServersImpl implements Servers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -279,7 +280,7 @@ export class ServersImpl implements Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ServersUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   > {
@@ -298,16 +299,12 @@ export class ServersImpl implements Servers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -315,7 +312,7 @@ export class ServersImpl implements Servers {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ServersListOptionalParams
   ): Promise<ServersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -333,7 +330,7 @@ export class ServersImpl implements Servers {
    */
   checkNameAvailability(
     parameters: CheckNameAvailabilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: ServersCheckNameAvailabilityOptionalParams
   ): Promise<ServersCheckNameAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -355,7 +352,7 @@ export class ServersImpl implements Servers {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListByResourceGroupNextOptionalParams
   ): Promise<ServersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -375,7 +372,7 @@ export class ServersImpl implements Servers {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServersListNextOptionalParams
   ): Promise<ServersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

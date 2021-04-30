@@ -14,7 +14,9 @@ import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ServerConnectionPolicy,
   ConnectionPolicyName,
+  ServerConnectionPoliciesCreateOrUpdateOptionalParams,
   ServerConnectionPoliciesCreateOrUpdateResponse,
+  ServerConnectionPoliciesGetOptionalParams,
   ServerConnectionPoliciesGetResponse
 } from "../models";
 
@@ -44,7 +46,7 @@ export class ServerConnectionPoliciesImpl implements ServerConnectionPolicies {
     serverName: string,
     connectionPolicyName: ConnectionPolicyName,
     parameters: ServerConnectionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -71,7 +73,7 @@ export class ServerConnectionPoliciesImpl implements ServerConnectionPolicies {
     resourceGroupName: string,
     serverName: string,
     connectionPolicyName: ConnectionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ServerConnectionPoliciesGetOptionalParams
   ): Promise<ServerConnectionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

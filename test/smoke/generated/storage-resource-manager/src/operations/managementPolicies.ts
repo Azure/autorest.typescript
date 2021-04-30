@@ -13,9 +13,12 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   ManagementPolicyName,
+  ManagementPoliciesGetOptionalParams,
   ManagementPoliciesGetResponse,
   ManagementPolicy,
-  ManagementPoliciesCreateOrUpdateResponse
+  ManagementPoliciesCreateOrUpdateOptionalParams,
+  ManagementPoliciesCreateOrUpdateResponse,
+  ManagementPoliciesDeleteOptionalParams
 } from "../models";
 
 /** Class representing a ManagementPolicies. */
@@ -45,7 +48,7 @@ export class ManagementPoliciesImpl implements ManagementPolicies {
     resourceGroupName: string,
     accountName: string,
     managementPolicyName: ManagementPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesGetOptionalParams
   ): Promise<ManagementPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -76,7 +79,7 @@ export class ManagementPoliciesImpl implements ManagementPolicies {
     accountName: string,
     managementPolicyName: ManagementPolicyName,
     properties: ManagementPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesCreateOrUpdateOptionalParams
   ): Promise<ManagementPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -106,7 +109,7 @@ export class ManagementPoliciesImpl implements ManagementPolicies {
     resourceGroupName: string,
     accountName: string,
     managementPolicyName: ManagementPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,6 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   DataMaskingRule,
+  DataMaskingRulesListByDatabaseOptionalParams,
+  DataMaskingRulesCreateOrUpdateOptionalParams,
   DataMaskingRulesCreateOrUpdateResponse
 } from "../models";
 
@@ -29,7 +31,7 @@ export interface DataMaskingRules {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<DataMaskingRule>;
   /**
    * Creates or updates a database data masking rule.
@@ -47,6 +49,6 @@ export interface DataMaskingRules {
     databaseName: string,
     dataMaskingRuleName: string,
     parameters: DataMaskingRule,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesCreateOrUpdateOptionalParams
   ): Promise<DataMaskingRulesCreateOrUpdateResponse>;
 }

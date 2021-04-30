@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { PercentileMetric, PercentileListMetricsResponse } from "../models";
+import {
+  PercentileMetric,
+  PercentileListMetricsOptionalParams,
+  PercentileListMetricsResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Percentile. */
@@ -42,7 +46,7 @@ export class PercentileImpl implements Percentile {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PercentileMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -72,7 +76,7 @@ export class PercentileImpl implements Percentile {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileListMetricsOptionalParams
   ): AsyncIterableIterator<PercentileMetric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -87,7 +91,7 @@ export class PercentileImpl implements Percentile {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileListMetricsOptionalParams
   ): AsyncIterableIterator<PercentileMetric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -113,7 +117,7 @@ export class PercentileImpl implements Percentile {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileListMetricsOptionalParams
   ): Promise<PercentileListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,12 +15,21 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
   SshPublicKeyResource,
+  SshPublicKeysListBySubscriptionNextOptionalParams,
+  SshPublicKeysListBySubscriptionOptionalParams,
+  SshPublicKeysListByResourceGroupNextOptionalParams,
+  SshPublicKeysListByResourceGroupOptionalParams,
   SshPublicKeysListBySubscriptionResponse,
   SshPublicKeysListByResourceGroupResponse,
+  SshPublicKeysCreateOptionalParams,
   SshPublicKeysCreateResponse,
   SshPublicKeyUpdateResource,
+  SshPublicKeysUpdateOptionalParams,
   SshPublicKeysUpdateResponse,
+  SshPublicKeysDeleteOptionalParams,
+  SshPublicKeysGetOptionalParams,
   SshPublicKeysGetResponse,
+  SshPublicKeysGenerateKeyPairOptionalParams,
   SshPublicKeysGenerateKeyPairResponse,
   SshPublicKeysListBySubscriptionNextResponse,
   SshPublicKeysListByResourceGroupNextResponse
@@ -45,7 +54,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<SshPublicKeyResource> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -62,7 +71,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionOptionalParams
   ): AsyncIterableIterator<SshPublicKeyResource[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -75,7 +84,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionOptionalParams
   ): AsyncIterableIterator<SshPublicKeyResource> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -90,7 +99,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<SshPublicKeyResource> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +117,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupOptionalParams
   ): AsyncIterableIterator<SshPublicKeyResource[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +135,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupOptionalParams
   ): AsyncIterableIterator<SshPublicKeyResource> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -142,7 +151,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionOptionalParams
   ): Promise<SshPublicKeysListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -161,7 +170,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupOptionalParams
   ): Promise<SshPublicKeysListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -184,7 +193,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     parameters: SshPublicKeyResource,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysCreateOptionalParams
   ): Promise<SshPublicKeysCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -209,7 +218,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     parameters: SshPublicKeyUpdateResource,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysUpdateOptionalParams
   ): Promise<SshPublicKeysUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -232,7 +241,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   delete(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -254,7 +263,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   get(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysGetOptionalParams
   ): Promise<SshPublicKeysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -278,7 +287,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   generateKeyPair(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysGenerateKeyPairOptionalParams
   ): Promise<SshPublicKeysGenerateKeyPairResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -298,7 +307,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionNextOptionalParams
   ): Promise<SshPublicKeysListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -319,7 +328,7 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupNextOptionalParams
   ): Promise<SshPublicKeysListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

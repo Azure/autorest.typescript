@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { SystemAssignedIdentitiesGetByScopeResponse } from "../models";
+import {
+  SystemAssignedIdentitiesGetByScopeOptionalParams,
+  SystemAssignedIdentitiesGetByScopeResponse
+} from "../models";
 
 /** Interface representing a SystemAssignedIdentities. */
 export interface SystemAssignedIdentities {
@@ -19,6 +22,6 @@ export interface SystemAssignedIdentities {
    */
   getByScope(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: SystemAssignedIdentitiesGetByScopeOptionalParams
   ): Promise<SystemAssignedIdentitiesGetByScopeResponse>;
 }

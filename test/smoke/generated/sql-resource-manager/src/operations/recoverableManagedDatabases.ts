@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RecoverableManagedDatabase,
+  RecoverableManagedDatabasesListByInstanceNextOptionalParams,
+  RecoverableManagedDatabasesListByInstanceOptionalParams,
   RecoverableManagedDatabasesListByInstanceResponse,
+  RecoverableManagedDatabasesGetOptionalParams,
   RecoverableManagedDatabasesGetResponse,
   RecoverableManagedDatabasesListByInstanceNextResponse
 } from "../models";
@@ -44,7 +47,7 @@ export class RecoverableManagedDatabasesImpl
   public listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<RecoverableManagedDatabase> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
@@ -71,7 +74,7 @@ export class RecoverableManagedDatabasesImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<RecoverableManagedDatabase[]> {
     let result = await this._listByInstance(
       resourceGroupName,
@@ -95,7 +98,7 @@ export class RecoverableManagedDatabasesImpl
   private async *listByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<RecoverableManagedDatabase> {
     for await (const page of this.listByInstancePagingPage(
       resourceGroupName,
@@ -116,7 +119,7 @@ export class RecoverableManagedDatabasesImpl
   private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): Promise<RecoverableManagedDatabasesListByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -141,7 +144,7 @@ export class RecoverableManagedDatabasesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     recoverableDatabaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesGetOptionalParams
   ): Promise<RecoverableManagedDatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -167,7 +170,7 @@ export class RecoverableManagedDatabasesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceNextOptionalParams
   ): Promise<RecoverableManagedDatabasesListByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

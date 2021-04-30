@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitConnection,
+  ExpressRouteCircuitConnectionsListNextOptionalParams,
+  ExpressRouteCircuitConnectionsListOptionalParams,
+  ExpressRouteCircuitConnectionsDeleteOptionalParams,
+  ExpressRouteCircuitConnectionsGetOptionalParams,
   ExpressRouteCircuitConnectionsGetResponse,
+  ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitConnectionsCreateOrUpdateResponse
 } from "../models";
 
@@ -30,7 +35,7 @@ export interface ExpressRouteCircuitConnections {
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuitConnection>;
   /**
    * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
@@ -45,7 +50,7 @@ export interface ExpressRouteCircuitConnections {
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -62,7 +67,7 @@ export interface ExpressRouteCircuitConnections {
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsGetOptionalParams
   ): Promise<ExpressRouteCircuitConnectionsGetResponse>;
   /**
    * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
@@ -80,7 +85,7 @@ export interface ExpressRouteCircuitConnections {
     peeringName: string,
     connectionName: string,
     expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>,

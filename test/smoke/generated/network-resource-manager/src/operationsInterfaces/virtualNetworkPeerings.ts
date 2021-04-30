@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkPeering,
+  VirtualNetworkPeeringsListNextOptionalParams,
+  VirtualNetworkPeeringsListOptionalParams,
+  VirtualNetworkPeeringsDeleteOptionalParams,
+  VirtualNetworkPeeringsGetOptionalParams,
   VirtualNetworkPeeringsGetResponse,
+  VirtualNetworkPeeringsCreateOrUpdateOptionalParams,
   VirtualNetworkPeeringsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface VirtualNetworkPeerings {
   list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkPeering>;
   /**
    * Deletes the specified virtual network peering.
@@ -41,7 +46,7 @@ export interface VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsGetOptionalParams
   ): Promise<VirtualNetworkPeeringsGetResponse>;
   /**
    * Creates or updates a peering in the specified virtual network.
@@ -72,7 +77,7 @@ export interface VirtualNetworkPeerings {
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
     virtualNetworkPeeringParameters: VirtualNetworkPeering,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>,

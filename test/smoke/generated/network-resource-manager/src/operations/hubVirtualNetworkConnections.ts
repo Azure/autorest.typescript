@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   HubVirtualNetworkConnection,
+  HubVirtualNetworkConnectionsListNextOptionalParams,
+  HubVirtualNetworkConnectionsListOptionalParams,
+  HubVirtualNetworkConnectionsGetOptionalParams,
   HubVirtualNetworkConnectionsGetResponse,
   HubVirtualNetworkConnectionsListResponse,
   HubVirtualNetworkConnectionsListNextResponse
@@ -43,7 +46,7 @@ export class HubVirtualNetworkConnectionsImpl
   public list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<HubVirtualNetworkConnection> {
     const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
     return {
@@ -62,7 +65,7 @@ export class HubVirtualNetworkConnectionsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListOptionalParams
   ): AsyncIterableIterator<HubVirtualNetworkConnection[]> {
     let result = await this._list(resourceGroupName, virtualHubName, options);
     yield result.value || [];
@@ -82,7 +85,7 @@ export class HubVirtualNetworkConnectionsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListOptionalParams
   ): AsyncIterableIterator<HubVirtualNetworkConnection> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -104,7 +107,7 @@ export class HubVirtualNetworkConnectionsImpl
     resourceGroupName: string,
     virtualHubName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsGetOptionalParams
   ): Promise<HubVirtualNetworkConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -127,7 +130,7 @@ export class HubVirtualNetworkConnectionsImpl
   private _list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListOptionalParams
   ): Promise<HubVirtualNetworkConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -151,7 +154,7 @@ export class HubVirtualNetworkConnectionsImpl
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListNextOptionalParams
   ): Promise<HubVirtualNetworkConnectionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

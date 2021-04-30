@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkRule,
+  VirtualNetworkRulesListByServerNextOptionalParams,
+  VirtualNetworkRulesListByServerOptionalParams,
+  VirtualNetworkRulesGetOptionalParams,
   VirtualNetworkRulesGetResponse,
+  VirtualNetworkRulesCreateOrUpdateOptionalParams,
   VirtualNetworkRulesCreateOrUpdateResponse,
+  VirtualNetworkRulesDeleteOptionalParams,
   VirtualNetworkRulesListByServerResponse,
   VirtualNetworkRulesListByServerNextResponse
 } from "../models";
@@ -46,7 +51,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkRule> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -73,7 +78,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerOptionalParams
   ): AsyncIterableIterator<VirtualNetworkRule[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -97,7 +102,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerOptionalParams
   ): AsyncIterableIterator<VirtualNetworkRule> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -120,7 +125,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesGetOptionalParams
   ): Promise<VirtualNetworkRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -148,7 +153,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     serverName: string,
     virtualNetworkRuleName: string,
     parameters: VirtualNetworkRule,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
@@ -171,16 +176,12 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -195,7 +196,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -214,16 +215,12 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -236,7 +233,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerOptionalParams
   ): Promise<VirtualNetworkRulesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -261,7 +258,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerNextOptionalParams
   ): Promise<VirtualNetworkRulesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

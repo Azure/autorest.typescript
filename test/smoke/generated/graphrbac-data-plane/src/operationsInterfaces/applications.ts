@@ -11,17 +11,31 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Application,
+  ApplicationsListNextOptionalParams,
   ApplicationsListOptionalParams,
   DirectoryObjectUnion,
+  ApplicationsListOwnersNextOptionalParams,
+  ApplicationsListOwnersOptionalParams,
   KeyCredential,
+  ApplicationsListKeyCredentialsOptionalParams,
   PasswordCredential,
+  ApplicationsListPasswordCredentialsOptionalParams,
   ApplicationCreateParameters,
+  ApplicationsCreateOptionalParams,
   ApplicationsCreateResponse,
+  ApplicationsDeleteOptionalParams,
+  ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
   ApplicationUpdateParameters,
+  ApplicationsPatchOptionalParams,
   AddOwnerParameters,
+  ApplicationsAddOwnerOptionalParams,
+  ApplicationsRemoveOwnerOptionalParams,
   KeyCredentialsUpdateParameters,
+  ApplicationsUpdateKeyCredentialsOptionalParams,
   PasswordCredentialsUpdateParameters,
+  ApplicationsUpdatePasswordCredentialsOptionalParams,
+  ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdResponse
 } from "../models";
 
@@ -42,7 +56,7 @@ export interface Applications {
    */
   listOwners(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the keyCredentials associated with an application.
@@ -51,7 +65,7 @@ export interface Applications {
    */
   listKeyCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListKeyCredentialsOptionalParams
   ): PagedAsyncIterableIterator<KeyCredential>;
   /**
    * Get the passwordCredentials associated with an application.
@@ -60,7 +74,7 @@ export interface Applications {
    */
   listPasswordCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListPasswordCredentialsOptionalParams
   ): PagedAsyncIterableIterator<PasswordCredential>;
   /**
    * Gets a list of applications from the current tenant.
@@ -69,7 +83,7 @@ export interface Applications {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListNextOptionalParams
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Create a new application.
@@ -78,7 +92,7 @@ export interface Applications {
    */
   create(
     parameters: ApplicationCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOptionalParams
   ): Promise<ApplicationsCreateResponse>;
   /**
    * Delete an application.
@@ -87,7 +101,7 @@ export interface Applications {
    */
   delete(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get an application by object ID.
@@ -96,7 +110,7 @@ export interface Applications {
    */
   get(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse>;
   /**
    * Update an existing application.
@@ -107,7 +121,7 @@ export interface Applications {
   patch(
     applicationObjectId: string,
     parameters: ApplicationUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsPatchOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Add an owner to an application.
@@ -119,7 +133,7 @@ export interface Applications {
   addOwner(
     applicationObjectId: string,
     parameters: AddOwnerParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsAddOwnerOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Remove a member from owners.
@@ -130,7 +144,7 @@ export interface Applications {
   removeOwner(
     applicationObjectId: string,
     ownerObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsRemoveOwnerOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Update the keyCredentials associated with an application.
@@ -141,7 +155,7 @@ export interface Applications {
   updateKeyCredentials(
     applicationObjectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsUpdateKeyCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Update passwordCredentials associated with an application.
@@ -152,7 +166,7 @@ export interface Applications {
   updatePasswordCredentials(
     applicationObjectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsUpdatePasswordCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets an object id for a given application id from the current tenant.
@@ -161,6 +175,6 @@ export interface Applications {
    */
   getServicePrincipalsIdByAppId(
     applicationID: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
   ): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
 }

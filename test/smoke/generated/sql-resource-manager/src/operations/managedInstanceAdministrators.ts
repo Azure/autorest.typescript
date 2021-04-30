@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
+  ManagedInstanceAdministratorsListByInstanceNextOptionalParams,
+  ManagedInstanceAdministratorsListByInstanceOptionalParams,
   ManagedInstanceAdministratorsListByInstanceResponse,
+  ManagedInstanceAdministratorsGetOptionalParams,
   ManagedInstanceAdministratorsGetResponse,
+  ManagedInstanceAdministratorsCreateOrUpdateOptionalParams,
   ManagedInstanceAdministratorsCreateOrUpdateResponse,
+  ManagedInstanceAdministratorsDeleteOptionalParams,
   ManagedInstanceAdministratorsListByInstanceNextResponse
 } from "../models";
 
@@ -47,7 +52,7 @@ export class ManagedInstanceAdministratorsImpl
   public listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceAdministrator> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
@@ -74,7 +79,7 @@ export class ManagedInstanceAdministratorsImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceAdministrator[]> {
     let result = await this._listByInstance(
       resourceGroupName,
@@ -98,7 +103,7 @@ export class ManagedInstanceAdministratorsImpl
   private async *listByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceAdministrator> {
     for await (const page of this.listByInstancePagingPage(
       resourceGroupName,
@@ -119,7 +124,7 @@ export class ManagedInstanceAdministratorsImpl
   private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
   ): Promise<ManagedInstanceAdministratorsListByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -142,7 +147,7 @@ export class ManagedInstanceAdministratorsImpl
   get(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsGetOptionalParams
   ): Promise<ManagedInstanceAdministratorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -167,7 +172,7 @@ export class ManagedInstanceAdministratorsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceAdministrator,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
@@ -189,16 +194,12 @@ export class ManagedInstanceAdministratorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -211,7 +212,7 @@ export class ManagedInstanceAdministratorsImpl
   async delete(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -229,16 +230,12 @@ export class ManagedInstanceAdministratorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -253,7 +250,7 @@ export class ManagedInstanceAdministratorsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceNextOptionalParams
   ): Promise<ManagedInstanceAdministratorsListByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

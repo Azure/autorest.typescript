@@ -9,7 +9,11 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { EndpointServiceResult } from "../models";
+import {
+  EndpointServiceResult,
+  AvailableEndpointServicesListNextOptionalParams,
+  AvailableEndpointServicesListOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a AvailableEndpointServices. */
@@ -21,6 +25,6 @@ export interface AvailableEndpointServices {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableEndpointServicesListOptionalParams
   ): PagedAsyncIterableIterator<EndpointServiceResult>;
 }

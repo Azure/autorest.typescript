@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilterRule,
+  RouteFilterRulesListByRouteFilterNextOptionalParams,
+  RouteFilterRulesListByRouteFilterOptionalParams,
+  RouteFilterRulesDeleteOptionalParams,
+  RouteFilterRulesGetOptionalParams,
   RouteFilterRulesGetResponse,
+  RouteFilterRulesCreateOrUpdateOptionalParams,
   RouteFilterRulesCreateOrUpdateResponse,
   RouteFilterRulesListByRouteFilterResponse,
   RouteFilterRulesListByRouteFilterNextResponse
@@ -45,7 +50,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
   public listByRouteFilter(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterOptionalParams
   ): PagedAsyncIterableIterator<RouteFilterRule> {
     const iter = this.listByRouteFilterPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
   private async *listByRouteFilterPagingPage(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterOptionalParams
   ): AsyncIterableIterator<RouteFilterRule[]> {
     let result = await this._listByRouteFilter(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
   private async *listByRouteFilterPagingAll(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterOptionalParams
   ): AsyncIterableIterator<RouteFilterRule> {
     for await (const page of this.listByRouteFilterPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +142,13 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -161,7 +162,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesGetOptionalParams
   ): Promise<RouteFilterRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -189,7 +190,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
     routeFilterName: string,
     ruleName: string,
     routeFilterRuleParameters: RouteFilterRule,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteFilterRulesCreateOrUpdateResponse>,
@@ -212,17 +213,13 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -234,7 +231,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
   private _listByRouteFilter(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterOptionalParams
   ): Promise<RouteFilterRulesListByRouteFilterResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -258,7 +255,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterNextOptionalParams
   ): Promise<RouteFilterRulesListByRouteFilterNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

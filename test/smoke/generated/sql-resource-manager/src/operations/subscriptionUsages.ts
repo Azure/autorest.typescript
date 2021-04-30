@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   SubscriptionUsage,
+  SubscriptionUsagesListByLocationNextOptionalParams,
+  SubscriptionUsagesListByLocationOptionalParams,
   SubscriptionUsagesListByLocationResponse,
+  SubscriptionUsagesGetOptionalParams,
   SubscriptionUsagesGetResponse,
   SubscriptionUsagesListByLocationNextResponse
 } from "../models";
@@ -40,7 +43,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
    */
   public listByLocation(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationOptionalParams
   ): PagedAsyncIterableIterator<SubscriptionUsage> {
     const iter = this.listByLocationPagingAll(locationName, options);
     return {
@@ -58,7 +61,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
 
   private async *listByLocationPagingPage(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationOptionalParams
   ): AsyncIterableIterator<SubscriptionUsage[]> {
     let result = await this._listByLocation(locationName, options);
     yield result.value || [];
@@ -76,7 +79,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
 
   private async *listByLocationPagingAll(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationOptionalParams
   ): AsyncIterableIterator<SubscriptionUsage> {
     for await (const page of this.listByLocationPagingPage(
       locationName,
@@ -93,7 +96,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
    */
   private _listByLocation(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationOptionalParams
   ): Promise<SubscriptionUsagesListByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -114,7 +117,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
   get(
     locationName: string,
     usageName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesGetOptionalParams
   ): Promise<SubscriptionUsagesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -136,7 +139,7 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
   private _listByLocationNext(
     locationName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationNextOptionalParams
   ): Promise<SubscriptionUsagesListByLocationNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,

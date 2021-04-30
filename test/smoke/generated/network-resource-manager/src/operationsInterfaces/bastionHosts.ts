@@ -12,7 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BastionHost,
+  BastionHostsListNextOptionalParams,
+  BastionHostsListOptionalParams,
+  BastionHostsListByResourceGroupNextOptionalParams,
+  BastionHostsListByResourceGroupOptionalParams,
+  BastionHostsDeleteOptionalParams,
+  BastionHostsGetOptionalParams,
   BastionHostsGetResponse,
+  BastionHostsCreateOrUpdateOptionalParams,
   BastionHostsCreateOrUpdateResponse
 } from "../models";
 
@@ -24,7 +31,7 @@ export interface BastionHosts {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListOptionalParams
   ): PagedAsyncIterableIterator<BastionHost>;
   /**
    * Lists all Bastion Hosts in a resource group.
@@ -33,7 +40,7 @@ export interface BastionHosts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<BastionHost>;
   /**
    * Deletes the specified Bastion Host.
@@ -44,7 +51,7 @@ export interface BastionHosts {
   delete(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -57,7 +64,7 @@ export interface BastionHosts {
   get(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsGetOptionalParams
   ): Promise<BastionHostsGetResponse>;
   /**
    * Creates or updates the specified Bastion Host.
@@ -70,7 +77,7 @@ export interface BastionHosts {
     resourceGroupName: string,
     bastionHostName: string,
     parameters: BastionHost,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BastionHostsCreateOrUpdateResponse>,

@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { VpnSiteLinkConnectionsGetResponse } from "../models";
+import {
+  VpnSiteLinkConnectionsGetOptionalParams,
+  VpnSiteLinkConnectionsGetResponse
+} from "../models";
 
 /** Class representing a VpnSiteLinkConnections. */
 export class VpnSiteLinkConnectionsImpl implements VpnSiteLinkConnections {
@@ -38,7 +41,7 @@ export class VpnSiteLinkConnectionsImpl implements VpnSiteLinkConnections {
     gatewayName: string,
     connectionName: string,
     linkConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinkConnectionsGetOptionalParams
   ): Promise<VpnSiteLinkConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

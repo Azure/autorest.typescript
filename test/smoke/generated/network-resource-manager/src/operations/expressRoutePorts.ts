@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRoutePort,
+  ExpressRoutePortsListByResourceGroupNextOptionalParams,
+  ExpressRoutePortsListByResourceGroupOptionalParams,
+  ExpressRoutePortsListNextOptionalParams,
+  ExpressRoutePortsListOptionalParams,
+  ExpressRoutePortsDeleteOptionalParams,
+  ExpressRoutePortsGetOptionalParams,
   ExpressRoutePortsGetResponse,
+  ExpressRoutePortsCreateOrUpdateOptionalParams,
   ExpressRoutePortsCreateOrUpdateResponse,
   TagsObject,
+  ExpressRoutePortsUpdateTagsOptionalParams,
   ExpressRoutePortsUpdateTagsResponse,
   ExpressRoutePortsListByResourceGroupResponse,
   ExpressRoutePortsListResponse,
@@ -47,7 +55,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePort> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ExpressRoutePort[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ExpressRoutePort> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePort> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListOptionalParams
   ): AsyncIterableIterator<ExpressRoutePort[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListOptionalParams
   ): AsyncIterableIterator<ExpressRoutePort> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -144,7 +152,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   async delete(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -162,17 +170,13 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -184,7 +188,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   get(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsGetOptionalParams
   ): Promise<ExpressRoutePortsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +212,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: ExpressRoutePort,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>,
@@ -230,17 +234,13 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -254,7 +254,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsUpdateTagsOptionalParams
   ): Promise<ExpressRoutePortsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -275,7 +275,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupOptionalParams
   ): Promise<ExpressRoutePortsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -292,7 +292,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListOptionalParams
   ): Promise<ExpressRoutePortsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +312,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupNextOptionalParams
   ): Promise<ExpressRoutePortsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -332,7 +332,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListNextOptionalParams
   ): Promise<ExpressRoutePortsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

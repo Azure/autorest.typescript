@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { Metric, CollectionRegionListMetricsResponse } from "../models";
+import {
+  Metric,
+  CollectionRegionListMetricsOptionalParams,
+  CollectionRegionListMetricsResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a CollectionRegion. */
@@ -48,7 +52,7 @@ export class CollectionRegionImpl implements CollectionRegion {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionRegionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -87,7 +91,7 @@ export class CollectionRegionImpl implements CollectionRegion {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionRegionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -108,7 +112,7 @@ export class CollectionRegionImpl implements CollectionRegion {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionRegionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -143,7 +147,7 @@ export class CollectionRegionImpl implements CollectionRegion {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionRegionListMetricsOptionalParams
   ): Promise<CollectionRegionListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

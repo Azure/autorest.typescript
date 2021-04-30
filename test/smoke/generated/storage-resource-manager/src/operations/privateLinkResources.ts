@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
-import { PrivateLinkResourcesListByStorageAccountResponse } from "../models";
+import {
+  PrivateLinkResourcesListByStorageAccountOptionalParams,
+  PrivateLinkResourcesListByStorageAccountResponse
+} from "../models";
 
 /** Class representing a PrivateLinkResources. */
 export class PrivateLinkResourcesImpl implements PrivateLinkResources {
@@ -37,7 +40,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   listByStorageAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByStorageAccountOptionalParams
   ): Promise<PrivateLinkResourcesListByStorageAccountResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

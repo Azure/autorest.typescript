@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualWAN,
+  VirtualWansListByResourceGroupNextOptionalParams,
+  VirtualWansListByResourceGroupOptionalParams,
+  VirtualWansListNextOptionalParams,
+  VirtualWansListOptionalParams,
+  VirtualWansGetOptionalParams,
   VirtualWansGetResponse,
+  VirtualWansCreateOrUpdateOptionalParams,
   VirtualWansCreateOrUpdateResponse,
   TagsObject,
-  VirtualWansUpdateTagsResponse
+  VirtualWansUpdateTagsOptionalParams,
+  VirtualWansUpdateTagsResponse,
+  VirtualWansDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface VirtualWans {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualWAN>;
   /**
    * Lists all the VirtualWANs in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListOptionalParams
   ): PagedAsyncIterableIterator<VirtualWAN>;
   /**
    * Retrieves the details of a VirtualWAN.
@@ -46,7 +54,7 @@ export interface VirtualWans {
   get(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansGetOptionalParams
   ): Promise<VirtualWansGetResponse>;
   /**
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
@@ -59,7 +67,7 @@ export interface VirtualWans {
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: VirtualWAN,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualWansCreateOrUpdateResponse>,
@@ -77,7 +85,7 @@ export interface VirtualWans {
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansUpdateTagsOptionalParams
   ): Promise<VirtualWansUpdateTagsResponse>;
   /**
    * Deletes a VirtualWAN.
@@ -88,7 +96,7 @@ export interface VirtualWans {
   delete(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

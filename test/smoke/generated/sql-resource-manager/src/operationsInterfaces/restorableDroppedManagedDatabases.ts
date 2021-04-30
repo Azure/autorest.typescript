@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RestorableDroppedManagedDatabase,
+  RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams,
+  RestorableDroppedManagedDatabasesListByInstanceOptionalParams,
+  RestorableDroppedManagedDatabasesGetOptionalParams,
   RestorableDroppedManagedDatabasesGetResponse
 } from "../models";
 
@@ -27,7 +30,7 @@ export interface RestorableDroppedManagedDatabases {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase>;
   /**
    * Gets a restorable dropped managed database.
@@ -41,6 +44,6 @@ export interface RestorableDroppedManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesGetOptionalParams
   ): Promise<RestorableDroppedManagedDatabasesGetResponse>;
 }

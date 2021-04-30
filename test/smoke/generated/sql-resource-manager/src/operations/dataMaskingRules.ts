@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   DataMaskingRule,
+  DataMaskingRulesListByDatabaseOptionalParams,
+  DataMaskingRulesCreateOrUpdateOptionalParams,
   DataMaskingRulesCreateOrUpdateResponse,
   DataMaskingRulesListByDatabaseResponse
 } from "../models";
@@ -44,7 +46,7 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<DataMaskingRule> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -74,7 +76,7 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesListByDatabaseOptionalParams
   ): AsyncIterableIterator<DataMaskingRule[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -89,7 +91,7 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesListByDatabaseOptionalParams
   ): AsyncIterableIterator<DataMaskingRule> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -117,7 +119,7 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
     databaseName: string,
     dataMaskingRuleName: string,
     parameters: DataMaskingRule,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesCreateOrUpdateOptionalParams
   ): Promise<DataMaskingRulesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -145,7 +147,7 @@ export class DataMaskingRulesImpl implements DataMaskingRules {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingRulesListByDatabaseOptionalParams
   ): Promise<DataMaskingRulesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

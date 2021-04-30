@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { SecurityRule, DefaultSecurityRulesGetResponse } from "../models";
+import {
+  SecurityRule,
+  DefaultSecurityRulesListNextOptionalParams,
+  DefaultSecurityRulesListOptionalParams,
+  DefaultSecurityRulesGetOptionalParams,
+  DefaultSecurityRulesGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DefaultSecurityRules. */
@@ -23,7 +29,7 @@ export interface DefaultSecurityRules {
   list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListOptionalParams
   ): PagedAsyncIterableIterator<SecurityRule>;
   /**
    * Get the specified default network security rule.
@@ -36,6 +42,6 @@ export interface DefaultSecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     defaultSecurityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesGetOptionalParams
   ): Promise<DefaultSecurityRulesGetResponse>;
 }

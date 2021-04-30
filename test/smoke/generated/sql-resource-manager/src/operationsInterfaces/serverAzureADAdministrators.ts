@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerAzureADAdministrator,
+  ServerAzureADAdministratorsListByServerNextOptionalParams,
+  ServerAzureADAdministratorsListByServerOptionalParams,
   AdministratorName,
+  ServerAzureADAdministratorsGetOptionalParams,
   ServerAzureADAdministratorsGetResponse,
+  ServerAzureADAdministratorsCreateOrUpdateOptionalParams,
   ServerAzureADAdministratorsCreateOrUpdateResponse,
+  ServerAzureADAdministratorsDeleteOptionalParams,
+  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams,
   ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
 } from "../models";
 
@@ -31,7 +37,7 @@ export interface ServerAzureADAdministrators {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerAzureADAdministrator>;
   /**
    * Gets a Azure Active Directory administrator.
@@ -45,7 +51,7 @@ export interface ServerAzureADAdministrators {
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsGetOptionalParams
   ): Promise<ServerAzureADAdministratorsGetResponse>;
   /**
    * Creates or updates an existing Azure Active Directory administrator.
@@ -62,7 +68,7 @@ export interface ServerAzureADAdministrators {
     serverName: string,
     administratorName: AdministratorName,
     parameters: ServerAzureADAdministrator,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
@@ -81,7 +87,7 @@ export interface ServerAzureADAdministrators {
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -95,7 +101,7 @@ export interface ServerAzureADAdministrators {
   disableAzureADOnlyAuthentication(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

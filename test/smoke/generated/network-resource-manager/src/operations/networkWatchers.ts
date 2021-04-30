@@ -17,35 +17,53 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkWatcher,
+  NetworkWatchersListOptionalParams,
+  NetworkWatchersListAllOptionalParams,
+  NetworkWatchersCreateOrUpdateOptionalParams,
   NetworkWatchersCreateOrUpdateResponse,
+  NetworkWatchersGetOptionalParams,
   NetworkWatchersGetResponse,
+  NetworkWatchersDeleteOptionalParams,
   TagsObject,
+  NetworkWatchersUpdateTagsOptionalParams,
   NetworkWatchersUpdateTagsResponse,
   NetworkWatchersListResponse,
   NetworkWatchersListAllResponse,
   TopologyParameters,
+  NetworkWatchersGetTopologyOptionalParams,
   NetworkWatchersGetTopologyResponse,
   VerificationIPFlowParameters,
+  NetworkWatchersVerifyIPFlowOptionalParams,
   NetworkWatchersVerifyIPFlowResponse,
   NextHopParameters,
+  NetworkWatchersGetNextHopOptionalParams,
   NetworkWatchersGetNextHopResponse,
   SecurityGroupViewParameters,
+  NetworkWatchersGetVMSecurityRulesOptionalParams,
   NetworkWatchersGetVMSecurityRulesResponse,
   TroubleshootingParameters,
+  NetworkWatchersGetTroubleshootingOptionalParams,
   NetworkWatchersGetTroubleshootingResponse,
   QueryTroubleshootingParameters,
+  NetworkWatchersGetTroubleshootingResultOptionalParams,
   NetworkWatchersGetTroubleshootingResultResponse,
   FlowLogInformation,
+  NetworkWatchersSetFlowLogConfigurationOptionalParams,
   NetworkWatchersSetFlowLogConfigurationResponse,
   FlowLogStatusParameters,
+  NetworkWatchersGetFlowLogStatusOptionalParams,
   NetworkWatchersGetFlowLogStatusResponse,
   ConnectivityParameters,
+  NetworkWatchersCheckConnectivityOptionalParams,
   NetworkWatchersCheckConnectivityResponse,
   AzureReachabilityReportParameters,
+  NetworkWatchersGetAzureReachabilityReportOptionalParams,
   NetworkWatchersGetAzureReachabilityReportResponse,
   AvailableProvidersListParameters,
+  NetworkWatchersListAvailableProvidersOptionalParams,
   NetworkWatchersListAvailableProvidersResponse,
   NetworkConfigurationDiagnosticParameters,
+  NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams,
   NetworkWatchersGetNetworkConfigurationDiagnosticResponse
 } from "../models";
 
@@ -69,7 +87,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListOptionalParams
   ): PagedAsyncIterableIterator<NetworkWatcher> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -87,7 +105,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListOptionalParams
   ): AsyncIterableIterator<NetworkWatcher[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -95,7 +113,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListOptionalParams
   ): AsyncIterableIterator<NetworkWatcher> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -107,7 +125,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkWatcher> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -124,14 +142,14 @@ export class NetworkWatchersImpl implements NetworkWatchers {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAllOptionalParams
   ): AsyncIterableIterator<NetworkWatcher[]> {
     let result = await this._listAll(options);
     yield result.value || [];
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAllOptionalParams
   ): AsyncIterableIterator<NetworkWatcher> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -149,7 +167,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkWatcher,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersCreateOrUpdateOptionalParams
   ): Promise<NetworkWatchersCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -172,7 +190,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
   get(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetOptionalParams
   ): Promise<NetworkWatchersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -194,7 +212,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
   async delete(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -212,17 +230,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -236,7 +250,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersUpdateTagsOptionalParams
   ): Promise<NetworkWatchersUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -257,7 +271,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListOptionalParams
   ): Promise<NetworkWatchersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -274,7 +288,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAllOptionalParams
   ): Promise<NetworkWatchersListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -296,7 +310,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TopologyParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTopologyOptionalParams
   ): Promise<NetworkWatchersGetTopologyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -321,7 +335,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersVerifyIPFlowOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersVerifyIPFlowResponse>,
@@ -343,17 +357,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      verifyIPFlowOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: verifyIPFlowOperationSpec,
-      initialOperationResult,
+      verifyIPFlowOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -367,7 +377,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NextHopParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetNextHopOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetNextHopResponse>,
@@ -389,17 +399,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getNextHopOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getNextHopOperationSpec,
-      initialOperationResult,
+      getNextHopOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -413,7 +419,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetVMSecurityRulesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
@@ -435,17 +441,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getVMSecurityRulesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getVMSecurityRulesOperationSpec,
-      initialOperationResult,
+      getVMSecurityRulesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -459,7 +461,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTroubleshootingOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetTroubleshootingResponse>,
@@ -481,17 +483,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getTroubleshootingOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getTroubleshootingOperationSpec,
-      initialOperationResult,
+      getTroubleshootingOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -505,7 +503,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTroubleshootingResultOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
@@ -527,17 +525,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getTroubleshootingResultOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getTroubleshootingResultOperationSpec,
-      initialOperationResult,
+      getTroubleshootingResultOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -551,7 +545,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogInformation,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersSetFlowLogConfigurationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
@@ -573,17 +567,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      setFlowLogConfigurationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: setFlowLogConfigurationOperationSpec,
-      initialOperationResult,
+      setFlowLogConfigurationOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -598,7 +588,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetFlowLogStatusOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetFlowLogStatusResponse>,
@@ -620,17 +610,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getFlowLogStatusOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getFlowLogStatusOperationSpec,
-      initialOperationResult,
+      getFlowLogStatusOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -645,7 +631,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: ConnectivityParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersCheckConnectivityOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersCheckConnectivityResponse>,
@@ -667,17 +653,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      checkConnectivityOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: checkConnectivityOperationSpec,
-      initialOperationResult,
+      checkConnectivityOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -692,7 +674,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetAzureReachabilityReportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
@@ -714,17 +696,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getAzureReachabilityReportOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getAzureReachabilityReportOperationSpec,
-      initialOperationResult,
+      getAzureReachabilityReportOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -739,7 +717,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAvailableProvidersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersListAvailableProvidersResponse>,
@@ -761,17 +739,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listAvailableProvidersOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listAvailableProvidersOperationSpec,
-      initialOperationResult,
+      listAvailableProvidersOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -789,7 +763,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkConfigurationDiagnosticParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -813,17 +787,13 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getNetworkConfigurationDiagnosticOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getNetworkConfigurationDiagnosticOperationSpec,
-      initialOperationResult,
+      getNetworkConfigurationDiagnosticOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

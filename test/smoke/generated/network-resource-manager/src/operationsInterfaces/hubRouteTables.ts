@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   HubRouteTable,
+  HubRouteTablesListNextOptionalParams,
+  HubRouteTablesListOptionalParams,
+  HubRouteTablesCreateOrUpdateOptionalParams,
   HubRouteTablesCreateOrUpdateResponse,
-  HubRouteTablesGetResponse
+  HubRouteTablesGetOptionalParams,
+  HubRouteTablesGetResponse,
+  HubRouteTablesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +33,7 @@ export interface HubRouteTables {
   list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListOptionalParams
   ): PagedAsyncIterableIterator<HubRouteTable>;
   /**
    * Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
@@ -43,7 +48,7 @@ export interface HubRouteTables {
     virtualHubName: string,
     routeTableName: string,
     routeTableParameters: HubRouteTable,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<HubRouteTablesCreateOrUpdateResponse>,
@@ -61,7 +66,7 @@ export interface HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesGetOptionalParams
   ): Promise<HubRouteTablesGetResponse>;
   /**
    * Deletes a RouteTable.
@@ -74,7 +79,7 @@ export interface HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

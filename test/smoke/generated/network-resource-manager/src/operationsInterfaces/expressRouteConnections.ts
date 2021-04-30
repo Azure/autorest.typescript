@@ -10,8 +10,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteConnection,
+  ExpressRouteConnectionsCreateOrUpdateOptionalParams,
   ExpressRouteConnectionsCreateOrUpdateResponse,
+  ExpressRouteConnectionsGetOptionalParams,
   ExpressRouteConnectionsGetResponse,
+  ExpressRouteConnectionsDeleteOptionalParams,
+  ExpressRouteConnectionsListOptionalParams,
   ExpressRouteConnectionsListResponse
 } from "../models";
 
@@ -31,7 +35,7 @@ export interface ExpressRouteConnections {
     expressRouteGatewayName: string,
     connectionName: string,
     putExpressRouteConnectionParameters: ExpressRouteConnection,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>,
@@ -49,7 +53,7 @@ export interface ExpressRouteConnections {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsGetOptionalParams
   ): Promise<ExpressRouteConnectionsGetResponse>;
   /**
    * Deletes a connection to a ExpressRoute circuit.
@@ -62,7 +66,7 @@ export interface ExpressRouteConnections {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -75,6 +79,6 @@ export interface ExpressRouteConnections {
   list(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsListOptionalParams
   ): Promise<ExpressRouteConnectionsListResponse>;
 }

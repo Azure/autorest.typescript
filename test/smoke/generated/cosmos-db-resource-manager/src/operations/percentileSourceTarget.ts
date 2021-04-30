@@ -15,6 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   PercentileMetric,
+  PercentileSourceTargetListMetricsOptionalParams,
   PercentileSourceTargetListMetricsResponse
 } from "../models";
 
@@ -51,7 +52,7 @@ export class PercentileSourceTargetImpl implements PercentileSourceTarget {
     sourceRegion: string,
     targetRegion: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileSourceTargetListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PercentileMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -87,7 +88,7 @@ export class PercentileSourceTargetImpl implements PercentileSourceTarget {
     sourceRegion: string,
     targetRegion: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileSourceTargetListMetricsOptionalParams
   ): AsyncIterableIterator<PercentileMetric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -106,7 +107,7 @@ export class PercentileSourceTargetImpl implements PercentileSourceTarget {
     sourceRegion: string,
     targetRegion: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileSourceTargetListMetricsOptionalParams
   ): AsyncIterableIterator<PercentileMetric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -140,7 +141,7 @@ export class PercentileSourceTargetImpl implements PercentileSourceTarget {
     sourceRegion: string,
     targetRegion: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileSourceTargetListMetricsOptionalParams
   ): Promise<PercentileSourceTargetListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

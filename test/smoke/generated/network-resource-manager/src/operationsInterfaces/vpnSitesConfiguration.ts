@@ -8,7 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { GetVpnSitesConfigurationRequest } from "../models";
+import {
+  GetVpnSitesConfigurationRequest,
+  VpnSitesConfigurationDownloadOptionalParams
+} from "../models";
 
 /** Interface representing a VpnSitesConfiguration. */
 export interface VpnSitesConfiguration {
@@ -23,7 +26,7 @@ export interface VpnSitesConfiguration {
     resourceGroupName: string,
     virtualWANName: string,
     request: GetVpnSitesConfigurationRequest,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesConfigurationDownloadOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

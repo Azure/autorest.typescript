@@ -17,23 +17,41 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Domain,
+  DomainsListNextOptionalParams,
+  DomainsListOptionalParams,
   NameIdentifier,
   DomainRecommendationSearchParameters,
+  DomainsListRecommendationsNextOptionalParams,
+  DomainsListRecommendationsOptionalParams,
+  DomainsListByResourceGroupNextOptionalParams,
+  DomainsListByResourceGroupOptionalParams,
   DomainOwnershipIdentifier,
+  DomainsListOwnershipIdentifiersNextOptionalParams,
+  DomainsListOwnershipIdentifiersOptionalParams,
+  DomainsCheckAvailabilityOptionalParams,
   DomainsCheckAvailabilityResponse,
   DomainsListResponse,
+  DomainsGetControlCenterSsoRequestOptionalParams,
   DomainsGetControlCenterSsoRequestResponse,
   DomainsListRecommendationsResponse,
   DomainsListByResourceGroupResponse,
+  DomainsGetOptionalParams,
   DomainsGetResponse,
+  DomainsCreateOrUpdateOptionalParams,
   DomainsCreateOrUpdateResponse,
   DomainsDeleteOptionalParams,
   DomainPatchResource,
+  DomainsUpdateOptionalParams,
   DomainsUpdateResponse,
   DomainsListOwnershipIdentifiersResponse,
+  DomainsGetOwnershipIdentifierOptionalParams,
   DomainsGetOwnershipIdentifierResponse,
+  DomainsCreateOrUpdateOwnershipIdentifierOptionalParams,
   DomainsCreateOrUpdateOwnershipIdentifierResponse,
+  DomainsDeleteOwnershipIdentifierOptionalParams,
+  DomainsUpdateOwnershipIdentifierOptionalParams,
   DomainsUpdateOwnershipIdentifierResponse,
+  DomainsRenewOptionalParams,
   DomainsListNextResponse,
   DomainsListRecommendationsNextResponse,
   DomainsListByResourceGroupNextResponse,
@@ -58,7 +76,7 @@ export class DomainsImpl implements Domains {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOptionalParams
   ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listPagingAll(options);
     return {
@@ -75,7 +93,7 @@ export class DomainsImpl implements Domains {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOptionalParams
   ): AsyncIterableIterator<Domain[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -88,7 +106,7 @@ export class DomainsImpl implements Domains {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOptionalParams
   ): AsyncIterableIterator<Domain> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -102,7 +120,7 @@ export class DomainsImpl implements Domains {
    */
   public listRecommendations(
     parameters: DomainRecommendationSearchParameters,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsOptionalParams
   ): PagedAsyncIterableIterator<NameIdentifier> {
     const iter = this.listRecommendationsPagingAll(parameters, options);
     return {
@@ -120,7 +138,7 @@ export class DomainsImpl implements Domains {
 
   private async *listRecommendationsPagingPage(
     parameters: DomainRecommendationSearchParameters,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsOptionalParams
   ): AsyncIterableIterator<NameIdentifier[]> {
     let result = await this._listRecommendations(parameters, options);
     yield result.value || [];
@@ -138,7 +156,7 @@ export class DomainsImpl implements Domains {
 
   private async *listRecommendationsPagingAll(
     parameters: DomainRecommendationSearchParameters,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsOptionalParams
   ): AsyncIterableIterator<NameIdentifier> {
     for await (const page of this.listRecommendationsPagingPage(
       parameters,
@@ -155,7 +173,7 @@ export class DomainsImpl implements Domains {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -173,7 +191,7 @@ export class DomainsImpl implements Domains {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Domain[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -191,7 +209,7 @@ export class DomainsImpl implements Domains {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Domain> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -210,7 +228,7 @@ export class DomainsImpl implements Domains {
   public listOwnershipIdentifiers(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<DomainOwnershipIdentifier> {
     const iter = this.listOwnershipIdentifiersPagingAll(
       resourceGroupName,
@@ -237,7 +255,7 @@ export class DomainsImpl implements Domains {
   private async *listOwnershipIdentifiersPagingPage(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersOptionalParams
   ): AsyncIterableIterator<DomainOwnershipIdentifier[]> {
     let result = await this._listOwnershipIdentifiers(
       resourceGroupName,
@@ -261,7 +279,7 @@ export class DomainsImpl implements Domains {
   private async *listOwnershipIdentifiersPagingAll(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersOptionalParams
   ): AsyncIterableIterator<DomainOwnershipIdentifier> {
     for await (const page of this.listOwnershipIdentifiersPagingPage(
       resourceGroupName,
@@ -279,7 +297,7 @@ export class DomainsImpl implements Domains {
    */
   checkAvailability(
     identifier: NameIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCheckAvailabilityOptionalParams
   ): Promise<DomainsCheckAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       identifier,
@@ -296,7 +314,7 @@ export class DomainsImpl implements Domains {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOptionalParams
   ): Promise<DomainsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +330,7 @@ export class DomainsImpl implements Domains {
    * @param options The options parameters.
    */
   getControlCenterSsoRequest(
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetControlCenterSsoRequestOptionalParams
   ): Promise<DomainsGetControlCenterSsoRequestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -330,7 +348,7 @@ export class DomainsImpl implements Domains {
    */
   private _listRecommendations(
     parameters: DomainRecommendationSearchParameters,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsOptionalParams
   ): Promise<DomainsListRecommendationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -349,7 +367,7 @@ export class DomainsImpl implements Domains {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupOptionalParams
   ): Promise<DomainsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -370,7 +388,7 @@ export class DomainsImpl implements Domains {
   get(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOptionalParams
   ): Promise<DomainsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -394,7 +412,7 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     domain: Domain,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DomainsCreateOrUpdateResponse>,
@@ -416,16 +434,12 @@ export class DomainsImpl implements Domains {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -461,7 +475,7 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     domain: DomainPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: DomainsUpdateOptionalParams
   ): Promise<DomainsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -484,7 +498,7 @@ export class DomainsImpl implements Domains {
   private _listOwnershipIdentifiers(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersOptionalParams
   ): Promise<DomainsListOwnershipIdentifiersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -508,7 +522,7 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOwnershipIdentifierOptionalParams
   ): Promise<DomainsGetOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -536,7 +550,7 @@ export class DomainsImpl implements Domains {
     domainName: string,
     name: string,
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsCreateOrUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -562,7 +576,7 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsDeleteOwnershipIdentifierOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -590,7 +604,7 @@ export class DomainsImpl implements Domains {
     domainName: string,
     name: string,
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: DomainsUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsUpdateOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -614,7 +628,7 @@ export class DomainsImpl implements Domains {
   renew(
     resourceGroupName: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsRenewOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -634,7 +648,7 @@ export class DomainsImpl implements Domains {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListNextOptionalParams
   ): Promise<DomainsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -655,7 +669,7 @@ export class DomainsImpl implements Domains {
   private _listRecommendationsNext(
     parameters: DomainRecommendationSearchParameters,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListRecommendationsNextOptionalParams
   ): Promise<DomainsListRecommendationsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -677,7 +691,7 @@ export class DomainsImpl implements Domains {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListByResourceGroupNextOptionalParams
   ): Promise<DomainsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -702,7 +716,7 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsListOwnershipIdentifiersNextOptionalParams
   ): Promise<DomainsListOwnershipIdentifiersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

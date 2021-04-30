@@ -17,19 +17,31 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
+  MongoDBResourcesListMongoDBDatabasesOptionalParams,
   MongoDBCollectionGetResults,
+  MongoDBResourcesListMongoDBCollectionsOptionalParams,
   MongoDBResourcesListMongoDBDatabasesResponse,
+  MongoDBResourcesGetMongoDBDatabaseOptionalParams,
   MongoDBResourcesGetMongoDBDatabaseResponse,
   MongoDBDatabaseCreateUpdateParameters,
+  MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams,
   MongoDBResourcesCreateUpdateMongoDBDatabaseResponse,
+  MongoDBResourcesDeleteMongoDBDatabaseOptionalParams,
+  MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesGetMongoDBDatabaseThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse,
   MongoDBResourcesListMongoDBCollectionsResponse,
+  MongoDBResourcesGetMongoDBCollectionOptionalParams,
   MongoDBResourcesGetMongoDBCollectionResponse,
   MongoDBCollectionCreateUpdateParameters,
+  MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams,
   MongoDBResourcesCreateUpdateMongoDBCollectionResponse,
+  MongoDBResourcesDeleteMongoDBCollectionOptionalParams,
+  MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesGetMongoDBCollectionThroughputResponse,
+  MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
 } from "../models";
 
@@ -55,7 +67,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   public listMongoDBDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): PagedAsyncIterableIterator<MongoDBDatabaseGetResults> {
     const iter = this.listMongoDBDatabasesPagingAll(
       resourceGroupName,
@@ -82,7 +94,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   private async *listMongoDBDatabasesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): AsyncIterableIterator<MongoDBDatabaseGetResults[]> {
     let result = await this._listMongoDBDatabases(
       resourceGroupName,
@@ -95,7 +107,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   private async *listMongoDBDatabasesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): AsyncIterableIterator<MongoDBDatabaseGetResults> {
     for await (const page of this.listMongoDBDatabasesPagingPage(
       resourceGroupName,
@@ -117,7 +129,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): PagedAsyncIterableIterator<MongoDBCollectionGetResults> {
     const iter = this.listMongoDBCollectionsPagingAll(
       resourceGroupName,
@@ -147,7 +159,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): AsyncIterableIterator<MongoDBCollectionGetResults[]> {
     let result = await this._listMongoDBCollections(
       resourceGroupName,
@@ -162,7 +174,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): AsyncIterableIterator<MongoDBCollectionGetResults> {
     for await (const page of this.listMongoDBCollectionsPagingPage(
       resourceGroupName,
@@ -183,7 +195,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   private _listMongoDBDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): Promise<MongoDBResourcesListMongoDBDatabasesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +220,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBDatabaseOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -236,7 +248,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
@@ -259,16 +271,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateMongoDBDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateMongoDBDatabaseOperationSpec,
-      initialOperationResult,
+      createUpdateMongoDBDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -282,7 +290,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -301,16 +309,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteMongoDBDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteMongoDBDatabaseOperationSpec,
-      initialOperationResult,
+      deleteMongoDBDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -325,7 +329,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -353,7 +357,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -378,16 +382,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateMongoDBDatabaseThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateMongoDBDatabaseThroughputOperationSpec,
-      initialOperationResult,
+      updateMongoDBDatabaseThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -401,7 +401,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): Promise<MongoDBResourcesListMongoDBCollectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -428,7 +428,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBCollectionOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -459,7 +459,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     collectionName: string,
     createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
@@ -483,16 +483,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateMongoDBCollectionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateMongoDBCollectionOperationSpec,
-      initialOperationResult,
+      createUpdateMongoDBCollectionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -508,7 +504,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -528,16 +524,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteMongoDBCollectionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteMongoDBCollectionOperationSpec,
-      initialOperationResult,
+      deleteMongoDBCollectionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -554,7 +546,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -585,7 +577,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     collectionName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -611,16 +603,12 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateMongoDBCollectionThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateMongoDBCollectionThroughputOperationSpec,
-      initialOperationResult,
+      updateMongoDBCollectionThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

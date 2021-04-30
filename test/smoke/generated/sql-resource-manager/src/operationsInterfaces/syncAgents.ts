@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncAgent,
+  SyncAgentsListByServerNextOptionalParams,
+  SyncAgentsListByServerOptionalParams,
   SyncAgentLinkedDatabase,
+  SyncAgentsListLinkedDatabasesNextOptionalParams,
+  SyncAgentsListLinkedDatabasesOptionalParams,
+  SyncAgentsGetOptionalParams,
   SyncAgentsGetResponse,
+  SyncAgentsCreateOrUpdateOptionalParams,
   SyncAgentsCreateOrUpdateResponse,
+  SyncAgentsDeleteOptionalParams,
+  SyncAgentsGenerateKeyOptionalParams,
   SyncAgentsGenerateKeyResponse
 } from "../models";
 
@@ -31,7 +39,7 @@ export interface SyncAgents {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerOptionalParams
   ): PagedAsyncIterableIterator<SyncAgent>;
   /**
    * Lists databases linked to a sync agent.
@@ -45,7 +53,7 @@ export interface SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesOptionalParams
   ): PagedAsyncIterableIterator<SyncAgentLinkedDatabase>;
   /**
    * Gets a sync agent.
@@ -59,7 +67,7 @@ export interface SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsGetOptionalParams
   ): Promise<SyncAgentsGetResponse>;
   /**
    * Creates or updates a sync agent.
@@ -75,7 +83,7 @@ export interface SyncAgents {
     serverName: string,
     syncAgentName: string,
     parameters: SyncAgent,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncAgentsCreateOrUpdateResponse>,
@@ -94,7 +102,7 @@ export interface SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -110,6 +118,6 @@ export interface SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsGenerateKeyOptionalParams
   ): Promise<SyncAgentsGenerateKeyResponse>;
 }

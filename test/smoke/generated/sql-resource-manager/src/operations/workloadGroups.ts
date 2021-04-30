@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WorkloadGroup,
+  WorkloadGroupsListByDatabaseNextOptionalParams,
+  WorkloadGroupsListByDatabaseOptionalParams,
+  WorkloadGroupsGetOptionalParams,
   WorkloadGroupsGetResponse,
+  WorkloadGroupsCreateOrUpdateOptionalParams,
   WorkloadGroupsCreateOrUpdateResponse,
+  WorkloadGroupsDeleteOptionalParams,
   WorkloadGroupsListByDatabaseResponse,
   WorkloadGroupsListByDatabaseNextResponse
 } from "../models";
@@ -48,7 +53,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<WorkloadGroup> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -78,7 +83,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseOptionalParams
   ): AsyncIterableIterator<WorkloadGroup[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -105,7 +110,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseOptionalParams
   ): AsyncIterableIterator<WorkloadGroup> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -131,7 +136,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsGetOptionalParams
   ): Promise<WorkloadGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -162,7 +167,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     databaseName: string,
     workloadGroupName: string,
     parameters: WorkloadGroup,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WorkloadGroupsCreateOrUpdateResponse>,
@@ -186,16 +191,12 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -212,7 +213,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -232,16 +233,12 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -256,7 +253,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseOptionalParams
   ): Promise<WorkloadGroupsListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -284,7 +281,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseNextOptionalParams
   ): Promise<WorkloadGroupsListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

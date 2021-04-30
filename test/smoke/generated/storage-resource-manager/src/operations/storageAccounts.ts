@@ -17,25 +17,39 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   StorageAccount,
+  StorageAccountsListNextOptionalParams,
+  StorageAccountsListOptionalParams,
+  StorageAccountsListByResourceGroupOptionalParams,
   StorageAccountCheckNameAvailabilityParameters,
+  StorageAccountsCheckNameAvailabilityOptionalParams,
   StorageAccountsCheckNameAvailabilityResponse,
   StorageAccountCreateParameters,
+  StorageAccountsCreateOptionalParams,
   StorageAccountsCreateResponse,
+  StorageAccountsDeleteOptionalParams,
   StorageAccountsGetPropertiesOptionalParams,
   StorageAccountsGetPropertiesResponse,
   StorageAccountUpdateParameters,
+  StorageAccountsUpdateOptionalParams,
   StorageAccountsUpdateResponse,
   StorageAccountsListResponse,
   StorageAccountsListByResourceGroupResponse,
+  StorageAccountsListKeysOptionalParams,
   StorageAccountsListKeysResponse,
   StorageAccountRegenerateKeyParameters,
+  StorageAccountsRegenerateKeyOptionalParams,
   StorageAccountsRegenerateKeyResponse,
   AccountSasParameters,
+  StorageAccountsListAccountSASOptionalParams,
   StorageAccountsListAccountSASResponse,
   ServiceSasParameters,
+  StorageAccountsListServiceSASOptionalParams,
   StorageAccountsListServiceSASResponse,
+  StorageAccountsFailoverOptionalParams,
   BlobRestoreParameters,
+  StorageAccountsRestoreBlobRangesOptionalParams,
   StorageAccountsRestoreBlobRangesResponse,
+  StorageAccountsRevokeUserDelegationKeysOptionalParams,
   StorageAccountsListNextResponse
 } from "../models";
 
@@ -58,7 +72,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListOptionalParams
   ): PagedAsyncIterableIterator<StorageAccount> {
     const iter = this.listPagingAll(options);
     return {
@@ -75,7 +89,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListOptionalParams
   ): AsyncIterableIterator<StorageAccount[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -88,7 +102,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListOptionalParams
   ): AsyncIterableIterator<StorageAccount> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -104,7 +118,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<StorageAccount> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -122,7 +136,7 @@ export class StorageAccountsImpl implements StorageAccounts {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<StorageAccount[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -130,7 +144,7 @@ export class StorageAccountsImpl implements StorageAccounts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<StorageAccount> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -149,7 +163,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    */
   checkNameAvailability(
     accountName: StorageAccountCheckNameAvailabilityParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsCheckNameAvailabilityOptionalParams
   ): Promise<StorageAccountsCheckNameAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       accountName,
@@ -178,7 +192,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<StorageAccountsCreateResponse>,
@@ -200,16 +214,12 @@ export class StorageAccountsImpl implements StorageAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -224,7 +234,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   delete(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -283,7 +293,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsUpdateOptionalParams
   ): Promise<StorageAccountsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -303,7 +313,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListOptionalParams
   ): Promise<StorageAccountsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -323,7 +333,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListByResourceGroupOptionalParams
   ): Promise<StorageAccountsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -348,7 +358,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListKeysOptionalParams
   ): Promise<StorageAccountsListKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -376,7 +386,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     regenerateKey: StorageAccountRegenerateKeyParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRegenerateKeyOptionalParams
   ): Promise<StorageAccountsRegenerateKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -404,7 +414,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: AccountSasParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListAccountSASOptionalParams
   ): Promise<StorageAccountsListAccountSASResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -432,7 +442,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: ServiceSasParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListServiceSASOptionalParams
   ): Promise<StorageAccountsListServiceSASResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -460,7 +470,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   async failover(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -478,17 +488,13 @@ export class StorageAccountsImpl implements StorageAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverOperationSpec,
-      initialOperationResult,
+      failoverOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -505,7 +511,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRestoreBlobRangesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
@@ -527,17 +533,13 @@ export class StorageAccountsImpl implements StorageAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreBlobRangesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreBlobRangesOperationSpec,
-      initialOperationResult,
+      restoreBlobRangesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -552,7 +554,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   revokeUserDelegationKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRevokeUserDelegationKeysOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -572,7 +574,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListNextOptionalParams
   ): Promise<StorageAccountsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

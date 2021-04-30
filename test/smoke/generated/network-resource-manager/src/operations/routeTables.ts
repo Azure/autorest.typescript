@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteTable,
+  RouteTablesListNextOptionalParams,
+  RouteTablesListOptionalParams,
+  RouteTablesListAllNextOptionalParams,
+  RouteTablesListAllOptionalParams,
+  RouteTablesDeleteOptionalParams,
   RouteTablesGetOptionalParams,
   RouteTablesGetResponse,
+  RouteTablesCreateOrUpdateOptionalParams,
   RouteTablesCreateOrUpdateResponse,
   TagsObject,
+  RouteTablesUpdateTagsOptionalParams,
   RouteTablesUpdateTagsResponse,
   RouteTablesListResponse,
   RouteTablesListAllResponse,
@@ -48,7 +55,7 @@ export class RouteTablesImpl implements RouteTables {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListOptionalParams
   ): PagedAsyncIterableIterator<RouteTable> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +73,7 @@ export class RouteTablesImpl implements RouteTables {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListOptionalParams
   ): AsyncIterableIterator<RouteTable[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +91,7 @@ export class RouteTablesImpl implements RouteTables {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListOptionalParams
   ): AsyncIterableIterator<RouteTable> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -96,7 +103,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllOptionalParams
   ): PagedAsyncIterableIterator<RouteTable> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -113,7 +120,7 @@ export class RouteTablesImpl implements RouteTables {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllOptionalParams
   ): AsyncIterableIterator<RouteTable[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class RouteTablesImpl implements RouteTables {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllOptionalParams
   ): AsyncIterableIterator<RouteTable> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class RouteTablesImpl implements RouteTables {
   async delete(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class RouteTablesImpl implements RouteTables {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class RouteTablesImpl implements RouteTables {
     resourceGroupName: string,
     routeTableName: string,
     parameters: RouteTable,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteTablesCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class RouteTablesImpl implements RouteTables {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -252,7 +251,7 @@ export class RouteTablesImpl implements RouteTables {
     resourceGroupName: string,
     routeTableName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesUpdateTagsOptionalParams
   ): Promise<RouteTablesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -273,7 +272,7 @@ export class RouteTablesImpl implements RouteTables {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListOptionalParams
   ): Promise<RouteTablesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -290,7 +289,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllOptionalParams
   ): Promise<RouteTablesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -310,7 +309,7 @@ export class RouteTablesImpl implements RouteTables {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListNextOptionalParams
   ): Promise<RouteTablesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -330,7 +329,7 @@ export class RouteTablesImpl implements RouteTables {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteTablesListAllNextOptionalParams
   ): Promise<RouteTablesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

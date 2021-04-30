@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FlowLog,
+  FlowLogsListNextOptionalParams,
+  FlowLogsListOptionalParams,
+  FlowLogsCreateOrUpdateOptionalParams,
   FlowLogsCreateOrUpdateResponse,
+  FlowLogsGetOptionalParams,
   FlowLogsGetResponse,
+  FlowLogsDeleteOptionalParams,
   FlowLogsListResponse,
   FlowLogsListNextResponse
 } from "../models";
@@ -45,7 +50,7 @@ export class FlowLogsImpl implements FlowLogs {
   public list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListOptionalParams
   ): PagedAsyncIterableIterator<FlowLog> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class FlowLogsImpl implements FlowLogs {
   private async *listPagingPage(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListOptionalParams
   ): AsyncIterableIterator<FlowLog[]> {
     let result = await this._list(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class FlowLogsImpl implements FlowLogs {
   private async *listPagingAll(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListOptionalParams
   ): AsyncIterableIterator<FlowLog> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -120,7 +125,7 @@ export class FlowLogsImpl implements FlowLogs {
     networkWatcherName: string,
     flowLogName: string,
     parameters: FlowLog,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FlowLogsCreateOrUpdateResponse>,
@@ -143,17 +148,13 @@ export class FlowLogsImpl implements FlowLogs {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -167,7 +168,7 @@ export class FlowLogsImpl implements FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsGetOptionalParams
   ): Promise<FlowLogsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -192,7 +193,7 @@ export class FlowLogsImpl implements FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -211,17 +212,13 @@ export class FlowLogsImpl implements FlowLogs {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -233,7 +230,7 @@ export class FlowLogsImpl implements FlowLogs {
   private _list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListOptionalParams
   ): Promise<FlowLogsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -257,7 +254,7 @@ export class FlowLogsImpl implements FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListNextOptionalParams
   ): Promise<FlowLogsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

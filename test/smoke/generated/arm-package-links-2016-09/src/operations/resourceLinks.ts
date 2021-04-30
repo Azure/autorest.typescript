@@ -17,7 +17,12 @@ import {
   ResourceLink,
   ResourceLinksListAtSubscriptionNextOptionalParams,
   ResourceLinksListAtSubscriptionOptionalParams,
+  ResourceLinksListAtSourceScopeNextOptionalParams,
+  ResourceLinksListAtSourceScopeOptionalParams,
+  ResourceLinksDeleteOptionalParams,
+  ResourceLinksCreateOrUpdateOptionalParams,
   ResourceLinksCreateOrUpdateResponse,
+  ResourceLinksGetOptionalParams,
   ResourceLinksGetResponse,
   ResourceLinksListAtSubscriptionResponse,
   ResourceLinksListAtSourceScopeResponse,
@@ -89,7 +94,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   public listAtSourceScope(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeOptionalParams
   ): PagedAsyncIterableIterator<ResourceLink> {
     const iter = this.listAtSourceScopePagingAll(scope, options);
     return {
@@ -107,7 +112,7 @@ export class ResourceLinksImpl implements ResourceLinks {
 
   private async *listAtSourceScopePagingPage(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeOptionalParams
   ): AsyncIterableIterator<ResourceLink[]> {
     let result = await this._listAtSourceScope(scope, options);
     yield result.value || [];
@@ -125,7 +130,7 @@ export class ResourceLinksImpl implements ResourceLinks {
 
   private async *listAtSourceScopePagingAll(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeOptionalParams
   ): AsyncIterableIterator<ResourceLink> {
     for await (const page of this.listAtSourceScopePagingPage(scope, options)) {
       yield* page;
@@ -142,7 +147,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   delete(
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       linkId,
@@ -166,7 +171,7 @@ export class ResourceLinksImpl implements ResourceLinks {
   createOrUpdate(
     linkId: string,
     parameters: ResourceLink,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksCreateOrUpdateOptionalParams
   ): Promise<ResourceLinksCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       linkId,
@@ -187,7 +192,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   get(
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksGetOptionalParams
   ): Promise<ResourceLinksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       linkId,
@@ -224,7 +229,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   private _listAtSourceScope(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeOptionalParams
   ): Promise<ResourceLinksListAtSourceScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -266,7 +271,7 @@ export class ResourceLinksImpl implements ResourceLinks {
   private _listAtSourceScopeNext(
     scope: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeNextOptionalParams
   ): Promise<ResourceLinksListAtSourceScopeNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,

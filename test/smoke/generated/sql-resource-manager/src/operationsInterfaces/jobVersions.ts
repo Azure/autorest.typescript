@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { JobVersion, JobVersionsGetResponse } from "../models";
+import {
+  JobVersion,
+  JobVersionsListByJobNextOptionalParams,
+  JobVersionsListByJobOptionalParams,
+  JobVersionsGetOptionalParams,
+  JobVersionsGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a JobVersions. */
@@ -28,7 +34,7 @@ export interface JobVersions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobOptionalParams
   ): PagedAsyncIterableIterator<JobVersion>;
   /**
    * Gets a job version.
@@ -46,6 +52,6 @@ export interface JobVersions {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsGetOptionalParams
   ): Promise<JobVersionsGetResponse>;
 }

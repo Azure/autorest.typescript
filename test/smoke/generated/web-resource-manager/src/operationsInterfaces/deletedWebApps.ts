@@ -11,6 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   DeletedSite,
+  DeletedWebAppsListNextOptionalParams,
+  DeletedWebAppsListOptionalParams,
+  DeletedWebAppsListByLocationNextOptionalParams,
+  DeletedWebAppsListByLocationOptionalParams,
+  DeletedWebAppsGetDeletedWebAppByLocationOptionalParams,
   DeletedWebAppsGetDeletedWebAppByLocationResponse
 } from "../models";
 
@@ -22,7 +27,7 @@ export interface DeletedWebApps {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListOptionalParams
   ): PagedAsyncIterableIterator<DeletedSite>;
   /**
    * Description for Get all deleted apps for a subscription at location
@@ -31,7 +36,7 @@ export interface DeletedWebApps {
    */
   listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationOptionalParams
   ): PagedAsyncIterableIterator<DeletedSite>;
   /**
    * Description for Get deleted app for a subscription at location.
@@ -42,6 +47,6 @@ export interface DeletedWebApps {
   getDeletedWebAppByLocation(
     location: string,
     deletedSiteId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsGetDeletedWebAppByLocationOptionalParams
   ): Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse>;
 }

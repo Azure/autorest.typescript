@@ -9,11 +9,16 @@
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  ExpressRouteGatewaysListBySubscriptionOptionalParams,
   ExpressRouteGatewaysListBySubscriptionResponse,
+  ExpressRouteGatewaysListByResourceGroupOptionalParams,
   ExpressRouteGatewaysListByResourceGroupResponse,
   ExpressRouteGateway,
+  ExpressRouteGatewaysCreateOrUpdateOptionalParams,
   ExpressRouteGatewaysCreateOrUpdateResponse,
-  ExpressRouteGatewaysGetResponse
+  ExpressRouteGatewaysGetOptionalParams,
+  ExpressRouteGatewaysGetResponse,
+  ExpressRouteGatewaysDeleteOptionalParams
 } from "../models";
 
 /** Interface representing a ExpressRouteGateways. */
@@ -23,7 +28,7 @@ export interface ExpressRouteGateways {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysListBySubscriptionOptionalParams
   ): Promise<ExpressRouteGatewaysListBySubscriptionResponse>;
   /**
    * Lists ExpressRoute gateways in a given resource group.
@@ -32,7 +37,7 @@ export interface ExpressRouteGateways {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysListByResourceGroupOptionalParams
   ): Promise<ExpressRouteGatewaysListByResourceGroupResponse>;
   /**
    * Creates or updates a ExpressRoute gateway in a specified resource group.
@@ -46,7 +51,7 @@ export interface ExpressRouteGateways {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>,
@@ -62,7 +67,7 @@ export interface ExpressRouteGateways {
   get(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysGetOptionalParams
   ): Promise<ExpressRouteGatewaysGetResponse>;
   /**
    * Deletes the specified ExpressRoute gateway in a resource group. An ExpressRoute gateway resource can
@@ -74,7 +79,7 @@ export interface ExpressRouteGateways {
   delete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

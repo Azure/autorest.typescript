@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SecurityRule,
+  SecurityRulesListNextOptionalParams,
+  SecurityRulesListOptionalParams,
+  SecurityRulesDeleteOptionalParams,
+  SecurityRulesGetOptionalParams,
   SecurityRulesGetResponse,
+  SecurityRulesCreateOrUpdateOptionalParams,
   SecurityRulesCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface SecurityRules {
   list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListOptionalParams
   ): PagedAsyncIterableIterator<SecurityRule>;
   /**
    * Deletes the specified network security rule.
@@ -41,7 +46,7 @@ export interface SecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface SecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesGetOptionalParams
   ): Promise<SecurityRulesGetResponse>;
   /**
    * Creates or updates a security rule in the specified network security group.
@@ -72,7 +77,7 @@ export interface SecurityRules {
     networkSecurityGroupName: string,
     securityRuleName: string,
     securityRuleParameters: SecurityRule,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SecurityRulesCreateOrUpdateResponse>,

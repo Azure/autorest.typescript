@@ -12,8 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InboundNatRule,
+  InboundNatRulesListNextOptionalParams,
+  InboundNatRulesListOptionalParams,
+  InboundNatRulesDeleteOptionalParams,
   InboundNatRulesGetOptionalParams,
   InboundNatRulesGetResponse,
+  InboundNatRulesCreateOrUpdateOptionalParams,
   InboundNatRulesCreateOrUpdateResponse
 } from "../models";
 
@@ -29,7 +33,7 @@ export interface InboundNatRules {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListOptionalParams
   ): PagedAsyncIterableIterator<InboundNatRule>;
   /**
    * Deletes the specified load balancer inbound nat rule.
@@ -42,7 +46,7 @@ export interface InboundNatRules {
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +77,7 @@ export interface InboundNatRules {
     loadBalancerName: string,
     inboundNatRuleName: string,
     inboundNatRuleParameters: InboundNatRule,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InboundNatRulesCreateOrUpdateResponse>,

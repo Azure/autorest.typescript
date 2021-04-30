@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitAuthorization,
+  ExpressRouteCircuitAuthorizationsListNextOptionalParams,
+  ExpressRouteCircuitAuthorizationsListOptionalParams,
+  ExpressRouteCircuitAuthorizationsDeleteOptionalParams,
+  ExpressRouteCircuitAuthorizationsGetOptionalParams,
   ExpressRouteCircuitAuthorizationsGetResponse,
+  ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse,
   ExpressRouteCircuitAuthorizationsListResponse,
   ExpressRouteCircuitAuthorizationsListNextResponse
@@ -46,7 +51,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
   public list(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization> {
     const iter = this.listPagingAll(resourceGroupName, circuitName, options);
     return {
@@ -65,7 +70,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCircuitAuthorization[]> {
     let result = await this._list(resourceGroupName, circuitName, options);
     yield result.value || [];
@@ -85,7 +90,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCircuitAuthorization> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -107,7 +112,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -126,17 +131,13 @@ export class ExpressRouteCircuitAuthorizationsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -150,7 +151,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsGetOptionalParams
   ): Promise<ExpressRouteCircuitAuthorizationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -178,7 +179,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
     circuitName: string,
     authorizationName: string,
     authorizationParameters: ExpressRouteCircuitAuthorization,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -203,17 +204,13 @@ export class ExpressRouteCircuitAuthorizationsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -225,7 +222,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
   private _list(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListOptionalParams
   ): Promise<ExpressRouteCircuitAuthorizationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -249,7 +246,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
     resourceGroupName: string,
     circuitName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListNextOptionalParams
   ): Promise<ExpressRouteCircuitAuthorizationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

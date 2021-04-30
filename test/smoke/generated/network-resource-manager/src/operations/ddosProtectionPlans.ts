@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DdosProtectionPlan,
+  DdosProtectionPlansListNextOptionalParams,
+  DdosProtectionPlansListOptionalParams,
+  DdosProtectionPlansListByResourceGroupNextOptionalParams,
+  DdosProtectionPlansListByResourceGroupOptionalParams,
+  DdosProtectionPlansDeleteOptionalParams,
+  DdosProtectionPlansGetOptionalParams,
   DdosProtectionPlansGetResponse,
+  DdosProtectionPlansCreateOrUpdateOptionalParams,
   DdosProtectionPlansCreateOrUpdateResponse,
   TagsObject,
+  DdosProtectionPlansUpdateTagsOptionalParams,
   DdosProtectionPlansUpdateTagsResponse,
   DdosProtectionPlansListResponse,
   DdosProtectionPlansListByResourceGroupResponse,
@@ -45,7 +53,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListOptionalParams
   ): PagedAsyncIterableIterator<DdosProtectionPlan> {
     const iter = this.listPagingAll(options);
     return {
@@ -62,7 +70,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListOptionalParams
   ): AsyncIterableIterator<DdosProtectionPlan[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -75,7 +83,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListOptionalParams
   ): AsyncIterableIterator<DdosProtectionPlan> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -89,7 +97,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DdosProtectionPlan> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -107,7 +115,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DdosProtectionPlan[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -125,7 +133,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DdosProtectionPlan> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -144,7 +152,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   async delete(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -162,17 +170,13 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -184,7 +188,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   get(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansGetOptionalParams
   ): Promise<DdosProtectionPlansGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +212,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>,
@@ -230,17 +234,13 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -254,7 +254,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansUpdateTagsOptionalParams
   ): Promise<DdosProtectionPlansUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -273,7 +273,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListOptionalParams
   ): Promise<DdosProtectionPlansListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -291,7 +291,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams
   ): Promise<DdosProtectionPlansListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -310,7 +310,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListNextOptionalParams
   ): Promise<DdosProtectionPlansListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -331,7 +331,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupNextOptionalParams
   ): Promise<DdosProtectionPlansListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

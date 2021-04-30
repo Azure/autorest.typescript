@@ -27,36 +27,74 @@ import {
   DeploymentsListAtSubscriptionScopeOptionalParams,
   DeploymentsListByResourceGroupNextOptionalParams,
   DeploymentsListByResourceGroupOptionalParams,
+  DeploymentsDeleteAtScopeOptionalParams,
+  DeploymentsCheckExistenceAtScopeOptionalParams,
   Deployment,
+  DeploymentsCreateOrUpdateAtScopeOptionalParams,
   DeploymentsCreateOrUpdateAtScopeResponse,
+  DeploymentsGetAtScopeOptionalParams,
   DeploymentsGetAtScopeResponse,
+  DeploymentsCancelAtScopeOptionalParams,
+  DeploymentsValidateAtScopeOptionalParams,
   DeploymentsValidateAtScopeResponse,
+  DeploymentsExportTemplateAtScopeOptionalParams,
   DeploymentsExportTemplateAtScopeResponse,
   DeploymentsListAtScopeResponse,
+  DeploymentsDeleteAtTenantScopeOptionalParams,
+  DeploymentsCheckExistenceAtTenantScopeOptionalParams,
   ScopedDeployment,
+  DeploymentsCreateOrUpdateAtTenantScopeOptionalParams,
   DeploymentsCreateOrUpdateAtTenantScopeResponse,
+  DeploymentsGetAtTenantScopeOptionalParams,
   DeploymentsGetAtTenantScopeResponse,
+  DeploymentsCancelAtTenantScopeOptionalParams,
+  DeploymentsValidateAtTenantScopeOptionalParams,
   DeploymentsValidateAtTenantScopeResponse,
+  DeploymentsExportTemplateAtTenantScopeOptionalParams,
   DeploymentsExportTemplateAtTenantScopeResponse,
   DeploymentsListAtTenantScopeResponse,
+  DeploymentsDeleteAtManagementGroupScopeOptionalParams,
+  DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams,
+  DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams,
   DeploymentsCreateOrUpdateAtManagementGroupScopeResponse,
+  DeploymentsGetAtManagementGroupScopeOptionalParams,
   DeploymentsGetAtManagementGroupScopeResponse,
+  DeploymentsCancelAtManagementGroupScopeOptionalParams,
+  DeploymentsValidateAtManagementGroupScopeOptionalParams,
   DeploymentsValidateAtManagementGroupScopeResponse,
+  DeploymentsExportTemplateAtManagementGroupScopeOptionalParams,
   DeploymentsExportTemplateAtManagementGroupScopeResponse,
   DeploymentsListAtManagementGroupScopeResponse,
+  DeploymentsDeleteAtSubscriptionScopeOptionalParams,
+  DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams,
+  DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams,
   DeploymentsCreateOrUpdateAtSubscriptionScopeResponse,
+  DeploymentsGetAtSubscriptionScopeOptionalParams,
   DeploymentsGetAtSubscriptionScopeResponse,
+  DeploymentsCancelAtSubscriptionScopeOptionalParams,
+  DeploymentsValidateAtSubscriptionScopeOptionalParams,
   DeploymentsValidateAtSubscriptionScopeResponse,
   DeploymentWhatIf,
+  DeploymentsWhatIfAtSubscriptionScopeOptionalParams,
   DeploymentsWhatIfAtSubscriptionScopeResponse,
+  DeploymentsExportTemplateAtSubscriptionScopeOptionalParams,
   DeploymentsExportTemplateAtSubscriptionScopeResponse,
   DeploymentsListAtSubscriptionScopeResponse,
+  DeploymentsDeleteOptionalParams,
+  DeploymentsCheckExistenceOptionalParams,
+  DeploymentsCreateOrUpdateOptionalParams,
   DeploymentsCreateOrUpdateResponse,
+  DeploymentsGetOptionalParams,
   DeploymentsGetResponse,
+  DeploymentsCancelOptionalParams,
+  DeploymentsValidateOptionalParams,
   DeploymentsValidateResponse,
+  DeploymentsWhatIfOptionalParams,
   DeploymentsWhatIfResponse,
+  DeploymentsExportTemplateOptionalParams,
   DeploymentsExportTemplateResponse,
   DeploymentsListByResourceGroupResponse,
+  DeploymentsCalculateTemplateHashOptionalParams,
   DeploymentsCalculateTemplateHashResponse,
   DeploymentsListAtScopeNextResponse,
   DeploymentsListAtTenantScopeNextResponse,
@@ -333,7 +371,7 @@ export class DeploymentsImpl implements Deployments {
   async deleteAtScope(
     scope: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsDeleteAtScopeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -351,16 +389,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteAtScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteAtScopeOperationSpec,
-      initialOperationResult,
+      deleteAtScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -372,7 +406,7 @@ export class DeploymentsImpl implements Deployments {
   checkExistenceAtScope(
     scope: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCheckExistenceAtScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -396,7 +430,7 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
@@ -418,16 +452,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateAtScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateAtScopeOperationSpec,
-      initialOperationResult,
+      createOrUpdateAtScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -439,7 +469,7 @@ export class DeploymentsImpl implements Deployments {
   getAtScope(
     scope: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsGetAtScopeOptionalParams
   ): Promise<DeploymentsGetAtScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -463,7 +493,7 @@ export class DeploymentsImpl implements Deployments {
   cancelAtScope(
     scope: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCancelAtScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -488,7 +518,7 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsValidateAtScopeOptionalParams
   ): Promise<DeploymentsValidateAtScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -511,7 +541,7 @@ export class DeploymentsImpl implements Deployments {
   exportTemplateAtScope(
     scope: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsExportTemplateAtScopeOptionalParams
   ): Promise<DeploymentsExportTemplateAtScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -556,7 +586,7 @@ export class DeploymentsImpl implements Deployments {
    */
   async deleteAtTenantScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsDeleteAtTenantScopeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -573,16 +603,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteAtTenantScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteAtTenantScopeOperationSpec,
-      initialOperationResult,
+      deleteAtTenantScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -592,7 +618,7 @@ export class DeploymentsImpl implements Deployments {
    */
   checkExistenceAtTenantScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -613,7 +639,7 @@ export class DeploymentsImpl implements Deployments {
   async createOrUpdateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
@@ -634,16 +660,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateAtTenantScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateAtTenantScopeOperationSpec,
-      initialOperationResult,
+      createOrUpdateAtTenantScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -653,7 +675,7 @@ export class DeploymentsImpl implements Deployments {
    */
   getAtTenantScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsGetAtTenantScopeOptionalParams
   ): Promise<DeploymentsGetAtTenantScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -674,7 +696,7 @@ export class DeploymentsImpl implements Deployments {
    */
   cancelAtTenantScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCancelAtTenantScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -696,7 +718,7 @@ export class DeploymentsImpl implements Deployments {
   validateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsValidateAtTenantScopeOptionalParams
   ): Promise<DeploymentsValidateAtTenantScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -716,7 +738,7 @@ export class DeploymentsImpl implements Deployments {
    */
   exportTemplateAtTenantScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsExportTemplateAtTenantScopeOptionalParams
   ): Promise<DeploymentsExportTemplateAtTenantScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -759,7 +781,7 @@ export class DeploymentsImpl implements Deployments {
   async deleteAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -777,16 +799,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteAtManagementGroupScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteAtManagementGroupScopeOperationSpec,
-      initialOperationResult,
+      deleteAtManagementGroupScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -798,7 +816,7 @@ export class DeploymentsImpl implements Deployments {
   checkExistenceAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -822,7 +840,7 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -846,16 +864,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateAtManagementGroupScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateAtManagementGroupScopeOperationSpec,
-      initialOperationResult,
+      createOrUpdateAtManagementGroupScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -867,7 +881,7 @@ export class DeploymentsImpl implements Deployments {
   getAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsGetAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentsGetAtManagementGroupScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -891,7 +905,7 @@ export class DeploymentsImpl implements Deployments {
   cancelAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCancelAtManagementGroupScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -916,7 +930,7 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsValidateAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentsValidateAtManagementGroupScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -939,7 +953,7 @@ export class DeploymentsImpl implements Deployments {
   exportTemplateAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -984,7 +998,7 @@ export class DeploymentsImpl implements Deployments {
    */
   async deleteAtSubscriptionScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1001,16 +1015,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteAtSubscriptionScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteAtSubscriptionScopeOperationSpec,
-      initialOperationResult,
+      deleteAtSubscriptionScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1020,7 +1030,7 @@ export class DeploymentsImpl implements Deployments {
    */
   checkExistenceAtSubscriptionScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1041,7 +1051,7 @@ export class DeploymentsImpl implements Deployments {
   async createOrUpdateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
@@ -1062,16 +1072,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateAtSubscriptionScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateAtSubscriptionScopeOperationSpec,
-      initialOperationResult,
+      createOrUpdateAtSubscriptionScopeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1081,7 +1087,7 @@ export class DeploymentsImpl implements Deployments {
    */
   getAtSubscriptionScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsGetAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentsGetAtSubscriptionScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1102,7 +1108,7 @@ export class DeploymentsImpl implements Deployments {
    */
   cancelAtSubscriptionScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCancelAtSubscriptionScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1124,7 +1130,7 @@ export class DeploymentsImpl implements Deployments {
   validateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsValidateAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentsValidateAtSubscriptionScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1146,7 +1152,7 @@ export class DeploymentsImpl implements Deployments {
   async whatIfAtSubscriptionScope(
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
@@ -1167,17 +1173,13 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      whatIfAtSubscriptionScopeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: whatIfAtSubscriptionScopeOperationSpec,
-      initialOperationResult,
+      whatIfAtSubscriptionScopeOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -1187,7 +1189,7 @@ export class DeploymentsImpl implements Deployments {
    */
   exportTemplateAtSubscriptionScope(
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -1232,7 +1234,7 @@ export class DeploymentsImpl implements Deployments {
   async delete(
     resourceGroupName: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1250,16 +1252,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1272,7 +1270,7 @@ export class DeploymentsImpl implements Deployments {
   checkExistence(
     resourceGroupName: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCheckExistenceOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1297,7 +1295,7 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsCreateOrUpdateResponse>,
@@ -1319,16 +1317,12 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1340,7 +1334,7 @@ export class DeploymentsImpl implements Deployments {
   get(
     resourceGroupName: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsGetOptionalParams
   ): Promise<DeploymentsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1364,7 +1358,7 @@ export class DeploymentsImpl implements Deployments {
   cancel(
     resourceGroupName: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCancelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1390,7 +1384,7 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsValidateOptionalParams
   ): Promise<DeploymentsValidateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1416,7 +1410,7 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsWhatIfOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentsWhatIfResponse>,
@@ -1438,17 +1432,13 @@ export class DeploymentsImpl implements Deployments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      whatIfOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: whatIfOperationSpec,
-      initialOperationResult,
+      whatIfOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -1460,7 +1450,7 @@ export class DeploymentsImpl implements Deployments {
   exportTemplate(
     resourceGroupName: string,
     deploymentName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsExportTemplateOptionalParams
   ): Promise<DeploymentsExportTemplateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1500,7 +1490,7 @@ export class DeploymentsImpl implements Deployments {
    */
   calculateTemplateHash(
     template: any,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentsCalculateTemplateHashOptionalParams
   ): Promise<DeploymentsCalculateTemplateHashResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       template,

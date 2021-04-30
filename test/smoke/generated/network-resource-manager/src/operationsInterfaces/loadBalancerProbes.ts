@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { Probe, LoadBalancerProbesGetResponse } from "../models";
+import {
+  Probe,
+  LoadBalancerProbesListNextOptionalParams,
+  LoadBalancerProbesListOptionalParams,
+  LoadBalancerProbesGetOptionalParams,
+  LoadBalancerProbesGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a LoadBalancerProbes. */
@@ -23,7 +29,7 @@ export interface LoadBalancerProbes {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListOptionalParams
   ): PagedAsyncIterableIterator<Probe>;
   /**
    * Gets load balancer probe.
@@ -36,6 +42,6 @@ export interface LoadBalancerProbes {
     resourceGroupName: string,
     loadBalancerName: string,
     probeName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesGetOptionalParams
   ): Promise<LoadBalancerProbesGetResponse>;
 }

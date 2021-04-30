@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationSecurityGroup,
+  ApplicationSecurityGroupsListAllNextOptionalParams,
+  ApplicationSecurityGroupsListAllOptionalParams,
+  ApplicationSecurityGroupsListNextOptionalParams,
+  ApplicationSecurityGroupsListOptionalParams,
+  ApplicationSecurityGroupsDeleteOptionalParams,
+  ApplicationSecurityGroupsGetOptionalParams,
   ApplicationSecurityGroupsGetResponse,
+  ApplicationSecurityGroupsCreateOrUpdateOptionalParams,
   ApplicationSecurityGroupsCreateOrUpdateResponse,
   TagsObject,
+  ApplicationSecurityGroupsUpdateTagsOptionalParams,
   ApplicationSecurityGroupsUpdateTagsResponse,
   ApplicationSecurityGroupsListAllResponse,
   ApplicationSecurityGroupsListResponse,
@@ -46,7 +54,7 @@ export class ApplicationSecurityGroupsImpl
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllOptionalParams
   ): PagedAsyncIterableIterator<ApplicationSecurityGroup> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +71,7 @@ export class ApplicationSecurityGroupsImpl
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllOptionalParams
   ): AsyncIterableIterator<ApplicationSecurityGroup[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +84,7 @@ export class ApplicationSecurityGroupsImpl
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllOptionalParams
   ): AsyncIterableIterator<ApplicationSecurityGroup> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +98,7 @@ export class ApplicationSecurityGroupsImpl
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListOptionalParams
   ): PagedAsyncIterableIterator<ApplicationSecurityGroup> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +116,7 @@ export class ApplicationSecurityGroupsImpl
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListOptionalParams
   ): AsyncIterableIterator<ApplicationSecurityGroup[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +134,7 @@ export class ApplicationSecurityGroupsImpl
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListOptionalParams
   ): AsyncIterableIterator<ApplicationSecurityGroup> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +150,7 @@ export class ApplicationSecurityGroupsImpl
   async delete(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +168,13 @@ export class ApplicationSecurityGroupsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -182,7 +186,7 @@ export class ApplicationSecurityGroupsImpl
   get(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsGetOptionalParams
   ): Promise<ApplicationSecurityGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -206,7 +210,7 @@ export class ApplicationSecurityGroupsImpl
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: ApplicationSecurityGroup,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>,
@@ -228,17 +232,13 @@ export class ApplicationSecurityGroupsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -252,7 +252,7 @@ export class ApplicationSecurityGroupsImpl
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsUpdateTagsOptionalParams
   ): Promise<ApplicationSecurityGroupsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +271,7 @@ export class ApplicationSecurityGroupsImpl
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllOptionalParams
   ): Promise<ApplicationSecurityGroupsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -289,7 +289,7 @@ export class ApplicationSecurityGroupsImpl
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListOptionalParams
   ): Promise<ApplicationSecurityGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +308,7 @@ export class ApplicationSecurityGroupsImpl
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllNextOptionalParams
   ): Promise<ApplicationSecurityGroupsListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -329,7 +329,7 @@ export class ApplicationSecurityGroupsImpl
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListNextOptionalParams
   ): Promise<ApplicationSecurityGroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

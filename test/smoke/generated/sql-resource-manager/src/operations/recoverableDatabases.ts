@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RecoverableDatabase,
+  RecoverableDatabasesListByServerOptionalParams,
+  RecoverableDatabasesGetOptionalParams,
   RecoverableDatabasesGetResponse,
   RecoverableDatabasesListByServerResponse
 } from "../models";
@@ -42,7 +44,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<RecoverableDatabase> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -69,7 +71,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesListByServerOptionalParams
   ): AsyncIterableIterator<RecoverableDatabase[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -82,7 +84,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesListByServerOptionalParams
   ): AsyncIterableIterator<RecoverableDatabase> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -105,7 +107,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesGetOptionalParams
   ): Promise<RecoverableDatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -129,7 +131,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesListByServerOptionalParams
   ): Promise<RecoverableDatabasesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceEncryptionProtector,
+  ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams,
+  ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams,
   EncryptionProtectorName,
+  ManagedInstanceEncryptionProtectorsRevalidateOptionalParams,
   ManagedInstanceEncryptionProtectorsListByInstanceResponse,
+  ManagedInstanceEncryptionProtectorsGetOptionalParams,
   ManagedInstanceEncryptionProtectorsGetResponse,
+  ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams,
   ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse,
   ManagedInstanceEncryptionProtectorsListByInstanceNextResponse
 } from "../models";
@@ -48,7 +53,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
   public listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
@@ -75,7 +80,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceEncryptionProtector[]> {
     let result = await this._listByInstance(
       resourceGroupName,
@@ -99,7 +104,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
   private async *listByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceEncryptionProtector> {
     for await (const page of this.listByInstancePagingPage(
       resourceGroupName,
@@ -122,7 +127,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -141,16 +146,12 @@ export class ManagedInstanceEncryptionProtectorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      revalidateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: revalidateOperationSpec,
-      initialOperationResult,
+      revalidateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -163,7 +164,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
   private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -188,7 +189,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsGetOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -216,7 +217,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
     parameters: ManagedInstanceEncryptionProtector,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -241,16 +242,12 @@ export class ManagedInstanceEncryptionProtectorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -265,7 +262,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

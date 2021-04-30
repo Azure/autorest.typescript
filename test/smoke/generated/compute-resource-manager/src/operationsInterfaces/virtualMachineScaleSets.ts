@@ -12,25 +12,43 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSet,
+  VirtualMachineScaleSetsListNextOptionalParams,
+  VirtualMachineScaleSetsListOptionalParams,
+  VirtualMachineScaleSetsListAllNextOptionalParams,
+  VirtualMachineScaleSetsListAllOptionalParams,
   VirtualMachineScaleSetSku,
+  VirtualMachineScaleSetsListSkusNextOptionalParams,
+  VirtualMachineScaleSetsListSkusOptionalParams,
   UpgradeOperationHistoricalStatusInfo,
+  VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams,
+  VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams,
+  VirtualMachineScaleSetsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetsCreateOrUpdateResponse,
   VirtualMachineScaleSetUpdate,
+  VirtualMachineScaleSetsUpdateOptionalParams,
   VirtualMachineScaleSetsUpdateResponse,
+  VirtualMachineScaleSetsDeleteOptionalParams,
+  VirtualMachineScaleSetsGetOptionalParams,
   VirtualMachineScaleSetsGetResponse,
   VirtualMachineScaleSetsDeallocateOptionalParams,
   VirtualMachineScaleSetVMInstanceRequiredIDs,
+  VirtualMachineScaleSetsDeleteInstancesOptionalParams,
+  VirtualMachineScaleSetsGetInstanceViewOptionalParams,
   VirtualMachineScaleSetsGetInstanceViewResponse,
   VirtualMachineScaleSetsPowerOffOptionalParams,
   VirtualMachineScaleSetsRestartOptionalParams,
   VirtualMachineScaleSetsStartOptionalParams,
   VirtualMachineScaleSetsRedeployOptionalParams,
   VirtualMachineScaleSetsPerformMaintenanceOptionalParams,
+  VirtualMachineScaleSetsUpdateInstancesOptionalParams,
   VirtualMachineScaleSetsReimageOptionalParams,
   VirtualMachineScaleSetsReimageAllOptionalParams,
+  VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams,
   VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse,
   VMScaleSetConvertToSinglePlacementGroupInput,
-  OrchestrationServiceStateInput
+  VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams,
+  OrchestrationServiceStateInput,
+  VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -43,7 +61,7 @@ export interface VirtualMachineScaleSets {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
   /**
    * Gets a list of all VM Scale Sets in the subscription, regardless of the associated resource group.
@@ -52,7 +70,7 @@ export interface VirtualMachineScaleSets {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
   /**
    * Gets a list of SKUs available for your VM scale set, including the minimum and maximum VM instances
@@ -64,7 +82,7 @@ export interface VirtualMachineScaleSets {
   listSkus(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
   /**
    * Gets list of OS upgrades on a VM scale set instance.
@@ -75,7 +93,7 @@ export interface VirtualMachineScaleSets {
   listOSUpgradeHistory(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
   ): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
   /**
    * Create or update a VM scale set.
@@ -88,7 +106,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSet,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>,
@@ -106,7 +124,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSetUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetsUpdateResponse>,
@@ -122,7 +140,7 @@ export interface VirtualMachineScaleSets {
   delete(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -135,7 +153,7 @@ export interface VirtualMachineScaleSets {
   get(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOptionalParams
   ): Promise<VirtualMachineScaleSetsGetResponse>;
   /**
    * Deallocates specific virtual machines in a VM scale set. Shuts down the virtual machines and
@@ -163,7 +181,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -176,7 +194,7 @@ export interface VirtualMachineScaleSets {
   getInstanceView(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetInstanceViewOptionalParams
   ): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
   /**
    * Power off (stop) one or more virtual machines in a VM scale set. Note that resources are still
@@ -260,7 +278,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -305,7 +323,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     platformUpdateDomain: number,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams
   ): Promise<
     VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse
   >;
@@ -320,7 +338,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VMScaleSetConvertToSinglePlacementGroupInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Changes ServiceState property for a given service
@@ -333,7 +351,7 @@ export interface VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: OrchestrationServiceStateInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

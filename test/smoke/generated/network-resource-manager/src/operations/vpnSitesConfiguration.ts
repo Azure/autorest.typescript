@@ -13,7 +13,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { GetVpnSitesConfigurationRequest } from "../models";
+import {
+  GetVpnSitesConfigurationRequest,
+  VpnSitesConfigurationDownloadOptionalParams
+} from "../models";
 
 /** Class representing a VpnSitesConfiguration. */
 export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
@@ -38,7 +41,7 @@ export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
     resourceGroupName: string,
     virtualWANName: string,
     request: GetVpnSitesConfigurationRequest,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesConfigurationDownloadOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -57,17 +60,13 @@ export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      downloadOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: downloadOperationSpec,
-      initialOperationResult,
+      downloadOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

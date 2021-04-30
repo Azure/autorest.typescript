@@ -11,6 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RecoverableDatabase,
+  RecoverableDatabasesListByServerOptionalParams,
+  RecoverableDatabasesGetOptionalParams,
   RecoverableDatabasesGetResponse
 } from "../models";
 
@@ -27,7 +29,7 @@ export interface RecoverableDatabases {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<RecoverableDatabase>;
   /**
    * Gets a recoverable database, which is a resource representing a database's geo backup
@@ -41,6 +43,6 @@ export interface RecoverableDatabases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableDatabasesGetOptionalParams
   ): Promise<RecoverableDatabasesGetResponse>;
 }

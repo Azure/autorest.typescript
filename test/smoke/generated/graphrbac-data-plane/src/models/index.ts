@@ -794,6 +794,10 @@ export const enum KnownConsentType {
  */
 export type ConsentType = string;
 
+/** Optional parameters. */
+export interface SignedInUserGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SignedInUserGetResponse = User & {
   /** The underlying HTTP response. */
@@ -805,6 +809,10 @@ export type SignedInUserGetResponse = User & {
     parsedBody: User;
   };
 };
+
+/** Optional parameters. */
+export interface SignedInUserListOwnedObjectsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOwnedObjects operation. */
 export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult & {
@@ -818,6 +826,10 @@ export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SignedInUserListOwnedObjectsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOwnedObjectsNext operation. */
 export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -829,6 +841,10 @@ export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsCreateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the create operation. */
 export type ApplicationsCreateResponse = Application & {
@@ -861,6 +877,14 @@ export type ApplicationsListResponse = ApplicationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ApplicationsGetResponse = Application & {
   /** The underlying HTTP response. */
@@ -872,6 +896,14 @@ export type ApplicationsGetResponse = Application & {
     parsedBody: Application;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsPatchOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsListOwnersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
 export type ApplicationsListOwnersResponse = DirectoryObjectListResult & {
@@ -885,6 +917,18 @@ export type ApplicationsListOwnersResponse = DirectoryObjectListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsAddOwnerOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsRemoveOwnerOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsListKeyCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listKeyCredentials operation. */
 export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult & {
   /** The underlying HTTP response. */
@@ -896,6 +940,14 @@ export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult & {
     parsedBody: KeyCredentialListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsUpdateKeyCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsListPasswordCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
 export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult & {
@@ -909,6 +961,14 @@ export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialList
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsUpdatePasswordCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getServicePrincipalsIdByAppId operation. */
 export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult & {
   /** The underlying HTTP response. */
@@ -920,6 +980,10 @@ export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipal
     parsedBody: ServicePrincipalObjectResult;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ApplicationsListNextResponse = ApplicationListResult & {
@@ -933,6 +997,10 @@ export type ApplicationsListNextResponse = ApplicationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsListOwnersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOwnersNext operation. */
 export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -944,6 +1012,10 @@ export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeletedApplicationsRestoreOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the restore operation. */
 export type DeletedApplicationsRestoreResponse = Application & {
@@ -976,6 +1048,14 @@ export type DeletedApplicationsListResponse = ApplicationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DeletedApplicationsHardDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeletedApplicationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type DeletedApplicationsListNextResponse = ApplicationListResult & {
   /** The underlying HTTP response. */
@@ -988,6 +1068,10 @@ export type DeletedApplicationsListNextResponse = ApplicationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface GroupsIsMemberOfOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the isMemberOf operation. */
 export type GroupsIsMemberOfResponse = CheckGroupMembershipResult & {
   /** The underlying HTTP response. */
@@ -999,6 +1083,17 @@ export type GroupsIsMemberOfResponse = CheckGroupMembershipResult & {
     parsedBody: CheckGroupMembershipResult;
   };
 };
+
+/** Optional parameters. */
+export interface GroupsRemoveMemberOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface GroupsAddMemberOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface GroupsCreateOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the create operation. */
 export type GroupsCreateResponse = ADGroup & {
@@ -1030,6 +1125,10 @@ export type GroupsListResponse = GroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface GroupsGetGroupMembersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getGroupMembers operation. */
 export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -1041,6 +1140,9 @@ export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface GroupsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type GroupsGetResponse = ADGroup & {
@@ -1054,6 +1156,13 @@ export type GroupsGetResponse = ADGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface GroupsDeleteOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface GroupsGetMemberGroupsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMemberGroups operation. */
 export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult & {
   /** The underlying HTTP response. */
@@ -1065,6 +1174,10 @@ export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult & {
     parsedBody: GroupGetMemberGroupsResult;
   };
 };
+
+/** Optional parameters. */
+export interface GroupsListOwnersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
 export type GroupsListOwnersResponse = DirectoryObjectListResult & {
@@ -1078,6 +1191,18 @@ export type GroupsListOwnersResponse = DirectoryObjectListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface GroupsAddOwnerOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface GroupsRemoveOwnerOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface GroupsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type GroupsListNextResponse = GroupListResult & {
   /** The underlying HTTP response. */
@@ -1089,6 +1214,10 @@ export type GroupsListNextResponse = GroupListResult & {
     parsedBody: GroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface GroupsGetGroupMembersNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getGroupMembersNext operation. */
 export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult & {
@@ -1102,6 +1231,10 @@ export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface GroupsListOwnersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOwnersNext operation. */
 export type GroupsListOwnersNextResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -1113,6 +1246,10 @@ export type GroupsListOwnersNextResponse = DirectoryObjectListResult & {
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServicePrincipalsCreateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the create operation. */
 export type ServicePrincipalsCreateResponse = ServicePrincipal & {
@@ -1145,6 +1282,18 @@ export type ServicePrincipalsListResponse = ServicePrincipalListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServicePrincipalsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServicePrincipalsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServicePrincipalsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ServicePrincipalsGetResponse = ServicePrincipal & {
   /** The underlying HTTP response. */
@@ -1156,6 +1305,10 @@ export type ServicePrincipalsGetResponse = ServicePrincipal & {
     parsedBody: ServicePrincipal;
   };
 };
+
+/** Optional parameters. */
+export interface ServicePrincipalsListOwnersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
 export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult & {
@@ -1169,6 +1322,10 @@ export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServicePrincipalsListKeyCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listKeyCredentials operation. */
 export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult & {
   /** The underlying HTTP response. */
@@ -1180,6 +1337,14 @@ export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResul
     parsedBody: KeyCredentialListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServicePrincipalsUpdateKeyCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServicePrincipalsListPasswordCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
 export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult & {
@@ -1193,6 +1358,14 @@ export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentia
   };
 };
 
+/** Optional parameters. */
+export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServicePrincipalsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type ServicePrincipalsListNextResponse = ServicePrincipalListResult & {
   /** The underlying HTTP response. */
@@ -1205,6 +1378,10 @@ export type ServicePrincipalsListNextResponse = ServicePrincipalListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServicePrincipalsListOwnersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOwnersNext operation. */
 export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -1216,6 +1393,9 @@ export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult 
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface UsersCreateOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the create operation. */
 export type UsersCreateResponse = User & {
@@ -1249,6 +1429,9 @@ export type UsersListResponse = UserListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface UsersGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type UsersGetResponse = User & {
   /** The underlying HTTP response. */
@@ -1260,6 +1443,16 @@ export type UsersGetResponse = User & {
     parsedBody: User;
   };
 };
+
+/** Optional parameters. */
+export interface UsersUpdateOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface UsersDeleteOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface UsersGetMemberGroupsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMemberGroups operation. */
 export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
@@ -1273,6 +1466,10 @@ export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
   };
 };
 
+/** Optional parameters. */
+export interface UsersListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type UsersListNextResponse = UserListResult & {
   /** The underlying HTTP response. */
@@ -1285,6 +1482,10 @@ export type UsersListNextResponse = UserListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ObjectsGetObjectsByObjectIdsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getObjectsByObjectIds operation. */
 export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult & {
   /** The underlying HTTP response. */
@@ -1296,6 +1497,10 @@ export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult & {
     parsedBody: DirectoryObjectListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ObjectsGetObjectsByObjectIdsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getObjectsByObjectIdsNext operation. */
 export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult & {
@@ -1326,6 +1531,9 @@ export type DomainsListResponse = DomainListResult & {
     parsedBody: DomainListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DomainsGetResponse = Domain & {
@@ -1376,6 +1584,14 @@ export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef & {
     parsedBody: OAuth2PermissionGrantDef;
   };
 };
+
+/** Optional parameters. */
+export interface OAuth2PermissionGrantDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface OAuth2PermissionGrantListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult & {

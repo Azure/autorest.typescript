@@ -15,8 +15,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteConnection,
+  ExpressRouteConnectionsCreateOrUpdateOptionalParams,
   ExpressRouteConnectionsCreateOrUpdateResponse,
+  ExpressRouteConnectionsGetOptionalParams,
   ExpressRouteConnectionsGetResponse,
+  ExpressRouteConnectionsDeleteOptionalParams,
+  ExpressRouteConnectionsListOptionalParams,
   ExpressRouteConnectionsListResponse
 } from "../models";
 
@@ -46,7 +50,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
     expressRouteGatewayName: string,
     connectionName: string,
     putExpressRouteConnectionParameters: ExpressRouteConnection,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteConnectionsCreateOrUpdateResponse>,
@@ -69,17 +73,13 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -93,7 +93,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsGetOptionalParams
   ): Promise<ExpressRouteConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -118,7 +118,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +137,13 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -159,7 +155,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
   list(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteConnectionsListOptionalParams
   ): Promise<ExpressRouteConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

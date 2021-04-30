@@ -14,9 +14,12 @@ import { KeyVaultManagementClientContext } from "../keyVaultManagementClientCont
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsPutOptionalParams,
   PrivateEndpointConnectionsPutResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams,
   PrivateEndpointConnectionsDeleteResponse
 } from "../models";
 
@@ -45,7 +48,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -73,7 +76,7 @@ export class PrivateEndpointConnectionsImpl
     vaultName: string,
     privateEndpointConnectionName: string,
     properties: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsPutOptionalParams
   ): Promise<PrivateEndpointConnectionsPutResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -100,7 +103,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointConnectionsDeleteResponse>,
@@ -122,16 +125,12 @@ export class PrivateEndpointConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

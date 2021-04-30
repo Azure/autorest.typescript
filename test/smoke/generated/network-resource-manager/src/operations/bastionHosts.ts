@@ -17,7 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BastionHost,
+  BastionHostsListNextOptionalParams,
+  BastionHostsListOptionalParams,
+  BastionHostsListByResourceGroupNextOptionalParams,
+  BastionHostsListByResourceGroupOptionalParams,
+  BastionHostsDeleteOptionalParams,
+  BastionHostsGetOptionalParams,
   BastionHostsGetResponse,
+  BastionHostsCreateOrUpdateOptionalParams,
   BastionHostsCreateOrUpdateResponse,
   BastionHostsListResponse,
   BastionHostsListByResourceGroupResponse,
@@ -43,7 +50,7 @@ export class BastionHostsImpl implements BastionHosts {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListOptionalParams
   ): PagedAsyncIterableIterator<BastionHost> {
     const iter = this.listPagingAll(options);
     return {
@@ -60,7 +67,7 @@ export class BastionHostsImpl implements BastionHosts {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListOptionalParams
   ): AsyncIterableIterator<BastionHost[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -73,7 +80,7 @@ export class BastionHostsImpl implements BastionHosts {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListOptionalParams
   ): AsyncIterableIterator<BastionHost> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -87,7 +94,7 @@ export class BastionHostsImpl implements BastionHosts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<BastionHost> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -105,7 +112,7 @@ export class BastionHostsImpl implements BastionHosts {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<BastionHost[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -123,7 +130,7 @@ export class BastionHostsImpl implements BastionHosts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<BastionHost> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -142,7 +149,7 @@ export class BastionHostsImpl implements BastionHosts {
   async delete(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class BastionHostsImpl implements BastionHosts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -182,7 +185,7 @@ export class BastionHostsImpl implements BastionHosts {
   get(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsGetOptionalParams
   ): Promise<BastionHostsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -206,7 +209,7 @@ export class BastionHostsImpl implements BastionHosts {
     resourceGroupName: string,
     bastionHostName: string,
     parameters: BastionHost,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BastionHostsCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class BastionHostsImpl implements BastionHosts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -246,7 +245,7 @@ export class BastionHostsImpl implements BastionHosts {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListOptionalParams
   ): Promise<BastionHostsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -264,7 +263,7 @@ export class BastionHostsImpl implements BastionHosts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupOptionalParams
   ): Promise<BastionHostsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -283,7 +282,7 @@ export class BastionHostsImpl implements BastionHosts {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListNextOptionalParams
   ): Promise<BastionHostsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -304,7 +303,7 @@ export class BastionHostsImpl implements BastionHosts {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: BastionHostsListByResourceGroupNextOptionalParams
   ): Promise<BastionHostsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { ServiceTagsListResponse } from "../models";
+import {
+  ServiceTagsListOptionalParams,
+  ServiceTagsListResponse
+} from "../models";
 
 /** Class representing a ServiceTags. */
 export class ServiceTagsImpl implements ServiceTags {
@@ -34,7 +37,7 @@ export class ServiceTagsImpl implements ServiceTags {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTagsListOptionalParams
   ): Promise<ServiceTagsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

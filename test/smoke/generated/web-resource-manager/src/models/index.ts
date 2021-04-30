@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Collection of certificate orders. */
 export interface AppServiceCertificateOrderCollection {
@@ -6602,6 +6601,10 @@ export type TriggeredWebJobStatus = "Success" | "Failed" | "Error";
 /** Defines values for StatusOptions. */
 export type StatusOptions = "Ready" | "Pending" | "Creating";
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type AppServiceCertificateOrdersListResponse = AppServiceCertificateOrderCollection & {
   /** The underlying HTTP response. */
@@ -6613,6 +6616,14 @@ export type AppServiceCertificateOrdersListResponse = AppServiceCertificateOrder
     parsedBody: AppServiceCertificateOrderCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type AppServiceCertificateOrdersListByResourceGroupResponse = AppServiceCertificateOrderCollection & {
@@ -6626,6 +6637,10 @@ export type AppServiceCertificateOrdersListByResourceGroupResponse = AppServiceC
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type AppServiceCertificateOrdersGetResponse = AppServiceCertificateOrder & {
   /** The underlying HTTP response. */
@@ -6638,6 +6653,15 @@ export type AppServiceCertificateOrdersGetResponse = AppServiceCertificateOrder 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertificateOrder & {
   /** The underlying HTTP response. */
@@ -6647,10 +6671,16 @@ export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertif
 
     /** The response body as parsed JSON or XML */
     parsedBody: AppServiceCertificateOrder;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type AppServiceCertificateOrdersUpdateResponse = AppServiceCertificateOrder & {
@@ -6664,6 +6694,10 @@ export type AppServiceCertificateOrdersUpdateResponse = AppServiceCertificateOrd
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListCertificatesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listCertificates operation. */
 export type AppServiceCertificateOrdersListCertificatesResponse = AppServiceCertificateCollection & {
   /** The underlying HTTP response. */
@@ -6675,6 +6709,10 @@ export type AppServiceCertificateOrdersListCertificatesResponse = AppServiceCert
     parsedBody: AppServiceCertificateCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersGetCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getCertificate operation. */
 export type AppServiceCertificateOrdersGetCertificateResponse = AppServiceCertificateResource & {
@@ -6688,6 +6726,15 @@ export type AppServiceCertificateOrdersGetCertificateResponse = AppServiceCertif
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateCertificate operation. */
 export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppServiceCertificateResource & {
   /** The underlying HTTP response. */
@@ -6697,10 +6744,16 @@ export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppSe
 
     /** The response body as parsed JSON or XML */
     parsedBody: AppServiceCertificateResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersDeleteCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersUpdateCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateCertificate operation. */
 export type AppServiceCertificateOrdersUpdateCertificateResponse = AppServiceCertificateResource & {
@@ -6714,6 +6767,26 @@ export type AppServiceCertificateOrdersUpdateCertificateResponse = AppServiceCer
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersReissueOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersRenewOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersResendEmailOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersResendRequestEmailsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersRetrieveSiteSealOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the retrieveSiteSeal operation. */
 export type AppServiceCertificateOrdersRetrieveSiteSealResponse = SiteSeal & {
   /** The underlying HTTP response. */
@@ -6725,6 +6798,14 @@ export type AppServiceCertificateOrdersRetrieveSiteSealResponse = SiteSeal & {
     parsedBody: SiteSeal;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersVerifyDomainOwnershipOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersRetrieveCertificateActionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the retrieveCertificateActions operation. */
 export type AppServiceCertificateOrdersRetrieveCertificateActionsResponse = CertificateOrderAction[] & {
@@ -6738,6 +6819,10 @@ export type AppServiceCertificateOrdersRetrieveCertificateActionsResponse = Cert
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersRetrieveCertificateEmailHistoryOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the retrieveCertificateEmailHistory operation. */
 export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse = CertificateEmail[] & {
   /** The underlying HTTP response. */
@@ -6749,6 +6834,10 @@ export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse =
     parsedBody: CertificateEmail[];
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type AppServiceCertificateOrdersListNextResponse = AppServiceCertificateOrderCollection & {
@@ -6762,6 +6851,10 @@ export type AppServiceCertificateOrdersListNextResponse = AppServiceCertificateO
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type AppServiceCertificateOrdersListByResourceGroupNextResponse = AppServiceCertificateOrderCollection & {
   /** The underlying HTTP response. */
@@ -6773,6 +6866,10 @@ export type AppServiceCertificateOrdersListByResourceGroupNextResponse = AppServ
     parsedBody: AppServiceCertificateOrderCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceCertificateOrdersListCertificatesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listCertificatesNext operation. */
 export type AppServiceCertificateOrdersListCertificatesNextResponse = AppServiceCertificateCollection & {
@@ -6786,6 +6883,10 @@ export type AppServiceCertificateOrdersListCertificatesNextResponse = AppService
   };
 };
 
+/** Optional parameters. */
+export interface CertificateRegistrationProviderListOperationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOperations operation. */
 export type CertificateRegistrationProviderListOperationsResponse = CsmOperationCollection & {
   /** The underlying HTTP response. */
@@ -6797,6 +6898,10 @@ export type CertificateRegistrationProviderListOperationsResponse = CsmOperation
     parsedBody: CsmOperationCollection;
   };
 };
+
+/** Optional parameters. */
+export interface CertificateRegistrationProviderListOperationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
 export type CertificateRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
@@ -6810,6 +6915,10 @@ export type CertificateRegistrationProviderListOperationsNextResponse = CsmOpera
   };
 };
 
+/** Optional parameters. */
+export interface DomainsCheckAvailabilityOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the checkAvailability operation. */
 export type DomainsCheckAvailabilityResponse = DomainAvailabilityCheckResult & {
   /** The underlying HTTP response. */
@@ -6821,6 +6930,9 @@ export type DomainsCheckAvailabilityResponse = DomainAvailabilityCheckResult & {
     parsedBody: DomainAvailabilityCheckResult;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type DomainsListResponse = DomainCollection & {
@@ -6834,6 +6946,10 @@ export type DomainsListResponse = DomainCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface DomainsGetControlCenterSsoRequestOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getControlCenterSsoRequest operation. */
 export type DomainsGetControlCenterSsoRequestResponse = DomainControlCenterSsoRequest & {
   /** The underlying HTTP response. */
@@ -6845,6 +6961,10 @@ export type DomainsGetControlCenterSsoRequestResponse = DomainControlCenterSsoRe
     parsedBody: DomainControlCenterSsoRequest;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsListRecommendationsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listRecommendations operation. */
 export type DomainsListRecommendationsResponse = NameIdentifierCollection & {
@@ -6858,6 +6978,10 @@ export type DomainsListRecommendationsResponse = NameIdentifierCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface DomainsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type DomainsListByResourceGroupResponse = DomainCollection & {
   /** The underlying HTTP response. */
@@ -6869,6 +6993,9 @@ export type DomainsListByResourceGroupResponse = DomainCollection & {
     parsedBody: DomainCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DomainsGetResponse = Domain & {
@@ -6882,6 +7009,15 @@ export type DomainsGetResponse = Domain & {
   };
 };
 
+/** Optional parameters. */
+export interface DomainsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DomainsCreateOrUpdateResponse = Domain & {
   /** The underlying HTTP response. */
@@ -6891,8 +7027,6 @@ export type DomainsCreateOrUpdateResponse = Domain & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Domain;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6901,6 +7035,10 @@ export interface DomainsDeleteOptionalParams extends coreHttp.OperationOptions {
   /** Specify <code>true</code> to delete the domain immediately. The default is <code>false</code> which deletes the domain after 24 hours. */
   forceHardDeleteDomain?: boolean;
 }
+
+/** Optional parameters. */
+export interface DomainsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type DomainsUpdateResponse = Domain & {
@@ -6914,6 +7052,10 @@ export type DomainsUpdateResponse = Domain & {
   };
 };
 
+/** Optional parameters. */
+export interface DomainsListOwnershipIdentifiersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOwnershipIdentifiers operation. */
 export type DomainsListOwnershipIdentifiersResponse = DomainOwnershipIdentifierCollection & {
   /** The underlying HTTP response. */
@@ -6925,6 +7067,10 @@ export type DomainsListOwnershipIdentifiersResponse = DomainOwnershipIdentifierC
     parsedBody: DomainOwnershipIdentifierCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsGetOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOwnershipIdentifier operation. */
 export type DomainsGetOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
@@ -6938,6 +7084,10 @@ export type DomainsGetOwnershipIdentifierResponse = DomainOwnershipIdentifier & 
   };
 };
 
+/** Optional parameters. */
+export interface DomainsCreateOrUpdateOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateOwnershipIdentifier operation. */
 export type DomainsCreateOrUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
   /** The underlying HTTP response. */
@@ -6949,6 +7099,14 @@ export type DomainsCreateOrUpdateOwnershipIdentifierResponse = DomainOwnershipId
     parsedBody: DomainOwnershipIdentifier;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsDeleteOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DomainsUpdateOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateOwnershipIdentifier operation. */
 export type DomainsUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
@@ -6962,6 +7120,13 @@ export type DomainsUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier
   };
 };
 
+/** Optional parameters. */
+export interface DomainsRenewOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DomainsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type DomainsListNextResponse = DomainCollection & {
   /** The underlying HTTP response. */
@@ -6973,6 +7138,10 @@ export type DomainsListNextResponse = DomainCollection & {
     parsedBody: DomainCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsListRecommendationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listRecommendationsNext operation. */
 export type DomainsListRecommendationsNextResponse = NameIdentifierCollection & {
@@ -6986,6 +7155,10 @@ export type DomainsListRecommendationsNextResponse = NameIdentifierCollection & 
   };
 };
 
+/** Optional parameters. */
+export interface DomainsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DomainsListByResourceGroupNextResponse = DomainCollection & {
   /** The underlying HTTP response. */
@@ -6997,6 +7170,10 @@ export type DomainsListByResourceGroupNextResponse = DomainCollection & {
     parsedBody: DomainCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DomainsListOwnershipIdentifiersNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOwnershipIdentifiersNext operation. */
 export type DomainsListOwnershipIdentifiersNextResponse = DomainOwnershipIdentifierCollection & {
@@ -7010,6 +7187,10 @@ export type DomainsListOwnershipIdentifiersNextResponse = DomainOwnershipIdentif
   };
 };
 
+/** Optional parameters. */
+export interface TopLevelDomainsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type TopLevelDomainsListResponse = TopLevelDomainCollection & {
   /** The underlying HTTP response. */
@@ -7021,6 +7202,10 @@ export type TopLevelDomainsListResponse = TopLevelDomainCollection & {
     parsedBody: TopLevelDomainCollection;
   };
 };
+
+/** Optional parameters. */
+export interface TopLevelDomainsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type TopLevelDomainsGetResponse = TopLevelDomain & {
@@ -7034,6 +7219,10 @@ export type TopLevelDomainsGetResponse = TopLevelDomain & {
   };
 };
 
+/** Optional parameters. */
+export interface TopLevelDomainsListAgreementsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAgreements operation. */
 export type TopLevelDomainsListAgreementsResponse = TldLegalAgreementCollection & {
   /** The underlying HTTP response. */
@@ -7045,6 +7234,10 @@ export type TopLevelDomainsListAgreementsResponse = TldLegalAgreementCollection 
     parsedBody: TldLegalAgreementCollection;
   };
 };
+
+/** Optional parameters. */
+export interface TopLevelDomainsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type TopLevelDomainsListNextResponse = TopLevelDomainCollection & {
@@ -7058,6 +7251,10 @@ export type TopLevelDomainsListNextResponse = TopLevelDomainCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface TopLevelDomainsListAgreementsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAgreementsNext operation. */
 export type TopLevelDomainsListAgreementsNextResponse = TldLegalAgreementCollection & {
   /** The underlying HTTP response. */
@@ -7069,6 +7266,10 @@ export type TopLevelDomainsListAgreementsNextResponse = TldLegalAgreementCollect
     parsedBody: TldLegalAgreementCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DomainRegistrationProviderListOperationsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
 export type DomainRegistrationProviderListOperationsResponse = CsmOperationCollection & {
@@ -7082,6 +7283,10 @@ export type DomainRegistrationProviderListOperationsResponse = CsmOperationColle
   };
 };
 
+/** Optional parameters. */
+export interface DomainRegistrationProviderListOperationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOperationsNext operation. */
 export type DomainRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
   /** The underlying HTTP response. */
@@ -7093,6 +7298,10 @@ export type DomainRegistrationProviderListOperationsNextResponse = CsmOperationC
     parsedBody: CsmOperationCollection;
   };
 };
+
+/** Optional parameters. */
+export interface CertificatesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type CertificatesListResponse = CertificateCollection & {
@@ -7106,6 +7315,10 @@ export type CertificatesListResponse = CertificateCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface CertificatesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type CertificatesListByResourceGroupResponse = CertificateCollection & {
   /** The underlying HTTP response. */
@@ -7117,6 +7330,10 @@ export type CertificatesListByResourceGroupResponse = CertificateCollection & {
     parsedBody: CertificateCollection;
   };
 };
+
+/** Optional parameters. */
+export interface CertificatesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type CertificatesGetResponse = Certificate & {
@@ -7130,6 +7347,10 @@ export type CertificatesGetResponse = Certificate & {
   };
 };
 
+/** Optional parameters. */
+export interface CertificatesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type CertificatesCreateOrUpdateResponse = Certificate & {
   /** The underlying HTTP response. */
@@ -7141,6 +7362,14 @@ export type CertificatesCreateOrUpdateResponse = Certificate & {
     parsedBody: Certificate;
   };
 };
+
+/** Optional parameters. */
+export interface CertificatesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface CertificatesUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type CertificatesUpdateResponse = Certificate & {
@@ -7154,6 +7383,10 @@ export type CertificatesUpdateResponse = Certificate & {
   };
 };
 
+/** Optional parameters. */
+export interface CertificatesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type CertificatesListNextResponse = CertificateCollection & {
   /** The underlying HTTP response. */
@@ -7165,6 +7398,10 @@ export type CertificatesListNextResponse = CertificateCollection & {
     parsedBody: CertificateCollection;
   };
 };
+
+/** Optional parameters. */
+export interface CertificatesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type CertificatesListByResourceGroupNextResponse = CertificateCollection & {
@@ -7178,6 +7415,10 @@ export type CertificatesListByResourceGroupNextResponse = CertificateCollection 
   };
 };
 
+/** Optional parameters. */
+export interface DeletedWebAppsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type DeletedWebAppsListResponse = DeletedWebAppCollection & {
   /** The underlying HTTP response. */
@@ -7189,6 +7430,10 @@ export type DeletedWebAppsListResponse = DeletedWebAppCollection & {
     parsedBody: DeletedWebAppCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DeletedWebAppsListByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
 export type DeletedWebAppsListByLocationResponse = DeletedWebAppCollection & {
@@ -7202,6 +7447,10 @@ export type DeletedWebAppsListByLocationResponse = DeletedWebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface DeletedWebAppsGetDeletedWebAppByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDeletedWebAppByLocation operation. */
 export type DeletedWebAppsGetDeletedWebAppByLocationResponse = DeletedSite & {
   /** The underlying HTTP response. */
@@ -7213,6 +7462,10 @@ export type DeletedWebAppsGetDeletedWebAppByLocationResponse = DeletedSite & {
     parsedBody: DeletedSite;
   };
 };
+
+/** Optional parameters. */
+export interface DeletedWebAppsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type DeletedWebAppsListNextResponse = DeletedWebAppCollection & {
@@ -7226,6 +7479,10 @@ export type DeletedWebAppsListNextResponse = DeletedWebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface DeletedWebAppsListByLocationNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByLocationNext operation. */
 export type DeletedWebAppsListByLocationNextResponse = DeletedWebAppCollection & {
   /** The underlying HTTP response. */
@@ -7237,6 +7494,10 @@ export type DeletedWebAppsListByLocationNextResponse = DeletedWebAppCollection &
     parsedBody: DeletedWebAppCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHostingEnvironmentDetectorResponses operation. */
 export type DiagnosticsListHostingEnvironmentDetectorResponsesResponse = DetectorResponseCollection & {
@@ -7273,6 +7534,10 @@ export type DiagnosticsGetHostingEnvironmentDetectorResponseResponse = DetectorR
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorResponsesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDetectorResponses operation. */
 export type DiagnosticsListSiteDetectorResponsesResponse = DetectorResponseCollection & {
   /** The underlying HTTP response. */
@@ -7308,6 +7573,10 @@ export type DiagnosticsGetSiteDetectorResponseResponse = DetectorResponse & {
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDiagnosticCategoriesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDiagnosticCategories operation. */
 export type DiagnosticsListSiteDiagnosticCategoriesResponse = DiagnosticCategoryCollection & {
   /** The underlying HTTP response. */
@@ -7319,6 +7588,10 @@ export type DiagnosticsListSiteDiagnosticCategoriesResponse = DiagnosticCategory
     parsedBody: DiagnosticCategoryCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteDiagnosticCategoryOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteDiagnosticCategory operation. */
 export type DiagnosticsGetSiteDiagnosticCategoryResponse = DiagnosticCategory & {
@@ -7332,6 +7605,10 @@ export type DiagnosticsGetSiteDiagnosticCategoryResponse = DiagnosticCategory & 
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteAnalysesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteAnalyses operation. */
 export type DiagnosticsListSiteAnalysesResponse = DiagnosticAnalysisCollection & {
   /** The underlying HTTP response. */
@@ -7343,6 +7620,10 @@ export type DiagnosticsListSiteAnalysesResponse = DiagnosticAnalysisCollection &
     parsedBody: DiagnosticAnalysisCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteAnalysisOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteAnalysis operation. */
 export type DiagnosticsGetSiteAnalysisResponse = AnalysisDefinition & {
@@ -7379,6 +7660,10 @@ export type DiagnosticsExecuteSiteAnalysisResponse = DiagnosticAnalysis & {
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDetectors operation. */
 export type DiagnosticsListSiteDetectorsResponse = DiagnosticDetectorCollection & {
   /** The underlying HTTP response. */
@@ -7390,6 +7675,10 @@ export type DiagnosticsListSiteDetectorsResponse = DiagnosticDetectorCollection 
     parsedBody: DiagnosticDetectorCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteDetectorOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteDetector operation. */
 export type DiagnosticsGetSiteDetectorResponse = DetectorDefinition & {
@@ -7426,6 +7715,10 @@ export type DiagnosticsExecuteSiteDetectorResponse = DiagnosticDetectorResponse 
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorResponsesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDetectorResponsesSlot operation. */
 export type DiagnosticsListSiteDetectorResponsesSlotResponse = DetectorResponseCollection & {
   /** The underlying HTTP response. */
@@ -7461,6 +7754,10 @@ export type DiagnosticsGetSiteDetectorResponseSlotResponse = DetectorResponse & 
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDiagnosticCategoriesSlot operation. */
 export type DiagnosticsListSiteDiagnosticCategoriesSlotResponse = DiagnosticCategoryCollection & {
   /** The underlying HTTP response. */
@@ -7472,6 +7769,10 @@ export type DiagnosticsListSiteDiagnosticCategoriesSlotResponse = DiagnosticCate
     parsedBody: DiagnosticCategoryCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteDiagnosticCategorySlot operation. */
 export type DiagnosticsGetSiteDiagnosticCategorySlotResponse = DiagnosticCategory & {
@@ -7485,6 +7786,10 @@ export type DiagnosticsGetSiteDiagnosticCategorySlotResponse = DiagnosticCategor
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteAnalysesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteAnalysesSlot operation. */
 export type DiagnosticsListSiteAnalysesSlotResponse = DiagnosticAnalysisCollection & {
   /** The underlying HTTP response. */
@@ -7496,6 +7801,10 @@ export type DiagnosticsListSiteAnalysesSlotResponse = DiagnosticAnalysisCollecti
     parsedBody: DiagnosticAnalysisCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteAnalysisSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteAnalysisSlot operation. */
 export type DiagnosticsGetSiteAnalysisSlotResponse = AnalysisDefinition & {
@@ -7532,6 +7841,10 @@ export type DiagnosticsExecuteSiteAnalysisSlotResponse = DiagnosticAnalysis & {
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDetectorsSlot operation. */
 export type DiagnosticsListSiteDetectorsSlotResponse = DiagnosticDetectorCollection & {
   /** The underlying HTTP response. */
@@ -7543,6 +7856,10 @@ export type DiagnosticsListSiteDetectorsSlotResponse = DiagnosticDetectorCollect
     parsedBody: DiagnosticDetectorCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsGetSiteDetectorSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSiteDetectorSlot operation. */
 export type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinition & {
@@ -7579,6 +7896,10 @@ export type DiagnosticsExecuteSiteDetectorSlotResponse = DiagnosticDetectorRespo
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHostingEnvironmentDetectorResponsesNext operation. */
 export type DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse = DetectorResponseCollection & {
   /** The underlying HTTP response. */
@@ -7590,6 +7911,10 @@ export type DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse = Det
     parsedBody: DetectorResponseCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorResponsesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponsesNext operation. */
 export type DiagnosticsListSiteDetectorResponsesNextResponse = DetectorResponseCollection & {
@@ -7603,6 +7928,10 @@ export type DiagnosticsListSiteDetectorResponsesNextResponse = DetectorResponseC
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDiagnosticCategoriesNext operation. */
 export type DiagnosticsListSiteDiagnosticCategoriesNextResponse = DiagnosticCategoryCollection & {
   /** The underlying HTTP response. */
@@ -7614,6 +7943,10 @@ export type DiagnosticsListSiteDiagnosticCategoriesNextResponse = DiagnosticCate
     parsedBody: DiagnosticCategoryCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsListSiteAnalysesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteAnalysesNext operation. */
 export type DiagnosticsListSiteAnalysesNextResponse = DiagnosticAnalysisCollection & {
@@ -7627,6 +7960,10 @@ export type DiagnosticsListSiteAnalysesNextResponse = DiagnosticAnalysisCollecti
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDetectorsNext operation. */
 export type DiagnosticsListSiteDetectorsNextResponse = DiagnosticDetectorCollection & {
   /** The underlying HTTP response. */
@@ -7638,6 +7975,10 @@ export type DiagnosticsListSiteDetectorsNextResponse = DiagnosticDetectorCollect
     parsedBody: DiagnosticDetectorCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponsesSlotNext operation. */
 export type DiagnosticsListSiteDetectorResponsesSlotNextResponse = DetectorResponseCollection & {
@@ -7651,6 +7992,10 @@ export type DiagnosticsListSiteDetectorResponsesSlotNextResponse = DetectorRespo
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteDiagnosticCategoriesSlotNext operation. */
 export type DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse = DiagnosticCategoryCollection & {
   /** The underlying HTTP response. */
@@ -7663,6 +8008,10 @@ export type DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse = Diagnostic
   };
 };
 
+/** Optional parameters. */
+export interface DiagnosticsListSiteAnalysesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteAnalysesSlotNext operation. */
 export type DiagnosticsListSiteAnalysesSlotNextResponse = DiagnosticAnalysisCollection & {
   /** The underlying HTTP response. */
@@ -7674,6 +8023,10 @@ export type DiagnosticsListSiteAnalysesSlotNextResponse = DiagnosticAnalysisColl
     parsedBody: DiagnosticAnalysisCollection;
   };
 };
+
+/** Optional parameters. */
+export interface DiagnosticsListSiteDetectorsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorsSlotNext operation. */
 export type DiagnosticsListSiteDetectorsSlotNextResponse = DiagnosticDetectorCollection & {
@@ -7704,6 +8057,10 @@ export type ProviderGetAvailableStacksResponse = ApplicationStackCollection & {
     parsedBody: ApplicationStackCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ProviderListOperationsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
 export type ProviderListOperationsResponse = CsmOperationCollection & {
@@ -7752,6 +8109,10 @@ export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection 
     parsedBody: ApplicationStackCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ProviderListOperationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
 export type ProviderListOperationsNextResponse = CsmOperationCollection & {
@@ -7805,6 +8166,14 @@ export type RecommendationsListResponse = RecommendationCollection & {
 };
 
 /** Optional parameters. */
+export interface RecommendationsResetAllFiltersOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface RecommendationsDisableRecommendationForSubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface RecommendationsListHistoryForHostingEnvironmentOptionalParams
   extends coreHttp.OperationOptions {
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
@@ -7847,6 +8216,14 @@ export type RecommendationsListRecommendedRulesForHostingEnvironmentResponse = R
 };
 
 /** Optional parameters. */
+export interface RecommendationsDisableAllForHostingEnvironmentOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams
   extends coreHttp.OperationOptions {
   /** Specify <code>true</code> to update the last-seen timestamp of the recommendation object. */
@@ -7866,6 +8243,10 @@ export type RecommendationsGetRuleDetailsByHostingEnvironmentResponse = Recommen
     parsedBody: RecommendationRule;
   };
 };
+
+/** Optional parameters. */
+export interface RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForWebAppOptionalParams
@@ -7910,6 +8291,14 @@ export type RecommendationsListRecommendedRulesForWebAppResponse = Recommendatio
 };
 
 /** Optional parameters. */
+export interface RecommendationsDisableAllForWebAppOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface RecommendationsResetAllFiltersForWebAppOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface RecommendationsGetRuleDetailsByWebAppOptionalParams
   extends coreHttp.OperationOptions {
   /** Specify <code>true</code> to update the last-seen timestamp of the recommendation object. */
@@ -7929,6 +8318,10 @@ export type RecommendationsGetRuleDetailsByWebAppResponse = RecommendationRule &
     parsedBody: RecommendationRule;
   };
 };
+
+/** Optional parameters. */
+export interface RecommendationsDisableRecommendationForSiteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsListNextOptionalParams
@@ -8035,6 +8428,10 @@ export type RecommendationsListRecommendedRulesForWebAppNextResponse = Recommend
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientGetPublishingUserOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPublishingUser operation. */
 export type WebSiteManagementClientGetPublishingUserResponse = User & {
   /** The underlying HTTP response. */
@@ -8046,6 +8443,10 @@ export type WebSiteManagementClientGetPublishingUserResponse = User & {
     parsedBody: User;
   };
 };
+
+/** Optional parameters. */
+export interface WebSiteManagementClientUpdatePublishingUserOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updatePublishingUser operation. */
 export type WebSiteManagementClientUpdatePublishingUserResponse = User & {
@@ -8059,6 +8460,10 @@ export type WebSiteManagementClientUpdatePublishingUserResponse = User & {
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientListSourceControlsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSourceControls operation. */
 export type WebSiteManagementClientListSourceControlsResponse = SourceControlCollection & {
   /** The underlying HTTP response. */
@@ -8071,6 +8476,10 @@ export type WebSiteManagementClientListSourceControlsResponse = SourceControlCol
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientGetSourceControlOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSourceControl operation. */
 export type WebSiteManagementClientGetSourceControlResponse = SourceControl & {
   /** The underlying HTTP response. */
@@ -8082,6 +8491,10 @@ export type WebSiteManagementClientGetSourceControlResponse = SourceControl & {
     parsedBody: SourceControl;
   };
 };
+
+/** Optional parameters. */
+export interface WebSiteManagementClientUpdateSourceControlOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSourceControl operation. */
 export type WebSiteManagementClientUpdateSourceControlResponse = SourceControl & {
@@ -8135,6 +8548,10 @@ export type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameA
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSubscriptionDeploymentLocations operation. */
 export type WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse = DeploymentLocations & {
   /** The underlying HTTP response. */
@@ -8172,6 +8589,10 @@ export type WebSiteManagementClientListGeoRegionsResponse = GeoRegionCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteIdentifiersAssignedToHostName operation. */
 export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection & {
   /** The underlying HTTP response. */
@@ -8183,6 +8604,10 @@ export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
     parsedBody: IdentifierCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebSiteManagementClientListPremierAddOnOffersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnOffers operation. */
 export type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOnOfferCollection & {
@@ -8196,6 +8621,10 @@ export type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOn
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientListSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSkus operation. */
 export type WebSiteManagementClientListSkusResponse = SkuInfos & {
   /** The underlying HTTP response. */
@@ -8207,6 +8636,10 @@ export type WebSiteManagementClientListSkusResponse = SkuInfos & {
     parsedBody: SkuInfos;
   };
 };
+
+/** Optional parameters. */
+export interface WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the verifyHostingEnvironmentVnet operation. */
 export type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails & {
@@ -8220,6 +8653,14 @@ export type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetVa
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientMoveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebSiteManagementClientValidateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the validate operation. */
 export type WebSiteManagementClientValidateResponse = ValidateResponse & {
   /** The underlying HTTP response. */
@@ -8231,6 +8672,14 @@ export type WebSiteManagementClientValidateResponse = ValidateResponse & {
     parsedBody: ValidateResponse;
   };
 };
+
+/** Optional parameters. */
+export interface WebSiteManagementClientValidateMoveOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebSiteManagementClientListSourceControlsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSourceControlsNext operation. */
 export type WebSiteManagementClientListSourceControlsNextResponse = SourceControlCollection & {
@@ -8290,6 +8739,10 @@ export type WebSiteManagementClientListGeoRegionsNextResponse = GeoRegionCollect
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteIdentifiersAssignedToHostNameNext operation. */
 export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection & {
   /** The underlying HTTP response. */
@@ -8302,6 +8755,10 @@ export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResp
   };
 };
 
+/** Optional parameters. */
+export interface WebSiteManagementClientListPremierAddOnOffersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listPremierAddOnOffersNext operation. */
 export type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection & {
   /** The underlying HTTP response. */
@@ -8313,6 +8770,9 @@ export type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierA
     parsedBody: PremierAddOnOfferCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type WebAppsListResponse = WebAppCollection & {
@@ -8345,6 +8805,9 @@ export type WebAppsListByResourceGroupResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type WebAppsGetResponse = Site & {
   /** The underlying HTTP response. */
@@ -8357,6 +8820,15 @@ export type WebAppsGetResponse = Site & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type WebAppsCreateOrUpdateResponse = Site & {
   /** The underlying HTTP response. */
@@ -8366,8 +8838,6 @@ export type WebAppsCreateOrUpdateResponse = Site & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Site;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -8378,6 +8848,10 @@ export interface WebAppsDeleteOptionalParams extends coreHttp.OperationOptions {
   /** Specify false if you want to keep empty App Service plan. By default, empty App Service plan is deleted. */
   deleteEmptyServerFarm?: boolean;
 }
+
+/** Optional parameters. */
+export interface WebAppsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type WebAppsUpdateResponse = Site & {
@@ -8410,6 +8884,14 @@ export type WebAppsAnalyzeCustomHostnameResponse = CustomHostnameAnalysisResult 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsApplySlotConfigToProductionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsBackupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the backup operation. */
 export type WebAppsBackupResponse = BackupItem & {
   /** The underlying HTTP response. */
@@ -8421,6 +8903,10 @@ export type WebAppsBackupResponse = BackupItem & {
     parsedBody: BackupItem;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListBackupsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBackups operation. */
 export type WebAppsListBackupsResponse = BackupItemCollection & {
@@ -8434,6 +8920,10 @@ export type WebAppsListBackupsResponse = BackupItemCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetBackupStatusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBackupStatus operation. */
 export type WebAppsGetBackupStatusResponse = BackupItem & {
   /** The underlying HTTP response. */
@@ -8445,6 +8935,14 @@ export type WebAppsGetBackupStatusResponse = BackupItem & {
     parsedBody: BackupItem;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteBackupOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListBackupStatusSecretsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBackupStatusSecrets operation. */
 export type WebAppsListBackupStatusSecretsResponse = BackupItem & {
@@ -8458,6 +8956,19 @@ export type WebAppsListBackupStatusSecretsResponse = BackupItem & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsRestoreOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListConfigurationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurations operation. */
 export type WebAppsListConfigurationsResponse = SiteConfigResourceCollection & {
   /** The underlying HTTP response. */
@@ -8469,6 +8980,10 @@ export type WebAppsListConfigurationsResponse = SiteConfigResourceCollection & {
     parsedBody: SiteConfigResourceCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateApplicationSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateApplicationSettings operation. */
 export type WebAppsUpdateApplicationSettingsResponse = StringDictionary & {
@@ -8482,6 +8997,10 @@ export type WebAppsUpdateApplicationSettingsResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListApplicationSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listApplicationSettings operation. */
 export type WebAppsListApplicationSettingsResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -8493,6 +9012,10 @@ export type WebAppsListApplicationSettingsResponse = StringDictionary & {
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateAuthSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateAuthSettings operation. */
 export type WebAppsUpdateAuthSettingsResponse = SiteAuthSettings & {
@@ -8506,6 +9029,10 @@ export type WebAppsUpdateAuthSettingsResponse = SiteAuthSettings & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetAuthSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAuthSettings operation. */
 export type WebAppsGetAuthSettingsResponse = SiteAuthSettings & {
   /** The underlying HTTP response. */
@@ -8517,6 +9044,10 @@ export type WebAppsGetAuthSettingsResponse = SiteAuthSettings & {
     parsedBody: SiteAuthSettings;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateAzureStorageAccountsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateAzureStorageAccounts operation. */
 export type WebAppsUpdateAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource & {
@@ -8530,6 +9061,10 @@ export type WebAppsUpdateAzureStorageAccountsResponse = AzureStoragePropertyDict
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListAzureStorageAccountsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAzureStorageAccounts operation. */
 export type WebAppsListAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource & {
   /** The underlying HTTP response. */
@@ -8541,6 +9076,10 @@ export type WebAppsListAzureStorageAccountsResponse = AzureStoragePropertyDictio
     parsedBody: AzureStoragePropertyDictionaryResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateBackupConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateBackupConfiguration operation. */
 export type WebAppsUpdateBackupConfigurationResponse = BackupRequest & {
@@ -8554,6 +9093,14 @@ export type WebAppsUpdateBackupConfigurationResponse = BackupRequest & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteBackupConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetBackupConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBackupConfiguration operation. */
 export type WebAppsGetBackupConfigurationResponse = BackupRequest & {
   /** The underlying HTTP response. */
@@ -8565,6 +9112,10 @@ export type WebAppsGetBackupConfigurationResponse = BackupRequest & {
     parsedBody: BackupRequest;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAppSettingsKeyVaultReferences operation. */
 export type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceCollection & {
@@ -8578,6 +9129,10 @@ export type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceC
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetAppSettingKeyVaultReferenceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAppSettingKeyVaultReference operation. */
 export type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceResource & {
   /** The underlying HTTP response. */
@@ -8589,6 +9144,10 @@ export type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceRes
     parsedBody: KeyVaultReferenceResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateConnectionStringsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateConnectionStrings operation. */
 export type WebAppsUpdateConnectionStringsResponse = ConnectionStringDictionary & {
@@ -8602,6 +9161,10 @@ export type WebAppsUpdateConnectionStringsResponse = ConnectionStringDictionary 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConnectionStringsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConnectionStrings operation. */
 export type WebAppsListConnectionStringsResponse = ConnectionStringDictionary & {
   /** The underlying HTTP response. */
@@ -8613,6 +9176,10 @@ export type WebAppsListConnectionStringsResponse = ConnectionStringDictionary & 
     parsedBody: ConnectionStringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetDiagnosticLogsConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDiagnosticLogsConfiguration operation. */
 export type WebAppsGetDiagnosticLogsConfigurationResponse = SiteLogsConfig & {
@@ -8626,6 +9193,10 @@ export type WebAppsGetDiagnosticLogsConfigurationResponse = SiteLogsConfig & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsUpdateDiagnosticLogsConfigOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateDiagnosticLogsConfig operation. */
 export type WebAppsUpdateDiagnosticLogsConfigResponse = SiteLogsConfig & {
   /** The underlying HTTP response. */
@@ -8637,6 +9208,10 @@ export type WebAppsUpdateDiagnosticLogsConfigResponse = SiteLogsConfig & {
     parsedBody: SiteLogsConfig;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateMetadataOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateMetadata operation. */
 export type WebAppsUpdateMetadataResponse = StringDictionary & {
@@ -8650,6 +9225,10 @@ export type WebAppsUpdateMetadataResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListMetadataOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMetadata operation. */
 export type WebAppsListMetadataResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -8662,6 +9241,15 @@ export type WebAppsListMetadataResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListPublishingCredentialsOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the listPublishingCredentials operation. */
 export type WebAppsListPublishingCredentialsResponse = User & {
   /** The underlying HTTP response. */
@@ -8671,10 +9259,12 @@ export type WebAppsListPublishingCredentialsResponse = User & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: User;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateSitePushSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSitePushSettings operation. */
 export type WebAppsUpdateSitePushSettingsResponse = PushSettings & {
@@ -8688,6 +9278,10 @@ export type WebAppsUpdateSitePushSettingsResponse = PushSettings & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSitePushSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSitePushSettings operation. */
 export type WebAppsListSitePushSettingsResponse = PushSettings & {
   /** The underlying HTTP response. */
@@ -8699,6 +9293,10 @@ export type WebAppsListSitePushSettingsResponse = PushSettings & {
     parsedBody: PushSettings;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSlotConfigurationNamesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotConfigurationNames operation. */
 export type WebAppsListSlotConfigurationNamesResponse = SlotConfigNamesResource & {
@@ -8712,6 +9310,10 @@ export type WebAppsListSlotConfigurationNamesResponse = SlotConfigNamesResource 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsUpdateSlotConfigurationNamesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateSlotConfigurationNames operation. */
 export type WebAppsUpdateSlotConfigurationNamesResponse = SlotConfigNamesResource & {
   /** The underlying HTTP response. */
@@ -8723,6 +9325,10 @@ export type WebAppsUpdateSlotConfigurationNamesResponse = SlotConfigNamesResourc
     parsedBody: SlotConfigNamesResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getConfiguration operation. */
 export type WebAppsGetConfigurationResponse = SiteConfigResource & {
@@ -8736,6 +9342,10 @@ export type WebAppsGetConfigurationResponse = SiteConfigResource & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateConfiguration operation. */
 export type WebAppsCreateOrUpdateConfigurationResponse = SiteConfigResource & {
   /** The underlying HTTP response. */
@@ -8747,6 +9357,10 @@ export type WebAppsCreateOrUpdateConfigurationResponse = SiteConfigResource & {
     parsedBody: SiteConfigResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateConfiguration operation. */
 export type WebAppsUpdateConfigurationResponse = SiteConfigResource & {
@@ -8760,6 +9374,10 @@ export type WebAppsUpdateConfigurationResponse = SiteConfigResource & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConfigurationSnapshotInfoOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurationSnapshotInfo operation. */
 export type WebAppsListConfigurationSnapshotInfoResponse = SiteConfigurationSnapshotInfoCollection & {
   /** The underlying HTTP response. */
@@ -8772,6 +9390,10 @@ export type WebAppsListConfigurationSnapshotInfoResponse = SiteConfigurationSnap
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetConfigurationSnapshotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getConfigurationSnapshot operation. */
 export type WebAppsGetConfigurationSnapshotResponse = SiteConfigResource & {
   /** The underlying HTTP response. */
@@ -8783,6 +9405,14 @@ export type WebAppsGetConfigurationSnapshotResponse = SiteConfigResource & {
     parsedBody: SiteConfigResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsRecoverSiteConfigurationSnapshotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetWebSiteContainerLogsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWebSiteContainerLogs operation. */
 export type WebAppsGetWebSiteContainerLogsResponse = {
@@ -8805,6 +9435,10 @@ export type WebAppsGetWebSiteContainerLogsResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsGetContainerLogsZipOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getContainerLogsZip operation. */
 export type WebAppsGetContainerLogsZipResponse = {
   /**
@@ -8826,6 +9460,10 @@ export type WebAppsGetContainerLogsZipResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListContinuousWebJobsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listContinuousWebJobs operation. */
 export type WebAppsListContinuousWebJobsResponse = ContinuousWebJobCollection & {
   /** The underlying HTTP response. */
@@ -8837,6 +9475,10 @@ export type WebAppsListContinuousWebJobsResponse = ContinuousWebJobCollection & 
     parsedBody: ContinuousWebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetContinuousWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getContinuousWebJob operation. */
 export type WebAppsGetContinuousWebJobResponse = ContinuousWebJob & {
@@ -8850,6 +9492,22 @@ export type WebAppsGetContinuousWebJobResponse = ContinuousWebJob & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteContinuousWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStartContinuousWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStopContinuousWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListDeploymentsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeployments operation. */
 export type WebAppsListDeploymentsResponse = DeploymentCollection & {
   /** The underlying HTTP response. */
@@ -8861,6 +9519,10 @@ export type WebAppsListDeploymentsResponse = DeploymentCollection & {
     parsedBody: DeploymentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetDeploymentOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDeployment operation. */
 export type WebAppsGetDeploymentResponse = Deployment & {
@@ -8874,6 +9536,10 @@ export type WebAppsGetDeploymentResponse = Deployment & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateDeploymentOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createDeployment operation. */
 export type WebAppsCreateDeploymentResponse = Deployment & {
   /** The underlying HTTP response. */
@@ -8885,6 +9551,14 @@ export type WebAppsCreateDeploymentResponse = Deployment & {
     parsedBody: Deployment;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteDeploymentOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListDeploymentLogOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDeploymentLog operation. */
 export type WebAppsListDeploymentLogResponse = Deployment & {
@@ -8898,6 +9572,10 @@ export type WebAppsListDeploymentLogResponse = Deployment & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDiscoverBackupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the discoverBackup operation. */
 export type WebAppsDiscoverBackupResponse = RestoreRequest & {
   /** The underlying HTTP response. */
@@ -8909,6 +9587,10 @@ export type WebAppsDiscoverBackupResponse = RestoreRequest & {
     parsedBody: RestoreRequest;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListDomainOwnershipIdentifiersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiers operation. */
 export type WebAppsListDomainOwnershipIdentifiersResponse = IdentifierCollection & {
@@ -8922,6 +9604,10 @@ export type WebAppsListDomainOwnershipIdentifiersResponse = IdentifierCollection
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetDomainOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDomainOwnershipIdentifier operation. */
 export type WebAppsGetDomainOwnershipIdentifierResponse = Identifier & {
   /** The underlying HTTP response. */
@@ -8933,6 +9619,10 @@ export type WebAppsGetDomainOwnershipIdentifierResponse = Identifier & {
     parsedBody: Identifier;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateDomainOwnershipIdentifier operation. */
 export type WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse = Identifier & {
@@ -8946,6 +9636,14 @@ export type WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse = Identifier 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteDomainOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateDomainOwnershipIdentifierOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateDomainOwnershipIdentifier operation. */
 export type WebAppsUpdateDomainOwnershipIdentifierResponse = Identifier & {
   /** The underlying HTTP response. */
@@ -8957,6 +9655,10 @@ export type WebAppsUpdateDomainOwnershipIdentifierResponse = Identifier & {
     parsedBody: Identifier;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetMSDeployStatusOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMSDeployStatus operation. */
 export type WebAppsGetMSDeployStatusResponse = MSDeployStatus & {
@@ -8970,6 +9672,15 @@ export type WebAppsGetMSDeployStatusResponse = MSDeployStatus & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateMSDeployOperationOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createMSDeployOperation operation. */
 export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus & {
   /** The underlying HTTP response. */
@@ -8979,10 +9690,12 @@ export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: MSDeployStatus;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetMSDeployLogOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMSDeployLog operation. */
 export type WebAppsGetMSDeployLogResponse = MSDeployLog & {
@@ -8996,6 +9709,10 @@ export type WebAppsGetMSDeployLogResponse = MSDeployLog & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListFunctionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listFunctions operation. */
 export type WebAppsListFunctionsResponse = FunctionEnvelopeCollection & {
   /** The underlying HTTP response. */
@@ -9007,6 +9724,10 @@ export type WebAppsListFunctionsResponse = FunctionEnvelopeCollection & {
     parsedBody: FunctionEnvelopeCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetFunctionsAdminTokenOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFunctionsAdminToken operation. */
 export type WebAppsGetFunctionsAdminTokenResponse = {
@@ -9023,6 +9744,10 @@ export type WebAppsGetFunctionsAdminTokenResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetFunctionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFunction operation. */
 export type WebAppsGetFunctionResponse = FunctionEnvelope & {
   /** The underlying HTTP response. */
@@ -9035,6 +9760,15 @@ export type WebAppsGetFunctionResponse = FunctionEnvelope & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateFunctionOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createFunction operation. */
 export type WebAppsCreateFunctionResponse = FunctionEnvelope & {
   /** The underlying HTTP response. */
@@ -9044,10 +9778,16 @@ export type WebAppsCreateFunctionResponse = FunctionEnvelope & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FunctionEnvelope;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteFunctionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateFunctionSecretOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateFunctionSecret operation. */
 export type WebAppsCreateOrUpdateFunctionSecretResponse = KeyInfo & {
@@ -9061,6 +9801,14 @@ export type WebAppsCreateOrUpdateFunctionSecretResponse = KeyInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteFunctionSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListFunctionKeysOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listFunctionKeys operation. */
 export type WebAppsListFunctionKeysResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -9072,6 +9820,10 @@ export type WebAppsListFunctionKeysResponse = StringDictionary & {
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListFunctionSecretsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listFunctionSecrets operation. */
 export type WebAppsListFunctionSecretsResponse = FunctionSecrets & {
@@ -9085,6 +9837,10 @@ export type WebAppsListFunctionSecretsResponse = FunctionSecrets & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListHostKeysOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHostKeys operation. */
 export type WebAppsListHostKeysResponse = HostKeys & {
   /** The underlying HTTP response. */
@@ -9096,6 +9852,18 @@ export type WebAppsListHostKeysResponse = HostKeys & {
     parsedBody: HostKeys;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSyncStatusOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncFunctionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHostSecretOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostSecret operation. */
 export type WebAppsCreateOrUpdateHostSecretResponse = KeyInfo & {
@@ -9109,6 +9877,14 @@ export type WebAppsCreateOrUpdateHostSecretResponse = KeyInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteHostSecretOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListHostNameBindingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHostNameBindings operation. */
 export type WebAppsListHostNameBindingsResponse = HostNameBindingCollection & {
   /** The underlying HTTP response. */
@@ -9120,6 +9896,10 @@ export type WebAppsListHostNameBindingsResponse = HostNameBindingCollection & {
     parsedBody: HostNameBindingCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetHostNameBindingOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHostNameBinding operation. */
 export type WebAppsGetHostNameBindingResponse = HostNameBinding & {
@@ -9133,6 +9913,10 @@ export type WebAppsGetHostNameBindingResponse = HostNameBinding & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHostNameBindingOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateHostNameBinding operation. */
 export type WebAppsCreateOrUpdateHostNameBindingResponse = HostNameBinding & {
   /** The underlying HTTP response. */
@@ -9144,6 +9928,14 @@ export type WebAppsCreateOrUpdateHostNameBindingResponse = HostNameBinding & {
     parsedBody: HostNameBinding;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteHostNameBindingOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHybridConnection operation. */
 export type WebAppsGetHybridConnectionResponse = HybridConnection & {
@@ -9157,6 +9949,10 @@ export type WebAppsGetHybridConnectionResponse = HybridConnection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateHybridConnection operation. */
 export type WebAppsCreateOrUpdateHybridConnectionResponse = HybridConnection & {
   /** The underlying HTTP response. */
@@ -9168,6 +9964,14 @@ export type WebAppsCreateOrUpdateHybridConnectionResponse = HybridConnection & {
     parsedBody: HybridConnection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateHybridConnection operation. */
 export type WebAppsUpdateHybridConnectionResponse = HybridConnection & {
@@ -9181,6 +9985,10 @@ export type WebAppsUpdateHybridConnectionResponse = HybridConnection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListHybridConnectionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHybridConnections operation. */
 export type WebAppsListHybridConnectionsResponse = HybridConnection & {
   /** The underlying HTTP response. */
@@ -9192,6 +10000,10 @@ export type WebAppsListHybridConnectionsResponse = HybridConnection & {
     parsedBody: HybridConnection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListRelayServiceConnectionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listRelayServiceConnections operation. */
 export type WebAppsListRelayServiceConnectionsResponse = RelayServiceConnectionEntity & {
@@ -9205,6 +10017,10 @@ export type WebAppsListRelayServiceConnectionsResponse = RelayServiceConnectionE
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetRelayServiceConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getRelayServiceConnection operation. */
 export type WebAppsGetRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
   /** The underlying HTTP response. */
@@ -9216,6 +10032,10 @@ export type WebAppsGetRelayServiceConnectionResponse = RelayServiceConnectionEnt
     parsedBody: RelayServiceConnectionEntity;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateRelayServiceConnection operation. */
 export type WebAppsCreateOrUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
@@ -9229,6 +10049,14 @@ export type WebAppsCreateOrUpdateRelayServiceConnectionResponse = RelayServiceCo
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteRelayServiceConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateRelayServiceConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateRelayServiceConnection operation. */
 export type WebAppsUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
   /** The underlying HTTP response. */
@@ -9240,6 +10068,10 @@ export type WebAppsUpdateRelayServiceConnectionResponse = RelayServiceConnection
     parsedBody: RelayServiceConnectionEntity;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListInstanceIdentifiersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiers operation. */
 export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection & {
@@ -9253,6 +10085,10 @@ export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection & 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetInstanceInfoOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInstanceInfo operation. */
 export type WebAppsGetInstanceInfoResponse = WebSiteInstanceStatus & {
   /** The underlying HTTP response. */
@@ -9264,6 +10100,10 @@ export type WebAppsGetInstanceInfoResponse = WebSiteInstanceStatus & {
     parsedBody: WebSiteInstanceStatus;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceMsDeployStatusOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceMsDeployStatus operation. */
 export type WebAppsGetInstanceMsDeployStatusResponse = MSDeployStatus & {
@@ -9277,6 +10117,15 @@ export type WebAppsGetInstanceMsDeployStatusResponse = MSDeployStatus & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateInstanceMSDeployOperationOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createInstanceMSDeployOperation operation. */
 export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus & {
   /** The underlying HTTP response. */
@@ -9286,10 +10135,12 @@ export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: MSDeployStatus;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceMSDeployLogOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceMSDeployLog operation. */
 export type WebAppsGetInstanceMSDeployLogResponse = MSDeployLog & {
@@ -9303,6 +10154,10 @@ export type WebAppsGetInstanceMSDeployLogResponse = MSDeployLog & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcesses operation. */
 export type WebAppsListInstanceProcessesResponse = ProcessInfoCollection & {
   /** The underlying HTTP response. */
@@ -9315,6 +10170,10 @@ export type WebAppsListInstanceProcessesResponse = ProcessInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInstanceProcess operation. */
 export type WebAppsGetInstanceProcessResponse = ProcessInfo & {
   /** The underlying HTTP response. */
@@ -9326,6 +10185,14 @@ export type WebAppsGetInstanceProcessResponse = ProcessInfo & {
     parsedBody: ProcessInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteInstanceProcessOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessDumpOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessDump operation. */
 export type WebAppsGetInstanceProcessDumpResponse = {
@@ -9348,6 +10215,10 @@ export type WebAppsGetInstanceProcessDumpResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessModulesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessModules operation. */
 export type WebAppsListInstanceProcessModulesResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -9359,6 +10230,10 @@ export type WebAppsListInstanceProcessModulesResponse = ProcessModuleInfoCollect
     parsedBody: ProcessModuleInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessModuleOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessModule operation. */
 export type WebAppsGetInstanceProcessModuleResponse = ProcessModuleInfo & {
@@ -9372,6 +10247,10 @@ export type WebAppsGetInstanceProcessModuleResponse = ProcessModuleInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessThreadsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessThreads operation. */
 export type WebAppsListInstanceProcessThreadsResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -9383,6 +10262,10 @@ export type WebAppsListInstanceProcessThreadsResponse = ProcessThreadInfoCollect
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsIsCloneableOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the isCloneable operation. */
 export type WebAppsIsCloneableResponse = SiteCloneability & {
@@ -9396,6 +10279,10 @@ export type WebAppsIsCloneableResponse = SiteCloneability & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSiteBackupsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteBackups operation. */
 export type WebAppsListSiteBackupsResponse = BackupItemCollection & {
   /** The underlying HTTP response. */
@@ -9407,6 +10294,10 @@ export type WebAppsListSiteBackupsResponse = BackupItemCollection & {
     parsedBody: BackupItemCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSyncFunctionTriggersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSyncFunctionTriggers operation. */
 export type WebAppsListSyncFunctionTriggersResponse = FunctionSecrets & {
@@ -9420,6 +10311,15 @@ export type WebAppsListSyncFunctionTriggersResponse = FunctionSecrets & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsMigrateStorageOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the migrateStorage operation. */
 export type WebAppsMigrateStorageResponse = StorageMigrationResponse & {
   /** The underlying HTTP response. */
@@ -9429,10 +10329,17 @@ export type WebAppsMigrateStorageResponse = StorageMigrationResponse & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: StorageMigrationResponse;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsMigrateMySqlOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the migrateMySql operation. */
 export type WebAppsMigrateMySqlResponse = Operation & {
@@ -9443,10 +10350,12 @@ export type WebAppsMigrateMySqlResponse = Operation & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Operation;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetMigrateMySqlStatusOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMigrateMySqlStatus operation. */
 export type WebAppsGetMigrateMySqlStatusResponse = MigrateMySqlStatus & {
@@ -9460,6 +10369,10 @@ export type WebAppsGetMigrateMySqlStatusResponse = MigrateMySqlStatus & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSwiftVirtualNetworkConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSwiftVirtualNetworkConnection operation. */
 export type WebAppsGetSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
   /** The underlying HTTP response. */
@@ -9471,6 +10384,10 @@ export type WebAppsGetSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwor
     parsedBody: SwiftVirtualNetwork;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateSwiftVirtualNetworkConnection operation. */
 export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
@@ -9484,6 +10401,14 @@ export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVi
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteSwiftVirtualNetworkOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateSwiftVirtualNetworkConnection operation. */
 export type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
   /** The underlying HTTP response. */
@@ -9496,6 +10421,10 @@ export type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNet
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListNetworkFeaturesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNetworkFeatures operation. */
 export type WebAppsListNetworkFeaturesResponse = NetworkFeatures & {
   /** The underlying HTTP response. */
@@ -9507,6 +10436,10 @@ export type WebAppsListNetworkFeaturesResponse = NetworkFeatures & {
     parsedBody: NetworkFeatures;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetNetworkTraceOperationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperation operation. */
 export type WebAppsGetNetworkTraceOperationResponse = NetworkTrace[] & {
@@ -9555,6 +10488,10 @@ export interface WebAppsStartWebSiteNetworkTraceOperationOptionalParams
   maxFrameLength?: number;
   /** The Blob URL to store capture file. */
   sasUrl?: string;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the startWebSiteNetworkTraceOperation operation. */
@@ -9566,10 +10503,16 @@ export type WebAppsStartWebSiteNetworkTraceOperationResponse = NetworkTrace[] & 
 
     /** The response body as parsed JSON or XML */
     parsedBody: NetworkTrace[];
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsStopWebSiteNetworkTraceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetNetworkTracesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNetworkTraces operation. */
 export type WebAppsGetNetworkTracesResponse = NetworkTrace[] & {
@@ -9583,6 +10526,10 @@ export type WebAppsGetNetworkTracesResponse = NetworkTrace[] & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetNetworkTraceOperationV2OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNetworkTraceOperationV2 operation. */
 export type WebAppsGetNetworkTraceOperationV2Response = NetworkTrace[] & {
   /** The underlying HTTP response. */
@@ -9595,6 +10542,10 @@ export type WebAppsGetNetworkTraceOperationV2Response = NetworkTrace[] & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetNetworkTracesV2OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNetworkTracesV2 operation. */
 export type WebAppsGetNetworkTracesV2Response = NetworkTrace[] & {
   /** The underlying HTTP response. */
@@ -9606,6 +10557,10 @@ export type WebAppsGetNetworkTracesV2Response = NetworkTrace[] & {
     parsedBody: NetworkTrace[];
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGenerateNewSitePublishingPasswordOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersOptionalParams
@@ -9626,6 +10581,10 @@ export type WebAppsListPerfMonCountersResponse = PerfMonCounterCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSitePhpErrorLogFlagOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSitePhpErrorLogFlag operation. */
 export type WebAppsGetSitePhpErrorLogFlagResponse = SitePhpErrorLogFlag & {
   /** The underlying HTTP response. */
@@ -9637,6 +10596,10 @@ export type WebAppsGetSitePhpErrorLogFlagResponse = SitePhpErrorLogFlag & {
     parsedBody: SitePhpErrorLogFlag;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPremierAddOnsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPremierAddOns operation. */
 export type WebAppsListPremierAddOnsResponse = PremierAddOn & {
@@ -9650,6 +10613,10 @@ export type WebAppsListPremierAddOnsResponse = PremierAddOn & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetPremierAddOnOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPremierAddOn operation. */
 export type WebAppsGetPremierAddOnResponse = PremierAddOn & {
   /** The underlying HTTP response. */
@@ -9661,6 +10628,10 @@ export type WebAppsGetPremierAddOnResponse = PremierAddOn & {
     parsedBody: PremierAddOn;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsAddPremierAddOnOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the addPremierAddOn operation. */
 export type WebAppsAddPremierAddOnResponse = PremierAddOn & {
@@ -9674,6 +10645,14 @@ export type WebAppsAddPremierAddOnResponse = PremierAddOn & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeletePremierAddOnOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdatePremierAddOnOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updatePremierAddOn operation. */
 export type WebAppsUpdatePremierAddOnResponse = PremierAddOn & {
   /** The underlying HTTP response. */
@@ -9685,6 +10664,10 @@ export type WebAppsUpdatePremierAddOnResponse = PremierAddOn & {
     parsedBody: PremierAddOn;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetPrivateAccessOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPrivateAccess operation. */
 export type WebAppsGetPrivateAccessResponse = PrivateAccess & {
@@ -9698,6 +10681,10 @@ export type WebAppsGetPrivateAccessResponse = PrivateAccess & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsPutPrivateAccessVnetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the putPrivateAccessVnet operation. */
 export type WebAppsPutPrivateAccessVnetResponse = PrivateAccess & {
   /** The underlying HTTP response. */
@@ -9709,6 +10696,10 @@ export type WebAppsPutPrivateAccessVnetResponse = PrivateAccess & {
     parsedBody: PrivateAccess;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListProcessesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listProcesses operation. */
 export type WebAppsListProcessesResponse = ProcessInfoCollection & {
@@ -9722,6 +10713,10 @@ export type WebAppsListProcessesResponse = ProcessInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetProcessOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getProcess operation. */
 export type WebAppsGetProcessResponse = ProcessInfo & {
   /** The underlying HTTP response. */
@@ -9733,6 +10728,14 @@ export type WebAppsGetProcessResponse = ProcessInfo & {
     parsedBody: ProcessInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteProcessOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetProcessDumpOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getProcessDump operation. */
 export type WebAppsGetProcessDumpResponse = {
@@ -9755,6 +10758,10 @@ export type WebAppsGetProcessDumpResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessModulesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessModules operation. */
 export type WebAppsListProcessModulesResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -9766,6 +10773,10 @@ export type WebAppsListProcessModulesResponse = ProcessModuleInfoCollection & {
     parsedBody: ProcessModuleInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetProcessModuleOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getProcessModule operation. */
 export type WebAppsGetProcessModuleResponse = ProcessModuleInfo & {
@@ -9779,6 +10790,10 @@ export type WebAppsGetProcessModuleResponse = ProcessModuleInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessThreadsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessThreads operation. */
 export type WebAppsListProcessThreadsResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -9790,6 +10805,10 @@ export type WebAppsListProcessThreadsResponse = ProcessThreadInfoCollection & {
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPublicCertificatesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublicCertificates operation. */
 export type WebAppsListPublicCertificatesResponse = PublicCertificateCollection & {
@@ -9803,6 +10822,10 @@ export type WebAppsListPublicCertificatesResponse = PublicCertificateCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetPublicCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPublicCertificate operation. */
 export type WebAppsGetPublicCertificateResponse = PublicCertificate & {
   /** The underlying HTTP response. */
@@ -9815,6 +10838,10 @@ export type WebAppsGetPublicCertificateResponse = PublicCertificate & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdatePublicCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdatePublicCertificate operation. */
 export type WebAppsCreateOrUpdatePublicCertificateResponse = PublicCertificate & {
   /** The underlying HTTP response. */
@@ -9826,6 +10853,14 @@ export type WebAppsCreateOrUpdatePublicCertificateResponse = PublicCertificate &
     parsedBody: PublicCertificate;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeletePublicCertificateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListPublishingProfileXmlWithSecretsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublishingProfileXmlWithSecrets operation. */
 export type WebAppsListPublishingProfileXmlWithSecretsResponse = {
@@ -9849,6 +10884,10 @@ export type WebAppsListPublishingProfileXmlWithSecretsResponse = {
 };
 
 /** Optional parameters. */
+export interface WebAppsResetProductionSlotConfigOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface WebAppsRestartOptionalParams
   extends coreHttp.OperationOptions {
   /** Specify true to apply the configuration settings and restarts the app only if necessary. By default, the API always restarts and reprovisions the app. */
@@ -9856,6 +10895,37 @@ export interface WebAppsRestartOptionalParams
   /** Specify true to block until the app is restarted. By default, it is set to false, and the API responds immediately (asynchronous). */
   synchronous?: boolean;
 }
+
+/** Optional parameters. */
+export interface WebAppsRestoreFromBackupBlobOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsRestoreFromDeletedAppOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsRestoreSnapshotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSiteExtensionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteExtensions operation. */
 export type WebAppsListSiteExtensionsResponse = SiteExtensionInfoCollection & {
@@ -9869,6 +10939,10 @@ export type WebAppsListSiteExtensionsResponse = SiteExtensionInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSiteExtensionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSiteExtension operation. */
 export type WebAppsGetSiteExtensionResponse = SiteExtensionInfo & {
   /** The underlying HTTP response. */
@@ -9881,6 +10955,15 @@ export type WebAppsGetSiteExtensionResponse = SiteExtensionInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsInstallSiteExtensionOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the installSiteExtension operation. */
 export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo & {
   /** The underlying HTTP response. */
@@ -9890,10 +10973,25 @@ export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SiteExtensionInfo;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteSiteExtensionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCopyProductionSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSlotsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlots operation. */
 export type WebAppsListSlotsResponse = WebAppCollection & {
@@ -9907,6 +11005,10 @@ export type WebAppsListSlotsResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSlot operation. */
 export type WebAppsGetSlotResponse = Site & {
   /** The underlying HTTP response. */
@@ -9919,6 +11021,15 @@ export type WebAppsGetSlotResponse = Site & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateSlot operation. */
 export type WebAppsCreateOrUpdateSlotResponse = Site & {
   /** The underlying HTTP response. */
@@ -9928,8 +11039,6 @@ export type WebAppsCreateOrUpdateSlotResponse = Site & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Site;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9941,6 +11050,10 @@ export interface WebAppsDeleteSlotOptionalParams
   /** Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted. */
   deleteEmptyServerFarm?: boolean;
 }
+
+/** Optional parameters. */
+export interface WebAppsUpdateSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSlot operation. */
 export type WebAppsUpdateSlotResponse = Site & {
@@ -9973,6 +11086,14 @@ export type WebAppsAnalyzeCustomHostnameSlotResponse = CustomHostnameAnalysisRes
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsApplySlotConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsBackupSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the backupSlot operation. */
 export type WebAppsBackupSlotResponse = BackupItem & {
   /** The underlying HTTP response. */
@@ -9984,6 +11105,10 @@ export type WebAppsBackupSlotResponse = BackupItem & {
     parsedBody: BackupItem;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListBackupsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBackupsSlot operation. */
 export type WebAppsListBackupsSlotResponse = BackupItemCollection & {
@@ -9997,6 +11122,10 @@ export type WebAppsListBackupsSlotResponse = BackupItemCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetBackupStatusSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBackupStatusSlot operation. */
 export type WebAppsGetBackupStatusSlotResponse = BackupItem & {
   /** The underlying HTTP response. */
@@ -10008,6 +11137,14 @@ export type WebAppsGetBackupStatusSlotResponse = BackupItem & {
     parsedBody: BackupItem;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteBackupSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListBackupStatusSecretsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBackupStatusSecretsSlot operation. */
 export type WebAppsListBackupStatusSecretsSlotResponse = BackupItem & {
@@ -10021,6 +11158,19 @@ export type WebAppsListBackupStatusSecretsSlotResponse = BackupItem & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsRestoreSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListConfigurationsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurationsSlot operation. */
 export type WebAppsListConfigurationsSlotResponse = SiteConfigResourceCollection & {
   /** The underlying HTTP response. */
@@ -10032,6 +11182,10 @@ export type WebAppsListConfigurationsSlotResponse = SiteConfigResourceCollection
     parsedBody: SiteConfigResourceCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateApplicationSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateApplicationSettingsSlot operation. */
 export type WebAppsUpdateApplicationSettingsSlotResponse = StringDictionary & {
@@ -10045,6 +11199,10 @@ export type WebAppsUpdateApplicationSettingsSlotResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListApplicationSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listApplicationSettingsSlot operation. */
 export type WebAppsListApplicationSettingsSlotResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -10056,6 +11214,10 @@ export type WebAppsListApplicationSettingsSlotResponse = StringDictionary & {
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateAuthSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateAuthSettingsSlot operation. */
 export type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings & {
@@ -10069,6 +11231,10 @@ export type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetAuthSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getAuthSettingsSlot operation. */
 export type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings & {
   /** The underlying HTTP response. */
@@ -10080,6 +11246,10 @@ export type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings & {
     parsedBody: SiteAuthSettings;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateAzureStorageAccountsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateAzureStorageAccountsSlot operation. */
 export type WebAppsUpdateAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource & {
@@ -10093,6 +11263,10 @@ export type WebAppsUpdateAzureStorageAccountsSlotResponse = AzureStorageProperty
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListAzureStorageAccountsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAzureStorageAccountsSlot operation. */
 export type WebAppsListAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource & {
   /** The underlying HTTP response. */
@@ -10104,6 +11278,10 @@ export type WebAppsListAzureStorageAccountsSlotResponse = AzureStoragePropertyDi
     parsedBody: AzureStoragePropertyDictionaryResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateBackupConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateBackupConfigurationSlot operation. */
 export type WebAppsUpdateBackupConfigurationSlotResponse = BackupRequest & {
@@ -10117,6 +11295,14 @@ export type WebAppsUpdateBackupConfigurationSlotResponse = BackupRequest & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteBackupConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetBackupConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBackupConfigurationSlot operation. */
 export type WebAppsGetBackupConfigurationSlotResponse = BackupRequest & {
   /** The underlying HTTP response. */
@@ -10128,6 +11314,10 @@ export type WebAppsGetBackupConfigurationSlotResponse = BackupRequest & {
     parsedBody: BackupRequest;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateConnectionStringsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateConnectionStringsSlot operation. */
 export type WebAppsUpdateConnectionStringsSlotResponse = ConnectionStringDictionary & {
@@ -10141,6 +11331,10 @@ export type WebAppsUpdateConnectionStringsSlotResponse = ConnectionStringDiction
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConnectionStringsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConnectionStringsSlot operation. */
 export type WebAppsListConnectionStringsSlotResponse = ConnectionStringDictionary & {
   /** The underlying HTTP response. */
@@ -10152,6 +11346,10 @@ export type WebAppsListConnectionStringsSlotResponse = ConnectionStringDictionar
     parsedBody: ConnectionStringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDiagnosticLogsConfigurationSlot operation. */
 export type WebAppsGetDiagnosticLogsConfigurationSlotResponse = SiteLogsConfig & {
@@ -10165,6 +11363,10 @@ export type WebAppsGetDiagnosticLogsConfigurationSlotResponse = SiteLogsConfig &
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateDiagnosticLogsConfigSlot operation. */
 export type WebAppsUpdateDiagnosticLogsConfigSlotResponse = SiteLogsConfig & {
   /** The underlying HTTP response. */
@@ -10176,6 +11378,10 @@ export type WebAppsUpdateDiagnosticLogsConfigSlotResponse = SiteLogsConfig & {
     parsedBody: SiteLogsConfig;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateMetadataSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateMetadataSlot operation. */
 export type WebAppsUpdateMetadataSlotResponse = StringDictionary & {
@@ -10189,6 +11395,10 @@ export type WebAppsUpdateMetadataSlotResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListMetadataSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMetadataSlot operation. */
 export type WebAppsListMetadataSlotResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -10201,6 +11411,15 @@ export type WebAppsListMetadataSlotResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListPublishingCredentialsSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the listPublishingCredentialsSlot operation. */
 export type WebAppsListPublishingCredentialsSlotResponse = User & {
   /** The underlying HTTP response. */
@@ -10210,10 +11429,12 @@ export type WebAppsListPublishingCredentialsSlotResponse = User & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: User;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateSitePushSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSitePushSettingsSlot operation. */
 export type WebAppsUpdateSitePushSettingsSlotResponse = PushSettings & {
@@ -10227,6 +11448,10 @@ export type WebAppsUpdateSitePushSettingsSlotResponse = PushSettings & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSitePushSettingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSitePushSettingsSlot operation. */
 export type WebAppsListSitePushSettingsSlotResponse = PushSettings & {
   /** The underlying HTTP response. */
@@ -10238,6 +11463,10 @@ export type WebAppsListSitePushSettingsSlotResponse = PushSettings & {
     parsedBody: PushSettings;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getConfigurationSlot operation. */
 export type WebAppsGetConfigurationSlotResponse = SiteConfigResource & {
@@ -10251,6 +11480,10 @@ export type WebAppsGetConfigurationSlotResponse = SiteConfigResource & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateConfigurationSlot operation. */
 export type WebAppsCreateOrUpdateConfigurationSlotResponse = SiteConfigResource & {
   /** The underlying HTTP response. */
@@ -10262,6 +11495,10 @@ export type WebAppsCreateOrUpdateConfigurationSlotResponse = SiteConfigResource 
     parsedBody: SiteConfigResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsUpdateConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateConfigurationSlot operation. */
 export type WebAppsUpdateConfigurationSlotResponse = SiteConfigResource & {
@@ -10275,6 +11512,10 @@ export type WebAppsUpdateConfigurationSlotResponse = SiteConfigResource & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConfigurationSnapshotInfoSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurationSnapshotInfoSlot operation. */
 export type WebAppsListConfigurationSnapshotInfoSlotResponse = SiteConfigurationSnapshotInfoCollection & {
   /** The underlying HTTP response. */
@@ -10287,6 +11528,10 @@ export type WebAppsListConfigurationSnapshotInfoSlotResponse = SiteConfiguration
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetConfigurationSnapshotSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getConfigurationSnapshotSlot operation. */
 export type WebAppsGetConfigurationSnapshotSlotResponse = SiteConfigResource & {
   /** The underlying HTTP response. */
@@ -10298,6 +11543,14 @@ export type WebAppsGetConfigurationSnapshotSlotResponse = SiteConfigResource & {
     parsedBody: SiteConfigResource;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetWebSiteContainerLogsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWebSiteContainerLogsSlot operation. */
 export type WebAppsGetWebSiteContainerLogsSlotResponse = {
@@ -10320,6 +11573,10 @@ export type WebAppsGetWebSiteContainerLogsSlotResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsGetContainerLogsZipSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getContainerLogsZipSlot operation. */
 export type WebAppsGetContainerLogsZipSlotResponse = {
   /**
@@ -10341,6 +11598,10 @@ export type WebAppsGetContainerLogsZipSlotResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListContinuousWebJobsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listContinuousWebJobsSlot operation. */
 export type WebAppsListContinuousWebJobsSlotResponse = ContinuousWebJobCollection & {
   /** The underlying HTTP response. */
@@ -10352,6 +11613,10 @@ export type WebAppsListContinuousWebJobsSlotResponse = ContinuousWebJobCollectio
     parsedBody: ContinuousWebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetContinuousWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getContinuousWebJobSlot operation. */
 export type WebAppsGetContinuousWebJobSlotResponse = ContinuousWebJob & {
@@ -10365,6 +11630,22 @@ export type WebAppsGetContinuousWebJobSlotResponse = ContinuousWebJob & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteContinuousWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStartContinuousWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStopContinuousWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListDeploymentsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeploymentsSlot operation. */
 export type WebAppsListDeploymentsSlotResponse = DeploymentCollection & {
   /** The underlying HTTP response. */
@@ -10376,6 +11657,10 @@ export type WebAppsListDeploymentsSlotResponse = DeploymentCollection & {
     parsedBody: DeploymentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetDeploymentSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDeploymentSlot operation. */
 export type WebAppsGetDeploymentSlotResponse = Deployment & {
@@ -10389,6 +11674,10 @@ export type WebAppsGetDeploymentSlotResponse = Deployment & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateDeploymentSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createDeploymentSlot operation. */
 export type WebAppsCreateDeploymentSlotResponse = Deployment & {
   /** The underlying HTTP response. */
@@ -10400,6 +11689,14 @@ export type WebAppsCreateDeploymentSlotResponse = Deployment & {
     parsedBody: Deployment;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteDeploymentSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListDeploymentLogSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDeploymentLogSlot operation. */
 export type WebAppsListDeploymentLogSlotResponse = Deployment & {
@@ -10413,6 +11710,10 @@ export type WebAppsListDeploymentLogSlotResponse = Deployment & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDiscoverBackupSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the discoverBackupSlot operation. */
 export type WebAppsDiscoverBackupSlotResponse = RestoreRequest & {
   /** The underlying HTTP response. */
@@ -10424,6 +11725,10 @@ export type WebAppsDiscoverBackupSlotResponse = RestoreRequest & {
     parsedBody: RestoreRequest;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersSlot operation. */
 export type WebAppsListDomainOwnershipIdentifiersSlotResponse = IdentifierCollection & {
@@ -10437,6 +11742,10 @@ export type WebAppsListDomainOwnershipIdentifiersSlotResponse = IdentifierCollec
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetDomainOwnershipIdentifierSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDomainOwnershipIdentifierSlot operation. */
 export type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier & {
   /** The underlying HTTP response. */
@@ -10448,6 +11757,10 @@ export type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier & {
     parsedBody: Identifier;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateDomainOwnershipIdentifierSlot operation. */
 export type WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse = Identifier & {
@@ -10461,6 +11774,14 @@ export type WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse = Identif
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateDomainOwnershipIdentifierSlot operation. */
 export type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier & {
   /** The underlying HTTP response. */
@@ -10472,6 +11793,10 @@ export type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier & {
     parsedBody: Identifier;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetMSDeployStatusSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMSDeployStatusSlot operation. */
 export type WebAppsGetMSDeployStatusSlotResponse = MSDeployStatus & {
@@ -10485,6 +11810,15 @@ export type WebAppsGetMSDeployStatusSlotResponse = MSDeployStatus & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateMSDeployOperationSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createMSDeployOperationSlot operation. */
 export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus & {
   /** The underlying HTTP response. */
@@ -10494,10 +11828,12 @@ export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: MSDeployStatus;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetMSDeployLogSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMSDeployLogSlot operation. */
 export type WebAppsGetMSDeployLogSlotResponse = MSDeployLog & {
@@ -10511,6 +11847,10 @@ export type WebAppsGetMSDeployLogSlotResponse = MSDeployLog & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceFunctionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceFunctionsSlot operation. */
 export type WebAppsListInstanceFunctionsSlotResponse = FunctionEnvelopeCollection & {
   /** The underlying HTTP response. */
@@ -10522,6 +11862,10 @@ export type WebAppsListInstanceFunctionsSlotResponse = FunctionEnvelopeCollectio
     parsedBody: FunctionEnvelopeCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetFunctionsAdminTokenSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFunctionsAdminTokenSlot operation. */
 export type WebAppsGetFunctionsAdminTokenSlotResponse = {
@@ -10538,6 +11882,10 @@ export type WebAppsGetFunctionsAdminTokenSlotResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetInstanceFunctionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInstanceFunctionSlot operation. */
 export type WebAppsGetInstanceFunctionSlotResponse = FunctionEnvelope & {
   /** The underlying HTTP response. */
@@ -10550,6 +11898,15 @@ export type WebAppsGetInstanceFunctionSlotResponse = FunctionEnvelope & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateInstanceFunctionSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createInstanceFunctionSlot operation. */
 export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope & {
   /** The underlying HTTP response. */
@@ -10559,10 +11916,16 @@ export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FunctionEnvelope;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteInstanceFunctionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateFunctionSecretSlot operation. */
 export type WebAppsCreateOrUpdateFunctionSecretSlotResponse = KeyInfo & {
@@ -10576,6 +11939,14 @@ export type WebAppsCreateOrUpdateFunctionSecretSlotResponse = KeyInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteFunctionSecretSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListFunctionKeysSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listFunctionKeysSlot operation. */
 export type WebAppsListFunctionKeysSlotResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -10587,6 +11958,10 @@ export type WebAppsListFunctionKeysSlotResponse = StringDictionary & {
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListFunctionSecretsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listFunctionSecretsSlot operation. */
 export type WebAppsListFunctionSecretsSlotResponse = FunctionSecrets & {
@@ -10600,6 +11975,10 @@ export type WebAppsListFunctionSecretsSlotResponse = FunctionSecrets & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListHostKeysSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHostKeysSlot operation. */
 export type WebAppsListHostKeysSlotResponse = HostKeys & {
   /** The underlying HTTP response. */
@@ -10611,6 +11990,18 @@ export type WebAppsListHostKeysSlotResponse = HostKeys & {
     parsedBody: HostKeys;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSyncStatusSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncFunctionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHostSecretSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostSecretSlot operation. */
 export type WebAppsCreateOrUpdateHostSecretSlotResponse = KeyInfo & {
@@ -10624,6 +12015,14 @@ export type WebAppsCreateOrUpdateHostSecretSlotResponse = KeyInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteHostSecretSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListHostNameBindingsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHostNameBindingsSlot operation. */
 export type WebAppsListHostNameBindingsSlotResponse = HostNameBindingCollection & {
   /** The underlying HTTP response. */
@@ -10635,6 +12034,10 @@ export type WebAppsListHostNameBindingsSlotResponse = HostNameBindingCollection 
     parsedBody: HostNameBindingCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetHostNameBindingSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHostNameBindingSlot operation. */
 export type WebAppsGetHostNameBindingSlotResponse = HostNameBinding & {
@@ -10648,6 +12051,10 @@ export type WebAppsGetHostNameBindingSlotResponse = HostNameBinding & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateHostNameBindingSlot operation. */
 export type WebAppsCreateOrUpdateHostNameBindingSlotResponse = HostNameBinding & {
   /** The underlying HTTP response. */
@@ -10659,6 +12066,14 @@ export type WebAppsCreateOrUpdateHostNameBindingSlotResponse = HostNameBinding &
     parsedBody: HostNameBinding;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteHostNameBindingSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetHybridConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHybridConnectionSlot operation. */
 export type WebAppsGetHybridConnectionSlotResponse = HybridConnection & {
@@ -10672,6 +12087,10 @@ export type WebAppsGetHybridConnectionSlotResponse = HybridConnection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateHybridConnectionSlot operation. */
 export type WebAppsCreateOrUpdateHybridConnectionSlotResponse = HybridConnection & {
   /** The underlying HTTP response. */
@@ -10683,6 +12102,14 @@ export type WebAppsCreateOrUpdateHybridConnectionSlotResponse = HybridConnection
     parsedBody: HybridConnection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteHybridConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateHybridConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateHybridConnectionSlot operation. */
 export type WebAppsUpdateHybridConnectionSlotResponse = HybridConnection & {
@@ -10696,6 +12123,10 @@ export type WebAppsUpdateHybridConnectionSlotResponse = HybridConnection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListHybridConnectionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHybridConnectionsSlot operation. */
 export type WebAppsListHybridConnectionsSlotResponse = HybridConnection & {
   /** The underlying HTTP response. */
@@ -10707,6 +12138,10 @@ export type WebAppsListHybridConnectionsSlotResponse = HybridConnection & {
     parsedBody: HybridConnection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListRelayServiceConnectionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listRelayServiceConnectionsSlot operation. */
 export type WebAppsListRelayServiceConnectionsSlotResponse = RelayServiceConnectionEntity & {
@@ -10720,6 +12155,10 @@ export type WebAppsListRelayServiceConnectionsSlotResponse = RelayServiceConnect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetRelayServiceConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getRelayServiceConnectionSlot operation. */
 export type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
   /** The underlying HTTP response. */
@@ -10731,6 +12170,10 @@ export type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceConnectio
     parsedBody: RelayServiceConnectionEntity;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateRelayServiceConnectionSlot operation. */
 export type WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
@@ -10744,6 +12187,14 @@ export type WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse = RelayServi
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeleteRelayServiceConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateRelayServiceConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateRelayServiceConnectionSlot operation. */
 export type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
   /** The underlying HTTP response. */
@@ -10755,6 +12206,10 @@ export type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServiceConnec
     parsedBody: RelayServiceConnectionEntity;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListInstanceIdentifiersSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiersSlot operation. */
 export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollection & {
@@ -10768,6 +12223,10 @@ export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollectio
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetInstanceInfoSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInstanceInfoSlot operation. */
 export type WebAppsGetInstanceInfoSlotResponse = WebSiteInstanceStatus & {
   /** The underlying HTTP response. */
@@ -10779,6 +12238,10 @@ export type WebAppsGetInstanceInfoSlotResponse = WebSiteInstanceStatus & {
     parsedBody: WebSiteInstanceStatus;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceMsDeployStatusSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceMsDeployStatusSlot operation. */
 export type WebAppsGetInstanceMsDeployStatusSlotResponse = MSDeployStatus & {
@@ -10792,6 +12255,15 @@ export type WebAppsGetInstanceMsDeployStatusSlotResponse = MSDeployStatus & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createInstanceMSDeployOperationSlot operation. */
 export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus & {
   /** The underlying HTTP response. */
@@ -10801,10 +12273,12 @@ export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus 
 
     /** The response body as parsed JSON or XML */
     parsedBody: MSDeployStatus;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceMSDeployLogSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceMSDeployLogSlot operation. */
 export type WebAppsGetInstanceMSDeployLogSlotResponse = MSDeployLog & {
@@ -10818,6 +12292,10 @@ export type WebAppsGetInstanceMSDeployLogSlotResponse = MSDeployLog & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessesSlot operation. */
 export type WebAppsListInstanceProcessesSlotResponse = ProcessInfoCollection & {
   /** The underlying HTTP response. */
@@ -10830,6 +12308,10 @@ export type WebAppsListInstanceProcessesSlotResponse = ProcessInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInstanceProcessSlot operation. */
 export type WebAppsGetInstanceProcessSlotResponse = ProcessInfo & {
   /** The underlying HTTP response. */
@@ -10841,6 +12323,14 @@ export type WebAppsGetInstanceProcessSlotResponse = ProcessInfo & {
     parsedBody: ProcessInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteInstanceProcessSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessDumpSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessDumpSlot operation. */
 export type WebAppsGetInstanceProcessDumpSlotResponse = {
@@ -10863,6 +12353,10 @@ export type WebAppsGetInstanceProcessDumpSlotResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessModulesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessModulesSlot operation. */
 export type WebAppsListInstanceProcessModulesSlotResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -10874,6 +12368,10 @@ export type WebAppsListInstanceProcessModulesSlotResponse = ProcessModuleInfoCol
     parsedBody: ProcessModuleInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetInstanceProcessModuleSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessModuleSlot operation. */
 export type WebAppsGetInstanceProcessModuleSlotResponse = ProcessModuleInfo & {
@@ -10887,6 +12385,10 @@ export type WebAppsGetInstanceProcessModuleSlotResponse = ProcessModuleInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessThreadsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessThreadsSlot operation. */
 export type WebAppsListInstanceProcessThreadsSlotResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -10898,6 +12400,10 @@ export type WebAppsListInstanceProcessThreadsSlotResponse = ProcessThreadInfoCol
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsIsCloneableSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the isCloneableSlot operation. */
 export type WebAppsIsCloneableSlotResponse = SiteCloneability & {
@@ -10911,6 +12417,10 @@ export type WebAppsIsCloneableSlotResponse = SiteCloneability & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSiteBackupsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteBackupsSlot operation. */
 export type WebAppsListSiteBackupsSlotResponse = BackupItemCollection & {
   /** The underlying HTTP response. */
@@ -10922,6 +12432,10 @@ export type WebAppsListSiteBackupsSlotResponse = BackupItemCollection & {
     parsedBody: BackupItemCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSyncFunctionTriggersSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSyncFunctionTriggersSlot operation. */
 export type WebAppsListSyncFunctionTriggersSlotResponse = FunctionSecrets & {
@@ -10935,6 +12449,10 @@ export type WebAppsListSyncFunctionTriggersSlotResponse = FunctionSecrets & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetMigrateMySqlStatusSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMigrateMySqlStatusSlot operation. */
 export type WebAppsGetMigrateMySqlStatusSlotResponse = MigrateMySqlStatus & {
   /** The underlying HTTP response. */
@@ -10946,6 +12464,10 @@ export type WebAppsGetMigrateMySqlStatusSlotResponse = MigrateMySqlStatus & {
     parsedBody: MigrateMySqlStatus;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSwiftVirtualNetworkConnectionSlot operation. */
 export type WebAppsGetSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
@@ -10959,6 +12481,10 @@ export type WebAppsGetSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNe
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateSwiftVirtualNetworkConnectionSlot operation. */
 export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
   /** The underlying HTTP response. */
@@ -10970,6 +12496,14 @@ export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = Swi
     parsedBody: SwiftVirtualNetwork;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSwiftVirtualNetworkConnectionSlot operation. */
 export type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
@@ -10983,6 +12517,10 @@ export type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtua
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListNetworkFeaturesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNetworkFeaturesSlot operation. */
 export type WebAppsListNetworkFeaturesSlotResponse = NetworkFeatures & {
   /** The underlying HTTP response. */
@@ -10994,6 +12532,10 @@ export type WebAppsListNetworkFeaturesSlotResponse = NetworkFeatures & {
     parsedBody: NetworkFeatures;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetNetworkTraceOperationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperationSlot operation. */
 export type WebAppsGetNetworkTraceOperationSlotResponse = NetworkTrace[] & {
@@ -11042,6 +12584,10 @@ export interface WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
   maxFrameLength?: number;
   /** The Blob URL to store capture file. */
   sasUrl?: string;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the startWebSiteNetworkTraceOperationSlot operation. */
@@ -11053,10 +12599,16 @@ export type WebAppsStartWebSiteNetworkTraceOperationSlotResponse = NetworkTrace[
 
     /** The response body as parsed JSON or XML */
     parsedBody: NetworkTrace[];
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsStopWebSiteNetworkTraceSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetNetworkTracesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNetworkTracesSlot operation. */
 export type WebAppsGetNetworkTracesSlotResponse = NetworkTrace[] & {
@@ -11070,6 +12622,10 @@ export type WebAppsGetNetworkTracesSlotResponse = NetworkTrace[] & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetNetworkTraceOperationSlotV2OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNetworkTraceOperationSlotV2 operation. */
 export type WebAppsGetNetworkTraceOperationSlotV2Response = NetworkTrace[] & {
   /** The underlying HTTP response. */
@@ -11082,6 +12638,10 @@ export type WebAppsGetNetworkTraceOperationSlotV2Response = NetworkTrace[] & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetNetworkTracesSlotV2OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNetworkTracesSlotV2 operation. */
 export type WebAppsGetNetworkTracesSlotV2Response = NetworkTrace[] & {
   /** The underlying HTTP response. */
@@ -11093,6 +12653,10 @@ export type WebAppsGetNetworkTracesSlotV2Response = NetworkTrace[] & {
     parsedBody: NetworkTrace[];
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersSlotOptionalParams
@@ -11113,6 +12677,10 @@ export type WebAppsListPerfMonCountersSlotResponse = PerfMonCounterCollection & 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSitePhpErrorLogFlagSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSitePhpErrorLogFlagSlot operation. */
 export type WebAppsGetSitePhpErrorLogFlagSlotResponse = SitePhpErrorLogFlag & {
   /** The underlying HTTP response. */
@@ -11124,6 +12692,10 @@ export type WebAppsGetSitePhpErrorLogFlagSlotResponse = SitePhpErrorLogFlag & {
     parsedBody: SitePhpErrorLogFlag;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPremierAddOnsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnsSlot operation. */
 export type WebAppsListPremierAddOnsSlotResponse = PremierAddOn & {
@@ -11137,6 +12709,10 @@ export type WebAppsListPremierAddOnsSlotResponse = PremierAddOn & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetPremierAddOnSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPremierAddOnSlot operation. */
 export type WebAppsGetPremierAddOnSlotResponse = PremierAddOn & {
   /** The underlying HTTP response. */
@@ -11148,6 +12724,10 @@ export type WebAppsGetPremierAddOnSlotResponse = PremierAddOn & {
     parsedBody: PremierAddOn;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsAddPremierAddOnSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the addPremierAddOnSlot operation. */
 export type WebAppsAddPremierAddOnSlotResponse = PremierAddOn & {
@@ -11161,6 +12741,14 @@ export type WebAppsAddPremierAddOnSlotResponse = PremierAddOn & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsDeletePremierAddOnSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdatePremierAddOnSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updatePremierAddOnSlot operation. */
 export type WebAppsUpdatePremierAddOnSlotResponse = PremierAddOn & {
   /** The underlying HTTP response. */
@@ -11172,6 +12760,10 @@ export type WebAppsUpdatePremierAddOnSlotResponse = PremierAddOn & {
     parsedBody: PremierAddOn;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetPrivateAccessSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPrivateAccessSlot operation. */
 export type WebAppsGetPrivateAccessSlotResponse = PrivateAccess & {
@@ -11185,6 +12777,10 @@ export type WebAppsGetPrivateAccessSlotResponse = PrivateAccess & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsPutPrivateAccessVnetSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the putPrivateAccessVnetSlot operation. */
 export type WebAppsPutPrivateAccessVnetSlotResponse = PrivateAccess & {
   /** The underlying HTTP response. */
@@ -11196,6 +12792,10 @@ export type WebAppsPutPrivateAccessVnetSlotResponse = PrivateAccess & {
     parsedBody: PrivateAccess;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetPrivateEndpointConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPrivateEndpointConnection operation. */
 export type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource & {
@@ -11209,6 +12809,15 @@ export type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the approveOrRejectPrivateEndpointConnection operation. */
 export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource & {
   /** The underlying HTTP response. */
@@ -11218,10 +12827,17 @@ export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEnd
 
     /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnectionResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeletePrivateEndpointConnectionOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the deletePrivateEndpointConnection operation. */
 export type WebAppsDeletePrivateEndpointConnectionResponse = {
@@ -11235,10 +12851,12 @@ export type WebAppsDeletePrivateEndpointConnectionResponse = {
 
     /** The response body as parsed JSON or XML */
     parsedBody: any;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetPrivateLinkResourcesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPrivateLinkResources operation. */
 export type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper & {
@@ -11252,6 +12870,10 @@ export type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessesSlot operation. */
 export type WebAppsListProcessesSlotResponse = ProcessInfoCollection & {
   /** The underlying HTTP response. */
@@ -11264,6 +12886,10 @@ export type WebAppsListProcessesSlotResponse = ProcessInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetProcessSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getProcessSlot operation. */
 export type WebAppsGetProcessSlotResponse = ProcessInfo & {
   /** The underlying HTTP response. */
@@ -11275,6 +12901,14 @@ export type WebAppsGetProcessSlotResponse = ProcessInfo & {
     parsedBody: ProcessInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteProcessSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsGetProcessDumpSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getProcessDumpSlot operation. */
 export type WebAppsGetProcessDumpSlotResponse = {
@@ -11297,6 +12931,10 @@ export type WebAppsGetProcessDumpSlotResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessModulesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessModulesSlot operation. */
 export type WebAppsListProcessModulesSlotResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -11308,6 +12946,10 @@ export type WebAppsListProcessModulesSlotResponse = ProcessModuleInfoCollection 
     parsedBody: ProcessModuleInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetProcessModuleSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getProcessModuleSlot operation. */
 export type WebAppsGetProcessModuleSlotResponse = ProcessModuleInfo & {
@@ -11321,6 +12963,10 @@ export type WebAppsGetProcessModuleSlotResponse = ProcessModuleInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessThreadsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessThreadsSlot operation. */
 export type WebAppsListProcessThreadsSlotResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -11332,6 +12978,10 @@ export type WebAppsListProcessThreadsSlotResponse = ProcessThreadInfoCollection 
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPublicCertificatesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesSlot operation. */
 export type WebAppsListPublicCertificatesSlotResponse = PublicCertificateCollection & {
@@ -11345,6 +12995,10 @@ export type WebAppsListPublicCertificatesSlotResponse = PublicCertificateCollect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetPublicCertificateSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPublicCertificateSlot operation. */
 export type WebAppsGetPublicCertificateSlotResponse = PublicCertificate & {
   /** The underlying HTTP response. */
@@ -11357,6 +13011,10 @@ export type WebAppsGetPublicCertificateSlotResponse = PublicCertificate & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdatePublicCertificateSlot operation. */
 export type WebAppsCreateOrUpdatePublicCertificateSlotResponse = PublicCertificate & {
   /** The underlying HTTP response. */
@@ -11368,6 +13026,14 @@ export type WebAppsCreateOrUpdatePublicCertificateSlotResponse = PublicCertifica
     parsedBody: PublicCertificate;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeletePublicCertificateSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublishingProfileXmlWithSecretsSlot operation. */
 export type WebAppsListPublishingProfileXmlWithSecretsSlotResponse = {
@@ -11391,6 +13057,10 @@ export type WebAppsListPublishingProfileXmlWithSecretsSlotResponse = {
 };
 
 /** Optional parameters. */
+export interface WebAppsResetSlotConfigurationSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface WebAppsRestartSlotOptionalParams
   extends coreHttp.OperationOptions {
   /** Specify true to apply the configuration settings and restarts the app only if necessary. By default, the API always restarts and reprovisions the app. */
@@ -11398,6 +13068,37 @@ export interface WebAppsRestartSlotOptionalParams
   /** Specify true to block until the app is restarted. By default, it is set to false, and the API responds immediately (asynchronous). */
   synchronous?: boolean;
 }
+
+/** Optional parameters. */
+export interface WebAppsRestoreFromBackupBlobSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsRestoreFromDeletedAppSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsRestoreSnapshotSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSiteExtensionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteExtensionsSlot operation. */
 export type WebAppsListSiteExtensionsSlotResponse = SiteExtensionInfoCollection & {
@@ -11411,6 +13112,10 @@ export type WebAppsListSiteExtensionsSlotResponse = SiteExtensionInfoCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSiteExtensionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSiteExtensionSlot operation. */
 export type WebAppsGetSiteExtensionSlotResponse = SiteExtensionInfo & {
   /** The underlying HTTP response. */
@@ -11423,6 +13128,15 @@ export type WebAppsGetSiteExtensionSlotResponse = SiteExtensionInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsInstallSiteExtensionSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the installSiteExtensionSlot operation. */
 export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo & {
   /** The underlying HTTP response. */
@@ -11432,10 +13146,25 @@ export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SiteExtensionInfo;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteSiteExtensionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsCopySlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSlotDifferencesSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesSlot operation. */
 export type WebAppsListSlotDifferencesSlotResponse = SlotDifferenceCollection & {
@@ -11449,6 +13178,19 @@ export type WebAppsListSlotDifferencesSlotResponse = SlotDifferenceCollection & 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsSwapSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSnapshotsSlot operation. */
 export type WebAppsListSnapshotsSlotResponse = SnapshotCollection & {
   /** The underlying HTTP response. */
@@ -11460,6 +13202,10 @@ export type WebAppsListSnapshotsSlotResponse = SnapshotCollection & {
     parsedBody: SnapshotCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondarySlot operation. */
 export type WebAppsListSnapshotsFromDRSecondarySlotResponse = SnapshotCollection & {
@@ -11473,6 +13219,10 @@ export type WebAppsListSnapshotsFromDRSecondarySlotResponse = SnapshotCollection
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSourceControlSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSourceControlSlot operation. */
 export type WebAppsGetSourceControlSlotResponse = SiteSourceControl & {
   /** The underlying HTTP response. */
@@ -11485,6 +13235,15 @@ export type WebAppsGetSourceControlSlotResponse = SiteSourceControl & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateSourceControlSlotOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateSourceControlSlot operation. */
 export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl & {
   /** The underlying HTTP response. */
@@ -11494,10 +13253,16 @@ export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl &
 
     /** The response body as parsed JSON or XML */
     parsedBody: SiteSourceControl;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteSourceControlSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateSourceControlSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSourceControlSlot operation. */
 export type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl & {
@@ -11512,6 +13277,10 @@ export type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl & {
 };
 
 /** Optional parameters. */
+export interface WebAppsStartSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface WebAppsStartNetworkTraceSlotOptionalParams
   extends coreHttp.OperationOptions {
   /** The duration to keep capturing in seconds. */
@@ -11520,6 +13289,10 @@ export interface WebAppsStartNetworkTraceSlotOptionalParams
   maxFrameLength?: number;
   /** The Blob URL to store capture file. */
   sasUrl?: string;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the startNetworkTraceSlot operation. */
@@ -11531,10 +13304,28 @@ export type WebAppsStartNetworkTraceSlotResponse = NetworkTrace[] & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: NetworkTrace[];
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsStopSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStopNetworkTraceSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncRepositorySlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncFunctionTriggersSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobsSlot operation. */
 export type WebAppsListTriggeredWebJobsSlotResponse = TriggeredWebJobCollection & {
@@ -11548,6 +13339,10 @@ export type WebAppsListTriggeredWebJobsSlotResponse = TriggeredWebJobCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetTriggeredWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getTriggeredWebJobSlot operation. */
 export type WebAppsGetTriggeredWebJobSlotResponse = TriggeredWebJob & {
   /** The underlying HTTP response. */
@@ -11559,6 +13354,14 @@ export type WebAppsGetTriggeredWebJobSlotResponse = TriggeredWebJob & {
     parsedBody: TriggeredWebJob;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteTriggeredWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobHistorySlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistorySlot operation. */
 export type WebAppsListTriggeredWebJobHistorySlotResponse = TriggeredJobHistoryCollection & {
@@ -11572,6 +13375,10 @@ export type WebAppsListTriggeredWebJobHistorySlotResponse = TriggeredJobHistoryC
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetTriggeredWebJobHistorySlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getTriggeredWebJobHistorySlot operation. */
 export type WebAppsGetTriggeredWebJobHistorySlotResponse = TriggeredJobHistory & {
   /** The underlying HTTP response. */
@@ -11583,6 +13390,10 @@ export type WebAppsGetTriggeredWebJobHistorySlotResponse = TriggeredJobHistory &
     parsedBody: TriggeredJobHistory;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsRunTriggeredWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListUsagesSlotOptionalParams
@@ -11603,6 +13414,10 @@ export type WebAppsListUsagesSlotResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListVnetConnectionsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listVnetConnectionsSlot operation. */
 export type WebAppsListVnetConnectionsSlotResponse = VnetInfo[] & {
   /** The underlying HTTP response. */
@@ -11614,6 +13429,10 @@ export type WebAppsListVnetConnectionsSlotResponse = VnetInfo[] & {
     parsedBody: VnetInfo[];
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetVnetConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getVnetConnectionSlot operation. */
 export type WebAppsGetVnetConnectionSlotResponse = VnetInfo & {
@@ -11627,6 +13446,10 @@ export type WebAppsGetVnetConnectionSlotResponse = VnetInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateVnetConnectionSlot operation. */
 export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo & {
   /** The underlying HTTP response. */
@@ -11638,6 +13461,14 @@ export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo & {
     parsedBody: VnetInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteVnetConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateVnetConnectionSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateVnetConnectionSlot operation. */
 export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo & {
@@ -11651,6 +13482,10 @@ export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetVnetConnectionGatewaySlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getVnetConnectionGatewaySlot operation. */
 export type WebAppsGetVnetConnectionGatewaySlotResponse = VnetGateway & {
   /** The underlying HTTP response. */
@@ -11662,6 +13497,10 @@ export type WebAppsGetVnetConnectionGatewaySlotResponse = VnetGateway & {
     parsedBody: VnetGateway;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnectionGatewaySlot operation. */
 export type WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse = VnetGateway & {
@@ -11675,6 +13514,10 @@ export type WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse = VnetGateway
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsUpdateVnetConnectionGatewaySlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateVnetConnectionGatewaySlot operation. */
 export type WebAppsUpdateVnetConnectionGatewaySlotResponse = VnetGateway & {
   /** The underlying HTTP response. */
@@ -11686,6 +13529,10 @@ export type WebAppsUpdateVnetConnectionGatewaySlotResponse = VnetGateway & {
     parsedBody: VnetGateway;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListWebJobsSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebJobsSlot operation. */
 export type WebAppsListWebJobsSlotResponse = WebJobCollection & {
@@ -11699,6 +13546,10 @@ export type WebAppsListWebJobsSlotResponse = WebJobCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetWebJobSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getWebJobSlot operation. */
 export type WebAppsGetWebJobSlotResponse = WebJob & {
   /** The underlying HTTP response. */
@@ -11710,6 +13561,10 @@ export type WebAppsGetWebJobSlotResponse = WebJob & {
     parsedBody: WebJob;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSlotDifferencesFromProductionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesFromProduction operation. */
 export type WebAppsListSlotDifferencesFromProductionResponse = SlotDifferenceCollection & {
@@ -11723,6 +13578,19 @@ export type WebAppsListSlotDifferencesFromProductionResponse = SlotDifferenceCol
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsSwapSlotWithProductionOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSnapshots operation. */
 export type WebAppsListSnapshotsResponse = SnapshotCollection & {
   /** The underlying HTTP response. */
@@ -11734,6 +13602,10 @@ export type WebAppsListSnapshotsResponse = SnapshotCollection & {
     parsedBody: SnapshotCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsFromDRSecondaryOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondary operation. */
 export type WebAppsListSnapshotsFromDRSecondaryResponse = SnapshotCollection & {
@@ -11747,6 +13619,10 @@ export type WebAppsListSnapshotsFromDRSecondaryResponse = SnapshotCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetSourceControlOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSourceControl operation. */
 export type WebAppsGetSourceControlResponse = SiteSourceControl & {
   /** The underlying HTTP response. */
@@ -11759,6 +13635,15 @@ export type WebAppsGetSourceControlResponse = SiteSourceControl & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateSourceControlOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateSourceControl operation. */
 export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl & {
   /** The underlying HTTP response. */
@@ -11768,10 +13653,16 @@ export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SiteSourceControl;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteSourceControlOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateSourceControlOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateSourceControl operation. */
 export type WebAppsUpdateSourceControlResponse = SiteSourceControl & {
@@ -11786,6 +13677,9 @@ export type WebAppsUpdateSourceControlResponse = SiteSourceControl & {
 };
 
 /** Optional parameters. */
+export interface WebAppsStartOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
 export interface WebAppsStartNetworkTraceOptionalParams
   extends coreHttp.OperationOptions {
   /** The duration to keep capturing in seconds. */
@@ -11794,6 +13688,10 @@ export interface WebAppsStartNetworkTraceOptionalParams
   maxFrameLength?: number;
   /** The Blob URL to store capture file. */
   sasUrl?: string;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the startNetworkTrace operation. */
@@ -11805,10 +13703,27 @@ export type WebAppsStartNetworkTraceResponse = NetworkTrace[] & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: NetworkTrace[];
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsStopOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsStopNetworkTraceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncRepositoryOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsSyncFunctionTriggersOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobs operation. */
 export type WebAppsListTriggeredWebJobsResponse = TriggeredWebJobCollection & {
@@ -11822,6 +13737,10 @@ export type WebAppsListTriggeredWebJobsResponse = TriggeredWebJobCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetTriggeredWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getTriggeredWebJob operation. */
 export type WebAppsGetTriggeredWebJobResponse = TriggeredWebJob & {
   /** The underlying HTTP response. */
@@ -11833,6 +13752,14 @@ export type WebAppsGetTriggeredWebJobResponse = TriggeredWebJob & {
     parsedBody: TriggeredWebJob;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteTriggeredWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobHistoryOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistory operation. */
 export type WebAppsListTriggeredWebJobHistoryResponse = TriggeredJobHistoryCollection & {
@@ -11846,6 +13773,10 @@ export type WebAppsListTriggeredWebJobHistoryResponse = TriggeredJobHistoryColle
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetTriggeredWebJobHistoryOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getTriggeredWebJobHistory operation. */
 export type WebAppsGetTriggeredWebJobHistoryResponse = TriggeredJobHistory & {
   /** The underlying HTTP response. */
@@ -11857,6 +13788,10 @@ export type WebAppsGetTriggeredWebJobHistoryResponse = TriggeredJobHistory & {
     parsedBody: TriggeredJobHistory;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsRunTriggeredWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListUsagesOptionalParams
@@ -11877,6 +13812,10 @@ export type WebAppsListUsagesResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListVnetConnectionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listVnetConnections operation. */
 export type WebAppsListVnetConnectionsResponse = VnetInfo[] & {
   /** The underlying HTTP response. */
@@ -11888,6 +13827,10 @@ export type WebAppsListVnetConnectionsResponse = VnetInfo[] & {
     parsedBody: VnetInfo[];
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsGetVnetConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getVnetConnection operation. */
 export type WebAppsGetVnetConnectionResponse = VnetInfo & {
@@ -11901,6 +13844,10 @@ export type WebAppsGetVnetConnectionResponse = VnetInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateVnetConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateVnetConnection operation. */
 export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo & {
   /** The underlying HTTP response. */
@@ -11912,6 +13859,14 @@ export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo & {
     parsedBody: VnetInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsDeleteVnetConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebAppsUpdateVnetConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateVnetConnection operation. */
 export type WebAppsUpdateVnetConnectionResponse = VnetInfo & {
@@ -11925,6 +13880,10 @@ export type WebAppsUpdateVnetConnectionResponse = VnetInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetVnetConnectionGatewayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getVnetConnectionGateway operation. */
 export type WebAppsGetVnetConnectionGatewayResponse = VnetGateway & {
   /** The underlying HTTP response. */
@@ -11936,6 +13895,10 @@ export type WebAppsGetVnetConnectionGatewayResponse = VnetGateway & {
     parsedBody: VnetGateway;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnectionGateway operation. */
 export type WebAppsCreateOrUpdateVnetConnectionGatewayResponse = VnetGateway & {
@@ -11949,6 +13912,10 @@ export type WebAppsCreateOrUpdateVnetConnectionGatewayResponse = VnetGateway & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsUpdateVnetConnectionGatewayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateVnetConnectionGateway operation. */
 export type WebAppsUpdateVnetConnectionGatewayResponse = VnetGateway & {
   /** The underlying HTTP response. */
@@ -11960,6 +13927,10 @@ export type WebAppsUpdateVnetConnectionGatewayResponse = VnetGateway & {
     parsedBody: VnetGateway;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListWebJobsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebJobs operation. */
 export type WebAppsListWebJobsResponse = WebJobCollection & {
@@ -11973,6 +13944,10 @@ export type WebAppsListWebJobsResponse = WebJobCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsGetWebJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getWebJob operation. */
 export type WebAppsGetWebJobResponse = WebJob & {
   /** The underlying HTTP response. */
@@ -11984,6 +13959,10 @@ export type WebAppsGetWebJobResponse = WebJob & {
     parsedBody: WebJob;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type WebAppsListNextResponse = WebAppCollection & {
@@ -12016,6 +13995,10 @@ export type WebAppsListByResourceGroupNextResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListBackupsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBackupsNext operation. */
 export type WebAppsListBackupsNextResponse = BackupItemCollection & {
   /** The underlying HTTP response. */
@@ -12027,6 +14010,10 @@ export type WebAppsListBackupsNextResponse = BackupItemCollection & {
     parsedBody: BackupItemCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListConfigurationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listConfigurationsNext operation. */
 export type WebAppsListConfigurationsNextResponse = SiteConfigResourceCollection & {
@@ -12040,6 +14027,10 @@ export type WebAppsListConfigurationsNextResponse = SiteConfigResourceCollection
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConfigurationSnapshotInfoNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurationSnapshotInfoNext operation. */
 export type WebAppsListConfigurationSnapshotInfoNextResponse = SiteConfigurationSnapshotInfoCollection & {
   /** The underlying HTTP response. */
@@ -12051,6 +14042,10 @@ export type WebAppsListConfigurationSnapshotInfoNextResponse = SiteConfiguration
     parsedBody: SiteConfigurationSnapshotInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListContinuousWebJobsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobsNext operation. */
 export type WebAppsListContinuousWebJobsNextResponse = ContinuousWebJobCollection & {
@@ -12064,6 +14059,10 @@ export type WebAppsListContinuousWebJobsNextResponse = ContinuousWebJobCollectio
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListDeploymentsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeploymentsNext operation. */
 export type WebAppsListDeploymentsNextResponse = DeploymentCollection & {
   /** The underlying HTTP response. */
@@ -12075,6 +14074,10 @@ export type WebAppsListDeploymentsNextResponse = DeploymentCollection & {
     parsedBody: DeploymentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListDomainOwnershipIdentifiersNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersNext operation. */
 export type WebAppsListDomainOwnershipIdentifiersNextResponse = IdentifierCollection & {
@@ -12088,6 +14091,10 @@ export type WebAppsListDomainOwnershipIdentifiersNextResponse = IdentifierCollec
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListFunctionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listFunctionsNext operation. */
 export type WebAppsListFunctionsNextResponse = FunctionEnvelopeCollection & {
   /** The underlying HTTP response. */
@@ -12099,6 +14106,10 @@ export type WebAppsListFunctionsNextResponse = FunctionEnvelopeCollection & {
     parsedBody: FunctionEnvelopeCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListHostNameBindingsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHostNameBindingsNext operation. */
 export type WebAppsListHostNameBindingsNextResponse = HostNameBindingCollection & {
@@ -12112,6 +14123,10 @@ export type WebAppsListHostNameBindingsNextResponse = HostNameBindingCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceIdentifiersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceIdentifiersNext operation. */
 export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollection & {
   /** The underlying HTTP response. */
@@ -12123,6 +14138,10 @@ export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollectio
     parsedBody: WebAppInstanceCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessesNext operation. */
 export type WebAppsListInstanceProcessesNextResponse = ProcessInfoCollection & {
@@ -12136,6 +14155,10 @@ export type WebAppsListInstanceProcessesNextResponse = ProcessInfoCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessModulesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessModulesNext operation. */
 export type WebAppsListInstanceProcessModulesNextResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -12148,6 +14171,10 @@ export type WebAppsListInstanceProcessModulesNextResponse = ProcessModuleInfoCol
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessThreadsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessThreadsNext operation. */
 export type WebAppsListInstanceProcessThreadsNextResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -12159,6 +14186,10 @@ export type WebAppsListInstanceProcessThreadsNextResponse = ProcessThreadInfoCol
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSiteBackupsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteBackupsNext operation. */
 export type WebAppsListSiteBackupsNextResponse = BackupItemCollection & {
@@ -12191,6 +14222,10 @@ export type WebAppsListPerfMonCountersNextResponse = PerfMonCounterCollection & 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessesNext operation. */
 export type WebAppsListProcessesNextResponse = ProcessInfoCollection & {
   /** The underlying HTTP response. */
@@ -12202,6 +14237,10 @@ export type WebAppsListProcessesNextResponse = ProcessInfoCollection & {
     parsedBody: ProcessInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListProcessModulesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listProcessModulesNext operation. */
 export type WebAppsListProcessModulesNextResponse = ProcessModuleInfoCollection & {
@@ -12215,6 +14254,10 @@ export type WebAppsListProcessModulesNextResponse = ProcessModuleInfoCollection 
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessThreadsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessThreadsNext operation. */
 export type WebAppsListProcessThreadsNextResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -12226,6 +14269,10 @@ export type WebAppsListProcessThreadsNextResponse = ProcessThreadInfoCollection 
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPublicCertificatesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesNext operation. */
 export type WebAppsListPublicCertificatesNextResponse = PublicCertificateCollection & {
@@ -12239,6 +14286,10 @@ export type WebAppsListPublicCertificatesNextResponse = PublicCertificateCollect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSiteExtensionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteExtensionsNext operation. */
 export type WebAppsListSiteExtensionsNextResponse = SiteExtensionInfoCollection & {
   /** The underlying HTTP response. */
@@ -12250,6 +14301,10 @@ export type WebAppsListSiteExtensionsNextResponse = SiteExtensionInfoCollection 
     parsedBody: SiteExtensionInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSlotsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotsNext operation. */
 export type WebAppsListSlotsNextResponse = WebAppCollection & {
@@ -12263,6 +14318,10 @@ export type WebAppsListSlotsNextResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListBackupsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBackupsSlotNext operation. */
 export type WebAppsListBackupsSlotNextResponse = BackupItemCollection & {
   /** The underlying HTTP response. */
@@ -12274,6 +14333,10 @@ export type WebAppsListBackupsSlotNextResponse = BackupItemCollection & {
     parsedBody: BackupItemCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListConfigurationsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listConfigurationsSlotNext operation. */
 export type WebAppsListConfigurationsSlotNextResponse = SiteConfigResourceCollection & {
@@ -12287,6 +14350,10 @@ export type WebAppsListConfigurationsSlotNextResponse = SiteConfigResourceCollec
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listConfigurationSnapshotInfoSlotNext operation. */
 export type WebAppsListConfigurationSnapshotInfoSlotNextResponse = SiteConfigurationSnapshotInfoCollection & {
   /** The underlying HTTP response. */
@@ -12298,6 +14365,10 @@ export type WebAppsListConfigurationSnapshotInfoSlotNextResponse = SiteConfigura
     parsedBody: SiteConfigurationSnapshotInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListContinuousWebJobsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobsSlotNext operation. */
 export type WebAppsListContinuousWebJobsSlotNextResponse = ContinuousWebJobCollection & {
@@ -12311,6 +14382,10 @@ export type WebAppsListContinuousWebJobsSlotNextResponse = ContinuousWebJobColle
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListDeploymentsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeploymentsSlotNext operation. */
 export type WebAppsListDeploymentsSlotNextResponse = DeploymentCollection & {
   /** The underlying HTTP response. */
@@ -12322,6 +14397,10 @@ export type WebAppsListDeploymentsSlotNextResponse = DeploymentCollection & {
     parsedBody: DeploymentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersSlotNext operation. */
 export type WebAppsListDomainOwnershipIdentifiersSlotNextResponse = IdentifierCollection & {
@@ -12335,6 +14414,10 @@ export type WebAppsListDomainOwnershipIdentifiersSlotNextResponse = IdentifierCo
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceFunctionsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceFunctionsSlotNext operation. */
 export type WebAppsListInstanceFunctionsSlotNextResponse = FunctionEnvelopeCollection & {
   /** The underlying HTTP response. */
@@ -12346,6 +14429,10 @@ export type WebAppsListInstanceFunctionsSlotNextResponse = FunctionEnvelopeColle
     parsedBody: FunctionEnvelopeCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListHostNameBindingsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHostNameBindingsSlotNext operation. */
 export type WebAppsListHostNameBindingsSlotNextResponse = HostNameBindingCollection & {
@@ -12359,6 +14446,10 @@ export type WebAppsListHostNameBindingsSlotNextResponse = HostNameBindingCollect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceIdentifiersSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceIdentifiersSlotNext operation. */
 export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceCollection & {
   /** The underlying HTTP response. */
@@ -12370,6 +14461,10 @@ export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceColle
     parsedBody: WebAppInstanceCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessesSlotNext operation. */
 export type WebAppsListInstanceProcessesSlotNextResponse = ProcessInfoCollection & {
@@ -12383,6 +14478,10 @@ export type WebAppsListInstanceProcessesSlotNextResponse = ProcessInfoCollection
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessModulesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessModulesSlotNext operation. */
 export type WebAppsListInstanceProcessModulesSlotNextResponse = ProcessModuleInfoCollection & {
   /** The underlying HTTP response. */
@@ -12395,6 +14494,10 @@ export type WebAppsListInstanceProcessModulesSlotNextResponse = ProcessModuleInf
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListInstanceProcessThreadsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listInstanceProcessThreadsSlotNext operation. */
 export type WebAppsListInstanceProcessThreadsSlotNextResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -12406,6 +14509,10 @@ export type WebAppsListInstanceProcessThreadsSlotNextResponse = ProcessThreadInf
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSiteBackupsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSiteBackupsSlotNext operation. */
 export type WebAppsListSiteBackupsSlotNextResponse = BackupItemCollection & {
@@ -12438,6 +14545,10 @@ export type WebAppsListPerfMonCountersSlotNextResponse = PerfMonCounterCollectio
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessesSlotNext operation. */
 export type WebAppsListProcessesSlotNextResponse = ProcessInfoCollection & {
   /** The underlying HTTP response. */
@@ -12449,6 +14560,10 @@ export type WebAppsListProcessesSlotNextResponse = ProcessInfoCollection & {
     parsedBody: ProcessInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListProcessModulesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listProcessModulesSlotNext operation. */
 export type WebAppsListProcessModulesSlotNextResponse = ProcessModuleInfoCollection & {
@@ -12462,6 +14577,10 @@ export type WebAppsListProcessModulesSlotNextResponse = ProcessModuleInfoCollect
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListProcessThreadsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listProcessThreadsSlotNext operation. */
 export type WebAppsListProcessThreadsSlotNextResponse = ProcessThreadInfoCollection & {
   /** The underlying HTTP response. */
@@ -12473,6 +14592,10 @@ export type WebAppsListProcessThreadsSlotNextResponse = ProcessThreadInfoCollect
     parsedBody: ProcessThreadInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListPublicCertificatesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesSlotNext operation. */
 export type WebAppsListPublicCertificatesSlotNextResponse = PublicCertificateCollection & {
@@ -12486,6 +14609,10 @@ export type WebAppsListPublicCertificatesSlotNextResponse = PublicCertificateCol
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSiteExtensionsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSiteExtensionsSlotNext operation. */
 export type WebAppsListSiteExtensionsSlotNextResponse = SiteExtensionInfoCollection & {
   /** The underlying HTTP response. */
@@ -12497,6 +14624,10 @@ export type WebAppsListSiteExtensionsSlotNextResponse = SiteExtensionInfoCollect
     parsedBody: SiteExtensionInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSlotDifferencesSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesSlotNext operation. */
 export type WebAppsListSlotDifferencesSlotNextResponse = SlotDifferenceCollection & {
@@ -12510,6 +14641,10 @@ export type WebAppsListSlotDifferencesSlotNextResponse = SlotDifferenceCollectio
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSnapshotsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSnapshotsSlotNext operation. */
 export type WebAppsListSnapshotsSlotNextResponse = SnapshotCollection & {
   /** The underlying HTTP response. */
@@ -12521,6 +14656,10 @@ export type WebAppsListSnapshotsSlotNextResponse = SnapshotCollection & {
     parsedBody: SnapshotCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondarySlotNext operation. */
 export type WebAppsListSnapshotsFromDRSecondarySlotNextResponse = SnapshotCollection & {
@@ -12534,6 +14673,10 @@ export type WebAppsListSnapshotsFromDRSecondarySlotNextResponse = SnapshotCollec
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listTriggeredWebJobsSlotNext operation. */
 export type WebAppsListTriggeredWebJobsSlotNextResponse = TriggeredWebJobCollection & {
   /** The underlying HTTP response. */
@@ -12545,6 +14688,10 @@ export type WebAppsListTriggeredWebJobsSlotNextResponse = TriggeredWebJobCollect
     parsedBody: TriggeredWebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobHistorySlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistorySlotNext operation. */
 export type WebAppsListTriggeredWebJobHistorySlotNextResponse = TriggeredJobHistoryCollection & {
@@ -12577,6 +14724,10 @@ export type WebAppsListUsagesSlotNextResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListWebJobsSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWebJobsSlotNext operation. */
 export type WebAppsListWebJobsSlotNextResponse = WebJobCollection & {
   /** The underlying HTTP response. */
@@ -12588,6 +14739,10 @@ export type WebAppsListWebJobsSlotNextResponse = WebJobCollection & {
     parsedBody: WebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSlotDifferencesFromProductionNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesFromProductionNext operation. */
 export type WebAppsListSlotDifferencesFromProductionNextResponse = SlotDifferenceCollection & {
@@ -12601,6 +14756,10 @@ export type WebAppsListSlotDifferencesFromProductionNextResponse = SlotDifferenc
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListSnapshotsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSnapshotsNext operation. */
 export type WebAppsListSnapshotsNextResponse = SnapshotCollection & {
   /** The underlying HTTP response. */
@@ -12612,6 +14771,10 @@ export type WebAppsListSnapshotsNextResponse = SnapshotCollection & {
     parsedBody: SnapshotCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListSnapshotsFromDRSecondaryNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondaryNext operation. */
 export type WebAppsListSnapshotsFromDRSecondaryNextResponse = SnapshotCollection & {
@@ -12625,6 +14788,10 @@ export type WebAppsListSnapshotsFromDRSecondaryNextResponse = SnapshotCollection
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listTriggeredWebJobsNext operation. */
 export type WebAppsListTriggeredWebJobsNextResponse = TriggeredWebJobCollection & {
   /** The underlying HTTP response. */
@@ -12636,6 +14803,10 @@ export type WebAppsListTriggeredWebJobsNextResponse = TriggeredWebJobCollection 
     parsedBody: TriggeredWebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface WebAppsListTriggeredWebJobHistoryNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistoryNext operation. */
 export type WebAppsListTriggeredWebJobHistoryNextResponse = TriggeredJobHistoryCollection & {
@@ -12668,6 +14839,10 @@ export type WebAppsListUsagesNextResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface WebAppsListWebJobsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWebJobsNext operation. */
 export type WebAppsListWebJobsNextResponse = WebJobCollection & {
   /** The underlying HTTP response. */
@@ -12679,6 +14854,10 @@ export type WebAppsListWebJobsNextResponse = WebJobCollection & {
     parsedBody: WebJobCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type StaticSitesListResponse = StaticSiteCollection & {
@@ -12692,6 +14871,10 @@ export type StaticSitesListResponse = StaticSiteCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesGetStaticSitesByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStaticSitesByResourceGroup operation. */
 export type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollection & {
   /** The underlying HTTP response. */
@@ -12703,6 +14886,10 @@ export type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollect
     parsedBody: StaticSiteCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesGetStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStaticSite operation. */
 export type StaticSitesGetStaticSiteResponse = StaticSiteARMResource & {
@@ -12716,6 +14903,10 @@ export type StaticSitesGetStaticSiteResponse = StaticSiteARMResource & {
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesCreateOrUpdateStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateStaticSite operation. */
 export type StaticSitesCreateOrUpdateStaticSiteResponse = StaticSiteARMResource & {
   /** The underlying HTTP response. */
@@ -12727,6 +14918,14 @@ export type StaticSitesCreateOrUpdateStaticSiteResponse = StaticSiteARMResource 
     parsedBody: StaticSiteARMResource;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesDeleteStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesUpdateStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateStaticSite operation. */
 export type StaticSitesUpdateStaticSiteResponse = StaticSiteARMResource & {
@@ -12740,6 +14939,10 @@ export type StaticSitesUpdateStaticSiteResponse = StaticSiteARMResource & {
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteUsersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteUsers operation. */
 export type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection & {
   /** The underlying HTTP response. */
@@ -12751,6 +14954,14 @@ export type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection & 
     parsedBody: StaticSiteUserCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesDeleteStaticSiteUserOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesUpdateStaticSiteUserOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateStaticSiteUser operation. */
 export type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMResource & {
@@ -12764,6 +14975,10 @@ export type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMResource 
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesGetStaticSiteBuildsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStaticSiteBuilds operation. */
 export type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection & {
   /** The underlying HTTP response. */
@@ -12775,6 +14990,10 @@ export type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection &
     parsedBody: StaticSiteBuildCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesGetStaticSiteBuildOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStaticSiteBuild operation. */
 export type StaticSitesGetStaticSiteBuildResponse = StaticSiteBuildARMResource & {
@@ -12788,6 +15007,14 @@ export type StaticSitesGetStaticSiteBuildResponse = StaticSiteBuildARMResource &
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesDeleteStaticSiteBuildOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateStaticSiteBuildFunctionAppSettings operation. */
 export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -12799,6 +15026,10 @@ export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse 
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteBuildFunctionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listStaticSiteBuildFunctions operation. */
 export type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunctionOverviewCollection & {
@@ -12812,6 +15043,10 @@ export type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunction
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteBuildFunctionAppSettings operation. */
 export type StaticSitesListStaticSiteBuildFunctionAppSettingsResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -12823,6 +15058,10 @@ export type StaticSitesListStaticSiteBuildFunctionAppSettingsResponse = StringDi
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdateStaticSiteFunctionAppSettings operation. */
 export type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse = StringDictionary & {
@@ -12836,6 +15075,10 @@ export type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse = Str
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesCreateUserRolesInvitationLinkOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createUserRolesInvitationLink operation. */
 export type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInvitationResponseResource & {
   /** The underlying HTTP response. */
@@ -12847,6 +15090,10 @@ export type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInv
     parsedBody: StaticSiteUserInvitationResponseResource;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteCustomDomainsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listStaticSiteCustomDomains operation. */
 export type StaticSitesListStaticSiteCustomDomainsResponse = StaticSiteCustomDomainOverviewCollection & {
@@ -12860,6 +15107,10 @@ export type StaticSitesListStaticSiteCustomDomainsResponse = StaticSiteCustomDom
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateStaticSiteCustomDomain operation. */
 export type StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse = StaticSiteCustomDomainOverviewARMResource & {
   /** The underlying HTTP response. */
@@ -12871,6 +15122,22 @@ export type StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse = StaticSite
     parsedBody: StaticSiteCustomDomainOverviewARMResource;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesDeleteStaticSiteCustomDomainOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesDetachStaticSiteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteFunctionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listStaticSiteFunctions operation. */
 export type StaticSitesListStaticSiteFunctionsResponse = StaticSiteFunctionOverviewCollection & {
@@ -12884,6 +15151,10 @@ export type StaticSitesListStaticSiteFunctionsResponse = StaticSiteFunctionOverv
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteFunctionAppSettings operation. */
 export type StaticSitesListStaticSiteFunctionAppSettingsResponse = StringDictionary & {
   /** The underlying HTTP response. */
@@ -12895,6 +15166,10 @@ export type StaticSitesListStaticSiteFunctionAppSettingsResponse = StringDiction
     parsedBody: StringDictionary;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteSecretsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listStaticSiteSecrets operation. */
 export type StaticSitesListStaticSiteSecretsResponse = StringDictionary & {
@@ -12908,6 +15183,14 @@ export type StaticSitesListStaticSiteSecretsResponse = StringDictionary & {
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesResetStaticSiteApiKeyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StaticSitesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type StaticSitesListNextResponse = StaticSiteCollection & {
   /** The underlying HTTP response. */
@@ -12919,6 +15202,10 @@ export type StaticSitesListNextResponse = StaticSiteCollection & {
     parsedBody: StaticSiteCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesGetStaticSitesByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStaticSitesByResourceGroupNext operation. */
 export type StaticSitesGetStaticSitesByResourceGroupNextResponse = StaticSiteCollection & {
@@ -12932,6 +15219,10 @@ export type StaticSitesGetStaticSitesByResourceGroupNextResponse = StaticSiteCol
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteUsersNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteUsersNext operation. */
 export type StaticSitesListStaticSiteUsersNextResponse = StaticSiteUserCollection & {
   /** The underlying HTTP response. */
@@ -12943,6 +15234,10 @@ export type StaticSitesListStaticSiteUsersNextResponse = StaticSiteUserCollectio
     parsedBody: StaticSiteUserCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesGetStaticSiteBuildsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStaticSiteBuildsNext operation. */
 export type StaticSitesGetStaticSiteBuildsNextResponse = StaticSiteBuildCollection & {
@@ -12956,6 +15251,10 @@ export type StaticSitesGetStaticSiteBuildsNextResponse = StaticSiteBuildCollecti
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteBuildFunctionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteBuildFunctionsNext operation. */
 export type StaticSitesListStaticSiteBuildFunctionsNextResponse = StaticSiteFunctionOverviewCollection & {
   /** The underlying HTTP response. */
@@ -12967,6 +15266,10 @@ export type StaticSitesListStaticSiteBuildFunctionsNextResponse = StaticSiteFunc
     parsedBody: StaticSiteFunctionOverviewCollection;
   };
 };
+
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteCustomDomainsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listStaticSiteCustomDomainsNext operation. */
 export type StaticSitesListStaticSiteCustomDomainsNextResponse = StaticSiteCustomDomainOverviewCollection & {
@@ -12980,6 +15283,10 @@ export type StaticSitesListStaticSiteCustomDomainsNextResponse = StaticSiteCusto
   };
 };
 
+/** Optional parameters. */
+export interface StaticSitesListStaticSiteFunctionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listStaticSiteFunctionsNext operation. */
 export type StaticSitesListStaticSiteFunctionsNextResponse = StaticSiteFunctionOverviewCollection & {
   /** The underlying HTTP response. */
@@ -12991,6 +15298,10 @@ export type StaticSitesListStaticSiteFunctionsNextResponse = StaticSiteFunctionO
     parsedBody: StaticSiteFunctionOverviewCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type AppServiceEnvironmentsListResponse = AppServiceEnvironmentCollection & {
@@ -13004,6 +15315,10 @@ export type AppServiceEnvironmentsListResponse = AppServiceEnvironmentCollection
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type AppServiceEnvironmentsListByResourceGroupResponse = AppServiceEnvironmentCollection & {
   /** The underlying HTTP response. */
@@ -13015,6 +15330,10 @@ export type AppServiceEnvironmentsListByResourceGroupResponse = AppServiceEnviro
     parsedBody: AppServiceEnvironmentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource & {
@@ -13028,6 +15347,15 @@ export type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource & 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironmentResource & {
   /** The underlying HTTP response. */
@@ -13037,8 +15365,6 @@ export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironment
 
     /** The response body as parsed JSON or XML */
     parsedBody: AppServiceEnvironmentResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13047,7 +15373,15 @@ export interface AppServiceEnvironmentsDeleteOptionalParams
   extends coreHttp.OperationOptions {
   /** Specify <code>true</code> to force the deletion even if the App Service Environment contains resources. The default is <code>false</code>. */
   forceDelete?: boolean;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type AppServiceEnvironmentsUpdateResponse = AppServiceEnvironmentResource & {
@@ -13061,6 +15395,10 @@ export type AppServiceEnvironmentsUpdateResponse = AppServiceEnvironmentResource
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListCapacitiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listCapacities operation. */
 export type AppServiceEnvironmentsListCapacitiesResponse = StampCapacityCollection & {
   /** The underlying HTTP response. */
@@ -13072,6 +15410,10 @@ export type AppServiceEnvironmentsListCapacitiesResponse = StampCapacityCollecti
     parsedBody: StampCapacityCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetVipInfoOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getVipInfo operation. */
 export type AppServiceEnvironmentsGetVipInfoResponse = AddressResponse & {
@@ -13085,6 +15427,15 @@ export type AppServiceEnvironmentsGetVipInfoResponse = AddressResponse & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsChangeVnetOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the changeVnet operation. */
 export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection & {
   /** The underlying HTTP response. */
@@ -13094,10 +15445,12 @@ export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WebAppCollection;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListDiagnosticsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listDiagnostics operation. */
 export type AppServiceEnvironmentsListDiagnosticsResponse = HostingEnvironmentDiagnostics[] & {
@@ -13111,6 +15464,10 @@ export type AppServiceEnvironmentsListDiagnosticsResponse = HostingEnvironmentDi
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDiagnosticsItem operation. */
 export type AppServiceEnvironmentsGetDiagnosticsItemResponse = HostingEnvironmentDiagnostics & {
   /** The underlying HTTP response. */
@@ -13122,6 +15479,10 @@ export type AppServiceEnvironmentsGetDiagnosticsItemResponse = HostingEnvironmen
     parsedBody: HostingEnvironmentDiagnostics;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInboundNetworkDependenciesEndpoints operation. */
 export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse = InboundEnvironmentEndpointCollection & {
@@ -13135,6 +15496,10 @@ export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMultiRolePools operation. */
 export type AppServiceEnvironmentsListMultiRolePoolsResponse = WorkerPoolCollection & {
   /** The underlying HTTP response. */
@@ -13146,6 +15511,10 @@ export type AppServiceEnvironmentsListMultiRolePoolsResponse = WorkerPoolCollect
     parsedBody: WorkerPoolCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetMultiRolePoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiRolePool operation. */
 export type AppServiceEnvironmentsGetMultiRolePoolResponse = WorkerPoolResource & {
@@ -13159,6 +15528,15 @@ export type AppServiceEnvironmentsGetMultiRolePoolResponse = WorkerPoolResource 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateMultiRolePool operation. */
 export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPoolResource & {
   /** The underlying HTTP response. */
@@ -13168,10 +15546,12 @@ export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPo
 
     /** The response body as parsed JSON or XML */
     parsedBody: WorkerPoolResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateMultiRolePool operation. */
 export type AppServiceEnvironmentsUpdateMultiRolePoolResponse = WorkerPoolResource & {
@@ -13185,6 +15565,10 @@ export type AppServiceEnvironmentsUpdateMultiRolePoolResponse = WorkerPoolResour
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMultiRolePoolInstanceMetricDefinitions operation. */
 export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
   /** The underlying HTTP response. */
@@ -13196,6 +15580,10 @@ export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResp
     parsedBody: ResourceMetricDefinitionCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMultiRoleMetricDefinitions operation. */
 export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
@@ -13209,6 +15597,10 @@ export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse = Resou
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMultiRolePoolSkus operation. */
 export type AppServiceEnvironmentsListMultiRolePoolSkusResponse = SkuInfoCollection & {
   /** The underlying HTTP response. */
@@ -13220,6 +15612,10 @@ export type AppServiceEnvironmentsListMultiRolePoolSkusResponse = SkuInfoCollect
     parsedBody: SkuInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMultiRoleUsages operation. */
 export type AppServiceEnvironmentsListMultiRoleUsagesResponse = UsageCollection & {
@@ -13233,6 +15629,10 @@ export type AppServiceEnvironmentsListMultiRoleUsagesResponse = UsageCollection 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListOperationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOperations operation. */
 export type AppServiceEnvironmentsListOperationsResponse = Operation[] & {
   /** The underlying HTTP response. */
@@ -13244,6 +15644,10 @@ export type AppServiceEnvironmentsListOperationsResponse = Operation[] & {
     parsedBody: Operation[];
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOutboundNetworkDependenciesEndpoints operation. */
 export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse = OutboundEnvironmentEndpointCollection & {
@@ -13257,6 +15661,19 @@ export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsRespons
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsRebootOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsResumeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the resume operation. */
 export type AppServiceEnvironmentsResumeResponse = WebAppCollection & {
   /** The underlying HTTP response. */
@@ -13266,10 +15683,12 @@ export type AppServiceEnvironmentsResumeResponse = WebAppCollection & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WebAppCollection;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListAppServicePlansOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAppServicePlans operation. */
 export type AppServiceEnvironmentsListAppServicePlansResponse = AppServicePlanCollection & {
@@ -13302,6 +15721,15 @@ export type AppServiceEnvironmentsListWebAppsResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsSuspendOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the suspend operation. */
 export type AppServiceEnvironmentsSuspendResponse = WebAppCollection & {
   /** The underlying HTTP response. */
@@ -13311,8 +15739,6 @@ export type AppServiceEnvironmentsSuspendResponse = WebAppCollection & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WebAppCollection;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -13335,6 +15761,10 @@ export type AppServiceEnvironmentsListUsagesResponse = CsmUsageQuotaCollection &
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWorkerPools operation. */
 export type AppServiceEnvironmentsListWorkerPoolsResponse = WorkerPoolCollection & {
   /** The underlying HTTP response. */
@@ -13346,6 +15776,10 @@ export type AppServiceEnvironmentsListWorkerPoolsResponse = WorkerPoolCollection
     parsedBody: WorkerPoolCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetWorkerPoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWorkerPool operation. */
 export type AppServiceEnvironmentsGetWorkerPoolResponse = WorkerPoolResource & {
@@ -13359,6 +15793,15 @@ export type AppServiceEnvironmentsGetWorkerPoolResponse = WorkerPoolResource & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateWorkerPool operation. */
 export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolResource & {
   /** The underlying HTTP response. */
@@ -13368,10 +15811,12 @@ export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolR
 
     /** The response body as parsed JSON or XML */
     parsedBody: WorkerPoolResource;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateWorkerPool operation. */
 export type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource & {
@@ -13385,6 +15830,10 @@ export type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWorkerPoolInstanceMetricDefinitions operation. */
 export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
   /** The underlying HTTP response. */
@@ -13396,6 +15845,10 @@ export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsRespons
     parsedBody: ResourceMetricDefinitionCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebWorkerMetricDefinitions operation. */
 export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
@@ -13409,6 +15862,10 @@ export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse = Resou
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWorkerPoolSkus operation. */
 export type AppServiceEnvironmentsListWorkerPoolSkusResponse = SkuInfoCollection & {
   /** The underlying HTTP response. */
@@ -13420,6 +15877,10 @@ export type AppServiceEnvironmentsListWorkerPoolSkusResponse = SkuInfoCollection
     parsedBody: SkuInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebWorkerUsages operation. */
 export type AppServiceEnvironmentsListWebWorkerUsagesResponse = UsageCollection & {
@@ -13433,6 +15894,10 @@ export type AppServiceEnvironmentsListWebWorkerUsagesResponse = UsageCollection 
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type AppServiceEnvironmentsListNextResponse = AppServiceEnvironmentCollection & {
   /** The underlying HTTP response. */
@@ -13444,6 +15909,10 @@ export type AppServiceEnvironmentsListNextResponse = AppServiceEnvironmentCollec
     parsedBody: AppServiceEnvironmentCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type AppServiceEnvironmentsListByResourceGroupNextResponse = AppServiceEnvironmentCollection & {
@@ -13457,6 +15926,10 @@ export type AppServiceEnvironmentsListByResourceGroupNextResponse = AppServiceEn
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListCapacitiesNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listCapacitiesNext operation. */
 export type AppServiceEnvironmentsListCapacitiesNextResponse = StampCapacityCollection & {
   /** The underlying HTTP response. */
@@ -13468,6 +15941,10 @@ export type AppServiceEnvironmentsListCapacitiesNextResponse = StampCapacityColl
     parsedBody: StampCapacityCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsChangeVnetNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the changeVnetNext operation. */
 export type AppServiceEnvironmentsChangeVnetNextResponse = WebAppCollection & {
@@ -13481,6 +15958,10 @@ export type AppServiceEnvironmentsChangeVnetNextResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInboundNetworkDependenciesEndpointsNext operation. */
 export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse = InboundEnvironmentEndpointCollection & {
   /** The underlying HTTP response. */
@@ -13492,6 +15973,10 @@ export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResp
     parsedBody: InboundEnvironmentEndpointCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolsNext operation. */
 export type AppServiceEnvironmentsListMultiRolePoolsNextResponse = WorkerPoolCollection & {
@@ -13505,6 +15990,10 @@ export type AppServiceEnvironmentsListMultiRolePoolsNextResponse = WorkerPoolCol
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMultiRolePoolInstanceMetricDefinitionsNext operation. */
 export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
   /** The underlying HTTP response. */
@@ -13516,6 +16005,10 @@ export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNext
     parsedBody: ResourceMetricDefinitionCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMultiRoleMetricDefinitionsNext operation. */
 export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
@@ -13529,6 +16022,10 @@ export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse = R
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMultiRolePoolSkusNext operation. */
 export type AppServiceEnvironmentsListMultiRolePoolSkusNextResponse = SkuInfoCollection & {
   /** The underlying HTTP response. */
@@ -13540,6 +16037,10 @@ export type AppServiceEnvironmentsListMultiRolePoolSkusNextResponse = SkuInfoCol
     parsedBody: SkuInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMultiRoleUsagesNext operation. */
 export type AppServiceEnvironmentsListMultiRoleUsagesNextResponse = UsageCollection & {
@@ -13553,6 +16054,10 @@ export type AppServiceEnvironmentsListMultiRoleUsagesNextResponse = UsageCollect
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOutboundNetworkDependenciesEndpointsNext operation. */
 export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse = OutboundEnvironmentEndpointCollection & {
   /** The underlying HTTP response. */
@@ -13565,6 +16070,10 @@ export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextRes
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsResumeNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the resumeNext operation. */
 export type AppServiceEnvironmentsResumeNextResponse = WebAppCollection & {
   /** The underlying HTTP response. */
@@ -13576,6 +16085,10 @@ export type AppServiceEnvironmentsResumeNextResponse = WebAppCollection & {
     parsedBody: WebAppCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListAppServicePlansNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAppServicePlansNext operation. */
 export type AppServiceEnvironmentsListAppServicePlansNextResponse = AppServicePlanCollection & {
@@ -13608,6 +16121,10 @@ export type AppServiceEnvironmentsListWebAppsNextResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsSuspendNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the suspendNext operation. */
 export type AppServiceEnvironmentsSuspendNextResponse = WebAppCollection & {
   /** The underlying HTTP response. */
@@ -13639,6 +16156,10 @@ export type AppServiceEnvironmentsListUsagesNextResponse = CsmUsageQuotaCollecti
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWorkerPoolsNext operation. */
 export type AppServiceEnvironmentsListWorkerPoolsNextResponse = WorkerPoolCollection & {
   /** The underlying HTTP response. */
@@ -13650,6 +16171,10 @@ export type AppServiceEnvironmentsListWorkerPoolsNextResponse = WorkerPoolCollec
     parsedBody: WorkerPoolCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolInstanceMetricDefinitionsNext operation. */
 export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
@@ -13663,6 +16188,10 @@ export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextRes
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWebWorkerMetricDefinitionsNext operation. */
 export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
   /** The underlying HTTP response. */
@@ -13675,6 +16204,10 @@ export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse = R
   };
 };
 
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWorkerPoolSkusNext operation. */
 export type AppServiceEnvironmentsListWorkerPoolSkusNextResponse = SkuInfoCollection & {
   /** The underlying HTTP response. */
@@ -13686,6 +16219,10 @@ export type AppServiceEnvironmentsListWorkerPoolSkusNextResponse = SkuInfoCollec
     parsedBody: SkuInfoCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebWorkerUsagesNext operation. */
 export type AppServiceEnvironmentsListWebWorkerUsagesNextResponse = UsageCollection & {
@@ -13721,6 +16258,10 @@ export type AppServicePlansListResponse = AppServicePlanCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type AppServicePlansListByResourceGroupResponse = AppServicePlanCollection & {
   /** The underlying HTTP response. */
@@ -13732,6 +16273,10 @@ export type AppServicePlansListByResourceGroupResponse = AppServicePlanCollectio
     parsedBody: AppServicePlanCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type AppServicePlansGetResponse = AppServicePlan & {
@@ -13745,6 +16290,15 @@ export type AppServicePlansGetResponse = AppServicePlan & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
   /** The underlying HTTP response. */
@@ -13754,10 +16308,16 @@ export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: AppServicePlan;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServicePlansUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type AppServicePlansUpdateResponse = AppServicePlan & {
@@ -13771,6 +16331,10 @@ export type AppServicePlansUpdateResponse = AppServicePlan & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListCapabilitiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listCapabilities operation. */
 export type AppServicePlansListCapabilitiesResponse = Capability[] & {
   /** The underlying HTTP response. */
@@ -13782,6 +16346,10 @@ export type AppServicePlansListCapabilitiesResponse = Capability[] & {
     parsedBody: Capability[];
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansGetHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHybridConnection operation. */
 export type AppServicePlansGetHybridConnectionResponse = HybridConnection & {
@@ -13795,6 +16363,14 @@ export type AppServicePlansGetHybridConnectionResponse = HybridConnection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansDeleteHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServicePlansListHybridConnectionKeysOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listHybridConnectionKeys operation. */
 export type AppServicePlansListHybridConnectionKeysResponse = HybridConnectionKey & {
   /** The underlying HTTP response. */
@@ -13806,6 +16382,10 @@ export type AppServicePlansListHybridConnectionKeysResponse = HybridConnectionKe
     parsedBody: HybridConnectionKey;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansListWebAppsByHybridConnectionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listWebAppsByHybridConnection operation. */
 export type AppServicePlansListWebAppsByHybridConnectionResponse = ResourceCollection & {
@@ -13819,6 +16399,10 @@ export type AppServicePlansListWebAppsByHybridConnectionResponse = ResourceColle
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansGetHybridConnectionPlanLimitOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getHybridConnectionPlanLimit operation. */
 export type AppServicePlansGetHybridConnectionPlanLimitResponse = HybridConnectionLimits & {
   /** The underlying HTTP response. */
@@ -13830,6 +16414,10 @@ export type AppServicePlansGetHybridConnectionPlanLimitResponse = HybridConnecti
     parsedBody: HybridConnectionLimits;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansListHybridConnectionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHybridConnections operation. */
 export type AppServicePlansListHybridConnectionsResponse = HybridConnectionCollection & {
@@ -13873,6 +16461,10 @@ export type AppServicePlansListWebAppsResponse = WebAppCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansGetServerFarmSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getServerFarmSkus operation. */
 export type AppServicePlansGetServerFarmSkusResponse = {
   /** The parsed response body. */
@@ -13907,6 +16499,10 @@ export type AppServicePlansListUsagesResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListVnetsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listVnets operation. */
 export type AppServicePlansListVnetsResponse = VnetInfo[] & {
   /** The underlying HTTP response. */
@@ -13918,6 +16514,10 @@ export type AppServicePlansListVnetsResponse = VnetInfo[] & {
     parsedBody: VnetInfo[];
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansGetVnetFromServerFarmOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getVnetFromServerFarm operation. */
 export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo & {
@@ -13931,6 +16531,10 @@ export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansGetVnetGatewayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getVnetGateway operation. */
 export type AppServicePlansGetVnetGatewayResponse = VnetGateway & {
   /** The underlying HTTP response. */
@@ -13942,6 +16546,10 @@ export type AppServicePlansGetVnetGatewayResponse = VnetGateway & {
     parsedBody: VnetGateway;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansUpdateVnetGatewayOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateVnetGateway operation. */
 export type AppServicePlansUpdateVnetGatewayResponse = VnetGateway & {
@@ -13955,6 +16563,10 @@ export type AppServicePlansUpdateVnetGatewayResponse = VnetGateway & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListRoutesForVnetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listRoutesForVnet operation. */
 export type AppServicePlansListRoutesForVnetResponse = VnetRoute[] & {
   /** The underlying HTTP response. */
@@ -13966,6 +16578,10 @@ export type AppServicePlansListRoutesForVnetResponse = VnetRoute[] & {
     parsedBody: VnetRoute[];
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansGetRouteForVnetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getRouteForVnet operation. */
 export type AppServicePlansGetRouteForVnetResponse = VnetRoute[] & {
@@ -13979,6 +16595,10 @@ export type AppServicePlansGetRouteForVnetResponse = VnetRoute[] & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansCreateOrUpdateVnetRouteOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateVnetRoute operation. */
 export type AppServicePlansCreateOrUpdateVnetRouteResponse = VnetRoute & {
   /** The underlying HTTP response. */
@@ -13991,6 +16611,14 @@ export type AppServicePlansCreateOrUpdateVnetRouteResponse = VnetRoute & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansDeleteVnetRouteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AppServicePlansUpdateVnetRouteOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the updateVnetRoute operation. */
 export type AppServicePlansUpdateVnetRouteResponse = VnetRoute & {
   /** The underlying HTTP response. */
@@ -14002,6 +16630,10 @@ export type AppServicePlansUpdateVnetRouteResponse = VnetRoute & {
     parsedBody: VnetRoute;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansRebootWorkerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServicePlansListNextOptionalParams
@@ -14025,6 +16657,10 @@ export type AppServicePlansListNextResponse = AppServicePlanCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type AppServicePlansListByResourceGroupNextResponse = AppServicePlanCollection & {
   /** The underlying HTTP response. */
@@ -14037,6 +16673,10 @@ export type AppServicePlansListByResourceGroupNextResponse = AppServicePlanColle
   };
 };
 
+/** Optional parameters. */
+export interface AppServicePlansListWebAppsByHybridConnectionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listWebAppsByHybridConnectionNext operation. */
 export type AppServicePlansListWebAppsByHybridConnectionNextResponse = ResourceCollection & {
   /** The underlying HTTP response. */
@@ -14048,6 +16688,10 @@ export type AppServicePlansListWebAppsByHybridConnectionNextResponse = ResourceC
     parsedBody: ResourceCollection;
   };
 };
+
+/** Optional parameters. */
+export interface AppServicePlansListHybridConnectionsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHybridConnectionsNext operation. */
 export type AppServicePlansListHybridConnectionsNextResponse = HybridConnectionCollection & {
@@ -14103,6 +16747,10 @@ export type AppServicePlansListUsagesNextResponse = CsmUsageQuotaCollection & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceHealthMetadataListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollection & {
   /** The underlying HTTP response. */
@@ -14114,6 +16762,10 @@ export type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollectio
     parsedBody: ResourceHealthMetadataCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceHealthMetadataListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type ResourceHealthMetadataListByResourceGroupResponse = ResourceHealthMetadataCollection & {
@@ -14127,6 +16779,10 @@ export type ResourceHealthMetadataListByResourceGroupResponse = ResourceHealthMe
   };
 };
 
+/** Optional parameters. */
+export interface ResourceHealthMetadataListBySiteOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySite operation. */
 export type ResourceHealthMetadataListBySiteResponse = ResourceHealthMetadataCollection & {
   /** The underlying HTTP response. */
@@ -14138,6 +16794,10 @@ export type ResourceHealthMetadataListBySiteResponse = ResourceHealthMetadataCol
     parsedBody: ResourceHealthMetadataCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceHealthMetadataGetBySiteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBySite operation. */
 export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef & {
@@ -14151,6 +16811,10 @@ export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef 
   };
 };
 
+/** Optional parameters. */
+export interface ResourceHealthMetadataListBySiteSlotOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySiteSlot operation. */
 export type ResourceHealthMetadataListBySiteSlotResponse = ResourceHealthMetadataCollection & {
   /** The underlying HTTP response. */
@@ -14162,6 +16826,10 @@ export type ResourceHealthMetadataListBySiteSlotResponse = ResourceHealthMetadat
     parsedBody: ResourceHealthMetadataCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceHealthMetadataGetBySiteSlotOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBySiteSlot operation. */
 export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef & {
@@ -14175,6 +16843,10 @@ export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadata
   };
 };
 
+/** Optional parameters. */
+export interface ResourceHealthMetadataListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type ResourceHealthMetadataListNextResponse = ResourceHealthMetadataCollection & {
   /** The underlying HTTP response. */
@@ -14186,6 +16858,10 @@ export type ResourceHealthMetadataListNextResponse = ResourceHealthMetadataColle
     parsedBody: ResourceHealthMetadataCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceHealthMetadataListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ResourceHealthMetadataListByResourceGroupNextResponse = ResourceHealthMetadataCollection & {
@@ -14199,6 +16875,10 @@ export type ResourceHealthMetadataListByResourceGroupNextResponse = ResourceHeal
   };
 };
 
+/** Optional parameters. */
+export interface ResourceHealthMetadataListBySiteNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySiteNext operation. */
 export type ResourceHealthMetadataListBySiteNextResponse = ResourceHealthMetadataCollection & {
   /** The underlying HTTP response. */
@@ -14210,6 +16890,10 @@ export type ResourceHealthMetadataListBySiteNextResponse = ResourceHealthMetadat
     parsedBody: ResourceHealthMetadataCollection;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceHealthMetadataListBySiteSlotNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySiteSlotNext operation. */
 export type ResourceHealthMetadataListBySiteSlotNextResponse = ResourceHealthMetadataCollection & {

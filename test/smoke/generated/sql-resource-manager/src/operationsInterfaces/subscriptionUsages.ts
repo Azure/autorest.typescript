@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { SubscriptionUsage, SubscriptionUsagesGetResponse } from "../models";
+import {
+  SubscriptionUsage,
+  SubscriptionUsagesListByLocationNextOptionalParams,
+  SubscriptionUsagesListByLocationOptionalParams,
+  SubscriptionUsagesGetOptionalParams,
+  SubscriptionUsagesGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a SubscriptionUsages. */
@@ -21,7 +27,7 @@ export interface SubscriptionUsages {
    */
   listByLocation(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesListByLocationOptionalParams
   ): PagedAsyncIterableIterator<SubscriptionUsage>;
   /**
    * Gets a subscription usage metric.
@@ -32,6 +38,6 @@ export interface SubscriptionUsages {
   get(
     locationName: string,
     usageName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionUsagesGetOptionalParams
   ): Promise<SubscriptionUsagesGetResponse>;
 }

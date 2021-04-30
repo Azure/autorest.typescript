@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsListByServerNextOptionalParams,
+  PrivateEndpointConnectionsListByServerOptionalParams,
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
+  PrivateEndpointConnectionsCreateOrUpdateOptionalParams,
   PrivateEndpointConnectionsCreateOrUpdateResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams,
   PrivateEndpointConnectionsListByServerResponse,
   PrivateEndpointConnectionsListByServerNextResponse
 } from "../models";
@@ -47,7 +52,7 @@ export class PrivateEndpointConnectionsImpl
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -74,7 +79,7 @@ export class PrivateEndpointConnectionsImpl
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -98,7 +103,7 @@ export class PrivateEndpointConnectionsImpl
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -121,7 +126,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -149,7 +154,7 @@ export class PrivateEndpointConnectionsImpl
     serverName: string,
     privateEndpointConnectionName: string,
     parameters: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>,
@@ -172,16 +177,12 @@ export class PrivateEndpointConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -196,7 +197,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -215,16 +216,12 @@ export class PrivateEndpointConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -237,7 +234,7 @@ export class PrivateEndpointConnectionsImpl
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerOptionalParams
   ): Promise<PrivateEndpointConnectionsListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -262,7 +259,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerNextOptionalParams
   ): Promise<PrivateEndpointConnectionsListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

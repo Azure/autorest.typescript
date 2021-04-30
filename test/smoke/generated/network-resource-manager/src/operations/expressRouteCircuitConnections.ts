@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitConnection,
+  ExpressRouteCircuitConnectionsListNextOptionalParams,
+  ExpressRouteCircuitConnectionsListOptionalParams,
+  ExpressRouteCircuitConnectionsDeleteOptionalParams,
+  ExpressRouteCircuitConnectionsGetOptionalParams,
   ExpressRouteCircuitConnectionsGetResponse,
+  ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitConnectionsCreateOrUpdateResponse,
   ExpressRouteCircuitConnectionsListResponse,
   ExpressRouteCircuitConnectionsListNextResponse
@@ -48,7 +53,7 @@ export class ExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuitConnection> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -78,7 +83,7 @@ export class ExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCircuitConnection[]> {
     let result = await this._list(
       resourceGroupName,
@@ -105,7 +110,7 @@ export class ExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCircuitConnection> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -130,7 +135,7 @@ export class ExpressRouteCircuitConnectionsImpl
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -150,17 +155,13 @@ export class ExpressRouteCircuitConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -176,7 +177,7 @@ export class ExpressRouteCircuitConnectionsImpl
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsGetOptionalParams
   ): Promise<ExpressRouteCircuitConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -207,7 +208,7 @@ export class ExpressRouteCircuitConnectionsImpl
     peeringName: string,
     connectionName: string,
     expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>,
@@ -231,17 +232,13 @@ export class ExpressRouteCircuitConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -255,7 +252,7 @@ export class ExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListOptionalParams
   ): Promise<ExpressRouteCircuitConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -282,7 +279,7 @@ export class ExpressRouteCircuitConnectionsImpl
     circuitName: string,
     peeringName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitConnectionsListNextOptionalParams
   ): Promise<ExpressRouteCircuitConnectionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

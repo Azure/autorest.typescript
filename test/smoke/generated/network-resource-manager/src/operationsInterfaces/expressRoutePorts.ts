@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRoutePort,
+  ExpressRoutePortsListByResourceGroupNextOptionalParams,
+  ExpressRoutePortsListByResourceGroupOptionalParams,
+  ExpressRoutePortsListNextOptionalParams,
+  ExpressRoutePortsListOptionalParams,
+  ExpressRoutePortsDeleteOptionalParams,
+  ExpressRoutePortsGetOptionalParams,
   ExpressRoutePortsGetResponse,
+  ExpressRoutePortsCreateOrUpdateOptionalParams,
   ExpressRoutePortsCreateOrUpdateResponse,
   TagsObject,
+  ExpressRoutePortsUpdateTagsOptionalParams,
   ExpressRoutePortsUpdateTagsResponse
 } from "../models";
 
@@ -28,14 +36,14 @@ export interface ExpressRoutePorts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePort>;
   /**
    * List all the ExpressRoutePort resources in the specified subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePort>;
   /**
    * Deletes the specified ExpressRoutePort resource.
@@ -46,7 +54,7 @@ export interface ExpressRoutePorts {
   delete(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface ExpressRoutePorts {
   get(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsGetOptionalParams
   ): Promise<ExpressRoutePortsGetResponse>;
   /**
    * Creates or updates the specified ExpressRoutePort resource.
@@ -72,7 +80,7 @@ export interface ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: ExpressRoutePort,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRoutePortsCreateOrUpdateResponse>,
@@ -90,6 +98,6 @@ export interface ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsUpdateTagsOptionalParams
   ): Promise<ExpressRoutePortsUpdateTagsResponse>;
 }

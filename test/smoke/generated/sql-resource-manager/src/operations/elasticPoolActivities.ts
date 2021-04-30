@@ -15,6 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ElasticPoolActivity,
+  ElasticPoolActivitiesListByElasticPoolOptionalParams,
   ElasticPoolActivitiesListByElasticPoolResponse
 } from "../models";
 
@@ -43,7 +44,7 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
   ): PagedAsyncIterableIterator<ElasticPoolActivity> {
     const iter = this.listByElasticPoolPagingAll(
       resourceGroupName,
@@ -73,7 +74,7 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
   ): AsyncIterableIterator<ElasticPoolActivity[]> {
     let result = await this._listByElasticPool(
       resourceGroupName,
@@ -88,7 +89,7 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
   ): AsyncIterableIterator<ElasticPoolActivity> {
     for await (const page of this.listByElasticPoolPagingPage(
       resourceGroupName,
@@ -112,7 +113,7 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
   ): Promise<ElasticPoolActivitiesListByElasticPoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

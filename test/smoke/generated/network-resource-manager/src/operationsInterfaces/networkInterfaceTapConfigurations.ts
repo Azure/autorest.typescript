@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterfaceTapConfiguration,
+  NetworkInterfaceTapConfigurationsListNextOptionalParams,
+  NetworkInterfaceTapConfigurationsListOptionalParams,
+  NetworkInterfaceTapConfigurationsDeleteOptionalParams,
+  NetworkInterfaceTapConfigurationsGetOptionalParams,
   NetworkInterfaceTapConfigurationsGetResponse,
+  NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams,
   NetworkInterfaceTapConfigurationsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface NetworkInterfaceTapConfigurations {
   list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration>;
   /**
    * Deletes the specified tap configuration from the NetworkInterface.
@@ -41,7 +46,7 @@ export interface NetworkInterfaceTapConfigurations {
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface NetworkInterfaceTapConfigurations {
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsGetOptionalParams
   ): Promise<NetworkInterfaceTapConfigurationsGetResponse>;
   /**
    * Creates or updates a Tap configuration in the specified NetworkInterface.
@@ -72,7 +77,7 @@ export interface NetworkInterfaceTapConfigurations {
     networkInterfaceName: string,
     tapConfigurationName: string,
     tapConfigurationParameters: NetworkInterfaceTapConfiguration,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

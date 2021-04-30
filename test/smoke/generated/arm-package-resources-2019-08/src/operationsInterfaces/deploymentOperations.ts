@@ -21,10 +21,15 @@ import {
   DeploymentOperationsListAtSubscriptionScopeOptionalParams,
   DeploymentOperationsListNextOptionalParams,
   DeploymentOperationsListOptionalParams,
+  DeploymentOperationsGetAtScopeOptionalParams,
   DeploymentOperationsGetAtScopeResponse,
+  DeploymentOperationsGetAtTenantScopeOptionalParams,
   DeploymentOperationsGetAtTenantScopeResponse,
+  DeploymentOperationsGetAtManagementGroupScopeOptionalParams,
   DeploymentOperationsGetAtManagementGroupScopeResponse,
+  DeploymentOperationsGetAtSubscriptionScopeOptionalParams,
   DeploymentOperationsGetAtSubscriptionScopeResponse,
+  DeploymentOperationsGetOptionalParams,
   DeploymentOperationsGetResponse
 } from "../models";
 
@@ -93,7 +98,7 @@ export interface DeploymentOperations {
     scope: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtScopeResponse>;
   /**
    * Gets a deployments operation.
@@ -104,7 +109,7 @@ export interface DeploymentOperations {
   getAtTenantScope(
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtTenantScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtTenantScopeResponse>;
   /**
    * Gets a deployments operation.
@@ -117,7 +122,7 @@ export interface DeploymentOperations {
     groupId: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse>;
   /**
    * Gets a deployments operation.
@@ -128,7 +133,7 @@ export interface DeploymentOperations {
   getAtSubscriptionScope(
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse>;
   /**
    * Gets a deployments operation.
@@ -141,6 +146,6 @@ export interface DeploymentOperations {
     resourceGroupName: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetOptionalParams
   ): Promise<DeploymentOperationsGetResponse>;
 }

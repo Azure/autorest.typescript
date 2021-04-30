@@ -17,13 +17,23 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Application,
+  ApplicationsListByResourceGroupNextOptionalParams,
+  ApplicationsListByResourceGroupOptionalParams,
+  ApplicationsListBySubscriptionNextOptionalParams,
+  ApplicationsListBySubscriptionOptionalParams,
+  ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
+  ApplicationsDeleteOptionalParams,
+  ApplicationsCreateOrUpdateOptionalParams,
   ApplicationsCreateOrUpdateResponse,
   ApplicationsUpdateOptionalParams,
   ApplicationsUpdateResponse,
   ApplicationsListByResourceGroupResponse,
   ApplicationsListBySubscriptionResponse,
+  ApplicationsGetByIdOptionalParams,
   ApplicationsGetByIdResponse,
+  ApplicationsDeleteByIdOptionalParams,
+  ApplicationsCreateOrUpdateByIdOptionalParams,
   ApplicationsCreateOrUpdateByIdResponse,
   ApplicationsUpdateByIdOptionalParams,
   ApplicationsUpdateByIdResponse,
@@ -51,7 +61,7 @@ export class ApplicationsImpl implements Applications {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -69,7 +79,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Application[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -87,7 +97,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -102,7 +112,7 @@ export class ApplicationsImpl implements Applications {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -119,7 +129,7 @@ export class ApplicationsImpl implements Applications {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<Application[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -132,7 +142,7 @@ export class ApplicationsImpl implements Applications {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -148,7 +158,7 @@ export class ApplicationsImpl implements Applications {
   get(
     resourceGroupName: string,
     applicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -170,7 +180,7 @@ export class ApplicationsImpl implements Applications {
   async delete(
     resourceGroupName: string,
     applicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -188,16 +198,12 @@ export class ApplicationsImpl implements Applications {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -211,7 +217,7 @@ export class ApplicationsImpl implements Applications {
     resourceGroupName: string,
     applicationName: string,
     parameters: Application,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationsCreateOrUpdateResponse>,
@@ -233,16 +239,12 @@ export class ApplicationsImpl implements Applications {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -275,7 +277,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupOptionalParams
   ): Promise<ApplicationsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -292,7 +294,7 @@ export class ApplicationsImpl implements Applications {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionOptionalParams
   ): Promise<ApplicationsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +314,7 @@ export class ApplicationsImpl implements Applications {
    */
   getById(
     applicationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetByIdOptionalParams
   ): Promise<ApplicationsGetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationId,
@@ -333,7 +335,7 @@ export class ApplicationsImpl implements Applications {
    */
   async deleteById(
     applicationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -350,16 +352,12 @@ export class ApplicationsImpl implements Applications {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteByIdOperationSpec,
-      initialOperationResult,
+      deleteByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -373,7 +371,7 @@ export class ApplicationsImpl implements Applications {
   async createOrUpdateById(
     applicationId: string,
     parameters: Application,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationsCreateOrUpdateByIdResponse>,
@@ -394,16 +392,12 @@ export class ApplicationsImpl implements Applications {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateByIdOperationSpec,
-      initialOperationResult,
+      createOrUpdateByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -437,7 +431,7 @@ export class ApplicationsImpl implements Applications {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupNextOptionalParams
   ): Promise<ApplicationsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -457,7 +451,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionNextOptionalParams
   ): Promise<ApplicationsListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

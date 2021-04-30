@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WorkloadClassifier,
+  WorkloadClassifiersListByWorkloadGroupNextOptionalParams,
+  WorkloadClassifiersListByWorkloadGroupOptionalParams,
+  WorkloadClassifiersGetOptionalParams,
   WorkloadClassifiersGetResponse,
+  WorkloadClassifiersCreateOrUpdateOptionalParams,
   WorkloadClassifiersCreateOrUpdateResponse,
+  WorkloadClassifiersDeleteOptionalParams,
   WorkloadClassifiersListByWorkloadGroupResponse,
   WorkloadClassifiersListByWorkloadGroupNextResponse
 } from "../models";
@@ -50,7 +55,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
   ): PagedAsyncIterableIterator<WorkloadClassifier> {
     const iter = this.listByWorkloadGroupPagingAll(
       resourceGroupName,
@@ -83,7 +88,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
   ): AsyncIterableIterator<WorkloadClassifier[]> {
     let result = await this._listByWorkloadGroup(
       resourceGroupName,
@@ -113,7 +118,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
   ): AsyncIterableIterator<WorkloadClassifier> {
     for await (const page of this.listByWorkloadGroupPagingPage(
       resourceGroupName,
@@ -142,7 +147,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     workloadClassifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersGetOptionalParams
   ): Promise<WorkloadClassifiersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -176,7 +181,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     workloadGroupName: string,
     workloadClassifierName: string,
     parameters: WorkloadClassifier,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WorkloadClassifiersCreateOrUpdateResponse>,
@@ -201,16 +206,12 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -229,7 +230,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     workloadClassifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -250,16 +251,12 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -276,7 +273,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
   ): Promise<WorkloadClassifiersListByWorkloadGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -307,7 +304,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     databaseName: string,
     workloadGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadClassifiersListByWorkloadGroupNextOptionalParams
   ): Promise<WorkloadClassifiersListByWorkloadGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

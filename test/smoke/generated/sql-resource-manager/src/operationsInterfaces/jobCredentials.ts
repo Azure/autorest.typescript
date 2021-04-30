@@ -11,8 +11,13 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   JobCredential,
+  JobCredentialsListByAgentNextOptionalParams,
+  JobCredentialsListByAgentOptionalParams,
+  JobCredentialsGetOptionalParams,
   JobCredentialsGetResponse,
-  JobCredentialsCreateOrUpdateResponse
+  JobCredentialsCreateOrUpdateOptionalParams,
+  JobCredentialsCreateOrUpdateResponse,
+  JobCredentialsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +35,7 @@ export interface JobCredentials {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobCredentialsListByAgentOptionalParams
   ): PagedAsyncIterableIterator<JobCredential>;
   /**
    * Gets a jobs credential.
@@ -46,7 +51,7 @@ export interface JobCredentials {
     serverName: string,
     jobAgentName: string,
     credentialName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobCredentialsGetOptionalParams
   ): Promise<JobCredentialsGetResponse>;
   /**
    * Creates or updates a job credential.
@@ -64,7 +69,7 @@ export interface JobCredentials {
     jobAgentName: string,
     credentialName: string,
     parameters: JobCredential,
-    options?: coreHttp.OperationOptions
+    options?: JobCredentialsCreateOrUpdateOptionalParams
   ): Promise<JobCredentialsCreateOrUpdateResponse>;
   /**
    * Deletes a job credential.
@@ -80,6 +85,6 @@ export interface JobCredentials {
     serverName: string,
     jobAgentName: string,
     credentialName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobCredentialsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

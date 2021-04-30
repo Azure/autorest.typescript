@@ -15,7 +15,11 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ManagedInstanceOperation,
+  ManagedInstanceOperationsListByManagedInstanceNextOptionalParams,
+  ManagedInstanceOperationsListByManagedInstanceOptionalParams,
+  ManagedInstanceOperationsCancelOptionalParams,
   ManagedInstanceOperationsListByManagedInstanceResponse,
+  ManagedInstanceOperationsGetOptionalParams,
   ManagedInstanceOperationsGetResponse,
   ManagedInstanceOperationsListByManagedInstanceNextResponse
 } from "../models";
@@ -44,7 +48,7 @@ export class ManagedInstanceOperationsImpl
   public listByManagedInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceOperation> {
     const iter = this.listByManagedInstancePagingAll(
       resourceGroupName,
@@ -71,7 +75,7 @@ export class ManagedInstanceOperationsImpl
   private async *listByManagedInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceOperation[]> {
     let result = await this._listByManagedInstance(
       resourceGroupName,
@@ -95,7 +99,7 @@ export class ManagedInstanceOperationsImpl
   private async *listByManagedInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): AsyncIterableIterator<ManagedInstanceOperation> {
     for await (const page of this.listByManagedInstancePagingPage(
       resourceGroupName,
@@ -118,7 +122,7 @@ export class ManagedInstanceOperationsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsCancelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -142,7 +146,7 @@ export class ManagedInstanceOperationsImpl
   private _listByManagedInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): Promise<ManagedInstanceOperationsListByManagedInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -167,7 +171,7 @@ export class ManagedInstanceOperationsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsGetOptionalParams
   ): Promise<ManagedInstanceOperationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -193,7 +197,7 @@ export class ManagedInstanceOperationsImpl
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceNextOptionalParams
   ): Promise<ManagedInstanceOperationsListByManagedInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -87,6 +87,10 @@ export interface ResourceLinkFilter {
   targetId: string;
 }
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -98,6 +102,10 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
@@ -111,6 +119,14 @@ export type OperationsListNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceLinksDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ResourceLinksCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ResourceLinksCreateOrUpdateResponse = ResourceLink & {
   /** The underlying HTTP response. */
@@ -122,6 +138,10 @@ export type ResourceLinksCreateOrUpdateResponse = ResourceLink & {
     parsedBody: ResourceLink;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceLinksGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ResourceLinksGetResponse = ResourceLink & {
@@ -154,6 +174,10 @@ export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ResourceLinksListAtSourceScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAtSourceScope operation. */
 export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult & {
   /** The underlying HTTP response. */
@@ -184,6 +208,10 @@ export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult & {
     parsedBody: ResourceLinkResult;
   };
 };
+
+/** Optional parameters. */
+export interface ResourceLinksListAtSourceScopeNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAtSourceScopeNext operation. */
 export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult & {

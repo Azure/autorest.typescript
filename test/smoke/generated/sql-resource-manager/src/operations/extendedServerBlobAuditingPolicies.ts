@@ -17,7 +17,11 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExtendedServerBlobAuditingPolicy,
+  ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams,
+  ExtendedServerBlobAuditingPoliciesListByServerOptionalParams,
+  ExtendedServerBlobAuditingPoliciesGetOptionalParams,
   ExtendedServerBlobAuditingPoliciesGetResponse,
+  ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse,
   ExtendedServerBlobAuditingPoliciesListByServerResponse,
   ExtendedServerBlobAuditingPoliciesListByServerNextResponse
@@ -47,7 +51,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -74,7 +78,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): AsyncIterableIterator<ExtendedServerBlobAuditingPolicy[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -98,7 +102,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): AsyncIterableIterator<ExtendedServerBlobAuditingPolicy> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -119,7 +123,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -144,7 +148,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     parameters: ExtendedServerBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -168,16 +172,12 @@ export class ExtendedServerBlobAuditingPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -190,7 +190,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -215,7 +215,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

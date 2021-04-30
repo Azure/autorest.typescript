@@ -15,8 +15,12 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ManagedDatabaseSecurityAlertPolicy,
+  ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams,
+  ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams,
   SecurityAlertPolicyName,
+  ManagedDatabaseSecurityAlertPoliciesGetOptionalParams,
   ManagedDatabaseSecurityAlertPoliciesGetResponse,
+  ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams,
   ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse,
   ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse,
   ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse
@@ -49,7 +53,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -79,7 +83,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -106,7 +110,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -132,7 +136,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesGetOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -163,7 +167,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: ManagedDatabaseSecurityAlertPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -192,7 +196,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -221,7 +225,7 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

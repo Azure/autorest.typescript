@@ -12,11 +12,19 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FailoverGroup,
+  FailoverGroupsListByServerNextOptionalParams,
+  FailoverGroupsListByServerOptionalParams,
+  FailoverGroupsGetOptionalParams,
   FailoverGroupsGetResponse,
+  FailoverGroupsCreateOrUpdateOptionalParams,
   FailoverGroupsCreateOrUpdateResponse,
+  FailoverGroupsDeleteOptionalParams,
   FailoverGroupUpdate,
+  FailoverGroupsUpdateOptionalParams,
   FailoverGroupsUpdateResponse,
+  FailoverGroupsFailoverOptionalParams,
   FailoverGroupsFailoverResponse,
+  FailoverGroupsForceFailoverAllowDataLossOptionalParams,
   FailoverGroupsForceFailoverAllowDataLossResponse
 } from "../models";
 
@@ -33,7 +41,7 @@ export interface FailoverGroups {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsListByServerOptionalParams
   ): PagedAsyncIterableIterator<FailoverGroup>;
   /**
    * Gets a failover group.
@@ -47,7 +55,7 @@ export interface FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsGetOptionalParams
   ): Promise<FailoverGroupsGetResponse>;
   /**
    * Creates or updates a failover group.
@@ -63,7 +71,7 @@ export interface FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroup,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FailoverGroupsCreateOrUpdateResponse>,
@@ -82,7 +90,7 @@ export interface FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -100,7 +108,7 @@ export interface FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroupUpdate,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FailoverGroupsUpdateResponse>,
@@ -119,7 +127,7 @@ export interface FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsFailoverOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FailoverGroupsFailoverResponse>,
@@ -138,7 +146,7 @@ export interface FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,

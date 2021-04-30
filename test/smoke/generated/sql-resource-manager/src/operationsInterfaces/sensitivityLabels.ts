@@ -15,9 +15,14 @@ import {
   SensitivityLabelsListCurrentByDatabaseOptionalParams,
   SensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
   SensitivityLabelsListRecommendedByDatabaseOptionalParams,
+  SensitivityLabelsEnableRecommendationOptionalParams,
+  SensitivityLabelsDisableRecommendationOptionalParams,
   SensitivityLabelSource,
+  SensitivityLabelsGetOptionalParams,
   SensitivityLabelsGetResponse,
-  SensitivityLabelsCreateOrUpdateResponse
+  SensitivityLabelsCreateOrUpdateOptionalParams,
+  SensitivityLabelsCreateOrUpdateResponse,
+  SensitivityLabelsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -70,7 +75,7 @@ export interface SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsEnableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Disables sensitivity recommendations on a given column
@@ -90,7 +95,7 @@ export interface SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsDisableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the sensitivity label of a given column
@@ -112,7 +117,7 @@ export interface SensitivityLabels {
     tableName: string,
     columnName: string,
     sensitivityLabelSource: SensitivityLabelSource,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsGetOptionalParams
   ): Promise<SensitivityLabelsGetResponse>;
   /**
    * Creates or updates the sensitivity label of a given column
@@ -134,7 +139,7 @@ export interface SensitivityLabels {
     tableName: string,
     columnName: string,
     parameters: SensitivityLabel,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsCreateOrUpdateOptionalParams
   ): Promise<SensitivityLabelsCreateOrUpdateResponse>;
   /**
    * Deletes the sensitivity label of a given column
@@ -154,6 +159,6 @@ export interface SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

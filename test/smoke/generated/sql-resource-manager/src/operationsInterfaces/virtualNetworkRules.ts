@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkRule,
+  VirtualNetworkRulesListByServerNextOptionalParams,
+  VirtualNetworkRulesListByServerOptionalParams,
+  VirtualNetworkRulesGetOptionalParams,
   VirtualNetworkRulesGetResponse,
-  VirtualNetworkRulesCreateOrUpdateResponse
+  VirtualNetworkRulesCreateOrUpdateOptionalParams,
+  VirtualNetworkRulesCreateOrUpdateResponse,
+  VirtualNetworkRulesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,7 +34,7 @@ export interface VirtualNetworkRules {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesListByServerOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkRule>;
   /**
    * Gets a virtual network rule.
@@ -43,7 +48,7 @@ export interface VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesGetOptionalParams
   ): Promise<VirtualNetworkRulesGetResponse>;
   /**
    * Creates or updates an existing virtual network rule.
@@ -59,7 +64,7 @@ export interface VirtualNetworkRules {
     serverName: string,
     virtualNetworkRuleName: string,
     parameters: VirtualNetworkRule,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
@@ -78,7 +83,7 @@ export interface VirtualNetworkRules {
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -9,9 +9,12 @@
 import * as coreHttp from "@azure/core-http";
 import {
   ManagementPolicyName,
+  ManagementPoliciesGetOptionalParams,
   ManagementPoliciesGetResponse,
   ManagementPolicy,
-  ManagementPoliciesCreateOrUpdateResponse
+  ManagementPoliciesCreateOrUpdateOptionalParams,
+  ManagementPoliciesCreateOrUpdateResponse,
+  ManagementPoliciesDeleteOptionalParams
 } from "../models";
 
 /** Interface representing a ManagementPolicies. */
@@ -31,7 +34,7 @@ export interface ManagementPolicies {
     resourceGroupName: string,
     accountName: string,
     managementPolicyName: ManagementPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesGetOptionalParams
   ): Promise<ManagementPoliciesGetResponse>;
   /**
    * Sets the managementpolicy to the specified storage account.
@@ -50,7 +53,7 @@ export interface ManagementPolicies {
     accountName: string,
     managementPolicyName: ManagementPolicyName,
     properties: ManagementPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesCreateOrUpdateOptionalParams
   ): Promise<ManagementPoliciesCreateOrUpdateResponse>;
   /**
    * Deletes the managementpolicy associated with the specified storage account.
@@ -67,6 +70,6 @@ export interface ManagementPolicies {
     resourceGroupName: string,
     accountName: string,
     managementPolicyName: ManagementPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagementPoliciesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

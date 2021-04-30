@@ -17,10 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RestorePoint,
+  RestorePointsListByDatabaseOptionalParams,
   RestorePointsListByDatabaseResponse,
   CreateDatabaseRestorePointDefinition,
+  RestorePointsCreateOptionalParams,
   RestorePointsCreateResponse,
-  RestorePointsGetResponse
+  RestorePointsGetOptionalParams,
+  RestorePointsGetResponse,
+  RestorePointsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -48,7 +52,7 @@ export class RestorePointsImpl implements RestorePoints {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<RestorePoint> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -78,7 +82,7 @@ export class RestorePointsImpl implements RestorePoints {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsListByDatabaseOptionalParams
   ): AsyncIterableIterator<RestorePoint[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -93,7 +97,7 @@ export class RestorePointsImpl implements RestorePoints {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsListByDatabaseOptionalParams
   ): AsyncIterableIterator<RestorePoint> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -117,7 +121,7 @@ export class RestorePointsImpl implements RestorePoints {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsListByDatabaseOptionalParams
   ): Promise<RestorePointsListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -145,7 +149,7 @@ export class RestorePointsImpl implements RestorePoints {
     serverName: string,
     databaseName: string,
     parameters: CreateDatabaseRestorePointDefinition,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RestorePointsCreateResponse>,
@@ -168,16 +172,12 @@ export class RestorePointsImpl implements RestorePoints {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -194,7 +194,7 @@ export class RestorePointsImpl implements RestorePoints {
     serverName: string,
     databaseName: string,
     restorePointName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsGetOptionalParams
   ): Promise<RestorePointsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -223,7 +223,7 @@ export class RestorePointsImpl implements RestorePoints {
     serverName: string,
     databaseName: string,
     restorePointName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,9 +11,16 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ProximityPlacementGroup,
+  ProximityPlacementGroupsListBySubscriptionNextOptionalParams,
+  ProximityPlacementGroupsListBySubscriptionOptionalParams,
+  ProximityPlacementGroupsListByResourceGroupNextOptionalParams,
+  ProximityPlacementGroupsListByResourceGroupOptionalParams,
+  ProximityPlacementGroupsCreateOrUpdateOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateResponse,
   ProximityPlacementGroupUpdate,
+  ProximityPlacementGroupsUpdateOptionalParams,
   ProximityPlacementGroupsUpdateResponse,
+  ProximityPlacementGroupsDeleteOptionalParams,
   ProximityPlacementGroupsGetOptionalParams,
   ProximityPlacementGroupsGetResponse
 } from "../models";
@@ -26,7 +33,7 @@ export interface ProximityPlacementGroups {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<ProximityPlacementGroup>;
   /**
    * Lists all proximity placement groups in a resource group.
@@ -35,7 +42,7 @@ export interface ProximityPlacementGroups {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ProximityPlacementGroup>;
   /**
    * Create or update a proximity placement group.
@@ -48,7 +55,7 @@ export interface ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     parameters: ProximityPlacementGroup,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
   /**
    * Update a proximity placement group.
@@ -61,7 +68,7 @@ export interface ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     parameters: ProximityPlacementGroupUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsUpdateResponse>;
   /**
    * Delete a proximity placement group.
@@ -72,7 +79,7 @@ export interface ProximityPlacementGroups {
   delete(
     resourceGroupName: string,
     proximityPlacementGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Retrieves information about a proximity placement group .

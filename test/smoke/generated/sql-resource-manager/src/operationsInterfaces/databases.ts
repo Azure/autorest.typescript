@@ -12,22 +12,39 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
+  DatabasesListMetricsOptionalParams,
   MetricDefinition,
+  DatabasesListMetricDefinitionsOptionalParams,
   Database,
+  DatabasesListByServerNextOptionalParams,
+  DatabasesListByServerOptionalParams,
+  DatabasesListByElasticPoolNextOptionalParams,
+  DatabasesListByElasticPoolOptionalParams,
   ImportRequest,
+  DatabasesImportOptionalParams,
   DatabasesImportResponse,
   ImportExtensionRequest,
   ExtensionName,
+  DatabasesCreateImportOperationOptionalParams,
   DatabasesCreateImportOperationResponse,
   ExportRequest,
+  DatabasesExportOptionalParams,
   DatabasesExportResponse,
+  DatabasesGetOptionalParams,
   DatabasesGetResponse,
+  DatabasesCreateOrUpdateOptionalParams,
   DatabasesCreateOrUpdateResponse,
+  DatabasesDeleteOptionalParams,
   DatabaseUpdate,
+  DatabasesUpdateOptionalParams,
   DatabasesUpdateResponse,
+  DatabasesPauseOptionalParams,
   DatabasesPauseResponse,
+  DatabasesResumeOptionalParams,
   DatabasesResumeResponse,
+  DatabasesUpgradeDataWarehouseOptionalParams,
   ResourceMoveDefinition,
+  DatabasesRenameOptionalParams,
   DatabasesFailoverOptionalParams
 } from "../models";
 
@@ -48,7 +65,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Returns database metric definitions.
@@ -62,7 +79,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition>;
   /**
    * Gets a list of databases.
@@ -74,7 +91,7 @@ export interface Databases {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<Database>;
   /**
    * Gets a list of databases in an elastic pool.
@@ -88,7 +105,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolOptionalParams
   ): PagedAsyncIterableIterator<Database>;
   /**
    * Imports a bacpac into a new database.
@@ -102,7 +119,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     parameters: ImportRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesImportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesImportResponse>,
@@ -126,7 +143,7 @@ export interface Databases {
     databaseName: string,
     extensionName: ExtensionName,
     parameters: ImportExtensionRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesCreateImportOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesCreateImportOperationResponse>,
@@ -147,7 +164,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     parameters: ExportRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesExportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesExportResponse>,
@@ -166,7 +183,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesGetOptionalParams
   ): Promise<DatabasesGetResponse>;
   /**
    * Creates a new database or updates an existing database.
@@ -182,7 +199,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     parameters: Database,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesCreateOrUpdateResponse>,
@@ -201,7 +218,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -219,7 +236,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     parameters: DatabaseUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesUpdateResponse>,
@@ -238,7 +255,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesPauseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesPauseResponse>,
@@ -257,7 +274,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesResumeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesResumeResponse>,
@@ -276,7 +293,7 @@ export interface Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesUpgradeDataWarehouseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -294,7 +311,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     parameters: ResourceMoveDefinition,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesRenameOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Failovers a database.

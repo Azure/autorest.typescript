@@ -19,7 +19,13 @@ import {
   AppServicePlan,
   AppServicePlansListNextOptionalParams,
   AppServicePlansListOptionalParams,
+  AppServicePlansListByResourceGroupNextOptionalParams,
+  AppServicePlansListByResourceGroupOptionalParams,
+  AppServicePlansListWebAppsByHybridConnectionNextOptionalParams,
+  AppServicePlansListWebAppsByHybridConnectionOptionalParams,
   HybridConnection,
+  AppServicePlansListHybridConnectionsNextOptionalParams,
+  AppServicePlansListHybridConnectionsOptionalParams,
   Site,
   AppServicePlansListWebAppsNextOptionalParams,
   AppServicePlansListWebAppsOptionalParams,
@@ -28,30 +34,50 @@ import {
   AppServicePlansListUsagesOptionalParams,
   AppServicePlansListResponse,
   AppServicePlansListByResourceGroupResponse,
+  AppServicePlansGetOptionalParams,
   AppServicePlansGetResponse,
+  AppServicePlansCreateOrUpdateOptionalParams,
   AppServicePlansCreateOrUpdateResponse,
+  AppServicePlansDeleteOptionalParams,
   AppServicePlanPatchResource,
+  AppServicePlansUpdateOptionalParams,
   AppServicePlansUpdateResponse,
+  AppServicePlansListCapabilitiesOptionalParams,
   AppServicePlansListCapabilitiesResponse,
+  AppServicePlansGetHybridConnectionOptionalParams,
   AppServicePlansGetHybridConnectionResponse,
+  AppServicePlansDeleteHybridConnectionOptionalParams,
+  AppServicePlansListHybridConnectionKeysOptionalParams,
   AppServicePlansListHybridConnectionKeysResponse,
   AppServicePlansListWebAppsByHybridConnectionResponse,
+  AppServicePlansGetHybridConnectionPlanLimitOptionalParams,
   AppServicePlansGetHybridConnectionPlanLimitResponse,
   AppServicePlansListHybridConnectionsResponse,
   AppServicePlansRestartWebAppsOptionalParams,
   AppServicePlansListWebAppsResponse,
+  AppServicePlansGetServerFarmSkusOptionalParams,
   AppServicePlansGetServerFarmSkusResponse,
   AppServicePlansListUsagesResponse,
+  AppServicePlansListVnetsOptionalParams,
   AppServicePlansListVnetsResponse,
+  AppServicePlansGetVnetFromServerFarmOptionalParams,
   AppServicePlansGetVnetFromServerFarmResponse,
+  AppServicePlansGetVnetGatewayOptionalParams,
   AppServicePlansGetVnetGatewayResponse,
   VnetGateway,
+  AppServicePlansUpdateVnetGatewayOptionalParams,
   AppServicePlansUpdateVnetGatewayResponse,
+  AppServicePlansListRoutesForVnetOptionalParams,
   AppServicePlansListRoutesForVnetResponse,
+  AppServicePlansGetRouteForVnetOptionalParams,
   AppServicePlansGetRouteForVnetResponse,
   VnetRoute,
+  AppServicePlansCreateOrUpdateVnetRouteOptionalParams,
   AppServicePlansCreateOrUpdateVnetRouteResponse,
+  AppServicePlansDeleteVnetRouteOptionalParams,
+  AppServicePlansUpdateVnetRouteOptionalParams,
   AppServicePlansUpdateVnetRouteResponse,
+  AppServicePlansRebootWorkerOptionalParams,
   AppServicePlansListNextResponse,
   AppServicePlansListByResourceGroupNextResponse,
   AppServicePlansListWebAppsByHybridConnectionNextResponse,
@@ -122,7 +148,7 @@ export class AppServicePlansImpl implements AppServicePlans {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AppServicePlan> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -140,7 +166,7 @@ export class AppServicePlansImpl implements AppServicePlans {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServicePlan[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -158,7 +184,7 @@ export class AppServicePlansImpl implements AppServicePlans {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServicePlan> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -181,7 +207,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): PagedAsyncIterableIterator<string> {
     const iter = this.listWebAppsByHybridConnectionPagingAll(
       resourceGroupName,
@@ -214,7 +240,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): AsyncIterableIterator<string[]> {
     let result = await this._listWebAppsByHybridConnection(
       resourceGroupName,
@@ -244,7 +270,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.listWebAppsByHybridConnectionPagingPage(
       resourceGroupName,
@@ -266,7 +292,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   public listHybridConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsOptionalParams
   ): PagedAsyncIterableIterator<HybridConnection> {
     const iter = this.listHybridConnectionsPagingAll(
       resourceGroupName,
@@ -293,7 +319,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   private async *listHybridConnectionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsOptionalParams
   ): AsyncIterableIterator<HybridConnection[]> {
     let result = await this._listHybridConnections(
       resourceGroupName,
@@ -317,7 +343,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   private async *listHybridConnectionsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsOptionalParams
   ): AsyncIterableIterator<HybridConnection> {
     for await (const page of this.listHybridConnectionsPagingPage(
       resourceGroupName,
@@ -469,7 +495,7 @@ export class AppServicePlansImpl implements AppServicePlans {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupOptionalParams
   ): Promise<AppServicePlansListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -490,7 +516,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetOptionalParams
   ): Promise<AppServicePlansGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -514,7 +540,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServicePlansCreateOrUpdateResponse>,
@@ -536,16 +562,12 @@ export class AppServicePlansImpl implements AppServicePlans {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -557,7 +579,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   delete(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -581,7 +603,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlanPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateOptionalParams
   ): Promise<AppServicePlansUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -604,7 +626,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   listCapabilities(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListCapabilitiesOptionalParams
   ): Promise<AppServicePlansListCapabilitiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -630,7 +652,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetHybridConnectionOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -658,7 +680,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteHybridConnectionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -686,7 +708,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionKeysOptionalParams
   ): Promise<AppServicePlansListHybridConnectionKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -714,7 +736,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): Promise<AppServicePlansListWebAppsByHybridConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -738,7 +760,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   getHybridConnectionPlanLimit(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetHybridConnectionPlanLimitOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionPlanLimitResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -760,7 +782,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   private _listHybridConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsOptionalParams
   ): Promise<AppServicePlansListHybridConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -826,7 +848,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   getServerFarmSkus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetServerFarmSkusOptionalParams
   ): Promise<AppServicePlansGetServerFarmSkusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -870,7 +892,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   listVnets(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListVnetsOptionalParams
   ): Promise<AppServicePlansListVnetsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -894,7 +916,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetVnetFromServerFarmOptionalParams
   ): Promise<AppServicePlansGetVnetFromServerFarmResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -921,7 +943,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     vnetName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetVnetGatewayOptionalParams
   ): Promise<AppServicePlansGetVnetGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -951,7 +973,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateVnetGatewayOptionalParams
   ): Promise<AppServicePlansUpdateVnetGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -978,7 +1000,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListRoutesForVnetOptionalParams
   ): Promise<AppServicePlansListRoutesForVnetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1005,7 +1027,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     vnetName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetRouteForVnetOptionalParams
   ): Promise<AppServicePlansGetRouteForVnetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1035,7 +1057,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     routeName: string,
     route: VnetRoute,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansCreateOrUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1064,7 +1086,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     vnetName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteVnetRouteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1094,7 +1116,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     routeName: string,
     route: VnetRoute,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansUpdateVnetRouteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1121,7 +1143,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     workerName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansRebootWorkerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1163,7 +1185,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupNextOptionalParams
   ): Promise<AppServicePlansListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1192,7 +1214,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     namespaceName: string,
     relayName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionNextOptionalParams
   ): Promise<AppServicePlansListWebAppsByHybridConnectionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1219,7 +1241,7 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsNextOptionalParams
   ): Promise<AppServicePlansListHybridConnectionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

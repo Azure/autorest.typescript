@@ -17,19 +17,29 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGatewayConnection,
+  VirtualNetworkGatewayConnectionsListNextOptionalParams,
+  VirtualNetworkGatewayConnectionsListOptionalParams,
+  VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams,
   VirtualNetworkGatewayConnectionsCreateOrUpdateResponse,
+  VirtualNetworkGatewayConnectionsGetOptionalParams,
   VirtualNetworkGatewayConnectionsGetResponse,
+  VirtualNetworkGatewayConnectionsDeleteOptionalParams,
   TagsObject,
+  VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams,
   VirtualNetworkGatewayConnectionsUpdateTagsResponse,
   ConnectionSharedKey,
+  VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsSetSharedKeyResponse,
+  VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsGetSharedKeyResponse,
   VirtualNetworkGatewayConnectionsListResponse,
   ConnectionResetSharedKey,
+  VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams,
   VirtualNetworkGatewayConnectionsResetSharedKeyResponse,
   VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams,
   VirtualNetworkGatewayConnectionsStartPacketCaptureResponse,
   VpnPacketCaptureStopParameters,
+  VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams,
   VirtualNetworkGatewayConnectionsStopPacketCaptureResponse,
   VirtualNetworkGatewayConnectionsListNextResponse
 } from "../models";
@@ -56,7 +66,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGatewayConnection> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -74,7 +84,7 @@ export class VirtualNetworkGatewayConnectionsImpl
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGatewayConnection[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -92,7 +102,7 @@ export class VirtualNetworkGatewayConnectionsImpl
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGatewayConnection> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -111,7 +121,7 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VirtualNetworkGatewayConnection,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -135,17 +145,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -157,7 +163,7 @@ export class VirtualNetworkGatewayConnectionsImpl
   get(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsGetOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -179,7 +185,7 @@ export class VirtualNetworkGatewayConnectionsImpl
   async delete(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -197,17 +203,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -221,7 +223,7 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewayConnectionsUpdateTagsResponse>,
@@ -243,17 +245,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateTagsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateTagsOperationSpec,
-      initialOperationResult,
+      updateTagsOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -270,7 +268,7 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>,
@@ -292,17 +290,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      setSharedKeyOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: setSharedKeyOperationSpec,
-      initialOperationResult,
+      setSharedKeyOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -315,7 +309,7 @@ export class VirtualNetworkGatewayConnectionsImpl
   getSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsGetSharedKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -336,7 +330,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -363,7 +357,7 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionResetSharedKey,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -387,17 +381,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      resetSharedKeyOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: resetSharedKeyOperationSpec,
-      initialOperationResult,
+      resetSharedKeyOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -432,17 +422,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startPacketCaptureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startPacketCaptureOperationSpec,
-      initialOperationResult,
+      startPacketCaptureOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -457,7 +443,7 @@ export class VirtualNetworkGatewayConnectionsImpl
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnPacketCaptureStopParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -481,17 +467,13 @@ export class VirtualNetworkGatewayConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      stopPacketCaptureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: stopPacketCaptureOperationSpec,
-      initialOperationResult,
+      stopPacketCaptureOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -503,7 +485,7 @@ export class VirtualNetworkGatewayConnectionsImpl
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewayConnectionsListNextOptionalParams
   ): Promise<VirtualNetworkGatewayConnectionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

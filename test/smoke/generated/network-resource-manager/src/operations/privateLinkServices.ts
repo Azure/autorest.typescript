@@ -17,19 +17,35 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateLinkService,
+  PrivateLinkServicesListNextOptionalParams,
+  PrivateLinkServicesListOptionalParams,
+  PrivateLinkServicesListBySubscriptionNextOptionalParams,
+  PrivateLinkServicesListBySubscriptionOptionalParams,
   PrivateEndpointConnection,
+  PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams,
+  PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams,
   AutoApprovedPrivateLinkService,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams,
+  PrivateLinkServicesDeleteOptionalParams,
   PrivateLinkServicesGetOptionalParams,
   PrivateLinkServicesGetResponse,
+  PrivateLinkServicesCreateOrUpdateOptionalParams,
   PrivateLinkServicesCreateOrUpdateResponse,
   PrivateLinkServicesListResponse,
   PrivateLinkServicesListBySubscriptionResponse,
   PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesGetPrivateEndpointConnectionResponse,
+  PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesUpdatePrivateEndpointConnectionResponse,
+  PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesListPrivateEndpointConnectionsResponse,
   CheckPrivateLinkServiceVisibilityRequest,
+  PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse,
+  PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse,
@@ -60,7 +76,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkService> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -78,7 +94,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListOptionalParams
   ): AsyncIterableIterator<PrivateLinkService[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -96,7 +112,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListOptionalParams
   ): AsyncIterableIterator<PrivateLinkService> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -108,7 +124,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkService> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -125,7 +141,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams
   ): AsyncIterableIterator<PrivateLinkService[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -138,7 +154,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams
   ): AsyncIterableIterator<PrivateLinkService> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -154,7 +170,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   public listPrivateEndpointConnections(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection> {
     const iter = this.listPrivateEndpointConnectionsPagingAll(
       resourceGroupName,
@@ -181,7 +197,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listPrivateEndpointConnectionsPagingPage(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection[]> {
     let result = await this._listPrivateEndpointConnections(
       resourceGroupName,
@@ -205,7 +221,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listPrivateEndpointConnectionsPagingAll(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection> {
     for await (const page of this.listPrivateEndpointConnectionsPagingPage(
       resourceGroupName,
@@ -224,7 +240,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    */
   public listAutoApprovedPrivateLinkServices(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
   ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService> {
     const iter = this.listAutoApprovedPrivateLinkServicesPagingAll(
       location,
@@ -248,7 +264,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
 
   private async *listAutoApprovedPrivateLinkServicesPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
     let result = await this._listAutoApprovedPrivateLinkServices(
       location,
@@ -269,7 +285,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
 
   private async *listAutoApprovedPrivateLinkServicesPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService> {
     for await (const page of this.listAutoApprovedPrivateLinkServicesPagingPage(
       location,
@@ -289,7 +305,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   public listAutoApprovedPrivateLinkServicesByResourceGroup(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService> {
     const iter = this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingAll(
       location,
@@ -316,7 +332,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
     let result = await this._listAutoApprovedPrivateLinkServicesByResourceGroup(
       location,
@@ -340,7 +356,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listAutoApprovedPrivateLinkServicesByResourceGroupPagingAll(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService> {
     for await (const page of this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
       location,
@@ -360,7 +376,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   async delete(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -378,17 +394,13 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -424,7 +436,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     parameters: PrivateLinkService,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
@@ -446,17 +458,13 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -466,7 +474,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListOptionalParams
   ): Promise<PrivateLinkServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -483,7 +491,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams
   ): Promise<PrivateLinkServicesListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -533,7 +541,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     parameters: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams
   ): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -559,7 +567,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     peConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -578,17 +586,13 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deletePrivateEndpointConnectionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deletePrivateEndpointConnectionOperationSpec,
-      initialOperationResult,
+      deletePrivateEndpointConnectionOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -600,7 +604,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private _listPrivateEndpointConnections(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
   ): Promise<PrivateLinkServicesListPrivateEndpointConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -622,7 +626,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   checkPrivateLinkServiceVisibility(
     location: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
   ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -646,7 +650,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     location: string,
     resourceGroupName: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
   ): Promise<
     PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
   > {
@@ -672,7 +676,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    */
   private _listAutoApprovedPrivateLinkServices(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
   ): Promise<PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -696,7 +700,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private _listAutoApprovedPrivateLinkServicesByResourceGroup(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse
   > {
@@ -722,7 +726,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListNextOptionalParams
   ): Promise<PrivateLinkServicesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -742,7 +746,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionNextOptionalParams
   ): Promise<PrivateLinkServicesListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -766,7 +770,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams
   ): Promise<PrivateLinkServicesListPrivateEndpointConnectionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -790,7 +794,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private _listAutoApprovedPrivateLinkServicesNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse
   > {
@@ -819,7 +823,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     location: string,
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse
   > {

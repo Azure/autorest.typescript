@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Route,
+  RoutesListNextOptionalParams,
+  RoutesListOptionalParams,
+  RoutesDeleteOptionalParams,
+  RoutesGetOptionalParams,
   RoutesGetResponse,
+  RoutesCreateOrUpdateOptionalParams,
   RoutesCreateOrUpdateResponse,
   RoutesListResponse,
   RoutesListNextResponse
@@ -45,7 +50,7 @@ export class RoutesImpl implements Routes {
   public list(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListOptionalParams
   ): PagedAsyncIterableIterator<Route> {
     const iter = this.listPagingAll(resourceGroupName, routeTableName, options);
     return {
@@ -64,7 +69,7 @@ export class RoutesImpl implements Routes {
   private async *listPagingPage(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListOptionalParams
   ): AsyncIterableIterator<Route[]> {
     let result = await this._list(resourceGroupName, routeTableName, options);
     yield result.value || [];
@@ -84,7 +89,7 @@ export class RoutesImpl implements Routes {
   private async *listPagingAll(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListOptionalParams
   ): AsyncIterableIterator<Route> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -106,7 +111,7 @@ export class RoutesImpl implements Routes {
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -125,17 +130,13 @@ export class RoutesImpl implements Routes {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -149,7 +150,7 @@ export class RoutesImpl implements Routes {
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesGetOptionalParams
   ): Promise<RoutesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -176,7 +177,7 @@ export class RoutesImpl implements Routes {
     routeTableName: string,
     routeName: string,
     routeParameters: Route,
-    options?: coreHttp.OperationOptions
+    options?: RoutesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RoutesCreateOrUpdateResponse>,
@@ -199,17 +200,13 @@ export class RoutesImpl implements Routes {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -221,7 +218,7 @@ export class RoutesImpl implements Routes {
   private _list(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListOptionalParams
   ): Promise<RoutesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -245,7 +242,7 @@ export class RoutesImpl implements Routes {
     resourceGroupName: string,
     routeTableName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListNextOptionalParams
   ): Promise<RoutesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

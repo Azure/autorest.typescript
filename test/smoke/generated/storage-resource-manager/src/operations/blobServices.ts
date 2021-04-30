@@ -15,8 +15,11 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   BlobServiceProperties,
+  BlobServicesListOptionalParams,
   BlobServicesListResponse,
+  BlobServicesSetServicePropertiesOptionalParams,
   BlobServicesSetServicePropertiesResponse,
+  BlobServicesGetServicePropertiesOptionalParams,
   BlobServicesGetServicePropertiesResponse
 } from "../models";
 
@@ -45,7 +48,7 @@ export class BlobServicesImpl implements BlobServices {
   public list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesListOptionalParams
   ): PagedAsyncIterableIterator<BlobServiceProperties> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
@@ -64,7 +67,7 @@ export class BlobServicesImpl implements BlobServices {
   private async *listPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesListOptionalParams
   ): AsyncIterableIterator<BlobServiceProperties[]> {
     let result = await this._list(resourceGroupName, accountName, options);
     yield result.value || [];
@@ -73,7 +76,7 @@ export class BlobServicesImpl implements BlobServices {
   private async *listPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesListOptionalParams
   ): AsyncIterableIterator<BlobServiceProperties> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -96,7 +99,7 @@ export class BlobServicesImpl implements BlobServices {
   private _list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesListOptionalParams
   ): Promise<BlobServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -125,7 +128,7 @@ export class BlobServicesImpl implements BlobServices {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobServiceProperties,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesSetServicePropertiesOptionalParams
   ): Promise<BlobServicesSetServicePropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -152,7 +155,7 @@ export class BlobServicesImpl implements BlobServices {
   getServiceProperties(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesGetServicePropertiesOptionalParams
   ): Promise<BlobServicesGetServicePropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,7 +15,11 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ExtendedDatabaseBlobAuditingPolicy,
+  ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams,
+  ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams,
+  ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams,
   ExtendedDatabaseBlobAuditingPoliciesGetResponse,
+  ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse,
   ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse,
   ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse
@@ -47,7 +51,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -77,7 +81,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -104,7 +108,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ExtendedDatabaseBlobAuditingPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -128,7 +132,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -156,7 +160,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     serverName: string,
     databaseName: string,
     parameters: ExtendedDatabaseBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -183,7 +187,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -211,7 +215,7 @@ export class ExtendedDatabaseBlobAuditingPoliciesImpl
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
   ): Promise<ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

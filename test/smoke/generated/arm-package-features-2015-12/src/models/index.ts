@@ -60,6 +60,10 @@ export interface FeatureProperties {
   state?: string;
 }
 
+/** Optional parameters. */
+export interface FeatureClientListOperationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOperations operation. */
 export type FeatureClientListOperationsResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -71,6 +75,10 @@ export type FeatureClientListOperationsResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface FeatureClientListOperationsNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
 export type FeatureClientListOperationsNextResponse = OperationListResult & {
@@ -84,6 +92,10 @@ export type FeatureClientListOperationsNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface FeaturesListAllOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAll operation. */
 export type FeaturesListAllResponse = FeatureOperationsListResult & {
   /** The underlying HTTP response. */
@@ -95,6 +107,9 @@ export type FeaturesListAllResponse = FeatureOperationsListResult & {
     parsedBody: FeatureOperationsListResult;
   };
 };
+
+/** Optional parameters. */
+export interface FeaturesListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type FeaturesListResponse = FeatureOperationsListResult & {
@@ -108,6 +123,9 @@ export type FeaturesListResponse = FeatureOperationsListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface FeaturesGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type FeaturesGetResponse = FeatureResult & {
   /** The underlying HTTP response. */
@@ -119,6 +137,10 @@ export type FeaturesGetResponse = FeatureResult & {
     parsedBody: FeatureResult;
   };
 };
+
+/** Optional parameters. */
+export interface FeaturesRegisterOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the register operation. */
 export type FeaturesRegisterResponse = FeatureResult & {
@@ -132,6 +154,10 @@ export type FeaturesRegisterResponse = FeatureResult & {
   };
 };
 
+/** Optional parameters. */
+export interface FeaturesUnregisterOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the unregister operation. */
 export type FeaturesUnregisterResponse = FeatureResult & {
   /** The underlying HTTP response. */
@@ -144,6 +170,10 @@ export type FeaturesUnregisterResponse = FeatureResult & {
   };
 };
 
+/** Optional parameters. */
+export interface FeaturesListAllNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAllNext operation. */
 export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
   /** The underlying HTTP response. */
@@ -155,6 +185,10 @@ export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
     parsedBody: FeatureOperationsListResult;
   };
 };
+
+/** Optional parameters. */
+export interface FeaturesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type FeaturesListNextResponse = FeatureOperationsListResult & {

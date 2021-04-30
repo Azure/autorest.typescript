@@ -16,6 +16,7 @@ import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   TransparentDataEncryptionActivity,
   TransparentDataEncryptionName,
+  TransparentDataEncryptionActivitiesListByConfigurationOptionalParams,
   TransparentDataEncryptionActivitiesListByConfigurationResponse
 } from "../models";
 
@@ -47,7 +48,7 @@ export class TransparentDataEncryptionActivitiesImpl
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
   ): PagedAsyncIterableIterator<TransparentDataEncryptionActivity> {
     const iter = this.listByConfigurationPagingAll(
       resourceGroupName,
@@ -80,7 +81,7 @@ export class TransparentDataEncryptionActivitiesImpl
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
   ): AsyncIterableIterator<TransparentDataEncryptionActivity[]> {
     let result = await this._listByConfiguration(
       resourceGroupName,
@@ -97,7 +98,7 @@ export class TransparentDataEncryptionActivitiesImpl
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
   ): AsyncIterableIterator<TransparentDataEncryptionActivity> {
     for await (const page of this.listByConfigurationPagingPage(
       resourceGroupName,
@@ -124,7 +125,7 @@ export class TransparentDataEncryptionActivitiesImpl
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
   ): Promise<TransparentDataEncryptionActivitiesListByConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

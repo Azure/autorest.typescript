@@ -17,6 +17,8 @@ import { FeatureClientContext } from "./featureClientContext";
 import {
   FeatureClientOptionalParams,
   Operation,
+  FeatureClientListOperationsNextOptionalParams,
+  FeatureClientListOperationsOptionalParams,
   FeatureClientListOperationsResponse,
   FeatureClientListOperationsNextResponse
 } from "./models";
@@ -43,7 +45,7 @@ export class FeatureClient extends FeatureClientContext {
    * @param options The options parameters.
    */
   public listOperations(
-    options?: coreHttp.OperationOptions
+    options?: FeatureClientListOperationsOptionalParams
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listOperationsPagingAll(options);
     return {
@@ -60,7 +62,7 @@ export class FeatureClient extends FeatureClientContext {
   }
 
   private async *listOperationsPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: FeatureClientListOperationsOptionalParams
   ): AsyncIterableIterator<Operation[]> {
     let result = await this._listOperations(options);
     yield result.value || [];
@@ -73,7 +75,7 @@ export class FeatureClient extends FeatureClientContext {
   }
 
   private async *listOperationsPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: FeatureClientListOperationsOptionalParams
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listOperationsPagingPage(options)) {
       yield* page;
@@ -85,7 +87,7 @@ export class FeatureClient extends FeatureClientContext {
    * @param options The options parameters.
    */
   private _listOperations(
-    options?: coreHttp.OperationOptions
+    options?: FeatureClientListOperationsOptionalParams
   ): Promise<FeatureClientListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -103,7 +105,7 @@ export class FeatureClient extends FeatureClientContext {
    */
   private _listOperationsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FeatureClientListOperationsNextOptionalParams
   ): Promise<FeatureClientListOperationsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

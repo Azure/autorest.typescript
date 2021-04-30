@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { VirtualMachineSize, VirtualMachineSizesListResponse } from "../models";
+import {
+  VirtualMachineSize,
+  VirtualMachineSizesListOptionalParams,
+  VirtualMachineSizesListResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a VirtualMachineSizes. */
@@ -36,7 +40,7 @@ export class VirtualMachineSizesImpl implements VirtualMachineSizes {
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineSizesListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -54,7 +58,7 @@ export class VirtualMachineSizesImpl implements VirtualMachineSizes {
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineSizesListOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -62,7 +66,7 @@ export class VirtualMachineSizesImpl implements VirtualMachineSizes {
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineSizesListOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -77,7 +81,7 @@ export class VirtualMachineSizesImpl implements VirtualMachineSizes {
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineSizesListOptionalParams
   ): Promise<VirtualMachineSizesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

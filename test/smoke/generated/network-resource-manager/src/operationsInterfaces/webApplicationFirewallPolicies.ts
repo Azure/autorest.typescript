@@ -12,8 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WebApplicationFirewallPolicy,
+  WebApplicationFirewallPoliciesListNextOptionalParams,
+  WebApplicationFirewallPoliciesListOptionalParams,
+  WebApplicationFirewallPoliciesListAllNextOptionalParams,
+  WebApplicationFirewallPoliciesListAllOptionalParams,
+  WebApplicationFirewallPoliciesGetOptionalParams,
   WebApplicationFirewallPoliciesGetResponse,
-  WebApplicationFirewallPoliciesCreateOrUpdateResponse
+  WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams,
+  WebApplicationFirewallPoliciesCreateOrUpdateResponse,
+  WebApplicationFirewallPoliciesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -26,14 +33,14 @@ export interface WebApplicationFirewallPolicies {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
   /**
    * Gets all the WAF policies in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllOptionalParams
   ): PagedAsyncIterableIterator<WebApplicationFirewallPolicy>;
   /**
    * Retrieve protection policy with specified name within a resource group.
@@ -44,7 +51,7 @@ export interface WebApplicationFirewallPolicies {
   get(
     resourceGroupName: string,
     policyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesGetOptionalParams
   ): Promise<WebApplicationFirewallPoliciesGetResponse>;
   /**
    * Creates or update policy with specified rule set name within a resource group.
@@ -57,7 +64,7 @@ export interface WebApplicationFirewallPolicies {
     resourceGroupName: string,
     policyName: string,
     parameters: WebApplicationFirewallPolicy,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams
   ): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse>;
   /**
    * Deletes Policy.
@@ -68,7 +75,7 @@ export interface WebApplicationFirewallPolicies {
   delete(
     resourceGroupName: string,
     policyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -14,8 +14,11 @@ import {
   ManagedInstanceKey,
   ManagedInstanceKeysListByInstanceNextOptionalParams,
   ManagedInstanceKeysListByInstanceOptionalParams,
+  ManagedInstanceKeysGetOptionalParams,
   ManagedInstanceKeysGetResponse,
-  ManagedInstanceKeysCreateOrUpdateResponse
+  ManagedInstanceKeysCreateOrUpdateOptionalParams,
+  ManagedInstanceKeysCreateOrUpdateResponse,
+  ManagedInstanceKeysDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -45,7 +48,7 @@ export interface ManagedInstanceKeys {
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysGetOptionalParams
   ): Promise<ManagedInstanceKeysGetResponse>;
   /**
    * Creates or updates a managed instance key.
@@ -61,7 +64,7 @@ export interface ManagedInstanceKeys {
     managedInstanceName: string,
     keyName: string,
     parameters: ManagedInstanceKey,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
@@ -80,7 +83,7 @@ export interface ManagedInstanceKeys {
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

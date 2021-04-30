@@ -10,7 +10,9 @@ import * as coreHttp from "@azure/core-http";
 import {
   TransparentDataEncryption,
   TransparentDataEncryptionName,
+  TransparentDataEncryptionsCreateOrUpdateOptionalParams,
   TransparentDataEncryptionsCreateOrUpdateResponse,
+  TransparentDataEncryptionsGetOptionalParams,
   TransparentDataEncryptionsGetResponse
 } from "../models";
 
@@ -33,7 +35,7 @@ export interface TransparentDataEncryptions {
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
     parameters: TransparentDataEncryption,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
   /**
    * Gets a database's transparent data encryption configuration.
@@ -49,6 +51,6 @@ export interface TransparentDataEncryptions {
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionsGetOptionalParams
   ): Promise<TransparentDataEncryptionsGetResponse>;
 }

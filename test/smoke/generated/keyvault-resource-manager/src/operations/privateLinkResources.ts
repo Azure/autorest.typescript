@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
-import { PrivateLinkResourcesListByVaultResponse } from "../models";
+import {
+  PrivateLinkResourcesListByVaultOptionalParams,
+  PrivateLinkResourcesListByVaultResponse
+} from "../models";
 
 /** Class representing a PrivateLinkResources. */
 export class PrivateLinkResourcesImpl implements PrivateLinkResources {
@@ -34,7 +37,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   listByVault(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByVaultOptionalParams
   ): Promise<PrivateLinkResourcesListByVaultResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

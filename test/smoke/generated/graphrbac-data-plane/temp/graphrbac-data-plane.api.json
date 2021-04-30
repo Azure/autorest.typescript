@@ -1154,13 +1154,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsAddOwnerOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsAddOwnerOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1190,8 +1186,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1214,7 +1210,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1239,13 +1235,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsCreateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1275,8 +1267,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1292,7 +1284,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1316,13 +1308,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1352,8 +1340,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1369,7 +1357,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1393,13 +1381,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1429,8 +1413,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1446,7 +1430,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1470,13 +1454,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsGetServicePrincipalsIdByAppIdOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsGetServicePrincipalsIdByAppIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1506,8 +1486,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1523,7 +1503,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1605,13 +1585,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListKeyCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsListKeyCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1641,8 +1617,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1658,7 +1634,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1682,13 +1658,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1718,8 +1690,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1735,7 +1707,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1759,13 +1731,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListOwnersOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsListOwnersOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1795,8 +1763,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1812,7 +1780,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1836,13 +1804,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsListPasswordCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsListPasswordCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1872,8 +1836,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1889,7 +1853,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1922,13 +1886,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsPatchOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsPatchOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1958,8 +1918,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1982,7 +1942,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2014,13 +1974,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsRemoveOwnerOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsRemoveOwnerOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2050,8 +2006,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2074,7 +2030,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2107,13 +2063,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsUpdateKeyCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsUpdateKeyCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2143,8 +2095,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2167,7 +2119,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2200,13 +2152,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ApplicationsUpdatePasswordCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ApplicationsUpdatePasswordCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2236,8 +2184,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2260,7 +2208,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -2268,6 +2216,72 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsAddOwnerOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsAddOwnerOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsAddOwnerOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsCreateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsCreateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsCreateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2318,6 +2332,72 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ApplicationsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
@@ -2364,6 +2444,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsGetServicePrincipalsIdByAppIdOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsGetServicePrincipalsIdByAppIdOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsGetServicePrincipalsIdByAppIdOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2414,6 +2527,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsListKeyCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListKeyCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListKeyCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ApplicationsListKeyCredentialsResponse:type",
           "docComment": "/**\n * Contains response data for the listKeyCredentials operation.\n */\n",
@@ -2460,6 +2606,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2569,6 +2748,39 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsListOwnersNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListOwnersNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListOwnersNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ApplicationsListOwnersNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOwnersNext operation.\n */\n",
@@ -2617,6 +2829,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsListOwnersOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListOwnersOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListOwnersOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ApplicationsListOwnersResponse:type",
           "docComment": "/**\n * Contains response data for the listOwners operation.\n */\n",
@@ -2663,6 +2908,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsListPasswordCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsListPasswordCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsListPasswordCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -2759,6 +3037,138 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsPatchOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsPatchOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsPatchOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsRemoveOwnerOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsRemoveOwnerOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsRemoveOwnerOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsUpdateKeyCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsUpdateKeyCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsUpdateKeyCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ApplicationsUpdatePasswordCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationsUpdatePasswordCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationsUpdatePasswordCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -3203,13 +3613,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "DeletedApplicationsHardDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!DeletedApplicationsHardDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3239,8 +3645,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -3256,7 +3662,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -3338,13 +3744,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "DeletedApplicationsListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!DeletedApplicationsListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3374,8 +3776,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -3391,7 +3793,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -3415,13 +3817,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "DeletedApplicationsRestoreOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!DeletedApplicationsRestoreOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3451,8 +3849,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -3468,7 +3866,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -3476,6 +3874,72 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!DeletedApplicationsHardDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeletedApplicationsHardDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeletedApplicationsHardDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!DeletedApplicationsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeletedApplicationsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeletedApplicationsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -3631,6 +4095,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!DeletedApplicationsRestoreOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeletedApplicationsRestoreOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeletedApplicationsRestoreOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -4182,13 +4679,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "DomainsGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!DomainsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4218,8 +4711,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -4235,7 +4728,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -4301,6 +4794,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!DomainsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DomainsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DomainsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -5799,13 +6325,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsAddMemberOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsAddMemberOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5835,8 +6357,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5859,7 +6381,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -5892,13 +6414,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsAddOwnerOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsAddOwnerOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5928,8 +6446,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5952,7 +6470,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -5977,13 +6495,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsCreateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6013,8 +6527,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6030,7 +6544,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6054,13 +6568,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6090,8 +6600,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6107,7 +6617,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6131,13 +6641,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6167,8 +6673,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6184,7 +6690,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6209,13 +6715,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsIsMemberOfOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsIsMemberOfOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6245,8 +6747,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6262,7 +6764,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6344,13 +6846,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsGetGroupMembersOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsGetGroupMembersOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6380,8 +6878,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6397,7 +6895,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6421,13 +6919,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsGetGroupMembersNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsGetGroupMembersNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6457,8 +6951,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6474,7 +6968,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6507,13 +7001,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsGetMemberGroupsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsGetMemberGroupsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6534,8 +7024,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 10
+                "startIndex": 7,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6558,7 +7048,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6582,13 +7072,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6618,8 +7104,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6635,7 +7121,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6659,13 +7145,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsListOwnersOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsListOwnersOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6695,8 +7177,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6712,7 +7194,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -6744,13 +7226,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsRemoveMemberOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsRemoveMemberOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6780,8 +7258,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6804,7 +7282,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6836,13 +7314,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "GroupsRemoveOwnerOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!GroupsRemoveOwnerOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6872,8 +7346,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6896,7 +7370,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -6904,6 +7378,105 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsAddMemberOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsAddMemberOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsAddMemberOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsAddOwnerOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsAddOwnerOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsAddOwnerOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsCreateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsCreateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsCreateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -6954,6 +7527,72 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsGetGroupMembersNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsGetGroupMembersNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsGetGroupMembersNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupsGetGroupMembersNextResponse:type",
           "docComment": "/**\n * Contains response data for the getGroupMembersNext operation.\n */\n",
@@ -7000,6 +7639,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsGetGroupMembersOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsGetGroupMembersOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsGetGroupMembersOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7050,6 +7722,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsGetMemberGroupsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsGetMemberGroupsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsGetMemberGroupsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupsGetMemberGroupsResponse:type",
           "docComment": "/**\n * Contains response data for the getMemberGroups operation.\n */\n",
@@ -7096,6 +7801,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7146,6 +7884,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsIsMemberOfOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsIsMemberOfOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsIsMemberOfOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupsIsMemberOfResponse:type",
           "docComment": "/**\n * Contains response data for the isMemberOf operation.\n */\n",
@@ -7192,6 +7963,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7301,6 +8105,39 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsListOwnersNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsListOwnersNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsListOwnersNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupsListOwnersNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOwnersNext operation.\n */\n",
@@ -7347,6 +8184,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsListOwnersOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsListOwnersOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsListOwnersOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -7443,6 +8313,72 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsRemoveMemberOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsRemoveMemberOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsRemoveMemberOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!GroupsRemoveOwnerOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GroupsRemoveOwnerOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GroupsRemoveOwnerOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -8384,13 +9320,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "OAuth2PermissionGrantDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -8420,8 +9352,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8437,7 +9369,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -8519,13 +9451,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "OAuth2PermissionGrantListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -8555,8 +9483,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -8572,7 +9500,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -8932,6 +9860,72 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OAuth2PermissionGrantDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OAuth2PermissionGrantDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OAuth2PermissionGrantListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OAuth2PermissionGrantListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
@@ -9189,13 +10183,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ObjectsGetObjectsByObjectIdsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ObjectsGetObjectsByObjectIdsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -9225,8 +10215,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -9242,7 +10232,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -9266,13 +10256,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ObjectsGetObjectsByObjectIdsNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ObjectsGetObjectsByObjectIdsNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -9302,8 +10288,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -9319,7 +10305,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -9327,6 +10313,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ObjectsGetObjectsByObjectIdsNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ObjectsGetObjectsByObjectIdsNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ObjectsGetObjectsByObjectIdsNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -9375,6 +10394,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ObjectsGetObjectsByObjectIdsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ObjectsGetObjectsByObjectIdsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ObjectsGetObjectsByObjectIdsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -10902,13 +11954,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsCreateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -10938,8 +11986,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -10955,7 +12003,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -10979,13 +12027,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11015,8 +12059,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11032,7 +12076,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11056,13 +12100,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11092,8 +12132,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11109,7 +12149,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11191,13 +12231,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsListKeyCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListKeyCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11227,8 +12263,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11244,7 +12280,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11268,13 +12304,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11304,8 +12336,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11321,7 +12353,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11345,13 +12377,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsListOwnersOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListOwnersOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11381,8 +12409,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11398,7 +12426,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11422,13 +12450,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsListPasswordCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListPasswordCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11458,8 +12482,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11475,7 +12499,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -11508,13 +12532,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsUpdateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11544,8 +12564,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11568,7 +12588,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -11601,13 +12621,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsUpdateKeyCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdateKeyCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11637,8 +12653,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11661,7 +12677,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -11694,13 +12710,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "ServicePrincipalsUpdatePasswordCredentialsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdatePasswordCredentialsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -11730,8 +12742,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -11754,7 +12766,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -11762,6 +12774,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsCreateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsCreateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsCreateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -11812,6 +12857,72 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ServicePrincipalsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
@@ -11860,6 +12971,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListKeyCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsListKeyCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsListKeyCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListKeyCredentialsResponse:type",
           "docComment": "/**\n * Contains response data for the listKeyCredentials operation.\n */\n",
@@ -11906,6 +13050,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -12015,6 +13192,39 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListOwnersNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsListOwnersNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsListOwnersNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListOwnersNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOwnersNext operation.\n */\n",
@@ -12063,6 +13273,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListOwnersOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsListOwnersOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsListOwnersOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListOwnersResponse:type",
           "docComment": "/**\n * Contains response data for the listOwners operation.\n */\n",
@@ -12109,6 +13352,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsListPasswordCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsListPasswordCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsListPasswordCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -12207,6 +13483,105 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdateKeyCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsUpdateKeyCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsUpdateKeyCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsUpdateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!ServicePrincipalsUpdatePasswordCredentialsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ServicePrincipalsUpdatePasswordCredentialsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ServicePrincipalUpdateParameters:type",
           "docComment": "/**\n * Request parameters for update an existing service principal.\n */\n",
@@ -12259,13 +13634,9 @@
                   "text": "get(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "SignedInUserGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!SignedInUserGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -12295,8 +13666,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12305,7 +13676,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -12321,13 +13692,9 @@
                   "text": "listOwnedObjects(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "SignedInUserListOwnedObjectsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!SignedInUserListOwnedObjectsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -12357,8 +13724,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12367,7 +13734,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -12391,13 +13758,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "SignedInUserListOwnedObjectsNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!SignedInUserListOwnedObjectsNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -12427,8 +13790,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12444,7 +13807,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -12452,6 +13815,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!SignedInUserGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SignedInUserGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SignedInUserGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -12502,6 +13898,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!SignedInUserListOwnedObjectsNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SignedInUserListOwnedObjectsNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SignedInUserListOwnedObjectsNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!SignedInUserListOwnedObjectsNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOwnedObjectsNext operation.\n */\n",
@@ -12548,6 +13977,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!SignedInUserListOwnedObjectsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SignedInUserListOwnedObjectsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SignedInUserListOwnedObjectsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -13203,13 +14665,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersCreateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13239,8 +14697,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13256,7 +14714,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -13280,13 +14738,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersDeleteOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13316,8 +14770,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13333,7 +14787,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -13357,13 +14811,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersGetOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13393,8 +14843,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13410,7 +14860,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -13501,13 +14951,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersGetMemberGroupsOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersGetMemberGroupsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13528,8 +14974,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 10
+                "startIndex": 7,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13552,7 +14998,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -13576,13 +15022,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersListNextOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersListNextOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13612,8 +15054,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13629,7 +15071,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -13662,13 +15104,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "UsersUpdateOptionalParams",
+                  "canonicalReference": "graphrbac-data-plane!UsersUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -13698,8 +15136,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -13722,7 +15160,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -13730,6 +15168,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersCreateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersCreateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersCreateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -13780,6 +15251,72 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersDeleteOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersDeleteOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersDeleteOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersGetMemberGroupsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersGetMemberGroupsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersGetMemberGroupsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!UsersGetMemberGroupsResponse:type",
           "docComment": "/**\n * Contains response data for the getMemberGroups operation.\n */\n",
@@ -13828,6 +15365,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!UsersGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
@@ -13874,6 +15444,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -14054,6 +15657,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "graphrbac-data-plane!UsersUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsersUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsersUpdateOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",

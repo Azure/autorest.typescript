@@ -13,7 +13,12 @@ import {
   ResourceLink,
   ResourceLinksListAtSubscriptionNextOptionalParams,
   ResourceLinksListAtSubscriptionOptionalParams,
+  ResourceLinksListAtSourceScopeNextOptionalParams,
+  ResourceLinksListAtSourceScopeOptionalParams,
+  ResourceLinksDeleteOptionalParams,
+  ResourceLinksCreateOrUpdateOptionalParams,
   ResourceLinksCreateOrUpdateResponse,
+  ResourceLinksGetOptionalParams,
   ResourceLinksGetResponse
 } from "../models";
 
@@ -36,7 +41,7 @@ export interface ResourceLinks {
    */
   listAtSourceScope(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksListAtSourceScopeOptionalParams
   ): PagedAsyncIterableIterator<ResourceLink>;
   /**
    * Deletes a resource link with the specified ID.
@@ -48,7 +53,7 @@ export interface ResourceLinks {
    */
   delete(
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Creates or updates a resource link between the specified resources.
@@ -62,7 +67,7 @@ export interface ResourceLinks {
   createOrUpdate(
     linkId: string,
     parameters: ResourceLink,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksCreateOrUpdateOptionalParams
   ): Promise<ResourceLinksCreateOrUpdateResponse>;
   /**
    * Gets a resource link with the specified ID.
@@ -72,6 +77,6 @@ export interface ResourceLinks {
    */
   get(
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceLinksGetOptionalParams
   ): Promise<ResourceLinksGetResponse>;
 }

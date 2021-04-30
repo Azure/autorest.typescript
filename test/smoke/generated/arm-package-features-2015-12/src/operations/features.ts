@@ -15,10 +15,17 @@ import * as Parameters from "../models/parameters";
 import { FeatureClientContext } from "../featureClientContext";
 import {
   FeatureResult,
+  FeaturesListAllNextOptionalParams,
+  FeaturesListAllOptionalParams,
+  FeaturesListNextOptionalParams,
+  FeaturesListOptionalParams,
   FeaturesListAllResponse,
   FeaturesListResponse,
+  FeaturesGetOptionalParams,
   FeaturesGetResponse,
+  FeaturesRegisterOptionalParams,
   FeaturesRegisterResponse,
+  FeaturesUnregisterOptionalParams,
   FeaturesUnregisterResponse,
   FeaturesListAllNextResponse,
   FeaturesListNextResponse
@@ -42,7 +49,7 @@ export class FeaturesImpl implements Features {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllOptionalParams
   ): PagedAsyncIterableIterator<FeatureResult> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -59,7 +66,7 @@ export class FeaturesImpl implements Features {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllOptionalParams
   ): AsyncIterableIterator<FeatureResult[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -72,7 +79,7 @@ export class FeaturesImpl implements Features {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllOptionalParams
   ): AsyncIterableIterator<FeatureResult> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -87,7 +94,7 @@ export class FeaturesImpl implements Features {
    */
   public list(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListOptionalParams
   ): PagedAsyncIterableIterator<FeatureResult> {
     const iter = this.listPagingAll(resourceProviderNamespace, options);
     return {
@@ -105,7 +112,7 @@ export class FeaturesImpl implements Features {
 
   private async *listPagingPage(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListOptionalParams
   ): AsyncIterableIterator<FeatureResult[]> {
     let result = await this._list(resourceProviderNamespace, options);
     yield result.value || [];
@@ -123,7 +130,7 @@ export class FeaturesImpl implements Features {
 
   private async *listPagingAll(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListOptionalParams
   ): AsyncIterableIterator<FeatureResult> {
     for await (const page of this.listPagingPage(
       resourceProviderNamespace,
@@ -138,7 +145,7 @@ export class FeaturesImpl implements Features {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllOptionalParams
   ): Promise<FeaturesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -157,7 +164,7 @@ export class FeaturesImpl implements Features {
    */
   private _list(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListOptionalParams
   ): Promise<FeaturesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,
@@ -178,7 +185,7 @@ export class FeaturesImpl implements Features {
   get(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesGetOptionalParams
   ): Promise<FeaturesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,
@@ -200,7 +207,7 @@ export class FeaturesImpl implements Features {
   register(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesRegisterOptionalParams
   ): Promise<FeaturesRegisterResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,
@@ -222,7 +229,7 @@ export class FeaturesImpl implements Features {
   unregister(
     resourceProviderNamespace: string,
     featureName: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesUnregisterOptionalParams
   ): Promise<FeaturesUnregisterResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,
@@ -242,7 +249,7 @@ export class FeaturesImpl implements Features {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListAllNextOptionalParams
   ): Promise<FeaturesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -263,7 +270,7 @@ export class FeaturesImpl implements Features {
   private _listNext(
     resourceProviderNamespace: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FeaturesListNextOptionalParams
   ): Promise<FeaturesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,

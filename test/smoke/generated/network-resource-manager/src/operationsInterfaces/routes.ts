@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Route,
+  RoutesListNextOptionalParams,
+  RoutesListOptionalParams,
+  RoutesDeleteOptionalParams,
+  RoutesGetOptionalParams,
   RoutesGetResponse,
+  RoutesCreateOrUpdateOptionalParams,
   RoutesCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface Routes {
   list(
     resourceGroupName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesListOptionalParams
   ): PagedAsyncIterableIterator<Route>;
   /**
    * Deletes the specified route from a route table.
@@ -41,7 +46,7 @@ export interface Routes {
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface Routes {
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: RoutesGetOptionalParams
   ): Promise<RoutesGetResponse>;
   /**
    * Creates or updates a route in the specified route table.
@@ -71,7 +76,7 @@ export interface Routes {
     routeTableName: string,
     routeName: string,
     routeParameters: Route,
-    options?: coreHttp.OperationOptions
+    options?: RoutesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RoutesCreateOrUpdateResponse>,

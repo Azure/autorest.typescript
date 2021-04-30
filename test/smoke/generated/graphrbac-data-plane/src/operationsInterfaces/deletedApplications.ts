@@ -11,8 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Application,
+  DeletedApplicationsListNextOptionalParams,
   DeletedApplicationsListOptionalParams,
-  DeletedApplicationsRestoreResponse
+  DeletedApplicationsRestoreOptionalParams,
+  DeletedApplicationsRestoreResponse,
+  DeletedApplicationsHardDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +35,7 @@ export interface DeletedApplications {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsListNextOptionalParams
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Restores the deleted application in the directory.
@@ -41,7 +44,7 @@ export interface DeletedApplications {
    */
   restore(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsRestoreOptionalParams
   ): Promise<DeletedApplicationsRestoreResponse>;
   /**
    * Hard-delete an application.
@@ -50,6 +53,6 @@ export interface DeletedApplications {
    */
   hardDelete(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsHardDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

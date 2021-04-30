@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerKey,
+  ServerKeysListByServerNextOptionalParams,
+  ServerKeysListByServerOptionalParams,
+  ServerKeysGetOptionalParams,
   ServerKeysGetResponse,
-  ServerKeysCreateOrUpdateResponse
+  ServerKeysCreateOrUpdateOptionalParams,
+  ServerKeysCreateOrUpdateResponse,
+  ServerKeysDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,7 +34,7 @@ export interface ServerKeys {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerKey>;
   /**
    * Gets a server key.
@@ -43,7 +48,7 @@ export interface ServerKeys {
     resourceGroupName: string,
     serverName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysGetOptionalParams
   ): Promise<ServerKeysGetResponse>;
   /**
    * Creates or updates a server key.
@@ -62,7 +67,7 @@ export interface ServerKeys {
     serverName: string,
     keyName: string,
     parameters: ServerKey,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerKeysCreateOrUpdateResponse>,
@@ -81,7 +86,7 @@ export interface ServerKeys {
     resourceGroupName: string,
     serverName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

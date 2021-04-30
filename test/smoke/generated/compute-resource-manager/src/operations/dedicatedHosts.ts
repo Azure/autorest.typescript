@@ -17,9 +17,15 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DedicatedHost,
+  DedicatedHostsListByHostGroupNextOptionalParams,
+  DedicatedHostsListByHostGroupOptionalParams,
+  DedicatedHostsCreateOrUpdateOptionalParams,
   DedicatedHostsCreateOrUpdateResponse,
   DedicatedHostUpdate,
+  DedicatedHostsUpdateOptionalParams,
   DedicatedHostsUpdateResponse,
+  DedicatedHostsDeleteOptionalParams,
+  DedicatedHostsGetOptionalParams,
   DedicatedHostsGetResponse,
   DedicatedHostsListByHostGroupResponse,
   DedicatedHostsListByHostGroupNextResponse
@@ -48,7 +54,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   public listByHostGroup(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHost> {
     const iter = this.listByHostGroupPagingAll(
       resourceGroupName,
@@ -75,7 +81,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   private async *listByHostGroupPagingPage(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupOptionalParams
   ): AsyncIterableIterator<DedicatedHost[]> {
     let result = await this._listByHostGroup(
       resourceGroupName,
@@ -99,7 +105,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   private async *listByHostGroupPagingAll(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupOptionalParams
   ): AsyncIterableIterator<DedicatedHost> {
     for await (const page of this.listByHostGroupPagingPage(
       resourceGroupName,
@@ -123,7 +129,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHost,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DedicatedHostsCreateOrUpdateResponse>,
@@ -146,16 +152,12 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -171,7 +173,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHostUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DedicatedHostsUpdateResponse>,
@@ -194,16 +196,12 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -217,7 +215,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -236,16 +234,12 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -259,7 +253,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsGetOptionalParams
   ): Promise<DedicatedHostsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -283,7 +277,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   private _listByHostGroup(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupOptionalParams
   ): Promise<DedicatedHostsListByHostGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -307,7 +301,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupNextOptionalParams
   ): Promise<DedicatedHostsListByHostGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

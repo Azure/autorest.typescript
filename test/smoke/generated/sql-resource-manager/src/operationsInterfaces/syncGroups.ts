@@ -12,14 +12,27 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
+  SyncGroupsListSyncDatabaseIdsNextOptionalParams,
+  SyncGroupsListSyncDatabaseIdsOptionalParams,
   SyncFullSchemaProperties,
+  SyncGroupsListHubSchemasNextOptionalParams,
+  SyncGroupsListHubSchemasOptionalParams,
   SyncGroupLogProperties,
   Enum21,
   SyncGroupsListLogsNextOptionalParams,
   SyncGroupsListLogsOptionalParams,
   SyncGroup,
+  SyncGroupsListByDatabaseNextOptionalParams,
+  SyncGroupsListByDatabaseOptionalParams,
+  SyncGroupsRefreshHubSchemaOptionalParams,
+  SyncGroupsCancelSyncOptionalParams,
+  SyncGroupsTriggerSyncOptionalParams,
+  SyncGroupsGetOptionalParams,
   SyncGroupsGetResponse,
+  SyncGroupsCreateOrUpdateOptionalParams,
   SyncGroupsCreateOrUpdateResponse,
+  SyncGroupsDeleteOptionalParams,
+  SyncGroupsUpdateOptionalParams,
   SyncGroupsUpdateResponse
 } from "../models";
 
@@ -33,7 +46,7 @@ export interface SyncGroups {
    */
   listSyncDatabaseIds(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
   ): PagedAsyncIterableIterator<SyncDatabaseIdProperties>;
   /**
    * Gets a collection of hub database schemas.
@@ -49,7 +62,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasOptionalParams
   ): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
   /**
    * Gets a collection of sync group logs.
@@ -85,7 +98,7 @@ export interface SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<SyncGroup>;
   /**
    * Refreshes a hub database schema.
@@ -101,7 +114,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsRefreshHubSchemaOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -119,7 +132,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsCancelSyncOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Triggers a sync group synchronization.
@@ -135,7 +148,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsTriggerSyncOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a sync group.
@@ -151,7 +164,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsGetOptionalParams
   ): Promise<SyncGroupsGetResponse>;
   /**
    * Creates or updates a sync group.
@@ -169,7 +182,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     parameters: SyncGroup,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncGroupsCreateOrUpdateResponse>,
@@ -190,7 +203,7 @@ export interface SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -210,7 +223,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     parameters: SyncGroup,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncGroupsUpdateResponse>,

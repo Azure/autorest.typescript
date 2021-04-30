@@ -17,10 +17,17 @@ import {
   AvailabilitySet,
   AvailabilitySetsListBySubscriptionNextOptionalParams,
   AvailabilitySetsListBySubscriptionOptionalParams,
+  AvailabilitySetsListNextOptionalParams,
+  AvailabilitySetsListOptionalParams,
   VirtualMachineSize,
+  AvailabilitySetsListAvailableSizesOptionalParams,
+  AvailabilitySetsCreateOrUpdateOptionalParams,
   AvailabilitySetsCreateOrUpdateResponse,
   AvailabilitySetUpdate,
+  AvailabilitySetsUpdateOptionalParams,
   AvailabilitySetsUpdateResponse,
+  AvailabilitySetsDeleteOptionalParams,
+  AvailabilitySetsGetOptionalParams,
   AvailabilitySetsGetResponse,
   AvailabilitySetsListBySubscriptionResponse,
   AvailabilitySetsListResponse,
@@ -91,7 +98,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListOptionalParams
   ): PagedAsyncIterableIterator<AvailabilitySet> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -109,7 +116,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListOptionalParams
   ): AsyncIterableIterator<AvailabilitySet[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -127,7 +134,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListOptionalParams
   ): AsyncIterableIterator<AvailabilitySet> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -144,7 +151,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   public listAvailableSizes(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListAvailableSizesOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listAvailableSizesPagingAll(
       resourceGroupName,
@@ -171,7 +178,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   private async *listAvailableSizesPagingPage(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListAvailableSizesOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize[]> {
     let result = await this._listAvailableSizes(
       resourceGroupName,
@@ -184,7 +191,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   private async *listAvailableSizesPagingAll(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListAvailableSizesOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize> {
     for await (const page of this.listAvailableSizesPagingPage(
       resourceGroupName,
@@ -206,7 +213,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     resourceGroupName: string,
     availabilitySetName: string,
     parameters: AvailabilitySet,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsCreateOrUpdateOptionalParams
   ): Promise<AvailabilitySetsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -231,7 +238,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     resourceGroupName: string,
     availabilitySetName: string,
     parameters: AvailabilitySetUpdate,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsUpdateOptionalParams
   ): Promise<AvailabilitySetsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -254,7 +261,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   delete(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -276,7 +283,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   get(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsGetOptionalParams
   ): Promise<AvailabilitySetsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -312,7 +319,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListOptionalParams
   ): Promise<AvailabilitySetsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -334,7 +341,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   private _listAvailableSizes(
     resourceGroupName: string,
     availabilitySetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListAvailableSizesOptionalParams
   ): Promise<AvailabilitySetsListAvailableSizesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -375,7 +382,7 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailabilitySetsListNextOptionalParams
   ): Promise<AvailabilitySetsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

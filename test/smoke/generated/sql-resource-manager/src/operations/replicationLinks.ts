@@ -17,8 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ReplicationLink,
+  ReplicationLinksListByDatabaseOptionalParams,
+  ReplicationLinksDeleteOptionalParams,
+  ReplicationLinksGetOptionalParams,
   ReplicationLinksGetResponse,
+  ReplicationLinksFailoverOptionalParams,
+  ReplicationLinksFailoverAllowDataLossOptionalParams,
   UnlinkParameters,
+  ReplicationLinksUnlinkOptionalParams,
   ReplicationLinksListByDatabaseResponse
 } from "../models";
 
@@ -47,7 +53,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ReplicationLink> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -77,7 +83,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksListByDatabaseOptionalParams
   ): AsyncIterableIterator<ReplicationLink[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -92,7 +98,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksListByDatabaseOptionalParams
   ): AsyncIterableIterator<ReplicationLink> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -118,7 +124,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -147,7 +153,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksGetOptionalParams
   ): Promise<ReplicationLinksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -176,7 +182,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -196,16 +202,12 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverOperationSpec,
-      initialOperationResult,
+      failoverOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -223,7 +225,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -243,16 +245,12 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverAllowDataLossOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverAllowDataLossOperationSpec,
-      initialOperationResult,
+      failoverAllowDataLossOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -271,7 +269,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksUnlinkOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -292,16 +290,12 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      unlinkOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: unlinkOperationSpec,
-      initialOperationResult,
+      unlinkOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -316,7 +310,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksListByDatabaseOptionalParams
   ): Promise<ReplicationLinksListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   Probe,
+  LoadBalancerProbesListNextOptionalParams,
+  LoadBalancerProbesListOptionalParams,
   LoadBalancerProbesListResponse,
+  LoadBalancerProbesGetOptionalParams,
   LoadBalancerProbesGetResponse,
   LoadBalancerProbesListNextResponse
 } from "../models";
@@ -42,7 +45,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
   public list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListOptionalParams
   ): PagedAsyncIterableIterator<Probe> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -69,7 +72,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
   private async *listPagingPage(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListOptionalParams
   ): AsyncIterableIterator<Probe[]> {
     let result = await this._list(resourceGroupName, loadBalancerName, options);
     yield result.value || [];
@@ -89,7 +92,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
   private async *listPagingAll(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListOptionalParams
   ): AsyncIterableIterator<Probe> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -109,7 +112,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
   private _list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListOptionalParams
   ): Promise<LoadBalancerProbesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -133,7 +136,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
     resourceGroupName: string,
     loadBalancerName: string,
     probeName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesGetOptionalParams
   ): Promise<LoadBalancerProbesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -158,7 +161,7 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerProbesListNextOptionalParams
   ): Promise<LoadBalancerProbesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

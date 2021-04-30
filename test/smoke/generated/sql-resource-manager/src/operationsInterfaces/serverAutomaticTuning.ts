@@ -8,8 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
   ServerAutomaticTuningDef,
+  ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -25,7 +27,7 @@ export interface ServerAutomaticTuning {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAutomaticTuningGetOptionalParams
   ): Promise<ServerAutomaticTuningGetResponse>;
   /**
    * Update automatic tuning options on server.
@@ -39,6 +41,6 @@ export interface ServerAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerAutomaticTuningDef,
-    options?: coreHttp.OperationOptions
+    options?: ServerAutomaticTuningUpdateOptionalParams
   ): Promise<ServerAutomaticTuningUpdateResponse>;
 }

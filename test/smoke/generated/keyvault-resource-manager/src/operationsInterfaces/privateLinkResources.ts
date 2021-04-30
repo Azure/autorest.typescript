@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { PrivateLinkResourcesListByVaultResponse } from "../models";
+import {
+  PrivateLinkResourcesListByVaultOptionalParams,
+  PrivateLinkResourcesListByVaultResponse
+} from "../models";
 
 /** Interface representing a PrivateLinkResources. */
 export interface PrivateLinkResources {
@@ -20,6 +23,6 @@ export interface PrivateLinkResources {
   listByVault(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByVaultOptionalParams
   ): Promise<PrivateLinkResourcesListByVaultResponse>;
 }

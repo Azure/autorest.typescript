@@ -15,11 +15,19 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   JobStep,
+  JobStepsListByVersionNextOptionalParams,
+  JobStepsListByVersionOptionalParams,
+  JobStepsListByJobNextOptionalParams,
+  JobStepsListByJobOptionalParams,
   JobStepsListByVersionResponse,
+  JobStepsGetByVersionOptionalParams,
   JobStepsGetByVersionResponse,
   JobStepsListByJobResponse,
+  JobStepsGetOptionalParams,
   JobStepsGetResponse,
+  JobStepsCreateOrUpdateOptionalParams,
   JobStepsCreateOrUpdateResponse,
+  JobStepsDeleteOptionalParams,
   JobStepsListByVersionNextResponse,
   JobStepsListByJobNextResponse
 } from "../models";
@@ -53,7 +61,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionOptionalParams
   ): PagedAsyncIterableIterator<JobStep> {
     const iter = this.listByVersionPagingAll(
       resourceGroupName,
@@ -89,7 +97,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionOptionalParams
   ): AsyncIterableIterator<JobStep[]> {
     let result = await this._listByVersion(
       resourceGroupName,
@@ -122,7 +130,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionOptionalParams
   ): AsyncIterableIterator<JobStep> {
     for await (const page of this.listByVersionPagingPage(
       resourceGroupName,
@@ -150,7 +158,7 @@ export class JobStepsImpl implements JobSteps {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobOptionalParams
   ): PagedAsyncIterableIterator<JobStep> {
     const iter = this.listByJobPagingAll(
       resourceGroupName,
@@ -183,7 +191,7 @@ export class JobStepsImpl implements JobSteps {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobOptionalParams
   ): AsyncIterableIterator<JobStep[]> {
     let result = await this._listByJob(
       resourceGroupName,
@@ -213,7 +221,7 @@ export class JobStepsImpl implements JobSteps {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobOptionalParams
   ): AsyncIterableIterator<JobStep> {
     for await (const page of this.listByJobPagingPage(
       resourceGroupName,
@@ -242,7 +250,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionOptionalParams
   ): Promise<JobStepsListByVersionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -276,7 +284,7 @@ export class JobStepsImpl implements JobSteps {
     jobName: string,
     jobVersion: number,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsGetByVersionOptionalParams
   ): Promise<JobStepsGetByVersionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -307,7 +315,7 @@ export class JobStepsImpl implements JobSteps {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobOptionalParams
   ): Promise<JobStepsListByJobResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -338,7 +346,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsGetOptionalParams
   ): Promise<JobStepsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -372,7 +380,7 @@ export class JobStepsImpl implements JobSteps {
     jobName: string,
     stepName: string,
     parameters: JobStep,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsCreateOrUpdateOptionalParams
   ): Promise<JobStepsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -405,7 +413,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -439,7 +447,7 @@ export class JobStepsImpl implements JobSteps {
     jobName: string,
     jobVersion: number,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionNextOptionalParams
   ): Promise<JobStepsListByVersionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -472,7 +480,7 @@ export class JobStepsImpl implements JobSteps {
     jobAgentName: string,
     jobName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobNextOptionalParams
   ): Promise<JobStepsListByJobNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

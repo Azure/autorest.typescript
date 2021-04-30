@@ -12,16 +12,28 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   P2SVpnGateway,
+  P2SVpnGatewaysListByResourceGroupNextOptionalParams,
+  P2SVpnGatewaysListByResourceGroupOptionalParams,
+  P2SVpnGatewaysListNextOptionalParams,
+  P2SVpnGatewaysListOptionalParams,
+  P2SVpnGatewaysGetOptionalParams,
   P2SVpnGatewaysGetResponse,
+  P2SVpnGatewaysCreateOrUpdateOptionalParams,
   P2SVpnGatewaysCreateOrUpdateResponse,
   TagsObject,
+  P2SVpnGatewaysUpdateTagsOptionalParams,
   P2SVpnGatewaysUpdateTagsResponse,
+  P2SVpnGatewaysDeleteOptionalParams,
   P2SVpnProfileParameters,
+  P2SVpnGatewaysGenerateVpnProfileOptionalParams,
   P2SVpnGatewaysGenerateVpnProfileResponse,
+  P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams,
   P2SVpnGatewaysGetP2SVpnConnectionHealthResponse,
   P2SVpnConnectionHealthRequest,
+  P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams,
   P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse,
-  P2SVpnConnectionRequest
+  P2SVpnConnectionRequest,
+  P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,14 +46,14 @@ export interface P2SVpnGateways {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<P2SVpnGateway>;
   /**
    * Lists all the P2SVpnGateways in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<P2SVpnGateway>;
   /**
    * Retrieves the details of a virtual wan p2s vpn gateway.
@@ -52,7 +64,7 @@ export interface P2SVpnGateways {
   get(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetOptionalParams
   ): Promise<P2SVpnGatewaysGetResponse>;
   /**
    * Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
@@ -66,7 +78,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
@@ -84,7 +96,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysUpdateTagsOptionalParams
   ): Promise<P2SVpnGatewaysUpdateTagsResponse>;
   /**
    * Deletes a virtual wan p2s vpn gateway.
@@ -95,7 +107,7 @@ export interface P2SVpnGateways {
   delete(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -110,7 +122,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGenerateVpnProfileOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
@@ -127,7 +139,7 @@ export interface P2SVpnGateways {
   getP2SVpnConnectionHealth(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
@@ -146,7 +158,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     request: P2SVpnConnectionHealthRequest,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -166,7 +178,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

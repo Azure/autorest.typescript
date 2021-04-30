@@ -9,7 +9,12 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { ServiceTierAdvisor, ServiceTierAdvisorsGetResponse } from "../models";
+import {
+  ServiceTierAdvisor,
+  ServiceTierAdvisorsListByDatabaseOptionalParams,
+  ServiceTierAdvisorsGetOptionalParams,
+  ServiceTierAdvisorsGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ServiceTierAdvisors. */
@@ -26,7 +31,7 @@ export interface ServiceTierAdvisors {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ServiceTierAdvisor>;
   /**
    * Gets a service tier advisor.
@@ -42,6 +47,6 @@ export interface ServiceTierAdvisors {
     serverName: string,
     databaseName: string,
     serviceTierAdvisorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsGetOptionalParams
   ): Promise<ServiceTierAdvisorsGetResponse>;
 }

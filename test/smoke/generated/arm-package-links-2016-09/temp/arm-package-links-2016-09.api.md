@@ -56,7 +56,11 @@ export interface OperationListResult {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -66,6 +70,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -103,11 +111,15 @@ export interface ResourceLinkResult {
 
 // @public
 export interface ResourceLinks {
-    createOrUpdate(linkId: string, parameters: ResourceLink, options?: coreHttp.OperationOptions): Promise<ResourceLinksCreateOrUpdateResponse>;
-    delete(linkId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(linkId: string, options?: coreHttp.OperationOptions): Promise<ResourceLinksGetResponse>;
-    listAtSourceScope(scope: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<ResourceLink>;
+    createOrUpdate(linkId: string, parameters: ResourceLink, options?: ResourceLinksCreateOrUpdateOptionalParams): Promise<ResourceLinksCreateOrUpdateResponse>;
+    delete(linkId: string, options?: ResourceLinksDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(linkId: string, options?: ResourceLinksGetOptionalParams): Promise<ResourceLinksGetResponse>;
+    listAtSourceScope(scope: string, options?: ResourceLinksListAtSourceScopeOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
     listAtSubscription(options?: ResourceLinksListAtSubscriptionOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
+}
+
+// @public
+export interface ResourceLinksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -119,6 +131,14 @@ export type ResourceLinksCreateOrUpdateResponse = ResourceLink & {
 };
 
 // @public
+export interface ResourceLinksDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ResourceLinksGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ResourceLinksGetResponse = ResourceLink & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -127,12 +147,20 @@ export type ResourceLinksGetResponse = ResourceLink & {
 };
 
 // @public
+export interface ResourceLinksListAtSourceScopeNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ResourceLinkResult;
     };
 };
+
+// @public
+export interface ResourceLinksListAtSourceScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult & {

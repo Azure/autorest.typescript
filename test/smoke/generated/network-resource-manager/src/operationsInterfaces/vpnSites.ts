@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnSite,
+  VpnSitesListByResourceGroupNextOptionalParams,
+  VpnSitesListByResourceGroupOptionalParams,
+  VpnSitesListNextOptionalParams,
+  VpnSitesListOptionalParams,
+  VpnSitesGetOptionalParams,
   VpnSitesGetResponse,
+  VpnSitesCreateOrUpdateOptionalParams,
   VpnSitesCreateOrUpdateResponse,
   TagsObject,
-  VpnSitesUpdateTagsResponse
+  VpnSitesUpdateTagsOptionalParams,
+  VpnSitesUpdateTagsResponse,
+  VpnSitesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface VpnSites {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VpnSite>;
   /**
    * Lists all the VpnSites in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesListOptionalParams
   ): PagedAsyncIterableIterator<VpnSite>;
   /**
    * Retrieves the details of a VPN site.
@@ -46,7 +54,7 @@ export interface VpnSites {
   get(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesGetOptionalParams
   ): Promise<VpnSitesGetResponse>;
   /**
    * Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
@@ -59,7 +67,7 @@ export interface VpnSites {
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteParameters: VpnSite,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnSitesCreateOrUpdateResponse>,
@@ -77,7 +85,7 @@ export interface VpnSites {
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesUpdateTagsOptionalParams
   ): Promise<VpnSitesUpdateTagsResponse>;
   /**
    * Deletes a VpnSite.
@@ -88,7 +96,7 @@ export interface VpnSites {
   delete(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSitesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -17,8 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicy,
+  FirewallPoliciesListNextOptionalParams,
+  FirewallPoliciesListOptionalParams,
+  FirewallPoliciesListAllNextOptionalParams,
+  FirewallPoliciesListAllOptionalParams,
+  FirewallPoliciesDeleteOptionalParams,
   FirewallPoliciesGetOptionalParams,
   FirewallPoliciesGetResponse,
+  FirewallPoliciesCreateOrUpdateOptionalParams,
   FirewallPoliciesCreateOrUpdateResponse,
   FirewallPoliciesListResponse,
   FirewallPoliciesListAllResponse,
@@ -46,7 +52,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicy> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -64,7 +70,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListOptionalParams
   ): AsyncIterableIterator<FirewallPolicy[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -82,7 +88,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListOptionalParams
   ): AsyncIterableIterator<FirewallPolicy> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -94,7 +100,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicy> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -111,7 +117,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllOptionalParams
   ): AsyncIterableIterator<FirewallPolicy[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -124,7 +130,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllOptionalParams
   ): AsyncIterableIterator<FirewallPolicy> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -140,7 +146,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   async delete(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -158,17 +164,13 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -204,7 +206,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     parameters: FirewallPolicy,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FirewallPoliciesCreateOrUpdateResponse>,
@@ -226,17 +228,13 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -246,7 +244,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListOptionalParams
   ): Promise<FirewallPoliciesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +261,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllOptionalParams
   ): Promise<FirewallPoliciesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -283,7 +281,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListNextOptionalParams
   ): Promise<FirewallPoliciesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -303,7 +301,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllNextOptionalParams
   ): Promise<FirewallPoliciesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

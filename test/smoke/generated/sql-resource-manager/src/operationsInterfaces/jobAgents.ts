@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   JobAgent,
+  JobAgentsListByServerNextOptionalParams,
+  JobAgentsListByServerOptionalParams,
+  JobAgentsGetOptionalParams,
   JobAgentsGetResponse,
+  JobAgentsCreateOrUpdateOptionalParams,
   JobAgentsCreateOrUpdateResponse,
+  JobAgentsDeleteOptionalParams,
   JobAgentUpdate,
+  JobAgentsUpdateOptionalParams,
   JobAgentsUpdateResponse
 } from "../models";
 
@@ -31,7 +37,7 @@ export interface JobAgents {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobAgentsListByServerOptionalParams
   ): PagedAsyncIterableIterator<JobAgent>;
   /**
    * Gets a job agent.
@@ -45,7 +51,7 @@ export interface JobAgents {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobAgentsGetOptionalParams
   ): Promise<JobAgentsGetResponse>;
   /**
    * Creates or updates a job agent.
@@ -61,7 +67,7 @@ export interface JobAgents {
     serverName: string,
     jobAgentName: string,
     parameters: JobAgent,
-    options?: coreHttp.OperationOptions
+    options?: JobAgentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobAgentsCreateOrUpdateResponse>,
@@ -80,7 +86,7 @@ export interface JobAgents {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobAgentsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -98,7 +104,7 @@ export interface JobAgents {
     serverName: string,
     jobAgentName: string,
     parameters: JobAgentUpdate,
-    options?: coreHttp.OperationOptions
+    options?: JobAgentsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobAgentsUpdateResponse>,

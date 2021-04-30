@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualHub,
+  VirtualHubsListByResourceGroupNextOptionalParams,
+  VirtualHubsListByResourceGroupOptionalParams,
+  VirtualHubsListNextOptionalParams,
+  VirtualHubsListOptionalParams,
+  VirtualHubsGetOptionalParams,
   VirtualHubsGetResponse,
+  VirtualHubsCreateOrUpdateOptionalParams,
   VirtualHubsCreateOrUpdateResponse,
   TagsObject,
-  VirtualHubsUpdateTagsResponse
+  VirtualHubsUpdateTagsOptionalParams,
+  VirtualHubsUpdateTagsResponse,
+  VirtualHubsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface VirtualHubs {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualHub>;
   /**
    * Lists all the VirtualHubs in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualHub>;
   /**
    * Retrieves the details of a VirtualHub.
@@ -46,7 +54,7 @@ export interface VirtualHubs {
   get(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsGetOptionalParams
   ): Promise<VirtualHubsGetResponse>;
   /**
    * Creates a VirtualHub resource if it doesn't exist else updates the existing VirtualHub.
@@ -59,7 +67,7 @@ export interface VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: VirtualHub,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualHubsCreateOrUpdateResponse>,
@@ -77,7 +85,7 @@ export interface VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsUpdateTagsOptionalParams
   ): Promise<VirtualHubsUpdateTagsResponse>;
   /**
    * Deletes a VirtualHub.
@@ -88,7 +96,7 @@ export interface VirtualHubs {
   delete(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

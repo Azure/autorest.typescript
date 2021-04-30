@@ -17,8 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceLongTermRetentionPolicy,
+  ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams,
   ManagedInstanceLongTermRetentionPolicyName,
+  ManagedInstanceLongTermRetentionPoliciesGetOptionalParams,
   ManagedInstanceLongTermRetentionPoliciesGetResponse,
+  ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse,
   ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse,
   ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse
@@ -50,7 +54,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -80,7 +84,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -107,7 +111,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -133,7 +137,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     policyName: ManagedInstanceLongTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesGetOptionalParams
   ): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -164,7 +168,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     databaseName: string,
     policyName: ManagedInstanceLongTermRetentionPolicyName,
     parameters: ManagedInstanceLongTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -190,16 +194,12 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -214,7 +214,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -244,7 +244,7 @@ export class ManagedInstanceLongTermRetentionPoliciesImpl
     managedInstanceName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams
   ): Promise<
     ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse
   > {

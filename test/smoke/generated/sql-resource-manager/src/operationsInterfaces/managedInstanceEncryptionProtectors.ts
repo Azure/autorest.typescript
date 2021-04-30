@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceEncryptionProtector,
+  ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams,
+  ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams,
   EncryptionProtectorName,
+  ManagedInstanceEncryptionProtectorsRevalidateOptionalParams,
+  ManagedInstanceEncryptionProtectorsGetOptionalParams,
   ManagedInstanceEncryptionProtectorsGetResponse,
+  ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams,
   ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
 } from "../models";
 
@@ -30,7 +35,7 @@ export interface ManagedInstanceEncryptionProtectors {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceEncryptionProtector>;
   /**
    * Revalidates an existing encryption protector.
@@ -44,7 +49,7 @@ export interface ManagedInstanceEncryptionProtectors {
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -60,7 +65,7 @@ export interface ManagedInstanceEncryptionProtectors {
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsGetOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
   /**
    * Updates an existing encryption protector.
@@ -76,7 +81,7 @@ export interface ManagedInstanceEncryptionProtectors {
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
     parameters: ManagedInstanceEncryptionProtector,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

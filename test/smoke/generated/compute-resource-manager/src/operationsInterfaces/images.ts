@@ -12,9 +12,16 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Image,
+  ImagesListByResourceGroupNextOptionalParams,
+  ImagesListByResourceGroupOptionalParams,
+  ImagesListNextOptionalParams,
+  ImagesListOptionalParams,
+  ImagesCreateOrUpdateOptionalParams,
   ImagesCreateOrUpdateResponse,
   ImageUpdate,
+  ImagesUpdateOptionalParams,
   ImagesUpdateResponse,
+  ImagesDeleteOptionalParams,
   ImagesGetOptionalParams,
   ImagesGetResponse
 } from "../models";
@@ -29,14 +36,14 @@ export interface Images {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Image>;
   /**
    * Gets the list of Images in the subscription. Use nextLink property in the response to get the next
    * page of Images. Do this till nextLink is null to fetch all the Images.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Image>;
+  list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image>;
   /**
    * Create or update an image.
    * @param resourceGroupName The name of the resource group.
@@ -48,7 +55,7 @@ export interface Images {
     resourceGroupName: string,
     imageName: string,
     parameters: Image,
-    options?: coreHttp.OperationOptions
+    options?: ImagesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ImagesCreateOrUpdateResponse>,
@@ -66,7 +73,7 @@ export interface Images {
     resourceGroupName: string,
     imageName: string,
     parameters: ImageUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ImagesUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
   >;
@@ -79,7 +86,7 @@ export interface Images {
   delete(
     resourceGroupName: string,
     imageName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

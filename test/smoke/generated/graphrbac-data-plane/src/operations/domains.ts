@@ -17,6 +17,7 @@ import {
   Domain,
   DomainsListOptionalParams,
   DomainsListResponse,
+  DomainsGetOptionalParams,
   DomainsGetResponse
 } from "../models";
 
@@ -92,7 +93,7 @@ export class DomainsImpl implements Domains {
    */
   get(
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOptionalParams
   ): Promise<DomainsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       domainName,

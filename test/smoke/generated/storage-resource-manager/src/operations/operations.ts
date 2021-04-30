@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
-import { Operation, OperationsListResponse } from "../models";
+import {
+  Operation,
+  OperationsListOptionalParams,
+  OperationsListResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Operations. */
@@ -33,7 +37,7 @@ export class OperationsImpl implements Operations {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: OperationsListOptionalParams
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listPagingAll(options);
     return {
@@ -50,14 +54,14 @@ export class OperationsImpl implements Operations {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: OperationsListOptionalParams
   ): AsyncIterableIterator<Operation[]> {
     let result = await this._list(options);
     yield result.value || [];
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: OperationsListOptionalParams
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -69,7 +73,7 @@ export class OperationsImpl implements Operations {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: OperationsListOptionalParams
   ): Promise<OperationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

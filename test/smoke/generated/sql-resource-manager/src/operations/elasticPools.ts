@@ -17,17 +17,24 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
+  ElasticPoolsListMetricsOptionalParams,
   MetricDefinition,
+  ElasticPoolsListMetricDefinitionsOptionalParams,
   ElasticPool,
   ElasticPoolsListByServerNextOptionalParams,
   ElasticPoolsListByServerOptionalParams,
   ElasticPoolsListMetricsResponse,
   ElasticPoolsListMetricDefinitionsResponse,
   ElasticPoolsListByServerResponse,
+  ElasticPoolsGetOptionalParams,
   ElasticPoolsGetResponse,
+  ElasticPoolsCreateOrUpdateOptionalParams,
   ElasticPoolsCreateOrUpdateResponse,
+  ElasticPoolsDeleteOptionalParams,
   ElasticPoolUpdate,
+  ElasticPoolsUpdateOptionalParams,
   ElasticPoolsUpdateResponse,
+  ElasticPoolsFailoverOptionalParams,
   ElasticPoolsListByServerNextResponse
 } from "../models";
 
@@ -58,7 +65,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -91,7 +98,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -108,7 +115,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -133,7 +140,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -163,7 +170,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result = await this._listMetricDefinitions(
       resourceGroupName,
@@ -178,7 +185,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -276,7 +283,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricsOptionalParams
   ): Promise<ElasticPoolsListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -303,7 +310,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricDefinitionsOptionalParams
   ): Promise<ElasticPoolsListMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -352,7 +359,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsGetOptionalParams
   ): Promise<ElasticPoolsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -380,7 +387,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     parameters: ElasticPool,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsCreateOrUpdateResponse>,
@@ -403,16 +410,12 @@ export class ElasticPoolsImpl implements ElasticPools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -427,7 +430,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -446,16 +449,12 @@ export class ElasticPoolsImpl implements ElasticPools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -472,7 +471,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     serverName: string,
     elasticPoolName: string,
     parameters: ElasticPoolUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsUpdateResponse>,
@@ -495,16 +494,12 @@ export class ElasticPoolsImpl implements ElasticPools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -519,7 +514,7 @@ export class ElasticPoolsImpl implements ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -538,16 +533,12 @@ export class ElasticPoolsImpl implements ElasticPools {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverOperationSpec,
-      initialOperationResult,
+      failoverOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

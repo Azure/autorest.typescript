@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
+  ApplicationDefinitionsListByResourceGroupNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupOptionalParams,
+  ApplicationDefinitionsGetOptionalParams,
   ApplicationDefinitionsGetResponse,
+  ApplicationDefinitionsDeleteOptionalParams,
+  ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ApplicationDefinitionsCreateOrUpdateResponse,
   ApplicationDefinitionsListByResourceGroupResponse,
+  ApplicationDefinitionsGetByIdOptionalParams,
   ApplicationDefinitionsGetByIdResponse,
+  ApplicationDefinitionsDeleteByIdOptionalParams,
+  ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdResponse,
   ApplicationDefinitionsListByResourceGroupNextResponse
 } from "../models";
@@ -45,7 +53,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ApplicationDefinition> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -63,7 +71,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ApplicationDefinition[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -81,7 +89,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ApplicationDefinition> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -100,7 +108,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   get(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsGetOptionalParams
   ): Promise<ApplicationDefinitionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -122,7 +130,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async delete(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -140,16 +148,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -163,7 +167,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
@@ -185,16 +189,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -204,7 +204,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
   ): Promise<ApplicationDefinitionsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -226,7 +226,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   getById(
     applicationDefinitionId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsGetByIdOptionalParams
   ): Promise<ApplicationDefinitionsGetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationDefinitionId,
@@ -248,7 +248,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   async deleteById(
     applicationDefinitionId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -265,16 +265,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteByIdOperationSpec,
-      initialOperationResult,
+      deleteByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -289,7 +285,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async createOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
@@ -310,16 +306,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateByIdOperationSpec,
-      initialOperationResult,
+      createOrUpdateByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -331,7 +323,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
   ): Promise<ApplicationDefinitionsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

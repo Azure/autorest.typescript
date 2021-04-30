@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualWAN,
+  VirtualWansListByResourceGroupNextOptionalParams,
+  VirtualWansListByResourceGroupOptionalParams,
+  VirtualWansListNextOptionalParams,
+  VirtualWansListOptionalParams,
+  VirtualWansGetOptionalParams,
   VirtualWansGetResponse,
+  VirtualWansCreateOrUpdateOptionalParams,
   VirtualWansCreateOrUpdateResponse,
   TagsObject,
+  VirtualWansUpdateTagsOptionalParams,
   VirtualWansUpdateTagsResponse,
+  VirtualWansDeleteOptionalParams,
   VirtualWansListByResourceGroupResponse,
   VirtualWansListResponse,
   VirtualWansListByResourceGroupNextResponse,
@@ -47,7 +55,7 @@ export class VirtualWansImpl implements VirtualWans {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualWAN> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class VirtualWansImpl implements VirtualWans {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualWAN[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class VirtualWansImpl implements VirtualWans {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualWAN> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class VirtualWansImpl implements VirtualWans {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListOptionalParams
   ): PagedAsyncIterableIterator<VirtualWAN> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class VirtualWansImpl implements VirtualWans {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListOptionalParams
   ): AsyncIterableIterator<VirtualWAN[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class VirtualWansImpl implements VirtualWans {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListOptionalParams
   ): AsyncIterableIterator<VirtualWAN> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -144,7 +152,7 @@ export class VirtualWansImpl implements VirtualWans {
   get(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansGetOptionalParams
   ): Promise<VirtualWansGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -168,7 +176,7 @@ export class VirtualWansImpl implements VirtualWans {
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: VirtualWAN,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualWansCreateOrUpdateResponse>,
@@ -190,17 +198,13 @@ export class VirtualWansImpl implements VirtualWans {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -214,7 +218,7 @@ export class VirtualWansImpl implements VirtualWans {
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansUpdateTagsOptionalParams
   ): Promise<VirtualWansUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -237,7 +241,7 @@ export class VirtualWansImpl implements VirtualWans {
   async delete(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -255,17 +259,13 @@ export class VirtualWansImpl implements VirtualWans {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -275,7 +275,7 @@ export class VirtualWansImpl implements VirtualWans {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupOptionalParams
   ): Promise<VirtualWansListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -292,7 +292,7 @@ export class VirtualWansImpl implements VirtualWans {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListOptionalParams
   ): Promise<VirtualWansListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +312,7 @@ export class VirtualWansImpl implements VirtualWans {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListByResourceGroupNextOptionalParams
   ): Promise<VirtualWansListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -332,7 +332,7 @@ export class VirtualWansImpl implements VirtualWans {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualWansListNextOptionalParams
   ): Promise<VirtualWansListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

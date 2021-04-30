@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   NetworkInterfaceIPConfiguration,
+  NetworkInterfaceIPConfigurationsListNextOptionalParams,
+  NetworkInterfaceIPConfigurationsListOptionalParams,
+  NetworkInterfaceIPConfigurationsGetOptionalParams,
   NetworkInterfaceIPConfigurationsGetResponse
 } from "../models";
 
@@ -26,7 +29,7 @@ export interface NetworkInterfaceIPConfigurations {
   list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration>;
   /**
    * Gets the specified network interface ip configuration.
@@ -39,6 +42,6 @@ export interface NetworkInterfaceIPConfigurations {
     resourceGroupName: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsGetOptionalParams
   ): Promise<NetworkInterfaceIPConfigurationsGetResponse>;
 }

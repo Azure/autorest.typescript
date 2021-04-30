@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DiskEncryptionSet,
+  DiskEncryptionSetsListByResourceGroupNextOptionalParams,
+  DiskEncryptionSetsListByResourceGroupOptionalParams,
+  DiskEncryptionSetsListNextOptionalParams,
+  DiskEncryptionSetsListOptionalParams,
+  DiskEncryptionSetsCreateOrUpdateOptionalParams,
   DiskEncryptionSetsCreateOrUpdateResponse,
   DiskEncryptionSetUpdate,
+  DiskEncryptionSetsUpdateOptionalParams,
   DiskEncryptionSetsUpdateResponse,
-  DiskEncryptionSetsGetResponse
+  DiskEncryptionSetsGetOptionalParams,
+  DiskEncryptionSetsGetResponse,
+  DiskEncryptionSetsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface DiskEncryptionSets {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DiskEncryptionSet>;
   /**
    * Lists all the disk encryption sets under a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListOptionalParams
   ): PagedAsyncIterableIterator<DiskEncryptionSet>;
   /**
    * Creates or updates a disk encryption set
@@ -51,7 +59,7 @@ export interface DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
@@ -72,7 +80,7 @@ export interface DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DiskEncryptionSetsUpdateResponse>,
@@ -90,7 +98,7 @@ export interface DiskEncryptionSets {
   get(
     resourceGroupName: string,
     diskEncryptionSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsGetOptionalParams
   ): Promise<DiskEncryptionSetsGetResponse>;
   /**
    * Deletes a disk encryption set.
@@ -103,7 +111,7 @@ export interface DiskEncryptionSets {
   delete(
     resourceGroupName: string,
     diskEncryptionSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

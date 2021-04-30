@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicyRuleGroup,
+  FirewallPolicyRuleGroupsListNextOptionalParams,
+  FirewallPolicyRuleGroupsListOptionalParams,
+  FirewallPolicyRuleGroupsDeleteOptionalParams,
+  FirewallPolicyRuleGroupsGetOptionalParams,
   FirewallPolicyRuleGroupsGetResponse,
+  FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams,
   FirewallPolicyRuleGroupsCreateOrUpdateResponse,
   FirewallPolicyRuleGroupsListResponse,
   FirewallPolicyRuleGroupsListNextResponse
@@ -45,7 +50,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
   public list(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicyRuleGroup> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
   private async *listPagingPage(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListOptionalParams
   ): AsyncIterableIterator<FirewallPolicyRuleGroup[]> {
     let result = await this._list(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
   private async *listPagingAll(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListOptionalParams
   ): AsyncIterableIterator<FirewallPolicyRuleGroup> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +142,13 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -161,7 +162,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsGetOptionalParams
   ): Promise<FirewallPolicyRuleGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -188,7 +189,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
     firewallPolicyName: string,
     ruleGroupName: string,
     parameters: FirewallPolicyRuleGroup,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>,
@@ -211,17 +212,13 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -233,7 +230,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
   private _list(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListOptionalParams
   ): Promise<FirewallPolicyRuleGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -257,7 +254,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListNextOptionalParams
   ): Promise<FirewallPolicyRuleGroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

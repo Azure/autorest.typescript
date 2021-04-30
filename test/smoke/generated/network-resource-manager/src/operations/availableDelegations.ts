@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   AvailableDelegation,
+  AvailableDelegationsListNextOptionalParams,
+  AvailableDelegationsListOptionalParams,
   AvailableDelegationsListResponse,
   AvailableDelegationsListNextResponse
 } from "../models";
@@ -39,7 +41,7 @@ export class AvailableDelegationsImpl implements AvailableDelegations {
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableDelegationsListOptionalParams
   ): PagedAsyncIterableIterator<AvailableDelegation> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -57,7 +59,7 @@ export class AvailableDelegationsImpl implements AvailableDelegations {
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableDelegationsListOptionalParams
   ): AsyncIterableIterator<AvailableDelegation[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -71,7 +73,7 @@ export class AvailableDelegationsImpl implements AvailableDelegations {
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableDelegationsListOptionalParams
   ): AsyncIterableIterator<AvailableDelegation> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -85,7 +87,7 @@ export class AvailableDelegationsImpl implements AvailableDelegations {
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableDelegationsListOptionalParams
   ): Promise<AvailableDelegationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -106,7 +108,7 @@ export class AvailableDelegationsImpl implements AvailableDelegations {
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableDelegationsListNextOptionalParams
   ): Promise<AvailableDelegationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

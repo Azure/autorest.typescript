@@ -17,19 +17,31 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
+  CassandraResourcesListCassandraKeyspacesOptionalParams,
   CassandraTableGetResults,
+  CassandraResourcesListCassandraTablesOptionalParams,
   CassandraResourcesListCassandraKeyspacesResponse,
+  CassandraResourcesGetCassandraKeyspaceOptionalParams,
   CassandraResourcesGetCassandraKeyspaceResponse,
   CassandraKeyspaceCreateUpdateParameters,
+  CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams,
   CassandraResourcesCreateUpdateCassandraKeyspaceResponse,
+  CassandraResourcesDeleteCassandraKeyspaceOptionalParams,
+  CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams,
   CassandraResourcesGetCassandraKeyspaceThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams,
   CassandraResourcesUpdateCassandraKeyspaceThroughputResponse,
   CassandraResourcesListCassandraTablesResponse,
+  CassandraResourcesGetCassandraTableOptionalParams,
   CassandraResourcesGetCassandraTableResponse,
   CassandraTableCreateUpdateParameters,
+  CassandraResourcesCreateUpdateCassandraTableOptionalParams,
   CassandraResourcesCreateUpdateCassandraTableResponse,
+  CassandraResourcesDeleteCassandraTableOptionalParams,
+  CassandraResourcesGetCassandraTableThroughputOptionalParams,
   CassandraResourcesGetCassandraTableThroughputResponse,
+  CassandraResourcesUpdateCassandraTableThroughputOptionalParams,
   CassandraResourcesUpdateCassandraTableThroughputResponse
 } from "../models";
 
@@ -55,7 +67,7 @@ export class CassandraResourcesImpl implements CassandraResources {
   public listCassandraKeyspaces(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraKeyspacesOptionalParams
   ): PagedAsyncIterableIterator<CassandraKeyspaceGetResults> {
     const iter = this.listCassandraKeyspacesPagingAll(
       resourceGroupName,
@@ -82,7 +94,7 @@ export class CassandraResourcesImpl implements CassandraResources {
   private async *listCassandraKeyspacesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraKeyspacesOptionalParams
   ): AsyncIterableIterator<CassandraKeyspaceGetResults[]> {
     let result = await this._listCassandraKeyspaces(
       resourceGroupName,
@@ -95,7 +107,7 @@ export class CassandraResourcesImpl implements CassandraResources {
   private async *listCassandraKeyspacesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraKeyspacesOptionalParams
   ): AsyncIterableIterator<CassandraKeyspaceGetResults> {
     for await (const page of this.listCassandraKeyspacesPagingPage(
       resourceGroupName,
@@ -117,7 +129,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraTablesOptionalParams
   ): PagedAsyncIterableIterator<CassandraTableGetResults> {
     const iter = this.listCassandraTablesPagingAll(
       resourceGroupName,
@@ -147,7 +159,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraTablesOptionalParams
   ): AsyncIterableIterator<CassandraTableGetResults[]> {
     let result = await this._listCassandraTables(
       resourceGroupName,
@@ -162,7 +174,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraTablesOptionalParams
   ): AsyncIterableIterator<CassandraTableGetResults> {
     for await (const page of this.listCassandraTablesPagingPage(
       resourceGroupName,
@@ -183,7 +195,7 @@ export class CassandraResourcesImpl implements CassandraResources {
   private _listCassandraKeyspaces(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraKeyspacesOptionalParams
   ): Promise<CassandraResourcesListCassandraKeyspacesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +220,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraKeyspaceOptionalParams
   ): Promise<CassandraResourcesGetCassandraKeyspaceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -236,7 +248,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -261,16 +273,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateCassandraKeyspaceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateCassandraKeyspaceOperationSpec,
-      initialOperationResult,
+      createUpdateCassandraKeyspaceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -284,7 +292,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -303,16 +311,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteCassandraKeyspaceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteCassandraKeyspaceOperationSpec,
-      initialOperationResult,
+      deleteCassandraKeyspaceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -327,7 +331,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams
   ): Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -355,7 +359,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -380,16 +384,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateCassandraKeyspaceThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateCassandraKeyspaceThroughputOperationSpec,
-      initialOperationResult,
+      updateCassandraKeyspaceThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -403,7 +403,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraTablesOptionalParams
   ): Promise<CassandraResourcesListCassandraTablesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -430,7 +430,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraTableOptionalParams
   ): Promise<CassandraResourcesGetCassandraTableResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -461,7 +461,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     keyspaceName: string,
     tableName: string,
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesCreateUpdateCassandraTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
@@ -485,16 +485,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateCassandraTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateCassandraTableOperationSpec,
-      initialOperationResult,
+      createUpdateCassandraTableOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -510,7 +506,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesDeleteCassandraTableOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -530,16 +526,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteCassandraTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteCassandraTableOperationSpec,
-      initialOperationResult,
+      deleteCassandraTableOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -556,7 +548,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraTableThroughputOptionalParams
   ): Promise<CassandraResourcesGetCassandraTableThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -587,7 +579,7 @@ export class CassandraResourcesImpl implements CassandraResources {
     keyspaceName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesUpdateCassandraTableThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -613,16 +605,12 @@ export class CassandraResourcesImpl implements CassandraResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateCassandraTableThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateCassandraTableThroughputOperationSpec,
-      initialOperationResult,
+      updateCassandraTableThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

@@ -9,7 +9,12 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { ServiceObjective, ServiceObjectivesGetResponse } from "../models";
+import {
+  ServiceObjective,
+  ServiceObjectivesListByServerOptionalParams,
+  ServiceObjectivesGetOptionalParams,
+  ServiceObjectivesGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ServiceObjectives. */
@@ -24,7 +29,7 @@ export interface ServiceObjectives {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServiceObjective>;
   /**
    * Gets a database service objective.
@@ -38,6 +43,6 @@ export interface ServiceObjectives {
     resourceGroupName: string,
     serverName: string,
     serviceObjectiveName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesGetOptionalParams
   ): Promise<ServiceObjectivesGetResponse>;
 }

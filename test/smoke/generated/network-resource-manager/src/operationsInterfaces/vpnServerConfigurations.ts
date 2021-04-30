@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnServerConfiguration,
+  VpnServerConfigurationsListByResourceGroupNextOptionalParams,
+  VpnServerConfigurationsListByResourceGroupOptionalParams,
+  VpnServerConfigurationsListNextOptionalParams,
+  VpnServerConfigurationsListOptionalParams,
+  VpnServerConfigurationsGetOptionalParams,
   VpnServerConfigurationsGetResponse,
+  VpnServerConfigurationsCreateOrUpdateOptionalParams,
   VpnServerConfigurationsCreateOrUpdateResponse,
   TagsObject,
-  VpnServerConfigurationsUpdateTagsResponse
+  VpnServerConfigurationsUpdateTagsOptionalParams,
+  VpnServerConfigurationsUpdateTagsResponse,
+  VpnServerConfigurationsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface VpnServerConfigurations {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VpnServerConfiguration>;
   /**
    * Lists all the VpnServerConfigurations in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<VpnServerConfiguration>;
   /**
    * Retrieves the details of a VpnServerConfiguration.
@@ -46,7 +54,7 @@ export interface VpnServerConfigurations {
   get(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsGetOptionalParams
   ): Promise<VpnServerConfigurationsGetResponse>;
   /**
    * Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing
@@ -61,7 +69,7 @@ export interface VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnServerConfigurationsCreateOrUpdateResponse>,
@@ -79,7 +87,7 @@ export interface VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsUpdateTagsOptionalParams
   ): Promise<VpnServerConfigurationsUpdateTagsResponse>;
   /**
    * Deletes a VpnServerConfiguration.
@@ -90,7 +98,7 @@ export interface VpnServerConfigurations {
   delete(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

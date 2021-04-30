@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { Metric, DatabaseAccountRegionListMetricsResponse } from "../models";
+import {
+  Metric,
+  DatabaseAccountRegionListMetricsOptionalParams,
+  DatabaseAccountRegionListMetricsResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a DatabaseAccountRegion. */
@@ -43,7 +47,7 @@ export class DatabaseAccountRegionImpl implements DatabaseAccountRegion {
     accountName: string,
     region: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountRegionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -76,7 +80,7 @@ export class DatabaseAccountRegionImpl implements DatabaseAccountRegion {
     accountName: string,
     region: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountRegionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -93,7 +97,7 @@ export class DatabaseAccountRegionImpl implements DatabaseAccountRegion {
     accountName: string,
     region: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountRegionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -121,7 +125,7 @@ export class DatabaseAccountRegionImpl implements DatabaseAccountRegion {
     accountName: string,
     region: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountRegionListMetricsOptionalParams
   ): Promise<DatabaseAccountRegionListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

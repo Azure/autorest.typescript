@@ -19,17 +19,25 @@ import {
   PolicyAssignmentsListForResourceGroupOptionalParams,
   PolicyAssignmentsListForResourceNextOptionalParams,
   PolicyAssignmentsListForResourceOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupOptionalParams,
   PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
+  PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
+  PolicyAssignmentsCreateOptionalParams,
   PolicyAssignmentsCreateResponse,
+  PolicyAssignmentsGetOptionalParams,
   PolicyAssignmentsGetResponse,
   PolicyAssignmentsListForResourceGroupResponse,
   PolicyAssignmentsListForResourceResponse,
   PolicyAssignmentsListForManagementGroupResponse,
   PolicyAssignmentsListResponse,
+  PolicyAssignmentsDeleteByIdOptionalParams,
   PolicyAssignmentsDeleteByIdResponse,
+  PolicyAssignmentsCreateByIdOptionalParams,
   PolicyAssignmentsCreateByIdResponse,
+  PolicyAssignmentsGetByIdOptionalParams,
   PolicyAssignmentsGetByIdResponse,
   PolicyAssignmentsListForResourceGroupNextResponse,
   PolicyAssignmentsListForResourceNextResponse,
@@ -247,7 +255,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   public listForManagementGroup(
     managementGroupId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): PagedAsyncIterableIterator<PolicyAssignment> {
     const iter = this.listForManagementGroupPagingAll(
       managementGroupId,
@@ -274,7 +282,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   private async *listForManagementGroupPagingPage(
     managementGroupId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): AsyncIterableIterator<PolicyAssignment[]> {
     let result = await this._listForManagementGroup(
       managementGroupId,
@@ -298,7 +306,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   private async *listForManagementGroupPagingAll(
     managementGroupId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): AsyncIterableIterator<PolicyAssignment> {
     for await (const page of this.listForManagementGroupPagingPage(
       managementGroupId,
@@ -375,7 +383,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   delete(
     scope: string,
     policyAssignmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsDeleteOptionalParams
   ): Promise<PolicyAssignmentsDeleteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -405,7 +413,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     scope: string,
     policyAssignmentName: string,
     parameters: PolicyAssignment,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsCreateOptionalParams
   ): Promise<PolicyAssignmentsCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -432,7 +440,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   get(
     scope: string,
     policyAssignmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsGetOptionalParams
   ): Promise<PolicyAssignmentsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -541,7 +549,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   private _listForManagementGroup(
     managementGroupId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       managementGroupId,
@@ -593,7 +601,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    */
   deleteById(
     policyAssignmentId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsDeleteByIdOptionalParams
   ): Promise<PolicyAssignmentsDeleteByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyAssignmentId,
@@ -623,7 +631,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   createById(
     policyAssignmentId: string,
     parameters: PolicyAssignment,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsCreateByIdOptionalParams
   ): Promise<PolicyAssignmentsCreateByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyAssignmentId,
@@ -650,7 +658,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
    */
   getById(
     policyAssignmentId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsGetByIdOptionalParams
   ): Promise<PolicyAssignmentsGetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyAssignmentId,
@@ -733,7 +741,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     managementGroupId: string,
     filter: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       managementGroupId,

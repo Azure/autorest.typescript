@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams,
   ManagedShortTermRetentionPolicyName,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse
@@ -51,7 +56,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     const iter = this.listByRestorableDroppedDatabasePagingAll(
       resourceGroupName,
@@ -81,7 +86,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy[]> {
     let result = await this._listByRestorableDroppedDatabase(
       resourceGroupName,
@@ -108,7 +113,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   ): AsyncIterableIterator<ManagedBackupShortTermRetentionPolicy> {
     for await (const page of this.listByRestorableDroppedDatabasePagingPage(
       resourceGroupName,
@@ -134,7 +139,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
   > {
@@ -169,7 +174,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -195,16 +200,12 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -223,7 +224,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -249,16 +250,12 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -273,7 +270,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse
   > {
@@ -306,7 +303,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse
   > {

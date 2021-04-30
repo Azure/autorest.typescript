@@ -11,9 +11,17 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Certificate,
+  CertificatesListNextOptionalParams,
+  CertificatesListOptionalParams,
+  CertificatesListByResourceGroupNextOptionalParams,
+  CertificatesListByResourceGroupOptionalParams,
+  CertificatesGetOptionalParams,
   CertificatesGetResponse,
+  CertificatesCreateOrUpdateOptionalParams,
   CertificatesCreateOrUpdateResponse,
+  CertificatesDeleteOptionalParams,
   CertificatePatchResource,
+  CertificatesUpdateOptionalParams,
   CertificatesUpdateResponse
 } from "../models";
 
@@ -25,7 +33,7 @@ export interface Certificates {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListOptionalParams
   ): PagedAsyncIterableIterator<Certificate>;
   /**
    * Description for Get all certificates in a resource group.
@@ -34,7 +42,7 @@ export interface Certificates {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Certificate>;
   /**
    * Description for Get a certificate.
@@ -45,7 +53,7 @@ export interface Certificates {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesGetOptionalParams
   ): Promise<CertificatesGetResponse>;
   /**
    * Description for Create or update a certificate.
@@ -58,7 +66,7 @@ export interface Certificates {
     resourceGroupName: string,
     name: string,
     certificateEnvelope: Certificate,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesCreateOrUpdateOptionalParams
   ): Promise<CertificatesCreateOrUpdateResponse>;
   /**
    * Description for Delete a certificate.
@@ -69,7 +77,7 @@ export interface Certificates {
   delete(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Create or update a certificate.
@@ -82,6 +90,6 @@ export interface Certificates {
     resourceGroupName: string,
     name: string,
     certificateEnvelope: CertificatePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: CertificatesUpdateOptionalParams
   ): Promise<CertificatesUpdateResponse>;
 }

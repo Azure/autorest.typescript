@@ -17,11 +17,19 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ConnectionMonitorResult,
+  ConnectionMonitorsListOptionalParams,
   ConnectionMonitor,
+  ConnectionMonitorsCreateOrUpdateOptionalParams,
   ConnectionMonitorsCreateOrUpdateResponse,
+  ConnectionMonitorsGetOptionalParams,
   ConnectionMonitorsGetResponse,
+  ConnectionMonitorsDeleteOptionalParams,
   TagsObject,
+  ConnectionMonitorsUpdateTagsOptionalParams,
   ConnectionMonitorsUpdateTagsResponse,
+  ConnectionMonitorsStopOptionalParams,
+  ConnectionMonitorsStartOptionalParams,
+  ConnectionMonitorsQueryOptionalParams,
   ConnectionMonitorsQueryResponse,
   ConnectionMonitorsListResponse
 } from "../models";
@@ -48,7 +56,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   public list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsListOptionalParams
   ): PagedAsyncIterableIterator<ConnectionMonitorResult> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -75,7 +83,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   private async *listPagingPage(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsListOptionalParams
   ): AsyncIterableIterator<ConnectionMonitorResult[]> {
     let result = await this._list(
       resourceGroupName,
@@ -88,7 +96,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   private async *listPagingAll(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsListOptionalParams
   ): AsyncIterableIterator<ConnectionMonitorResult> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -112,7 +120,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     parameters: ConnectionMonitor,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>,
@@ -135,17 +143,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -159,7 +163,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsGetOptionalParams
   ): Promise<ConnectionMonitorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -184,7 +188,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -203,17 +207,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -229,7 +229,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsUpdateTagsOptionalParams
   ): Promise<ConnectionMonitorsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -255,7 +255,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -274,17 +274,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      stopOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: stopOperationSpec,
-      initialOperationResult,
+      stopOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -298,7 +294,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -317,17 +313,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOperationSpec,
-      initialOperationResult,
+      startOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -341,7 +333,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsQueryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ConnectionMonitorsQueryResponse>,
@@ -363,17 +355,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      queryOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: queryOperationSpec,
-      initialOperationResult,
+      queryOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -385,7 +373,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   private _list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsListOptionalParams
   ): Promise<ConnectionMonitorsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

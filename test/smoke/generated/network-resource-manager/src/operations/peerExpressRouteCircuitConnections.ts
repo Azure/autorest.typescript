@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   PeerExpressRouteCircuitConnection,
+  PeerExpressRouteCircuitConnectionsListNextOptionalParams,
+  PeerExpressRouteCircuitConnectionsListOptionalParams,
+  PeerExpressRouteCircuitConnectionsGetOptionalParams,
   PeerExpressRouteCircuitConnectionsGetResponse,
   PeerExpressRouteCircuitConnectionsListResponse,
   PeerExpressRouteCircuitConnectionsListNextResponse
@@ -46,7 +49,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<PeerExpressRouteCircuitConnection> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -76,7 +79,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): AsyncIterableIterator<PeerExpressRouteCircuitConnection[]> {
     let result = await this._list(
       resourceGroupName,
@@ -103,7 +106,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): AsyncIterableIterator<PeerExpressRouteCircuitConnection> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -128,7 +131,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsGetOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -155,7 +158,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -182,7 +185,7 @@ export class PeerExpressRouteCircuitConnectionsImpl
     circuitName: string,
     peeringName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListNextOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

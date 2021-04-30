@@ -12,30 +12,54 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
+  SqlResourcesListSqlDatabasesOptionalParams,
   SqlContainerGetResults,
+  SqlResourcesListSqlContainersOptionalParams,
   SqlStoredProcedureGetResults,
+  SqlResourcesListSqlStoredProceduresOptionalParams,
   SqlUserDefinedFunctionGetResults,
+  SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   SqlTriggerGetResults,
+  SqlResourcesListSqlTriggersOptionalParams,
+  SqlResourcesGetSqlDatabaseOptionalParams,
   SqlResourcesGetSqlDatabaseResponse,
   SqlDatabaseCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlDatabaseOptionalParams,
   SqlResourcesCreateUpdateSqlDatabaseResponse,
+  SqlResourcesDeleteSqlDatabaseOptionalParams,
+  SqlResourcesGetSqlDatabaseThroughputOptionalParams,
   SqlResourcesGetSqlDatabaseThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  SqlResourcesUpdateSqlDatabaseThroughputOptionalParams,
   SqlResourcesUpdateSqlDatabaseThroughputResponse,
+  SqlResourcesGetSqlContainerOptionalParams,
   SqlResourcesGetSqlContainerResponse,
   SqlContainerCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlContainerOptionalParams,
   SqlResourcesCreateUpdateSqlContainerResponse,
+  SqlResourcesDeleteSqlContainerOptionalParams,
+  SqlResourcesGetSqlContainerThroughputOptionalParams,
   SqlResourcesGetSqlContainerThroughputResponse,
+  SqlResourcesUpdateSqlContainerThroughputOptionalParams,
   SqlResourcesUpdateSqlContainerThroughputResponse,
+  SqlResourcesGetSqlStoredProcedureOptionalParams,
   SqlResourcesGetSqlStoredProcedureResponse,
   SqlStoredProcedureCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams,
   SqlResourcesCreateUpdateSqlStoredProcedureResponse,
+  SqlResourcesDeleteSqlStoredProcedureOptionalParams,
+  SqlResourcesGetSqlUserDefinedFunctionOptionalParams,
   SqlResourcesGetSqlUserDefinedFunctionResponse,
   SqlUserDefinedFunctionCreateUpdateParameters,
+  SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams,
   SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse,
+  SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams,
+  SqlResourcesGetSqlTriggerOptionalParams,
   SqlResourcesGetSqlTriggerResponse,
   SqlTriggerCreateUpdateParameters,
-  SqlResourcesCreateUpdateSqlTriggerResponse
+  SqlResourcesCreateUpdateSqlTriggerOptionalParams,
+  SqlResourcesCreateUpdateSqlTriggerResponse,
+  SqlResourcesDeleteSqlTriggerOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -50,7 +74,7 @@ export interface SqlResources {
   listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlDatabasesOptionalParams
   ): PagedAsyncIterableIterator<SqlDatabaseGetResults>;
   /**
    * Lists the SQL container under an existing Azure Cosmos DB database account.
@@ -63,7 +87,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlContainersOptionalParams
   ): PagedAsyncIterableIterator<SqlContainerGetResults>;
   /**
    * Lists the SQL storedProcedure under an existing Azure Cosmos DB database account.
@@ -78,7 +102,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams
   ): PagedAsyncIterableIterator<SqlStoredProcedureGetResults>;
   /**
    * Lists the SQL userDefinedFunction under an existing Azure Cosmos DB database account.
@@ -93,7 +117,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   ): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults>;
   /**
    * Lists the SQL trigger under an existing Azure Cosmos DB database account.
@@ -108,7 +132,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesListSqlTriggersOptionalParams
   ): PagedAsyncIterableIterator<SqlTriggerGetResults>;
   /**
    * Gets the SQL database under an existing Azure Cosmos DB database account with the provided name.
@@ -121,7 +145,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlDatabaseOptionalParams
   ): Promise<SqlResourcesGetSqlDatabaseResponse>;
   /**
    * Create or update an Azure Cosmos DB SQL database
@@ -136,7 +160,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
@@ -154,7 +178,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlDatabaseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -170,7 +194,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlDatabaseThroughputOptionalParams
   ): Promise<SqlResourcesGetSqlDatabaseThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB SQL database
@@ -186,7 +210,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
@@ -206,7 +230,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlContainerOptionalParams
   ): Promise<SqlResourcesGetSqlContainerResponse>;
   /**
    * Create or update an Azure Cosmos DB SQL container
@@ -223,7 +247,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
@@ -243,7 +267,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlContainerOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -260,7 +284,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlContainerThroughputOptionalParams
   ): Promise<SqlResourcesGetSqlContainerThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB SQL container
@@ -278,7 +302,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
@@ -300,7 +324,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlStoredProcedureOptionalParams
   ): Promise<SqlResourcesGetSqlStoredProcedureResponse>;
   /**
    * Create or update an Azure Cosmos DB SQL storedProcedure
@@ -320,7 +344,7 @@ export interface SqlResources {
     containerName: string,
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
@@ -342,7 +366,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -361,7 +385,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlUserDefinedFunctionOptionalParams
   ): Promise<SqlResourcesGetSqlUserDefinedFunctionResponse>;
   /**
    * Create or update an Azure Cosmos DB SQL userDefinedFunction
@@ -381,7 +405,7 @@ export interface SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -405,7 +429,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -424,7 +448,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesGetSqlTriggerOptionalParams
   ): Promise<SqlResourcesGetSqlTriggerResponse>;
   /**
    * Create or update an Azure Cosmos DB SQL trigger
@@ -443,7 +467,7 @@ export interface SqlResources {
     containerName: string,
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
@@ -465,7 +489,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: coreHttp.OperationOptions
+    options?: SqlResourcesDeleteSqlTriggerOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

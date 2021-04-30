@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterfaceTapConfiguration,
+  NetworkInterfaceTapConfigurationsListNextOptionalParams,
+  NetworkInterfaceTapConfigurationsListOptionalParams,
+  NetworkInterfaceTapConfigurationsDeleteOptionalParams,
+  NetworkInterfaceTapConfigurationsGetOptionalParams,
   NetworkInterfaceTapConfigurationsGetResponse,
+  NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams,
   NetworkInterfaceTapConfigurationsCreateOrUpdateResponse,
   NetworkInterfaceTapConfigurationsListResponse,
   NetworkInterfaceTapConfigurationsListNextResponse
@@ -46,7 +51,7 @@ export class NetworkInterfaceTapConfigurationsImpl
   public list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterfaceTapConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -73,7 +78,7 @@ export class NetworkInterfaceTapConfigurationsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams
   ): AsyncIterableIterator<NetworkInterfaceTapConfiguration[]> {
     let result = await this._list(
       resourceGroupName,
@@ -97,7 +102,7 @@ export class NetworkInterfaceTapConfigurationsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams
   ): AsyncIterableIterator<NetworkInterfaceTapConfiguration> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -119,7 +124,7 @@ export class NetworkInterfaceTapConfigurationsImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -138,17 +143,13 @@ export class NetworkInterfaceTapConfigurationsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -162,7 +163,7 @@ export class NetworkInterfaceTapConfigurationsImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsGetOptionalParams
   ): Promise<NetworkInterfaceTapConfigurationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -190,7 +191,7 @@ export class NetworkInterfaceTapConfigurationsImpl
     networkInterfaceName: string,
     tapConfigurationName: string,
     tapConfigurationParameters: NetworkInterfaceTapConfiguration,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -215,17 +216,13 @@ export class NetworkInterfaceTapConfigurationsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -237,7 +234,7 @@ export class NetworkInterfaceTapConfigurationsImpl
   private _list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams
   ): Promise<NetworkInterfaceTapConfigurationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -261,7 +258,7 @@ export class NetworkInterfaceTapConfigurationsImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceTapConfigurationsListNextOptionalParams
   ): Promise<NetworkInterfaceTapConfigurationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

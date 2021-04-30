@@ -12,11 +12,15 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
+  VirtualMachineImagesGetOptionalParams,
   VirtualMachineImagesGetResponse,
   VirtualMachineImagesListOptionalParams,
   VirtualMachineImagesListResponse,
+  VirtualMachineImagesListOffersOptionalParams,
   VirtualMachineImagesListOffersResponse,
+  VirtualMachineImagesListPublishersOptionalParams,
   VirtualMachineImagesListPublishersResponse,
+  VirtualMachineImagesListSkusOptionalParams,
   VirtualMachineImagesListSkusResponse
 } from "../models";
 
@@ -47,7 +51,7 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     offer: string,
     skus: string,
     version: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesGetOptionalParams
   ): Promise<VirtualMachineImagesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -101,7 +105,7 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
   listOffers(
     location: string,
     publisherName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListOffersOptionalParams
   ): Promise<VirtualMachineImagesListOffersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -121,7 +125,7 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
    */
   listPublishers(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListPublishersOptionalParams
   ): Promise<VirtualMachineImagesListPublishersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -144,7 +148,7 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     location: string,
     publisherName: string,
     offer: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListSkusOptionalParams
   ): Promise<VirtualMachineImagesListSkusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

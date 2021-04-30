@@ -12,11 +12,16 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryImageVersion,
+  GalleryImageVersionsListByGalleryImageNextOptionalParams,
+  GalleryImageVersionsListByGalleryImageOptionalParams,
+  GalleryImageVersionsCreateOrUpdateOptionalParams,
   GalleryImageVersionsCreateOrUpdateResponse,
   GalleryImageVersionUpdate,
+  GalleryImageVersionsUpdateOptionalParams,
   GalleryImageVersionsUpdateResponse,
   GalleryImageVersionsGetOptionalParams,
-  GalleryImageVersionsGetResponse
+  GalleryImageVersionsGetResponse,
+  GalleryImageVersionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +39,7 @@ export interface GalleryImageVersions {
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryImageVersionsListByGalleryImageOptionalParams
   ): PagedAsyncIterableIterator<GalleryImageVersion>;
   /**
    * Create or update a gallery Image Version.
@@ -55,7 +60,7 @@ export interface GalleryImageVersions {
     galleryImageName: string,
     galleryImageVersionName: string,
     galleryImageVersion: GalleryImageVersion,
-    options?: coreHttp.OperationOptions
+    options?: GalleryImageVersionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>,
@@ -80,7 +85,7 @@ export interface GalleryImageVersions {
     galleryImageName: string,
     galleryImageVersionName: string,
     galleryImageVersion: GalleryImageVersionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleryImageVersionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryImageVersionsUpdateResponse>,
@@ -115,7 +120,7 @@ export interface GalleryImageVersions {
     galleryName: string,
     galleryImageName: string,
     galleryImageVersionName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryImageVersionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

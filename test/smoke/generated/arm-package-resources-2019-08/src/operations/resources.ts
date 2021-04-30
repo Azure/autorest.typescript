@@ -23,13 +23,25 @@ import {
   ResourcesListOptionalParams,
   ResourcesListByResourceGroupResponse,
   ResourcesMoveInfo,
+  ResourcesMoveResourcesOptionalParams,
+  ResourcesValidateMoveResourcesOptionalParams,
   ResourcesListResponse,
+  ResourcesCheckExistenceOptionalParams,
+  ResourcesDeleteOptionalParams,
   GenericResource,
+  ResourcesCreateOrUpdateOptionalParams,
   ResourcesCreateOrUpdateResponse,
+  ResourcesUpdateOptionalParams,
   ResourcesUpdateResponse,
+  ResourcesGetOptionalParams,
   ResourcesGetResponse,
+  ResourcesCheckExistenceByIdOptionalParams,
+  ResourcesDeleteByIdOptionalParams,
+  ResourcesCreateOrUpdateByIdOptionalParams,
   ResourcesCreateOrUpdateByIdResponse,
+  ResourcesUpdateByIdOptionalParams,
   ResourcesUpdateByIdResponse,
+  ResourcesGetByIdOptionalParams,
   ResourcesGetByIdResponse,
   ResourcesListByResourceGroupNextResponse,
   ResourcesListNextResponse
@@ -174,7 +186,7 @@ export class ResourcesImpl implements Resources {
   async moveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesMoveResourcesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -192,16 +204,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      moveResourcesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: moveResourcesOperationSpec,
-      initialOperationResult,
+      moveResourcesOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -218,7 +226,7 @@ export class ResourcesImpl implements Resources {
   async validateMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesValidateMoveResourcesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -236,16 +244,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      validateMoveResourcesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: validateMoveResourcesOperationSpec,
-      initialOperationResult,
+      validateMoveResourcesOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -282,7 +286,7 @@ export class ResourcesImpl implements Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCheckExistenceOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -317,7 +321,7 @@ export class ResourcesImpl implements Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -339,16 +343,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -371,7 +371,7 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateResponse>,
@@ -397,16 +397,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -429,7 +425,7 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateResponse>,
@@ -455,16 +451,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -485,7 +477,7 @@ export class ResourcesImpl implements Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesGetOptionalParams
   ): Promise<ResourcesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -513,7 +505,7 @@ export class ResourcesImpl implements Resources {
   checkExistenceById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCheckExistenceByIdOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,
@@ -537,7 +529,7 @@ export class ResourcesImpl implements Resources {
   async deleteById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -555,16 +547,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteByIdOperationSpec,
-      initialOperationResult,
+      deleteByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -580,7 +568,7 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
@@ -602,16 +590,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateByIdOperationSpec,
-      initialOperationResult,
+      createOrUpdateByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -627,7 +611,7 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateByIdResponse>,
@@ -649,16 +633,12 @@ export class ResourcesImpl implements Resources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateByIdOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateByIdOperationSpec,
-      initialOperationResult,
+      updateByIdOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -672,7 +652,7 @@ export class ResourcesImpl implements Resources {
   getById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesGetByIdOptionalParams
   ): Promise<ResourcesGetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceId,

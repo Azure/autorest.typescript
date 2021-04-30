@@ -9,10 +9,14 @@
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  DdosCustomPoliciesDeleteOptionalParams,
+  DdosCustomPoliciesGetOptionalParams,
   DdosCustomPoliciesGetResponse,
   DdosCustomPolicy,
+  DdosCustomPoliciesCreateOrUpdateOptionalParams,
   DdosCustomPoliciesCreateOrUpdateResponse,
   TagsObject,
+  DdosCustomPoliciesUpdateTagsOptionalParams,
   DdosCustomPoliciesUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +31,7 @@ export interface DdosCustomPolicies {
   delete(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -40,7 +44,7 @@ export interface DdosCustomPolicies {
   get(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesGetOptionalParams
   ): Promise<DdosCustomPoliciesGetResponse>;
   /**
    * Creates or updates a DDoS custom policy.
@@ -53,7 +57,7 @@ export interface DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: DdosCustomPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>,
@@ -71,6 +75,6 @@ export interface DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesUpdateTagsOptionalParams
   ): Promise<DdosCustomPoliciesUpdateTagsResponse>;
 }

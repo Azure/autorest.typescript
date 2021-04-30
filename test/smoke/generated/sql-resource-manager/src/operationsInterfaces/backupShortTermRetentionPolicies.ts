@@ -12,9 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BackupShortTermRetentionPolicy,
+  BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  BackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
   ShortTermRetentionPolicyName,
+  BackupShortTermRetentionPoliciesGetOptionalParams,
   BackupShortTermRetentionPoliciesGetResponse,
+  BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  BackupShortTermRetentionPoliciesUpdateOptionalParams,
   BackupShortTermRetentionPoliciesUpdateResponse
 } from "../models";
 
@@ -33,7 +38,7 @@ export interface BackupShortTermRetentionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy>;
   /**
    * Gets a database's short term retention policy.
@@ -49,7 +54,7 @@ export interface BackupShortTermRetentionPolicies {
     serverName: string,
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<BackupShortTermRetentionPoliciesGetResponse>;
   /**
    * Updates a database's short term retention policy.
@@ -67,7 +72,7 @@ export interface BackupShortTermRetentionPolicies {
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -92,7 +97,7 @@ export interface BackupShortTermRetentionPolicies {
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,

@@ -15,9 +15,16 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
   ProximityPlacementGroup,
+  ProximityPlacementGroupsListBySubscriptionNextOptionalParams,
+  ProximityPlacementGroupsListBySubscriptionOptionalParams,
+  ProximityPlacementGroupsListByResourceGroupNextOptionalParams,
+  ProximityPlacementGroupsListByResourceGroupOptionalParams,
+  ProximityPlacementGroupsCreateOrUpdateOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateResponse,
   ProximityPlacementGroupUpdate,
+  ProximityPlacementGroupsUpdateOptionalParams,
   ProximityPlacementGroupsUpdateResponse,
+  ProximityPlacementGroupsDeleteOptionalParams,
   ProximityPlacementGroupsGetOptionalParams,
   ProximityPlacementGroupsGetResponse,
   ProximityPlacementGroupsListBySubscriptionResponse,
@@ -44,7 +51,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -61,7 +68,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<ProximityPlacementGroup[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -74,7 +81,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<ProximityPlacementGroup> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -88,7 +95,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ProximityPlacementGroup> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -106,7 +113,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ProximityPlacementGroup[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -124,7 +131,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ProximityPlacementGroup> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -145,7 +152,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     parameters: ProximityPlacementGroup,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -170,7 +177,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     parameters: ProximityPlacementGroupUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -193,7 +200,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
   delete(
     resourceGroupName: string,
     proximityPlacementGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -233,7 +240,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): Promise<ProximityPlacementGroupsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -251,7 +258,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): Promise<ProximityPlacementGroupsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -270,7 +277,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListBySubscriptionNextOptionalParams
   ): Promise<ProximityPlacementGroupsListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -291,7 +298,7 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ProximityPlacementGroupsListByResourceGroupNextOptionalParams
   ): Promise<ProximityPlacementGroupsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

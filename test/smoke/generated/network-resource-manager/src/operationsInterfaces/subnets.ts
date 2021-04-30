@@ -12,11 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Subnet,
+  SubnetsListNextOptionalParams,
+  SubnetsListOptionalParams,
+  SubnetsDeleteOptionalParams,
   SubnetsGetOptionalParams,
   SubnetsGetResponse,
+  SubnetsCreateOrUpdateOptionalParams,
   SubnetsCreateOrUpdateResponse,
   PrepareNetworkPoliciesRequest,
-  UnprepareNetworkPoliciesRequest
+  SubnetsPrepareNetworkPoliciesOptionalParams,
+  UnprepareNetworkPoliciesRequest,
+  SubnetsUnprepareNetworkPoliciesOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +37,7 @@ export interface Subnets {
   list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListOptionalParams
   ): PagedAsyncIterableIterator<Subnet>;
   /**
    * Deletes the specified subnet.
@@ -44,7 +50,7 @@ export interface Subnets {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -74,7 +80,7 @@ export interface Subnets {
     virtualNetworkName: string,
     subnetName: string,
     subnetParameters: Subnet,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SubnetsCreateOrUpdateResponse>,
@@ -95,7 +101,7 @@ export interface Subnets {
     virtualNetworkName: string,
     subnetName: string,
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsPrepareNetworkPoliciesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -113,7 +119,7 @@ export interface Subnets {
     virtualNetworkName: string,
     subnetName: string,
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsUnprepareNetworkPoliciesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

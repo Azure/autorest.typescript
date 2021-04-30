@@ -12,9 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetExtension,
+  VirtualMachineScaleSetExtensionsListNextOptionalParams,
+  VirtualMachineScaleSetExtensionsListOptionalParams,
+  VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetExtensionsCreateOrUpdateResponse,
   VirtualMachineScaleSetExtensionUpdate,
+  VirtualMachineScaleSetExtensionsUpdateOptionalParams,
   VirtualMachineScaleSetExtensionsUpdateResponse,
+  VirtualMachineScaleSetExtensionsDeleteOptionalParams,
   VirtualMachineScaleSetExtensionsGetOptionalParams,
   VirtualMachineScaleSetExtensionsGetResponse
 } from "../models";
@@ -31,7 +36,7 @@ export interface VirtualMachineScaleSetExtensions {
   list(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
   /**
    * The operation to create or update an extension.
@@ -46,7 +51,7 @@ export interface VirtualMachineScaleSetExtensions {
     vmScaleSetName: string,
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtension,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -68,7 +73,7 @@ export interface VirtualMachineScaleSetExtensions {
     vmScaleSetName: string,
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
@@ -86,7 +91,7 @@ export interface VirtualMachineScaleSetExtensions {
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

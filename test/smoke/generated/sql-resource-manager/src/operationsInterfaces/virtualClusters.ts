@@ -12,8 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualCluster,
+  VirtualClustersListNextOptionalParams,
+  VirtualClustersListOptionalParams,
+  VirtualClustersListByResourceGroupNextOptionalParams,
+  VirtualClustersListByResourceGroupOptionalParams,
+  VirtualClustersGetOptionalParams,
   VirtualClustersGetResponse,
+  VirtualClustersDeleteOptionalParams,
   VirtualClusterUpdate,
+  VirtualClustersUpdateOptionalParams,
   VirtualClustersUpdateResponse
 } from "../models";
 
@@ -25,7 +32,7 @@ export interface VirtualClusters {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListOptionalParams
   ): PagedAsyncIterableIterator<VirtualCluster>;
   /**
    * Gets a list of virtual clusters in a resource group.
@@ -35,7 +42,7 @@ export interface VirtualClusters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualCluster>;
   /**
    * Gets a virtual cluster.
@@ -47,7 +54,7 @@ export interface VirtualClusters {
   get(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersGetOptionalParams
   ): Promise<VirtualClustersGetResponse>;
   /**
    * Deletes a virtual cluster.
@@ -59,7 +66,7 @@ export interface VirtualClusters {
   delete(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -75,7 +82,7 @@ export interface VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualClustersUpdateResponse>,

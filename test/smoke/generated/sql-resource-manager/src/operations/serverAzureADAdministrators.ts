@@ -17,10 +17,16 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerAzureADAdministrator,
+  ServerAzureADAdministratorsListByServerNextOptionalParams,
+  ServerAzureADAdministratorsListByServerOptionalParams,
   AdministratorName,
+  ServerAzureADAdministratorsGetOptionalParams,
   ServerAzureADAdministratorsGetResponse,
+  ServerAzureADAdministratorsCreateOrUpdateOptionalParams,
   ServerAzureADAdministratorsCreateOrUpdateResponse,
+  ServerAzureADAdministratorsDeleteOptionalParams,
   ServerAzureADAdministratorsListByServerResponse,
+  ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams,
   ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse,
   ServerAzureADAdministratorsListByServerNextResponse
 } from "../models";
@@ -49,7 +55,7 @@ export class ServerAzureADAdministratorsImpl
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerAzureADAdministrator> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -76,7 +82,7 @@ export class ServerAzureADAdministratorsImpl
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerOptionalParams
   ): AsyncIterableIterator<ServerAzureADAdministrator[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -100,7 +106,7 @@ export class ServerAzureADAdministratorsImpl
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerOptionalParams
   ): AsyncIterableIterator<ServerAzureADAdministrator> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -123,7 +129,7 @@ export class ServerAzureADAdministratorsImpl
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsGetOptionalParams
   ): Promise<ServerAzureADAdministratorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -152,7 +158,7 @@ export class ServerAzureADAdministratorsImpl
     serverName: string,
     administratorName: AdministratorName,
     parameters: ServerAzureADAdministrator,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerAzureADAdministratorsCreateOrUpdateResponse>,
@@ -175,16 +181,12 @@ export class ServerAzureADAdministratorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -199,7 +201,7 @@ export class ServerAzureADAdministratorsImpl
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -218,16 +220,12 @@ export class ServerAzureADAdministratorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -240,7 +238,7 @@ export class ServerAzureADAdministratorsImpl
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerOptionalParams
   ): Promise<ServerAzureADAdministratorsListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +261,7 @@ export class ServerAzureADAdministratorsImpl
   async disableAzureADOnlyAuthentication(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -286,16 +284,12 @@ export class ServerAzureADAdministratorsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      disableAzureADOnlyAuthenticationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: disableAzureADOnlyAuthenticationOperationSpec,
-      initialOperationResult,
+      disableAzureADOnlyAuthenticationOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -310,7 +304,7 @@ export class ServerAzureADAdministratorsImpl
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAzureADAdministratorsListByServerNextOptionalParams
   ): Promise<ServerAzureADAdministratorsListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

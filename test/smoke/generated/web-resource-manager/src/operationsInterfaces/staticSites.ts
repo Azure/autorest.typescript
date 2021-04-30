@@ -11,26 +11,59 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   StaticSiteARMResource,
+  StaticSitesListNextOptionalParams,
+  StaticSitesListOptionalParams,
+  StaticSitesGetStaticSitesByResourceGroupNextOptionalParams,
+  StaticSitesGetStaticSitesByResourceGroupOptionalParams,
   StaticSiteUserARMResource,
+  StaticSitesListStaticSiteUsersNextOptionalParams,
+  StaticSitesListStaticSiteUsersOptionalParams,
   StaticSiteBuildARMResource,
+  StaticSitesGetStaticSiteBuildsNextOptionalParams,
+  StaticSitesGetStaticSiteBuildsOptionalParams,
   StaticSiteFunctionOverviewARMResource,
+  StaticSitesListStaticSiteBuildFunctionsNextOptionalParams,
+  StaticSitesListStaticSiteBuildFunctionsOptionalParams,
   StaticSiteCustomDomainOverviewARMResource,
+  StaticSitesListStaticSiteCustomDomainsNextOptionalParams,
+  StaticSitesListStaticSiteCustomDomainsOptionalParams,
+  StaticSitesListStaticSiteFunctionsNextOptionalParams,
+  StaticSitesListStaticSiteFunctionsOptionalParams,
+  StaticSitesGetStaticSiteOptionalParams,
   StaticSitesGetStaticSiteResponse,
+  StaticSitesCreateOrUpdateStaticSiteOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteResponse,
+  StaticSitesDeleteStaticSiteOptionalParams,
   StaticSitePatchResource,
+  StaticSitesUpdateStaticSiteOptionalParams,
   StaticSitesUpdateStaticSiteResponse,
+  StaticSitesDeleteStaticSiteUserOptionalParams,
+  StaticSitesUpdateStaticSiteUserOptionalParams,
   StaticSitesUpdateStaticSiteUserResponse,
+  StaticSitesGetStaticSiteBuildOptionalParams,
   StaticSitesGetStaticSiteBuildResponse,
+  StaticSitesDeleteStaticSiteBuildOptionalParams,
   StringDictionary,
+  StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse,
+  StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteBuildFunctionAppSettingsResponse,
+  StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse,
   StaticSiteUserInvitationRequestResource,
+  StaticSitesCreateUserRolesInvitationLinkOptionalParams,
   StaticSitesCreateUserRolesInvitationLinkResponse,
+  StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse,
+  StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
+  StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
+  StaticSitesDetachStaticSiteOptionalParams,
+  StaticSitesListStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteFunctionAppSettingsResponse,
+  StaticSitesListStaticSiteSecretsOptionalParams,
   StaticSitesListStaticSiteSecretsResponse,
-  StaticSiteResetPropertiesARMResource
+  StaticSiteResetPropertiesARMResource,
+  StaticSitesResetStaticSiteApiKeyOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -41,7 +74,7 @@ export interface StaticSites {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteARMResource>;
   /**
    * Description for Gets all static sites in the specified resource group.
@@ -50,7 +83,7 @@ export interface StaticSites {
    */
   listStaticSitesByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteARMResource>;
   /**
    * Description for Gets the list of users of a static site.
@@ -63,7 +96,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteUserARMResource>;
   /**
    * Description for Gets all static site builds for a particular static site.
@@ -74,7 +107,7 @@ export interface StaticSites {
   listStaticSiteBuilds(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteBuildARMResource>;
   /**
    * Description for Gets the functions of a particular static site build.
@@ -87,7 +120,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
   /**
    * Description for Gets all static site custom domains for a particular static site.
@@ -98,7 +131,7 @@ export interface StaticSites {
   listStaticSiteCustomDomains(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource>;
   /**
    * Description for Gets the functions of a static site.
@@ -109,7 +142,7 @@ export interface StaticSites {
   listStaticSiteFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
   /**
    * Description for Gets the details of a static site.
@@ -120,7 +153,7 @@ export interface StaticSites {
   getStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteOptionalParams
   ): Promise<StaticSitesGetStaticSiteResponse>;
   /**
    * Description for Creates a new static site in an existing resource group, or updates an existing
@@ -134,7 +167,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSiteARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
   /**
    * Description for Deletes a static site.
@@ -145,7 +178,7 @@ export interface StaticSites {
   deleteStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a new static site in an existing resource group, or updates an existing
@@ -159,7 +192,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteResponse>;
   /**
    * Description for Deletes the user entry from the static site.
@@ -174,7 +207,7 @@ export interface StaticSites {
     name: string,
     authprovider: string,
     userid: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteUserOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Updates a user entry with the listed roles
@@ -191,7 +224,7 @@ export interface StaticSites {
     authprovider: string,
     userid: string,
     staticSiteUserEnvelope: StaticSiteUserARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesUpdateStaticSiteUserOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteUserResponse>;
   /**
    * Description for Gets the details of a static site build.
@@ -204,7 +237,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildResponse>;
   /**
    * Description for Deletes a static site build.
@@ -217,7 +250,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteBuildOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates or updates the function app settings of a static site build.
@@ -232,7 +265,7 @@ export interface StaticSites {
     name: string,
     prId: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<
     StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
   >;
@@ -247,7 +280,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
   /**
    * Description for Creates or updates the function app settings of a static site.
@@ -260,7 +293,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse>;
   /**
    * Description for Creates an invitation link for a user with the role
@@ -273,7 +306,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams
   ): Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
   /**
    * Description for Creates a new static site custom domain in an existing resource group and static
@@ -287,7 +320,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
   /**
    * Description for Deletes a custom domain.
@@ -300,7 +333,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Validates a particular custom domain can be added to a static site.
@@ -313,7 +346,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Detaches a static site.
@@ -324,7 +357,7 @@ export interface StaticSites {
   detachStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDetachStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the application settings of a static site.
@@ -335,7 +368,7 @@ export interface StaticSites {
   listStaticSiteFunctionAppSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
   /**
    * Description for Lists the secrets for an existing static site.
@@ -346,7 +379,7 @@ export interface StaticSites {
   listStaticSiteSecrets(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteSecretsOptionalParams
   ): Promise<StaticSitesListStaticSiteSecretsResponse>;
   /**
    * Description for Resets the api key for an existing static site.
@@ -359,6 +392,6 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesResetStaticSiteApiKeyOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

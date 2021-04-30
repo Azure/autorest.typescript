@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnConnection,
+  VpnConnectionsListByVpnGatewayNextOptionalParams,
+  VpnConnectionsListByVpnGatewayOptionalParams,
+  VpnConnectionsGetOptionalParams,
   VpnConnectionsGetResponse,
-  VpnConnectionsCreateOrUpdateResponse
+  VpnConnectionsCreateOrUpdateOptionalParams,
+  VpnConnectionsCreateOrUpdateResponse,
+  VpnConnectionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +33,7 @@ export interface VpnConnections {
   listByVpnGateway(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): PagedAsyncIterableIterator<VpnConnection>;
   /**
    * Retrieves the details of a vpn connection.
@@ -41,7 +46,7 @@ export interface VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsGetOptionalParams
   ): Promise<VpnConnectionsGetResponse>;
   /**
    * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing
@@ -57,7 +62,7 @@ export interface VpnConnections {
     gatewayName: string,
     connectionName: string,
     vpnConnectionParameters: VpnConnection,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnConnectionsCreateOrUpdateResponse>,
@@ -75,7 +80,7 @@ export interface VpnConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

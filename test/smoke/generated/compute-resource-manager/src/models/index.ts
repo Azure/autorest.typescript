@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** The List Compute Operation operation response. */
 export interface ComputeOperationListResult {
@@ -4683,6 +4682,10 @@ export type ContainerServiceOrchestratorTypes =
   | "Custom"
   | "Kubernetes";
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = ComputeOperationListResult & {
   /** The underlying HTTP response. */
@@ -4694,6 +4697,10 @@ export type OperationsListResponse = ComputeOperationListResult & {
     parsedBody: ComputeOperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface AvailabilitySetsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet & {
@@ -4707,6 +4714,10 @@ export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet & {
   };
 };
 
+/** Optional parameters. */
+export interface AvailabilitySetsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type AvailabilitySetsUpdateResponse = AvailabilitySet & {
   /** The underlying HTTP response. */
@@ -4718,6 +4729,14 @@ export type AvailabilitySetsUpdateResponse = AvailabilitySet & {
     parsedBody: AvailabilitySet;
   };
 };
+
+/** Optional parameters. */
+export interface AvailabilitySetsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface AvailabilitySetsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type AvailabilitySetsGetResponse = AvailabilitySet & {
@@ -4750,6 +4769,10 @@ export type AvailabilitySetsListBySubscriptionResponse = AvailabilitySetListResu
   };
 };
 
+/** Optional parameters. */
+export interface AvailabilitySetsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type AvailabilitySetsListResponse = AvailabilitySetListResult & {
   /** The underlying HTTP response. */
@@ -4761,6 +4784,10 @@ export type AvailabilitySetsListResponse = AvailabilitySetListResult & {
     parsedBody: AvailabilitySetListResult;
   };
 };
+
+/** Optional parameters. */
+export interface AvailabilitySetsListAvailableSizesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAvailableSizes operation. */
 export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListResult & {
@@ -4793,6 +4820,10 @@ export type AvailabilitySetsListBySubscriptionNextResponse = AvailabilitySetList
   };
 };
 
+/** Optional parameters. */
+export interface AvailabilitySetsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type AvailabilitySetsListNextResponse = AvailabilitySetListResult & {
   /** The underlying HTTP response. */
@@ -4804,6 +4835,10 @@ export type AvailabilitySetsListNextResponse = AvailabilitySetListResult & {
     parsedBody: AvailabilitySetListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ProximityPlacementGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type ProximityPlacementGroupsCreateOrUpdateResponse = ProximityPlacementGroup & {
@@ -4817,6 +4852,10 @@ export type ProximityPlacementGroupsCreateOrUpdateResponse = ProximityPlacementG
   };
 };
 
+/** Optional parameters. */
+export interface ProximityPlacementGroupsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup & {
   /** The underlying HTTP response. */
@@ -4828,6 +4867,10 @@ export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup & {
     parsedBody: ProximityPlacementGroup;
   };
 };
+
+/** Optional parameters. */
+export interface ProximityPlacementGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ProximityPlacementGroupsGetOptionalParams
@@ -4848,6 +4891,10 @@ export type ProximityPlacementGroupsGetResponse = ProximityPlacementGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface ProximityPlacementGroupsListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscription operation. */
 export type ProximityPlacementGroupsListBySubscriptionResponse = ProximityPlacementGroupListResult & {
   /** The underlying HTTP response. */
@@ -4859,6 +4906,10 @@ export type ProximityPlacementGroupsListBySubscriptionResponse = ProximityPlacem
     parsedBody: ProximityPlacementGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ProximityPlacementGroupsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlacementGroupListResult & {
@@ -4872,6 +4923,10 @@ export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlace
   };
 };
 
+/** Optional parameters. */
+export interface ProximityPlacementGroupsListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscriptionNext operation. */
 export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPlacementGroupListResult & {
   /** The underlying HTTP response. */
@@ -4883,6 +4938,10 @@ export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPl
     parsedBody: ProximityPlacementGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ProximityPlacementGroupsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ProximityPlacementGroupsListByResourceGroupNextResponse = ProximityPlacementGroupListResult & {
@@ -4896,6 +4955,10 @@ export type ProximityPlacementGroupsListByResourceGroupNextResponse = ProximityP
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup & {
   /** The underlying HTTP response. */
@@ -4907,6 +4970,10 @@ export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup & {
     parsedBody: DedicatedHostGroup;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostGroupsUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type DedicatedHostGroupsUpdateResponse = DedicatedHostGroup & {
@@ -4920,6 +4987,14 @@ export type DedicatedHostGroupsUpdateResponse = DedicatedHostGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DedicatedHostGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type DedicatedHostGroupsGetResponse = DedicatedHostGroup & {
   /** The underlying HTTP response. */
@@ -4931,6 +5006,10 @@ export type DedicatedHostGroupsGetResponse = DedicatedHostGroup & {
     parsedBody: DedicatedHostGroup;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostGroupsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type DedicatedHostGroupsListByResourceGroupResponse = DedicatedHostGroupListResult & {
@@ -4944,6 +5023,10 @@ export type DedicatedHostGroupsListByResourceGroupResponse = DedicatedHostGroupL
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostGroupsListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscription operation. */
 export type DedicatedHostGroupsListBySubscriptionResponse = DedicatedHostGroupListResult & {
   /** The underlying HTTP response. */
@@ -4955,6 +5038,10 @@ export type DedicatedHostGroupsListBySubscriptionResponse = DedicatedHostGroupLi
     parsedBody: DedicatedHostGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostGroupsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGroupListResult & {
@@ -4968,6 +5055,10 @@ export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGr
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostGroupsListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscriptionNext operation. */
 export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGroupListResult & {
   /** The underlying HTTP response. */
@@ -4980,6 +5071,15 @@ export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGro
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
   /** The underlying HTTP response. */
@@ -4989,10 +5089,17 @@ export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DedicatedHost;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type DedicatedHostsUpdateResponse = DedicatedHost & {
@@ -5003,10 +5110,21 @@ export type DedicatedHostsUpdateResponse = DedicatedHost & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DedicatedHost;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DedicatedHostsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DedicatedHostsGetResponse = DedicatedHost & {
@@ -5020,6 +5138,10 @@ export type DedicatedHostsGetResponse = DedicatedHost & {
   };
 };
 
+/** Optional parameters. */
+export interface DedicatedHostsListByHostGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByHostGroup operation. */
 export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult & {
   /** The underlying HTTP response. */
@@ -5031,6 +5153,10 @@ export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult & {
     parsedBody: DedicatedHostListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DedicatedHostsListByHostGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByHostGroupNext operation. */
 export type DedicatedHostsListByHostGroupNextResponse = DedicatedHostListResult & {
@@ -5044,6 +5170,10 @@ export type DedicatedHostsListByHostGroupNextResponse = DedicatedHostListResult 
   };
 };
 
+/** Optional parameters. */
+export interface SshPublicKeysListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscription operation. */
 export type SshPublicKeysListBySubscriptionResponse = SshPublicKeysGroupListResult & {
   /** The underlying HTTP response. */
@@ -5055,6 +5185,10 @@ export type SshPublicKeysListBySubscriptionResponse = SshPublicKeysGroupListResu
     parsedBody: SshPublicKeysGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SshPublicKeysListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListResult & {
@@ -5068,6 +5202,10 @@ export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListRes
   };
 };
 
+/** Optional parameters. */
+export interface SshPublicKeysCreateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the create operation. */
 export type SshPublicKeysCreateResponse = SshPublicKeyResource & {
   /** The underlying HTTP response. */
@@ -5079,6 +5217,10 @@ export type SshPublicKeysCreateResponse = SshPublicKeyResource & {
     parsedBody: SshPublicKeyResource;
   };
 };
+
+/** Optional parameters. */
+export interface SshPublicKeysUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type SshPublicKeysUpdateResponse = SshPublicKeyResource & {
@@ -5092,6 +5234,14 @@ export type SshPublicKeysUpdateResponse = SshPublicKeyResource & {
   };
 };
 
+/** Optional parameters. */
+export interface SshPublicKeysDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface SshPublicKeysGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SshPublicKeysGetResponse = SshPublicKeyResource & {
   /** The underlying HTTP response. */
@@ -5103,6 +5253,10 @@ export type SshPublicKeysGetResponse = SshPublicKeyResource & {
     parsedBody: SshPublicKeyResource;
   };
 };
+
+/** Optional parameters. */
+export interface SshPublicKeysGenerateKeyPairOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the generateKeyPair operation. */
 export type SshPublicKeysGenerateKeyPairResponse = SshPublicKeyGenerateKeyPairResult & {
@@ -5116,6 +5270,10 @@ export type SshPublicKeysGenerateKeyPairResponse = SshPublicKeyGenerateKeyPairRe
   };
 };
 
+/** Optional parameters. */
+export interface SshPublicKeysListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscriptionNext operation. */
 export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupListResult & {
   /** The underlying HTTP response. */
@@ -5127,6 +5285,10 @@ export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupList
     parsedBody: SshPublicKeysGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SshPublicKeysListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type SshPublicKeysListByResourceGroupNextResponse = SshPublicKeysGroupListResult & {
@@ -5140,6 +5302,10 @@ export type SshPublicKeysListByResourceGroupNextResponse = SshPublicKeysGroupLis
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineExtensionImagesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionImage & {
   /** The underlying HTTP response. */
@@ -5151,6 +5317,10 @@ export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionIm
     parsedBody: VirtualMachineExtensionImage;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineExtensionImagesListTypesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listTypes operation. */
 export type VirtualMachineExtensionImagesListTypesResponse = VirtualMachineExtensionImage[] & {
@@ -5185,6 +5355,15 @@ export type VirtualMachineExtensionImagesListVersionsResponse = VirtualMachineEx
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineExtensionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExtension & {
   /** The underlying HTTP response. */
@@ -5194,10 +5373,17 @@ export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExten
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineExtensionsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
@@ -5208,10 +5394,17 @@ export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineExtensionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface VirtualMachineExtensionsGetOptionalParams
@@ -5251,6 +5444,10 @@ export type VirtualMachineExtensionsListResponse = VirtualMachineExtensionsListR
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineImagesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type VirtualMachineImagesGetResponse = VirtualMachineImage & {
   /** The underlying HTTP response. */
@@ -5284,6 +5481,10 @@ export type VirtualMachineImagesListResponse = VirtualMachineImageResource[] & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineImagesListOffersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listOffers operation. */
 export type VirtualMachineImagesListOffersResponse = VirtualMachineImageResource[] & {
   /** The underlying HTTP response. */
@@ -5295,6 +5496,10 @@ export type VirtualMachineImagesListOffersResponse = VirtualMachineImageResource
     parsedBody: VirtualMachineImageResource[];
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineImagesListPublishersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listPublishers operation. */
 export type VirtualMachineImagesListPublishersResponse = VirtualMachineImageResource[] & {
@@ -5308,6 +5513,10 @@ export type VirtualMachineImagesListPublishersResponse = VirtualMachineImageReso
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineImagesListSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSkus operation. */
 export type VirtualMachineImagesListSkusResponse = VirtualMachineImageResource[] & {
   /** The underlying HTTP response. */
@@ -5319,6 +5528,9 @@ export type VirtualMachineImagesListSkusResponse = VirtualMachineImageResource[]
     parsedBody: VirtualMachineImageResource[];
   };
 };
+
+/** Optional parameters. */
+export interface UsageListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type UsageListResponse = ListUsagesResult & {
@@ -5332,6 +5544,10 @@ export type UsageListResponse = ListUsagesResult & {
   };
 };
 
+/** Optional parameters. */
+export interface UsageListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type UsageListNextResponse = ListUsagesResult & {
   /** The underlying HTTP response. */
@@ -5343,6 +5559,10 @@ export type UsageListNextResponse = ListUsagesResult & {
     parsedBody: ListUsagesResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesListByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
 export type VirtualMachinesListByLocationResponse = VirtualMachineListResult & {
@@ -5356,6 +5576,15 @@ export type VirtualMachinesListByLocationResponse = VirtualMachineListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachinesCaptureOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the capture operation. */
 export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
   /** The underlying HTTP response. */
@@ -5365,10 +5594,17 @@ export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineCaptureResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
@@ -5379,10 +5615,17 @@ export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachine;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type VirtualMachinesUpdateResponse = VirtualMachine & {
@@ -5393,10 +5636,21 @@ export type VirtualMachinesUpdateResponse = VirtualMachine & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachine;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type VirtualMachinesGetResponse = VirtualMachine & {
@@ -5410,6 +5664,10 @@ export type VirtualMachinesGetResponse = VirtualMachine & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachinesInstanceViewOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the instanceView operation. */
 export type VirtualMachinesInstanceViewResponse = VirtualMachineInstanceView & {
   /** The underlying HTTP response. */
@@ -5421,6 +5679,32 @@ export type VirtualMachinesInstanceViewResponse = VirtualMachineInstanceView & {
     parsedBody: VirtualMachineInstanceView;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesConvertToManagedDisksOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesDeallocateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesGeneralizeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface VirtualMachinesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type VirtualMachinesListResponse = VirtualMachineListResult & {
@@ -5453,6 +5737,10 @@ export type VirtualMachinesListAllResponse = VirtualMachineListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachinesListAvailableSizesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listAvailableSizes operation. */
 export type VirtualMachinesListAvailableSizesResponse = VirtualMachineSizeListResult & {
   /** The underlying HTTP response. */
@@ -5470,6 +5758,46 @@ export interface VirtualMachinesPowerOffOptionalParams
   extends coreHttp.OperationOptions {
   /** The parameter to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Default value for this flag is false if not specified */
   skipShutdown?: boolean;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesReapplyOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesRestartOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesStartOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesRedeployOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5477,6 +5805,32 @@ export interface VirtualMachinesReimageOptionalParams
   extends coreHttp.OperationOptions {
   /** Parameters supplied to the Reimage Virtual Machine operation. */
   parameters?: VirtualMachineReimageParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesPerformMaintenanceOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachinesSimulateEvictionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface VirtualMachinesRunCommandOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the runCommand operation. */
@@ -5488,10 +5842,12 @@ export type VirtualMachinesRunCommandResponse = RunCommandResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: RunCommandResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesListByLocationNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
 export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult & {
@@ -5504,6 +5860,10 @@ export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult
     parsedBody: VirtualMachineListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachinesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type VirtualMachinesListNextResponse = VirtualMachineListResult & {
@@ -5536,6 +5896,10 @@ export type VirtualMachinesListAllNextResponse = VirtualMachineListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineSizesListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type VirtualMachineSizesListResponse = VirtualMachineSizeListResult & {
   /** The underlying HTTP response. */
@@ -5548,6 +5912,15 @@ export type VirtualMachineSizesListResponse = VirtualMachineSizeListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ImagesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ImagesCreateOrUpdateResponse = Image & {
   /** The underlying HTTP response. */
@@ -5557,10 +5930,16 @@ export type ImagesCreateOrUpdateResponse = Image & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Image;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ImagesUpdateOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ImagesUpdateResponse = Image & {
@@ -5571,10 +5950,16 @@ export type ImagesUpdateResponse = Image & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Image;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ImagesDeleteOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface ImagesGetOptionalParams extends coreHttp.OperationOptions {
@@ -5594,6 +5979,10 @@ export type ImagesGetResponse = Image & {
   };
 };
 
+/** Optional parameters. */
+export interface ImagesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type ImagesListByResourceGroupResponse = ImageListResult & {
   /** The underlying HTTP response. */
@@ -5605,6 +5994,9 @@ export type ImagesListByResourceGroupResponse = ImageListResult & {
     parsedBody: ImageListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ImagesListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type ImagesListResponse = ImageListResult & {
@@ -5618,6 +6010,10 @@ export type ImagesListResponse = ImageListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ImagesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ImagesListByResourceGroupNextResponse = ImageListResult & {
   /** The underlying HTTP response. */
@@ -5629,6 +6025,10 @@ export type ImagesListByResourceGroupNextResponse = ImageListResult & {
     parsedBody: ImageListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ImagesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ImagesListNextResponse = ImageListResult & {
@@ -5642,6 +6042,15 @@ export type ImagesListNextResponse = ImageListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleSet & {
   /** The underlying HTTP response. */
@@ -5651,10 +6060,17 @@ export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleS
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineScaleSet;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
@@ -5665,10 +6081,21 @@ export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineScaleSet;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type VirtualMachineScaleSetsGetResponse = VirtualMachineScaleSet & {
@@ -5687,7 +6114,24 @@ export interface VirtualMachineScaleSetsDeallocateOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsDeleteInstancesOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsGetInstanceViewOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceView operation. */
 export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScaleSetInstanceView & {
@@ -5701,6 +6145,10 @@ export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScale
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResult & {
   /** The underlying HTTP response. */
@@ -5712,6 +6160,10 @@ export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResu
     parsedBody: VirtualMachineScaleSetListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListAllOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
 export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListWithLinkResult & {
@@ -5725,6 +6177,10 @@ export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListW
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListSkusOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSkus operation. */
 export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetListSkusResult & {
   /** The underlying HTTP response. */
@@ -5736,6 +6192,10 @@ export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetList
     parsedBody: VirtualMachineScaleSetListSkusResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOSUpgradeHistory operation. */
 export type VirtualMachineScaleSetsGetOSUpgradeHistoryResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
@@ -5756,6 +6216,10 @@ export interface VirtualMachineScaleSetsPowerOffOptionalParams
   skipShutdown?: boolean;
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5763,6 +6227,10 @@ export interface VirtualMachineScaleSetsRestartOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5770,6 +6238,10 @@ export interface VirtualMachineScaleSetsStartOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5777,6 +6249,10 @@ export interface VirtualMachineScaleSetsRedeployOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5784,6 +6260,19 @@ export interface VirtualMachineScaleSetsPerformMaintenanceOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsUpdateInstancesOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5791,6 +6280,10 @@ export interface VirtualMachineScaleSetsReimageOptionalParams
   extends coreHttp.OperationOptions {
   /** Parameters for Reimaging VM ScaleSet. */
   vmScaleSetReimageInput?: VirtualMachineScaleSetReimageParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Optional parameters. */
@@ -5798,7 +6291,15 @@ export interface VirtualMachineScaleSetsReimageAllOptionalParams
   extends coreHttp.OperationOptions {
   /** A list of virtual machine instance IDs from the VM scale set. */
   vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the forceRecoveryServiceFabricPlatformUpdateDomainWalk operation. */
 export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse = RecoveryWalkResponse & {
@@ -5812,6 +6313,23 @@ export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomai
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type VirtualMachineScaleSetsListNextResponse = VirtualMachineScaleSetListResult & {
   /** The underlying HTTP response. */
@@ -5823,6 +6341,10 @@ export type VirtualMachineScaleSetsListNextResponse = VirtualMachineScaleSetList
     parsedBody: VirtualMachineScaleSetListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListAllNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
 export type VirtualMachineScaleSetsListAllNextResponse = VirtualMachineScaleSetListWithLinkResult & {
@@ -5836,6 +6358,10 @@ export type VirtualMachineScaleSetsListAllNextResponse = VirtualMachineScaleSetL
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsListSkusNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSkusNext operation. */
 export type VirtualMachineScaleSetsListSkusNextResponse = VirtualMachineScaleSetListSkusResult & {
   /** The underlying HTTP response. */
@@ -5847,6 +6373,10 @@ export type VirtualMachineScaleSetsListSkusNextResponse = VirtualMachineScaleSet
     parsedBody: VirtualMachineScaleSetListSkusResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOSUpgradeHistoryNext operation. */
 export type VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
@@ -5860,6 +6390,15 @@ export type VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse = VirtualMach
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMachineScaleSetExtension & {
   /** The underlying HTTP response. */
@@ -5869,10 +6408,17 @@ export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMach
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineScaleSetExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetExtensionsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScaleSetExtension & {
@@ -5883,10 +6429,17 @@ export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScale
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineScaleSetExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetExtensionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface VirtualMachineScaleSetExtensionsGetOptionalParams
@@ -5907,6 +6460,10 @@ export type VirtualMachineScaleSetExtensionsGetResponse = VirtualMachineScaleSet
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetExtensionsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSetExtensionListResult & {
   /** The underlying HTTP response. */
@@ -5918,6 +6475,10 @@ export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSe
     parsedBody: VirtualMachineScaleSetExtensionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetExtensionsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type VirtualMachineScaleSetExtensionsListNextResponse = VirtualMachineScaleSetExtensionListResult & {
@@ -5931,6 +6492,37 @@ export type VirtualMachineScaleSetExtensionsListNextResponse = VirtualMachineSca
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getLatest operation. */
 export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgradeStatusInfo & {
   /** The underlying HTTP response. */
@@ -5943,6 +6535,15 @@ export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgr
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMachineExtension & {
   /** The underlying HTTP response. */
@@ -5952,10 +6553,17 @@ export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMa
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExtension & {
@@ -5966,10 +6574,17 @@ export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExt
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineExtension;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMExtensionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface VirtualMachineScaleSetVMExtensionsGetOptionalParams
@@ -6014,6 +6629,37 @@ export interface VirtualMachineScaleSetVMsReimageOptionalParams
   extends coreHttp.OperationOptions {
   /** Parameters for the Reimaging Virtual machine in ScaleSet. */
   vmScaleSetVMReimageInput?: VirtualMachineScaleSetVMReimageParameters;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsReimageAllOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsDeallocateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the update operation. */
@@ -6025,10 +6671,21 @@ export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM &
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualMachineScaleSetVM;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM & {
@@ -6041,6 +6698,10 @@ export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM & {
     parsedBody: VirtualMachineScaleSetVM;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsGetInstanceViewOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInstanceView operation. */
 export type VirtualMachineScaleSetVMsGetInstanceViewResponse = VirtualMachineScaleSetVMInstanceView & {
@@ -6082,6 +6743,59 @@ export interface VirtualMachineScaleSetVMsPowerOffOptionalParams
   extends coreHttp.OperationOptions {
   /** The parameter to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Default value for this flag is false if not specified */
   skipShutdown?: boolean;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsRestartOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsStartOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsRedeployOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsSimulateEvictionOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface VirtualMachineScaleSetVMsRunCommandOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
 
 /** Contains response data for the runCommand operation. */
@@ -6093,8 +6807,6 @@ export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: RunCommandResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6121,6 +6833,15 @@ export type VirtualMachineScaleSetVMsListNextResponse = VirtualMachineScaleSetVM
   };
 };
 
+/** Optional parameters. */
+export interface LogAnalyticsExportRequestRateByIntervalOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the exportRequestRateByInterval operation. */
 export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperationResult & {
   /** The underlying HTTP response. */
@@ -6130,10 +6851,17 @@ export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperat
 
     /** The response body as parsed JSON or XML */
     parsedBody: LogAnalyticsOperationResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface LogAnalyticsExportThrottledRequestsOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the exportThrottledRequests operation. */
 export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationResult & {
@@ -6144,10 +6872,12 @@ export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationR
 
     /** The response body as parsed JSON or XML */
     parsedBody: LogAnalyticsOperationResult;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineRunCommandsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
@@ -6161,6 +6891,10 @@ export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualMachineRunCommandsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type VirtualMachineRunCommandsGetResponse = RunCommandDocument & {
   /** The underlying HTTP response. */
@@ -6172,6 +6906,10 @@ export type VirtualMachineRunCommandsGetResponse = RunCommandDocument & {
     parsedBody: RunCommandDocument;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualMachineRunCommandsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type VirtualMachineRunCommandsListNextResponse = RunCommandListResult & {
@@ -6223,6 +6961,15 @@ export type ResourceSkusListNextResponse = ResourceSkusResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DisksCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DisksCreateOrUpdateResponse = Disk & {
   /** The underlying HTTP response. */
@@ -6232,10 +6979,16 @@ export type DisksCreateOrUpdateResponse = Disk & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Disk;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DisksUpdateOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type DisksUpdateResponse = Disk & {
@@ -6246,10 +6999,11 @@ export type DisksUpdateResponse = Disk & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Disk;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DisksGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DisksGetResponse = Disk & {
@@ -6263,6 +7017,18 @@ export type DisksGetResponse = Disk & {
   };
 };
 
+/** Optional parameters. */
+export interface DisksDeleteOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DisksListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type DisksListByResourceGroupResponse = DiskList & {
   /** The underlying HTTP response. */
@@ -6274,6 +7040,9 @@ export type DisksListByResourceGroupResponse = DiskList & {
     parsedBody: DiskList;
   };
 };
+
+/** Optional parameters. */
+export interface DisksListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type DisksListResponse = DiskList & {
@@ -6287,6 +7056,15 @@ export type DisksListResponse = DiskList & {
   };
 };
 
+/** Optional parameters. */
+export interface DisksGrantAccessOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the grantAccess operation. */
 export type DisksGrantAccessResponse = AccessUri & {
   /** The underlying HTTP response. */
@@ -6296,10 +7074,21 @@ export type DisksGrantAccessResponse = AccessUri & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: AccessUri;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DisksRevokeAccessOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DisksListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DisksListByResourceGroupNextResponse = DiskList & {
@@ -6313,6 +7102,10 @@ export type DisksListByResourceGroupNextResponse = DiskList & {
   };
 };
 
+/** Optional parameters. */
+export interface DisksListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type DisksListNextResponse = DiskList & {
   /** The underlying HTTP response. */
@@ -6325,6 +7118,15 @@ export type DisksListNextResponse = DiskList & {
   };
 };
 
+/** Optional parameters. */
+export interface SnapshotsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type SnapshotsCreateOrUpdateResponse = Snapshot & {
   /** The underlying HTTP response. */
@@ -6334,10 +7136,17 @@ export type SnapshotsCreateOrUpdateResponse = Snapshot & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Snapshot;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SnapshotsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type SnapshotsUpdateResponse = Snapshot & {
@@ -6348,10 +7157,11 @@ export type SnapshotsUpdateResponse = Snapshot & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Snapshot;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SnapshotsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type SnapshotsGetResponse = Snapshot & {
@@ -6365,6 +7175,19 @@ export type SnapshotsGetResponse = Snapshot & {
   };
 };
 
+/** Optional parameters. */
+export interface SnapshotsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SnapshotsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type SnapshotsListByResourceGroupResponse = SnapshotList & {
   /** The underlying HTTP response. */
@@ -6376,6 +7199,10 @@ export type SnapshotsListByResourceGroupResponse = SnapshotList & {
     parsedBody: SnapshotList;
   };
 };
+
+/** Optional parameters. */
+export interface SnapshotsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type SnapshotsListResponse = SnapshotList & {
@@ -6389,6 +7216,15 @@ export type SnapshotsListResponse = SnapshotList & {
   };
 };
 
+/** Optional parameters. */
+export interface SnapshotsGrantAccessOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the grantAccess operation. */
 export type SnapshotsGrantAccessResponse = AccessUri & {
   /** The underlying HTTP response. */
@@ -6398,10 +7234,21 @@ export type SnapshotsGrantAccessResponse = AccessUri & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: AccessUri;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SnapshotsRevokeAccessOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SnapshotsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type SnapshotsListByResourceGroupNextResponse = SnapshotList & {
@@ -6415,6 +7262,10 @@ export type SnapshotsListByResourceGroupNextResponse = SnapshotList & {
   };
 };
 
+/** Optional parameters. */
+export interface SnapshotsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type SnapshotsListNextResponse = SnapshotList & {
   /** The underlying HTTP response. */
@@ -6427,6 +7278,15 @@ export type SnapshotsListNextResponse = SnapshotList & {
   };
 };
 
+/** Optional parameters. */
+export interface DiskEncryptionSetsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
   /** The underlying HTTP response. */
@@ -6436,10 +7296,17 @@ export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DiskEncryptionSet;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DiskEncryptionSetsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
@@ -6450,10 +7317,12 @@ export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DiskEncryptionSet;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DiskEncryptionSetsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DiskEncryptionSetsGetResponse = DiskEncryptionSet & {
@@ -6467,6 +7336,19 @@ export type DiskEncryptionSetsGetResponse = DiskEncryptionSet & {
   };
 };
 
+/** Optional parameters. */
+export interface DiskEncryptionSetsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DiskEncryptionSetsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetList & {
   /** The underlying HTTP response. */
@@ -6478,6 +7360,10 @@ export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetLis
     parsedBody: DiskEncryptionSetList;
   };
 };
+
+/** Optional parameters. */
+export interface DiskEncryptionSetsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type DiskEncryptionSetsListResponse = DiskEncryptionSetList & {
@@ -6491,6 +7377,10 @@ export type DiskEncryptionSetsListResponse = DiskEncryptionSetList & {
   };
 };
 
+/** Optional parameters. */
+export interface DiskEncryptionSetsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DiskEncryptionSetsListByResourceGroupNextResponse = DiskEncryptionSetList & {
   /** The underlying HTTP response. */
@@ -6502,6 +7392,10 @@ export type DiskEncryptionSetsListByResourceGroupNextResponse = DiskEncryptionSe
     parsedBody: DiskEncryptionSetList;
   };
 };
+
+/** Optional parameters. */
+export interface DiskEncryptionSetsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type DiskEncryptionSetsListNextResponse = DiskEncryptionSetList & {
@@ -6515,6 +7409,15 @@ export type DiskEncryptionSetsListNextResponse = DiskEncryptionSetList & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleriesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type GalleriesCreateOrUpdateResponse = Gallery & {
   /** The underlying HTTP response. */
@@ -6524,10 +7427,17 @@ export type GalleriesCreateOrUpdateResponse = Gallery & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Gallery;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleriesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type GalleriesUpdateResponse = Gallery & {
@@ -6538,10 +7448,11 @@ export type GalleriesUpdateResponse = Gallery & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Gallery;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleriesGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type GalleriesGetResponse = Gallery & {
@@ -6555,6 +7466,19 @@ export type GalleriesGetResponse = Gallery & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleriesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface GalleriesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type GalleriesListByResourceGroupResponse = GalleryList & {
   /** The underlying HTTP response. */
@@ -6566,6 +7490,10 @@ export type GalleriesListByResourceGroupResponse = GalleryList & {
     parsedBody: GalleryList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleriesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type GalleriesListResponse = GalleryList & {
@@ -6579,6 +7507,10 @@ export type GalleriesListResponse = GalleryList & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleriesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type GalleriesListByResourceGroupNextResponse = GalleryList & {
   /** The underlying HTTP response. */
@@ -6590,6 +7522,10 @@ export type GalleriesListByResourceGroupNextResponse = GalleryList & {
     parsedBody: GalleryList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleriesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type GalleriesListNextResponse = GalleryList & {
@@ -6603,6 +7539,15 @@ export type GalleriesListNextResponse = GalleryList & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleryImagesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
   /** The underlying HTTP response. */
@@ -6612,10 +7557,17 @@ export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryImage;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryImagesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type GalleryImagesUpdateResponse = GalleryImage & {
@@ -6626,10 +7578,12 @@ export type GalleryImagesUpdateResponse = GalleryImage & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryImage;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryImagesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type GalleryImagesGetResponse = GalleryImage & {
@@ -6643,6 +7597,19 @@ export type GalleryImagesGetResponse = GalleryImage & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleryImagesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface GalleryImagesListByGalleryOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByGallery operation. */
 export type GalleryImagesListByGalleryResponse = GalleryImageList & {
   /** The underlying HTTP response. */
@@ -6654,6 +7621,10 @@ export type GalleryImagesListByGalleryResponse = GalleryImageList & {
     parsedBody: GalleryImageList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryImagesListByGalleryNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByGalleryNext operation. */
 export type GalleryImagesListByGalleryNextResponse = GalleryImageList & {
@@ -6667,6 +7638,15 @@ export type GalleryImagesListByGalleryNextResponse = GalleryImageList & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleryImageVersionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
   /** The underlying HTTP response. */
@@ -6676,10 +7656,17 @@ export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryImageVersion;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryImageVersionsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
@@ -6690,8 +7677,6 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryImageVersion;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6714,6 +7699,19 @@ export type GalleryImageVersionsGetResponse = GalleryImageVersion & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleryImageVersionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface GalleryImageVersionsListByGalleryImageOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByGalleryImage operation. */
 export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersionList & {
   /** The underlying HTTP response. */
@@ -6725,6 +7723,10 @@ export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersion
     parsedBody: GalleryImageVersionList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryImageVersionsListByGalleryImageNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByGalleryImageNext operation. */
 export type GalleryImageVersionsListByGalleryImageNextResponse = GalleryImageVersionList & {
@@ -6738,6 +7740,15 @@ export type GalleryImageVersionsListByGalleryImageNextResponse = GalleryImageVer
   };
 };
 
+/** Optional parameters. */
+export interface GalleryApplicationsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
   /** The underlying HTTP response. */
@@ -6747,10 +7758,17 @@ export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryApplication;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryApplicationsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type GalleryApplicationsUpdateResponse = GalleryApplication & {
@@ -6761,10 +7779,12 @@ export type GalleryApplicationsUpdateResponse = GalleryApplication & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryApplication;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryApplicationsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type GalleryApplicationsGetResponse = GalleryApplication & {
@@ -6778,6 +7798,19 @@ export type GalleryApplicationsGetResponse = GalleryApplication & {
   };
 };
 
+/** Optional parameters. */
+export interface GalleryApplicationsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface GalleryApplicationsListByGalleryOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByGallery operation. */
 export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList & {
   /** The underlying HTTP response. */
@@ -6789,6 +7822,10 @@ export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList & 
     parsedBody: GalleryApplicationList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryApplicationsListByGalleryNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByGalleryNext operation. */
 export type GalleryApplicationsListByGalleryNextResponse = GalleryApplicationList & {
@@ -6802,6 +7839,15 @@ export type GalleryApplicationsListByGalleryNextResponse = GalleryApplicationLis
   };
 };
 
+/** Optional parameters. */
+export interface GalleryApplicationVersionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicationVersion & {
   /** The underlying HTTP response. */
@@ -6811,10 +7857,17 @@ export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicatio
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryApplicationVersion;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryApplicationVersionsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion & {
@@ -6825,8 +7878,6 @@ export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion
 
     /** The response body as parsed JSON or XML */
     parsedBody: GalleryApplicationVersion;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -6849,6 +7900,19 @@ export type GalleryApplicationVersionsGetResponse = GalleryApplicationVersion & 
   };
 };
 
+/** Optional parameters. */
+export interface GalleryApplicationVersionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface GalleryApplicationVersionsListByGalleryApplicationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByGalleryApplication operation. */
 export type GalleryApplicationVersionsListByGalleryApplicationResponse = GalleryApplicationVersionList & {
   /** The underlying HTTP response. */
@@ -6860,6 +7924,10 @@ export type GalleryApplicationVersionsListByGalleryApplicationResponse = Gallery
     parsedBody: GalleryApplicationVersionList;
   };
 };
+
+/** Optional parameters. */
+export interface GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByGalleryApplicationNext operation. */
 export type GalleryApplicationVersionsListByGalleryApplicationNextResponse = GalleryApplicationVersionList & {
@@ -6873,6 +7941,10 @@ export type GalleryApplicationVersionsListByGalleryApplicationNextResponse = Gal
   };
 };
 
+/** Optional parameters. */
+export interface ContainerServicesListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type ContainerServicesListResponse = ContainerServiceListResult & {
   /** The underlying HTTP response. */
@@ -6885,6 +7957,15 @@ export type ContainerServicesListResponse = ContainerServiceListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ContainerServicesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
   /** The underlying HTTP response. */
@@ -6894,10 +7975,12 @@ export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ContainerService;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ContainerServicesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ContainerServicesGetResponse = ContainerService & {
@@ -6911,6 +7994,19 @@ export type ContainerServicesGetResponse = ContainerService & {
   };
 };
 
+/** Optional parameters. */
+export interface ContainerServicesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ContainerServicesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type ContainerServicesListByResourceGroupResponse = ContainerServiceListResult & {
   /** The underlying HTTP response. */
@@ -6923,6 +8019,10 @@ export type ContainerServicesListByResourceGroupResponse = ContainerServiceListR
   };
 };
 
+/** Optional parameters. */
+export interface ContainerServicesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type ContainerServicesListNextResponse = ContainerServiceListResult & {
   /** The underlying HTTP response. */
@@ -6934,6 +8034,10 @@ export type ContainerServicesListNextResponse = ContainerServiceListResult & {
     parsedBody: ContainerServiceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ContainerServicesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ContainerServicesListByResourceGroupNextResponse = ContainerServiceListResult & {

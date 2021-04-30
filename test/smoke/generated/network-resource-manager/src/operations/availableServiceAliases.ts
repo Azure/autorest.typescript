@@ -15,6 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   AvailableServiceAlias,
+  AvailableServiceAliasesListNextOptionalParams,
+  AvailableServiceAliasesListOptionalParams,
+  AvailableServiceAliasesListByResourceGroupNextOptionalParams,
+  AvailableServiceAliasesListByResourceGroupOptionalParams,
   AvailableServiceAliasesListResponse,
   AvailableServiceAliasesListByResourceGroupResponse,
   AvailableServiceAliasesListNextResponse,
@@ -41,7 +45,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListOptionalParams
   ): PagedAsyncIterableIterator<AvailableServiceAlias> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -59,7 +63,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListOptionalParams
   ): AsyncIterableIterator<AvailableServiceAlias[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -73,7 +77,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListOptionalParams
   ): AsyncIterableIterator<AvailableServiceAlias> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -89,7 +93,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
   public listByResourceGroup(
     resourceGroupName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AvailableServiceAlias> {
     const iter = this.listByResourceGroupPagingAll(
       resourceGroupName,
@@ -116,7 +120,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AvailableServiceAlias[]> {
     let result = await this._listByResourceGroup(
       resourceGroupName,
@@ -140,7 +144,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AvailableServiceAlias> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -158,7 +162,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListOptionalParams
   ): Promise<AvailableServiceAliasesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -179,7 +183,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
   private _listByResourceGroup(
     resourceGroupName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): Promise<AvailableServiceAliasesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -201,7 +205,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListNextOptionalParams
   ): Promise<AvailableServiceAliasesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -225,7 +229,7 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
     resourceGroupName: string,
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupNextOptionalParams
   ): Promise<AvailableServiceAliasesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

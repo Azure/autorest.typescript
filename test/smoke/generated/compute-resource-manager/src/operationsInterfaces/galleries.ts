@@ -12,10 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Gallery,
+  GalleriesListByResourceGroupNextOptionalParams,
+  GalleriesListByResourceGroupOptionalParams,
+  GalleriesListNextOptionalParams,
+  GalleriesListOptionalParams,
+  GalleriesCreateOrUpdateOptionalParams,
   GalleriesCreateOrUpdateResponse,
   GalleryUpdate,
+  GalleriesUpdateOptionalParams,
   GalleriesUpdateResponse,
-  GalleriesGetResponse
+  GalleriesGetOptionalParams,
+  GalleriesGetResponse,
+  GalleriesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,14 +36,14 @@ export interface Galleries {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Gallery>;
   /**
    * List galleries under a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListOptionalParams
   ): PagedAsyncIterableIterator<Gallery>;
   /**
    * Create or update a Shared Image Gallery.
@@ -49,7 +57,7 @@ export interface Galleries {
     resourceGroupName: string,
     galleryName: string,
     gallery: Gallery,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleriesCreateOrUpdateResponse>,
@@ -68,7 +76,7 @@ export interface Galleries {
     resourceGroupName: string,
     galleryName: string,
     gallery: GalleryUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleriesUpdateResponse>,
@@ -84,7 +92,7 @@ export interface Galleries {
   get(
     resourceGroupName: string,
     galleryName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesGetOptionalParams
   ): Promise<GalleriesGetResponse>;
   /**
    * Delete a Shared Image Gallery.
@@ -95,7 +103,7 @@ export interface Galleries {
   delete(
     resourceGroupName: string,
     galleryName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   HubVirtualNetworkConnection,
+  HubVirtualNetworkConnectionsListNextOptionalParams,
+  HubVirtualNetworkConnectionsListOptionalParams,
+  HubVirtualNetworkConnectionsGetOptionalParams,
   HubVirtualNetworkConnectionsGetResponse
 } from "../models";
 
@@ -26,7 +29,7 @@ export interface HubVirtualNetworkConnections {
   list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<HubVirtualNetworkConnection>;
   /**
    * Retrieves the details of a HubVirtualNetworkConnection.
@@ -39,6 +42,6 @@ export interface HubVirtualNetworkConnections {
     resourceGroupName: string,
     virtualHubName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubVirtualNetworkConnectionsGetOptionalParams
   ): Promise<HubVirtualNetworkConnectionsGetResponse>;
 }

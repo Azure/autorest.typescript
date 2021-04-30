@@ -13,6 +13,7 @@ import {
   JobExecution,
   JobStepExecutionsListByJobExecutionNextOptionalParams,
   JobStepExecutionsListByJobExecutionOptionalParams,
+  JobStepExecutionsGetOptionalParams,
   JobStepExecutionsGetResponse
 } from "../models";
 
@@ -55,6 +56,6 @@ export interface JobStepExecutions {
     jobName: string,
     jobExecutionId: string,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepExecutionsGetOptionalParams
   ): Promise<JobStepExecutionsGetResponse>;
 }

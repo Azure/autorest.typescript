@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
-import { SystemAssignedIdentitiesGetByScopeResponse } from "../models";
+import {
+  SystemAssignedIdentitiesGetByScopeOptionalParams,
+  SystemAssignedIdentitiesGetByScopeResponse
+} from "../models";
 
 /** Class representing a SystemAssignedIdentities. */
 export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {
@@ -33,7 +36,7 @@ export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {
    */
   getByScope(
     scope: string,
-    options?: coreHttp.OperationOptions
+    options?: SystemAssignedIdentitiesGetByScopeOptionalParams
   ): Promise<SystemAssignedIdentitiesGetByScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,

@@ -17,24 +17,41 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
+  DatabaseAccountsListOptionalParams,
+  DatabaseAccountsListByResourceGroupOptionalParams,
   Metric,
+  DatabaseAccountsListMetricsOptionalParams,
   Usage,
   DatabaseAccountsListUsagesOptionalParams,
   MetricDefinition,
+  DatabaseAccountsListMetricDefinitionsOptionalParams,
+  DatabaseAccountsGetOptionalParams,
   DatabaseAccountsGetResponse,
   DatabaseAccountUpdateParameters,
+  DatabaseAccountsUpdateOptionalParams,
   DatabaseAccountsUpdateResponse,
   DatabaseAccountCreateUpdateParameters,
+  DatabaseAccountsCreateOrUpdateOptionalParams,
   DatabaseAccountsCreateOrUpdateResponse,
+  DatabaseAccountsDeleteOptionalParams,
   FailoverPolicies,
+  DatabaseAccountsFailoverPriorityChangeOptionalParams,
   DatabaseAccountsListResponse,
   DatabaseAccountsListByResourceGroupResponse,
+  DatabaseAccountsListKeysOptionalParams,
   DatabaseAccountsListKeysResponse,
+  DatabaseAccountsListConnectionStringsOptionalParams,
   DatabaseAccountsListConnectionStringsResponse,
   RegionForOnlineOffline,
+  DatabaseAccountsOfflineRegionOptionalParams,
+  DatabaseAccountsOnlineRegionOptionalParams,
+  DatabaseAccountsGetReadOnlyKeysOptionalParams,
   DatabaseAccountsGetReadOnlyKeysResponse,
+  DatabaseAccountsListReadOnlyKeysOptionalParams,
   DatabaseAccountsListReadOnlyKeysResponse,
   DatabaseAccountRegenerateKeyParameters,
+  DatabaseAccountsRegenerateKeyOptionalParams,
+  DatabaseAccountsCheckNameExistsOptionalParams,
   DatabaseAccountsListMetricsResponse,
   DatabaseAccountsListUsagesResponse,
   DatabaseAccountsListMetricDefinitionsResponse
@@ -58,7 +75,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListOptionalParams
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
     const iter = this.listPagingAll(options);
     return {
@@ -75,14 +92,14 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListOptionalParams
   ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
     let result = await this._list(options);
     yield result.value || [];
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListOptionalParams
   ): AsyncIterableIterator<DatabaseAccountGetResults> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -96,7 +113,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -114,7 +131,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -122,7 +139,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DatabaseAccountGetResults> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -145,7 +162,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -175,7 +192,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -190,7 +207,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -271,7 +288,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   public listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -298,7 +315,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   private async *listMetricDefinitionsPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result = await this._listMetricDefinitions(
       resourceGroupName,
@@ -311,7 +328,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   private async *listMetricDefinitionsPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -331,7 +348,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   get(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsGetOptionalParams
   ): Promise<DatabaseAccountsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -355,7 +372,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabaseAccountsUpdateResponse>,
@@ -377,16 +394,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -401,7 +414,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabaseAccountsCreateOrUpdateResponse>,
@@ -423,16 +436,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -444,7 +453,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   async delete(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -462,16 +471,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -488,7 +493,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -507,16 +512,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverPriorityChangeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverPriorityChangeOperationSpec,
-      initialOperationResult,
+      failoverPriorityChangeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -524,7 +525,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListOptionalParams
   ): Promise<DatabaseAccountsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -542,7 +543,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListByResourceGroupOptionalParams
   ): Promise<DatabaseAccountsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -563,7 +564,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListKeysOptionalParams
   ): Promise<DatabaseAccountsListKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -585,7 +586,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   listConnectionStrings(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListConnectionStringsOptionalParams
   ): Promise<DatabaseAccountsListConnectionStringsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -609,7 +610,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsOfflineRegionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -628,16 +629,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      offlineRegionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: offlineRegionOperationSpec,
-      initialOperationResult,
+      offlineRegionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -651,7 +648,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsOnlineRegionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -670,16 +667,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      onlineRegionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: onlineRegionOperationSpec,
-      initialOperationResult,
+      onlineRegionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -691,7 +684,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   getReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsGetReadOnlyKeysOptionalParams
   ): Promise<DatabaseAccountsGetReadOnlyKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -713,7 +706,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   listReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListReadOnlyKeysOptionalParams
   ): Promise<DatabaseAccountsListReadOnlyKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -737,7 +730,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsRegenerateKeyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -756,16 +749,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      regenerateKeyOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: regenerateKeyOperationSpec,
-      initialOperationResult,
+      regenerateKeyOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -776,7 +765,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    */
   checkNameExists(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsCheckNameExistsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       accountName,
@@ -801,7 +790,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricsOptionalParams
   ): Promise<DatabaseAccountsListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -846,7 +835,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   private _listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
   ): Promise<DatabaseAccountsListMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

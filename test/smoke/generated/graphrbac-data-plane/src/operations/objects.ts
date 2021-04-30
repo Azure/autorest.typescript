@@ -15,7 +15,9 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   DirectoryObjectUnion,
+  ObjectsGetObjectsByObjectIdsNextOptionalParams,
   GetObjectsParameters,
+  ObjectsGetObjectsByObjectIdsOptionalParams,
   ObjectsGetObjectsByObjectIdsResponse,
   ObjectsGetObjectsByObjectIdsNextResponse
 } from "../models";
@@ -41,7 +43,7 @@ export class ObjectsImpl implements Objects {
    */
   public listObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsPagingAll(parameters, options);
     return {
@@ -59,7 +61,7 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsPagingPage(
     parameters: GetObjectsParameters,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._getObjectsByObjectIds(parameters, options);
     yield result.value || [];
@@ -76,7 +78,7 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsPagingAll(
     parameters: GetObjectsParameters,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getObjectsByObjectIdsPagingPage(
       parameters,
@@ -93,7 +95,7 @@ export class ObjectsImpl implements Objects {
    */
   public listObjectsByObjectIdsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsNextPagingAll(nextLink, options);
     return {
@@ -111,7 +113,7 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._getObjectsByObjectIdsNext(nextLink, options);
     yield result.value || [];
@@ -128,7 +130,7 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getObjectsByObjectIdsNextPagingPage(
       nextLink,
@@ -146,7 +148,7 @@ export class ObjectsImpl implements Objects {
    */
   private _getObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -165,7 +167,7 @@ export class ObjectsImpl implements Objects {
    */
   private _getObjectsByObjectIdsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): Promise<ObjectsGetObjectsByObjectIdsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -14,33 +14,59 @@ import {
   AppServicePlan,
   AppServicePlansListNextOptionalParams,
   AppServicePlansListOptionalParams,
+  AppServicePlansListByResourceGroupNextOptionalParams,
+  AppServicePlansListByResourceGroupOptionalParams,
+  AppServicePlansListWebAppsByHybridConnectionNextOptionalParams,
+  AppServicePlansListWebAppsByHybridConnectionOptionalParams,
   HybridConnection,
+  AppServicePlansListHybridConnectionsNextOptionalParams,
+  AppServicePlansListHybridConnectionsOptionalParams,
   Site,
   AppServicePlansListWebAppsNextOptionalParams,
   AppServicePlansListWebAppsOptionalParams,
   CsmUsageQuota,
   AppServicePlansListUsagesNextOptionalParams,
   AppServicePlansListUsagesOptionalParams,
+  AppServicePlansGetOptionalParams,
   AppServicePlansGetResponse,
+  AppServicePlansCreateOrUpdateOptionalParams,
   AppServicePlansCreateOrUpdateResponse,
+  AppServicePlansDeleteOptionalParams,
   AppServicePlanPatchResource,
+  AppServicePlansUpdateOptionalParams,
   AppServicePlansUpdateResponse,
+  AppServicePlansListCapabilitiesOptionalParams,
   AppServicePlansListCapabilitiesResponse,
+  AppServicePlansGetHybridConnectionOptionalParams,
   AppServicePlansGetHybridConnectionResponse,
+  AppServicePlansDeleteHybridConnectionOptionalParams,
+  AppServicePlansListHybridConnectionKeysOptionalParams,
   AppServicePlansListHybridConnectionKeysResponse,
+  AppServicePlansGetHybridConnectionPlanLimitOptionalParams,
   AppServicePlansGetHybridConnectionPlanLimitResponse,
   AppServicePlansRestartWebAppsOptionalParams,
+  AppServicePlansGetServerFarmSkusOptionalParams,
   AppServicePlansGetServerFarmSkusResponse,
+  AppServicePlansListVnetsOptionalParams,
   AppServicePlansListVnetsResponse,
+  AppServicePlansGetVnetFromServerFarmOptionalParams,
   AppServicePlansGetVnetFromServerFarmResponse,
+  AppServicePlansGetVnetGatewayOptionalParams,
   AppServicePlansGetVnetGatewayResponse,
   VnetGateway,
+  AppServicePlansUpdateVnetGatewayOptionalParams,
   AppServicePlansUpdateVnetGatewayResponse,
+  AppServicePlansListRoutesForVnetOptionalParams,
   AppServicePlansListRoutesForVnetResponse,
+  AppServicePlansGetRouteForVnetOptionalParams,
   AppServicePlansGetRouteForVnetResponse,
   VnetRoute,
+  AppServicePlansCreateOrUpdateVnetRouteOptionalParams,
   AppServicePlansCreateOrUpdateVnetRouteResponse,
-  AppServicePlansUpdateVnetRouteResponse
+  AppServicePlansDeleteVnetRouteOptionalParams,
+  AppServicePlansUpdateVnetRouteOptionalParams,
+  AppServicePlansUpdateVnetRouteResponse,
+  AppServicePlansRebootWorkerOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -60,7 +86,7 @@ export interface AppServicePlans {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AppServicePlan>;
   /**
    * Description for Get all apps that use a Hybrid Connection in an App Service Plan.
@@ -75,7 +101,7 @@ export interface AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): PagedAsyncIterableIterator<string>;
   /**
    * Description for Retrieve all Hybrid Connections in use in an App Service plan.
@@ -86,7 +112,7 @@ export interface AppServicePlans {
   listHybridConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionsOptionalParams
   ): PagedAsyncIterableIterator<HybridConnection>;
   /**
    * Description for Get all apps associated with an App Service plan.
@@ -119,7 +145,7 @@ export interface AppServicePlans {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetOptionalParams
   ): Promise<AppServicePlansGetResponse>;
   /**
    * Description for Creates or updates an App Service Plan.
@@ -132,7 +158,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServicePlansCreateOrUpdateResponse>,
@@ -148,7 +174,7 @@ export interface AppServicePlans {
   delete(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates or updates an App Service Plan.
@@ -161,7 +187,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlanPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateOptionalParams
   ): Promise<AppServicePlansUpdateResponse>;
   /**
    * Description for List all capabilities of an App Service plan.
@@ -172,7 +198,7 @@ export interface AppServicePlans {
   listCapabilities(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListCapabilitiesOptionalParams
   ): Promise<AppServicePlansListCapabilitiesResponse>;
   /**
    * Description for Retrieve a Hybrid Connection in use in an App Service plan.
@@ -187,7 +213,7 @@ export interface AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetHybridConnectionOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionResponse>;
   /**
    * Description for Delete a Hybrid Connection in use in an App Service plan.
@@ -202,7 +228,7 @@ export interface AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteHybridConnectionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get the send key name and value of a Hybrid Connection.
@@ -217,7 +243,7 @@ export interface AppServicePlans {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListHybridConnectionKeysOptionalParams
   ): Promise<AppServicePlansListHybridConnectionKeysResponse>;
   /**
    * Description for Get the maximum number of Hybrid Connections allowed in an App Service plan.
@@ -228,7 +254,7 @@ export interface AppServicePlans {
   getHybridConnectionPlanLimit(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetHybridConnectionPlanLimitOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionPlanLimitResponse>;
   /**
    * Description for Restart all apps in an App Service plan.
@@ -250,7 +276,7 @@ export interface AppServicePlans {
   getServerFarmSkus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetServerFarmSkusOptionalParams
   ): Promise<AppServicePlansGetServerFarmSkusResponse>;
   /**
    * Description for Get all Virtual Networks associated with an App Service plan.
@@ -261,7 +287,7 @@ export interface AppServicePlans {
   listVnets(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListVnetsOptionalParams
   ): Promise<AppServicePlansListVnetsResponse>;
   /**
    * Description for Get a Virtual Network associated with an App Service plan.
@@ -274,7 +300,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetVnetFromServerFarmOptionalParams
   ): Promise<AppServicePlansGetVnetFromServerFarmResponse>;
   /**
    * Description for Get a Virtual Network gateway.
@@ -289,7 +315,7 @@ export interface AppServicePlans {
     name: string,
     vnetName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetVnetGatewayOptionalParams
   ): Promise<AppServicePlansGetVnetGatewayResponse>;
   /**
    * Description for Update a Virtual Network gateway.
@@ -306,7 +332,7 @@ export interface AppServicePlans {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateVnetGatewayOptionalParams
   ): Promise<AppServicePlansUpdateVnetGatewayResponse>;
   /**
    * Description for Get all routes that are associated with a Virtual Network in an App Service plan.
@@ -319,7 +345,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansListRoutesForVnetOptionalParams
   ): Promise<AppServicePlansListRoutesForVnetResponse>;
   /**
    * Description for Get a Virtual Network route in an App Service plan.
@@ -334,7 +360,7 @@ export interface AppServicePlans {
     name: string,
     vnetName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansGetRouteForVnetOptionalParams
   ): Promise<AppServicePlansGetRouteForVnetResponse>;
   /**
    * Description for Create or update a Virtual Network route in an App Service plan.
@@ -351,7 +377,7 @@ export interface AppServicePlans {
     vnetName: string,
     routeName: string,
     route: VnetRoute,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansCreateOrUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse>;
   /**
    * Description for Delete a Virtual Network route in an App Service plan.
@@ -366,7 +392,7 @@ export interface AppServicePlans {
     name: string,
     vnetName: string,
     routeName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansDeleteVnetRouteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Create or update a Virtual Network route in an App Service plan.
@@ -383,7 +409,7 @@ export interface AppServicePlans {
     vnetName: string,
     routeName: string,
     route: VnetRoute,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansUpdateVnetRouteResponse>;
   /**
    * Description for Reboot a worker machine in an App Service plan.
@@ -396,6 +422,6 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     workerName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServicePlansRebootWorkerOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

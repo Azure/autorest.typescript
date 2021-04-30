@@ -15,20 +15,31 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   ServicePrincipal,
+  ServicePrincipalsListNextOptionalParams,
   ServicePrincipalsListOptionalParams,
   DirectoryObjectUnion,
+  ServicePrincipalsListOwnersNextOptionalParams,
+  ServicePrincipalsListOwnersOptionalParams,
   KeyCredential,
+  ServicePrincipalsListKeyCredentialsOptionalParams,
   PasswordCredential,
+  ServicePrincipalsListPasswordCredentialsOptionalParams,
   ServicePrincipalCreateParameters,
+  ServicePrincipalsCreateOptionalParams,
   ServicePrincipalsCreateResponse,
   ServicePrincipalsListResponse,
   ServicePrincipalUpdateParameters,
+  ServicePrincipalsUpdateOptionalParams,
+  ServicePrincipalsDeleteOptionalParams,
+  ServicePrincipalsGetOptionalParams,
   ServicePrincipalsGetResponse,
   ServicePrincipalsListOwnersResponse,
   ServicePrincipalsListKeyCredentialsResponse,
   KeyCredentialsUpdateParameters,
+  ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   ServicePrincipalsListPasswordCredentialsResponse,
   PasswordCredentialsUpdateParameters,
+  ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
   ServicePrincipalsListNextResponse,
   ServicePrincipalsListOwnersNextResponse
 } from "../models";
@@ -95,7 +106,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
@@ -113,7 +124,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listOwnersPagingPage(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._listOwners(objectId, options);
     yield result.value || [];
@@ -127,7 +138,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listOwnersPagingAll(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnersPagingPage(objectId, options)) {
       yield* page;
@@ -141,7 +152,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listKeyCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): PagedAsyncIterableIterator<KeyCredential> {
     const iter = this.listKeyCredentialsPagingAll(objectId, options);
     return {
@@ -159,7 +170,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listKeyCredentialsPagingPage(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): AsyncIterableIterator<KeyCredential[]> {
     let result = await this._listKeyCredentials(objectId, options);
     yield result.value || [];
@@ -167,7 +178,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listKeyCredentialsPagingAll(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): AsyncIterableIterator<KeyCredential> {
     for await (const page of this.listKeyCredentialsPagingPage(
       objectId,
@@ -184,7 +195,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listPasswordCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): PagedAsyncIterableIterator<PasswordCredential> {
     const iter = this.listPasswordCredentialsPagingAll(objectId, options);
     return {
@@ -202,7 +213,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listPasswordCredentialsPagingPage(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): AsyncIterableIterator<PasswordCredential[]> {
     let result = await this._listPasswordCredentials(objectId, options);
     yield result.value || [];
@@ -210,7 +221,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listPasswordCredentialsPagingAll(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): AsyncIterableIterator<PasswordCredential> {
     for await (const page of this.listPasswordCredentialsPagingPage(
       objectId,
@@ -227,7 +238,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListNextOptionalParams
   ): PagedAsyncIterableIterator<ServicePrincipal> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -245,7 +256,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListNextOptionalParams
   ): AsyncIterableIterator<ServicePrincipal[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -259,7 +270,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListNextOptionalParams
   ): AsyncIterableIterator<ServicePrincipal> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -273,7 +284,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   create(
     parameters: ServicePrincipalCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsCreateOptionalParams
   ): Promise<ServicePrincipalsCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -310,7 +321,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   update(
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -330,7 +341,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -350,7 +361,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   get(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsGetOptionalParams
   ): Promise<ServicePrincipalsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -369,7 +380,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersOptionalParams
   ): Promise<ServicePrincipalsListOwnersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -388,7 +399,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listKeyCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): Promise<ServicePrincipalsListKeyCredentialsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -409,7 +420,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   updateKeyCredentials(
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -429,7 +440,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listPasswordCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): Promise<ServicePrincipalsListPasswordCredentialsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -450,7 +461,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   updatePasswordCredentials(
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -470,7 +481,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListNextOptionalParams
   ): Promise<ServicePrincipalsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -491,7 +502,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   private _listOwnersNext(
     objectId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersNextOptionalParams
   ): Promise<ServicePrincipalsListOwnersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,

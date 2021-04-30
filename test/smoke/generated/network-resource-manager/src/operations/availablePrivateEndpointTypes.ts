@@ -15,6 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   AvailablePrivateEndpointType,
+  AvailablePrivateEndpointTypesListNextOptionalParams,
+  AvailablePrivateEndpointTypesListOptionalParams,
+  AvailablePrivateEndpointTypesListByResourceGroupNextOptionalParams,
+  AvailablePrivateEndpointTypesListByResourceGroupOptionalParams,
   AvailablePrivateEndpointTypesListResponse,
   AvailablePrivateEndpointTypesListByResourceGroupResponse,
   AvailablePrivateEndpointTypesListNextResponse,
@@ -43,7 +47,7 @@ export class AvailablePrivateEndpointTypesImpl
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListOptionalParams
   ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -61,7 +65,7 @@ export class AvailablePrivateEndpointTypesImpl
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListOptionalParams
   ): AsyncIterableIterator<AvailablePrivateEndpointType[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -75,7 +79,7 @@ export class AvailablePrivateEndpointTypesImpl
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListOptionalParams
   ): AsyncIterableIterator<AvailablePrivateEndpointType> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -92,7 +96,7 @@ export class AvailablePrivateEndpointTypesImpl
   public listByResourceGroup(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AvailablePrivateEndpointType> {
     const iter = this.listByResourceGroupPagingAll(
       location,
@@ -119,7 +123,7 @@ export class AvailablePrivateEndpointTypesImpl
   private async *listByResourceGroupPagingPage(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AvailablePrivateEndpointType[]> {
     let result = await this._listByResourceGroup(
       location,
@@ -143,7 +147,7 @@ export class AvailablePrivateEndpointTypesImpl
   private async *listByResourceGroupPagingAll(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AvailablePrivateEndpointType> {
     for await (const page of this.listByResourceGroupPagingPage(
       location,
@@ -162,7 +166,7 @@ export class AvailablePrivateEndpointTypesImpl
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -184,7 +188,7 @@ export class AvailablePrivateEndpointTypesImpl
   private _listByResourceGroup(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -206,7 +210,7 @@ export class AvailablePrivateEndpointTypesImpl
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListNextOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -230,7 +234,7 @@ export class AvailablePrivateEndpointTypesImpl
     location: string,
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailablePrivateEndpointTypesListByResourceGroupNextOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

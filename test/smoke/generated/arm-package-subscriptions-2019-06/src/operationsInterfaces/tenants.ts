@@ -9,7 +9,11 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { TenantIdDescription } from "../models";
+import {
+  TenantIdDescription,
+  TenantsListNextOptionalParams,
+  TenantsListOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Tenants. */
@@ -19,6 +23,6 @@ export interface Tenants {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: TenantsListOptionalParams
   ): PagedAsyncIterableIterator<TenantIdDescription>;
 }

@@ -15,13 +15,21 @@ import {
   PolicyAssignmentsListForResourceGroupOptionalParams,
   PolicyAssignmentsListForResourceNextOptionalParams,
   PolicyAssignmentsListForResourceOptionalParams,
+  PolicyAssignmentsListForManagementGroupNextOptionalParams,
+  PolicyAssignmentsListForManagementGroupOptionalParams,
   PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
+  PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
+  PolicyAssignmentsCreateOptionalParams,
   PolicyAssignmentsCreateResponse,
+  PolicyAssignmentsGetOptionalParams,
   PolicyAssignmentsGetResponse,
+  PolicyAssignmentsDeleteByIdOptionalParams,
   PolicyAssignmentsDeleteByIdResponse,
+  PolicyAssignmentsCreateByIdOptionalParams,
   PolicyAssignmentsCreateByIdResponse,
+  PolicyAssignmentsGetByIdOptionalParams,
   PolicyAssignmentsGetByIdResponse
 } from "../models";
 
@@ -100,7 +108,7 @@ export interface PolicyAssignments {
   listForManagementGroup(
     managementGroupId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation retrieves the list of all policy assignments associated with the given subscription
@@ -133,7 +141,7 @@ export interface PolicyAssignments {
   delete(
     scope: string,
     policyAssignmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsDeleteOptionalParams
   ): Promise<PolicyAssignmentsDeleteResponse>;
   /**
    *  This operation creates or updates a policy assignment with the given scope and name. Policy
@@ -152,7 +160,7 @@ export interface PolicyAssignments {
     scope: string,
     policyAssignmentName: string,
     parameters: PolicyAssignment,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsCreateOptionalParams
   ): Promise<PolicyAssignmentsCreateResponse>;
   /**
    * This operation retrieves a single policy assignment, given its name and the scope it was created at.
@@ -167,7 +175,7 @@ export interface PolicyAssignments {
   get(
     scope: string,
     policyAssignmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsGetOptionalParams
   ): Promise<PolicyAssignmentsGetResponse>;
   /**
    * This operation deletes the policy with the given ID. Policy assignment IDs have this format:
@@ -183,7 +191,7 @@ export interface PolicyAssignments {
    */
   deleteById(
     policyAssignmentId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsDeleteByIdOptionalParams
   ): Promise<PolicyAssignmentsDeleteByIdResponse>;
   /**
    * This operation creates or updates the policy assignment with the given ID. Policy assignments made
@@ -203,7 +211,7 @@ export interface PolicyAssignments {
   createById(
     policyAssignmentId: string,
     parameters: PolicyAssignment,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsCreateByIdOptionalParams
   ): Promise<PolicyAssignmentsCreateByIdResponse>;
   /**
    * The operation retrieves the policy assignment with the given ID. Policy assignment IDs have this
@@ -219,6 +227,6 @@ export interface PolicyAssignments {
    */
   getById(
     policyAssignmentId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyAssignmentsGetByIdOptionalParams
   ): Promise<PolicyAssignmentsGetByIdResponse>;
 }

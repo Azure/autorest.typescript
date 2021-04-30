@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ExpressRoutePortsLocation,
+  ExpressRoutePortsLocationsListNextOptionalParams,
+  ExpressRoutePortsLocationsListOptionalParams,
+  ExpressRoutePortsLocationsGetOptionalParams,
   ExpressRoutePortsLocationsGetResponse
 } from "../models";
 
@@ -23,7 +26,7 @@ export interface ExpressRoutePortsLocations {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePortsLocation>;
   /**
    * Retrieves a single ExpressRoutePort peering location, including the list of available bandwidths
@@ -33,6 +36,6 @@ export interface ExpressRoutePortsLocations {
    */
   get(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsGetOptionalParams
   ): Promise<ExpressRoutePortsLocationsGetResponse>;
 }

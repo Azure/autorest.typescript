@@ -12,9 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RestorePoint,
+  RestorePointsListByDatabaseOptionalParams,
   CreateDatabaseRestorePointDefinition,
+  RestorePointsCreateOptionalParams,
   RestorePointsCreateResponse,
-  RestorePointsGetResponse
+  RestorePointsGetOptionalParams,
+  RestorePointsGetResponse,
+  RestorePointsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +36,7 @@ export interface RestorePoints {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<RestorePoint>;
   /**
    * Creates a restore point for a data warehouse.
@@ -48,7 +52,7 @@ export interface RestorePoints {
     serverName: string,
     databaseName: string,
     parameters: CreateDatabaseRestorePointDefinition,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RestorePointsCreateResponse>,
@@ -69,7 +73,7 @@ export interface RestorePoints {
     serverName: string,
     databaseName: string,
     restorePointName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsGetOptionalParams
   ): Promise<RestorePointsGetResponse>;
   /**
    * Deletes a restore point.
@@ -85,6 +89,6 @@ export interface RestorePoints {
     serverName: string,
     databaseName: string,
     restorePointName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorePointsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

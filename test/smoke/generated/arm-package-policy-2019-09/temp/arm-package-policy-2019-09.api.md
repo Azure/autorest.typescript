@@ -124,16 +124,20 @@ export interface PolicyAssignmentListResult {
 
 // @public
 export interface PolicyAssignments {
-    create(scope: string, policyAssignmentName: string, parameters: PolicyAssignment, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsCreateResponse>;
-    createById(policyAssignmentId: string, parameters: PolicyAssignment, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsCreateByIdResponse>;
-    delete(scope: string, policyAssignmentName: string, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsDeleteResponse>;
-    deleteById(policyAssignmentId: string, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsDeleteByIdResponse>;
-    get(scope: string, policyAssignmentName: string, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsGetResponse>;
-    getById(policyAssignmentId: string, options?: coreHttp.OperationOptions): Promise<PolicyAssignmentsGetByIdResponse>;
+    create(scope: string, policyAssignmentName: string, parameters: PolicyAssignment, options?: PolicyAssignmentsCreateOptionalParams): Promise<PolicyAssignmentsCreateResponse>;
+    createById(policyAssignmentId: string, parameters: PolicyAssignment, options?: PolicyAssignmentsCreateByIdOptionalParams): Promise<PolicyAssignmentsCreateByIdResponse>;
+    delete(scope: string, policyAssignmentName: string, options?: PolicyAssignmentsDeleteOptionalParams): Promise<PolicyAssignmentsDeleteResponse>;
+    deleteById(policyAssignmentId: string, options?: PolicyAssignmentsDeleteByIdOptionalParams): Promise<PolicyAssignmentsDeleteByIdResponse>;
+    get(scope: string, policyAssignmentName: string, options?: PolicyAssignmentsGetOptionalParams): Promise<PolicyAssignmentsGetResponse>;
+    getById(policyAssignmentId: string, options?: PolicyAssignmentsGetByIdOptionalParams): Promise<PolicyAssignmentsGetByIdResponse>;
     list(options?: PolicyAssignmentsListOptionalParams): PagedAsyncIterableIterator<PolicyAssignment>;
-    listForManagementGroup(managementGroupId: string, filter: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicyAssignment>;
+    listForManagementGroup(managementGroupId: string, filter: string, options?: PolicyAssignmentsListForManagementGroupOptionalParams): PagedAsyncIterableIterator<PolicyAssignment>;
     listForResource(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, options?: PolicyAssignmentsListForResourceOptionalParams): PagedAsyncIterableIterator<PolicyAssignment>;
     listForResourceGroup(resourceGroupName: string, options?: PolicyAssignmentsListForResourceGroupOptionalParams): PagedAsyncIterableIterator<PolicyAssignment>;
+}
+
+// @public
+export interface PolicyAssignmentsCreateByIdOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -145,12 +149,20 @@ export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
 };
 
 // @public
+export interface PolicyAssignmentsCreateOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyAssignment;
     };
 };
+
+// @public
+export interface PolicyAssignmentsDeleteByIdOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
@@ -161,12 +173,20 @@ export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
 };
 
 // @public
+export interface PolicyAssignmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyAssignment;
     };
 };
+
+// @public
+export interface PolicyAssignmentsGetByIdOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
@@ -177,6 +197,10 @@ export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
 };
 
 // @public
+export interface PolicyAssignmentsGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyAssignmentsGetResponse = PolicyAssignment & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -185,12 +209,20 @@ export type PolicyAssignmentsGetResponse = PolicyAssignment & {
 };
 
 // @public
+export interface PolicyAssignmentsListForManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyAssignmentListResult;
     };
 };
+
+// @public
+export interface PolicyAssignmentsListForManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult & {
@@ -350,16 +382,20 @@ export interface PolicyDefinitionReference {
 
 // @public
 export interface PolicyDefinitions {
-    createOrUpdate(policyDefinitionName: string, parameters: PolicyDefinition, options?: coreHttp.OperationOptions): Promise<PolicyDefinitionsCreateOrUpdateResponse>;
-    createOrUpdateAtManagementGroup(policyDefinitionName: string, managementGroupId: string, parameters: PolicyDefinition, options?: coreHttp.OperationOptions): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse>;
-    delete(policyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(policyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PolicyDefinitionsGetResponse>;
-    getAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: coreHttp.OperationOptions): Promise<PolicyDefinitionsGetAtManagementGroupResponse>;
-    getBuiltIn(policyDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PolicyDefinitionsGetBuiltInResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicyDefinition>;
-    listBuiltIn(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicyDefinition>;
-    listByManagementGroup(managementGroupId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicyDefinition>;
+    createOrUpdate(policyDefinitionName: string, parameters: PolicyDefinition, options?: PolicyDefinitionsCreateOrUpdateOptionalParams): Promise<PolicyDefinitionsCreateOrUpdateResponse>;
+    createOrUpdateAtManagementGroup(policyDefinitionName: string, managementGroupId: string, parameters: PolicyDefinition, options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse>;
+    delete(policyDefinitionName: string, options?: PolicyDefinitionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    get(policyDefinitionName: string, options?: PolicyDefinitionsGetOptionalParams): Promise<PolicyDefinitionsGetResponse>;
+    getAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: PolicyDefinitionsGetAtManagementGroupOptionalParams): Promise<PolicyDefinitionsGetAtManagementGroupResponse>;
+    getBuiltIn(policyDefinitionName: string, options?: PolicyDefinitionsGetBuiltInOptionalParams): Promise<PolicyDefinitionsGetBuiltInResponse>;
+    list(options?: PolicyDefinitionsListOptionalParams): PagedAsyncIterableIterator<PolicyDefinition>;
+    listBuiltIn(options?: PolicyDefinitionsListBuiltInOptionalParams): PagedAsyncIterableIterator<PolicyDefinition>;
+    listByManagementGroup(managementGroupId: string, options?: PolicyDefinitionsListByManagementGroupOptionalParams): PagedAsyncIterableIterator<PolicyDefinition>;
+}
+
+// @public
+export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -371,12 +407,28 @@ export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDef
 };
 
 // @public
+export interface PolicyDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyDefinition;
     };
 };
+
+// @public
+export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface PolicyDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface PolicyDefinitionsGetAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
@@ -387,12 +439,20 @@ export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
 };
 
 // @public
+export interface PolicyDefinitionsGetBuiltInOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyDefinition;
     };
 };
+
+// @public
+export interface PolicyDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyDefinitionsGetResponse = PolicyDefinition & {
@@ -403,12 +463,20 @@ export type PolicyDefinitionsGetResponse = PolicyDefinition & {
 };
 
 // @public
+export interface PolicyDefinitionsListBuiltInNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicyDefinitionsListBuiltInOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & {
@@ -419,12 +487,20 @@ export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & 
 };
 
 // @public
+export interface PolicyDefinitionsListByManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicyDefinitionsListByManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult & {
@@ -435,12 +511,20 @@ export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionLis
 };
 
 // @public
+export interface PolicyDefinitionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicyDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicyDefinitionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
@@ -474,16 +558,20 @@ export interface PolicySetDefinitionListResult {
 
 // @public
 export interface PolicySetDefinitions {
-    createOrUpdate(policySetDefinitionName: string, parameters: PolicySetDefinition, options?: coreHttp.OperationOptions): Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
-    createOrUpdateAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, parameters: PolicySetDefinition, options?: coreHttp.OperationOptions): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
-    delete(policySetDefinitionName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(policySetDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PolicySetDefinitionsGetResponse>;
-    getAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: coreHttp.OperationOptions): Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
-    getBuiltIn(policySetDefinitionName: string, options?: coreHttp.OperationOptions): Promise<PolicySetDefinitionsGetBuiltInResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicySetDefinition>;
-    listBuiltIn(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicySetDefinition>;
-    listByManagementGroup(managementGroupId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<PolicySetDefinition>;
+    createOrUpdate(policySetDefinitionName: string, parameters: PolicySetDefinition, options?: PolicySetDefinitionsCreateOrUpdateOptionalParams): Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
+    createOrUpdateAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, parameters: PolicySetDefinition, options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
+    delete(policySetDefinitionName: string, options?: PolicySetDefinitionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    get(policySetDefinitionName: string, options?: PolicySetDefinitionsGetOptionalParams): Promise<PolicySetDefinitionsGetResponse>;
+    getAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams): Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
+    getBuiltIn(policySetDefinitionName: string, options?: PolicySetDefinitionsGetBuiltInOptionalParams): Promise<PolicySetDefinitionsGetBuiltInResponse>;
+    list(options?: PolicySetDefinitionsListOptionalParams): PagedAsyncIterableIterator<PolicySetDefinition>;
+    listBuiltIn(options?: PolicySetDefinitionsListBuiltInOptionalParams): PagedAsyncIterableIterator<PolicySetDefinition>;
+    listByManagementGroup(managementGroupId: string, options?: PolicySetDefinitionsListByManagementGroupOptionalParams): PagedAsyncIterableIterator<PolicySetDefinition>;
+}
+
+// @public
+export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -495,12 +583,28 @@ export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = Policy
 };
 
 // @public
+export interface PolicySetDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicySetDefinition;
     };
 };
+
+// @public
+export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface PolicySetDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition & {
@@ -511,12 +615,20 @@ export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefiniti
 };
 
 // @public
+export interface PolicySetDefinitionsGetBuiltInOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicySetDefinition;
     };
 };
+
+// @public
+export interface PolicySetDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
@@ -527,12 +639,20 @@ export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
 };
 
 // @public
+export interface PolicySetDefinitionsListBuiltInNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicySetDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicySetDefinitionsListBuiltInOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult & {
@@ -543,12 +663,20 @@ export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListRes
 };
 
 // @public
+export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicySetDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicySetDefinitionsListByManagementGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult & {
@@ -559,12 +687,20 @@ export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinit
 };
 
 // @public
+export interface PolicySetDefinitionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: PolicySetDefinitionListResult;
     };
 };
+
+// @public
+export interface PolicySetDefinitionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {

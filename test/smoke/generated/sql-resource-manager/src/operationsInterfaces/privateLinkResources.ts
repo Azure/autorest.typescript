@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PrivateLinkResource,
+  PrivateLinkResourcesListByServerNextOptionalParams,
+  PrivateLinkResourcesListByServerOptionalParams,
+  PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse
 } from "../models";
 
@@ -27,7 +30,7 @@ export interface PrivateLinkResources {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkResource>;
   /**
    * Gets a private link resource for SQL server.
@@ -41,6 +44,6 @@ export interface PrivateLinkResources {
     resourceGroupName: string,
     serverName: string,
     groupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesGetOptionalParams
   ): Promise<PrivateLinkResourcesGetResponse>;
 }

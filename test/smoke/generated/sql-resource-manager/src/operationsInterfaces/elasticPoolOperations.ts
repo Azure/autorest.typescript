@@ -9,7 +9,12 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { ElasticPoolOperation } from "../models";
+import {
+  ElasticPoolOperation,
+  ElasticPoolOperationsListByElasticPoolNextOptionalParams,
+  ElasticPoolOperationsListByElasticPoolOptionalParams,
+  ElasticPoolOperationsCancelOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ElasticPoolOperations. */
@@ -26,7 +31,7 @@ export interface ElasticPoolOperations {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolOperationsListByElasticPoolOptionalParams
   ): PagedAsyncIterableIterator<ElasticPoolOperation>;
   /**
    * Cancels the asynchronous operation on the elastic pool.
@@ -42,6 +47,6 @@ export interface ElasticPoolOperations {
     serverName: string,
     elasticPoolName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolOperationsCancelOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

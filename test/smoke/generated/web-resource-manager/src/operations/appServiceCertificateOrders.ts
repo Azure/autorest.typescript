@@ -17,24 +17,47 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
+  AppServiceCertificateOrdersListNextOptionalParams,
+  AppServiceCertificateOrdersListOptionalParams,
+  AppServiceCertificateOrdersListByResourceGroupNextOptionalParams,
+  AppServiceCertificateOrdersListByResourceGroupOptionalParams,
   AppServiceCertificateResource,
+  AppServiceCertificateOrdersListCertificatesNextOptionalParams,
+  AppServiceCertificateOrdersListCertificatesOptionalParams,
   AppServiceCertificateOrdersListResponse,
+  AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams,
   AppServiceCertificateOrdersListByResourceGroupResponse,
+  AppServiceCertificateOrdersGetOptionalParams,
   AppServiceCertificateOrdersGetResponse,
+  AppServiceCertificateOrdersCreateOrUpdateOptionalParams,
   AppServiceCertificateOrdersCreateOrUpdateResponse,
+  AppServiceCertificateOrdersDeleteOptionalParams,
   AppServiceCertificateOrderPatchResource,
+  AppServiceCertificateOrdersUpdateOptionalParams,
   AppServiceCertificateOrdersUpdateResponse,
   AppServiceCertificateOrdersListCertificatesResponse,
+  AppServiceCertificateOrdersGetCertificateOptionalParams,
   AppServiceCertificateOrdersGetCertificateResponse,
+  AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams,
   AppServiceCertificateOrdersCreateOrUpdateCertificateResponse,
+  AppServiceCertificateOrdersDeleteCertificateOptionalParams,
   AppServiceCertificatePatchResource,
+  AppServiceCertificateOrdersUpdateCertificateOptionalParams,
   AppServiceCertificateOrdersUpdateCertificateResponse,
   ReissueCertificateOrderRequest,
+  AppServiceCertificateOrdersReissueOptionalParams,
   RenewCertificateOrderRequest,
+  AppServiceCertificateOrdersRenewOptionalParams,
+  AppServiceCertificateOrdersResendEmailOptionalParams,
   NameIdentifier,
+  AppServiceCertificateOrdersResendRequestEmailsOptionalParams,
   SiteSealRequest,
+  AppServiceCertificateOrdersRetrieveSiteSealOptionalParams,
   AppServiceCertificateOrdersRetrieveSiteSealResponse,
+  AppServiceCertificateOrdersVerifyDomainOwnershipOptionalParams,
+  AppServiceCertificateOrdersRetrieveCertificateActionsOptionalParams,
   AppServiceCertificateOrdersRetrieveCertificateActionsResponse,
+  AppServiceCertificateOrdersRetrieveCertificateEmailHistoryOptionalParams,
   AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse,
   AppServiceCertificateOrdersListNextResponse,
   AppServiceCertificateOrdersListByResourceGroupNextResponse,
@@ -60,7 +83,7 @@ export class AppServiceCertificateOrdersImpl
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListOptionalParams
   ): PagedAsyncIterableIterator<AppServiceCertificateOrder> {
     const iter = this.listPagingAll(options);
     return {
@@ -77,7 +100,7 @@ export class AppServiceCertificateOrdersImpl
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateOrder[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -90,7 +113,7 @@ export class AppServiceCertificateOrdersImpl
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateOrder> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -104,7 +127,7 @@ export class AppServiceCertificateOrdersImpl
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AppServiceCertificateOrder> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -122,7 +145,7 @@ export class AppServiceCertificateOrdersImpl
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateOrder[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -140,7 +163,7 @@ export class AppServiceCertificateOrdersImpl
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateOrder> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -159,7 +182,7 @@ export class AppServiceCertificateOrdersImpl
   public listCertificates(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListCertificatesOptionalParams
   ): PagedAsyncIterableIterator<AppServiceCertificateResource> {
     const iter = this.listCertificatesPagingAll(
       resourceGroupName,
@@ -186,7 +209,7 @@ export class AppServiceCertificateOrdersImpl
   private async *listCertificatesPagingPage(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListCertificatesOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateResource[]> {
     let result = await this._listCertificates(
       resourceGroupName,
@@ -210,7 +233,7 @@ export class AppServiceCertificateOrdersImpl
   private async *listCertificatesPagingAll(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListCertificatesOptionalParams
   ): AsyncIterableIterator<AppServiceCertificateResource> {
     for await (const page of this.listCertificatesPagingPage(
       resourceGroupName,
@@ -226,7 +249,7 @@ export class AppServiceCertificateOrdersImpl
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListOptionalParams
   ): Promise<AppServiceCertificateOrdersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -244,7 +267,7 @@ export class AppServiceCertificateOrdersImpl
    */
   validatePurchaseInformation(
     appServiceCertificateOrder: AppServiceCertificateOrder,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       appServiceCertificateOrder,
@@ -263,7 +286,7 @@ export class AppServiceCertificateOrdersImpl
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListByResourceGroupOptionalParams
   ): Promise<AppServiceCertificateOrdersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -284,7 +307,7 @@ export class AppServiceCertificateOrdersImpl
   get(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersGetOptionalParams
   ): Promise<AppServiceCertificateOrdersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +331,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceCertificateOrdersCreateOrUpdateResponse>,
@@ -330,16 +353,12 @@ export class AppServiceCertificateOrdersImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -351,7 +370,7 @@ export class AppServiceCertificateOrdersImpl
   delete(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -375,7 +394,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrderPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersUpdateOptionalParams
   ): Promise<AppServiceCertificateOrdersUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -398,7 +417,7 @@ export class AppServiceCertificateOrdersImpl
   private _listCertificates(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListCertificatesOptionalParams
   ): Promise<AppServiceCertificateOrdersListCertificatesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -422,7 +441,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersGetCertificateOptionalParams
   ): Promise<AppServiceCertificateOrdersGetCertificateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -449,7 +468,7 @@ export class AppServiceCertificateOrdersImpl
     certificateOrderName: string,
     name: string,
     keyVaultCertificate: AppServiceCertificateResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -474,16 +493,12 @@ export class AppServiceCertificateOrdersImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateCertificateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateCertificateOperationSpec,
-      initialOperationResult,
+      createOrUpdateCertificateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -497,7 +512,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersDeleteCertificateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -524,7 +539,7 @@ export class AppServiceCertificateOrdersImpl
     certificateOrderName: string,
     name: string,
     keyVaultCertificate: AppServiceCertificatePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersUpdateCertificateOptionalParams
   ): Promise<AppServiceCertificateOrdersUpdateCertificateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -550,7 +565,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     reissueCertificateOrderRequest: ReissueCertificateOrderRequest,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersReissueOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -575,7 +590,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     renewCertificateOrderRequest: RenewCertificateOrderRequest,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersRenewOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -598,7 +613,7 @@ export class AppServiceCertificateOrdersImpl
   resendEmail(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersResendEmailOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -622,7 +637,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     nameIdentifier: NameIdentifier,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersResendRequestEmailsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -647,7 +662,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     siteSealRequest: SiteSealRequest,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersRetrieveSiteSealOptionalParams
   ): Promise<AppServiceCertificateOrdersRetrieveSiteSealResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -670,7 +685,7 @@ export class AppServiceCertificateOrdersImpl
   verifyDomainOwnership(
     resourceGroupName: string,
     certificateOrderName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersVerifyDomainOwnershipOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -692,7 +707,7 @@ export class AppServiceCertificateOrdersImpl
   retrieveCertificateActions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersRetrieveCertificateActionsOptionalParams
   ): Promise<AppServiceCertificateOrdersRetrieveCertificateActionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -714,7 +729,7 @@ export class AppServiceCertificateOrdersImpl
   retrieveCertificateEmailHistory(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersRetrieveCertificateEmailHistoryOptionalParams
   ): Promise<
     AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse
   > {
@@ -738,7 +753,7 @@ export class AppServiceCertificateOrdersImpl
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListNextOptionalParams
   ): Promise<AppServiceCertificateOrdersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -759,7 +774,7 @@ export class AppServiceCertificateOrdersImpl
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListByResourceGroupNextOptionalParams
   ): Promise<AppServiceCertificateOrdersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -783,7 +798,7 @@ export class AppServiceCertificateOrdersImpl
     resourceGroupName: string,
     certificateOrderName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceCertificateOrdersListCertificatesNextOptionalParams
   ): Promise<AppServiceCertificateOrdersListCertificatesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

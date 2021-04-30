@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkSecurityGroup,
+  NetworkSecurityGroupsListAllNextOptionalParams,
+  NetworkSecurityGroupsListAllOptionalParams,
+  NetworkSecurityGroupsListNextOptionalParams,
+  NetworkSecurityGroupsListOptionalParams,
+  NetworkSecurityGroupsDeleteOptionalParams,
   NetworkSecurityGroupsGetOptionalParams,
   NetworkSecurityGroupsGetResponse,
+  NetworkSecurityGroupsCreateOrUpdateOptionalParams,
   NetworkSecurityGroupsCreateOrUpdateResponse,
   TagsObject,
+  NetworkSecurityGroupsUpdateTagsOptionalParams,
   NetworkSecurityGroupsUpdateTagsResponse,
   NetworkSecurityGroupsListAllResponse,
   NetworkSecurityGroupsListResponse,
@@ -46,7 +53,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkSecurityGroup> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllOptionalParams
   ): AsyncIterableIterator<NetworkSecurityGroup[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllOptionalParams
   ): AsyncIterableIterator<NetworkSecurityGroup> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkSecurityGroup> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListOptionalParams
   ): AsyncIterableIterator<NetworkSecurityGroup[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListOptionalParams
   ): AsyncIterableIterator<NetworkSecurityGroup> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   async delete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: NetworkSecurityGroup,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -252,7 +251,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsUpdateTagsOptionalParams
   ): Promise<NetworkSecurityGroupsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +270,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllOptionalParams
   ): Promise<NetworkSecurityGroupsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -289,7 +288,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListOptionalParams
   ): Promise<NetworkSecurityGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +307,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllNextOptionalParams
   ): Promise<NetworkSecurityGroupsListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -329,7 +328,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListNextOptionalParams
   ): Promise<NetworkSecurityGroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

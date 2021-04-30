@@ -17,13 +17,22 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedDatabase,
+  ManagedDatabasesListByInstanceNextOptionalParams,
+  ManagedDatabasesListByInstanceOptionalParams,
+  ManagedDatabasesListInaccessibleByInstanceNextOptionalParams,
+  ManagedDatabasesListInaccessibleByInstanceOptionalParams,
   ManagedDatabasesListByInstanceResponse,
+  ManagedDatabasesGetOptionalParams,
   ManagedDatabasesGetResponse,
+  ManagedDatabasesCreateOrUpdateOptionalParams,
   ManagedDatabasesCreateOrUpdateResponse,
+  ManagedDatabasesDeleteOptionalParams,
   ManagedDatabaseUpdate,
+  ManagedDatabasesUpdateOptionalParams,
   ManagedDatabasesUpdateResponse,
   ManagedDatabasesListInaccessibleByInstanceResponse,
   CompleteDatabaseRestoreDefinition,
+  ManagedDatabasesCompleteRestoreOptionalParams,
   ManagedDatabasesListByInstanceNextResponse,
   ManagedDatabasesListInaccessibleByInstanceNextResponse
 } from "../models";
@@ -51,7 +60,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   public listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabase> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
@@ -78,7 +87,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedDatabase[]> {
     let result = await this._listByInstance(
       resourceGroupName,
@@ -102,7 +111,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedDatabase> {
     for await (const page of this.listByInstancePagingPage(
       resourceGroupName,
@@ -123,7 +132,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   public listInaccessibleByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabase> {
     const iter = this.listInaccessibleByInstancePagingAll(
       resourceGroupName,
@@ -150,7 +159,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listInaccessibleByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedDatabase[]> {
     let result = await this._listInaccessibleByInstance(
       resourceGroupName,
@@ -174,7 +183,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listInaccessibleByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
   ): AsyncIterableIterator<ManagedDatabase> {
     for await (const page of this.listInaccessibleByInstancePagingPage(
       resourceGroupName,
@@ -195,7 +204,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceOptionalParams
   ): Promise<ManagedDatabasesListByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -220,7 +229,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesGetOptionalParams
   ): Promise<ManagedDatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -248,7 +257,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabase,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
@@ -271,16 +280,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -295,7 +300,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -314,16 +319,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -340,7 +341,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesUpdateResponse>,
@@ -363,16 +364,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -385,7 +382,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private _listInaccessibleByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
   ): Promise<ManagedDatabasesListInaccessibleByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -412,7 +409,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesCompleteRestoreOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -432,16 +429,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      completeRestoreOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: completeRestoreOperationSpec,
-      initialOperationResult,
+      completeRestoreOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -456,7 +449,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceNextOptionalParams
   ): Promise<ManagedDatabasesListByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -483,7 +476,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceNextOptionalParams
   ): Promise<ManagedDatabasesListInaccessibleByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

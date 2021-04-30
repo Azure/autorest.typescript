@@ -19,10 +19,15 @@ import {
   FileSharesListOptionalParams,
   FileSharesListResponse,
   FileShare,
+  FileSharesCreateOptionalParams,
   FileSharesCreateResponse,
+  FileSharesUpdateOptionalParams,
   FileSharesUpdateResponse,
+  FileSharesGetOptionalParams,
   FileSharesGetResponse,
+  FileSharesDeleteOptionalParams,
   DeletedShare,
+  FileSharesRestoreOptionalParams,
   FileSharesListNextResponse
 } from "../models";
 
@@ -146,7 +151,7 @@ export class FileSharesImpl implements FileShares {
     accountName: string,
     shareName: string,
     fileShare: FileShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesCreateOptionalParams
   ): Promise<FileSharesCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -180,7 +185,7 @@ export class FileSharesImpl implements FileShares {
     accountName: string,
     shareName: string,
     fileShare: FileShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesUpdateOptionalParams
   ): Promise<FileSharesUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -211,7 +216,7 @@ export class FileSharesImpl implements FileShares {
     resourceGroupName: string,
     accountName: string,
     shareName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesGetOptionalParams
   ): Promise<FileSharesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -241,7 +246,7 @@ export class FileSharesImpl implements FileShares {
     resourceGroupName: string,
     accountName: string,
     shareName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -273,7 +278,7 @@ export class FileSharesImpl implements FileShares {
     accountName: string,
     shareName: string,
     deletedShare: DeletedShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesRestoreOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

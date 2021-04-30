@@ -15,8 +15,12 @@ import * as Parameters from "../models/parameters";
 import { SubscriptionClientContext } from "../subscriptionClientContext";
 import {
   Location,
+  SubscriptionsListLocationsOptionalParams,
   Subscription,
+  SubscriptionsListNextOptionalParams,
+  SubscriptionsListOptionalParams,
   SubscriptionsListLocationsResponse,
+  SubscriptionsGetOptionalParams,
   SubscriptionsGetResponse,
   SubscriptionsListResponse,
   SubscriptionsListNextResponse
@@ -43,7 +47,7 @@ export class SubscriptionsImpl implements Subscriptions {
    */
   public listLocations(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListLocationsOptionalParams
   ): PagedAsyncIterableIterator<Location> {
     const iter = this.listLocationsPagingAll(subscriptionId, options);
     return {
@@ -61,7 +65,7 @@ export class SubscriptionsImpl implements Subscriptions {
 
   private async *listLocationsPagingPage(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListLocationsOptionalParams
   ): AsyncIterableIterator<Location[]> {
     let result = await this._listLocations(subscriptionId, options);
     yield result.value || [];
@@ -69,7 +73,7 @@ export class SubscriptionsImpl implements Subscriptions {
 
   private async *listLocationsPagingAll(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListLocationsOptionalParams
   ): AsyncIterableIterator<Location> {
     for await (const page of this.listLocationsPagingPage(
       subscriptionId,
@@ -84,7 +88,7 @@ export class SubscriptionsImpl implements Subscriptions {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListOptionalParams
   ): PagedAsyncIterableIterator<Subscription> {
     const iter = this.listPagingAll(options);
     return {
@@ -101,7 +105,7 @@ export class SubscriptionsImpl implements Subscriptions {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListOptionalParams
   ): AsyncIterableIterator<Subscription[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -114,7 +118,7 @@ export class SubscriptionsImpl implements Subscriptions {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListOptionalParams
   ): AsyncIterableIterator<Subscription> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -129,7 +133,7 @@ export class SubscriptionsImpl implements Subscriptions {
    */
   private _listLocations(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListLocationsOptionalParams
   ): Promise<SubscriptionsListLocationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,
@@ -148,7 +152,7 @@ export class SubscriptionsImpl implements Subscriptions {
    */
   get(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsGetOptionalParams
   ): Promise<SubscriptionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,
@@ -165,7 +169,7 @@ export class SubscriptionsImpl implements Subscriptions {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListOptionalParams
   ): Promise<SubscriptionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -183,7 +187,7 @@ export class SubscriptionsImpl implements Subscriptions {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListNextOptionalParams
   ): Promise<SubscriptionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

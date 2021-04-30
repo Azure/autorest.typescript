@@ -16,8 +16,13 @@ import {
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams,
   SensitivityLabelSource,
+  ManagedDatabaseSensitivityLabelsGetOptionalParams,
   ManagedDatabaseSensitivityLabelsGetResponse,
-  ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse
+  ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams,
+  ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse,
+  ManagedDatabaseSensitivityLabelsDeleteOptionalParams,
+  ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams,
+  ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -71,7 +76,7 @@ export interface ManagedDatabaseSensitivityLabels {
     tableName: string,
     columnName: string,
     sensitivityLabelSource: SensitivityLabelSource,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsGetOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsGetResponse>;
   /**
    * Creates or updates the sensitivity label of a given column
@@ -93,7 +98,7 @@ export interface ManagedDatabaseSensitivityLabels {
     tableName: string,
     columnName: string,
     parameters: SensitivityLabel,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse>;
   /**
    * Deletes the sensitivity label of a given column
@@ -113,7 +118,7 @@ export interface ManagedDatabaseSensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Disables sensitivity recommendations on a given column
@@ -133,7 +138,7 @@ export interface ManagedDatabaseSensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Enables sensitivity recommendations on a given column (recommendations are enabled by default on all
@@ -154,6 +159,6 @@ export interface ManagedDatabaseSensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

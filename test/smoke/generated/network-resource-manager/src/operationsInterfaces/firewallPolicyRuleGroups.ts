@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicyRuleGroup,
+  FirewallPolicyRuleGroupsListNextOptionalParams,
+  FirewallPolicyRuleGroupsListOptionalParams,
+  FirewallPolicyRuleGroupsDeleteOptionalParams,
+  FirewallPolicyRuleGroupsGetOptionalParams,
   FirewallPolicyRuleGroupsGetResponse,
+  FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams,
   FirewallPolicyRuleGroupsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface FirewallPolicyRuleGroups {
   list(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsListOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicyRuleGroup>;
   /**
    * Deletes the specified FirewallPolicyRuleGroup.
@@ -41,7 +46,7 @@ export interface FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface FirewallPolicyRuleGroups {
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsGetOptionalParams
   ): Promise<FirewallPolicyRuleGroupsGetResponse>;
   /**
    * Creates or updates the specified FirewallPolicyRuleGroup.
@@ -71,7 +76,7 @@ export interface FirewallPolicyRuleGroups {
     firewallPolicyName: string,
     ruleGroupName: string,
     parameters: FirewallPolicyRuleGroup,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FirewallPolicyRuleGroupsCreateOrUpdateResponse>,

@@ -9,9 +9,12 @@
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsPutOptionalParams,
   PrivateEndpointConnectionsPutResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams,
   PrivateEndpointConnectionsDeleteResponse
 } from "../models";
 
@@ -29,7 +32,7 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse>;
   /**
    * Updates the specified private endpoint connection associated with the key vault.
@@ -45,7 +48,7 @@ export interface PrivateEndpointConnections {
     vaultName: string,
     privateEndpointConnectionName: string,
     properties: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsPutOptionalParams
   ): Promise<PrivateEndpointConnectionsPutResponse>;
   /**
    * Deletes the specified private endpoint connection associated with the key vault.
@@ -59,7 +62,7 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointConnectionsDeleteResponse>,

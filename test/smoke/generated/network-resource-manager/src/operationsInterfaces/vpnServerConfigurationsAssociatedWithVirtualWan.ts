@@ -8,7 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
+import {
+  VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams,
+  VpnServerConfigurationsAssociatedWithVirtualWanListResponse
+} from "../models";
 
 /** Interface representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
 export interface VpnServerConfigurationsAssociatedWithVirtualWan {
@@ -21,7 +24,7 @@ export interface VpnServerConfigurationsAssociatedWithVirtualWan {
   list(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

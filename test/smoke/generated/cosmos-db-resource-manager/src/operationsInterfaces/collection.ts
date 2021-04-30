@@ -11,9 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Metric,
+  CollectionListMetricsOptionalParams,
   Usage,
   CollectionListUsagesOptionalParams,
-  MetricDefinition
+  MetricDefinition,
+  CollectionListMetricDefinitionsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -36,7 +38,7 @@ export interface Collection {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Retrieves the usages (most recent storage data) for the given collection.
@@ -66,6 +68,6 @@ export interface Collection {
     accountName: string,
     databaseRid: string,
     collectionRid: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition>;
 }

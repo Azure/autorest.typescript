@@ -15,11 +15,23 @@ import {
   VirtualMachineScaleSetVMsListNextOptionalParams,
   VirtualMachineScaleSetVMsListOptionalParams,
   VirtualMachineScaleSetVMsReimageOptionalParams,
+  VirtualMachineScaleSetVMsReimageAllOptionalParams,
+  VirtualMachineScaleSetVMsDeallocateOptionalParams,
+  VirtualMachineScaleSetVMsUpdateOptionalParams,
   VirtualMachineScaleSetVMsUpdateResponse,
+  VirtualMachineScaleSetVMsDeleteOptionalParams,
+  VirtualMachineScaleSetVMsGetOptionalParams,
   VirtualMachineScaleSetVMsGetResponse,
+  VirtualMachineScaleSetVMsGetInstanceViewOptionalParams,
   VirtualMachineScaleSetVMsGetInstanceViewResponse,
   VirtualMachineScaleSetVMsPowerOffOptionalParams,
+  VirtualMachineScaleSetVMsRestartOptionalParams,
+  VirtualMachineScaleSetVMsStartOptionalParams,
+  VirtualMachineScaleSetVMsRedeployOptionalParams,
+  VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams,
+  VirtualMachineScaleSetVMsSimulateEvictionOptionalParams,
   RunCommandInput,
+  VirtualMachineScaleSetVMsRunCommandOptionalParams,
   VirtualMachineScaleSetVMsRunCommandResponse
 } from "../models";
 
@@ -64,7 +76,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -81,7 +93,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -98,7 +110,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     parameters: VirtualMachineScaleSetVM,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
@@ -116,7 +128,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -131,7 +143,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsGetOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetResponse>;
   /**
    * Gets the status of a virtual machine from a VM scale set.
@@ -144,7 +156,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
   /**
    * Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you
@@ -174,7 +186,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRestartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -189,7 +201,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -205,7 +217,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRedeployOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -220,7 +232,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -236,7 +248,7 @@ export interface VirtualMachineScaleSetVMs {
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Run command on a virtual machine in a VM scale set.
@@ -251,7 +263,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     parameters: RunCommandInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,

@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RunCommandDocumentBase,
+  VirtualMachineRunCommandsListNextOptionalParams,
+  VirtualMachineRunCommandsListOptionalParams,
+  VirtualMachineRunCommandsGetOptionalParams,
   VirtualMachineRunCommandsGetResponse
 } from "../models";
 
@@ -24,7 +27,7 @@ export interface VirtualMachineRunCommands {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListOptionalParams
   ): PagedAsyncIterableIterator<RunCommandDocumentBase>;
   /**
    * Gets specific run command for a subscription in a location.
@@ -35,6 +38,6 @@ export interface VirtualMachineRunCommands {
   get(
     location: string,
     commandId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsGetOptionalParams
   ): Promise<VirtualMachineRunCommandsGetResponse>;
 }

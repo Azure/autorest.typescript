@@ -17,11 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Subnet,
+  SubnetsListNextOptionalParams,
+  SubnetsListOptionalParams,
+  SubnetsDeleteOptionalParams,
   SubnetsGetOptionalParams,
   SubnetsGetResponse,
+  SubnetsCreateOrUpdateOptionalParams,
   SubnetsCreateOrUpdateResponse,
   PrepareNetworkPoliciesRequest,
+  SubnetsPrepareNetworkPoliciesOptionalParams,
   UnprepareNetworkPoliciesRequest,
+  SubnetsUnprepareNetworkPoliciesOptionalParams,
   SubnetsListResponse,
   SubnetsListNextResponse
 } from "../models";
@@ -48,7 +54,7 @@ export class SubnetsImpl implements Subnets {
   public list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListOptionalParams
   ): PagedAsyncIterableIterator<Subnet> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -75,7 +81,7 @@ export class SubnetsImpl implements Subnets {
   private async *listPagingPage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListOptionalParams
   ): AsyncIterableIterator<Subnet[]> {
     let result = await this._list(
       resourceGroupName,
@@ -99,7 +105,7 @@ export class SubnetsImpl implements Subnets {
   private async *listPagingAll(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListOptionalParams
   ): AsyncIterableIterator<Subnet> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -121,7 +127,7 @@ export class SubnetsImpl implements Subnets {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -140,17 +146,13 @@ export class SubnetsImpl implements Subnets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -191,7 +193,7 @@ export class SubnetsImpl implements Subnets {
     virtualNetworkName: string,
     subnetName: string,
     subnetParameters: Subnet,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SubnetsCreateOrUpdateResponse>,
@@ -214,17 +216,13 @@ export class SubnetsImpl implements Subnets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -241,7 +239,7 @@ export class SubnetsImpl implements Subnets {
     virtualNetworkName: string,
     subnetName: string,
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsPrepareNetworkPoliciesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -261,17 +259,13 @@ export class SubnetsImpl implements Subnets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      prepareNetworkPoliciesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: prepareNetworkPoliciesOperationSpec,
-      initialOperationResult,
+      prepareNetworkPoliciesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -288,7 +282,7 @@ export class SubnetsImpl implements Subnets {
     virtualNetworkName: string,
     subnetName: string,
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsUnprepareNetworkPoliciesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -308,17 +302,13 @@ export class SubnetsImpl implements Subnets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      unprepareNetworkPoliciesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: unprepareNetworkPoliciesOperationSpec,
-      initialOperationResult,
+      unprepareNetworkPoliciesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -330,7 +320,7 @@ export class SubnetsImpl implements Subnets {
   private _list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListOptionalParams
   ): Promise<SubnetsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -354,7 +344,7 @@ export class SubnetsImpl implements Subnets {
     resourceGroupName: string,
     virtualNetworkName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SubnetsListNextOptionalParams
   ): Promise<SubnetsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -57,7 +57,11 @@ export interface AzureTimeSeriesData {
 
 // @public
 export interface Metrics {
-    create(contentType: string, contentLength: number, authorization: string, subscriptionId: string, resourceGroupName: string, resourceProvider: string, resourceTypeName: string, resourceName: string, body: AzureMetricsDocument, options?: coreHttp.OperationOptions): Promise<MetricsCreateResponse>;
+    create(contentType: string, contentLength: number, authorization: string, subscriptionId: string, resourceGroupName: string, resourceProvider: string, resourceTypeName: string, resourceName: string, body: AzureMetricsDocument, options?: MetricsCreateOptionalParams): Promise<MetricsCreateResponse>;
+}
+
+// @public
+export interface MetricsCreateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public

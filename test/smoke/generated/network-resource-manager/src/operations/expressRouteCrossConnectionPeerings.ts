@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnectionPeering,
+  ExpressRouteCrossConnectionPeeringsListNextOptionalParams,
+  ExpressRouteCrossConnectionPeeringsListOptionalParams,
   ExpressRouteCrossConnectionPeeringsListResponse,
+  ExpressRouteCrossConnectionPeeringsDeleteOptionalParams,
+  ExpressRouteCrossConnectionPeeringsGetOptionalParams,
   ExpressRouteCrossConnectionPeeringsGetResponse,
+  ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams,
   ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse,
   ExpressRouteCrossConnectionPeeringsListNextResponse
 } from "../models";
@@ -46,7 +51,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
   public list(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -73,7 +78,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnectionPeering[]> {
     let result = await this._list(
       resourceGroupName,
@@ -97,7 +102,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnectionPeering> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -117,7 +122,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
   private _list(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListOptionalParams
   ): Promise<ExpressRouteCrossConnectionPeeringsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -141,7 +146,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +165,13 @@ export class ExpressRouteCrossConnectionPeeringsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -184,7 +185,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsGetOptionalParams
   ): Promise<ExpressRouteCrossConnectionPeeringsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -212,7 +213,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     crossConnectionName: string,
     peeringName: string,
     peeringParameters: ExpressRouteCrossConnectionPeering,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -237,17 +238,13 @@ export class ExpressRouteCrossConnectionPeeringsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -261,7 +258,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
     resourceGroupName: string,
     crossConnectionName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListNextOptionalParams
   ): Promise<ExpressRouteCrossConnectionPeeringsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

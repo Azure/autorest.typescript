@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { ManagementLockClientContext } from "../managementLockClientContext";
 import {
   Operation,
+  AuthorizationOperationsListNextOptionalParams,
+  AuthorizationOperationsListOptionalParams,
   AuthorizationOperationsListResponse,
   AuthorizationOperationsListNextResponse
 } from "../models";
@@ -37,7 +39,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: AuthorizationOperationsListOptionalParams
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listPagingAll(options);
     return {
@@ -54,7 +56,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: AuthorizationOperationsListOptionalParams
   ): AsyncIterableIterator<Operation[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -67,7 +69,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: AuthorizationOperationsListOptionalParams
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -79,7 +81,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: AuthorizationOperationsListOptionalParams
   ): Promise<AuthorizationOperationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -97,7 +99,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AuthorizationOperationsListNextOptionalParams
   ): Promise<AuthorizationOperationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

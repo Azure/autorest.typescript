@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   FrontendIPConfiguration,
+  LoadBalancerFrontendIPConfigurationsListNextOptionalParams,
+  LoadBalancerFrontendIPConfigurationsListOptionalParams,
   LoadBalancerFrontendIPConfigurationsListResponse,
+  LoadBalancerFrontendIPConfigurationsGetOptionalParams,
   LoadBalancerFrontendIPConfigurationsGetResponse,
   LoadBalancerFrontendIPConfigurationsListNextResponse
 } from "../models";
@@ -43,7 +46,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
   public list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<FrontendIPConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -70,7 +73,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListOptionalParams
   ): AsyncIterableIterator<FrontendIPConfiguration[]> {
     let result = await this._list(resourceGroupName, loadBalancerName, options);
     yield result.value || [];
@@ -90,7 +93,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListOptionalParams
   ): AsyncIterableIterator<FrontendIPConfiguration> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -110,7 +113,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
   private _list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListOptionalParams
   ): Promise<LoadBalancerFrontendIPConfigurationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -134,7 +137,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
     resourceGroupName: string,
     loadBalancerName: string,
     frontendIPConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsGetOptionalParams
   ): Promise<LoadBalancerFrontendIPConfigurationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -159,7 +162,7 @@ export class LoadBalancerFrontendIPConfigurationsImpl
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListNextOptionalParams
   ): Promise<LoadBalancerFrontendIPConfigurationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

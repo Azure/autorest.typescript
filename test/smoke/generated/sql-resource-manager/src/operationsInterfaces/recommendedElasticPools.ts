@@ -11,7 +11,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RecommendedElasticPool,
+  RecommendedElasticPoolsListByServerOptionalParams,
   RecommendedElasticPoolMetric,
+  RecommendedElasticPoolsListMetricsOptionalParams,
+  RecommendedElasticPoolsGetOptionalParams,
   RecommendedElasticPoolsGetResponse
 } from "../models";
 
@@ -28,7 +31,7 @@ export interface RecommendedElasticPools {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListByServerOptionalParams
   ): PagedAsyncIterableIterator<RecommendedElasticPool>;
   /**
    * Returns recommended elastic pool metrics.
@@ -42,7 +45,7 @@ export interface RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<RecommendedElasticPoolMetric>;
   /**
    * Gets a recommended elastic pool.
@@ -56,6 +59,6 @@ export interface RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsGetOptionalParams
   ): Promise<RecommendedElasticPoolsGetResponse>;
 }

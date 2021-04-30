@@ -15,8 +15,13 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   EncryptionScope,
+  EncryptionScopesListNextOptionalParams,
+  EncryptionScopesListOptionalParams,
+  EncryptionScopesPutOptionalParams,
   EncryptionScopesPutResponse,
+  EncryptionScopesPatchOptionalParams,
   EncryptionScopesPatchResponse,
+  EncryptionScopesGetOptionalParams,
   EncryptionScopesGetResponse,
   EncryptionScopesListResponse,
   EncryptionScopesListNextResponse
@@ -47,7 +52,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
   public list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesListOptionalParams
   ): PagedAsyncIterableIterator<EncryptionScope> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
@@ -66,7 +71,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
   private async *listPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesListOptionalParams
   ): AsyncIterableIterator<EncryptionScope[]> {
     let result = await this._list(resourceGroupName, accountName, options);
     yield result.value || [];
@@ -86,7 +91,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
   private async *listPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesListOptionalParams
   ): AsyncIterableIterator<EncryptionScope> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     accountName: string,
     encryptionScopeName: string,
     encryptionScope: EncryptionScope,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesPutOptionalParams
   ): Promise<EncryptionScopesPutResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -153,7 +158,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     accountName: string,
     encryptionScopeName: string,
     encryptionScope: EncryptionScope,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesPatchOptionalParams
   ): Promise<EncryptionScopesPatchResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -185,7 +190,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     resourceGroupName: string,
     accountName: string,
     encryptionScopeName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesGetOptionalParams
   ): Promise<EncryptionScopesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -211,7 +216,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
   private _list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesListOptionalParams
   ): Promise<EncryptionScopesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -238,7 +243,7 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     resourceGroupName: string,
     accountName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionScopesListNextOptionalParams
   ): Promise<EncryptionScopesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,9 +15,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionPolicyName,
+  BackupLongTermRetentionPoliciesGetOptionalParams,
   BackupLongTermRetentionPoliciesGetResponse,
   BackupLongTermRetentionPolicy,
+  BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupLongTermRetentionPoliciesCreateOrUpdateResponse,
+  BackupLongTermRetentionPoliciesListByDatabaseOptionalParams,
   BackupLongTermRetentionPoliciesListByDatabaseResponse
 } from "../models";
 
@@ -48,7 +51,7 @@ export class BackupLongTermRetentionPoliciesImpl
     serverName: string,
     databaseName: string,
     policyName: LongTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesGetOptionalParams
   ): Promise<BackupLongTermRetentionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -79,7 +82,7 @@ export class BackupLongTermRetentionPoliciesImpl
     databaseName: string,
     policyName: LongTermRetentionPolicyName,
     parameters: BackupLongTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>,
@@ -103,16 +106,12 @@ export class BackupLongTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -127,7 +126,7 @@ export class BackupLongTermRetentionPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

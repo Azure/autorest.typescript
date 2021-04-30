@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   HubRouteTable,
+  HubRouteTablesListNextOptionalParams,
+  HubRouteTablesListOptionalParams,
+  HubRouteTablesCreateOrUpdateOptionalParams,
   HubRouteTablesCreateOrUpdateResponse,
+  HubRouteTablesGetOptionalParams,
   HubRouteTablesGetResponse,
+  HubRouteTablesDeleteOptionalParams,
   HubRouteTablesListResponse,
   HubRouteTablesListNextResponse
 } from "../models";
@@ -45,7 +50,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
   public list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListOptionalParams
   ): PagedAsyncIterableIterator<HubRouteTable> {
     const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
     return {
@@ -64,7 +69,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
   private async *listPagingPage(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListOptionalParams
   ): AsyncIterableIterator<HubRouteTable[]> {
     let result = await this._list(resourceGroupName, virtualHubName, options);
     yield result.value || [];
@@ -84,7 +89,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
   private async *listPagingAll(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListOptionalParams
   ): AsyncIterableIterator<HubRouteTable> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -108,7 +113,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
     virtualHubName: string,
     routeTableName: string,
     routeTableParameters: HubRouteTable,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<HubRouteTablesCreateOrUpdateResponse>,
@@ -131,17 +136,13 @@ export class HubRouteTablesImpl implements HubRouteTables {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -155,7 +156,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesGetOptionalParams
   ): Promise<HubRouteTablesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -180,7 +181,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -199,17 +200,13 @@ export class HubRouteTablesImpl implements HubRouteTables {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -221,7 +218,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
   private _list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListOptionalParams
   ): Promise<HubRouteTablesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -245,7 +242,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: HubRouteTablesListNextOptionalParams
   ): Promise<HubRouteTablesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

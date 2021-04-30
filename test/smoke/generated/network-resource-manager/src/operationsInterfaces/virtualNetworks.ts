@@ -12,12 +12,22 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetwork,
+  VirtualNetworksListAllNextOptionalParams,
+  VirtualNetworksListAllOptionalParams,
+  VirtualNetworksListNextOptionalParams,
+  VirtualNetworksListOptionalParams,
   VirtualNetworkUsage,
+  VirtualNetworksListUsageNextOptionalParams,
+  VirtualNetworksListUsageOptionalParams,
+  VirtualNetworksDeleteOptionalParams,
   VirtualNetworksGetOptionalParams,
   VirtualNetworksGetResponse,
+  VirtualNetworksCreateOrUpdateOptionalParams,
   VirtualNetworksCreateOrUpdateResponse,
   TagsObject,
+  VirtualNetworksUpdateTagsOptionalParams,
   VirtualNetworksUpdateTagsResponse,
+  VirtualNetworksCheckIPAddressAvailabilityOptionalParams,
   VirtualNetworksCheckIPAddressAvailabilityResponse
 } from "../models";
 
@@ -29,7 +39,7 @@ export interface VirtualNetworks {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetwork>;
   /**
    * Gets all virtual networks in a resource group.
@@ -38,7 +48,7 @@ export interface VirtualNetworks {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetwork>;
   /**
    * Lists usage stats.
@@ -49,7 +59,7 @@ export interface VirtualNetworks {
   listUsage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkUsage>;
   /**
    * Deletes the specified virtual network.
@@ -60,7 +70,7 @@ export interface VirtualNetworks {
   delete(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -86,7 +96,7 @@ export interface VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworksCreateOrUpdateResponse>,
@@ -104,7 +114,7 @@ export interface VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksUpdateTagsOptionalParams
   ): Promise<VirtualNetworksUpdateTagsResponse>;
   /**
    * Checks whether a private IP address is available for use.
@@ -117,6 +127,6 @@ export interface VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     ipAddress: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksCheckIPAddressAvailabilityOptionalParams
   ): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse>;
 }

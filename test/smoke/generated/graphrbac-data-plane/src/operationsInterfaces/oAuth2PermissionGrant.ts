@@ -11,9 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   OAuth2PermissionGrantDef,
+  OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantCreateOptionalParams,
-  OAuth2PermissionGrantCreateResponse
+  OAuth2PermissionGrantCreateResponse,
+  OAuth2PermissionGrantDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +35,7 @@ export interface OAuth2PermissionGrant {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantListNextOptionalParams
   ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
   /**
    * Grants OAuth2 permissions for the relevant resource Ids of an app.
@@ -49,6 +51,6 @@ export interface OAuth2PermissionGrant {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: OAuth2PermissionGrantDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

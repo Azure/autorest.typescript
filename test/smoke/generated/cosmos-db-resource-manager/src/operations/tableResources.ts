@@ -17,12 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   TableGetResults,
+  TableResourcesListTablesOptionalParams,
   TableResourcesListTablesResponse,
+  TableResourcesGetTableOptionalParams,
   TableResourcesGetTableResponse,
   TableCreateUpdateParameters,
+  TableResourcesCreateUpdateTableOptionalParams,
   TableResourcesCreateUpdateTableResponse,
+  TableResourcesDeleteTableOptionalParams,
+  TableResourcesGetTableThroughputOptionalParams,
   TableResourcesGetTableThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  TableResourcesUpdateTableThroughputOptionalParams,
   TableResourcesUpdateTableThroughputResponse
 } from "../models";
 
@@ -48,7 +54,7 @@ export class TableResourcesImpl implements TableResources {
   public listTables(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesListTablesOptionalParams
   ): PagedAsyncIterableIterator<TableGetResults> {
     const iter = this.listTablesPagingAll(
       resourceGroupName,
@@ -75,7 +81,7 @@ export class TableResourcesImpl implements TableResources {
   private async *listTablesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesListTablesOptionalParams
   ): AsyncIterableIterator<TableGetResults[]> {
     let result = await this._listTables(
       resourceGroupName,
@@ -88,7 +94,7 @@ export class TableResourcesImpl implements TableResources {
   private async *listTablesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesListTablesOptionalParams
   ): AsyncIterableIterator<TableGetResults> {
     for await (const page of this.listTablesPagingPage(
       resourceGroupName,
@@ -108,7 +114,7 @@ export class TableResourcesImpl implements TableResources {
   private _listTables(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesListTablesOptionalParams
   ): Promise<TableResourcesListTablesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -132,7 +138,7 @@ export class TableResourcesImpl implements TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesGetTableOptionalParams
   ): Promise<TableResourcesGetTableResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -159,7 +165,7 @@ export class TableResourcesImpl implements TableResources {
     accountName: string,
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesCreateUpdateTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<TableResourcesCreateUpdateTableResponse>,
@@ -182,16 +188,12 @@ export class TableResourcesImpl implements TableResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateTableOperationSpec,
-      initialOperationResult,
+      createUpdateTableOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -205,7 +207,7 @@ export class TableResourcesImpl implements TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesDeleteTableOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -224,16 +226,12 @@ export class TableResourcesImpl implements TableResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteTableOperationSpec,
-      initialOperationResult,
+      deleteTableOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -248,7 +246,7 @@ export class TableResourcesImpl implements TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesGetTableThroughputOptionalParams
   ): Promise<TableResourcesGetTableThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -276,7 +274,7 @@ export class TableResourcesImpl implements TableResources {
     accountName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: TableResourcesUpdateTableThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<TableResourcesUpdateTableThroughputResponse>,
@@ -299,16 +297,12 @@ export class TableResourcesImpl implements TableResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateTableThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateTableThroughputOperationSpec,
-      initialOperationResult,
+      updateTableThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { PrivateLinkResourcesListByStorageAccountResponse } from "../models";
+import {
+  PrivateLinkResourcesListByStorageAccountOptionalParams,
+  PrivateLinkResourcesListByStorageAccountResponse
+} from "../models";
 
 /** Interface representing a PrivateLinkResources. */
 export interface PrivateLinkResources {
@@ -23,6 +26,6 @@ export interface PrivateLinkResources {
   listByStorageAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByStorageAccountOptionalParams
   ): Promise<PrivateLinkResourcesListByStorageAccountResponse>;
 }

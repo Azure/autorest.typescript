@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { ServiceAssociationLinksListResponse } from "../models";
+import {
+  ServiceAssociationLinksListOptionalParams,
+  ServiceAssociationLinksListResponse
+} from "../models";
 
 /** Interface representing a ServiceAssociationLinks. */
 export interface ServiceAssociationLinks {
@@ -22,6 +25,6 @@ export interface ServiceAssociationLinks {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceAssociationLinksListOptionalParams
   ): Promise<ServiceAssociationLinksListResponse>;
 }

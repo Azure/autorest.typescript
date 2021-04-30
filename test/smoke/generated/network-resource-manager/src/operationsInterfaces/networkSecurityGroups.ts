@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkSecurityGroup,
+  NetworkSecurityGroupsListAllNextOptionalParams,
+  NetworkSecurityGroupsListAllOptionalParams,
+  NetworkSecurityGroupsListNextOptionalParams,
+  NetworkSecurityGroupsListOptionalParams,
+  NetworkSecurityGroupsDeleteOptionalParams,
   NetworkSecurityGroupsGetOptionalParams,
   NetworkSecurityGroupsGetResponse,
+  NetworkSecurityGroupsCreateOrUpdateOptionalParams,
   NetworkSecurityGroupsCreateOrUpdateResponse,
   TagsObject,
+  NetworkSecurityGroupsUpdateTagsOptionalParams,
   NetworkSecurityGroupsUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface NetworkSecurityGroups {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkSecurityGroup>;
   /**
    * Gets all network security groups in a resource group.
@@ -36,7 +43,7 @@ export interface NetworkSecurityGroups {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkSecurityGroup>;
   /**
    * Deletes the specified network security group.
@@ -47,7 +54,7 @@ export interface NetworkSecurityGroups {
   delete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface NetworkSecurityGroups {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: NetworkSecurityGroup,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkSecurityGroupsCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface NetworkSecurityGroups {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkSecurityGroupsUpdateTagsOptionalParams
   ): Promise<NetworkSecurityGroupsUpdateTagsResponse>;
 }

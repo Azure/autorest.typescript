@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
-import { Usage, UsagesListByLocationResponse } from "../models";
+import {
+  Usage,
+  UsagesListByLocationOptionalParams,
+  UsagesListByLocationResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Usages. */
@@ -35,7 +39,7 @@ export class UsagesImpl implements Usages {
    */
   public listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsagesListByLocationOptionalParams
   ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listByLocationPagingAll(location, options);
     return {
@@ -53,7 +57,7 @@ export class UsagesImpl implements Usages {
 
   private async *listByLocationPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsagesListByLocationOptionalParams
   ): AsyncIterableIterator<Usage[]> {
     let result = await this._listByLocation(location, options);
     yield result.value || [];
@@ -61,7 +65,7 @@ export class UsagesImpl implements Usages {
 
   private async *listByLocationPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsagesListByLocationOptionalParams
   ): AsyncIterableIterator<Usage> {
     for await (const page of this.listByLocationPagingPage(location, options)) {
       yield* page;
@@ -75,7 +79,7 @@ export class UsagesImpl implements Usages {
    */
   private _listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsagesListByLocationOptionalParams
   ): Promise<UsagesListByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

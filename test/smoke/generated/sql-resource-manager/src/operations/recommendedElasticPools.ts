@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RecommendedElasticPool,
+  RecommendedElasticPoolsListByServerOptionalParams,
   RecommendedElasticPoolMetric,
+  RecommendedElasticPoolsListMetricsOptionalParams,
+  RecommendedElasticPoolsGetOptionalParams,
   RecommendedElasticPoolsGetResponse,
   RecommendedElasticPoolsListByServerResponse,
   RecommendedElasticPoolsListMetricsResponse
@@ -44,7 +47,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListByServerOptionalParams
   ): PagedAsyncIterableIterator<RecommendedElasticPool> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -71,7 +74,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListByServerOptionalParams
   ): AsyncIterableIterator<RecommendedElasticPool[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -84,7 +87,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListByServerOptionalParams
   ): AsyncIterableIterator<RecommendedElasticPool> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -107,7 +110,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<RecommendedElasticPoolMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -137,7 +140,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListMetricsOptionalParams
   ): AsyncIterableIterator<RecommendedElasticPoolMetric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -152,7 +155,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListMetricsOptionalParams
   ): AsyncIterableIterator<RecommendedElasticPoolMetric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -176,7 +179,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsGetOptionalParams
   ): Promise<RecommendedElasticPoolsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -200,7 +203,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListByServerOptionalParams
   ): Promise<RecommendedElasticPoolsListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -225,7 +228,7 @@ export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
     resourceGroupName: string,
     serverName: string,
     recommendedElasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendedElasticPoolsListMetricsOptionalParams
   ): Promise<RecommendedElasticPoolsListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

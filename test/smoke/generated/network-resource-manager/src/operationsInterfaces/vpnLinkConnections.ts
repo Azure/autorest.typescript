@@ -9,7 +9,11 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { VpnSiteLinkConnection } from "../models";
+import {
+  VpnSiteLinkConnection,
+  VpnLinkConnectionsListByVpnConnectionNextOptionalParams,
+  VpnLinkConnectionsListByVpnConnectionOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a VpnLinkConnections. */
@@ -25,6 +29,6 @@ export interface VpnLinkConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): PagedAsyncIterableIterator<VpnSiteLinkConnection>;
 }

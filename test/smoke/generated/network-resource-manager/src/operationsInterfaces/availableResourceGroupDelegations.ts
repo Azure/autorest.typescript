@@ -9,7 +9,11 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { AvailableDelegation } from "../models";
+import {
+  AvailableDelegation,
+  AvailableResourceGroupDelegationsListNextOptionalParams,
+  AvailableResourceGroupDelegationsListOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a AvailableResourceGroupDelegations. */
@@ -23,6 +27,6 @@ export interface AvailableResourceGroupDelegations {
   list(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListOptionalParams
   ): PagedAsyncIterableIterator<AvailableDelegation>;
 }

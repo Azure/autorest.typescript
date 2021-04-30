@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SecurityRule,
+  SecurityRulesListNextOptionalParams,
+  SecurityRulesListOptionalParams,
+  SecurityRulesDeleteOptionalParams,
+  SecurityRulesGetOptionalParams,
   SecurityRulesGetResponse,
+  SecurityRulesCreateOrUpdateOptionalParams,
   SecurityRulesCreateOrUpdateResponse,
   SecurityRulesListResponse,
   SecurityRulesListNextResponse
@@ -45,7 +50,7 @@ export class SecurityRulesImpl implements SecurityRules {
   public list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListOptionalParams
   ): PagedAsyncIterableIterator<SecurityRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class SecurityRulesImpl implements SecurityRules {
   private async *listPagingPage(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListOptionalParams
   ): AsyncIterableIterator<SecurityRule[]> {
     let result = await this._list(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class SecurityRulesImpl implements SecurityRules {
   private async *listPagingAll(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListOptionalParams
   ): AsyncIterableIterator<SecurityRule> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class SecurityRulesImpl implements SecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +142,13 @@ export class SecurityRulesImpl implements SecurityRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -161,7 +162,7 @@ export class SecurityRulesImpl implements SecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesGetOptionalParams
   ): Promise<SecurityRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -189,7 +190,7 @@ export class SecurityRulesImpl implements SecurityRules {
     networkSecurityGroupName: string,
     securityRuleName: string,
     securityRuleParameters: SecurityRule,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SecurityRulesCreateOrUpdateResponse>,
@@ -212,17 +213,13 @@ export class SecurityRulesImpl implements SecurityRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -234,7 +231,7 @@ export class SecurityRulesImpl implements SecurityRules {
   private _list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListOptionalParams
   ): Promise<SecurityRulesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -258,7 +255,7 @@ export class SecurityRulesImpl implements SecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityRulesListNextOptionalParams
   ): Promise<SecurityRulesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

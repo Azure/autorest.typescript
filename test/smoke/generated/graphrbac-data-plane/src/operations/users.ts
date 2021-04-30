@@ -15,13 +15,19 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   User,
+  UsersListNextOptionalParams,
   UsersListOptionalParams,
   UserGetMemberGroupsParameters,
+  UsersGetMemberGroupsOptionalParams,
   UserCreateParameters,
+  UsersCreateOptionalParams,
   UsersCreateResponse,
   UsersListResponse,
+  UsersGetOptionalParams,
   UsersGetResponse,
   UserUpdateParameters,
+  UsersUpdateOptionalParams,
+  UsersDeleteOptionalParams,
   UsersGetMemberGroupsResponse,
   UsersListNextResponse
 } from "../models";
@@ -90,7 +96,7 @@ export class UsersImpl implements Users {
   public listMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
@@ -109,7 +115,7 @@ export class UsersImpl implements Users {
   private async *getMemberGroupsPagingPage(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
     let result = await this._getMemberGroups(objectId, parameters, options);
     yield result.value || [];
@@ -118,7 +124,7 @@ export class UsersImpl implements Users {
   private async *getMemberGroupsPagingAll(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
@@ -136,7 +142,7 @@ export class UsersImpl implements Users {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersListNextOptionalParams
   ): PagedAsyncIterableIterator<User> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -154,7 +160,7 @@ export class UsersImpl implements Users {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersListNextOptionalParams
   ): AsyncIterableIterator<User[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -168,7 +174,7 @@ export class UsersImpl implements Users {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersListNextOptionalParams
   ): AsyncIterableIterator<User> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -182,7 +188,7 @@ export class UsersImpl implements Users {
    */
   create(
     parameters: UserCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersCreateOptionalParams
   ): Promise<UsersCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -215,7 +221,7 @@ export class UsersImpl implements Users {
    */
   get(
     upnOrObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetOptionalParams
   ): Promise<UsersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       upnOrObjectId,
@@ -236,7 +242,7 @@ export class UsersImpl implements Users {
   update(
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersUpdateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       upnOrObjectId,
@@ -256,7 +262,7 @@ export class UsersImpl implements Users {
    */
   delete(
     upnOrObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       upnOrObjectId,
@@ -277,7 +283,7 @@ export class UsersImpl implements Users {
   private _getMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetMemberGroupsOptionalParams
   ): Promise<UsersGetMemberGroupsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -297,7 +303,7 @@ export class UsersImpl implements Users {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersListNextOptionalParams
   ): Promise<UsersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

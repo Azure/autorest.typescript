@@ -17,10 +17,16 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerDnsAlias,
+  ServerDnsAliasesListByServerNextOptionalParams,
+  ServerDnsAliasesListByServerOptionalParams,
+  ServerDnsAliasesGetOptionalParams,
   ServerDnsAliasesGetResponse,
+  ServerDnsAliasesCreateOrUpdateOptionalParams,
   ServerDnsAliasesCreateOrUpdateResponse,
+  ServerDnsAliasesDeleteOptionalParams,
   ServerDnsAliasesListByServerResponse,
   ServerDnsAliasAcquisition,
+  ServerDnsAliasesAcquireOptionalParams,
   ServerDnsAliasesListByServerNextResponse
 } from "../models";
 
@@ -47,7 +53,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerDnsAlias> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -74,7 +80,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerOptionalParams
   ): AsyncIterableIterator<ServerDnsAlias[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -98,7 +104,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerOptionalParams
   ): AsyncIterableIterator<ServerDnsAlias> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -121,7 +127,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesGetOptionalParams
   ): Promise<ServerDnsAliasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -147,7 +153,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
@@ -169,16 +175,12 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -193,7 +195,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -212,16 +214,12 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -234,7 +232,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerOptionalParams
   ): Promise<ServerDnsAliasesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -261,7 +259,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesAcquireOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -281,16 +279,12 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      acquireOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: acquireOperationSpec,
-      initialOperationResult,
+      acquireOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -305,7 +299,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerNextOptionalParams
   ): Promise<ServerDnsAliasesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

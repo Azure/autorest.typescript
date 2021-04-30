@@ -11,26 +11,50 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   DetectorResponse,
+  DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams,
+  DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams,
+  DiagnosticsListSiteDetectorResponsesNextOptionalParams,
+  DiagnosticsListSiteDetectorResponsesOptionalParams,
   DiagnosticCategory,
+  DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesOptionalParams,
   AnalysisDefinition,
+  DiagnosticsListSiteAnalysesNextOptionalParams,
+  DiagnosticsListSiteAnalysesOptionalParams,
   DetectorDefinition,
+  DiagnosticsListSiteDetectorsNextOptionalParams,
+  DiagnosticsListSiteDetectorsOptionalParams,
+  DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams,
+  DiagnosticsListSiteDetectorResponsesSlotOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams,
+  DiagnosticsListSiteAnalysesSlotNextOptionalParams,
+  DiagnosticsListSiteAnalysesSlotOptionalParams,
+  DiagnosticsListSiteDetectorsSlotNextOptionalParams,
+  DiagnosticsListSiteDetectorsSlotOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseResponse,
   DiagnosticsGetSiteDetectorResponseOptionalParams,
   DiagnosticsGetSiteDetectorResponseResponse,
+  DiagnosticsGetSiteDiagnosticCategoryOptionalParams,
   DiagnosticsGetSiteDiagnosticCategoryResponse,
+  DiagnosticsGetSiteAnalysisOptionalParams,
   DiagnosticsGetSiteAnalysisResponse,
   DiagnosticsExecuteSiteAnalysisOptionalParams,
   DiagnosticsExecuteSiteAnalysisResponse,
+  DiagnosticsGetSiteDetectorOptionalParams,
   DiagnosticsGetSiteDetectorResponse,
   DiagnosticsExecuteSiteDetectorOptionalParams,
   DiagnosticsExecuteSiteDetectorResponse,
   DiagnosticsGetSiteDetectorResponseSlotOptionalParams,
   DiagnosticsGetSiteDetectorResponseSlotResponse,
+  DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams,
   DiagnosticsGetSiteDiagnosticCategorySlotResponse,
+  DiagnosticsGetSiteAnalysisSlotOptionalParams,
   DiagnosticsGetSiteAnalysisSlotResponse,
   DiagnosticsExecuteSiteAnalysisSlotOptionalParams,
   DiagnosticsExecuteSiteAnalysisSlotResponse,
+  DiagnosticsGetSiteDetectorSlotOptionalParams,
   DiagnosticsGetSiteDetectorSlotResponse,
   DiagnosticsExecuteSiteDetectorSlotOptionalParams,
   DiagnosticsExecuteSiteDetectorSlotResponse
@@ -48,7 +72,7 @@ export interface Diagnostics {
   listHostingEnvironmentDetectorResponses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse>;
   /**
    * Description for List Site Detector Responses
@@ -59,7 +83,7 @@ export interface Diagnostics {
   listSiteDetectorResponses(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse>;
   /**
    * Description for Get Diagnostics Categories
@@ -70,7 +94,7 @@ export interface Diagnostics {
   listSiteDiagnosticCategories(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): PagedAsyncIterableIterator<DiagnosticCategory>;
   /**
    * Description for Get Site Analyses
@@ -83,7 +107,7 @@ export interface Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesOptionalParams
   ): PagedAsyncIterableIterator<AnalysisDefinition>;
   /**
    * Description for Get Detectors
@@ -96,7 +120,7 @@ export interface Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsOptionalParams
   ): PagedAsyncIterableIterator<DetectorDefinition>;
   /**
    * Description for List Site Detector Responses
@@ -109,7 +133,7 @@ export interface Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse>;
   /**
    * Description for Get Diagnostics Categories
@@ -122,7 +146,7 @@ export interface Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): PagedAsyncIterableIterator<DiagnosticCategory>;
   /**
    * Description for Get Site Analyses
@@ -137,7 +161,7 @@ export interface Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): PagedAsyncIterableIterator<AnalysisDefinition>;
   /**
    * Description for Get Detectors
@@ -152,7 +176,7 @@ export interface Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): PagedAsyncIterableIterator<DetectorDefinition>;
   /**
    * Description for Get Hosting Environment Detector Response
@@ -191,7 +215,7 @@ export interface Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDiagnosticCategoryOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategoryResponse>;
   /**
    * Description for Get Site Analysis
@@ -206,7 +230,7 @@ export interface Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     analysisName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteAnalysisOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisResponse>;
   /**
    * Description for Execute Analysis
@@ -236,7 +260,7 @@ export interface Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     detectorName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDetectorOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponse>;
   /**
    * Description for Execute Detector
@@ -281,7 +305,7 @@ export interface Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse>;
   /**
    * Description for Get Site Analysis
@@ -298,7 +322,7 @@ export interface Diagnostics {
     diagnosticCategory: string,
     analysisName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteAnalysisSlotOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisSlotResponse>;
   /**
    * Description for Execute Analysis
@@ -332,7 +356,7 @@ export interface Diagnostics {
     diagnosticCategory: string,
     detectorName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDetectorSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorSlotResponse>;
   /**
    * Description for Execute Detector

@@ -17,14 +17,24 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
+  ExpressRouteCrossConnectionsListNextOptionalParams,
+  ExpressRouteCrossConnectionsListOptionalParams,
+  ExpressRouteCrossConnectionsListByResourceGroupNextOptionalParams,
+  ExpressRouteCrossConnectionsListByResourceGroupOptionalParams,
   ExpressRouteCrossConnectionsListResponse,
   ExpressRouteCrossConnectionsListByResourceGroupResponse,
+  ExpressRouteCrossConnectionsGetOptionalParams,
   ExpressRouteCrossConnectionsGetResponse,
+  ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams,
   ExpressRouteCrossConnectionsCreateOrUpdateResponse,
   TagsObject,
+  ExpressRouteCrossConnectionsUpdateTagsOptionalParams,
   ExpressRouteCrossConnectionsUpdateTagsResponse,
+  ExpressRouteCrossConnectionsListArpTableOptionalParams,
   ExpressRouteCrossConnectionsListArpTableResponse,
+  ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams,
   ExpressRouteCrossConnectionsListRoutesTableSummaryResponse,
+  ExpressRouteCrossConnectionsListRoutesTableOptionalParams,
   ExpressRouteCrossConnectionsListRoutesTableResponse,
   ExpressRouteCrossConnectionsListNextResponse,
   ExpressRouteCrossConnectionsListByResourceGroupNextResponse
@@ -49,7 +59,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCrossConnection> {
     const iter = this.listPagingAll(options);
     return {
@@ -66,7 +76,7 @@ export class ExpressRouteCrossConnectionsImpl
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnection[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -79,7 +89,7 @@ export class ExpressRouteCrossConnectionsImpl
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnection> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -93,7 +103,7 @@ export class ExpressRouteCrossConnectionsImpl
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCrossConnection> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -111,7 +121,7 @@ export class ExpressRouteCrossConnectionsImpl
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnection[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -129,7 +139,7 @@ export class ExpressRouteCrossConnectionsImpl
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ExpressRouteCrossConnection> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -144,7 +154,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListOptionalParams
   ): Promise<ExpressRouteCrossConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -162,7 +172,7 @@ export class ExpressRouteCrossConnectionsImpl
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListByResourceGroupOptionalParams
   ): Promise<ExpressRouteCrossConnectionsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -183,7 +193,7 @@ export class ExpressRouteCrossConnectionsImpl
   get(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsGetOptionalParams
   ): Promise<ExpressRouteCrossConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -207,7 +217,7 @@ export class ExpressRouteCrossConnectionsImpl
     resourceGroupName: string,
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
@@ -229,17 +239,13 @@ export class ExpressRouteCrossConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -253,7 +259,7 @@ export class ExpressRouteCrossConnectionsImpl
     resourceGroupName: string,
     crossConnectionName: string,
     crossConnectionParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsUpdateTagsOptionalParams
   ): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -281,7 +287,7 @@ export class ExpressRouteCrossConnectionsImpl
     crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListArpTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
@@ -304,17 +310,13 @@ export class ExpressRouteCrossConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listArpTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listArpTableOperationSpec,
-      initialOperationResult,
+      listArpTableOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -330,7 +332,7 @@ export class ExpressRouteCrossConnectionsImpl
     crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -355,17 +357,13 @@ export class ExpressRouteCrossConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listRoutesTableSummaryOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listRoutesTableSummaryOperationSpec,
-      initialOperationResult,
+      listRoutesTableSummaryOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -382,7 +380,7 @@ export class ExpressRouteCrossConnectionsImpl
     crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListRoutesTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
@@ -405,17 +403,13 @@ export class ExpressRouteCrossConnectionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listRoutesTableOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listRoutesTableOperationSpec,
-      initialOperationResult,
+      listRoutesTableOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -425,7 +419,7 @@ export class ExpressRouteCrossConnectionsImpl
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListNextOptionalParams
   ): Promise<ExpressRouteCrossConnectionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -446,7 +440,7 @@ export class ExpressRouteCrossConnectionsImpl
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionsListByResourceGroupNextOptionalParams
   ): Promise<ExpressRouteCrossConnectionsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

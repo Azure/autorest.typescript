@@ -15,8 +15,10 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RequestRateByIntervalInput,
+  LogAnalyticsExportRequestRateByIntervalOptionalParams,
   LogAnalyticsExportRequestRateByIntervalResponse,
   ThrottledRequestsInput,
+  LogAnalyticsExportThrottledRequestsOptionalParams,
   LogAnalyticsExportThrottledRequestsResponse
 } from "../models";
 
@@ -42,7 +44,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
   async exportRequestRateByInterval(
     location: string,
     parameters: RequestRateByIntervalInput,
-    options?: coreHttp.OperationOptions
+    options?: LogAnalyticsExportRequestRateByIntervalOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>,
@@ -63,17 +65,13 @@ export class LogAnalyticsImpl implements LogAnalytics {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      exportRequestRateByIntervalOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: exportRequestRateByIntervalOperationSpec,
-      initialOperationResult,
+      exportRequestRateByIntervalOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -85,7 +83,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
   async exportThrottledRequests(
     location: string,
     parameters: ThrottledRequestsInput,
-    options?: coreHttp.OperationOptions
+    options?: LogAnalyticsExportThrottledRequestsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LogAnalyticsExportThrottledRequestsResponse>,
@@ -106,17 +104,13 @@ export class LogAnalyticsImpl implements LogAnalytics {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      exportThrottledRequestsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: exportThrottledRequestsOperationSpec,
-      initialOperationResult,
+      exportThrottledRequestsOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

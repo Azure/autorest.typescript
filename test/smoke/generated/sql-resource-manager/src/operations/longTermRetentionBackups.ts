@@ -29,11 +29,15 @@ import {
   LongTermRetentionBackupsListByLocationOptionalParams,
   LongTermRetentionBackupsListByServerNextOptionalParams,
   LongTermRetentionBackupsListByServerOptionalParams,
+  LongTermRetentionBackupsGetByResourceGroupOptionalParams,
   LongTermRetentionBackupsGetByResourceGroupResponse,
+  LongTermRetentionBackupsDeleteByResourceGroupOptionalParams,
   LongTermRetentionBackupsListByResourceGroupDatabaseResponse,
   LongTermRetentionBackupsListByResourceGroupLocationResponse,
   LongTermRetentionBackupsListByResourceGroupServerResponse,
+  LongTermRetentionBackupsGetOptionalParams,
   LongTermRetentionBackupsGetResponse,
+  LongTermRetentionBackupsDeleteOptionalParams,
   LongTermRetentionBackupsListByDatabaseResponse,
   LongTermRetentionBackupsListByLocationResponse,
   LongTermRetentionBackupsListByServerResponse,
@@ -521,7 +525,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams
   ): Promise<LongTermRetentionBackupsGetByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -553,7 +557,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -574,16 +578,12 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteByResourceGroupOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteByResourceGroupOperationSpec,
-      initialOperationResult,
+      deleteByResourceGroupOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -677,7 +677,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsGetOptionalParams
   ): Promise<LongTermRetentionBackupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -705,7 +705,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -725,16 +725,12 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

@@ -15,7 +15,11 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   FirewallRule,
+  FirewallRulesListByServerOptionalParams,
+  FirewallRulesCreateOrUpdateOptionalParams,
   FirewallRulesCreateOrUpdateResponse,
+  FirewallRulesDeleteOptionalParams,
+  FirewallRulesGetOptionalParams,
   FirewallRulesGetResponse,
   FirewallRulesListByServerResponse
 } from "../models";
@@ -43,7 +47,7 @@ export class FirewallRulesImpl implements FirewallRules {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesListByServerOptionalParams
   ): PagedAsyncIterableIterator<FirewallRule> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -70,7 +74,7 @@ export class FirewallRulesImpl implements FirewallRules {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesListByServerOptionalParams
   ): AsyncIterableIterator<FirewallRule[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -83,7 +87,7 @@ export class FirewallRulesImpl implements FirewallRules {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesListByServerOptionalParams
   ): AsyncIterableIterator<FirewallRule> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -108,7 +112,7 @@ export class FirewallRulesImpl implements FirewallRules {
     serverName: string,
     firewallRuleName: string,
     parameters: FirewallRule,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesCreateOrUpdateOptionalParams
   ): Promise<FirewallRulesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -135,7 +139,7 @@ export class FirewallRulesImpl implements FirewallRules {
     resourceGroupName: string,
     serverName: string,
     firewallRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -161,7 +165,7 @@ export class FirewallRulesImpl implements FirewallRules {
     resourceGroupName: string,
     serverName: string,
     firewallRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesGetOptionalParams
   ): Promise<FirewallRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -185,7 +189,7 @@ export class FirewallRulesImpl implements FirewallRules {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallRulesListByServerOptionalParams
   ): Promise<FirewallRulesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

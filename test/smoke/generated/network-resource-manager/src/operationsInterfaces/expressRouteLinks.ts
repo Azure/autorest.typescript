@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { ExpressRouteLink, ExpressRouteLinksGetResponse } from "../models";
+import {
+  ExpressRouteLink,
+  ExpressRouteLinksListNextOptionalParams,
+  ExpressRouteLinksListOptionalParams,
+  ExpressRouteLinksGetOptionalParams,
+  ExpressRouteLinksGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ExpressRouteLinks. */
@@ -23,7 +29,7 @@ export interface ExpressRouteLinks {
   list(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteLink>;
   /**
    * Retrieves the specified ExpressRouteLink resource.
@@ -36,6 +42,6 @@ export interface ExpressRouteLinks {
     resourceGroupName: string,
     expressRoutePortName: string,
     linkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksGetOptionalParams
   ): Promise<ExpressRouteLinksGetResponse>;
 }

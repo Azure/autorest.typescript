@@ -8,7 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { TdeCertificate } from "../models";
+import { TdeCertificate, TdeCertificatesCreateOptionalParams } from "../models";
 
 /** Interface representing a TdeCertificates. */
 export interface TdeCertificates {
@@ -24,7 +24,7 @@ export interface TdeCertificates {
     resourceGroupName: string,
     serverName: string,
     parameters: TdeCertificate,
-    options?: coreHttp.OperationOptions
+    options?: TdeCertificatesCreateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

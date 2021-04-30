@@ -8,7 +8,13 @@
 
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
+import {
+  VirtualMachineScaleSetRollingUpgradesCancelOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesGetLatestResponse
+} from "../models";
 
 /** Interface representing a VirtualMachineScaleSetRollingUpgrades. */
 export interface VirtualMachineScaleSetRollingUpgrades {
@@ -21,7 +27,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
   cancel(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -36,7 +42,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
   startOSUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -51,7 +57,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
   startExtensionUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -64,6 +70,6 @@ export interface VirtualMachineScaleSetRollingUpgrades {
   getLatest(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams
   ): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
 }

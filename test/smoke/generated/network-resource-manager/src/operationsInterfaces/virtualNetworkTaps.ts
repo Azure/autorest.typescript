@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkTap,
+  VirtualNetworkTapsListAllNextOptionalParams,
+  VirtualNetworkTapsListAllOptionalParams,
+  VirtualNetworkTapsListByResourceGroupNextOptionalParams,
+  VirtualNetworkTapsListByResourceGroupOptionalParams,
+  VirtualNetworkTapsDeleteOptionalParams,
+  VirtualNetworkTapsGetOptionalParams,
   VirtualNetworkTapsGetResponse,
+  VirtualNetworkTapsCreateOrUpdateOptionalParams,
   VirtualNetworkTapsCreateOrUpdateResponse,
   TagsObject,
+  VirtualNetworkTapsUpdateTagsOptionalParams,
   VirtualNetworkTapsUpdateTagsResponse
 } from "../models";
 
@@ -26,7 +34,7 @@ export interface VirtualNetworkTaps {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkTap>;
   /**
    * Gets all the VirtualNetworkTaps in a subscription.
@@ -35,7 +43,7 @@ export interface VirtualNetworkTaps {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkTap>;
   /**
    * Deletes the specified virtual network tap.
@@ -46,7 +54,7 @@ export interface VirtualNetworkTaps {
   delete(
     resourceGroupName: string,
     tapName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface VirtualNetworkTaps {
   get(
     resourceGroupName: string,
     tapName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsGetOptionalParams
   ): Promise<VirtualNetworkTapsGetResponse>;
   /**
    * Creates or updates a Virtual Network Tap.
@@ -72,7 +80,7 @@ export interface VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>,
@@ -90,6 +98,6 @@ export interface VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     tapParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkTapsUpdateTagsOptionalParams
   ): Promise<VirtualNetworkTapsUpdateTagsResponse>;
 }

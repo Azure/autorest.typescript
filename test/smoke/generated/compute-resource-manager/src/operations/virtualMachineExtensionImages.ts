@@ -12,7 +12,9 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
+  VirtualMachineExtensionImagesGetOptionalParams,
   VirtualMachineExtensionImagesGetResponse,
+  VirtualMachineExtensionImagesListTypesOptionalParams,
   VirtualMachineExtensionImagesListTypesResponse,
   VirtualMachineExtensionImagesListVersionsOptionalParams,
   VirtualMachineExtensionImagesListVersionsResponse
@@ -44,7 +46,7 @@ export class VirtualMachineExtensionImagesImpl
     publisherName: string,
     version: string,
     typeParam: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionImagesGetOptionalParams
   ): Promise<VirtualMachineExtensionImagesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -68,7 +70,7 @@ export class VirtualMachineExtensionImagesImpl
   listTypes(
     location: string,
     publisherName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionImagesListTypesOptionalParams
   ): Promise<VirtualMachineExtensionImagesListTypesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

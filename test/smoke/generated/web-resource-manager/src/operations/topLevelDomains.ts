@@ -15,9 +15,14 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   TopLevelDomain,
+  TopLevelDomainsListNextOptionalParams,
+  TopLevelDomainsListOptionalParams,
   TldLegalAgreement,
   TopLevelDomainAgreementOption,
+  TopLevelDomainsListAgreementsNextOptionalParams,
+  TopLevelDomainsListAgreementsOptionalParams,
   TopLevelDomainsListResponse,
+  TopLevelDomainsGetOptionalParams,
   TopLevelDomainsGetResponse,
   TopLevelDomainsListAgreementsResponse,
   TopLevelDomainsListNextResponse,
@@ -42,7 +47,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListOptionalParams
   ): PagedAsyncIterableIterator<TopLevelDomain> {
     const iter = this.listPagingAll(options);
     return {
@@ -59,7 +64,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListOptionalParams
   ): AsyncIterableIterator<TopLevelDomain[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -72,7 +77,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListOptionalParams
   ): AsyncIterableIterator<TopLevelDomain> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -88,7 +93,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   public listAgreements(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsOptionalParams
   ): PagedAsyncIterableIterator<TldLegalAgreement> {
     const iter = this.listAgreementsPagingAll(name, agreementOption, options);
     return {
@@ -107,7 +112,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   private async *listAgreementsPagingPage(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsOptionalParams
   ): AsyncIterableIterator<TldLegalAgreement[]> {
     let result = await this._listAgreements(name, agreementOption, options);
     yield result.value || [];
@@ -127,7 +132,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   private async *listAgreementsPagingAll(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsOptionalParams
   ): AsyncIterableIterator<TldLegalAgreement> {
     for await (const page of this.listAgreementsPagingPage(
       name,
@@ -143,7 +148,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListOptionalParams
   ): Promise<TopLevelDomainsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -161,7 +166,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
    */
   get(
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsGetOptionalParams
   ): Promise<TopLevelDomainsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       name,
@@ -182,7 +187,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   private _listAgreements(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsOptionalParams
   ): Promise<TopLevelDomainsListAgreementsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       name,
@@ -202,7 +207,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListNextOptionalParams
   ): Promise<TopLevelDomainsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -225,7 +230,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsNextOptionalParams
   ): Promise<TopLevelDomainsListAgreementsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       name,

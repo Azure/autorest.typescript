@@ -12,8 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ReplicationLink,
+  ReplicationLinksListByDatabaseOptionalParams,
+  ReplicationLinksDeleteOptionalParams,
+  ReplicationLinksGetOptionalParams,
   ReplicationLinksGetResponse,
-  UnlinkParameters
+  ReplicationLinksFailoverOptionalParams,
+  ReplicationLinksFailoverAllowDataLossOptionalParams,
+  UnlinkParameters,
+  ReplicationLinksUnlinkOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +37,7 @@ export interface ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ReplicationLink>;
   /**
    * Deletes a database replication link. Cannot be done during failover.
@@ -47,7 +53,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a database replication link.
@@ -63,7 +69,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksGetOptionalParams
   ): Promise<ReplicationLinksGetResponse>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
@@ -79,7 +85,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -98,7 +104,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -118,7 +124,7 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: coreHttp.OperationOptions
+    options?: ReplicationLinksUnlinkOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

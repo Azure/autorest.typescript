@@ -12,7 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerBlobAuditingPolicy,
+  ServerBlobAuditingPoliciesListByServerNextOptionalParams,
+  ServerBlobAuditingPoliciesListByServerOptionalParams,
+  ServerBlobAuditingPoliciesGetOptionalParams,
   ServerBlobAuditingPoliciesGetResponse,
+  ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ServerBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -29,7 +33,7 @@ export interface ServerBlobAuditingPolicies {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerBlobAuditingPolicy>;
   /**
    * Gets a server's blob auditing policy.
@@ -41,7 +45,7 @@ export interface ServerBlobAuditingPolicies {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesGetOptionalParams
   ): Promise<ServerBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates a server's blob auditing policy.
@@ -55,7 +59,7 @@ export interface ServerBlobAuditingPolicies {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,

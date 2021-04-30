@@ -12,303 +12,703 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Site,
+  WebAppsListNextOptionalParams,
+  WebAppsListOptionalParams,
   WebAppsListByResourceGroupNextOptionalParams,
   WebAppsListByResourceGroupOptionalParams,
   BackupItem,
+  WebAppsListBackupsNextOptionalParams,
+  WebAppsListBackupsOptionalParams,
   SiteConfigResource,
+  WebAppsListConfigurationsNextOptionalParams,
+  WebAppsListConfigurationsOptionalParams,
   SiteConfigurationSnapshotInfo,
+  WebAppsListConfigurationSnapshotInfoNextOptionalParams,
+  WebAppsListConfigurationSnapshotInfoOptionalParams,
   ContinuousWebJob,
+  WebAppsListContinuousWebJobsNextOptionalParams,
+  WebAppsListContinuousWebJobsOptionalParams,
   Deployment,
+  WebAppsListDeploymentsNextOptionalParams,
+  WebAppsListDeploymentsOptionalParams,
   Identifier,
+  WebAppsListDomainOwnershipIdentifiersNextOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersOptionalParams,
   FunctionEnvelope,
+  WebAppsListFunctionsNextOptionalParams,
+  WebAppsListFunctionsOptionalParams,
   HostNameBinding,
+  WebAppsListHostNameBindingsNextOptionalParams,
+  WebAppsListHostNameBindingsOptionalParams,
   SiteInstance,
+  WebAppsListInstanceIdentifiersNextOptionalParams,
+  WebAppsListInstanceIdentifiersOptionalParams,
   ProcessInfo,
+  WebAppsListInstanceProcessesNextOptionalParams,
+  WebAppsListInstanceProcessesOptionalParams,
   ProcessModuleInfo,
+  WebAppsListInstanceProcessModulesNextOptionalParams,
+  WebAppsListInstanceProcessModulesOptionalParams,
   ProcessThreadInfo,
+  WebAppsListInstanceProcessThreadsNextOptionalParams,
+  WebAppsListInstanceProcessThreadsOptionalParams,
+  WebAppsListSiteBackupsNextOptionalParams,
+  WebAppsListSiteBackupsOptionalParams,
   PerfMonResponse,
   WebAppsListPerfMonCountersNextOptionalParams,
   WebAppsListPerfMonCountersOptionalParams,
+  WebAppsListProcessesNextOptionalParams,
+  WebAppsListProcessesOptionalParams,
+  WebAppsListProcessModulesNextOptionalParams,
+  WebAppsListProcessModulesOptionalParams,
+  WebAppsListProcessThreadsNextOptionalParams,
+  WebAppsListProcessThreadsOptionalParams,
   PublicCertificate,
+  WebAppsListPublicCertificatesNextOptionalParams,
+  WebAppsListPublicCertificatesOptionalParams,
   SiteExtensionInfo,
+  WebAppsListSiteExtensionsNextOptionalParams,
+  WebAppsListSiteExtensionsOptionalParams,
+  WebAppsListSlotsNextOptionalParams,
+  WebAppsListSlotsOptionalParams,
+  WebAppsListBackupsSlotNextOptionalParams,
+  WebAppsListBackupsSlotOptionalParams,
+  WebAppsListConfigurationsSlotNextOptionalParams,
+  WebAppsListConfigurationsSlotOptionalParams,
+  WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams,
+  WebAppsListConfigurationSnapshotInfoSlotOptionalParams,
+  WebAppsListContinuousWebJobsSlotNextOptionalParams,
+  WebAppsListContinuousWebJobsSlotOptionalParams,
+  WebAppsListDeploymentsSlotNextOptionalParams,
+  WebAppsListDeploymentsSlotOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersSlotOptionalParams,
+  WebAppsListInstanceFunctionsSlotNextOptionalParams,
+  WebAppsListInstanceFunctionsSlotOptionalParams,
+  WebAppsListHostNameBindingsSlotNextOptionalParams,
+  WebAppsListHostNameBindingsSlotOptionalParams,
+  WebAppsListInstanceIdentifiersSlotNextOptionalParams,
+  WebAppsListInstanceIdentifiersSlotOptionalParams,
+  WebAppsListInstanceProcessesSlotNextOptionalParams,
+  WebAppsListInstanceProcessesSlotOptionalParams,
+  WebAppsListInstanceProcessModulesSlotNextOptionalParams,
+  WebAppsListInstanceProcessModulesSlotOptionalParams,
+  WebAppsListInstanceProcessThreadsSlotNextOptionalParams,
+  WebAppsListInstanceProcessThreadsSlotOptionalParams,
+  WebAppsListSiteBackupsSlotNextOptionalParams,
+  WebAppsListSiteBackupsSlotOptionalParams,
   WebAppsListPerfMonCountersSlotNextOptionalParams,
   WebAppsListPerfMonCountersSlotOptionalParams,
+  WebAppsListProcessesSlotNextOptionalParams,
+  WebAppsListProcessesSlotOptionalParams,
+  WebAppsListProcessModulesSlotNextOptionalParams,
+  WebAppsListProcessModulesSlotOptionalParams,
+  WebAppsListProcessThreadsSlotNextOptionalParams,
+  WebAppsListProcessThreadsSlotOptionalParams,
+  WebAppsListPublicCertificatesSlotNextOptionalParams,
+  WebAppsListPublicCertificatesSlotOptionalParams,
+  WebAppsListSiteExtensionsSlotNextOptionalParams,
+  WebAppsListSiteExtensionsSlotOptionalParams,
   SlotDifference,
   CsmSlotEntity,
+  WebAppsListSlotDifferencesSlotNextOptionalParams,
+  WebAppsListSlotDifferencesSlotOptionalParams,
   Snapshot,
+  WebAppsListSnapshotsSlotNextOptionalParams,
+  WebAppsListSnapshotsSlotOptionalParams,
+  WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams,
+  WebAppsListSnapshotsFromDRSecondarySlotOptionalParams,
   TriggeredWebJob,
+  WebAppsListTriggeredWebJobsSlotNextOptionalParams,
+  WebAppsListTriggeredWebJobsSlotOptionalParams,
   TriggeredJobHistory,
+  WebAppsListTriggeredWebJobHistorySlotNextOptionalParams,
+  WebAppsListTriggeredWebJobHistorySlotOptionalParams,
   CsmUsageQuota,
   WebAppsListUsagesSlotNextOptionalParams,
   WebAppsListUsagesSlotOptionalParams,
   WebJob,
+  WebAppsListWebJobsSlotNextOptionalParams,
+  WebAppsListWebJobsSlotOptionalParams,
+  WebAppsListSlotDifferencesFromProductionNextOptionalParams,
+  WebAppsListSlotDifferencesFromProductionOptionalParams,
+  WebAppsListSnapshotsNextOptionalParams,
+  WebAppsListSnapshotsOptionalParams,
+  WebAppsListSnapshotsFromDRSecondaryNextOptionalParams,
+  WebAppsListSnapshotsFromDRSecondaryOptionalParams,
+  WebAppsListTriggeredWebJobsNextOptionalParams,
+  WebAppsListTriggeredWebJobsOptionalParams,
+  WebAppsListTriggeredWebJobHistoryNextOptionalParams,
+  WebAppsListTriggeredWebJobHistoryOptionalParams,
   WebAppsListUsagesNextOptionalParams,
   WebAppsListUsagesOptionalParams,
+  WebAppsListWebJobsNextOptionalParams,
+  WebAppsListWebJobsOptionalParams,
+  WebAppsGetOptionalParams,
   WebAppsGetResponse,
+  WebAppsCreateOrUpdateOptionalParams,
   WebAppsCreateOrUpdateResponse,
   WebAppsDeleteOptionalParams,
   SitePatchResource,
+  WebAppsUpdateOptionalParams,
   WebAppsUpdateResponse,
   WebAppsAnalyzeCustomHostnameOptionalParams,
   WebAppsAnalyzeCustomHostnameResponse,
+  WebAppsApplySlotConfigToProductionOptionalParams,
   BackupRequest,
+  WebAppsBackupOptionalParams,
   WebAppsBackupResponse,
+  WebAppsGetBackupStatusOptionalParams,
   WebAppsGetBackupStatusResponse,
+  WebAppsDeleteBackupOptionalParams,
+  WebAppsListBackupStatusSecretsOptionalParams,
   WebAppsListBackupStatusSecretsResponse,
   RestoreRequest,
+  WebAppsRestoreOptionalParams,
   StringDictionary,
+  WebAppsUpdateApplicationSettingsOptionalParams,
   WebAppsUpdateApplicationSettingsResponse,
+  WebAppsListApplicationSettingsOptionalParams,
   WebAppsListApplicationSettingsResponse,
   SiteAuthSettings,
+  WebAppsUpdateAuthSettingsOptionalParams,
   WebAppsUpdateAuthSettingsResponse,
+  WebAppsGetAuthSettingsOptionalParams,
   WebAppsGetAuthSettingsResponse,
   AzureStoragePropertyDictionaryResource,
+  WebAppsUpdateAzureStorageAccountsOptionalParams,
   WebAppsUpdateAzureStorageAccountsResponse,
+  WebAppsListAzureStorageAccountsOptionalParams,
   WebAppsListAzureStorageAccountsResponse,
+  WebAppsUpdateBackupConfigurationOptionalParams,
   WebAppsUpdateBackupConfigurationResponse,
+  WebAppsDeleteBackupConfigurationOptionalParams,
+  WebAppsGetBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationResponse,
+  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
   WebAppsGetAppSettingsKeyVaultReferencesResponse,
+  WebAppsGetAppSettingKeyVaultReferenceOptionalParams,
   WebAppsGetAppSettingKeyVaultReferenceResponse,
   ConnectionStringDictionary,
+  WebAppsUpdateConnectionStringsOptionalParams,
   WebAppsUpdateConnectionStringsResponse,
+  WebAppsListConnectionStringsOptionalParams,
   WebAppsListConnectionStringsResponse,
+  WebAppsGetDiagnosticLogsConfigurationOptionalParams,
   WebAppsGetDiagnosticLogsConfigurationResponse,
   SiteLogsConfig,
+  WebAppsUpdateDiagnosticLogsConfigOptionalParams,
   WebAppsUpdateDiagnosticLogsConfigResponse,
+  WebAppsUpdateMetadataOptionalParams,
   WebAppsUpdateMetadataResponse,
+  WebAppsListMetadataOptionalParams,
   WebAppsListMetadataResponse,
+  WebAppsListPublishingCredentialsOptionalParams,
   WebAppsListPublishingCredentialsResponse,
   PushSettings,
+  WebAppsUpdateSitePushSettingsOptionalParams,
   WebAppsUpdateSitePushSettingsResponse,
+  WebAppsListSitePushSettingsOptionalParams,
   WebAppsListSitePushSettingsResponse,
+  WebAppsListSlotConfigurationNamesOptionalParams,
   WebAppsListSlotConfigurationNamesResponse,
   SlotConfigNamesResource,
+  WebAppsUpdateSlotConfigurationNamesOptionalParams,
   WebAppsUpdateSlotConfigurationNamesResponse,
+  WebAppsGetConfigurationOptionalParams,
   WebAppsGetConfigurationResponse,
+  WebAppsCreateOrUpdateConfigurationOptionalParams,
   WebAppsCreateOrUpdateConfigurationResponse,
+  WebAppsUpdateConfigurationOptionalParams,
   WebAppsUpdateConfigurationResponse,
+  WebAppsGetConfigurationSnapshotOptionalParams,
   WebAppsGetConfigurationSnapshotResponse,
+  WebAppsRecoverSiteConfigurationSnapshotOptionalParams,
+  WebAppsGetWebSiteContainerLogsOptionalParams,
   WebAppsGetWebSiteContainerLogsResponse,
+  WebAppsGetContainerLogsZipOptionalParams,
   WebAppsGetContainerLogsZipResponse,
+  WebAppsGetContinuousWebJobOptionalParams,
   WebAppsGetContinuousWebJobResponse,
+  WebAppsDeleteContinuousWebJobOptionalParams,
+  WebAppsStartContinuousWebJobOptionalParams,
+  WebAppsStopContinuousWebJobOptionalParams,
+  WebAppsGetDeploymentOptionalParams,
   WebAppsGetDeploymentResponse,
+  WebAppsCreateDeploymentOptionalParams,
   WebAppsCreateDeploymentResponse,
+  WebAppsDeleteDeploymentOptionalParams,
+  WebAppsListDeploymentLogOptionalParams,
   WebAppsListDeploymentLogResponse,
+  WebAppsDiscoverBackupOptionalParams,
   WebAppsDiscoverBackupResponse,
+  WebAppsGetDomainOwnershipIdentifierOptionalParams,
   WebAppsGetDomainOwnershipIdentifierResponse,
+  WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams,
   WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse,
+  WebAppsDeleteDomainOwnershipIdentifierOptionalParams,
+  WebAppsUpdateDomainOwnershipIdentifierOptionalParams,
   WebAppsUpdateDomainOwnershipIdentifierResponse,
+  WebAppsGetMSDeployStatusOptionalParams,
   WebAppsGetMSDeployStatusResponse,
   MSDeploy,
+  WebAppsCreateMSDeployOperationOptionalParams,
   WebAppsCreateMSDeployOperationResponse,
+  WebAppsGetMSDeployLogOptionalParams,
   WebAppsGetMSDeployLogResponse,
+  WebAppsGetFunctionsAdminTokenOptionalParams,
   WebAppsGetFunctionsAdminTokenResponse,
+  WebAppsGetFunctionOptionalParams,
   WebAppsGetFunctionResponse,
+  WebAppsCreateFunctionOptionalParams,
   WebAppsCreateFunctionResponse,
+  WebAppsDeleteFunctionOptionalParams,
   KeyInfo,
+  WebAppsCreateOrUpdateFunctionSecretOptionalParams,
   WebAppsCreateOrUpdateFunctionSecretResponse,
+  WebAppsDeleteFunctionSecretOptionalParams,
+  WebAppsListFunctionKeysOptionalParams,
   WebAppsListFunctionKeysResponse,
+  WebAppsListFunctionSecretsOptionalParams,
   WebAppsListFunctionSecretsResponse,
+  WebAppsListHostKeysOptionalParams,
   WebAppsListHostKeysResponse,
+  WebAppsListSyncStatusOptionalParams,
+  WebAppsSyncFunctionsOptionalParams,
+  WebAppsCreateOrUpdateHostSecretOptionalParams,
   WebAppsCreateOrUpdateHostSecretResponse,
+  WebAppsDeleteHostSecretOptionalParams,
+  WebAppsGetHostNameBindingOptionalParams,
   WebAppsGetHostNameBindingResponse,
+  WebAppsCreateOrUpdateHostNameBindingOptionalParams,
   WebAppsCreateOrUpdateHostNameBindingResponse,
+  WebAppsDeleteHostNameBindingOptionalParams,
+  WebAppsGetHybridConnectionOptionalParams,
   WebAppsGetHybridConnectionResponse,
   HybridConnection,
+  WebAppsCreateOrUpdateHybridConnectionOptionalParams,
   WebAppsCreateOrUpdateHybridConnectionResponse,
+  WebAppsDeleteHybridConnectionOptionalParams,
+  WebAppsUpdateHybridConnectionOptionalParams,
   WebAppsUpdateHybridConnectionResponse,
+  WebAppsListHybridConnectionsOptionalParams,
   WebAppsListHybridConnectionsResponse,
+  WebAppsListRelayServiceConnectionsOptionalParams,
   WebAppsListRelayServiceConnectionsResponse,
+  WebAppsGetRelayServiceConnectionOptionalParams,
   WebAppsGetRelayServiceConnectionResponse,
   RelayServiceConnectionEntity,
+  WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams,
   WebAppsCreateOrUpdateRelayServiceConnectionResponse,
+  WebAppsDeleteRelayServiceConnectionOptionalParams,
+  WebAppsUpdateRelayServiceConnectionOptionalParams,
   WebAppsUpdateRelayServiceConnectionResponse,
+  WebAppsGetInstanceInfoOptionalParams,
   WebAppsGetInstanceInfoResponse,
+  WebAppsGetInstanceMsDeployStatusOptionalParams,
   WebAppsGetInstanceMsDeployStatusResponse,
+  WebAppsCreateInstanceMSDeployOperationOptionalParams,
   WebAppsCreateInstanceMSDeployOperationResponse,
+  WebAppsGetInstanceMSDeployLogOptionalParams,
   WebAppsGetInstanceMSDeployLogResponse,
+  WebAppsGetInstanceProcessOptionalParams,
   WebAppsGetInstanceProcessResponse,
+  WebAppsDeleteInstanceProcessOptionalParams,
+  WebAppsGetInstanceProcessDumpOptionalParams,
   WebAppsGetInstanceProcessDumpResponse,
+  WebAppsGetInstanceProcessModuleOptionalParams,
   WebAppsGetInstanceProcessModuleResponse,
+  WebAppsIsCloneableOptionalParams,
   WebAppsIsCloneableResponse,
+  WebAppsListSyncFunctionTriggersOptionalParams,
   WebAppsListSyncFunctionTriggersResponse,
   StorageMigrationOptions,
+  WebAppsMigrateStorageOptionalParams,
   WebAppsMigrateStorageResponse,
   MigrateMySqlRequest,
+  WebAppsMigrateMySqlOptionalParams,
   WebAppsMigrateMySqlResponse,
+  WebAppsGetMigrateMySqlStatusOptionalParams,
   WebAppsGetMigrateMySqlStatusResponse,
+  WebAppsGetSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionResponse,
   SwiftVirtualNetwork,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsDeleteSwiftVirtualNetworkOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsListNetworkFeaturesOptionalParams,
   WebAppsListNetworkFeaturesResponse,
+  WebAppsGetNetworkTraceOperationOptionalParams,
   WebAppsGetNetworkTraceOperationResponse,
   WebAppsStartWebSiteNetworkTraceOptionalParams,
   WebAppsStartWebSiteNetworkTraceResponse,
   WebAppsStartWebSiteNetworkTraceOperationOptionalParams,
   WebAppsStartWebSiteNetworkTraceOperationResponse,
+  WebAppsStopWebSiteNetworkTraceOptionalParams,
+  WebAppsGetNetworkTracesOptionalParams,
   WebAppsGetNetworkTracesResponse,
+  WebAppsGetNetworkTraceOperationV2OptionalParams,
   WebAppsGetNetworkTraceOperationV2Response,
+  WebAppsGetNetworkTracesV2OptionalParams,
   WebAppsGetNetworkTracesV2Response,
+  WebAppsGenerateNewSitePublishingPasswordOptionalParams,
+  WebAppsGetSitePhpErrorLogFlagOptionalParams,
   WebAppsGetSitePhpErrorLogFlagResponse,
+  WebAppsListPremierAddOnsOptionalParams,
   WebAppsListPremierAddOnsResponse,
+  WebAppsGetPremierAddOnOptionalParams,
   WebAppsGetPremierAddOnResponse,
   PremierAddOn,
+  WebAppsAddPremierAddOnOptionalParams,
   WebAppsAddPremierAddOnResponse,
+  WebAppsDeletePremierAddOnOptionalParams,
   PremierAddOnPatchResource,
+  WebAppsUpdatePremierAddOnOptionalParams,
   WebAppsUpdatePremierAddOnResponse,
+  WebAppsGetPrivateAccessOptionalParams,
   WebAppsGetPrivateAccessResponse,
   PrivateAccess,
+  WebAppsPutPrivateAccessVnetOptionalParams,
   WebAppsPutPrivateAccessVnetResponse,
+  WebAppsGetProcessOptionalParams,
   WebAppsGetProcessResponse,
+  WebAppsDeleteProcessOptionalParams,
+  WebAppsGetProcessDumpOptionalParams,
   WebAppsGetProcessDumpResponse,
+  WebAppsGetProcessModuleOptionalParams,
   WebAppsGetProcessModuleResponse,
+  WebAppsGetPublicCertificateOptionalParams,
   WebAppsGetPublicCertificateResponse,
+  WebAppsCreateOrUpdatePublicCertificateOptionalParams,
   WebAppsCreateOrUpdatePublicCertificateResponse,
+  WebAppsDeletePublicCertificateOptionalParams,
   CsmPublishingProfileOptions,
+  WebAppsListPublishingProfileXmlWithSecretsOptionalParams,
   WebAppsListPublishingProfileXmlWithSecretsResponse,
+  WebAppsResetProductionSlotConfigOptionalParams,
   WebAppsRestartOptionalParams,
+  WebAppsRestoreFromBackupBlobOptionalParams,
   DeletedAppRestoreRequest,
+  WebAppsRestoreFromDeletedAppOptionalParams,
   SnapshotRestoreRequest,
+  WebAppsRestoreSnapshotOptionalParams,
+  WebAppsGetSiteExtensionOptionalParams,
   WebAppsGetSiteExtensionResponse,
+  WebAppsInstallSiteExtensionOptionalParams,
   WebAppsInstallSiteExtensionResponse,
+  WebAppsDeleteSiteExtensionOptionalParams,
   CsmCopySlotEntity,
+  WebAppsCopyProductionSlotOptionalParams,
+  WebAppsGetSlotOptionalParams,
   WebAppsGetSlotResponse,
+  WebAppsCreateOrUpdateSlotOptionalParams,
   WebAppsCreateOrUpdateSlotResponse,
   WebAppsDeleteSlotOptionalParams,
+  WebAppsUpdateSlotOptionalParams,
   WebAppsUpdateSlotResponse,
   WebAppsAnalyzeCustomHostnameSlotOptionalParams,
   WebAppsAnalyzeCustomHostnameSlotResponse,
+  WebAppsApplySlotConfigurationSlotOptionalParams,
+  WebAppsBackupSlotOptionalParams,
   WebAppsBackupSlotResponse,
+  WebAppsGetBackupStatusSlotOptionalParams,
   WebAppsGetBackupStatusSlotResponse,
+  WebAppsDeleteBackupSlotOptionalParams,
+  WebAppsListBackupStatusSecretsSlotOptionalParams,
   WebAppsListBackupStatusSecretsSlotResponse,
+  WebAppsRestoreSlotOptionalParams,
+  WebAppsUpdateApplicationSettingsSlotOptionalParams,
   WebAppsUpdateApplicationSettingsSlotResponse,
+  WebAppsListApplicationSettingsSlotOptionalParams,
   WebAppsListApplicationSettingsSlotResponse,
+  WebAppsUpdateAuthSettingsSlotOptionalParams,
   WebAppsUpdateAuthSettingsSlotResponse,
+  WebAppsGetAuthSettingsSlotOptionalParams,
   WebAppsGetAuthSettingsSlotResponse,
+  WebAppsUpdateAzureStorageAccountsSlotOptionalParams,
   WebAppsUpdateAzureStorageAccountsSlotResponse,
+  WebAppsListAzureStorageAccountsSlotOptionalParams,
   WebAppsListAzureStorageAccountsSlotResponse,
+  WebAppsUpdateBackupConfigurationSlotOptionalParams,
   WebAppsUpdateBackupConfigurationSlotResponse,
+  WebAppsDeleteBackupConfigurationSlotOptionalParams,
+  WebAppsGetBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotResponse,
+  WebAppsUpdateConnectionStringsSlotOptionalParams,
   WebAppsUpdateConnectionStringsSlotResponse,
+  WebAppsListConnectionStringsSlotOptionalParams,
   WebAppsListConnectionStringsSlotResponse,
+  WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams,
   WebAppsGetDiagnosticLogsConfigurationSlotResponse,
+  WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams,
   WebAppsUpdateDiagnosticLogsConfigSlotResponse,
+  WebAppsUpdateMetadataSlotOptionalParams,
   WebAppsUpdateMetadataSlotResponse,
+  WebAppsListMetadataSlotOptionalParams,
   WebAppsListMetadataSlotResponse,
+  WebAppsListPublishingCredentialsSlotOptionalParams,
   WebAppsListPublishingCredentialsSlotResponse,
+  WebAppsUpdateSitePushSettingsSlotOptionalParams,
   WebAppsUpdateSitePushSettingsSlotResponse,
+  WebAppsListSitePushSettingsSlotOptionalParams,
   WebAppsListSitePushSettingsSlotResponse,
+  WebAppsGetConfigurationSlotOptionalParams,
   WebAppsGetConfigurationSlotResponse,
+  WebAppsCreateOrUpdateConfigurationSlotOptionalParams,
   WebAppsCreateOrUpdateConfigurationSlotResponse,
+  WebAppsUpdateConfigurationSlotOptionalParams,
   WebAppsUpdateConfigurationSlotResponse,
+  WebAppsGetConfigurationSnapshotSlotOptionalParams,
   WebAppsGetConfigurationSnapshotSlotResponse,
+  WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams,
+  WebAppsGetWebSiteContainerLogsSlotOptionalParams,
   WebAppsGetWebSiteContainerLogsSlotResponse,
+  WebAppsGetContainerLogsZipSlotOptionalParams,
   WebAppsGetContainerLogsZipSlotResponse,
+  WebAppsGetContinuousWebJobSlotOptionalParams,
   WebAppsGetContinuousWebJobSlotResponse,
+  WebAppsDeleteContinuousWebJobSlotOptionalParams,
+  WebAppsStartContinuousWebJobSlotOptionalParams,
+  WebAppsStopContinuousWebJobSlotOptionalParams,
+  WebAppsGetDeploymentSlotOptionalParams,
   WebAppsGetDeploymentSlotResponse,
+  WebAppsCreateDeploymentSlotOptionalParams,
   WebAppsCreateDeploymentSlotResponse,
+  WebAppsDeleteDeploymentSlotOptionalParams,
+  WebAppsListDeploymentLogSlotOptionalParams,
   WebAppsListDeploymentLogSlotResponse,
+  WebAppsDiscoverBackupSlotOptionalParams,
   WebAppsDiscoverBackupSlotResponse,
+  WebAppsGetDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsGetDomainOwnershipIdentifierSlotResponse,
+  WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse,
+  WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams,
+  WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsUpdateDomainOwnershipIdentifierSlotResponse,
+  WebAppsGetMSDeployStatusSlotOptionalParams,
   WebAppsGetMSDeployStatusSlotResponse,
+  WebAppsCreateMSDeployOperationSlotOptionalParams,
   WebAppsCreateMSDeployOperationSlotResponse,
+  WebAppsGetMSDeployLogSlotOptionalParams,
   WebAppsGetMSDeployLogSlotResponse,
+  WebAppsGetFunctionsAdminTokenSlotOptionalParams,
   WebAppsGetFunctionsAdminTokenSlotResponse,
+  WebAppsGetInstanceFunctionSlotOptionalParams,
   WebAppsGetInstanceFunctionSlotResponse,
+  WebAppsCreateInstanceFunctionSlotOptionalParams,
   WebAppsCreateInstanceFunctionSlotResponse,
+  WebAppsDeleteInstanceFunctionSlotOptionalParams,
+  WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams,
   WebAppsCreateOrUpdateFunctionSecretSlotResponse,
+  WebAppsDeleteFunctionSecretSlotOptionalParams,
+  WebAppsListFunctionKeysSlotOptionalParams,
   WebAppsListFunctionKeysSlotResponse,
+  WebAppsListFunctionSecretsSlotOptionalParams,
   WebAppsListFunctionSecretsSlotResponse,
+  WebAppsListHostKeysSlotOptionalParams,
   WebAppsListHostKeysSlotResponse,
+  WebAppsListSyncStatusSlotOptionalParams,
+  WebAppsSyncFunctionsSlotOptionalParams,
+  WebAppsCreateOrUpdateHostSecretSlotOptionalParams,
   WebAppsCreateOrUpdateHostSecretSlotResponse,
+  WebAppsDeleteHostSecretSlotOptionalParams,
+  WebAppsGetHostNameBindingSlotOptionalParams,
   WebAppsGetHostNameBindingSlotResponse,
+  WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams,
   WebAppsCreateOrUpdateHostNameBindingSlotResponse,
+  WebAppsDeleteHostNameBindingSlotOptionalParams,
+  WebAppsGetHybridConnectionSlotOptionalParams,
   WebAppsGetHybridConnectionSlotResponse,
+  WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateHybridConnectionSlotResponse,
+  WebAppsDeleteHybridConnectionSlotOptionalParams,
+  WebAppsUpdateHybridConnectionSlotOptionalParams,
   WebAppsUpdateHybridConnectionSlotResponse,
+  WebAppsListHybridConnectionsSlotOptionalParams,
   WebAppsListHybridConnectionsSlotResponse,
+  WebAppsListRelayServiceConnectionsSlotOptionalParams,
   WebAppsListRelayServiceConnectionsSlotResponse,
+  WebAppsGetRelayServiceConnectionSlotOptionalParams,
   WebAppsGetRelayServiceConnectionSlotResponse,
+  WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse,
+  WebAppsDeleteRelayServiceConnectionSlotOptionalParams,
+  WebAppsUpdateRelayServiceConnectionSlotOptionalParams,
   WebAppsUpdateRelayServiceConnectionSlotResponse,
+  WebAppsGetInstanceInfoSlotOptionalParams,
   WebAppsGetInstanceInfoSlotResponse,
+  WebAppsGetInstanceMsDeployStatusSlotOptionalParams,
   WebAppsGetInstanceMsDeployStatusSlotResponse,
+  WebAppsCreateInstanceMSDeployOperationSlotOptionalParams,
   WebAppsCreateInstanceMSDeployOperationSlotResponse,
+  WebAppsGetInstanceMSDeployLogSlotOptionalParams,
   WebAppsGetInstanceMSDeployLogSlotResponse,
+  WebAppsGetInstanceProcessSlotOptionalParams,
   WebAppsGetInstanceProcessSlotResponse,
+  WebAppsDeleteInstanceProcessSlotOptionalParams,
+  WebAppsGetInstanceProcessDumpSlotOptionalParams,
   WebAppsGetInstanceProcessDumpSlotResponse,
+  WebAppsGetInstanceProcessModuleSlotOptionalParams,
   WebAppsGetInstanceProcessModuleSlotResponse,
+  WebAppsIsCloneableSlotOptionalParams,
   WebAppsIsCloneableSlotResponse,
+  WebAppsListSyncFunctionTriggersSlotOptionalParams,
   WebAppsListSyncFunctionTriggersSlotResponse,
+  WebAppsGetMigrateMySqlStatusSlotOptionalParams,
   WebAppsGetMigrateMySqlStatusSlotResponse,
+  WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsListNetworkFeaturesSlotOptionalParams,
   WebAppsListNetworkFeaturesSlotResponse,
+  WebAppsGetNetworkTraceOperationSlotOptionalParams,
   WebAppsGetNetworkTraceOperationSlotResponse,
   WebAppsStartWebSiteNetworkTraceSlotOptionalParams,
   WebAppsStartWebSiteNetworkTraceSlotResponse,
   WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams,
   WebAppsStartWebSiteNetworkTraceOperationSlotResponse,
+  WebAppsStopWebSiteNetworkTraceSlotOptionalParams,
+  WebAppsGetNetworkTracesSlotOptionalParams,
   WebAppsGetNetworkTracesSlotResponse,
+  WebAppsGetNetworkTraceOperationSlotV2OptionalParams,
   WebAppsGetNetworkTraceOperationSlotV2Response,
+  WebAppsGetNetworkTracesSlotV2OptionalParams,
   WebAppsGetNetworkTracesSlotV2Response,
+  WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams,
+  WebAppsGetSitePhpErrorLogFlagSlotOptionalParams,
   WebAppsGetSitePhpErrorLogFlagSlotResponse,
+  WebAppsListPremierAddOnsSlotOptionalParams,
   WebAppsListPremierAddOnsSlotResponse,
+  WebAppsGetPremierAddOnSlotOptionalParams,
   WebAppsGetPremierAddOnSlotResponse,
+  WebAppsAddPremierAddOnSlotOptionalParams,
   WebAppsAddPremierAddOnSlotResponse,
+  WebAppsDeletePremierAddOnSlotOptionalParams,
+  WebAppsUpdatePremierAddOnSlotOptionalParams,
   WebAppsUpdatePremierAddOnSlotResponse,
+  WebAppsGetPrivateAccessSlotOptionalParams,
   WebAppsGetPrivateAccessSlotResponse,
+  WebAppsPutPrivateAccessVnetSlotOptionalParams,
   WebAppsPutPrivateAccessVnetSlotResponse,
+  WebAppsGetPrivateEndpointConnectionOptionalParams,
   WebAppsGetPrivateEndpointConnectionResponse,
   PrivateLinkConnectionApprovalRequestResource,
+  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
   WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
+  WebAppsDeletePrivateEndpointConnectionOptionalParams,
   WebAppsDeletePrivateEndpointConnectionResponse,
+  WebAppsGetPrivateLinkResourcesOptionalParams,
   WebAppsGetPrivateLinkResourcesResponse,
+  WebAppsGetProcessSlotOptionalParams,
   WebAppsGetProcessSlotResponse,
+  WebAppsDeleteProcessSlotOptionalParams,
+  WebAppsGetProcessDumpSlotOptionalParams,
   WebAppsGetProcessDumpSlotResponse,
+  WebAppsGetProcessModuleSlotOptionalParams,
   WebAppsGetProcessModuleSlotResponse,
+  WebAppsGetPublicCertificateSlotOptionalParams,
   WebAppsGetPublicCertificateSlotResponse,
+  WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams,
   WebAppsCreateOrUpdatePublicCertificateSlotResponse,
+  WebAppsDeletePublicCertificateSlotOptionalParams,
+  WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams,
   WebAppsListPublishingProfileXmlWithSecretsSlotResponse,
+  WebAppsResetSlotConfigurationSlotOptionalParams,
   WebAppsRestartSlotOptionalParams,
+  WebAppsRestoreFromBackupBlobSlotOptionalParams,
+  WebAppsRestoreFromDeletedAppSlotOptionalParams,
+  WebAppsRestoreSnapshotSlotOptionalParams,
+  WebAppsGetSiteExtensionSlotOptionalParams,
   WebAppsGetSiteExtensionSlotResponse,
+  WebAppsInstallSiteExtensionSlotOptionalParams,
   WebAppsInstallSiteExtensionSlotResponse,
+  WebAppsDeleteSiteExtensionSlotOptionalParams,
+  WebAppsCopySlotOptionalParams,
+  WebAppsSwapSlotOptionalParams,
+  WebAppsGetSourceControlSlotOptionalParams,
   WebAppsGetSourceControlSlotResponse,
   SiteSourceControl,
+  WebAppsCreateOrUpdateSourceControlSlotOptionalParams,
   WebAppsCreateOrUpdateSourceControlSlotResponse,
+  WebAppsDeleteSourceControlSlotOptionalParams,
+  WebAppsUpdateSourceControlSlotOptionalParams,
   WebAppsUpdateSourceControlSlotResponse,
+  WebAppsStartSlotOptionalParams,
   WebAppsStartNetworkTraceSlotOptionalParams,
   WebAppsStartNetworkTraceSlotResponse,
+  WebAppsStopSlotOptionalParams,
+  WebAppsStopNetworkTraceSlotOptionalParams,
+  WebAppsSyncRepositorySlotOptionalParams,
+  WebAppsSyncFunctionTriggersSlotOptionalParams,
+  WebAppsGetTriggeredWebJobSlotOptionalParams,
   WebAppsGetTriggeredWebJobSlotResponse,
+  WebAppsDeleteTriggeredWebJobSlotOptionalParams,
+  WebAppsGetTriggeredWebJobHistorySlotOptionalParams,
   WebAppsGetTriggeredWebJobHistorySlotResponse,
+  WebAppsRunTriggeredWebJobSlotOptionalParams,
+  WebAppsListVnetConnectionsSlotOptionalParams,
   WebAppsListVnetConnectionsSlotResponse,
+  WebAppsGetVnetConnectionSlotOptionalParams,
   WebAppsGetVnetConnectionSlotResponse,
   VnetInfo,
+  WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionSlotResponse,
+  WebAppsDeleteVnetConnectionSlotOptionalParams,
+  WebAppsUpdateVnetConnectionSlotOptionalParams,
   WebAppsUpdateVnetConnectionSlotResponse,
+  WebAppsGetVnetConnectionGatewaySlotOptionalParams,
   WebAppsGetVnetConnectionGatewaySlotResponse,
   VnetGateway,
+  WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse,
+  WebAppsUpdateVnetConnectionGatewaySlotOptionalParams,
   WebAppsUpdateVnetConnectionGatewaySlotResponse,
+  WebAppsGetWebJobSlotOptionalParams,
   WebAppsGetWebJobSlotResponse,
+  WebAppsSwapSlotWithProductionOptionalParams,
+  WebAppsGetSourceControlOptionalParams,
   WebAppsGetSourceControlResponse,
+  WebAppsCreateOrUpdateSourceControlOptionalParams,
   WebAppsCreateOrUpdateSourceControlResponse,
+  WebAppsDeleteSourceControlOptionalParams,
+  WebAppsUpdateSourceControlOptionalParams,
   WebAppsUpdateSourceControlResponse,
+  WebAppsStartOptionalParams,
   WebAppsStartNetworkTraceOptionalParams,
   WebAppsStartNetworkTraceResponse,
+  WebAppsStopOptionalParams,
+  WebAppsStopNetworkTraceOptionalParams,
+  WebAppsSyncRepositoryOptionalParams,
+  WebAppsSyncFunctionTriggersOptionalParams,
+  WebAppsGetTriggeredWebJobOptionalParams,
   WebAppsGetTriggeredWebJobResponse,
+  WebAppsDeleteTriggeredWebJobOptionalParams,
+  WebAppsGetTriggeredWebJobHistoryOptionalParams,
   WebAppsGetTriggeredWebJobHistoryResponse,
+  WebAppsRunTriggeredWebJobOptionalParams,
+  WebAppsListVnetConnectionsOptionalParams,
   WebAppsListVnetConnectionsResponse,
+  WebAppsGetVnetConnectionOptionalParams,
   WebAppsGetVnetConnectionResponse,
+  WebAppsCreateOrUpdateVnetConnectionOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionResponse,
+  WebAppsDeleteVnetConnectionOptionalParams,
+  WebAppsUpdateVnetConnectionOptionalParams,
   WebAppsUpdateVnetConnectionResponse,
+  WebAppsGetVnetConnectionGatewayOptionalParams,
   WebAppsGetVnetConnectionGatewayResponse,
+  WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionGatewayResponse,
+  WebAppsUpdateVnetConnectionGatewayOptionalParams,
   WebAppsUpdateVnetConnectionGatewayResponse,
+  WebAppsGetWebJobOptionalParams,
   WebAppsGetWebJobResponse
 } from "../models";
 
@@ -319,7 +719,7 @@ export interface WebApps {
    * Description for Get all apps for a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Site>;
+  list(options?: WebAppsListOptionalParams): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Gets all web, mobile, and API apps in the specified resource group.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -338,7 +738,7 @@ export interface WebApps {
   listBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
    * Description for List the configurations of an app
@@ -349,7 +749,7 @@ export interface WebApps {
   listConfigurations(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource>;
   /**
    * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
@@ -361,7 +761,7 @@ export interface WebApps {
   listConfigurationSnapshotInfo(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo>;
   /**
    * Description for List continuous web jobs for an app, or a deployment slot.
@@ -372,7 +772,7 @@ export interface WebApps {
   listContinuousWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsOptionalParams
   ): PagedAsyncIterableIterator<ContinuousWebJob>;
   /**
    * Description for List deployments for an app, or a deployment slot.
@@ -383,7 +783,7 @@ export interface WebApps {
   listDeployments(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsOptionalParams
   ): PagedAsyncIterableIterator<Deployment>;
   /**
    * Description for Lists ownership identifiers for domain associated with web app.
@@ -394,7 +794,7 @@ export interface WebApps {
   listDomainOwnershipIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<Identifier>;
   /**
    * Description for List the functions for a web site, or a deployment slot.
@@ -405,7 +805,7 @@ export interface WebApps {
   listFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsOptionalParams
   ): PagedAsyncIterableIterator<FunctionEnvelope>;
   /**
    * Description for Get hostname bindings for an app or a deployment slot.
@@ -416,7 +816,7 @@ export interface WebApps {
   listHostNameBindings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsOptionalParams
   ): PagedAsyncIterableIterator<HostNameBinding>;
   /**
    * Description for Gets all scale-out instances of an app.
@@ -427,7 +827,7 @@ export interface WebApps {
   listInstanceIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<SiteInstance>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
@@ -442,7 +842,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo>;
   /**
    * Description for List module information for a process by its ID for a specific scaled-out instance
@@ -459,7 +859,7 @@ export interface WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo>;
   /**
    * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
@@ -476,7 +876,7 @@ export interface WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo>;
   /**
    * Description for Gets existing backups of an app.
@@ -487,7 +887,7 @@ export interface WebApps {
   listSiteBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
    * Description for Gets perfmon counters for web app.
@@ -510,7 +910,7 @@ export interface WebApps {
   listProcesses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo>;
   /**
    * Description for List module information for a process by its ID for a specific scaled-out instance
@@ -524,7 +924,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo>;
   /**
    * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
@@ -538,7 +938,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo>;
   /**
    * Description for Get public certificates for an app or a deployment slot.
@@ -549,7 +949,7 @@ export interface WebApps {
   listPublicCertificates(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesOptionalParams
   ): PagedAsyncIterableIterator<PublicCertificate>;
   /**
    * Description for Get list of siteextensions for a web site, or a deployment slot.
@@ -560,7 +960,7 @@ export interface WebApps {
   listSiteExtensions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsOptionalParams
   ): PagedAsyncIterableIterator<SiteExtensionInfo>;
   /**
    * Description for Gets an app's deployment slots.
@@ -571,7 +971,7 @@ export interface WebApps {
   listSlots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsOptionalParams
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Gets existing backups of an app.
@@ -585,7 +985,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
    * Description for List the configurations of an app
@@ -599,7 +999,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource>;
   /**
    * Description for Gets a list of web app configuration snapshots identifiers. Each element of the list
@@ -614,7 +1014,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo>;
   /**
    * Description for List continuous web jobs for an app, or a deployment slot.
@@ -628,7 +1028,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<ContinuousWebJob>;
   /**
    * Description for List deployments for an app, or a deployment slot.
@@ -642,7 +1042,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotOptionalParams
   ): PagedAsyncIterableIterator<Deployment>;
   /**
    * Description for Lists ownership identifiers for domain associated with web app.
@@ -656,7 +1056,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): PagedAsyncIterableIterator<Identifier>;
   /**
    * Description for List the functions for a web site, or a deployment slot.
@@ -669,7 +1069,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): PagedAsyncIterableIterator<FunctionEnvelope>;
   /**
    * Description for Get hostname bindings for an app or a deployment slot.
@@ -683,7 +1083,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): PagedAsyncIterableIterator<HostNameBinding>;
   /**
    * Description for Gets all scale-out instances of an app.
@@ -697,7 +1097,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteInstance>;
   /**
    * Description for Get list of processes for a web site, or a deployment slot, or for a specific
@@ -715,7 +1115,7 @@ export interface WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo>;
   /**
    * Description for List module information for a process by its ID for a specific scaled-out instance
@@ -735,7 +1135,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo>;
   /**
    * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
@@ -755,7 +1155,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo>;
   /**
    * Description for Gets existing backups of an app.
@@ -769,7 +1169,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotOptionalParams
   ): PagedAsyncIterableIterator<BackupItem>;
   /**
    * Description for Gets perfmon counters for web app.
@@ -797,7 +1197,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo>;
   /**
    * Description for List module information for a process by its ID for a specific scaled-out instance
@@ -814,7 +1214,7 @@ export interface WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo>;
   /**
    * Description for List the threads in a process by its ID for a specific scaled-out instance in a web
@@ -831,7 +1231,7 @@ export interface WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo>;
   /**
    * Description for Get public certificates for an app or a deployment slot.
@@ -845,7 +1245,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): PagedAsyncIterableIterator<PublicCertificate>;
   /**
    * Description for Get list of siteextensions for a web site, or a deployment slot.
@@ -859,7 +1259,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteExtensionInfo>;
   /**
    * Description for Get the difference in configuration settings between two web app slots.
@@ -875,7 +1275,7 @@ export interface WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): PagedAsyncIterableIterator<SlotDifference>;
   /**
    * Description for Returns all Snapshots to the user.
@@ -888,7 +1288,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Description for Returns all Snapshots to the user from DRSecondary endpoint.
@@ -901,7 +1301,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Description for List triggered web jobs for an app, or a deployment slot.
@@ -915,7 +1315,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<TriggeredWebJob>;
   /**
    * Description for List a triggered web job's history for an app, or a deployment slot.
@@ -931,7 +1331,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): PagedAsyncIterableIterator<TriggeredJobHistory>;
   /**
    * Description for Gets the quota usage information of an app (or deployment slot, if specified).
@@ -959,7 +1359,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<WebJob>;
   /**
    * Description for Get the difference in configuration settings between two web app slots.
@@ -972,7 +1372,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): PagedAsyncIterableIterator<SlotDifference>;
   /**
    * Description for Returns all Snapshots to the user.
@@ -983,7 +1383,7 @@ export interface WebApps {
   listSnapshots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Description for Returns all Snapshots to the user from DRSecondary endpoint.
@@ -994,7 +1394,7 @@ export interface WebApps {
   listSnapshotsFromDRSecondary(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Description for List triggered web jobs for an app, or a deployment slot.
@@ -1005,7 +1405,7 @@ export interface WebApps {
   listTriggeredWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsOptionalParams
   ): PagedAsyncIterableIterator<TriggeredWebJob>;
   /**
    * Description for List a triggered web job's history for an app, or a deployment slot.
@@ -1018,7 +1418,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): PagedAsyncIterableIterator<TriggeredJobHistory>;
   /**
    * Description for Gets the quota usage information of an app (or deployment slot, if specified).
@@ -1040,7 +1440,7 @@ export interface WebApps {
   listWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsOptionalParams
   ): PagedAsyncIterableIterator<WebJob>;
   /**
    * Description for Gets the details of a web, mobile, or API app.
@@ -1051,7 +1451,7 @@ export interface WebApps {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetOptionalParams
   ): Promise<WebAppsGetResponse>;
   /**
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
@@ -1066,7 +1466,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteEnvelope: Site,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateResponse>,
@@ -1097,7 +1497,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteEnvelope: SitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateOptionalParams
   ): Promise<WebAppsUpdateResponse>;
   /**
    * Description for Analyze a custom hostname.
@@ -1121,7 +1521,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApplySlotConfigToProductionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a backup of an app.
@@ -1135,7 +1535,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsBackupOptionalParams
   ): Promise<WebAppsBackupResponse>;
   /**
    * Description for Gets a backup of an app by its ID.
@@ -1148,7 +1548,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     backupId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupStatusOptionalParams
   ): Promise<WebAppsGetBackupStatusResponse>;
   /**
    * Description for Deletes a backup of an app by its ID.
@@ -1161,7 +1561,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     backupId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets status of a web app backup that may be in progress, including secrets
@@ -1178,7 +1578,7 @@ export interface WebApps {
     name: string,
     backupId: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupStatusSecretsOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsResponse>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
@@ -1193,7 +1593,7 @@ export interface WebApps {
     name: string,
     backupId: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -1208,7 +1608,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateApplicationSettingsOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsResponse>;
   /**
    * Description for Gets the application settings of an app.
@@ -1219,7 +1619,7 @@ export interface WebApps {
   listApplicationSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListApplicationSettingsOptionalParams
   ): Promise<WebAppsListApplicationSettingsResponse>;
   /**
    * Description for Updates the Authentication / Authorization settings associated with web app.
@@ -1232,7 +1632,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteAuthSettings: SiteAuthSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAuthSettingsOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsResponse>;
   /**
    * Description for Gets the Authentication/Authorization settings of an app.
@@ -1243,7 +1643,7 @@ export interface WebApps {
   getAuthSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAuthSettingsOptionalParams
   ): Promise<WebAppsGetAuthSettingsResponse>;
   /**
    * Description for Updates the Azure storage account configurations of an app.
@@ -1256,7 +1656,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAzureStorageAccountsOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsResponse>;
   /**
    * Description for Gets the Azure storage account configurations of an app.
@@ -1267,7 +1667,7 @@ export interface WebApps {
   listAzureStorageAccounts(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListAzureStorageAccountsOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsResponse>;
   /**
    * Description for Updates the backup configuration of an app.
@@ -1280,7 +1680,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateBackupConfigurationOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationResponse>;
   /**
    * Description for Deletes the backup configuration of an app.
@@ -1291,7 +1691,7 @@ export interface WebApps {
   deleteBackupConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupConfigurationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the backup configuration of an app.
@@ -1302,7 +1702,7 @@ export interface WebApps {
   getBackupConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupConfigurationOptionalParams
   ): Promise<WebAppsGetBackupConfigurationResponse>;
   /**
    * Description for Gets the config reference app settings and status of an app
@@ -1313,7 +1713,7 @@ export interface WebApps {
   getAppSettingsKeyVaultReferences(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
   ): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
   /**
    * Description for Gets the config reference and status of an app
@@ -1326,7 +1726,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     appSettingKey: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams
   ): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
   /**
    * Description for Replaces the connection strings of an app.
@@ -1339,7 +1739,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     connectionStrings: ConnectionStringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConnectionStringsOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsResponse>;
   /**
    * Description for Gets the connection strings of an app.
@@ -1350,7 +1750,7 @@ export interface WebApps {
   listConnectionStrings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConnectionStringsOptionalParams
   ): Promise<WebAppsListConnectionStringsResponse>;
   /**
    * Description for Gets the logging configuration of an app.
@@ -1361,7 +1761,7 @@ export interface WebApps {
   getDiagnosticLogsConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDiagnosticLogsConfigurationOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationResponse>;
   /**
    * Description for Updates the logging configuration of an app.
@@ -1375,7 +1775,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteLogsConfig: SiteLogsConfig,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDiagnosticLogsConfigOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigResponse>;
   /**
    * Description for Replaces the metadata of an app.
@@ -1388,7 +1788,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     metadata: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateMetadataOptionalParams
   ): Promise<WebAppsUpdateMetadataResponse>;
   /**
    * Description for Gets the metadata of an app.
@@ -1399,7 +1799,7 @@ export interface WebApps {
   listMetadata(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListMetadataOptionalParams
   ): Promise<WebAppsListMetadataResponse>;
   /**
    * Description for Gets the Git/FTP publishing credentials of an app.
@@ -1410,7 +1810,7 @@ export interface WebApps {
   listPublishingCredentials(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingCredentialsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsListPublishingCredentialsResponse>,
@@ -1428,7 +1828,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     pushSettings: PushSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSitePushSettingsOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsResponse>;
   /**
    * Description for Gets the Push settings associated with web app.
@@ -1439,7 +1839,7 @@ export interface WebApps {
   listSitePushSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSitePushSettingsOptionalParams
   ): Promise<WebAppsListSitePushSettingsResponse>;
   /**
    * Description for Gets the names of app settings and connection strings that stick to the slot (not
@@ -1451,7 +1851,7 @@ export interface WebApps {
   listSlotConfigurationNames(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsListSlotConfigurationNamesResponse>;
   /**
    * Description for Updates the names of application settings and connection string that remain with the
@@ -1465,7 +1865,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slotConfigNames: SlotConfigNamesResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsUpdateSlotConfigurationNamesResponse>;
   /**
    * Description for Gets the configuration of an app, such as platform version and bitness, default
@@ -1477,7 +1877,7 @@ export interface WebApps {
   getConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationOptionalParams
   ): Promise<WebAppsGetConfigurationResponse>;
   /**
    * Description for Updates the configuration of an app.
@@ -1490,7 +1890,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateConfigurationOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationResponse>;
   /**
    * Description for Updates the configuration of an app.
@@ -1503,7 +1903,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConfigurationOptionalParams
   ): Promise<WebAppsUpdateConfigurationResponse>;
   /**
    * Description for Gets a snapshot of the configuration of an app at a previous point in time.
@@ -1516,7 +1916,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     snapshotId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSnapshotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotResponse>;
   /**
    * Description for Reverts the configuration of an app to a previous snapshot.
@@ -1529,7 +1929,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     snapshotId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRecoverSiteConfigurationSnapshotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the last lines of docker logs for the given site
@@ -1540,7 +1940,7 @@ export interface WebApps {
   getWebSiteContainerLogs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebSiteContainerLogsOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsResponse>;
   /**
    * Description for Gets the ZIP archived docker log files for the given site
@@ -1551,7 +1951,7 @@ export interface WebApps {
   getContainerLogsZip(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContainerLogsZipOptionalParams
   ): Promise<WebAppsGetContainerLogsZipResponse>;
   /**
    * Description for Gets a continuous web job by its ID for an app, or a deployment slot.
@@ -1564,7 +1964,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContinuousWebJobOptionalParams
   ): Promise<WebAppsGetContinuousWebJobResponse>;
   /**
    * Description for Delete a continuous web job by its ID for an app, or a deployment slot.
@@ -1577,7 +1977,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Start a continuous web job for an app, or a deployment slot.
@@ -1590,7 +1990,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Stop a continuous web job for an app, or a deployment slot.
@@ -1603,7 +2003,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a deployment by its ID for an app, or a deployment slot.
@@ -1616,7 +2016,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDeploymentOptionalParams
   ): Promise<WebAppsGetDeploymentResponse>;
   /**
    * Description for Create a deployment for an app, or a deployment slot.
@@ -1631,7 +2031,7 @@ export interface WebApps {
     name: string,
     id: string,
     deployment: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateDeploymentOptionalParams
   ): Promise<WebAppsCreateDeploymentResponse>;
   /**
    * Description for Delete a deployment by its ID for an app, or a deployment slot.
@@ -1644,7 +2044,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDeploymentOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for List deployment log for specific deployment for an app, or a deployment slot.
@@ -1658,7 +2058,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentLogOptionalParams
   ): Promise<WebAppsListDeploymentLogResponse>;
   /**
    * Description for Discovers an existing app backup that can be restored from a blob in Azure storage.
@@ -1673,7 +2073,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDiscoverBackupOptionalParams
   ): Promise<WebAppsDiscoverBackupResponse>;
   /**
    * Description for Get domain ownership identifier for web app.
@@ -1686,7 +2086,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierResponse>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
@@ -1702,7 +2102,7 @@ export interface WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse>;
   /**
    * Description for Deletes a domain ownership identifier for a web app.
@@ -1715,7 +2115,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDomainOwnershipIdentifierOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
@@ -1731,7 +2131,7 @@ export interface WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierResponse>;
   /**
    * Description for Get the status of the last MSDeploy operation.
@@ -1742,7 +2142,7 @@ export interface WebApps {
   getMSDeployStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployStatusOptionalParams
   ): Promise<WebAppsGetMSDeployStatusResponse>;
   /**
    * Description for Invoke the MSDeploy web app extension.
@@ -1755,7 +2155,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateMSDeployOperationResponse>,
@@ -1771,7 +2171,7 @@ export interface WebApps {
   getMSDeployLog(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployLogOptionalParams
   ): Promise<WebAppsGetMSDeployLogResponse>;
   /**
    * Description for Fetch a short lived token that can be exchanged for a master key.
@@ -1782,7 +2182,7 @@ export interface WebApps {
   getFunctionsAdminToken(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionsAdminTokenOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenResponse>;
   /**
    * Description for Get function information by its ID for web site, or a deployment slot.
@@ -1795,7 +2195,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionOptionalParams
   ): Promise<WebAppsGetFunctionResponse>;
   /**
    * Description for Create function for web site, or a deployment slot.
@@ -1810,7 +2210,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     functionEnvelope: FunctionEnvelope,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateFunctionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateFunctionResponse>,
@@ -1828,7 +2228,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Add or update a function secret.
@@ -1845,7 +2245,7 @@ export interface WebApps {
     functionName: string,
     keyName: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateFunctionSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretResponse>;
   /**
    * Description for Delete a function secret.
@@ -1860,7 +2260,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionSecretOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get function keys for a function in a web site, or a deployment slot.
@@ -1873,7 +2273,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionKeysOptionalParams
   ): Promise<WebAppsListFunctionKeysResponse>;
   /**
    * Description for Get function secrets for a function in a web site, or a deployment slot.
@@ -1886,7 +2286,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionSecretsOptionalParams
   ): Promise<WebAppsListFunctionSecretsResponse>;
   /**
    * Description for Get host secrets for a function app.
@@ -1897,7 +2297,7 @@ export interface WebApps {
   listHostKeys(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostKeysOptionalParams
   ): Promise<WebAppsListHostKeysResponse>;
   /**
    * Description for This is to allow calling via powershell and ARM template.
@@ -1908,7 +2308,7 @@ export interface WebApps {
   listSyncStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncStatusOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Syncs function trigger metadata to the management database
@@ -1919,7 +2319,7 @@ export interface WebApps {
   syncFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionsOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Add or update a host level secret.
@@ -1936,7 +2336,7 @@ export interface WebApps {
     keyType: string,
     keyName: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretResponse>;
   /**
    * Description for Delete a host level secret.
@@ -1951,7 +2351,7 @@ export interface WebApps {
     name: string,
     keyType: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostSecretOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get the named hostname binding for an app (or deployment slot, if specified).
@@ -1964,7 +2364,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHostNameBindingOptionalParams
   ): Promise<WebAppsGetHostNameBindingResponse>;
   /**
    * Description for Creates a hostname binding for an app.
@@ -1979,7 +2379,7 @@ export interface WebApps {
     name: string,
     hostName: string,
     hostNameBinding: HostNameBinding,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostNameBindingOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingResponse>;
   /**
    * Description for Deletes a hostname binding for an app.
@@ -1992,7 +2392,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostNameBindingOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Retrieves a specific Service Bus Hybrid Connection used by this Web App.
@@ -2007,7 +2407,7 @@ export interface WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHybridConnectionOptionalParams
   ): Promise<WebAppsGetHybridConnectionResponse>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
@@ -2024,7 +2424,7 @@ export interface WebApps {
     namespaceName: string,
     relayName: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionResponse>;
   /**
    * Description for Removes a Hybrid Connection from this site.
@@ -2039,7 +2439,7 @@ export interface WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHybridConnectionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
@@ -2056,7 +2456,7 @@ export interface WebApps {
     namespaceName: string,
     relayName: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionResponse>;
   /**
    * Description for Retrieves all Service Bus Hybrid Connections used by this Web App.
@@ -2067,7 +2467,7 @@ export interface WebApps {
   listHybridConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHybridConnectionsOptionalParams
   ): Promise<WebAppsListHybridConnectionsResponse>;
   /**
    * Description for Gets hybrid connections configured for an app (or deployment slot, if specified).
@@ -2078,7 +2478,7 @@ export interface WebApps {
   listRelayServiceConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListRelayServiceConnectionsOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsResponse>;
   /**
    * Description for Gets a hybrid connection configuration by its name.
@@ -2091,7 +2491,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     entityName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetRelayServiceConnectionOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionResponse>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
@@ -2107,7 +2507,7 @@ export interface WebApps {
     name: string,
     entityName: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse>;
   /**
    * Description for Deletes a relay service connection by its name.
@@ -2120,7 +2520,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     entityName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteRelayServiceConnectionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
@@ -2136,7 +2536,7 @@ export interface WebApps {
     name: string,
     entityName: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionResponse>;
   /**
    * Description for Gets all scale-out instances of an app.
@@ -2149,7 +2549,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceInfoOptionalParams
   ): Promise<WebAppsGetInstanceInfoResponse>;
   /**
    * Description for Get the status of the last MSDeploy operation.
@@ -2162,7 +2562,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMsDeployStatusOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusResponse>;
   /**
    * Description for Invoke the MSDeploy web app extension.
@@ -2177,7 +2577,7 @@ export interface WebApps {
     name: string,
     instanceId: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
@@ -2195,7 +2595,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMSDeployLogOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -2211,7 +2611,7 @@ export interface WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessOptionalParams
   ): Promise<WebAppsGetInstanceProcessResponse>;
   /**
    * Description for Terminate a process by its ID for a web site, or a deployment slot, or specific
@@ -2228,7 +2628,7 @@ export interface WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceProcessOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
@@ -2245,7 +2645,7 @@ export interface WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessDumpOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -2263,7 +2663,7 @@ export interface WebApps {
     processId: string,
     baseAddress: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessModuleOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleResponse>;
   /**
    * Description for Shows whether an app can be cloned to another resource group or subscription.
@@ -2274,7 +2674,7 @@ export interface WebApps {
   isCloneable(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsIsCloneableOptionalParams
   ): Promise<WebAppsIsCloneableResponse>;
   /**
    * Description for This is to allow calling via powershell and ARM template.
@@ -2285,7 +2685,7 @@ export interface WebApps {
   listSyncFunctionTriggers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncFunctionTriggersOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersResponse>;
   /**
    * Description for Restores a web app.
@@ -2300,7 +2700,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     migrationOptions: StorageMigrationOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsMigrateStorageOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsMigrateStorageResponse>,
@@ -2318,7 +2718,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsMigrateMySqlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsMigrateMySqlResponse>,
@@ -2335,7 +2735,7 @@ export interface WebApps {
   getMigrateMySqlStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMigrateMySqlStatusOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusResponse>;
   /**
    * Description for Gets a Swift Virtual Network connection.
@@ -2346,7 +2746,7 @@ export interface WebApps {
   getSwiftVirtualNetworkConnection(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionResponse>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
@@ -2362,7 +2762,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
   /**
    * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
@@ -2373,7 +2773,7 @@ export interface WebApps {
   deleteSwiftVirtualNetwork(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSwiftVirtualNetworkOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
@@ -2389,7 +2789,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
   /**
    * Description for Gets all network features used by the app (or deployment slot, if specified).
@@ -2402,7 +2802,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     view: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListNetworkFeaturesOptionalParams
   ): Promise<WebAppsListNetworkFeaturesResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -2416,7 +2816,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationResponse>;
   /**
    * Description for Start capturing network packets for the site (To be deprecated).
@@ -2454,7 +2854,7 @@ export interface WebApps {
   stopWebSiteNetworkTrace(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopWebSiteNetworkTraceOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -2468,7 +2868,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesOptionalParams
   ): Promise<WebAppsGetNetworkTracesResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -2482,7 +2882,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationV2Response>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -2496,7 +2896,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesV2Response>;
   /**
    * Description for Generates a new publishing password for an app (or deployment slot, if specified).
@@ -2507,7 +2907,7 @@ export interface WebApps {
   generateNewSitePublishingPassword(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGenerateNewSitePublishingPasswordOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets web app's event logs.
@@ -2518,7 +2918,7 @@ export interface WebApps {
   getSitePhpErrorLogFlag(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSitePhpErrorLogFlagOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagResponse>;
   /**
    * Description for Gets the premier add-ons of an app.
@@ -2529,7 +2929,7 @@ export interface WebApps {
   listPremierAddOns(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPremierAddOnsOptionalParams
   ): Promise<WebAppsListPremierAddOnsResponse>;
   /**
    * Description for Gets a named add-on of an app.
@@ -2542,7 +2942,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPremierAddOnOptionalParams
   ): Promise<WebAppsGetPremierAddOnResponse>;
   /**
    * Description for Updates a named add-on of an app.
@@ -2557,7 +2957,7 @@ export interface WebApps {
     name: string,
     premierAddOnName: string,
     premierAddOn: PremierAddOn,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsAddPremierAddOnOptionalParams
   ): Promise<WebAppsAddPremierAddOnResponse>;
   /**
    * Description for Delete a premier add-on from an app.
@@ -2570,7 +2970,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePremierAddOnOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Updates a named add-on of an app.
@@ -2585,7 +2985,7 @@ export interface WebApps {
     name: string,
     premierAddOnName: string,
     premierAddOn: PremierAddOnPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdatePremierAddOnOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnResponse>;
   /**
    * Description for Gets data around private site access enablement and authorized Virtual Networks that
@@ -2597,7 +2997,7 @@ export interface WebApps {
   getPrivateAccess(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateAccessOptionalParams
   ): Promise<WebAppsGetPrivateAccessResponse>;
   /**
    * Description for Sets data around private site access enablement and authorized Virtual Networks that
@@ -2611,7 +3011,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     access: PrivateAccess,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsPutPrivateAccessVnetOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -2624,7 +3024,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessOptionalParams
   ): Promise<WebAppsGetProcessResponse>;
   /**
    * Description for Terminate a process by its ID for a web site, or a deployment slot, or specific
@@ -2638,7 +3038,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteProcessOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
@@ -2652,7 +3052,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessDumpOptionalParams
   ): Promise<WebAppsGetProcessDumpResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -2667,7 +3067,7 @@ export interface WebApps {
     name: string,
     processId: string,
     baseAddress: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessModuleOptionalParams
   ): Promise<WebAppsGetProcessModuleResponse>;
   /**
    * Description for Get the named public certificate for an app (or deployment slot, if specified).
@@ -2680,7 +3080,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPublicCertificateOptionalParams
   ): Promise<WebAppsGetPublicCertificateResponse>;
   /**
    * Description for Creates a hostname binding for an app.
@@ -2696,7 +3096,7 @@ export interface WebApps {
     name: string,
     publicCertificateName: string,
     publicCertificate: PublicCertificate,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdatePublicCertificateOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateResponse>;
   /**
    * Description for Deletes a hostname binding for an app.
@@ -2709,7 +3109,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePublicCertificateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the publishing profile for an app (or deployment slot, if specified).
@@ -2723,7 +3123,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingProfileXmlWithSecretsOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse>;
   /**
    * Description for Resets the configuration settings of the current slot if they were previously
@@ -2735,7 +3135,7 @@ export interface WebApps {
   resetProductionSlotConfig(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsResetProductionSlotConfigOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Restarts an app (or deployment slot, if specified).
@@ -2759,7 +3159,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromBackupBlobOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -2774,7 +3174,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromDeletedAppOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -2790,7 +3190,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     restoreRequest: SnapshotRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSnapshotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -2805,7 +3205,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSiteExtensionOptionalParams
   ): Promise<WebAppsGetSiteExtensionResponse>;
   /**
    * Description for Install site extension on a web site, or a deployment slot.
@@ -2818,7 +3218,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsInstallSiteExtensionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsInstallSiteExtensionResponse>,
@@ -2836,7 +3236,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSiteExtensionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
@@ -2850,7 +3250,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     copySlotEntity: CsmCopySlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCopyProductionSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -2865,7 +3265,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSlotOptionalParams
   ): Promise<WebAppsGetSlotResponse>;
   /**
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
@@ -2883,7 +3283,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteEnvelope: Site,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
@@ -2919,7 +3319,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteEnvelope: SitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSlotOptionalParams
   ): Promise<WebAppsUpdateSlotResponse>;
   /**
    * Description for Analyze a custom hostname.
@@ -2948,7 +3348,7 @@ export interface WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApplySlotConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a backup of an app.
@@ -2965,7 +3365,7 @@ export interface WebApps {
     name: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsBackupSlotOptionalParams
   ): Promise<WebAppsBackupSlotResponse>;
   /**
    * Description for Gets a backup of an app by its ID.
@@ -2981,7 +3381,7 @@ export interface WebApps {
     name: string,
     backupId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupStatusSlotOptionalParams
   ): Promise<WebAppsGetBackupStatusSlotResponse>;
   /**
    * Description for Deletes a backup of an app by its ID.
@@ -2997,7 +3397,7 @@ export interface WebApps {
     name: string,
     backupId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets status of a web app backup that may be in progress, including secrets
@@ -3016,7 +3416,7 @@ export interface WebApps {
     backupId: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupStatusSecretsSlotOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsSlotResponse>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
@@ -3034,7 +3434,7 @@ export interface WebApps {
     backupId: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -3052,7 +3452,7 @@ export interface WebApps {
     name: string,
     slot: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsSlotResponse>;
   /**
    * Description for Gets the application settings of an app.
@@ -3066,7 +3466,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsListApplicationSettingsSlotResponse>;
   /**
    * Description for Updates the Authentication / Authorization settings associated with web app.
@@ -3081,7 +3481,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteAuthSettings: SiteAuthSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAuthSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsSlotResponse>;
   /**
    * Description for Gets the Authentication/Authorization settings of an app.
@@ -3095,7 +3495,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAuthSettingsSlotOptionalParams
   ): Promise<WebAppsGetAuthSettingsSlotResponse>;
   /**
    * Description for Updates the Azure storage account configurations of an app.
@@ -3111,7 +3511,7 @@ export interface WebApps {
     name: string,
     slot: string,
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse>;
   /**
    * Description for Gets the Azure storage account configurations of an app.
@@ -3125,7 +3525,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsSlotResponse>;
   /**
    * Description for Updates the backup configuration of an app.
@@ -3141,7 +3541,7 @@ export interface WebApps {
     name: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationSlotResponse>;
   /**
    * Description for Deletes the backup configuration of an app.
@@ -3155,7 +3555,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the backup configuration of an app.
@@ -3169,7 +3569,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsGetBackupConfigurationSlotResponse>;
   /**
    * Description for Replaces the connection strings of an app.
@@ -3185,7 +3585,7 @@ export interface WebApps {
     name: string,
     slot: string,
     connectionStrings: ConnectionStringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConnectionStringsSlotOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsSlotResponse>;
   /**
    * Description for Gets the connection strings of an app.
@@ -3199,7 +3599,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConnectionStringsSlotOptionalParams
   ): Promise<WebAppsListConnectionStringsSlotResponse>;
   /**
    * Description for Gets the logging configuration of an app.
@@ -3213,7 +3613,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse>;
   /**
    * Description for Updates the logging configuration of an app.
@@ -3230,7 +3630,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteLogsConfig: SiteLogsConfig,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse>;
   /**
    * Description for Replaces the metadata of an app.
@@ -3246,7 +3646,7 @@ export interface WebApps {
     name: string,
     slot: string,
     metadata: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateMetadataSlotOptionalParams
   ): Promise<WebAppsUpdateMetadataSlotResponse>;
   /**
    * Description for Gets the metadata of an app.
@@ -3260,7 +3660,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListMetadataSlotOptionalParams
   ): Promise<WebAppsListMetadataSlotResponse>;
   /**
    * Description for Gets the Git/FTP publishing credentials of an app.
@@ -3274,7 +3674,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingCredentialsSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
@@ -3294,7 +3694,7 @@ export interface WebApps {
     name: string,
     slot: string,
     pushSettings: PushSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsSlotResponse>;
   /**
    * Description for Gets the Push settings associated with web app.
@@ -3307,7 +3707,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsListSitePushSettingsSlotResponse>;
   /**
    * Description for Gets the configuration of an app, such as platform version and bitness, default
@@ -3322,7 +3722,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSlotResponse>;
   /**
    * Description for Updates the configuration of an app.
@@ -3338,7 +3738,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse>;
   /**
    * Description for Updates the configuration of an app.
@@ -3354,7 +3754,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateConfigurationSlotResponse>;
   /**
    * Description for Gets a snapshot of the configuration of an app at a previous point in time.
@@ -3370,7 +3770,7 @@ export interface WebApps {
     name: string,
     snapshotId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSnapshotSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotSlotResponse>;
   /**
    * Description for Reverts the configuration of an app to a previous snapshot.
@@ -3386,7 +3786,7 @@ export interface WebApps {
     name: string,
     snapshotId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the last lines of docker logs for the given site
@@ -3399,7 +3799,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebSiteContainerLogsSlotOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsSlotResponse>;
   /**
    * Description for Gets the ZIP archived docker log files for the given site
@@ -3412,7 +3812,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContainerLogsZipSlotOptionalParams
   ): Promise<WebAppsGetContainerLogsZipSlotResponse>;
   /**
    * Description for Gets a continuous web job by its ID for an app, or a deployment slot.
@@ -3428,7 +3828,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContinuousWebJobSlotOptionalParams
   ): Promise<WebAppsGetContinuousWebJobSlotResponse>;
   /**
    * Description for Delete a continuous web job by its ID for an app, or a deployment slot.
@@ -3444,7 +3844,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Start a continuous web job for an app, or a deployment slot.
@@ -3460,7 +3860,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Stop a continuous web job for an app, or a deployment slot.
@@ -3476,7 +3876,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a deployment by its ID for an app, or a deployment slot.
@@ -3492,7 +3892,7 @@ export interface WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDeploymentSlotOptionalParams
   ): Promise<WebAppsGetDeploymentSlotResponse>;
   /**
    * Description for Create a deployment for an app, or a deployment slot.
@@ -3510,7 +3910,7 @@ export interface WebApps {
     id: string,
     slot: string,
     deployment: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateDeploymentSlotOptionalParams
   ): Promise<WebAppsCreateDeploymentSlotResponse>;
   /**
    * Description for Delete a deployment by its ID for an app, or a deployment slot.
@@ -3526,7 +3926,7 @@ export interface WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDeploymentSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for List deployment log for specific deployment for an app, or a deployment slot.
@@ -3543,7 +3943,7 @@ export interface WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentLogSlotOptionalParams
   ): Promise<WebAppsListDeploymentLogSlotResponse>;
   /**
    * Description for Discovers an existing app backup that can be restored from a blob in Azure storage.
@@ -3561,7 +3961,7 @@ export interface WebApps {
     name: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDiscoverBackupSlotOptionalParams
   ): Promise<WebAppsDiscoverBackupSlotResponse>;
   /**
    * Description for Get domain ownership identifier for web app.
@@ -3577,7 +3977,7 @@ export interface WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
@@ -3596,7 +3996,7 @@ export interface WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse>;
   /**
    * Description for Deletes a domain ownership identifier for a web app.
@@ -3612,7 +4012,7 @@ export interface WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
@@ -3631,7 +4031,7 @@ export interface WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse>;
   /**
    * Description for Get the status of the last MSDeploy operation.
@@ -3644,7 +4044,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetMSDeployStatusSlotResponse>;
   /**
    * Description for Invoke the MSDeploy web app extension.
@@ -3659,7 +4059,7 @@ export interface WebApps {
     name: string,
     slot: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
@@ -3677,7 +4077,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetMSDeployLogSlotResponse>;
   /**
    * Description for Fetch a short lived token that can be exchanged for a master key.
@@ -3690,7 +4090,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionsAdminTokenSlotOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenSlotResponse>;
   /**
    * Description for Get function information by its ID for web site, or a deployment slot.
@@ -3705,7 +4105,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceFunctionSlotOptionalParams
   ): Promise<WebAppsGetInstanceFunctionSlotResponse>;
   /**
    * Description for Create function for web site, or a deployment slot.
@@ -3722,7 +4122,7 @@ export interface WebApps {
     functionName: string,
     slot: string,
     functionEnvelope: FunctionEnvelope,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceFunctionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
@@ -3742,7 +4142,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceFunctionSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Add or update a function secret.
@@ -3761,7 +4161,7 @@ export interface WebApps {
     keyName: string,
     slot: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse>;
   /**
    * Description for Delete a function secret.
@@ -3778,7 +4178,7 @@ export interface WebApps {
     functionName: string,
     keyName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionSecretSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get function keys for a function in a web site, or a deployment slot.
@@ -3793,7 +4193,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionKeysSlotOptionalParams
   ): Promise<WebAppsListFunctionKeysSlotResponse>;
   /**
    * Description for Get function secrets for a function in a web site, or a deployment slot.
@@ -3808,7 +4208,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionSecretsSlotOptionalParams
   ): Promise<WebAppsListFunctionSecretsSlotResponse>;
   /**
    * Description for Get host secrets for a function app.
@@ -3821,7 +4221,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostKeysSlotOptionalParams
   ): Promise<WebAppsListHostKeysSlotResponse>;
   /**
    * Description for This is to allow calling via powershell and ARM template.
@@ -3834,7 +4234,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncStatusSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Syncs function trigger metadata to the management database
@@ -3847,7 +4247,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionsSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Add or update a host level secret.
@@ -3866,7 +4266,7 @@ export interface WebApps {
     keyName: string,
     slot: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretSlotResponse>;
   /**
    * Description for Delete a host level secret.
@@ -3883,7 +4283,7 @@ export interface WebApps {
     keyType: string,
     keyName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostSecretSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get the named hostname binding for an app (or deployment slot, if specified).
@@ -3899,7 +4299,7 @@ export interface WebApps {
     name: string,
     slot: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHostNameBindingSlotOptionalParams
   ): Promise<WebAppsGetHostNameBindingSlotResponse>;
   /**
    * Description for Creates a hostname binding for an app.
@@ -3917,7 +4317,7 @@ export interface WebApps {
     hostName: string,
     slot: string,
     hostNameBinding: HostNameBinding,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse>;
   /**
    * Description for Deletes a hostname binding for an app.
@@ -3933,7 +4333,7 @@ export interface WebApps {
     name: string,
     slot: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostNameBindingSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Retrieves a specific Service Bus Hybrid Connection used by this Web App.
@@ -3950,7 +4350,7 @@ export interface WebApps {
     namespaceName: string,
     relayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHybridConnectionSlotOptionalParams
   ): Promise<WebAppsGetHybridConnectionSlotResponse>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
@@ -3969,7 +4369,7 @@ export interface WebApps {
     relayName: string,
     slot: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse>;
   /**
    * Description for Removes a Hybrid Connection from this site.
@@ -3986,7 +4386,7 @@ export interface WebApps {
     namespaceName: string,
     relayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHybridConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
@@ -4005,7 +4405,7 @@ export interface WebApps {
     relayName: string,
     slot: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionSlotResponse>;
   /**
    * Description for Retrieves all Service Bus Hybrid Connections used by this Web App.
@@ -4018,7 +4418,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHybridConnectionsSlotOptionalParams
   ): Promise<WebAppsListHybridConnectionsSlotResponse>;
   /**
    * Description for Gets hybrid connections configured for an app (or deployment slot, if specified).
@@ -4032,7 +4432,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListRelayServiceConnectionsSlotOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsSlotResponse>;
   /**
    * Description for Gets a hybrid connection configuration by its name.
@@ -4048,7 +4448,7 @@ export interface WebApps {
     name: string,
     entityName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionSlotResponse>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
@@ -4067,7 +4467,7 @@ export interface WebApps {
     entityName: string,
     slot: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse>;
   /**
    * Description for Deletes a relay service connection by its name.
@@ -4083,7 +4483,7 @@ export interface WebApps {
     name: string,
     entityName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteRelayServiceConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
@@ -4102,7 +4502,7 @@ export interface WebApps {
     entityName: string,
     slot: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse>;
   /**
    * Description for Gets all scale-out instances of an app.
@@ -4118,7 +4518,7 @@ export interface WebApps {
     name: string,
     instanceId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceInfoSlotOptionalParams
   ): Promise<WebAppsGetInstanceInfoSlotResponse>;
   /**
    * Description for Get the status of the last MSDeploy operation.
@@ -4133,7 +4533,7 @@ export interface WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMsDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusSlotResponse>;
   /**
    * Description for Invoke the MSDeploy web app extension.
@@ -4150,7 +4550,7 @@ export interface WebApps {
     slot: string,
     instanceId: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
@@ -4170,7 +4570,7 @@ export interface WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogSlotResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -4189,7 +4589,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessSlotResponse>;
   /**
    * Description for Terminate a process by its ID for a web site, or a deployment slot, or specific
@@ -4209,7 +4609,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceProcessSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
@@ -4229,7 +4629,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpSlotResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -4250,7 +4650,7 @@ export interface WebApps {
     baseAddress: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleSlotResponse>;
   /**
    * Description for Shows whether an app can be cloned to another resource group or subscription.
@@ -4264,7 +4664,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsIsCloneableSlotOptionalParams
   ): Promise<WebAppsIsCloneableSlotResponse>;
   /**
    * Description for This is to allow calling via powershell and ARM template.
@@ -4277,7 +4677,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncFunctionTriggersSlotOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersSlotResponse>;
   /**
    * Description for Returns the status of MySql in app migration, if one is active, and whether or not
@@ -4291,7 +4691,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMigrateMySqlStatusSlotOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusSlotResponse>;
   /**
    * Description for Gets a Swift Virtual Network connection.
@@ -4305,7 +4705,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionSlotResponse>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
@@ -4324,7 +4724,7 @@ export interface WebApps {
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse>;
   /**
    * Description for Deletes a Swift Virtual Network connection from an app (or deployment slot).
@@ -4338,7 +4738,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
@@ -4357,7 +4757,7 @@ export interface WebApps {
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
   /**
    * Description for Gets all network features used by the app (or deployment slot, if specified).
@@ -4373,7 +4773,7 @@ export interface WebApps {
     name: string,
     view: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListNetworkFeaturesSlotOptionalParams
   ): Promise<WebAppsListNetworkFeaturesSlotResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -4390,7 +4790,7 @@ export interface WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationSlotOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotResponse>;
   /**
    * Description for Start capturing network packets for the site (To be deprecated).
@@ -4434,7 +4834,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopWebSiteNetworkTraceSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -4451,7 +4851,7 @@ export interface WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesSlotOptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotResponse>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -4468,7 +4868,7 @@ export interface WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotV2Response>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
@@ -4485,7 +4885,7 @@ export interface WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotV2Response>;
   /**
    * Description for Generates a new publishing password for an app (or deployment slot, if specified).
@@ -4499,7 +4899,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets web app's event logs.
@@ -4512,7 +4912,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSitePhpErrorLogFlagSlotOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagSlotResponse>;
   /**
    * Description for Gets the premier add-ons of an app.
@@ -4526,7 +4926,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPremierAddOnsSlotOptionalParams
   ): Promise<WebAppsListPremierAddOnsSlotResponse>;
   /**
    * Description for Gets a named add-on of an app.
@@ -4542,7 +4942,7 @@ export interface WebApps {
     name: string,
     premierAddOnName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPremierAddOnSlotOptionalParams
   ): Promise<WebAppsGetPremierAddOnSlotResponse>;
   /**
    * Description for Updates a named add-on of an app.
@@ -4560,7 +4960,7 @@ export interface WebApps {
     premierAddOnName: string,
     slot: string,
     premierAddOn: PremierAddOn,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsAddPremierAddOnSlotOptionalParams
   ): Promise<WebAppsAddPremierAddOnSlotResponse>;
   /**
    * Description for Delete a premier add-on from an app.
@@ -4576,7 +4976,7 @@ export interface WebApps {
     name: string,
     premierAddOnName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePremierAddOnSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Updates a named add-on of an app.
@@ -4594,7 +4994,7 @@ export interface WebApps {
     premierAddOnName: string,
     slot: string,
     premierAddOn: PremierAddOnPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdatePremierAddOnSlotOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnSlotResponse>;
   /**
    * Description for Gets data around private site access enablement and authorized Virtual Networks that
@@ -4608,7 +5008,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateAccessSlotOptionalParams
   ): Promise<WebAppsGetPrivateAccessSlotResponse>;
   /**
    * Description for Sets data around private site access enablement and authorized Virtual Networks that
@@ -4624,7 +5024,7 @@ export interface WebApps {
     name: string,
     slot: string,
     access: PrivateAccess,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsPutPrivateAccessVnetSlotOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetSlotResponse>;
   /**
    * Description for Gets a private endpoint connection
@@ -4637,7 +5037,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
   ): Promise<WebAppsGetPrivateEndpointConnectionResponse>;
   /**
    * Description for Approves or rejects a private endpoint connection
@@ -4652,7 +5052,7 @@ export interface WebApps {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -4672,7 +5072,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
@@ -4688,7 +5088,7 @@ export interface WebApps {
   getPrivateLinkResources(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateLinkResourcesOptionalParams
   ): Promise<WebAppsGetPrivateLinkResourcesResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -4704,7 +5104,7 @@ export interface WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessSlotOptionalParams
   ): Promise<WebAppsGetProcessSlotResponse>;
   /**
    * Description for Terminate a process by its ID for a web site, or a deployment slot, or specific
@@ -4721,7 +5121,7 @@ export interface WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteProcessSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
@@ -4738,7 +5138,7 @@ export interface WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetProcessDumpSlotResponse>;
   /**
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
@@ -4756,7 +5156,7 @@ export interface WebApps {
     processId: string,
     baseAddress: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetProcessModuleSlotResponse>;
   /**
    * Description for Get the named public certificate for an app (or deployment slot, if specified).
@@ -4772,7 +5172,7 @@ export interface WebApps {
     name: string,
     slot: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPublicCertificateSlotOptionalParams
   ): Promise<WebAppsGetPublicCertificateSlotResponse>;
   /**
    * Description for Creates a hostname binding for an app.
@@ -4791,7 +5191,7 @@ export interface WebApps {
     publicCertificateName: string,
     slot: string,
     publicCertificate: PublicCertificate,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse>;
   /**
    * Description for Deletes a hostname binding for an app.
@@ -4807,7 +5207,7 @@ export interface WebApps {
     name: string,
     slot: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePublicCertificateSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the publishing profile for an app (or deployment slot, if specified).
@@ -4824,7 +5224,7 @@ export interface WebApps {
     name: string,
     slot: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse>;
   /**
    * Description for Resets the configuration settings of the current slot if they were previously
@@ -4839,7 +5239,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsResetSlotConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Restarts an app (or deployment slot, if specified).
@@ -4869,7 +5269,7 @@ export interface WebApps {
     name: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -4886,7 +5286,7 @@ export interface WebApps {
     name: string,
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -4904,7 +5304,7 @@ export interface WebApps {
     name: string,
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSnapshotSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -4922,7 +5322,7 @@ export interface WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSiteExtensionSlotOptionalParams
   ): Promise<WebAppsGetSiteExtensionSlotResponse>;
   /**
    * Description for Install site extension on a web site, or a deployment slot.
@@ -4938,7 +5338,7 @@ export interface WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsInstallSiteExtensionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
@@ -4959,7 +5359,7 @@ export interface WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSiteExtensionSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
@@ -4976,7 +5376,7 @@ export interface WebApps {
     name: string,
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCopySlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -4994,7 +5394,7 @@ export interface WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSwapSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -5010,7 +5410,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSourceControlSlotOptionalParams
   ): Promise<WebAppsGetSourceControlSlotResponse>;
   /**
    * Description for Updates the source control configuration of an app.
@@ -5026,7 +5426,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
@@ -5045,7 +5445,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSourceControlSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Updates the source control configuration of an app.
@@ -5061,7 +5461,7 @@ export interface WebApps {
     name: string,
     slot: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSourceControlSlotOptionalParams
   ): Promise<WebAppsUpdateSourceControlSlotResponse>;
   /**
    * Description for Starts an app (or deployment slot, if specified).
@@ -5075,7 +5475,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Start capturing network packets for the site.
@@ -5107,7 +5507,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Stop ongoing capturing network packets for the site.
@@ -5120,7 +5520,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopNetworkTraceSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Sync web app repository.
@@ -5133,7 +5533,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncRepositorySlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Syncs function trigger metadata to the management database
@@ -5146,7 +5546,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionTriggersSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a triggered web job by its ID for an app, or a deployment slot.
@@ -5162,7 +5562,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobSlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobSlotResponse>;
   /**
    * Description for Delete a triggered web job by its ID for an app, or a deployment slot.
@@ -5178,7 +5578,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteTriggeredWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a triggered web job's history by its ID for an app, , or a deployment slot.
@@ -5196,7 +5596,7 @@ export interface WebApps {
     webJobName: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobHistorySlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistorySlotResponse>;
   /**
    * Description for Run a triggered web job for an app, or a deployment slot.
@@ -5212,7 +5612,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRunTriggeredWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the virtual networks the app (or deployment slot) is connected to.
@@ -5226,7 +5626,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListVnetConnectionsSlotOptionalParams
   ): Promise<WebAppsListVnetConnectionsSlotResponse>;
   /**
    * Description for Gets a virtual network the app (or deployment slot) is connected to by name.
@@ -5242,7 +5642,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionSlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionSlotResponse>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
@@ -5261,7 +5661,7 @@ export interface WebApps {
     vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
   /**
    * Description for Deletes a connection from an app (or deployment slot to a named virtual network.
@@ -5277,7 +5677,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteVnetConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
@@ -5296,7 +5696,7 @@ export interface WebApps {
     vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse>;
   /**
    * Description for Gets an app's Virtual Network gateway.
@@ -5314,7 +5714,7 @@ export interface WebApps {
     vnetName: string,
     gatewayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewaySlotResponse>;
   /**
    * Description for Adds a gateway to a connected Virtual Network (PUT) or updates it (PATCH).
@@ -5334,7 +5734,7 @@ export interface WebApps {
     gatewayName: string,
     slot: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse>;
   /**
    * Description for Adds a gateway to a connected Virtual Network (PUT) or updates it (PATCH).
@@ -5354,7 +5754,7 @@ export interface WebApps {
     gatewayName: string,
     slot: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse>;
   /**
    * Description for Get webjob information for an app, or a deployment slot.
@@ -5370,7 +5770,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebJobSlotOptionalParams
   ): Promise<WebAppsGetWebJobSlotResponse>;
   /**
    * Description for Swaps two deployment slots of an app.
@@ -5383,7 +5783,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSwapSlotWithProductionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -5396,7 +5796,7 @@ export interface WebApps {
   getSourceControl(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSourceControlOptionalParams
   ): Promise<WebAppsGetSourceControlResponse>;
   /**
    * Description for Updates the source control configuration of an app.
@@ -5409,7 +5809,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSourceControlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
@@ -5425,7 +5825,7 @@ export interface WebApps {
   deleteSourceControl(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSourceControlOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Updates the source control configuration of an app.
@@ -5438,7 +5838,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSourceControlOptionalParams
   ): Promise<WebAppsUpdateSourceControlResponse>;
   /**
    * Description for Starts an app (or deployment slot, if specified).
@@ -5449,7 +5849,7 @@ export interface WebApps {
   start(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Start capturing network packets for the site.
@@ -5476,7 +5876,7 @@ export interface WebApps {
   stop(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Stop ongoing capturing network packets for the site.
@@ -5487,7 +5887,7 @@ export interface WebApps {
   stopNetworkTrace(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopNetworkTraceOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Sync web app repository.
@@ -5498,7 +5898,7 @@ export interface WebApps {
   syncRepository(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncRepositoryOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Syncs function trigger metadata to the management database
@@ -5509,7 +5909,7 @@ export interface WebApps {
   syncFunctionTriggers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionTriggersOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a triggered web job by its ID for an app, or a deployment slot.
@@ -5522,7 +5922,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobResponse>;
   /**
    * Description for Delete a triggered web job by its ID for an app, or a deployment slot.
@@ -5535,7 +5935,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteTriggeredWebJobOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets a triggered web job's history by its ID for an app, , or a deployment slot.
@@ -5550,7 +5950,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobHistoryOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistoryResponse>;
   /**
    * Description for Run a triggered web job for an app, or a deployment slot.
@@ -5563,7 +5963,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRunTriggeredWebJobOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the virtual networks the app (or deployment slot) is connected to.
@@ -5574,7 +5974,7 @@ export interface WebApps {
   listVnetConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListVnetConnectionsOptionalParams
   ): Promise<WebAppsListVnetConnectionsResponse>;
   /**
    * Description for Gets a virtual network the app (or deployment slot) is connected to by name.
@@ -5587,7 +5987,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionOptionalParams
   ): Promise<WebAppsGetVnetConnectionResponse>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
@@ -5603,7 +6003,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
   /**
    * Description for Deletes a connection from an app (or deployment slot to a named virtual network.
@@ -5616,7 +6016,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteVnetConnectionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
@@ -5632,7 +6032,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionResponse>;
   /**
    * Description for Gets an app's Virtual Network gateway.
@@ -5647,7 +6047,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewayResponse>;
   /**
    * Description for Adds a gateway to a connected Virtual Network (PUT) or updates it (PATCH).
@@ -5664,7 +6064,7 @@ export interface WebApps {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse>;
   /**
    * Description for Adds a gateway to a connected Virtual Network (PUT) or updates it (PATCH).
@@ -5681,7 +6081,7 @@ export interface WebApps {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewayResponse>;
   /**
    * Description for Get webjob information for an app, or a deployment slot.
@@ -5694,6 +6094,6 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebJobOptionalParams
   ): Promise<WebAppsGetWebJobResponse>;
 }

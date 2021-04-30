@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   OutboundRule,
+  LoadBalancerOutboundRulesListNextOptionalParams,
+  LoadBalancerOutboundRulesListOptionalParams,
   LoadBalancerOutboundRulesListResponse,
+  LoadBalancerOutboundRulesGetOptionalParams,
   LoadBalancerOutboundRulesGetResponse,
   LoadBalancerOutboundRulesListNextResponse
 } from "../models";
@@ -43,7 +46,7 @@ export class LoadBalancerOutboundRulesImpl
   public list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListOptionalParams
   ): PagedAsyncIterableIterator<OutboundRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -70,7 +73,7 @@ export class LoadBalancerOutboundRulesImpl
   private async *listPagingPage(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListOptionalParams
   ): AsyncIterableIterator<OutboundRule[]> {
     let result = await this._list(resourceGroupName, loadBalancerName, options);
     yield result.value || [];
@@ -90,7 +93,7 @@ export class LoadBalancerOutboundRulesImpl
   private async *listPagingAll(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListOptionalParams
   ): AsyncIterableIterator<OutboundRule> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -110,7 +113,7 @@ export class LoadBalancerOutboundRulesImpl
   private _list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListOptionalParams
   ): Promise<LoadBalancerOutboundRulesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -134,7 +137,7 @@ export class LoadBalancerOutboundRulesImpl
     resourceGroupName: string,
     loadBalancerName: string,
     outboundRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesGetOptionalParams
   ): Promise<LoadBalancerOutboundRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -159,7 +162,7 @@ export class LoadBalancerOutboundRulesImpl
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListNextOptionalParams
   ): Promise<LoadBalancerOutboundRulesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

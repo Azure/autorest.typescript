@@ -11,7 +11,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   BlobServiceProperties,
+  BlobServicesListOptionalParams,
+  BlobServicesSetServicePropertiesOptionalParams,
   BlobServicesSetServicePropertiesResponse,
+  BlobServicesGetServicePropertiesOptionalParams,
   BlobServicesGetServicePropertiesResponse
 } from "../models";
 
@@ -30,7 +33,7 @@ export interface BlobServices {
   list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesListOptionalParams
   ): PagedAsyncIterableIterator<BlobServiceProperties>;
   /**
    * Sets the properties of a storage account’s Blob service, including properties for Storage Analytics
@@ -48,7 +51,7 @@ export interface BlobServices {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobServiceProperties,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesSetServicePropertiesOptionalParams
   ): Promise<BlobServicesSetServicePropertiesResponse>;
   /**
    * Gets the properties of a storage account’s Blob service, including properties for Storage Analytics
@@ -63,6 +66,6 @@ export interface BlobServices {
   getServiceProperties(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobServicesGetServicePropertiesOptionalParams
   ): Promise<BlobServicesGetServicePropertiesResponse>;
 }

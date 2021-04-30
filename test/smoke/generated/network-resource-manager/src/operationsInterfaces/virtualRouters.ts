@@ -12,8 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualRouter,
+  VirtualRoutersListByResourceGroupNextOptionalParams,
+  VirtualRoutersListByResourceGroupOptionalParams,
+  VirtualRoutersListNextOptionalParams,
+  VirtualRoutersListOptionalParams,
+  VirtualRoutersDeleteOptionalParams,
   VirtualRoutersGetOptionalParams,
   VirtualRoutersGetResponse,
+  VirtualRoutersCreateOrUpdateOptionalParams,
   VirtualRoutersCreateOrUpdateResponse
 } from "../models";
 
@@ -27,14 +33,14 @@ export interface VirtualRouters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualRouter>;
   /**
    * Gets all the Virtual Routers in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListOptionalParams
   ): PagedAsyncIterableIterator<VirtualRouter>;
   /**
    * Deletes the specified Virtual Router.
@@ -45,7 +51,7 @@ export interface VirtualRouters {
   delete(
     resourceGroupName: string,
     virtualRouterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -71,7 +77,7 @@ export interface VirtualRouters {
     resourceGroupName: string,
     virtualRouterName: string,
     parameters: VirtualRouter,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualRoutersCreateOrUpdateResponse>,

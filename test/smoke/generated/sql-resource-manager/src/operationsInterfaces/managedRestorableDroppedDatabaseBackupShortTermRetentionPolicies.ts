@@ -12,9 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams,
   ManagedShortTermRetentionPolicyName,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse
 } from "../models";
 
@@ -33,7 +38,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
   /**
    * Gets a dropped database's short term retention policy.
@@ -49,7 +54,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
   >;
@@ -69,7 +74,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -94,7 +99,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
     restorableDroppedDatabaseId: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
