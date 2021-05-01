@@ -1,5 +1,5 @@
 import { AbortSignalLike } from "@azure/abort-controller";
-import { OperationArguments, OperationSpec, RestError } from "@azure/core-http";
+import { OperationArguments, OperationSpec } from "@azure/core-http";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import { createAzureAsyncOperationStrategy } from "./azureAsyncOperationStrategy";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
@@ -17,7 +17,8 @@ import {
   getPollingURL,
   createRetrieveAzureAsyncResource,
   inferLROMode,
-  isBodyPollingDone
+  isBodyPollingDone,
+  getSpecPath
 } from "./requestUtils";
 
 /**
@@ -61,12 +62,9 @@ function createPollingMethod<TResult extends BaseResult>(
 
 export class GenericPollOperation<TResult extends BaseResult>
   implements PollOperation<PollOperationState<TResult>, TResult> {
-  private poll:
-    | ((pollingURL: string) => Promise<LROResult<TResult>>)
-    | undefined;
-  private pollingURL: string | undefined;
-  private config: LROConfig | undefined;
-  private initialResponse: TResult | undefined;
+  private poll?: (pollingURL: string) => Promise<LROResult<TResult>>;
+  private pollingURL?: string;
+  private config?: LROConfig;
   constructor(
     public state: PollOperationState<TResult>,
     private initialOperationArguments: OperationArguments,
@@ -96,57 +94,68 @@ export class GenericPollOperation<TResult extends BaseResult>
   }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
     const state = this.state;
     if (!state.isStarted) {
-      this.initialResponse = await this.sendOperation(
+      state.initialRawResponse = await this.sendOperation(
         this.initialOperationArguments,
         this.initialOperationSpec
       );
       state.isStarted = true;
-      if (this.initialOperationSpec.path) {
-        this.pollingURL = getPollingURL(
-          this.initialResponse,
-          this.initialOperationSpec.path
-        );
-      } else {
-        throw Error("Bad spec: request path is not found!");
-      }
-      this.config = inferLROMode(this.initialResponse);
+      this.pollingURL = getPollingURL(
+        state.initialRawResponse,
+        getSpecPath(this.initialOperationSpec)
+      );
+      this.config = inferLROMode(
+        this.initialOperationSpec,
+        state.initialRawResponse
+      );
       /** short circuit polling if body polling is done in the initial request */
       if (
         this.config.mode === undefined ||
-        (this.config.mode === "Body" && isBodyPollingDone(this.initialResponse))
+        (this.config.mode === "Body" &&
+          isBodyPollingDone(state.initialRawResponse))
       ) {
-        state.result = this.initialResponse;
+        state.result = state.initialRawResponse as TResult;
         state.isCompleted = true;
       }
     }
 
     if (!state.isCompleted) {
       if (this.pollingURL === undefined) {
-        throw new Error("Bad state: polling URL could not be found!");
-      }
-      if (this.config === undefined) {
-        if (this.initialResponse === undefined) {
-          throw new Error("Bad state: initial response could not be found!");
+        if (state.initialRawResponse === undefined) {
+          throw new Error(
+            "Bad state: initial raw response could not be found!"
+          );
         }
-        this.config = inferLROMode(this.initialResponse);
+        this.pollingURL = getPollingURL(
+          state.initialRawResponse!,
+          getSpecPath(this.initialOperationSpec)
+        );
       }
       if (this.poll === undefined) {
-        this.poll = createPollingMethod(
+        if (this.config === undefined) {
+          if (state.initialRawResponse === undefined) {
+            throw new Error(
+              "Bad state: initial raw response could not be found!"
+            );
+          }
+          this.config = inferLROMode(
+            this.initialOperationSpec,
+            state.initialRawResponse
+          );
+        }
+        this.poll = await createPollingMethod(
           this.sendOperation,
           this.initialOperationArguments,
           this.initialOperationSpec,
           this.config,
           this.finalStateVia
         );
-      } else {
-        /** a poll operation occurred in the then branch so we do not want to poll twice */
-        const { result, done } = await this.poll(this.pollingURL);
-        if (done) {
-          state.result = result;
-          state.isCompleted = true;
-        }
-        this.pollingURL = getPollingURL(result, this.pollingURL);
       }
+      const { result, done } = await this.poll(this.pollingURL);
+      if (done) {
+        state.result = result;
+        state.isCompleted = true;
+      }
+      this.pollingURL = getPollingURL(result, this.pollingURL);
     }
     if (options?.fireProgress !== undefined) {
       options.fireProgress(state);
