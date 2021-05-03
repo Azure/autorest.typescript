@@ -100,7 +100,9 @@ export class GenericPollOperation<TResult extends BaseResult>
     abortSignal?: AbortSignalLike | undefined;
     fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
   }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
-    const state = this.state;
+    const state = this.state as PollOperationState<TResult> & {
+      initialRawResponse: TResult;
+    };
     if (!state.isStarted) {
       state.initialRawResponse = await this.sendOperation(
         this.initialOperationArguments,
@@ -121,7 +123,7 @@ export class GenericPollOperation<TResult extends BaseResult>
         (this.config.mode === "Body" &&
           isBodyPollingDone(state.initialRawResponse))
       ) {
-        state.result = state.initialRawResponse as TResult;
+        state.result = state.initialRawResponse;
         state.isCompleted = true;
       }
     }
