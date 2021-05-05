@@ -141,9 +141,6 @@ export class GenericPollOperation<TResult extends BaseResult>
         );
       }
       if (this.poll === undefined) {
-<<<<<<< HEAD
-        this.poll = createPollingMethod(
-=======
         if (this.config === undefined) {
           if (state.initialRawResponse === undefined) {
             throw new Error(
@@ -156,7 +153,6 @@ export class GenericPollOperation<TResult extends BaseResult>
           );
         }
         this.poll = await createPollingMethod(
->>>>>>> 44ba69fc... use updated core-lro
           this.sendOperation,
           this.initialOperationArguments,
           this.initialOperationSpec,

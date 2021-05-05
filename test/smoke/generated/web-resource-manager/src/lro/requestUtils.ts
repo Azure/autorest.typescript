@@ -160,10 +160,6 @@ export function getAzureAsyncoperation(
   return castRawResponse(rawResponse).headers?.get("azure-asyncoperation");
 }
 
-export function getRequestMethod(rawResponse: unknown): HttpMethods {
-  return castRawResponse(rawResponse).request.method;
-}
-
 export function getProvisioningState(rawResponse: unknown): string {
   const castResponse = castRawResponse(rawResponse);
   const { properties, provisioningState } =

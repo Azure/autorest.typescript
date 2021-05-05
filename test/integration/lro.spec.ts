@@ -94,7 +94,7 @@ describe("LROs", () => {
   });
 
   describe("serialized state", () => {
-    let state: unknown, serializedState: string;
+    let state: any, serializedState: string;
     it.only("should handle serializing the state", async () => {
       const poller = await client.lROs.put200Succeeded(LROOptions);
       poller.onProgress(currentState => {
@@ -105,6 +105,7 @@ describe("LROs", () => {
         }
       });
       await poller.pollUntilDone();
+      assert.ok(state.initialRawResponse);
     });
   });
 
