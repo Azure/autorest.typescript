@@ -83,7 +83,8 @@ export async function generateTypeScriptLibrary(
     (await host.GetValue("openapi-type")) === "arm" ||
     false;
   const ignoreNullableOnOptional: boolean =
-    (await host.GetValue("ignore-nullable-on-optional")) || false;
+    (await host.GetValue("ignore-nullable-on-optional")) ??
+    (await host.GetValue("azure-arm"));
 
   const optionsBag: OptionsBag = {
     shouldGenerateLicense,

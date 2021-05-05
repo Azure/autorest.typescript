@@ -713,7 +713,7 @@ function getProperties(
         ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
         : property.type;
 
-    if (optionsBag.armLibrary || optionsBag.ignoreNullableOnOptional) {
+    if (optionsBag.ignoreNullableOnOptional) {
       return property.nullable && property.required
         ? `${typeName} | null`
         : typeName;
