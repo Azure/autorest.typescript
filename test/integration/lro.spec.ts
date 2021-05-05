@@ -93,6 +93,21 @@ describe("LROs", () => {
     });
   });
 
+  describe("serialized state", () => {
+    let state: unknown, serializedState: string;
+    it.only("should handle serializing the state", async () => {
+      const poller = await client.lROs.put200Succeeded(LROOptions);
+      poller.onProgress(currentState => {
+        if (state === undefined && serializedState === undefined) {
+          state = currentState;
+          serializedState = JSON.stringify({ state: currentState });
+          assert.equal(serializedState, poller.toString());
+        }
+      });
+      await poller.pollUntilDone();
+    });
+  });
+
   describe("BodyPolling Strategy", () => {
     it("should handle initial response with terminal state through an Azure Resource", async () => {
       const poller = await client.lROs.put200Succeeded(LROOptions);
