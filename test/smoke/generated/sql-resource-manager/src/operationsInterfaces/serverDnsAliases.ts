@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerDnsAlias,
+  ServerDnsAliasesListByServerNextOptionalParams,
+  ServerDnsAliasesListByServerOptionalParams,
+  ServerDnsAliasesGetOptionalParams,
   ServerDnsAliasesGetResponse,
+  ServerDnsAliasesCreateOrUpdateOptionalParams,
   ServerDnsAliasesCreateOrUpdateResponse,
-  ServerDnsAliasAcquisition
+  ServerDnsAliasesDeleteOptionalParams,
+  ServerDnsAliasAcquisition,
+  ServerDnsAliasesAcquireOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +36,7 @@ export interface ServerDnsAliases {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerDnsAlias>;
   /**
    * Gets a server DNS alias.
@@ -44,7 +50,7 @@ export interface ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesGetOptionalParams
   ): Promise<ServerDnsAliasesGetResponse>;
   /**
    * Creates a server dns alias.
@@ -58,7 +64,7 @@ export interface ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
@@ -77,7 +83,7 @@ export interface ServerDnsAliases {
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -95,7 +101,7 @@ export interface ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
-    options?: coreHttp.OperationOptions
+    options?: ServerDnsAliasesAcquireOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

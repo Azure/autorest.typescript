@@ -8,10 +8,14 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
   ImplicitPutOptionalBodyOptionalParams,
-  ImplicitPutOptionalBinaryBodyOptionalParams
+  ImplicitPutOptionalBinaryBodyOptionalParams,
+  ImplicitGetRequiredGlobalPathOptionalParams,
+  ImplicitGetRequiredGlobalQueryOptionalParams,
+  ImplicitGetOptionalGlobalQueryOptionalParams
 } from "../models";
 
 /** Interface representing a Implicit. */
@@ -23,7 +27,7 @@ export interface Implicit {
    */
   getRequiredPath(
     pathParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredPathOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional query parameter
@@ -58,20 +62,20 @@ export interface Implicit {
    * @param options The options parameters.
    */
   getRequiredGlobalPath(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredGlobalPathOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly required query parameter
    * @param options The options parameters.
    */
   getRequiredGlobalQuery(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredGlobalQueryOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional query parameter
    * @param options The options parameters.
    */
   getOptionalGlobalQuery(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetOptionalGlobalQueryOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

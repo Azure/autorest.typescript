@@ -12,14 +12,21 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
+  ElasticPoolsListMetricsOptionalParams,
   MetricDefinition,
+  ElasticPoolsListMetricDefinitionsOptionalParams,
   ElasticPool,
   ElasticPoolsListByServerNextOptionalParams,
   ElasticPoolsListByServerOptionalParams,
+  ElasticPoolsGetOptionalParams,
   ElasticPoolsGetResponse,
+  ElasticPoolsCreateOrUpdateOptionalParams,
   ElasticPoolsCreateOrUpdateResponse,
+  ElasticPoolsDeleteOptionalParams,
   ElasticPoolUpdate,
-  ElasticPoolsUpdateResponse
+  ElasticPoolsUpdateOptionalParams,
+  ElasticPoolsUpdateResponse,
+  ElasticPoolsFailoverOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -39,7 +46,7 @@ export interface ElasticPools {
     serverName: string,
     elasticPoolName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Returns elastic pool metric definitions.
@@ -53,7 +60,7 @@ export interface ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition>;
   /**
    * Gets all elastic pools in a server.
@@ -79,7 +86,7 @@ export interface ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsGetOptionalParams
   ): Promise<ElasticPoolsGetResponse>;
   /**
    * Creates or updates an elastic pool.
@@ -95,7 +102,7 @@ export interface ElasticPools {
     serverName: string,
     elasticPoolName: string,
     parameters: ElasticPool,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsCreateOrUpdateResponse>,
@@ -114,7 +121,7 @@ export interface ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -132,7 +139,7 @@ export interface ElasticPools {
     serverName: string,
     elasticPoolName: string,
     parameters: ElasticPoolUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ElasticPoolsUpdateResponse>,
@@ -151,7 +158,7 @@ export interface ElasticPools {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ElasticPoolsFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

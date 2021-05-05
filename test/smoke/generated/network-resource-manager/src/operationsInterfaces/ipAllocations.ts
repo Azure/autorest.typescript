@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   IpAllocation,
+  IpAllocationsListNextOptionalParams,
+  IpAllocationsListOptionalParams,
+  IpAllocationsListByResourceGroupNextOptionalParams,
+  IpAllocationsListByResourceGroupOptionalParams,
+  IpAllocationsDeleteOptionalParams,
   IpAllocationsGetOptionalParams,
   IpAllocationsGetResponse,
+  IpAllocationsCreateOrUpdateOptionalParams,
   IpAllocationsCreateOrUpdateResponse,
   TagsObject,
+  IpAllocationsUpdateTagsOptionalParams,
   IpAllocationsUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface IpAllocations {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListOptionalParams
   ): PagedAsyncIterableIterator<IpAllocation>;
   /**
    * Gets all IpAllocations in a resource group.
@@ -36,7 +43,7 @@ export interface IpAllocations {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<IpAllocation>;
   /**
    * Deletes the specified IpAllocation.
@@ -47,7 +54,7 @@ export interface IpAllocations {
   delete(
     resourceGroupName: string,
     ipAllocationName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface IpAllocations {
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: IpAllocation,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<IpAllocationsCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface IpAllocations {
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsUpdateTagsOptionalParams
   ): Promise<IpAllocationsUpdateTagsResponse>;
 }

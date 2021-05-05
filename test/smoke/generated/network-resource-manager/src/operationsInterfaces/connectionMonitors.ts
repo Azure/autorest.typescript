@@ -12,11 +12,19 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ConnectionMonitorResult,
+  ConnectionMonitorsListOptionalParams,
   ConnectionMonitor,
+  ConnectionMonitorsCreateOrUpdateOptionalParams,
   ConnectionMonitorsCreateOrUpdateResponse,
+  ConnectionMonitorsGetOptionalParams,
   ConnectionMonitorsGetResponse,
+  ConnectionMonitorsDeleteOptionalParams,
   TagsObject,
+  ConnectionMonitorsUpdateTagsOptionalParams,
   ConnectionMonitorsUpdateTagsResponse,
+  ConnectionMonitorsStopOptionalParams,
+  ConnectionMonitorsStartOptionalParams,
+  ConnectionMonitorsQueryOptionalParams,
   ConnectionMonitorsQueryResponse
 } from "../models";
 
@@ -32,7 +40,7 @@ export interface ConnectionMonitors {
   list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsListOptionalParams
   ): PagedAsyncIterableIterator<ConnectionMonitorResult>;
   /**
    * Create or update a connection monitor.
@@ -47,7 +55,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     parameters: ConnectionMonitor,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>,
@@ -65,7 +73,7 @@ export interface ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsGetOptionalParams
   ): Promise<ConnectionMonitorsGetResponse>;
   /**
    * Deletes the specified connection monitor.
@@ -78,7 +86,7 @@ export interface ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -95,7 +103,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsUpdateTagsOptionalParams
   ): Promise<ConnectionMonitorsUpdateTagsResponse>;
   /**
    * Stops the specified connection monitor.
@@ -108,7 +116,7 @@ export interface ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -123,7 +131,7 @@ export interface ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -138,7 +146,7 @@ export interface ConnectionMonitors {
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ConnectionMonitorsQueryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ConnectionMonitorsQueryResponse>,

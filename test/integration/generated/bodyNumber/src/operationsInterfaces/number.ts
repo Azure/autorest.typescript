@@ -8,19 +8,43 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  NumberGetNullOptionalParams,
   NumberGetNullResponse,
+  NumberGetInvalidFloatOptionalParams,
   NumberGetInvalidFloatResponse,
+  NumberGetInvalidDoubleOptionalParams,
   NumberGetInvalidDoubleResponse,
+  NumberGetInvalidDecimalOptionalParams,
   NumberGetInvalidDecimalResponse,
+  NumberPutBigFloatOptionalParams,
+  NumberGetBigFloatOptionalParams,
   NumberGetBigFloatResponse,
+  NumberPutBigDoubleOptionalParams,
+  NumberGetBigDoubleOptionalParams,
   NumberGetBigDoubleResponse,
+  NumberPutBigDoublePositiveDecimalOptionalParams,
+  NumberGetBigDoublePositiveDecimalOptionalParams,
   NumberGetBigDoublePositiveDecimalResponse,
+  NumberPutBigDoubleNegativeDecimalOptionalParams,
+  NumberGetBigDoubleNegativeDecimalOptionalParams,
   NumberGetBigDoubleNegativeDecimalResponse,
+  NumberPutBigDecimalOptionalParams,
+  NumberGetBigDecimalOptionalParams,
   NumberGetBigDecimalResponse,
+  NumberPutBigDecimalPositiveDecimalOptionalParams,
+  NumberGetBigDecimalPositiveDecimalOptionalParams,
   NumberGetBigDecimalPositiveDecimalResponse,
+  NumberPutBigDecimalNegativeDecimalOptionalParams,
+  NumberGetBigDecimalNegativeDecimalOptionalParams,
   NumberGetBigDecimalNegativeDecimalResponse,
+  NumberPutSmallFloatOptionalParams,
+  NumberGetSmallFloatOptionalParams,
   NumberGetSmallFloatResponse,
+  NumberPutSmallDoubleOptionalParams,
+  NumberGetSmallDoubleOptionalParams,
   NumberGetSmallDoubleResponse,
+  NumberPutSmallDecimalOptionalParams,
+  NumberGetSmallDecimalOptionalParams,
   NumberGetSmallDecimalResponse
 } from "../models";
 
@@ -30,27 +54,29 @@ export interface NumberOperations {
    * Get null Number value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<NumberGetNullResponse>;
+  getNull(
+    options?: NumberGetNullOptionalParams
+  ): Promise<NumberGetNullResponse>;
   /**
    * Get invalid float Number value
    * @param options The options parameters.
    */
   getInvalidFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidFloatOptionalParams
   ): Promise<NumberGetInvalidFloatResponse>;
   /**
    * Get invalid double Number value
    * @param options The options parameters.
    */
   getInvalidDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidDoubleOptionalParams
   ): Promise<NumberGetInvalidDoubleResponse>;
   /**
    * Get invalid decimal Number value
    * @param options The options parameters.
    */
   getInvalidDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidDecimalOptionalParams
   ): Promise<NumberGetInvalidDecimalResponse>;
   /**
    * Put big float value 3.402823e+20
@@ -59,14 +85,14 @@ export interface NumberOperations {
    */
   putBigFloat(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigFloatOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big float value 3.402823e+20
    * @param options The options parameters.
    */
   getBigFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigFloatOptionalParams
   ): Promise<NumberGetBigFloatResponse>;
   /**
    * Put big double value 2.5976931e+101
@@ -75,42 +101,42 @@ export interface NumberOperations {
    */
   putBigDouble(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoubleOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big double value 2.5976931e+101
    * @param options The options parameters.
    */
   getBigDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoubleOptionalParams
   ): Promise<NumberGetBigDoubleResponse>;
   /**
    * Put big double value 99999999.99
    * @param options The options parameters.
    */
   putBigDoublePositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoublePositiveDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big double value 99999999.99
    * @param options The options parameters.
    */
   getBigDoublePositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoublePositiveDecimalOptionalParams
   ): Promise<NumberGetBigDoublePositiveDecimalResponse>;
   /**
    * Put big double value -99999999.99
    * @param options The options parameters.
    */
   putBigDoubleNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoubleNegativeDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big double value -99999999.99
    * @param options The options parameters.
    */
   getBigDoubleNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoubleNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDoubleNegativeDecimalResponse>;
   /**
    * Put big decimal value 2.5976931e+101
@@ -119,42 +145,42 @@ export interface NumberOperations {
    */
   putBigDecimal(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big decimal value 2.5976931e+101
    * @param options The options parameters.
    */
   getBigDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalOptionalParams
   ): Promise<NumberGetBigDecimalResponse>;
   /**
    * Put big decimal value 99999999.99
    * @param options The options parameters.
    */
   putBigDecimalPositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalPositiveDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big decimal value 99999999.99
    * @param options The options parameters.
    */
   getBigDecimalPositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalPositiveDecimalOptionalParams
   ): Promise<NumberGetBigDecimalPositiveDecimalResponse>;
   /**
    * Put big decimal value -99999999.99
    * @param options The options parameters.
    */
   putBigDecimalNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalNegativeDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big decimal value -99999999.99
    * @param options The options parameters.
    */
   getBigDecimalNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDecimalNegativeDecimalResponse>;
   /**
    * Put small float value 3.402823e-20
@@ -163,14 +189,14 @@ export interface NumberOperations {
    */
   putSmallFloat(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallFloatOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big double value 3.402823e-20
    * @param options The options parameters.
    */
   getSmallFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallFloatOptionalParams
   ): Promise<NumberGetSmallFloatResponse>;
   /**
    * Put small double value 2.5976931e-101
@@ -179,14 +205,14 @@ export interface NumberOperations {
    */
   putSmallDouble(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallDoubleOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get big double value 2.5976931e-101
    * @param options The options parameters.
    */
   getSmallDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallDoubleOptionalParams
   ): Promise<NumberGetSmallDoubleResponse>;
   /**
    * Put small decimal value 2.5976931e-101
@@ -195,13 +221,13 @@ export interface NumberOperations {
    */
   putSmallDecimal(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallDecimalOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get small decimal value 2.5976931e-101
    * @param options The options parameters.
    */
   getSmallDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallDecimalOptionalParams
   ): Promise<NumberGetSmallDecimalResponse>;
 }

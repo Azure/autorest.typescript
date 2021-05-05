@@ -21,10 +21,18 @@ import {
   RecommendationsListHistoryForWebAppOptionalParams,
   RecommendationsListRecommendedRulesForWebAppNextOptionalParams,
   RecommendationsListRecommendedRulesForWebAppOptionalParams,
+  RecommendationsResetAllFiltersOptionalParams,
+  RecommendationsDisableRecommendationForSubscriptionOptionalParams,
+  RecommendationsDisableAllForHostingEnvironmentOptionalParams,
+  RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams,
   RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams,
   RecommendationsGetRuleDetailsByHostingEnvironmentResponse,
+  RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams,
+  RecommendationsDisableAllForWebAppOptionalParams,
+  RecommendationsResetAllFiltersForWebAppOptionalParams,
   RecommendationsGetRuleDetailsByWebAppOptionalParams,
-  RecommendationsGetRuleDetailsByWebAppResponse
+  RecommendationsGetRuleDetailsByWebAppResponse,
+  RecommendationsDisableRecommendationForSiteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -86,7 +94,7 @@ export interface Recommendations {
    * @param options The options parameters.
    */
   resetAllFilters(
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Disables the specified rule so it will not apply to a subscription in the future.
@@ -95,7 +103,7 @@ export interface Recommendations {
    */
   disableRecommendationForSubscription(
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForSubscriptionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Disable all recommendations for an app.
@@ -108,7 +116,7 @@ export interface Recommendations {
     resourceGroupName: string,
     environmentName: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableAllForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Reset all recommendation opt-out settings for an app.
@@ -121,7 +129,7 @@ export interface Recommendations {
     resourceGroupName: string,
     environmentName: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a recommendation rule for an app.
@@ -149,7 +157,7 @@ export interface Recommendations {
     environmentName: string,
     name: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Disable all recommendations for an app.
@@ -160,7 +168,7 @@ export interface Recommendations {
   disableAllForWebApp(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableAllForWebAppOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Reset all recommendation opt-out settings for an app.
@@ -171,7 +179,7 @@ export interface Recommendations {
   resetAllFiltersForWebApp(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersForWebAppOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get a recommendation rule for an app.
@@ -197,6 +205,6 @@ export interface Recommendations {
     resourceGroupName: string,
     siteName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForSiteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

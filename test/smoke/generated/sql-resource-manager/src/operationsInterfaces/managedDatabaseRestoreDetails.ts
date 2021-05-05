@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import {
   RestoreDetailsName,
+  ManagedDatabaseRestoreDetailsGetOptionalParams,
   ManagedDatabaseRestoreDetailsGetResponse
 } from "../models";
 
@@ -28,6 +29,6 @@ export interface ManagedDatabaseRestoreDetails {
     managedInstanceName: string,
     databaseName: string,
     restoreDetailsName: RestoreDetailsName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseRestoreDetailsGetOptionalParams
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse>;
 }

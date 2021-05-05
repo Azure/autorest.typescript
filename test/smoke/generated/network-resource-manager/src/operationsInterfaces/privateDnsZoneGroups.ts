@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateDnsZoneGroup,
+  PrivateDnsZoneGroupsListNextOptionalParams,
+  PrivateDnsZoneGroupsListOptionalParams,
+  PrivateDnsZoneGroupsDeleteOptionalParams,
+  PrivateDnsZoneGroupsGetOptionalParams,
   PrivateDnsZoneGroupsGetResponse,
+  PrivateDnsZoneGroupsCreateOrUpdateOptionalParams,
   PrivateDnsZoneGroupsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface PrivateDnsZoneGroups {
   list(
     privateEndpointName: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateDnsZoneGroup>;
   /**
    * Deletes the specified private dns zone group.
@@ -41,7 +46,7 @@ export interface PrivateDnsZoneGroups {
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface PrivateDnsZoneGroups {
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsGetOptionalParams
   ): Promise<PrivateDnsZoneGroupsGetResponse>;
   /**
    * Creates or updates a private dns zone group in the specified private endpoint.
@@ -71,7 +76,7 @@ export interface PrivateDnsZoneGroups {
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
     parameters: PrivateDnsZoneGroup,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>,

@@ -25,14 +25,19 @@ import {
   DeploymentOperationsListAtSubscriptionScopeOptionalParams,
   DeploymentOperationsListNextOptionalParams,
   DeploymentOperationsListOptionalParams,
+  DeploymentOperationsGetAtScopeOptionalParams,
   DeploymentOperationsGetAtScopeResponse,
   DeploymentOperationsListAtScopeResponse,
+  DeploymentOperationsGetAtTenantScopeOptionalParams,
   DeploymentOperationsGetAtTenantScopeResponse,
   DeploymentOperationsListAtTenantScopeResponse,
+  DeploymentOperationsGetAtManagementGroupScopeOptionalParams,
   DeploymentOperationsGetAtManagementGroupScopeResponse,
   DeploymentOperationsListAtManagementGroupScopeResponse,
+  DeploymentOperationsGetAtSubscriptionScopeOptionalParams,
   DeploymentOperationsGetAtSubscriptionScopeResponse,
   DeploymentOperationsListAtSubscriptionScopeResponse,
+  DeploymentOperationsGetOptionalParams,
   DeploymentOperationsGetResponse,
   DeploymentOperationsListResponse,
   DeploymentOperationsListAtScopeNextResponse,
@@ -361,7 +366,7 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
     scope: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -406,7 +411,7 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
   getAtTenantScope(
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtTenantScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtTenantScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -449,7 +454,7 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
     groupId: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       groupId,
@@ -494,7 +499,7 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
   getAtSubscriptionScope(
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetAtSubscriptionScopeOptionalParams
   ): Promise<DeploymentOperationsGetAtSubscriptionScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       deploymentName,
@@ -537,7 +542,7 @@ export class DeploymentOperationsImpl implements DeploymentOperations {
     resourceGroupName: string,
     deploymentName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentOperationsGetOptionalParams
   ): Promise<DeploymentOperationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

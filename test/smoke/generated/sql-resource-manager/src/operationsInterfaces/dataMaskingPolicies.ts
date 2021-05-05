@@ -9,7 +9,9 @@
 import * as coreHttp from "@azure/core-http";
 import {
   DataMaskingPolicy,
+  DataMaskingPoliciesCreateOrUpdateOptionalParams,
   DataMaskingPoliciesCreateOrUpdateResponse,
+  DataMaskingPoliciesGetOptionalParams,
   DataMaskingPoliciesGetResponse
 } from "../models";
 
@@ -29,7 +31,7 @@ export interface DataMaskingPolicies {
     serverName: string,
     databaseName: string,
     parameters: DataMaskingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingPoliciesCreateOrUpdateOptionalParams
   ): Promise<DataMaskingPoliciesCreateOrUpdateResponse>;
   /**
    * Gets a database data masking policy.
@@ -43,6 +45,6 @@ export interface DataMaskingPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingPoliciesGetOptionalParams
   ): Promise<DataMaskingPoliciesGetResponse>;
 }

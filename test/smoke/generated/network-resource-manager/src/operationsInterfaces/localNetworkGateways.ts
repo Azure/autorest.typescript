@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LocalNetworkGateway,
+  LocalNetworkGatewaysListNextOptionalParams,
+  LocalNetworkGatewaysListOptionalParams,
+  LocalNetworkGatewaysCreateOrUpdateOptionalParams,
   LocalNetworkGatewaysCreateOrUpdateResponse,
+  LocalNetworkGatewaysGetOptionalParams,
   LocalNetworkGatewaysGetResponse,
+  LocalNetworkGatewaysDeleteOptionalParams,
   TagsObject,
+  LocalNetworkGatewaysUpdateTagsOptionalParams,
   LocalNetworkGatewaysUpdateTagsResponse
 } from "../models";
 
@@ -28,7 +34,7 @@ export interface LocalNetworkGateways {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<LocalNetworkGateway>;
   /**
    * Creates or updates a local network gateway in the specified resource group.
@@ -41,7 +47,7 @@ export interface LocalNetworkGateways {
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LocalNetworkGatewaysCreateOrUpdateResponse>,
@@ -57,7 +63,7 @@ export interface LocalNetworkGateways {
   get(
     resourceGroupName: string,
     localNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysGetOptionalParams
   ): Promise<LocalNetworkGatewaysGetResponse>;
   /**
    * Deletes the specified local network gateway.
@@ -68,7 +74,7 @@ export interface LocalNetworkGateways {
   delete(
     resourceGroupName: string,
     localNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -83,6 +89,6 @@ export interface LocalNetworkGateways {
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: LocalNetworkGatewaysUpdateTagsOptionalParams
   ): Promise<LocalNetworkGatewaysUpdateTagsResponse>;
 }

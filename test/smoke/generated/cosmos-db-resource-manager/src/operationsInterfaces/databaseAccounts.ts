@@ -12,22 +12,39 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
+  DatabaseAccountsListOptionalParams,
+  DatabaseAccountsListByResourceGroupOptionalParams,
   Metric,
+  DatabaseAccountsListMetricsOptionalParams,
   Usage,
   DatabaseAccountsListUsagesOptionalParams,
   MetricDefinition,
+  DatabaseAccountsListMetricDefinitionsOptionalParams,
+  DatabaseAccountsGetOptionalParams,
   DatabaseAccountsGetResponse,
   DatabaseAccountUpdateParameters,
+  DatabaseAccountsUpdateOptionalParams,
   DatabaseAccountsUpdateResponse,
   DatabaseAccountCreateUpdateParameters,
+  DatabaseAccountsCreateOrUpdateOptionalParams,
   DatabaseAccountsCreateOrUpdateResponse,
+  DatabaseAccountsDeleteOptionalParams,
   FailoverPolicies,
+  DatabaseAccountsFailoverPriorityChangeOptionalParams,
+  DatabaseAccountsListKeysOptionalParams,
   DatabaseAccountsListKeysResponse,
+  DatabaseAccountsListConnectionStringsOptionalParams,
   DatabaseAccountsListConnectionStringsResponse,
   RegionForOnlineOffline,
+  DatabaseAccountsOfflineRegionOptionalParams,
+  DatabaseAccountsOnlineRegionOptionalParams,
+  DatabaseAccountsGetReadOnlyKeysOptionalParams,
   DatabaseAccountsGetReadOnlyKeysResponse,
+  DatabaseAccountsListReadOnlyKeysOptionalParams,
   DatabaseAccountsListReadOnlyKeysResponse,
-  DatabaseAccountRegenerateKeyParameters
+  DatabaseAccountRegenerateKeyParameters,
+  DatabaseAccountsRegenerateKeyOptionalParams,
+  DatabaseAccountsCheckNameExistsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -38,7 +55,7 @@ export interface DatabaseAccounts {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListOptionalParams
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
   /**
    * Lists all the Azure Cosmos DB database accounts available under the given resource group.
@@ -47,7 +64,7 @@ export interface DatabaseAccounts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
   /**
    * Retrieves the metrics determined by the given filter for the given database account.
@@ -62,7 +79,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Retrieves the usages (most recent data) for the given database account.
@@ -84,7 +101,7 @@ export interface DatabaseAccounts {
   listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition>;
   /**
    * Retrieves the properties of an existing Azure Cosmos DB database account.
@@ -95,7 +112,7 @@ export interface DatabaseAccounts {
   get(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsGetOptionalParams
   ): Promise<DatabaseAccountsGetResponse>;
   /**
    * Updates the properties of an existing Azure Cosmos DB database account.
@@ -108,7 +125,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabaseAccountsUpdateResponse>,
@@ -127,7 +144,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabaseAccountsCreateOrUpdateResponse>,
@@ -143,7 +160,7 @@ export interface DatabaseAccounts {
   delete(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -161,7 +178,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -174,7 +191,7 @@ export interface DatabaseAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListKeysOptionalParams
   ): Promise<DatabaseAccountsListKeysResponse>;
   /**
    * Lists the connection strings for the specified Azure Cosmos DB database account.
@@ -185,7 +202,7 @@ export interface DatabaseAccounts {
   listConnectionStrings(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListConnectionStringsOptionalParams
   ): Promise<DatabaseAccountsListConnectionStringsResponse>;
   /**
    * Offline the specified region for the specified Azure Cosmos DB database account.
@@ -198,7 +215,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsOfflineRegionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -213,7 +230,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsOnlineRegionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -226,7 +243,7 @@ export interface DatabaseAccounts {
   getReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsGetReadOnlyKeysOptionalParams
   ): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
@@ -237,7 +254,7 @@ export interface DatabaseAccounts {
   listReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsListReadOnlyKeysOptionalParams
   ): Promise<DatabaseAccountsListReadOnlyKeysResponse>;
   /**
    * Regenerates an access key for the specified Azure Cosmos DB database account.
@@ -250,7 +267,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsRegenerateKeyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -262,6 +279,6 @@ export interface DatabaseAccounts {
    */
   checkNameExists(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAccountsCheckNameExistsOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

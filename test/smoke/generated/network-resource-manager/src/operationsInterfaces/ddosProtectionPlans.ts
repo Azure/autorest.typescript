@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DdosProtectionPlan,
+  DdosProtectionPlansListNextOptionalParams,
+  DdosProtectionPlansListOptionalParams,
+  DdosProtectionPlansListByResourceGroupNextOptionalParams,
+  DdosProtectionPlansListByResourceGroupOptionalParams,
+  DdosProtectionPlansDeleteOptionalParams,
+  DdosProtectionPlansGetOptionalParams,
   DdosProtectionPlansGetResponse,
+  DdosProtectionPlansCreateOrUpdateOptionalParams,
   DdosProtectionPlansCreateOrUpdateResponse,
   TagsObject,
+  DdosProtectionPlansUpdateTagsOptionalParams,
   DdosProtectionPlansUpdateTagsResponse
 } from "../models";
 
@@ -26,7 +34,7 @@ export interface DdosProtectionPlans {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListOptionalParams
   ): PagedAsyncIterableIterator<DdosProtectionPlan>;
   /**
    * Gets all the DDoS protection plans in a resource group.
@@ -35,7 +43,7 @@ export interface DdosProtectionPlans {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DdosProtectionPlan>;
   /**
    * Deletes the specified DDoS protection plan.
@@ -46,7 +54,7 @@ export interface DdosProtectionPlans {
   delete(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface DdosProtectionPlans {
   get(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansGetOptionalParams
   ): Promise<DdosProtectionPlansGetResponse>;
   /**
    * Creates or updates a DDoS protection plan.
@@ -72,7 +80,7 @@ export interface DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>,
@@ -90,6 +98,6 @@ export interface DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: DdosProtectionPlansUpdateTagsOptionalParams
   ): Promise<DdosProtectionPlansUpdateTagsResponse>;
 }

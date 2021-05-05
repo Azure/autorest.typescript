@@ -11,7 +11,36 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
-import { UriColor } from "../models";
+import {
+  PathsGetBooleanTrueOptionalParams,
+  PathsGetBooleanFalseOptionalParams,
+  PathsGetIntOneMillionOptionalParams,
+  PathsGetIntNegativeOneMillionOptionalParams,
+  PathsGetTenBillionOptionalParams,
+  PathsGetNegativeTenBillionOptionalParams,
+  PathsFloatScientificPositiveOptionalParams,
+  PathsFloatScientificNegativeOptionalParams,
+  PathsDoubleDecimalPositiveOptionalParams,
+  PathsDoubleDecimalNegativeOptionalParams,
+  PathsStringUnicodeOptionalParams,
+  PathsStringUrlEncodedOptionalParams,
+  PathsStringUrlNonEncodedOptionalParams,
+  PathsStringEmptyOptionalParams,
+  PathsStringNullOptionalParams,
+  UriColor,
+  PathsEnumValidOptionalParams,
+  PathsEnumNullOptionalParams,
+  PathsByteMultiByteOptionalParams,
+  PathsByteEmptyOptionalParams,
+  PathsByteNullOptionalParams,
+  PathsDateValidOptionalParams,
+  PathsDateNullOptionalParams,
+  PathsDateTimeValidOptionalParams,
+  PathsDateTimeNullOptionalParams,
+  PathsBase64UrlOptionalParams,
+  PathsArrayCsvInPathOptionalParams,
+  PathsUnixTimeUrlOptionalParams
+} from "../models";
 
 /** Class representing a Paths. */
 export class PathsImpl implements Paths {
@@ -30,7 +59,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetBooleanTrueOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -46,7 +75,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetBooleanFalseOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -62,7 +91,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetIntOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -78,7 +107,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetIntNegativeOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -94,7 +123,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -110,7 +139,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetNegativeTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -126,7 +155,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.OperationOptions
+    options?: PathsFloatScientificPositiveOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -142,7 +171,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.OperationOptions
+    options?: PathsFloatScientificNegativeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -158,7 +187,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.OperationOptions
+    options?: PathsDoubleDecimalPositiveOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -174,7 +203,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.OperationOptions
+    options?: PathsDoubleDecimalNegativeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -190,7 +219,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUnicodeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -206,7 +235,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -222,7 +251,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringUrlNonEncoded(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUrlNonEncodedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -238,7 +267,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -256,7 +285,7 @@ export class PathsImpl implements Paths {
    */
   stringNull(
     stringPath: string,
-    options?: coreHttp.OperationOptions
+    options?: PathsStringNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       stringPath,
@@ -275,7 +304,7 @@ export class PathsImpl implements Paths {
    */
   enumValid(
     enumPath: UriColor,
-    options?: coreHttp.OperationOptions
+    options?: PathsEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       enumPath,
@@ -294,7 +323,7 @@ export class PathsImpl implements Paths {
    */
   enumNull(
     enumPath: UriColor,
-    options?: coreHttp.OperationOptions
+    options?: PathsEnumNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       enumPath,
@@ -313,7 +342,7 @@ export class PathsImpl implements Paths {
    */
   byteMultiByte(
     bytePath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsByteMultiByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bytePath,
@@ -330,7 +359,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PathsByteEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -348,7 +377,7 @@ export class PathsImpl implements Paths {
    */
   byteNull(
     bytePath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsByteNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       bytePath,
@@ -365,7 +394,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.OperationOptions
+    options?: PathsDateValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -384,7 +413,7 @@ export class PathsImpl implements Paths {
    */
   dateNull(
     datePath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsDateNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datePath,
@@ -401,7 +430,7 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: PathsDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -419,7 +448,7 @@ export class PathsImpl implements Paths {
    */
   dateTimeNull(
     dateTimePath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsDateTimeNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       dateTimePath,
@@ -438,7 +467,7 @@ export class PathsImpl implements Paths {
    */
   base64Url(
     base64UrlPath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsBase64UrlOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       base64UrlPath,
@@ -459,7 +488,7 @@ export class PathsImpl implements Paths {
    */
   arrayCsvInPath(
     arrayPath: string[],
-    options?: coreHttp.OperationOptions
+    options?: PathsArrayCsvInPathOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayPath,
@@ -478,7 +507,7 @@ export class PathsImpl implements Paths {
    */
   unixTimeUrl(
     unixTimeUrlPath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsUnixTimeUrlOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       unixTimeUrlPath,

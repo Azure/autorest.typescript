@@ -15,33 +15,66 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   StaticSiteARMResource,
+  StaticSitesListNextOptionalParams,
+  StaticSitesListOptionalParams,
+  StaticSitesGetStaticSitesByResourceGroupNextOptionalParams,
+  StaticSitesGetStaticSitesByResourceGroupOptionalParams,
   StaticSiteUserARMResource,
+  StaticSitesListStaticSiteUsersNextOptionalParams,
+  StaticSitesListStaticSiteUsersOptionalParams,
   StaticSiteBuildARMResource,
+  StaticSitesGetStaticSiteBuildsNextOptionalParams,
+  StaticSitesGetStaticSiteBuildsOptionalParams,
   StaticSiteFunctionOverviewARMResource,
+  StaticSitesListStaticSiteBuildFunctionsNextOptionalParams,
+  StaticSitesListStaticSiteBuildFunctionsOptionalParams,
   StaticSiteCustomDomainOverviewARMResource,
+  StaticSitesListStaticSiteCustomDomainsNextOptionalParams,
+  StaticSitesListStaticSiteCustomDomainsOptionalParams,
+  StaticSitesListStaticSiteFunctionsNextOptionalParams,
+  StaticSitesListStaticSiteFunctionsOptionalParams,
   StaticSitesListResponse,
   StaticSitesGetStaticSitesByResourceGroupResponse,
+  StaticSitesGetStaticSiteOptionalParams,
   StaticSitesGetStaticSiteResponse,
+  StaticSitesCreateOrUpdateStaticSiteOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteResponse,
+  StaticSitesDeleteStaticSiteOptionalParams,
   StaticSitePatchResource,
+  StaticSitesUpdateStaticSiteOptionalParams,
   StaticSitesUpdateStaticSiteResponse,
   StaticSitesListStaticSiteUsersResponse,
+  StaticSitesDeleteStaticSiteUserOptionalParams,
+  StaticSitesUpdateStaticSiteUserOptionalParams,
   StaticSitesUpdateStaticSiteUserResponse,
   StaticSitesGetStaticSiteBuildsResponse,
+  StaticSitesGetStaticSiteBuildOptionalParams,
   StaticSitesGetStaticSiteBuildResponse,
+  StaticSitesDeleteStaticSiteBuildOptionalParams,
   StringDictionary,
+  StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse,
   StaticSitesListStaticSiteBuildFunctionsResponse,
+  StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteBuildFunctionAppSettingsResponse,
+  StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse,
   StaticSiteUserInvitationRequestResource,
+  StaticSitesCreateUserRolesInvitationLinkOptionalParams,
   StaticSitesCreateUserRolesInvitationLinkResponse,
   StaticSitesListStaticSiteCustomDomainsResponse,
+  StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse,
+  StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
+  StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
+  StaticSitesDetachStaticSiteOptionalParams,
   StaticSitesListStaticSiteFunctionsResponse,
+  StaticSitesListStaticSiteFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteFunctionAppSettingsResponse,
+  StaticSitesListStaticSiteSecretsOptionalParams,
   StaticSitesListStaticSiteSecretsResponse,
   StaticSiteResetPropertiesARMResource,
+  StaticSitesResetStaticSiteApiKeyOptionalParams,
   StaticSitesListNextResponse,
   StaticSitesGetStaticSitesByResourceGroupNextResponse,
   StaticSitesListStaticSiteUsersNextResponse,
@@ -69,7 +102,7 @@ export class StaticSitesImpl implements StaticSites {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteARMResource> {
     const iter = this.listPagingAll(options);
     return {
@@ -86,7 +119,7 @@ export class StaticSitesImpl implements StaticSites {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListOptionalParams
   ): AsyncIterableIterator<StaticSiteARMResource[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -99,7 +132,7 @@ export class StaticSitesImpl implements StaticSites {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListOptionalParams
   ): AsyncIterableIterator<StaticSiteARMResource> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -113,7 +146,7 @@ export class StaticSitesImpl implements StaticSites {
    */
   public listStaticSitesByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteARMResource> {
     const iter = this.getStaticSitesByResourceGroupPagingAll(
       resourceGroupName,
@@ -137,7 +170,7 @@ export class StaticSitesImpl implements StaticSites {
 
   private async *getStaticSitesByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): AsyncIterableIterator<StaticSiteARMResource[]> {
     let result = await this._getStaticSitesByResourceGroup(
       resourceGroupName,
@@ -158,7 +191,7 @@ export class StaticSitesImpl implements StaticSites {
 
   private async *getStaticSitesByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): AsyncIterableIterator<StaticSiteARMResource> {
     for await (const page of this.getStaticSitesByResourceGroupPagingPage(
       resourceGroupName,
@@ -179,7 +212,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteUserARMResource> {
     const iter = this.listStaticSiteUsersPagingAll(
       resourceGroupName,
@@ -209,7 +242,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersOptionalParams
   ): AsyncIterableIterator<StaticSiteUserARMResource[]> {
     let result = await this._listStaticSiteUsers(
       resourceGroupName,
@@ -236,7 +269,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersOptionalParams
   ): AsyncIterableIterator<StaticSiteUserARMResource> {
     for await (const page of this.listStaticSiteUsersPagingPage(
       resourceGroupName,
@@ -257,7 +290,7 @@ export class StaticSitesImpl implements StaticSites {
   public listStaticSiteBuilds(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteBuildARMResource> {
     const iter = this.getStaticSiteBuildsPagingAll(
       resourceGroupName,
@@ -284,7 +317,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *getStaticSiteBuildsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): AsyncIterableIterator<StaticSiteBuildARMResource[]> {
     let result = await this._getStaticSiteBuilds(
       resourceGroupName,
@@ -308,7 +341,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *getStaticSiteBuildsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): AsyncIterableIterator<StaticSiteBuildARMResource> {
     for await (const page of this.getStaticSiteBuildsPagingPage(
       resourceGroupName,
@@ -330,7 +363,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     const iter = this.listStaticSiteBuildFunctionsPagingAll(
       resourceGroupName,
@@ -360,7 +393,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
     let result = await this._listStaticSiteBuildFunctions(
       resourceGroupName,
@@ -387,7 +420,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     for await (const page of this.listStaticSiteBuildFunctionsPagingPage(
       resourceGroupName,
@@ -408,7 +441,7 @@ export class StaticSitesImpl implements StaticSites {
   public listStaticSiteCustomDomains(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource> {
     const iter = this.listStaticSiteCustomDomainsPagingAll(
       resourceGroupName,
@@ -435,7 +468,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteCustomDomainsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): AsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource[]> {
     let result = await this._listStaticSiteCustomDomains(
       resourceGroupName,
@@ -459,7 +492,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteCustomDomainsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): AsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource> {
     for await (const page of this.listStaticSiteCustomDomainsPagingPage(
       resourceGroupName,
@@ -479,7 +512,7 @@ export class StaticSitesImpl implements StaticSites {
   public listStaticSiteFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     const iter = this.listStaticSiteFunctionsPagingAll(
       resourceGroupName,
@@ -506,7 +539,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteFunctionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
     let result = await this._listStaticSiteFunctions(
       resourceGroupName,
@@ -530,7 +563,7 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteFunctionsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource> {
     for await (const page of this.listStaticSiteFunctionsPagingPage(
       resourceGroupName,
@@ -546,7 +579,7 @@ export class StaticSitesImpl implements StaticSites {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListOptionalParams
   ): Promise<StaticSitesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -564,7 +597,7 @@ export class StaticSitesImpl implements StaticSites {
    */
   private _getStaticSitesByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): Promise<StaticSitesGetStaticSitesByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -585,7 +618,7 @@ export class StaticSitesImpl implements StaticSites {
   getStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteOptionalParams
   ): Promise<StaticSitesGetStaticSiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -610,7 +643,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSiteARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -633,7 +666,7 @@ export class StaticSitesImpl implements StaticSites {
   deleteStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -658,7 +691,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -683,7 +716,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersOptionalParams
   ): Promise<StaticSitesListStaticSiteUsersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -710,7 +743,7 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     authprovider: string,
     userid: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteUserOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -740,7 +773,7 @@ export class StaticSitesImpl implements StaticSites {
     authprovider: string,
     userid: string,
     staticSiteUserEnvelope: StaticSiteUserARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesUpdateStaticSiteUserOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteUserResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -765,7 +798,7 @@ export class StaticSitesImpl implements StaticSites {
   private _getStaticSiteBuilds(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -789,7 +822,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -814,7 +847,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteBuildOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -841,7 +874,7 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     prId: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<
     StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
   > {
@@ -871,7 +904,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -896,7 +929,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     prId: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -921,7 +954,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -948,7 +981,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams
   ): Promise<StaticSitesCreateUserRolesInvitationLinkResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -971,7 +1004,7 @@ export class StaticSitesImpl implements StaticSites {
   private _listStaticSiteCustomDomains(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): Promise<StaticSitesListStaticSiteCustomDomainsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -996,7 +1029,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1021,7 +1054,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1046,7 +1079,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1069,7 +1102,7 @@ export class StaticSitesImpl implements StaticSites {
   detachStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesDetachStaticSiteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1091,7 +1124,7 @@ export class StaticSitesImpl implements StaticSites {
   private _listStaticSiteFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1113,7 +1146,7 @@ export class StaticSitesImpl implements StaticSites {
   listStaticSiteFunctionAppSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1135,7 +1168,7 @@ export class StaticSitesImpl implements StaticSites {
   listStaticSiteSecrets(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteSecretsOptionalParams
   ): Promise<StaticSitesListStaticSiteSecretsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1159,7 +1192,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesResetStaticSiteApiKeyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1180,7 +1213,7 @@ export class StaticSitesImpl implements StaticSites {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListNextOptionalParams
   ): Promise<StaticSitesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -1202,7 +1235,7 @@ export class StaticSitesImpl implements StaticSites {
   private _getStaticSitesByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSitesByResourceGroupNextOptionalParams
   ): Promise<StaticSitesGetStaticSitesByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1228,7 +1261,7 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     authprovider: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteUsersNextOptionalParams
   ): Promise<StaticSitesListStaticSiteUsersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1254,7 +1287,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesGetStaticSiteBuildsNextOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1282,7 +1315,7 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     prId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteBuildFunctionsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1309,7 +1342,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteCustomDomainsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteCustomDomainsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1335,7 +1368,7 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: StaticSitesListStaticSiteFunctionsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,8 +15,13 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   DeletedSite,
+  DeletedWebAppsListNextOptionalParams,
+  DeletedWebAppsListOptionalParams,
+  DeletedWebAppsListByLocationNextOptionalParams,
+  DeletedWebAppsListByLocationOptionalParams,
   DeletedWebAppsListResponse,
   DeletedWebAppsListByLocationResponse,
+  DeletedWebAppsGetDeletedWebAppByLocationOptionalParams,
   DeletedWebAppsGetDeletedWebAppByLocationResponse,
   DeletedWebAppsListNextResponse,
   DeletedWebAppsListByLocationNextResponse
@@ -40,7 +45,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListOptionalParams
   ): PagedAsyncIterableIterator<DeletedSite> {
     const iter = this.listPagingAll(options);
     return {
@@ -57,7 +62,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListOptionalParams
   ): AsyncIterableIterator<DeletedSite[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -70,7 +75,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListOptionalParams
   ): AsyncIterableIterator<DeletedSite> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -84,7 +89,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
    */
   public listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationOptionalParams
   ): PagedAsyncIterableIterator<DeletedSite> {
     const iter = this.listByLocationPagingAll(location, options);
     return {
@@ -102,7 +107,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
 
   private async *listByLocationPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationOptionalParams
   ): AsyncIterableIterator<DeletedSite[]> {
     let result = await this._listByLocation(location, options);
     yield result.value || [];
@@ -120,7 +125,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
 
   private async *listByLocationPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationOptionalParams
   ): AsyncIterableIterator<DeletedSite> {
     for await (const page of this.listByLocationPagingPage(location, options)) {
       yield* page;
@@ -132,7 +137,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListOptionalParams
   ): Promise<DeletedWebAppsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -150,7 +155,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
    */
   private _listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationOptionalParams
   ): Promise<DeletedWebAppsListByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -171,7 +176,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
   getDeletedWebAppByLocation(
     location: string,
     deletedSiteId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsGetDeletedWebAppByLocationOptionalParams
   ): Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -191,7 +196,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListNextOptionalParams
   ): Promise<DeletedWebAppsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -212,7 +217,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
   private _listByLocationNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedWebAppsListByLocationNextOptionalParams
   ): Promise<DeletedWebAppsListByLocationNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

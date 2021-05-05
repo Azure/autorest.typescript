@@ -260,6 +260,10 @@ export const enum KnownGoblinSharkColor {
  */
 export type GoblinSharkColor = string;
 
+/** Optional parameters. */
+export interface BasicGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getValid operation. */
 export type BasicGetValidResponse = BasicDef & {
   /** The underlying HTTP response. */
@@ -271,6 +275,14 @@ export type BasicGetValidResponse = BasicDef & {
     parsedBody: BasicDef;
   };
 };
+
+/** Optional parameters. */
+export interface BasicPutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface BasicGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type BasicGetInvalidResponse = BasicDef & {
@@ -284,6 +296,10 @@ export type BasicGetInvalidResponse = BasicDef & {
   };
 };
 
+/** Optional parameters. */
+export interface BasicGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmpty operation. */
 export type BasicGetEmptyResponse = BasicDef & {
   /** The underlying HTTP response. */
@@ -295,6 +311,9 @@ export type BasicGetEmptyResponse = BasicDef & {
     parsedBody: BasicDef;
   };
 };
+
+/** Optional parameters. */
+export interface BasicGetNullOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type BasicGetNullResponse = BasicDef & {
@@ -308,6 +327,10 @@ export type BasicGetNullResponse = BasicDef & {
   };
 };
 
+/** Optional parameters. */
+export interface BasicGetNotProvidedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNotProvided operation. */
 export type BasicGetNotProvidedResponse = BasicDef & {
   /** The underlying HTTP response. */
@@ -319,6 +342,10 @@ export type BasicGetNotProvidedResponse = BasicDef & {
     parsedBody: BasicDef;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitiveGetIntOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInt operation. */
 export type PrimitiveGetIntResponse = IntWrapper & {
@@ -332,6 +359,14 @@ export type PrimitiveGetIntResponse = IntWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutIntOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetLongOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getLong operation. */
 export type PrimitiveGetLongResponse = LongWrapper & {
   /** The underlying HTTP response. */
@@ -343,6 +378,14 @@ export type PrimitiveGetLongResponse = LongWrapper & {
     parsedBody: LongWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitivePutLongOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetFloatOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloat operation. */
 export type PrimitiveGetFloatResponse = FloatWrapper & {
@@ -356,6 +399,14 @@ export type PrimitiveGetFloatResponse = FloatWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutFloatOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetDoubleOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDouble operation. */
 export type PrimitiveGetDoubleResponse = DoubleWrapper & {
   /** The underlying HTTP response. */
@@ -367,6 +418,14 @@ export type PrimitiveGetDoubleResponse = DoubleWrapper & {
     parsedBody: DoubleWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitivePutDoubleOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetBoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBool operation. */
 export type PrimitiveGetBoolResponse = BooleanWrapper & {
@@ -380,6 +439,14 @@ export type PrimitiveGetBoolResponse = BooleanWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutBoolOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getString operation. */
 export type PrimitiveGetStringResponse = StringWrapper & {
   /** The underlying HTTP response. */
@@ -391,6 +458,14 @@ export type PrimitiveGetStringResponse = StringWrapper & {
     parsedBody: StringWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitivePutStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetDateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDate operation. */
 export type PrimitiveGetDateResponse = DateWrapper & {
@@ -404,6 +479,14 @@ export type PrimitiveGetDateResponse = DateWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateTime operation. */
 export type PrimitiveGetDateTimeResponse = DatetimeWrapper & {
   /** The underlying HTTP response. */
@@ -415,6 +498,14 @@ export type PrimitiveGetDateTimeResponse = DatetimeWrapper & {
     parsedBody: DatetimeWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitivePutDateTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetDateTimeRfc1123OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123 operation. */
 export type PrimitiveGetDateTimeRfc1123Response = Datetimerfc1123Wrapper & {
@@ -428,6 +519,14 @@ export type PrimitiveGetDateTimeRfc1123Response = Datetimerfc1123Wrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutDateTimeRfc1123OptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetDurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDuration operation. */
 export type PrimitiveGetDurationResponse = DurationWrapper & {
   /** The underlying HTTP response. */
@@ -439,6 +538,14 @@ export type PrimitiveGetDurationResponse = DurationWrapper & {
     parsedBody: DurationWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface PrimitivePutDurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PrimitiveGetByteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByte operation. */
 export type PrimitiveGetByteResponse = ByteWrapper & {
@@ -452,6 +559,14 @@ export type PrimitiveGetByteResponse = ByteWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface PrimitivePutByteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getValid operation. */
 export type ArrayGetValidResponse = ArrayWrapper & {
   /** The underlying HTTP response. */
@@ -463,6 +578,14 @@ export type ArrayGetValidResponse = ArrayWrapper & {
     parsedBody: ArrayWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
 export type ArrayGetEmptyResponse = ArrayWrapper & {
@@ -476,6 +599,14 @@ export type ArrayGetEmptyResponse = ArrayWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetNotProvidedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNotProvided operation. */
 export type ArrayGetNotProvidedResponse = ArrayWrapper & {
   /** The underlying HTTP response. */
@@ -487,6 +618,10 @@ export type ArrayGetNotProvidedResponse = ArrayWrapper & {
     parsedBody: ArrayWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
 export type DictionaryGetValidResponse = DictionaryWrapper & {
@@ -500,6 +635,14 @@ export type DictionaryGetValidResponse = DictionaryWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryPutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmpty operation. */
 export type DictionaryGetEmptyResponse = DictionaryWrapper & {
   /** The underlying HTTP response. */
@@ -511,6 +654,14 @@ export type DictionaryGetEmptyResponse = DictionaryWrapper & {
     parsedBody: DictionaryWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface DictionaryPutEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DictionaryGetNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type DictionaryGetNullResponse = DictionaryWrapper & {
@@ -524,6 +675,10 @@ export type DictionaryGetNullResponse = DictionaryWrapper & {
   };
 };
 
+/** Optional parameters. */
+export interface DictionaryGetNotProvidedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNotProvided operation. */
 export type DictionaryGetNotProvidedResponse = DictionaryWrapper & {
   /** The underlying HTTP response. */
@@ -535,6 +690,10 @@ export type DictionaryGetNotProvidedResponse = DictionaryWrapper & {
     parsedBody: DictionaryWrapper;
   };
 };
+
+/** Optional parameters. */
+export interface InheritanceGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
 export type InheritanceGetValidResponse = Siamese & {
@@ -548,6 +707,14 @@ export type InheritanceGetValidResponse = Siamese & {
   };
 };
 
+/** Optional parameters. */
+export interface InheritancePutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolymorphismGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getValid operation. */
 export type PolymorphismGetValidResponse = FishUnion & {
   /** The underlying HTTP response. */
@@ -559,6 +726,14 @@ export type PolymorphismGetValidResponse = FishUnion & {
     parsedBody: FishUnion;
   };
 };
+
+/** Optional parameters. */
+export interface PolymorphismPutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolymorphismGetDotSyntaxOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDotSyntax operation. */
 export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
@@ -572,6 +747,10 @@ export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
   };
 };
 
+/** Optional parameters. */
+export interface PolymorphismGetComposedWithDiscriminatorOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComposedWithDiscriminator operation. */
 export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket & {
   /** The underlying HTTP response. */
@@ -583,6 +762,10 @@ export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket & {
     parsedBody: DotFishMarket;
   };
 };
+
+/** Optional parameters. */
+export interface PolymorphismGetComposedWithoutDiscriminatorOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComposedWithoutDiscriminator operation. */
 export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket & {
@@ -596,6 +779,10 @@ export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket 
   };
 };
 
+/** Optional parameters. */
+export interface PolymorphismGetComplicatedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplicated operation. */
 export type PolymorphismGetComplicatedResponse = SalmonUnion & {
   /** The underlying HTTP response. */
@@ -607,6 +794,14 @@ export type PolymorphismGetComplicatedResponse = SalmonUnion & {
     parsedBody: SalmonUnion;
   };
 };
+
+/** Optional parameters. */
+export interface PolymorphismPutComplicatedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolymorphismPutMissingDiscriminatorOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the putMissingDiscriminator operation. */
 export type PolymorphismPutMissingDiscriminatorResponse = SalmonUnion & {
@@ -620,6 +815,14 @@ export type PolymorphismPutMissingDiscriminatorResponse = SalmonUnion & {
   };
 };
 
+/** Optional parameters. */
+export interface PolymorphismPutValidMissingRequiredOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PolymorphicrecursiveGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getValid operation. */
 export type PolymorphicrecursiveGetValidResponse = FishUnion & {
   /** The underlying HTTP response. */
@@ -632,6 +835,14 @@ export type PolymorphicrecursiveGetValidResponse = FishUnion & {
   };
 };
 
+/** Optional parameters. */
+export interface PolymorphicrecursivePutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ReadonlypropertyGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getValid operation. */
 export type ReadonlypropertyGetValidResponse = ReadonlyObj & {
   /** The underlying HTTP response. */
@@ -643,6 +854,14 @@ export type ReadonlypropertyGetValidResponse = ReadonlyObj & {
     parsedBody: ReadonlyObj;
   };
 };
+
+/** Optional parameters. */
+export interface ReadonlypropertyPutValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface FlattencomplexGetValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
 export type FlattencomplexGetValidResponse = MyBaseTypeUnion & {

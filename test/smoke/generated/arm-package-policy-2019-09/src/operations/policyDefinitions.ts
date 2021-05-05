@@ -15,10 +15,23 @@ import * as Parameters from "../models/parameters";
 import { PolicyClientContext } from "../policyClientContext";
 import {
   PolicyDefinition,
+  PolicyDefinitionsListNextOptionalParams,
+  PolicyDefinitionsListOptionalParams,
+  PolicyDefinitionsListBuiltInNextOptionalParams,
+  PolicyDefinitionsListBuiltInOptionalParams,
+  PolicyDefinitionsListByManagementGroupNextOptionalParams,
+  PolicyDefinitionsListByManagementGroupOptionalParams,
+  PolicyDefinitionsCreateOrUpdateOptionalParams,
   PolicyDefinitionsCreateOrUpdateResponse,
+  PolicyDefinitionsDeleteOptionalParams,
+  PolicyDefinitionsGetOptionalParams,
   PolicyDefinitionsGetResponse,
+  PolicyDefinitionsGetBuiltInOptionalParams,
   PolicyDefinitionsGetBuiltInResponse,
+  PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse,
+  PolicyDefinitionsDeleteAtManagementGroupOptionalParams,
+  PolicyDefinitionsGetAtManagementGroupOptionalParams,
   PolicyDefinitionsGetAtManagementGroupResponse,
   PolicyDefinitionsListResponse,
   PolicyDefinitionsListBuiltInResponse,
@@ -46,7 +59,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listPagingAll(options);
     return {
@@ -63,7 +76,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListOptionalParams
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -76,7 +89,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListOptionalParams
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -88,7 +101,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   public listBuiltIn(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listBuiltInPagingAll(options);
     return {
@@ -105,7 +118,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listBuiltInPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInOptionalParams
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result = await this._listBuiltIn(options);
     yield result.value || [];
@@ -118,7 +131,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listBuiltInPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInOptionalParams
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listBuiltInPagingPage(options)) {
       yield* page;
@@ -132,7 +145,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   public listByManagementGroup(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listByManagementGroupPagingAll(
       managementGroupId,
@@ -153,7 +166,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
 
   private async *listByManagementGroupPagingPage(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result = await this._listByManagementGroup(managementGroupId, options);
     yield result.value || [];
@@ -171,7 +184,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
 
   private async *listByManagementGroupPagingAll(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listByManagementGroupPagingPage(
       managementGroupId,
@@ -190,7 +203,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   createOrUpdate(
     policyDefinitionName: string,
     parameters: PolicyDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsCreateOrUpdateOptionalParams
   ): Promise<PolicyDefinitionsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -210,7 +223,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   delete(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -229,7 +242,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   get(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetOptionalParams
   ): Promise<PolicyDefinitionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -248,7 +261,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   getBuiltIn(
     policyDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetBuiltInOptionalParams
   ): Promise<PolicyDefinitionsGetBuiltInResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -272,7 +285,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
     policyDefinitionName: string,
     managementGroupId: string,
     parameters: PolicyDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   ): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -295,7 +308,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   deleteAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -317,7 +330,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   getAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsGetAtManagementGroupOptionalParams
   ): Promise<PolicyDefinitionsGetAtManagementGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       policyDefinitionName,
@@ -335,7 +348,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListOptionalParams
   ): Promise<PolicyDefinitionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -351,7 +364,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   private _listBuiltIn(
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInOptionalParams
   ): Promise<PolicyDefinitionsListBuiltInResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -369,7 +382,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listByManagementGroup(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams
   ): Promise<PolicyDefinitionsListByManagementGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       managementGroupId,
@@ -388,7 +401,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListNextOptionalParams
   ): Promise<PolicyDefinitionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -407,7 +420,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listBuiltInNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListBuiltInNextOptionalParams
   ): Promise<PolicyDefinitionsListBuiltInNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -428,7 +441,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   private _listByManagementGroupNext(
     managementGroupId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicyDefinitionsListByManagementGroupNextOptionalParams
   ): Promise<PolicyDefinitionsListByManagementGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       managementGroupId,

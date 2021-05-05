@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface TimeGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type TimeGetResponse = {
   /** The parsed response body. */
@@ -27,6 +30,9 @@ export type TimeGetResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface TimePutOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the put operation. */
 export type TimePutResponse = {

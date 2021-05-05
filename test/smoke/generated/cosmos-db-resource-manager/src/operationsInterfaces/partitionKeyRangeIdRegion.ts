@@ -9,7 +9,10 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { PartitionMetric } from "../models";
+import {
+  PartitionMetric,
+  PartitionKeyRangeIdRegionListMetricsOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a PartitionKeyRangeIdRegion. */
@@ -36,6 +39,6 @@ export interface PartitionKeyRangeIdRegion {
     collectionRid: string,
     partitionKeyRangeId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PartitionKeyRangeIdRegionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PartitionMetric>;
 }

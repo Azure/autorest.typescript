@@ -20,8 +20,11 @@ import {
   ManagedInstanceKeysListByInstanceNextOptionalParams,
   ManagedInstanceKeysListByInstanceOptionalParams,
   ManagedInstanceKeysListByInstanceResponse,
+  ManagedInstanceKeysGetOptionalParams,
   ManagedInstanceKeysGetResponse,
+  ManagedInstanceKeysCreateOrUpdateOptionalParams,
   ManagedInstanceKeysCreateOrUpdateResponse,
+  ManagedInstanceKeysDeleteOptionalParams,
   ManagedInstanceKeysListByInstanceNextResponse
 } from "../models";
 
@@ -145,7 +148,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysGetOptionalParams
   ): Promise<ManagedInstanceKeysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -173,7 +176,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
     managedInstanceName: string,
     keyName: string,
     parameters: ManagedInstanceKey,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceKeysCreateOrUpdateResponse>,
@@ -196,16 +199,12 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -220,7 +219,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceKeysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -239,16 +238,12 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

@@ -13,18 +13,23 @@ import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
   ModelFlatteningClientOptionalParams,
   ModelFlatteningClientPutArrayOptionalParams,
+  ModelFlatteningClientGetArrayOptionalParams,
   ModelFlatteningClientGetArrayResponse,
   ModelFlatteningClientPutWrappedArrayOptionalParams,
+  ModelFlatteningClientGetWrappedArrayOptionalParams,
   ModelFlatteningClientGetWrappedArrayResponse,
   ModelFlatteningClientPutDictionaryOptionalParams,
+  ModelFlatteningClientGetDictionaryOptionalParams,
   ModelFlatteningClientGetDictionaryResponse,
   ModelFlatteningClientPutResourceCollectionOptionalParams,
+  ModelFlatteningClientGetResourceCollectionOptionalParams,
   ModelFlatteningClientGetResourceCollectionResponse,
   ModelFlatteningClientPutSimpleProductOptionalParams,
   ModelFlatteningClientPutSimpleProductResponse,
   ModelFlatteningClientPostFlattenedSimpleProductOptionalParams,
   ModelFlatteningClientPostFlattenedSimpleProductResponse,
   FlattenParameterGroup,
+  ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams,
   ModelFlatteningClientPutSimpleProductWithGroupingResponse
 } from "./models";
 
@@ -58,7 +63,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getArray(
-    options?: coreHttp.OperationOptions
+    options?: ModelFlatteningClientGetArrayOptionalParams
   ): Promise<ModelFlatteningClientGetArrayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -92,7 +97,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getWrappedArray(
-    options?: coreHttp.OperationOptions
+    options?: ModelFlatteningClientGetWrappedArrayOptionalParams
   ): Promise<ModelFlatteningClientGetWrappedArrayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -124,7 +129,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getDictionary(
-    options?: coreHttp.OperationOptions
+    options?: ModelFlatteningClientGetDictionaryOptionalParams
   ): Promise<ModelFlatteningClientGetDictionaryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -156,7 +161,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getResourceCollection(
-    options?: coreHttp.OperationOptions
+    options?: ModelFlatteningClientGetResourceCollectionOptionalParams
   ): Promise<ModelFlatteningClientGetResourceCollectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -210,7 +215,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putSimpleProductWithGrouping(
     flattenParameterGroup: FlattenParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
   ): Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       flattenParameterGroup,

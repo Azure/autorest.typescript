@@ -12,19 +12,43 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyNumberClientContext } from "../bodyNumberClientContext";
 import {
+  NumberGetNullOptionalParams,
   NumberGetNullResponse,
+  NumberGetInvalidFloatOptionalParams,
   NumberGetInvalidFloatResponse,
+  NumberGetInvalidDoubleOptionalParams,
   NumberGetInvalidDoubleResponse,
+  NumberGetInvalidDecimalOptionalParams,
   NumberGetInvalidDecimalResponse,
+  NumberPutBigFloatOptionalParams,
+  NumberGetBigFloatOptionalParams,
   NumberGetBigFloatResponse,
+  NumberPutBigDoubleOptionalParams,
+  NumberGetBigDoubleOptionalParams,
   NumberGetBigDoubleResponse,
+  NumberPutBigDoublePositiveDecimalOptionalParams,
+  NumberGetBigDoublePositiveDecimalOptionalParams,
   NumberGetBigDoublePositiveDecimalResponse,
+  NumberPutBigDoubleNegativeDecimalOptionalParams,
+  NumberGetBigDoubleNegativeDecimalOptionalParams,
   NumberGetBigDoubleNegativeDecimalResponse,
+  NumberPutBigDecimalOptionalParams,
+  NumberGetBigDecimalOptionalParams,
   NumberGetBigDecimalResponse,
+  NumberPutBigDecimalPositiveDecimalOptionalParams,
+  NumberGetBigDecimalPositiveDecimalOptionalParams,
   NumberGetBigDecimalPositiveDecimalResponse,
+  NumberPutBigDecimalNegativeDecimalOptionalParams,
+  NumberGetBigDecimalNegativeDecimalOptionalParams,
   NumberGetBigDecimalNegativeDecimalResponse,
+  NumberPutSmallFloatOptionalParams,
+  NumberGetSmallFloatOptionalParams,
   NumberGetSmallFloatResponse,
+  NumberPutSmallDoubleOptionalParams,
+  NumberGetSmallDoubleOptionalParams,
   NumberGetSmallDoubleResponse,
+  NumberPutSmallDecimalOptionalParams,
+  NumberGetSmallDecimalOptionalParams,
   NumberGetSmallDecimalResponse
 } from "../models";
 
@@ -44,7 +68,9 @@ export class NumberOperationsImpl implements NumberOperations {
    * Get null Number value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<NumberGetNullResponse> {
+  getNull(
+    options?: NumberGetNullOptionalParams
+  ): Promise<NumberGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -59,7 +85,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidFloatOptionalParams
   ): Promise<NumberGetInvalidFloatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -75,7 +101,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidDoubleOptionalParams
   ): Promise<NumberGetInvalidDoubleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -91,7 +117,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetInvalidDecimalOptionalParams
   ): Promise<NumberGetInvalidDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -109,7 +135,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigFloat(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigFloatOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -126,7 +152,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigFloatOptionalParams
   ): Promise<NumberGetBigFloatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -144,7 +170,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDouble(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoubleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -161,7 +187,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoubleOptionalParams
   ): Promise<NumberGetBigDoubleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -177,7 +203,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDoublePositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoublePositiveDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -193,7 +219,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDoublePositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoublePositiveDecimalOptionalParams
   ): Promise<NumberGetBigDoublePositiveDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -209,7 +235,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDoubleNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDoubleNegativeDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -225,7 +251,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDoubleNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDoubleNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDoubleNegativeDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -243,7 +269,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDecimal(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -260,7 +286,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalOptionalParams
   ): Promise<NumberGetBigDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -276,7 +302,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDecimalPositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalPositiveDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -292,7 +318,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimalPositiveDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalPositiveDecimalOptionalParams
   ): Promise<NumberGetBigDecimalPositiveDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -308,7 +334,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDecimalNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberPutBigDecimalNegativeDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -324,7 +350,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimalNegativeDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetBigDecimalNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDecimalNegativeDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -342,7 +368,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallFloat(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallFloatOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -359,7 +385,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallFloat(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallFloatOptionalParams
   ): Promise<NumberGetSmallFloatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -377,7 +403,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallDouble(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallDoubleOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -394,7 +420,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallDouble(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallDoubleOptionalParams
   ): Promise<NumberGetSmallDoubleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -412,7 +438,7 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallDecimal(
     numberBody: number,
-    options?: coreHttp.OperationOptions
+    options?: NumberPutSmallDecimalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       numberBody,
@@ -429,7 +455,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallDecimal(
-    options?: coreHttp.OperationOptions
+    options?: NumberGetSmallDecimalOptionalParams
   ): Promise<NumberGetSmallDecimalResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -17,8 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpoint,
+  PrivateEndpointsListNextOptionalParams,
+  PrivateEndpointsListOptionalParams,
+  PrivateEndpointsListBySubscriptionNextOptionalParams,
+  PrivateEndpointsListBySubscriptionOptionalParams,
+  PrivateEndpointsDeleteOptionalParams,
   PrivateEndpointsGetOptionalParams,
   PrivateEndpointsGetResponse,
+  PrivateEndpointsCreateOrUpdateOptionalParams,
   PrivateEndpointsCreateOrUpdateResponse,
   PrivateEndpointsListResponse,
   PrivateEndpointsListBySubscriptionResponse,
@@ -46,7 +52,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpoint> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -64,7 +70,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListOptionalParams
   ): AsyncIterableIterator<PrivateEndpoint[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -82,7 +88,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListOptionalParams
   ): AsyncIterableIterator<PrivateEndpoint> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -94,7 +100,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpoint> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -111,7 +117,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<PrivateEndpoint[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -124,7 +130,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<PrivateEndpoint> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -140,7 +146,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
   async delete(
     resourceGroupName: string,
     privateEndpointName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -158,17 +164,13 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -204,7 +206,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
     resourceGroupName: string,
     privateEndpointName: string,
     parameters: PrivateEndpoint,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointsCreateOrUpdateResponse>,
@@ -226,17 +228,13 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -246,7 +244,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListOptionalParams
   ): Promise<PrivateEndpointsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +261,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionOptionalParams
   ): Promise<PrivateEndpointsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -283,7 +281,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListNextOptionalParams
   ): Promise<PrivateEndpointsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -303,7 +301,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionNextOptionalParams
   ): Promise<PrivateEndpointsListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

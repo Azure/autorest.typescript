@@ -12,10 +12,16 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryApplication,
+  GalleryApplicationsListByGalleryNextOptionalParams,
+  GalleryApplicationsListByGalleryOptionalParams,
+  GalleryApplicationsCreateOrUpdateOptionalParams,
   GalleryApplicationsCreateOrUpdateResponse,
   GalleryApplicationUpdate,
+  GalleryApplicationsUpdateOptionalParams,
   GalleryApplicationsUpdateResponse,
-  GalleryApplicationsGetResponse
+  GalleryApplicationsGetOptionalParams,
+  GalleryApplicationsGetResponse,
+  GalleryApplicationsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +37,7 @@ export interface GalleryApplications {
   listByGallery(
     resourceGroupName: string,
     galleryName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationsListByGalleryOptionalParams
   ): PagedAsyncIterableIterator<GalleryApplication>;
   /**
    * Create or update a gallery Application Definition.
@@ -49,7 +55,7 @@ export interface GalleryApplications {
     galleryName: string,
     galleryApplicationName: string,
     galleryApplication: GalleryApplication,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationsCreateOrUpdateResponse>,
@@ -72,7 +78,7 @@ export interface GalleryApplications {
     galleryName: string,
     galleryApplicationName: string,
     galleryApplication: GalleryApplicationUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationsUpdateResponse>,
@@ -91,7 +97,7 @@ export interface GalleryApplications {
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationsGetOptionalParams
   ): Promise<GalleryApplicationsGetResponse>;
   /**
    * Delete a gallery Application.
@@ -105,7 +111,7 @@ export interface GalleryApplications {
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

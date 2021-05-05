@@ -20,12 +20,24 @@ import {
   VirtualMachineScaleSetVMsListNextOptionalParams,
   VirtualMachineScaleSetVMsListOptionalParams,
   VirtualMachineScaleSetVMsReimageOptionalParams,
+  VirtualMachineScaleSetVMsReimageAllOptionalParams,
+  VirtualMachineScaleSetVMsDeallocateOptionalParams,
+  VirtualMachineScaleSetVMsUpdateOptionalParams,
   VirtualMachineScaleSetVMsUpdateResponse,
+  VirtualMachineScaleSetVMsDeleteOptionalParams,
+  VirtualMachineScaleSetVMsGetOptionalParams,
   VirtualMachineScaleSetVMsGetResponse,
+  VirtualMachineScaleSetVMsGetInstanceViewOptionalParams,
   VirtualMachineScaleSetVMsGetInstanceViewResponse,
   VirtualMachineScaleSetVMsListResponse,
   VirtualMachineScaleSetVMsPowerOffOptionalParams,
+  VirtualMachineScaleSetVMsRestartOptionalParams,
+  VirtualMachineScaleSetVMsStartOptionalParams,
+  VirtualMachineScaleSetVMsRedeployOptionalParams,
+  VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams,
+  VirtualMachineScaleSetVMsSimulateEvictionOptionalParams,
   RunCommandInput,
+  VirtualMachineScaleSetVMsRunCommandOptionalParams,
   VirtualMachineScaleSetVMsRunCommandResponse,
   VirtualMachineScaleSetVMsListNextResponse
 } from "../models";
@@ -145,16 +157,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reimageOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reimageOperationSpec,
-      initialOperationResult,
+      reimageOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -169,7 +177,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -188,16 +196,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reimageAllOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reimageAllOperationSpec,
-      initialOperationResult,
+      reimageAllOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -213,7 +217,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -232,16 +236,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deallocateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deallocateOperationSpec,
-      initialOperationResult,
+      deallocateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -257,7 +257,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     parameters: VirtualMachineScaleSetVM,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>,
@@ -280,16 +280,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -303,7 +299,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -322,16 +318,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -345,7 +337,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsGetOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -370,7 +362,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -438,16 +430,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      powerOffOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: powerOffOperationSpec,
-      initialOperationResult,
+      powerOffOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -461,7 +449,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRestartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -480,16 +468,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restartOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restartOperationSpec,
-      initialOperationResult,
+      restartOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -503,7 +487,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -522,16 +506,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOperationSpec,
-      initialOperationResult,
+      startOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -546,7 +526,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRedeployOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -565,16 +545,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      redeployOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: redeployOperationSpec,
-      initialOperationResult,
+      redeployOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -588,7 +564,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -607,16 +583,12 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      performMaintenanceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: performMaintenanceOperationSpec,
-      initialOperationResult,
+      performMaintenanceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -631,7 +603,7 @@ export class VirtualMachineScaleSetVMsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -658,7 +630,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     parameters: RunCommandInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>,
@@ -681,17 +653,13 @@ export class VirtualMachineScaleSetVMsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      runCommandOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: runCommandOperationSpec,
-      initialOperationResult,
+      runCommandOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**

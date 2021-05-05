@@ -11,6 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RestorableDroppedDatabase,
+  RestorableDroppedDatabasesListByServerOptionalParams,
+  RestorableDroppedDatabasesGetOptionalParams,
   RestorableDroppedDatabasesGetResponse
 } from "../models";
 
@@ -27,7 +29,7 @@ export interface RestorableDroppedDatabases {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<RestorableDroppedDatabase>;
   /**
    * Gets a deleted database that can be restored
@@ -42,6 +44,6 @@ export interface RestorableDroppedDatabases {
     resourceGroupName: string,
     serverName: string,
     restorableDroppededDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesGetOptionalParams
   ): Promise<RestorableDroppedDatabasesGetResponse>;
 }

@@ -7,7 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { SkipUrlEncodingGetMethodQueryNullOptionalParams } from "../models";
+import {
+  SkipUrlEncodingGetMethodPathValidOptionalParams,
+  SkipUrlEncodingGetPathValidOptionalParams,
+  SkipUrlEncodingGetSwaggerPathValidOptionalParams,
+  SkipUrlEncodingGetMethodQueryValidOptionalParams,
+  SkipUrlEncodingGetMethodQueryNullOptionalParams,
+  SkipUrlEncodingGetPathQueryValidOptionalParams,
+  SkipUrlEncodingGetSwaggerQueryValidOptionalParams
+} from "../models";
 
 /** Interface representing a SkipUrlEncoding. */
 export interface SkipUrlEncoding {
@@ -18,7 +26,7 @@ export interface SkipUrlEncoding {
    */
   getMethodPathValid(
     unencodedPathParam: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetMethodPathValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
@@ -27,14 +35,14 @@ export interface SkipUrlEncoding {
    */
   getPathValid(
     unencodedPathParam: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetPathValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    * @param options The options parameters.
    */
   getSwaggerPathValid(
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetSwaggerPathValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
@@ -43,7 +51,7 @@ export interface SkipUrlEncoding {
    */
   getMethodQueryValid(
     q1: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetMethodQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with unencoded query parameter with value null
@@ -59,13 +67,13 @@ export interface SkipUrlEncoding {
    */
   getPathQueryValid(
     q1: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetPathQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    * @param options The options parameters.
    */
   getSwaggerQueryValid(
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetSwaggerQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

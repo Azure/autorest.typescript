@@ -23,6 +23,10 @@ export interface RefColorConstant {
 /** Defines values for Colors. */
 export type Colors = "red color" | "green-color" | "blue_color";
 
+/** Optional parameters. */
+export interface StringGetNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type StringGetNullResponse = {
   /** The parsed response body. */
@@ -44,6 +48,10 @@ export interface StringPutNullOptionalParams extends coreHttp.OperationOptions {
   stringBody?: string;
 }
 
+/** Optional parameters. */
+export interface StringGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmpty operation. */
 export type StringGetEmptyResponse = {
   /** The parsed response body. */
@@ -58,6 +66,14 @@ export type StringGetEmptyResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface StringPutEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StringGetMbcsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMbcs operation. */
 export type StringGetMbcsResponse = {
@@ -74,6 +90,14 @@ export type StringGetMbcsResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface StringPutMbcsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StringGetWhitespaceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getWhitespace operation. */
 export type StringGetWhitespaceResponse = {
   /** The parsed response body. */
@@ -88,6 +112,14 @@ export type StringGetWhitespaceResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface StringPutWhitespaceOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StringGetNotProvidedOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNotProvided operation. */
 export type StringGetNotProvidedResponse = {
@@ -104,6 +136,10 @@ export type StringGetNotProvidedResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface StringGetBase64EncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBase64Encoded operation. */
 export type StringGetBase64EncodedResponse = {
   /** The parsed response body. */
@@ -118,6 +154,10 @@ export type StringGetBase64EncodedResponse = {
     parsedBody: Uint8Array;
   };
 };
+
+/** Optional parameters. */
+export interface StringGetBase64UrlEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBase64UrlEncoded operation. */
 export type StringGetBase64UrlEncodedResponse = {
@@ -134,6 +174,14 @@ export type StringGetBase64UrlEncodedResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface StringPutBase64UrlEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface StringGetNullBase64UrlEncodedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNullBase64UrlEncoded operation. */
 export type StringGetNullBase64UrlEncodedResponse = {
   /** The parsed response body. */
@@ -148,6 +196,10 @@ export type StringGetNullBase64UrlEncodedResponse = {
     parsedBody: Uint8Array;
   };
 };
+
+/** Optional parameters. */
+export interface EnumGetNotExpandableOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNotExpandable operation. */
 export type EnumGetNotExpandableResponse = {
@@ -164,6 +216,14 @@ export type EnumGetNotExpandableResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface EnumPutNotExpandableOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface EnumGetReferencedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getReferenced operation. */
 export type EnumGetReferencedResponse = {
   /** The parsed response body. */
@@ -179,6 +239,14 @@ export type EnumGetReferencedResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface EnumPutReferencedOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface EnumGetReferencedConstantOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getReferencedConstant operation. */
 export type EnumGetReferencedConstantResponse = RefColorConstant & {
   /** The underlying HTTP response. */
@@ -190,6 +258,10 @@ export type EnumGetReferencedConstantResponse = RefColorConstant & {
     parsedBody: RefColorConstant;
   };
 };
+
+/** Optional parameters. */
+export interface EnumPutReferencedConstantOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface BodyStringClientOptionalParams

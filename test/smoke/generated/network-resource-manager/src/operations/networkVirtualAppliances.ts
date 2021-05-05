@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkVirtualAppliance,
+  NetworkVirtualAppliancesListByResourceGroupNextOptionalParams,
+  NetworkVirtualAppliancesListByResourceGroupOptionalParams,
+  NetworkVirtualAppliancesListNextOptionalParams,
+  NetworkVirtualAppliancesListOptionalParams,
+  NetworkVirtualAppliancesDeleteOptionalParams,
   NetworkVirtualAppliancesGetOptionalParams,
   NetworkVirtualAppliancesGetResponse,
   TagsObject,
+  NetworkVirtualAppliancesUpdateTagsOptionalParams,
   NetworkVirtualAppliancesUpdateTagsResponse,
+  NetworkVirtualAppliancesCreateOrUpdateOptionalParams,
   NetworkVirtualAppliancesCreateOrUpdateResponse,
   NetworkVirtualAppliancesListByResourceGroupResponse,
   NetworkVirtualAppliancesListResponse,
@@ -48,7 +55,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<NetworkVirtualAppliance> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +73,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<NetworkVirtualAppliance[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +91,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<NetworkVirtualAppliance> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -99,7 +106,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkVirtualAppliance> {
     const iter = this.listPagingAll(options);
     return {
@@ -116,7 +123,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListOptionalParams
   ): AsyncIterableIterator<NetworkVirtualAppliance[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -129,7 +136,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListOptionalParams
   ): AsyncIterableIterator<NetworkVirtualAppliance> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -145,7 +152,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   async delete(
     resourceGroupName: string,
     networkVirtualApplianceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -163,17 +170,13 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -209,7 +212,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesUpdateTagsOptionalParams
   ): Promise<NetworkVirtualAppliancesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -234,7 +237,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     parameters: NetworkVirtualAppliance,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,
@@ -256,17 +259,13 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -276,7 +275,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams
   ): Promise<NetworkVirtualAppliancesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -293,7 +292,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListOptionalParams
   ): Promise<NetworkVirtualAppliancesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -313,7 +312,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupNextOptionalParams
   ): Promise<NetworkVirtualAppliancesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -333,7 +332,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListNextOptionalParams
   ): Promise<NetworkVirtualAppliancesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

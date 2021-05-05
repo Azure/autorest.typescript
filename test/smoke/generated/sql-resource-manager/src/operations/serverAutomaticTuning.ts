@@ -12,8 +12,10 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
+  ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
   ServerAutomaticTuningDef,
+  ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -39,7 +41,7 @@ export class ServerAutomaticTuningImpl implements ServerAutomaticTuning {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerAutomaticTuningGetOptionalParams
   ): Promise<ServerAutomaticTuningGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -64,7 +66,7 @@ export class ServerAutomaticTuningImpl implements ServerAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerAutomaticTuningDef,
-    options?: coreHttp.OperationOptions
+    options?: ServerAutomaticTuningUpdateOptionalParams
   ): Promise<ServerAutomaticTuningUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

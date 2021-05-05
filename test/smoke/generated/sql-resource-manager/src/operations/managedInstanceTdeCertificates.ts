@@ -13,7 +13,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { TdeCertificate } from "../models";
+import {
+  TdeCertificate,
+  ManagedInstanceTdeCertificatesCreateOptionalParams
+} from "../models";
 
 /** Class representing a ManagedInstanceTdeCertificates. */
 export class ManagedInstanceTdeCertificatesImpl
@@ -40,7 +43,7 @@ export class ManagedInstanceTdeCertificatesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: TdeCertificate,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceTdeCertificatesCreateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -59,16 +62,12 @@ export class ManagedInstanceTdeCertificatesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

@@ -12,15 +12,28 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterface,
+  NetworkInterfacesListAllNextOptionalParams,
+  NetworkInterfacesListAllOptionalParams,
+  NetworkInterfacesListNextOptionalParams,
+  NetworkInterfacesListOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
   NetworkInterfaceIPConfiguration,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
+  NetworkInterfacesDeleteOptionalParams,
   NetworkInterfacesGetOptionalParams,
   NetworkInterfacesGetResponse,
+  NetworkInterfacesCreateOrUpdateOptionalParams,
   NetworkInterfacesCreateOrUpdateResponse,
   TagsObject,
+  NetworkInterfacesUpdateTagsOptionalParams,
   NetworkInterfacesUpdateTagsResponse,
+  NetworkInterfacesGetEffectiveRouteTableOptionalParams,
   NetworkInterfacesGetEffectiveRouteTableResponse,
+  NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams,
   NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse,
@@ -36,7 +49,7 @@ export interface NetworkInterfaces {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface>;
   /**
    * Gets all network interfaces in a resource group.
@@ -45,7 +58,7 @@ export interface NetworkInterfaces {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface>;
   /**
    * Gets information about all network interfaces in a virtual machine in a virtual machine scale set.
@@ -58,7 +71,7 @@ export interface NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface>;
   /**
    * Gets all network interfaces in a virtual machine scale set.
@@ -69,7 +82,7 @@ export interface NetworkInterfaces {
   listVirtualMachineScaleSetNetworkInterfaces(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterface>;
   /**
    * Get the specified network interface ip configuration in a virtual machine scale set.
@@ -95,7 +108,7 @@ export interface NetworkInterfaces {
   delete(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -121,7 +134,7 @@ export interface NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: NetworkInterface,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkInterfacesCreateOrUpdateResponse>,
@@ -139,7 +152,7 @@ export interface NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesUpdateTagsOptionalParams
   ): Promise<NetworkInterfacesUpdateTagsResponse>;
   /**
    * Gets all route tables applied to a network interface.
@@ -150,7 +163,7 @@ export interface NetworkInterfaces {
   getEffectiveRouteTable(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
@@ -166,7 +179,7 @@ export interface NetworkInterfaces {
   listEffectiveNetworkSecurityGroups(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

@@ -17,9 +17,16 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Image,
+  ImagesListByResourceGroupNextOptionalParams,
+  ImagesListByResourceGroupOptionalParams,
+  ImagesListNextOptionalParams,
+  ImagesListOptionalParams,
+  ImagesCreateOrUpdateOptionalParams,
   ImagesCreateOrUpdateResponse,
   ImageUpdate,
+  ImagesUpdateOptionalParams,
   ImagesUpdateResponse,
+  ImagesDeleteOptionalParams,
   ImagesGetOptionalParams,
   ImagesGetResponse,
   ImagesListByResourceGroupResponse,
@@ -48,7 +55,7 @@ export class ImagesImpl implements Images {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Image> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +73,7 @@ export class ImagesImpl implements Images {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Image[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +91,7 @@ export class ImagesImpl implements Images {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Image> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -100,7 +107,7 @@ export class ImagesImpl implements Images {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ImagesListOptionalParams
   ): PagedAsyncIterableIterator<Image> {
     const iter = this.listPagingAll(options);
     return {
@@ -117,7 +124,7 @@ export class ImagesImpl implements Images {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ImagesListOptionalParams
   ): AsyncIterableIterator<Image[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -130,7 +137,7 @@ export class ImagesImpl implements Images {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ImagesListOptionalParams
   ): AsyncIterableIterator<Image> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -148,7 +155,7 @@ export class ImagesImpl implements Images {
     resourceGroupName: string,
     imageName: string,
     parameters: Image,
-    options?: coreHttp.OperationOptions
+    options?: ImagesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ImagesCreateOrUpdateResponse>,
@@ -170,16 +177,12 @@ export class ImagesImpl implements Images {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -193,7 +196,7 @@ export class ImagesImpl implements Images {
     resourceGroupName: string,
     imageName: string,
     parameters: ImageUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ImagesUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
   > {
@@ -212,16 +215,12 @@ export class ImagesImpl implements Images {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -233,7 +232,7 @@ export class ImagesImpl implements Images {
   async delete(
     resourceGroupName: string,
     imageName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -251,16 +250,12 @@ export class ImagesImpl implements Images {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -292,7 +287,7 @@ export class ImagesImpl implements Images {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupOptionalParams
   ): Promise<ImagesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -310,7 +305,7 @@ export class ImagesImpl implements Images {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ImagesListOptionalParams
   ): Promise<ImagesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -330,7 +325,7 @@ export class ImagesImpl implements Images {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListByResourceGroupNextOptionalParams
   ): Promise<ImagesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -350,7 +345,7 @@ export class ImagesImpl implements Images {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ImagesListNextOptionalParams
   ): Promise<ImagesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

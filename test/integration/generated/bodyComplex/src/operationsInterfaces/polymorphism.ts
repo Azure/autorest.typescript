@@ -8,14 +8,23 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
   FishUnion,
+  PolymorphismPutValidOptionalParams,
+  PolymorphismGetDotSyntaxOptionalParams,
   PolymorphismGetDotSyntaxResponse,
+  PolymorphismGetComposedWithDiscriminatorOptionalParams,
   PolymorphismGetComposedWithDiscriminatorResponse,
+  PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   PolymorphismGetComposedWithoutDiscriminatorResponse,
+  PolymorphismGetComplicatedOptionalParams,
   PolymorphismGetComplicatedResponse,
   SalmonUnion,
-  PolymorphismPutMissingDiscriminatorResponse
+  PolymorphismPutComplicatedOptionalParams,
+  PolymorphismPutMissingDiscriminatorOptionalParams,
+  PolymorphismPutMissingDiscriminatorResponse,
+  PolymorphismPutValidMissingRequiredOptionalParams
 } from "../models";
 
 /** Interface representing a Polymorphism. */
@@ -25,7 +34,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse>;
   /**
    * Put complex types that are polymorphic
@@ -66,14 +75,14 @@ export interface Polymorphism {
    */
   putValid(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
    */
   getDotSyntax(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse>;
   /**
    * Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -82,7 +91,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
   /**
    * Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -91,7 +100,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithoutDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
   /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional
@@ -99,7 +108,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComplicated(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse>;
   /**
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional
@@ -109,7 +118,7 @@ export interface Polymorphism {
    */
   putComplicated(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutComplicatedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Put complex types that are polymorphic, omitting the discriminator
@@ -118,7 +127,7 @@ export interface Polymorphism {
    */
   putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse>;
   /**
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request
@@ -154,6 +163,6 @@ export interface Polymorphism {
    */
   putValidMissingRequired(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidMissingRequiredOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

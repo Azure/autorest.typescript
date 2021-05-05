@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   CsmOperationDescription,
+  DomainRegistrationProviderListOperationsNextOptionalParams,
+  DomainRegistrationProviderListOperationsOptionalParams,
   DomainRegistrationProviderListOperationsResponse,
   DomainRegistrationProviderListOperationsNextResponse
 } from "../models";
@@ -39,7 +41,7 @@ export class DomainRegistrationProviderImpl
    * @param options The options parameters.
    */
   public listOperations(
-    options?: coreHttp.OperationOptions
+    options?: DomainRegistrationProviderListOperationsOptionalParams
   ): PagedAsyncIterableIterator<CsmOperationDescription> {
     const iter = this.listOperationsPagingAll(options);
     return {
@@ -56,7 +58,7 @@ export class DomainRegistrationProviderImpl
   }
 
   private async *listOperationsPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DomainRegistrationProviderListOperationsOptionalParams
   ): AsyncIterableIterator<CsmOperationDescription[]> {
     let result = await this._listOperations(options);
     yield result.value || [];
@@ -69,7 +71,7 @@ export class DomainRegistrationProviderImpl
   }
 
   private async *listOperationsPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DomainRegistrationProviderListOperationsOptionalParams
   ): AsyncIterableIterator<CsmOperationDescription> {
     for await (const page of this.listOperationsPagingPage(options)) {
       yield* page;
@@ -82,7 +84,7 @@ export class DomainRegistrationProviderImpl
    * @param options The options parameters.
    */
   private _listOperations(
-    options?: coreHttp.OperationOptions
+    options?: DomainRegistrationProviderListOperationsOptionalParams
   ): Promise<DomainRegistrationProviderListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -100,7 +102,7 @@ export class DomainRegistrationProviderImpl
    */
   private _listOperationsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainRegistrationProviderListOperationsNextOptionalParams
   ): Promise<DomainRegistrationProviderListOperationsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

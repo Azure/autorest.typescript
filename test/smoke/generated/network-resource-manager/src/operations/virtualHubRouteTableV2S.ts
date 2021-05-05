@@ -17,8 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualHubRouteTableV2,
+  VirtualHubRouteTableV2SListNextOptionalParams,
+  VirtualHubRouteTableV2SListOptionalParams,
+  VirtualHubRouteTableV2SGetOptionalParams,
   VirtualHubRouteTableV2SGetResponse,
+  VirtualHubRouteTableV2SCreateOrUpdateOptionalParams,
   VirtualHubRouteTableV2SCreateOrUpdateResponse,
+  VirtualHubRouteTableV2SDeleteOptionalParams,
   VirtualHubRouteTableV2SListResponse,
   VirtualHubRouteTableV2SListNextResponse
 } from "../models";
@@ -45,7 +50,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   public list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListOptionalParams
   ): PagedAsyncIterableIterator<VirtualHubRouteTableV2> {
     const iter = this.listPagingAll(resourceGroupName, virtualHubName, options);
     return {
@@ -64,7 +69,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   private async *listPagingPage(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListOptionalParams
   ): AsyncIterableIterator<VirtualHubRouteTableV2[]> {
     let result = await this._list(resourceGroupName, virtualHubName, options);
     yield result.value || [];
@@ -84,7 +89,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   private async *listPagingAll(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListOptionalParams
   ): AsyncIterableIterator<VirtualHubRouteTableV2> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -106,7 +111,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SGetOptionalParams
   ): Promise<VirtualHubRouteTableV2SGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -135,7 +140,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     virtualHubName: string,
     routeTableName: string,
     virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>,
@@ -158,17 +163,13 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -182,7 +183,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -201,17 +202,13 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -223,7 +220,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   private _list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListOptionalParams
   ): Promise<VirtualHubRouteTableV2SListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -247,7 +244,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
     resourceGroupName: string,
     virtualHubName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListNextOptionalParams
   ): Promise<VirtualHubRouteTableV2SListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkVirtualAppliance,
+  NetworkVirtualAppliancesListByResourceGroupNextOptionalParams,
+  NetworkVirtualAppliancesListByResourceGroupOptionalParams,
+  NetworkVirtualAppliancesListNextOptionalParams,
+  NetworkVirtualAppliancesListOptionalParams,
+  NetworkVirtualAppliancesDeleteOptionalParams,
   NetworkVirtualAppliancesGetOptionalParams,
   NetworkVirtualAppliancesGetResponse,
   TagsObject,
+  NetworkVirtualAppliancesUpdateTagsOptionalParams,
   NetworkVirtualAppliancesUpdateTagsResponse,
+  NetworkVirtualAppliancesCreateOrUpdateOptionalParams,
   NetworkVirtualAppliancesCreateOrUpdateResponse
 } from "../models";
 
@@ -29,14 +36,14 @@ export interface NetworkVirtualAppliances {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
   /**
    * Gets all Network Virtual Appliances in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkVirtualAppliance>;
   /**
    * Deletes the specified Network Virtual Appliance.
@@ -47,7 +54,7 @@ export interface NetworkVirtualAppliances {
   delete(
     resourceGroupName: string,
     networkVirtualApplianceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesUpdateTagsOptionalParams
   ): Promise<NetworkVirtualAppliancesUpdateTagsResponse>;
   /**
    * Creates or updates the specified Network Virtual Appliance.
@@ -86,7 +93,7 @@ export interface NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     parameters: NetworkVirtualAppliance,
-    options?: coreHttp.OperationOptions
+    options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,

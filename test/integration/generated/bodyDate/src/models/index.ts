@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface DateGetNullOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type DateGetNullResponse = {
   /** The parsed response body. */
@@ -27,6 +30,10 @@ export type DateGetNullResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface DateGetInvalidDateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalidDate operation. */
 export type DateGetInvalidDateResponse = {
@@ -43,6 +50,10 @@ export type DateGetInvalidDateResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DateGetOverflowDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOverflowDate operation. */
 export type DateGetOverflowDateResponse = {
   /** The parsed response body. */
@@ -57,6 +68,10 @@ export type DateGetOverflowDateResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface DateGetUnderflowDateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflowDate operation. */
 export type DateGetUnderflowDateResponse = {
@@ -73,6 +88,14 @@ export type DateGetUnderflowDateResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DatePutMaxDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DateGetMaxDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getMaxDate operation. */
 export type DateGetMaxDateResponse = {
   /** The parsed response body. */
@@ -87,6 +110,14 @@ export type DateGetMaxDateResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface DatePutMinDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DateGetMinDateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMinDate operation. */
 export type DateGetMinDateResponse = {

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { ServerUsage } from "../models";
+import { ServerUsage, ServerUsagesListByServerOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ServerUsages. */
@@ -24,6 +24,6 @@ export interface ServerUsages {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerUsagesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerUsage>;
 }

@@ -11,16 +11,30 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ADGroup,
+  GroupsListNextOptionalParams,
   GroupsListOptionalParams,
   DirectoryObjectUnion,
+  GroupsGetGroupMembersNextOptionalParams,
+  GroupsGetGroupMembersOptionalParams,
   GroupGetMemberGroupsParameters,
+  GroupsGetMemberGroupsOptionalParams,
+  GroupsListOwnersNextOptionalParams,
+  GroupsListOwnersOptionalParams,
   CheckGroupMembershipParameters,
+  GroupsIsMemberOfOptionalParams,
   GroupsIsMemberOfResponse,
+  GroupsRemoveMemberOptionalParams,
   GroupAddMemberParameters,
+  GroupsAddMemberOptionalParams,
   GroupCreateParameters,
+  GroupsCreateOptionalParams,
   GroupsCreateResponse,
+  GroupsGetOptionalParams,
   GroupsGetResponse,
-  AddOwnerParameters
+  GroupsDeleteOptionalParams,
+  AddOwnerParameters,
+  GroupsAddOwnerOptionalParams,
+  GroupsRemoveOwnerOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -38,7 +52,7 @@ export interface Groups {
    */
   listGroupMembers(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
@@ -49,7 +63,7 @@ export interface Groups {
   listMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
   /**
    * The owners are a set of non-admin users who are allowed to modify this object.
@@ -58,7 +72,7 @@ export interface Groups {
    */
   listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets a list of groups for the current tenant.
@@ -67,7 +81,7 @@ export interface Groups {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsListNextOptionalParams
   ): PagedAsyncIterableIterator<ADGroup>;
   /**
    * Gets the members of a group.
@@ -76,7 +90,7 @@ export interface Groups {
    */
   listGroupMembersNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetGroupMembersNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Checks whether the specified user, group, contact, or service principal is a direct or transitive
@@ -86,7 +100,7 @@ export interface Groups {
    */
   isMemberOf(
     parameters: CheckGroupMembershipParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse>;
   /**
    * Remove a member from a group.
@@ -97,7 +111,7 @@ export interface Groups {
   removeMember(
     groupObjectId: string,
     memberObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsRemoveMemberOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Add a member to a group.
@@ -109,7 +123,7 @@ export interface Groups {
   addMember(
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsAddMemberOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Create a group in the directory.
@@ -118,7 +132,7 @@ export interface Groups {
    */
   create(
     parameters: GroupCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsCreateOptionalParams
   ): Promise<GroupsCreateResponse>;
   /**
    * Gets group information from the directory.
@@ -127,7 +141,7 @@ export interface Groups {
    */
   get(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsGetOptionalParams
   ): Promise<GroupsGetResponse>;
   /**
    * Delete a group from the directory.
@@ -136,7 +150,7 @@ export interface Groups {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Add an owner to a group.
@@ -148,7 +162,7 @@ export interface Groups {
   addOwner(
     objectId: string,
     parameters: AddOwnerParameters,
-    options?: coreHttp.OperationOptions
+    options?: GroupsAddOwnerOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Remove a member from owners.
@@ -159,6 +173,6 @@ export interface Groups {
   removeOwner(
     objectId: string,
     ownerObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupsRemoveOwnerOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

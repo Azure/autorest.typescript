@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { VpnSiteLinkConnectionsGetResponse } from "../models";
+import {
+  VpnSiteLinkConnectionsGetOptionalParams,
+  VpnSiteLinkConnectionsGetResponse
+} from "../models";
 
 /** Interface representing a VpnSiteLinkConnections. */
 export interface VpnSiteLinkConnections {
@@ -24,6 +27,6 @@ export interface VpnSiteLinkConnections {
     gatewayName: string,
     connectionName: string,
     linkConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinkConnectionsGetOptionalParams
   ): Promise<VpnSiteLinkConnectionsGetResponse>;
 }

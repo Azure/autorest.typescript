@@ -63,6 +63,10 @@ export const enum KnownIntEnum {
  */
 export type IntEnum = string;
 
+/** Optional parameters. */
+export interface PetGetByPetIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByPetId operation. */
 export type PetGetByPetIdResponse = PetDef & {
   /** The underlying HTTP response. */

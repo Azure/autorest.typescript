@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnectionPeering,
+  ExpressRouteCrossConnectionPeeringsListNextOptionalParams,
+  ExpressRouteCrossConnectionPeeringsListOptionalParams,
+  ExpressRouteCrossConnectionPeeringsDeleteOptionalParams,
+  ExpressRouteCrossConnectionPeeringsGetOptionalParams,
   ExpressRouteCrossConnectionPeeringsGetResponse,
+  ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams,
   ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface ExpressRouteCrossConnectionPeerings {
   list(
     resourceGroupName: string,
     crossConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCrossConnectionPeering>;
   /**
    * Deletes the specified peering from the ExpressRouteCrossConnection.
@@ -41,7 +46,7 @@ export interface ExpressRouteCrossConnectionPeerings {
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface ExpressRouteCrossConnectionPeerings {
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsGetOptionalParams
   ): Promise<ExpressRouteCrossConnectionPeeringsGetResponse>;
   /**
    * Creates or updates a peering in the specified ExpressRouteCrossConnection.
@@ -72,7 +77,7 @@ export interface ExpressRouteCrossConnectionPeerings {
     crossConnectionName: string,
     peeringName: string,
     peeringParameters: ExpressRouteCrossConnectionPeering,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

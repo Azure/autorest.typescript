@@ -9,7 +9,16 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { Job, JobsGetResponse, JobsCreateOrUpdateResponse } from "../models";
+import {
+  Job,
+  JobsListByAgentNextOptionalParams,
+  JobsListByAgentOptionalParams,
+  JobsGetOptionalParams,
+  JobsGetResponse,
+  JobsCreateOrUpdateOptionalParams,
+  JobsCreateOrUpdateResponse,
+  JobsDeleteOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Jobs. */
@@ -26,7 +35,7 @@ export interface Jobs {
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsListByAgentOptionalParams
   ): PagedAsyncIterableIterator<Job>;
   /**
    * Gets a job.
@@ -42,7 +51,7 @@ export interface Jobs {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsGetOptionalParams
   ): Promise<JobsGetResponse>;
   /**
    * Creates or updates a job.
@@ -60,7 +69,7 @@ export interface Jobs {
     jobAgentName: string,
     jobName: string,
     parameters: Job,
-    options?: coreHttp.OperationOptions
+    options?: JobsCreateOrUpdateOptionalParams
   ): Promise<JobsCreateOrUpdateResponse>;
   /**
    * Deletes a job.
@@ -76,6 +85,6 @@ export interface Jobs {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

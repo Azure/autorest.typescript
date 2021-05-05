@@ -18,8 +18,11 @@ import {
   LRORetrysPut201CreatingSucceeded200Response,
   LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysPutAsyncRelativeRetrySucceededResponse,
+  LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
   LRORetrysDeleteProvisioning202Accepted200SucceededResponse,
+  LRORetrysDelete202Retry200OptionalParams,
   LRORetrysDelete202Retry200Response,
+  LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysDeleteAsyncRelativeRetrySucceededResponse,
   LRORetrysPost202Retry200OptionalParams,
   LRORetrysPost202Retry200Response,
@@ -65,16 +68,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      put201CreatingSucceeded200OperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: put201CreatingSucceeded200OperationSpec,
-      initialOperationResult,
+      put201CreatingSucceeded200OperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -103,16 +102,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      putAsyncRelativeRetrySucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: putAsyncRelativeRetrySucceededOperationSpec,
-      initialOperationResult,
+      putAsyncRelativeRetrySucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -122,7 +117,7 @@ export class LRORetrysImpl implements LRORetrys {
    * @param options The options parameters.
    */
   async deleteProvisioning202Accepted200Succeeded(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -143,16 +138,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteProvisioning202Accepted200SucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteProvisioning202Accepted200SucceededOperationSpec,
-      initialOperationResult,
+      deleteProvisioning202Accepted200SucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -161,7 +152,7 @@ export class LRORetrysImpl implements LRORetrys {
    * @param options The options parameters.
    */
   async delete202Retry200(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LRORetrysDelete202Retry200Response>,
@@ -180,16 +171,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      delete202Retry200OperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: delete202Retry200OperationSpec,
-      initialOperationResult,
+      delete202Retry200OperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -198,7 +185,7 @@ export class LRORetrysImpl implements LRORetrys {
    * @param options The options parameters.
    */
   async deleteAsyncRelativeRetrySucceeded(
-    options?: coreHttp.OperationOptions
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
@@ -217,16 +204,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteAsyncRelativeRetrySucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteAsyncRelativeRetrySucceededOperationSpec,
-      initialOperationResult,
+      deleteAsyncRelativeRetrySucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -254,16 +237,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      post202Retry200OperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: post202Retry200OperationSpec,
-      initialOperationResult,
+      post202Retry200OperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -292,16 +271,12 @@ export class LRORetrysImpl implements LRORetrys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      postAsyncRelativeRetrySucceededOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: postAsyncRelativeRetrySucceededOperationSpec,
-      initialOperationResult,
+      postAsyncRelativeRetrySucceededOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

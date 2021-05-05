@@ -17,19 +17,31 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GremlinDatabaseGetResults,
+  GremlinResourcesListGremlinDatabasesOptionalParams,
   GremlinGraphGetResults,
+  GremlinResourcesListGremlinGraphsOptionalParams,
   GremlinResourcesListGremlinDatabasesResponse,
+  GremlinResourcesGetGremlinDatabaseOptionalParams,
   GremlinResourcesGetGremlinDatabaseResponse,
   GremlinDatabaseCreateUpdateParameters,
+  GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams,
   GremlinResourcesCreateUpdateGremlinDatabaseResponse,
+  GremlinResourcesDeleteGremlinDatabaseOptionalParams,
+  GremlinResourcesGetGremlinDatabaseThroughputOptionalParams,
   GremlinResourcesGetGremlinDatabaseThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams,
   GremlinResourcesUpdateGremlinDatabaseThroughputResponse,
   GremlinResourcesListGremlinGraphsResponse,
+  GremlinResourcesGetGremlinGraphOptionalParams,
   GremlinResourcesGetGremlinGraphResponse,
   GremlinGraphCreateUpdateParameters,
+  GremlinResourcesCreateUpdateGremlinGraphOptionalParams,
   GremlinResourcesCreateUpdateGremlinGraphResponse,
+  GremlinResourcesDeleteGremlinGraphOptionalParams,
+  GremlinResourcesGetGremlinGraphThroughputOptionalParams,
   GremlinResourcesGetGremlinGraphThroughputResponse,
+  GremlinResourcesUpdateGremlinGraphThroughputOptionalParams,
   GremlinResourcesUpdateGremlinGraphThroughputResponse
 } from "../models";
 
@@ -55,7 +67,7 @@ export class GremlinResourcesImpl implements GremlinResources {
   public listGremlinDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams
   ): PagedAsyncIterableIterator<GremlinDatabaseGetResults> {
     const iter = this.listGremlinDatabasesPagingAll(
       resourceGroupName,
@@ -82,7 +94,7 @@ export class GremlinResourcesImpl implements GremlinResources {
   private async *listGremlinDatabasesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams
   ): AsyncIterableIterator<GremlinDatabaseGetResults[]> {
     let result = await this._listGremlinDatabases(
       resourceGroupName,
@@ -95,7 +107,7 @@ export class GremlinResourcesImpl implements GremlinResources {
   private async *listGremlinDatabasesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams
   ): AsyncIterableIterator<GremlinDatabaseGetResults> {
     for await (const page of this.listGremlinDatabasesPagingPage(
       resourceGroupName,
@@ -117,7 +129,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinGraphsOptionalParams
   ): PagedAsyncIterableIterator<GremlinGraphGetResults> {
     const iter = this.listGremlinGraphsPagingAll(
       resourceGroupName,
@@ -147,7 +159,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinGraphsOptionalParams
   ): AsyncIterableIterator<GremlinGraphGetResults[]> {
     let result = await this._listGremlinGraphs(
       resourceGroupName,
@@ -162,7 +174,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinGraphsOptionalParams
   ): AsyncIterableIterator<GremlinGraphGetResults> {
     for await (const page of this.listGremlinGraphsPagingPage(
       resourceGroupName,
@@ -183,7 +195,7 @@ export class GremlinResourcesImpl implements GremlinResources {
   private _listGremlinDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams
   ): Promise<GremlinResourcesListGremlinDatabasesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +220,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesGetGremlinDatabaseOptionalParams
   ): Promise<GremlinResourcesGetGremlinDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -236,7 +248,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
@@ -259,16 +271,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateGremlinDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateGremlinDatabaseOperationSpec,
-      initialOperationResult,
+      createUpdateGremlinDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -282,7 +290,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -301,16 +309,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteGremlinDatabaseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteGremlinDatabaseOperationSpec,
-      initialOperationResult,
+      deleteGremlinDatabaseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -325,7 +329,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesGetGremlinDatabaseThroughputOptionalParams
   ): Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -353,7 +357,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -378,16 +382,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateGremlinDatabaseThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateGremlinDatabaseThroughputOperationSpec,
-      initialOperationResult,
+      updateGremlinDatabaseThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -401,7 +401,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesListGremlinGraphsOptionalParams
   ): Promise<GremlinResourcesListGremlinGraphsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -428,7 +428,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesGetGremlinGraphOptionalParams
   ): Promise<GremlinResourcesGetGremlinGraphResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -458,7 +458,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
@@ -482,16 +482,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createUpdateGremlinGraphOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createUpdateGremlinGraphOperationSpec,
-      initialOperationResult,
+      createUpdateGremlinGraphOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -507,7 +503,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesDeleteGremlinGraphOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -527,16 +523,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteGremlinGraphOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteGremlinGraphOperationSpec,
-      initialOperationResult,
+      deleteGremlinGraphOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -553,7 +545,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesGetGremlinGraphThroughputOptionalParams
   ): Promise<GremlinResourcesGetGremlinGraphThroughputResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -584,7 +576,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
@@ -608,16 +600,12 @@ export class GremlinResourcesImpl implements GremlinResources {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateGremlinGraphThroughputOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateGremlinGraphThroughputOperationSpec,
-      initialOperationResult,
+      updateGremlinGraphThroughputOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

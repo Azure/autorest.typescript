@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   ExpressRoutePortsLocation,
+  ExpressRoutePortsLocationsListNextOptionalParams,
+  ExpressRoutePortsLocationsListOptionalParams,
   ExpressRoutePortsLocationsListResponse,
+  ExpressRoutePortsLocationsGetOptionalParams,
   ExpressRoutePortsLocationsGetResponse,
   ExpressRoutePortsLocationsListNextResponse
 } from "../models";
@@ -40,7 +43,7 @@ export class ExpressRoutePortsLocationsImpl
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRoutePortsLocation> {
     const iter = this.listPagingAll(options);
     return {
@@ -57,7 +60,7 @@ export class ExpressRoutePortsLocationsImpl
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListOptionalParams
   ): AsyncIterableIterator<ExpressRoutePortsLocation[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -70,7 +73,7 @@ export class ExpressRoutePortsLocationsImpl
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListOptionalParams
   ): AsyncIterableIterator<ExpressRoutePortsLocation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -83,7 +86,7 @@ export class ExpressRoutePortsLocationsImpl
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListOptionalParams
   ): Promise<ExpressRoutePortsLocationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -102,7 +105,7 @@ export class ExpressRoutePortsLocationsImpl
    */
   get(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsGetOptionalParams
   ): Promise<ExpressRoutePortsLocationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -121,7 +124,7 @@ export class ExpressRoutePortsLocationsImpl
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRoutePortsLocationsListNextOptionalParams
   ): Promise<ExpressRoutePortsLocationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

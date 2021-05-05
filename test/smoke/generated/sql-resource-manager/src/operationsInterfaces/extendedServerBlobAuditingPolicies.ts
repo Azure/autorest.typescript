@@ -12,7 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExtendedServerBlobAuditingPolicy,
+  ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams,
+  ExtendedServerBlobAuditingPoliciesListByServerOptionalParams,
+  ExtendedServerBlobAuditingPoliciesGetOptionalParams,
   ExtendedServerBlobAuditingPoliciesGetResponse,
+  ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -29,7 +33,7 @@ export interface ExtendedServerBlobAuditingPolicies {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ExtendedServerBlobAuditingPolicy>;
   /**
    * Gets an extended server's blob auditing policy.
@@ -41,7 +45,7 @@ export interface ExtendedServerBlobAuditingPolicies {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates an extended server's blob auditing policy.
@@ -55,7 +59,7 @@ export interface ExtendedServerBlobAuditingPolicies {
     resourceGroupName: string,
     serverName: string,
     parameters: ExtendedServerBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

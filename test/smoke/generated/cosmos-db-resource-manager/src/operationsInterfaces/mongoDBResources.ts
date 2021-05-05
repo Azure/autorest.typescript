@@ -12,17 +12,29 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
+  MongoDBResourcesListMongoDBDatabasesOptionalParams,
   MongoDBCollectionGetResults,
+  MongoDBResourcesListMongoDBCollectionsOptionalParams,
+  MongoDBResourcesGetMongoDBDatabaseOptionalParams,
   MongoDBResourcesGetMongoDBDatabaseResponse,
   MongoDBDatabaseCreateUpdateParameters,
+  MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams,
   MongoDBResourcesCreateUpdateMongoDBDatabaseResponse,
+  MongoDBResourcesDeleteMongoDBDatabaseOptionalParams,
+  MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesGetMongoDBDatabaseThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse,
+  MongoDBResourcesGetMongoDBCollectionOptionalParams,
   MongoDBResourcesGetMongoDBCollectionResponse,
   MongoDBCollectionCreateUpdateParameters,
+  MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams,
   MongoDBResourcesCreateUpdateMongoDBCollectionResponse,
+  MongoDBResourcesDeleteMongoDBCollectionOptionalParams,
+  MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesGetMongoDBCollectionThroughputResponse,
+  MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams,
   MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
 } from "../models";
 
@@ -38,7 +50,7 @@ export interface MongoDBResources {
   listMongoDBDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): PagedAsyncIterableIterator<MongoDBDatabaseGetResults>;
   /**
    * Lists the MongoDB collection under an existing Azure Cosmos DB database account.
@@ -51,7 +63,7 @@ export interface MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): PagedAsyncIterableIterator<MongoDBCollectionGetResults>;
   /**
    * Gets the MongoDB databases under an existing Azure Cosmos DB database account with the provided
@@ -65,7 +77,7 @@ export interface MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBDatabaseOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseResponse>;
   /**
    * Create or updates Azure Cosmos DB MongoDB database
@@ -81,7 +93,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>,
@@ -99,7 +111,7 @@ export interface MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -115,7 +127,7 @@ export interface MongoDBResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse>;
   /**
    * Update RUs per second of the an Azure Cosmos DB MongoDB database
@@ -131,7 +143,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -153,7 +165,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBCollectionOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionResponse>;
   /**
    * Create or update an Azure Cosmos DB MongoDB Collection
@@ -171,7 +183,7 @@ export interface MongoDBResources {
     databaseName: string,
     collectionName: string,
     createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>,
@@ -191,7 +203,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -209,7 +221,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     collectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse>;
   /**
    * Update the RUs per second of an Azure Cosmos DB MongoDB collection
@@ -227,7 +239,7 @@ export interface MongoDBResources {
     databaseName: string,
     collectionName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

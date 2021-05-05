@@ -8,8 +8,27 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  HttpSuccessHead200OptionalParams,
+  HttpSuccessGet200OptionalParams,
   HttpSuccessGet200Response,
-  HttpSuccessOptions200Response
+  HttpSuccessOptions200OptionalParams,
+  HttpSuccessOptions200Response,
+  HttpSuccessPut200OptionalParams,
+  HttpSuccessPatch200OptionalParams,
+  HttpSuccessPost200OptionalParams,
+  HttpSuccessDelete200OptionalParams,
+  HttpSuccessPut201OptionalParams,
+  HttpSuccessPost201OptionalParams,
+  HttpSuccessPut202OptionalParams,
+  HttpSuccessPatch202OptionalParams,
+  HttpSuccessPost202OptionalParams,
+  HttpSuccessDelete202OptionalParams,
+  HttpSuccessHead204OptionalParams,
+  HttpSuccessPut204OptionalParams,
+  HttpSuccessPatch204OptionalParams,
+  HttpSuccessPost204OptionalParams,
+  HttpSuccessDelete204OptionalParams,
+  HttpSuccessHead404OptionalParams
 } from "../models";
 
 /** Interface representing a HttpSuccess. */
@@ -18,105 +37,133 @@ export interface HttpSuccess {
    * Return 200 status code if successful
    * @param options The options parameters.
    */
-  head200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head200(
+    options?: HttpSuccessHead200OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get 200 success
    * @param options The options parameters.
    */
   get200(
-    options?: coreHttp.OperationOptions
+    options?: HttpSuccessGet200OptionalParams
   ): Promise<HttpSuccessGet200Response>;
   /**
    * Options 200 success
    * @param options The options parameters.
    */
   options200(
-    options?: coreHttp.OperationOptions
+    options?: HttpSuccessOptions200OptionalParams
   ): Promise<HttpSuccessOptions200Response>;
   /**
    * Put boolean value true returning 200 success
    * @param options The options parameters.
    */
-  put200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put200(
+    options?: HttpSuccessPut200OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Patch true Boolean value in request returning 200
    * @param options The options parameters.
    */
-  patch200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch200(
+    options?: HttpSuccessPatch200OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post bollean value true in request that returns a 200
    * @param options The options parameters.
    */
-  post200(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post200(
+    options?: HttpSuccessPost200OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Delete simple boolean value true returns 200
    * @param options The options parameters.
    */
   delete200(
-    options?: coreHttp.OperationOptions
+    options?: HttpSuccessDelete200OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Put true Boolean value in request returns 201
    * @param options The options parameters.
    */
-  put201(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put201(
+    options?: HttpSuccessPut201OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post true Boolean value in request returns 201 (Created)
    * @param options The options parameters.
    */
-  post201(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post201(
+    options?: HttpSuccessPost201OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put true Boolean value in request returns 202 (Accepted)
    * @param options The options parameters.
    */
-  put202(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put202(
+    options?: HttpSuccessPut202OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Patch true Boolean value in request returns 202
    * @param options The options parameters.
    */
-  patch202(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch202(
+    options?: HttpSuccessPatch202OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post true Boolean value in request returns 202 (Accepted)
    * @param options The options parameters.
    */
-  post202(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post202(
+    options?: HttpSuccessPost202OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Delete true Boolean value in request returns 202 (accepted)
    * @param options The options parameters.
    */
   delete202(
-    options?: coreHttp.OperationOptions
+    options?: HttpSuccessDelete202OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 204 status code if successful
    * @param options The options parameters.
    */
-  head204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head204(
+    options?: HttpSuccessHead204OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put true Boolean value in request returns 204 (no content)
    * @param options The options parameters.
    */
-  put204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put204(
+    options?: HttpSuccessPut204OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Patch true Boolean value in request returns 204 (no content)
    * @param options The options parameters.
    */
-  patch204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch204(
+    options?: HttpSuccessPatch204OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post true Boolean value in request returns 204 (no content)
    * @param options The options parameters.
    */
-  post204(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post204(
+    options?: HttpSuccessPost204OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Delete true Boolean value in request returns 204 (no content)
    * @param options The options parameters.
    */
   delete204(
-    options?: coreHttp.OperationOptions
+    options?: HttpSuccessDelete204OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 404 status code
    * @param options The options parameters.
    */
-  head404(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head404(
+    options?: HttpSuccessHead404OptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -17,11 +17,21 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstance,
+  ManagedInstancesListByInstancePoolNextOptionalParams,
+  ManagedInstancesListByInstancePoolOptionalParams,
+  ManagedInstancesListByResourceGroupNextOptionalParams,
+  ManagedInstancesListByResourceGroupOptionalParams,
+  ManagedInstancesListNextOptionalParams,
+  ManagedInstancesListOptionalParams,
   ManagedInstancesListByInstancePoolResponse,
   ManagedInstancesListByResourceGroupResponse,
+  ManagedInstancesGetOptionalParams,
   ManagedInstancesGetResponse,
+  ManagedInstancesCreateOrUpdateOptionalParams,
   ManagedInstancesCreateOrUpdateResponse,
+  ManagedInstancesDeleteOptionalParams,
   ManagedInstanceUpdate,
+  ManagedInstancesUpdateOptionalParams,
   ManagedInstancesUpdateResponse,
   ManagedInstancesListResponse,
   ManagedInstancesListByInstancePoolNextResponse,
@@ -52,7 +62,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   public listByInstancePool(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listByInstancePoolPagingAll(
       resourceGroupName,
@@ -79,7 +89,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private async *listByInstancePoolPagingPage(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolOptionalParams
   ): AsyncIterableIterator<ManagedInstance[]> {
     let result = await this._listByInstancePool(
       resourceGroupName,
@@ -103,7 +113,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private async *listByInstancePoolPagingAll(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolOptionalParams
   ): AsyncIterableIterator<ManagedInstance> {
     for await (const page of this.listByInstancePoolPagingPage(
       resourceGroupName,
@@ -122,7 +132,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -140,7 +150,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ManagedInstance[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -158,7 +168,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ManagedInstance> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -173,7 +183,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance> {
     const iter = this.listPagingAll(options);
     return {
@@ -190,7 +200,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListOptionalParams
   ): AsyncIterableIterator<ManagedInstance[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -203,7 +213,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListOptionalParams
   ): AsyncIterableIterator<ManagedInstance> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -220,7 +230,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private _listByInstancePool(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolOptionalParams
   ): Promise<ManagedInstancesListByInstancePoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -241,7 +251,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupOptionalParams
   ): Promise<ManagedInstancesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +273,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   get(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesGetOptionalParams
   ): Promise<ManagedInstancesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -288,7 +298,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstance,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstancesCreateOrUpdateResponse>,
@@ -310,16 +320,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -332,7 +338,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   async delete(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -350,16 +356,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -374,7 +376,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstancesUpdateResponse>,
@@ -396,16 +398,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -413,7 +411,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListOptionalParams
   ): Promise<ManagedInstancesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -436,7 +434,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
     resourceGroupName: string,
     instancePoolName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolNextOptionalParams
   ): Promise<ManagedInstancesListByInstancePoolNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -460,7 +458,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupNextOptionalParams
   ): Promise<ManagedInstancesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -480,7 +478,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListNextOptionalParams
   ): Promise<ManagedInstancesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -12,8 +12,11 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyFileClientContext } from "../bodyFileClientContext";
 import {
+  FilesGetFileOptionalParams,
   FilesGetFileResponse,
+  FilesGetFileLargeOptionalParams,
   FilesGetFileLargeResponse,
+  FilesGetEmptyFileOptionalParams,
   FilesGetEmptyFileResponse
 } from "../models";
 
@@ -33,7 +36,7 @@ export class FilesImpl implements Files {
    * Get file
    * @param options The options parameters.
    */
-  getFile(options?: coreHttp.OperationOptions): Promise<FilesGetFileResponse> {
+  getFile(options?: FilesGetFileOptionalParams): Promise<FilesGetFileResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -48,7 +51,7 @@ export class FilesImpl implements Files {
    * @param options The options parameters.
    */
   getFileLarge(
-    options?: coreHttp.OperationOptions
+    options?: FilesGetFileLargeOptionalParams
   ): Promise<FilesGetFileLargeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -64,7 +67,7 @@ export class FilesImpl implements Files {
    * @param options The options parameters.
    */
   getEmptyFile(
-    options?: coreHttp.OperationOptions
+    options?: FilesGetEmptyFileOptionalParams
   ): Promise<FilesGetEmptyFileResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

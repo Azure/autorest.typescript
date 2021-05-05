@@ -16,6 +16,10 @@ export const enum KnownEnum0 {
  */
 export type Enum0 = string;
 
+/** Optional parameters. */
+export interface NoLicenseHeaderClientApiV1ValueGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the apiV1ValueGet operation. */
 export type NoLicenseHeaderClientApiV1ValueGetResponse = {
   /** The parsed response body. */

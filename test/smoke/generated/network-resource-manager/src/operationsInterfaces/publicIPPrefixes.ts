@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPPrefix,
+  PublicIPPrefixesListAllNextOptionalParams,
+  PublicIPPrefixesListAllOptionalParams,
+  PublicIPPrefixesListNextOptionalParams,
+  PublicIPPrefixesListOptionalParams,
+  PublicIPPrefixesDeleteOptionalParams,
   PublicIPPrefixesGetOptionalParams,
   PublicIPPrefixesGetResponse,
+  PublicIPPrefixesCreateOrUpdateOptionalParams,
   PublicIPPrefixesCreateOrUpdateResponse,
   TagsObject,
+  PublicIPPrefixesUpdateTagsOptionalParams,
   PublicIPPrefixesUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface PublicIPPrefixes {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListAllOptionalParams
   ): PagedAsyncIterableIterator<PublicIPPrefix>;
   /**
    * Gets all public IP prefixes in a resource group.
@@ -36,7 +43,7 @@ export interface PublicIPPrefixes {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesListOptionalParams
   ): PagedAsyncIterableIterator<PublicIPPrefix>;
   /**
    * Deletes the specified public IP prefix.
@@ -47,7 +54,7 @@ export interface PublicIPPrefixes {
   delete(
     resourceGroupName: string,
     publicIpPrefixName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface PublicIPPrefixes {
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PublicIPPrefixesCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface PublicIPPrefixes {
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPPrefixesUpdateTagsOptionalParams
   ): Promise<PublicIPPrefixesUpdateTagsResponse>;
 }

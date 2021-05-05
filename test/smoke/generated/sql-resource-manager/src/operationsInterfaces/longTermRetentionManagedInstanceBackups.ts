@@ -24,8 +24,12 @@ import {
   LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams,
+  LongTermRetentionManagedInstanceBackupsGetOptionalParams,
   LongTermRetentionManagedInstanceBackupsGetResponse,
-  LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse
+  LongTermRetentionManagedInstanceBackupsDeleteOptionalParams,
+  LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams,
+  LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse,
+  LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -119,7 +123,7 @@ export interface LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsGetOptionalParams
   ): Promise<LongTermRetentionManagedInstanceBackupsGetResponse>;
   /**
    * Deletes a long term retention backup.
@@ -134,7 +138,7 @@ export interface LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -154,7 +158,7 @@ export interface LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams
   ): Promise<LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse>;
   /**
    * Deletes a long term retention backup.
@@ -172,7 +176,7 @@ export interface LongTermRetentionManagedInstanceBackups {
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

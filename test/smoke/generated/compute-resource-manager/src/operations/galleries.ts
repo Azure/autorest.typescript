@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Gallery,
+  GalleriesListByResourceGroupNextOptionalParams,
+  GalleriesListByResourceGroupOptionalParams,
+  GalleriesListNextOptionalParams,
+  GalleriesListOptionalParams,
+  GalleriesCreateOrUpdateOptionalParams,
   GalleriesCreateOrUpdateResponse,
   GalleryUpdate,
+  GalleriesUpdateOptionalParams,
   GalleriesUpdateResponse,
+  GalleriesGetOptionalParams,
   GalleriesGetResponse,
+  GalleriesDeleteOptionalParams,
   GalleriesListByResourceGroupResponse,
   GalleriesListResponse,
   GalleriesListByResourceGroupNextResponse,
@@ -47,7 +55,7 @@ export class GalleriesImpl implements Galleries {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Gallery> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class GalleriesImpl implements Galleries {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Gallery[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class GalleriesImpl implements Galleries {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Gallery> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class GalleriesImpl implements Galleries {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListOptionalParams
   ): PagedAsyncIterableIterator<Gallery> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class GalleriesImpl implements Galleries {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListOptionalParams
   ): AsyncIterableIterator<Gallery[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class GalleriesImpl implements Galleries {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListOptionalParams
   ): AsyncIterableIterator<Gallery> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -147,7 +155,7 @@ export class GalleriesImpl implements Galleries {
     resourceGroupName: string,
     galleryName: string,
     gallery: Gallery,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleriesCreateOrUpdateResponse>,
@@ -169,16 +177,12 @@ export class GalleriesImpl implements Galleries {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -193,7 +197,7 @@ export class GalleriesImpl implements Galleries {
     resourceGroupName: string,
     galleryName: string,
     gallery: GalleryUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleriesUpdateResponse>,
@@ -215,16 +219,12 @@ export class GalleriesImpl implements Galleries {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -236,7 +236,7 @@ export class GalleriesImpl implements Galleries {
   get(
     resourceGroupName: string,
     galleryName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesGetOptionalParams
   ): Promise<GalleriesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -258,7 +258,7 @@ export class GalleriesImpl implements Galleries {
   async delete(
     resourceGroupName: string,
     galleryName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -276,16 +276,12 @@ export class GalleriesImpl implements Galleries {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -295,7 +291,7 @@ export class GalleriesImpl implements Galleries {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupOptionalParams
   ): Promise<GalleriesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -312,7 +308,7 @@ export class GalleriesImpl implements Galleries {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListOptionalParams
   ): Promise<GalleriesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -332,7 +328,7 @@ export class GalleriesImpl implements Galleries {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListByResourceGroupNextOptionalParams
   ): Promise<GalleriesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -352,7 +348,7 @@ export class GalleriesImpl implements Galleries {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleriesListNextOptionalParams
   ): Promise<GalleriesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

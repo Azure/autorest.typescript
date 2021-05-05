@@ -12,14 +12,27 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuit,
+  ExpressRouteCircuitsListNextOptionalParams,
+  ExpressRouteCircuitsListOptionalParams,
+  ExpressRouteCircuitsListAllNextOptionalParams,
+  ExpressRouteCircuitsListAllOptionalParams,
+  ExpressRouteCircuitsDeleteOptionalParams,
+  ExpressRouteCircuitsGetOptionalParams,
   ExpressRouteCircuitsGetResponse,
+  ExpressRouteCircuitsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitsCreateOrUpdateResponse,
   TagsObject,
+  ExpressRouteCircuitsUpdateTagsOptionalParams,
   ExpressRouteCircuitsUpdateTagsResponse,
+  ExpressRouteCircuitsListArpTableOptionalParams,
   ExpressRouteCircuitsListArpTableResponse,
+  ExpressRouteCircuitsListRoutesTableOptionalParams,
   ExpressRouteCircuitsListRoutesTableResponse,
+  ExpressRouteCircuitsListRoutesTableSummaryOptionalParams,
   ExpressRouteCircuitsListRoutesTableSummaryResponse,
+  ExpressRouteCircuitsGetStatsOptionalParams,
   ExpressRouteCircuitsGetStatsResponse,
+  ExpressRouteCircuitsGetPeeringStatsOptionalParams,
   ExpressRouteCircuitsGetPeeringStatsResponse
 } from "../models";
 
@@ -33,14 +46,14 @@ export interface ExpressRouteCircuits {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuit>;
   /**
    * Gets all the express route circuits in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsListAllOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuit>;
   /**
    * Deletes the specified express route circuit.
@@ -51,7 +64,7 @@ export interface ExpressRouteCircuits {
   delete(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -64,7 +77,7 @@ export interface ExpressRouteCircuits {
   get(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsGetOptionalParams
   ): Promise<ExpressRouteCircuitsGetResponse>;
   /**
    * Creates or updates an express route circuit.
@@ -77,7 +90,7 @@ export interface ExpressRouteCircuits {
     resourceGroupName: string,
     circuitName: string,
     parameters: ExpressRouteCircuit,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitsCreateOrUpdateResponse>,
@@ -95,7 +108,7 @@ export interface ExpressRouteCircuits {
     resourceGroupName: string,
     circuitName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsUpdateTagsOptionalParams
   ): Promise<ExpressRouteCircuitsUpdateTagsResponse>;
   /**
    * Gets the currently advertised ARP table associated with the express route circuit in a resource
@@ -111,7 +124,7 @@ export interface ExpressRouteCircuits {
     circuitName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsListArpTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitsListArpTableResponse>,
@@ -132,7 +145,7 @@ export interface ExpressRouteCircuits {
     circuitName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsListRoutesTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitsListRoutesTableResponse>,
@@ -153,7 +166,7 @@ export interface ExpressRouteCircuits {
     circuitName: string,
     peeringName: string,
     devicePath: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsListRoutesTableSummaryOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitsListRoutesTableSummaryResponse>,
@@ -169,7 +182,7 @@ export interface ExpressRouteCircuits {
   getStats(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsGetStatsOptionalParams
   ): Promise<ExpressRouteCircuitsGetStatsResponse>;
   /**
    * Gets all stats from an express route circuit in a resource group.
@@ -182,6 +195,6 @@ export interface ExpressRouteCircuits {
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitsGetPeeringStatsOptionalParams
   ): Promise<ExpressRouteCircuitsGetPeeringStatsResponse>;
 }

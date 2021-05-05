@@ -12,10 +12,21 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPAddress,
+  PublicIPAddressesListAllNextOptionalParams,
+  PublicIPAddressesListAllOptionalParams,
+  PublicIPAddressesListNextOptionalParams,
+  PublicIPAddressesListOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams,
+  PublicIPAddressesDeleteOptionalParams,
   PublicIPAddressesGetOptionalParams,
   PublicIPAddressesGetResponse,
+  PublicIPAddressesCreateOrUpdateOptionalParams,
   PublicIPAddressesCreateOrUpdateResponse,
   TagsObject,
+  PublicIPAddressesUpdateTagsOptionalParams,
   PublicIPAddressesUpdateTagsResponse,
   PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams,
   PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse
@@ -29,7 +40,7 @@ export interface PublicIPAddresses {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
    * Gets all public IP addresses in a resource group.
@@ -38,7 +49,7 @@ export interface PublicIPAddresses {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
    * Gets information about all public IP addresses on a virtual machine scale set level.
@@ -49,7 +60,7 @@ export interface PublicIPAddresses {
   listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
    * Gets information about all public IP addresses in a virtual machine IP configuration in a virtual
@@ -67,7 +78,7 @@ export interface PublicIPAddresses {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress>;
   /**
    * Deletes the specified public IP address.
@@ -78,7 +89,7 @@ export interface PublicIPAddresses {
   delete(
     resourceGroupName: string,
     publicIpAddressName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -104,7 +115,7 @@ export interface PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: PublicIPAddress,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PublicIPAddressesCreateOrUpdateResponse>,
@@ -122,7 +133,7 @@ export interface PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesUpdateTagsOptionalParams
   ): Promise<PublicIPAddressesUpdateTagsResponse>;
   /**
    * Get the specified public IP address in a virtual machine scale set.

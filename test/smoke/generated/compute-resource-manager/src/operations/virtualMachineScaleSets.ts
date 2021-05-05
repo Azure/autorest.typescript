@@ -17,14 +17,28 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSet,
+  VirtualMachineScaleSetsListNextOptionalParams,
+  VirtualMachineScaleSetsListOptionalParams,
+  VirtualMachineScaleSetsListAllNextOptionalParams,
+  VirtualMachineScaleSetsListAllOptionalParams,
   VirtualMachineScaleSetSku,
+  VirtualMachineScaleSetsListSkusNextOptionalParams,
+  VirtualMachineScaleSetsListSkusOptionalParams,
   UpgradeOperationHistoricalStatusInfo,
+  VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams,
+  VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams,
+  VirtualMachineScaleSetsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetsCreateOrUpdateResponse,
   VirtualMachineScaleSetUpdate,
+  VirtualMachineScaleSetsUpdateOptionalParams,
   VirtualMachineScaleSetsUpdateResponse,
+  VirtualMachineScaleSetsDeleteOptionalParams,
+  VirtualMachineScaleSetsGetOptionalParams,
   VirtualMachineScaleSetsGetResponse,
   VirtualMachineScaleSetsDeallocateOptionalParams,
   VirtualMachineScaleSetVMInstanceRequiredIDs,
+  VirtualMachineScaleSetsDeleteInstancesOptionalParams,
+  VirtualMachineScaleSetsGetInstanceViewOptionalParams,
   VirtualMachineScaleSetsGetInstanceViewResponse,
   VirtualMachineScaleSetsListResponse,
   VirtualMachineScaleSetsListAllResponse,
@@ -35,11 +49,15 @@ import {
   VirtualMachineScaleSetsStartOptionalParams,
   VirtualMachineScaleSetsRedeployOptionalParams,
   VirtualMachineScaleSetsPerformMaintenanceOptionalParams,
+  VirtualMachineScaleSetsUpdateInstancesOptionalParams,
   VirtualMachineScaleSetsReimageOptionalParams,
   VirtualMachineScaleSetsReimageAllOptionalParams,
+  VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams,
   VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse,
   VMScaleSetConvertToSinglePlacementGroupInput,
+  VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams,
   OrchestrationServiceStateInput,
+  VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams,
   VirtualMachineScaleSetsListNextResponse,
   VirtualMachineScaleSetsListAllNextResponse,
   VirtualMachineScaleSetsListSkusNextResponse,
@@ -66,7 +84,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSet> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -84,7 +102,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSet[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -102,7 +120,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSet> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -116,7 +134,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSet> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -133,7 +151,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSet[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -146,7 +164,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSet> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -163,7 +181,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   public listSkus(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSetSku> {
     const iter = this.listSkusPagingAll(
       resourceGroupName,
@@ -190,7 +208,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private async *listSkusPagingPage(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSetSku[]> {
     let result = await this._listSkus(
       resourceGroupName,
@@ -214,7 +232,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private async *listSkusPagingAll(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSetSku> {
     for await (const page of this.listSkusPagingPage(
       resourceGroupName,
@@ -234,7 +252,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   public listOSUpgradeHistory(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
   ): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo> {
     const iter = this.getOSUpgradeHistoryPagingAll(
       resourceGroupName,
@@ -261,7 +279,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private async *getOSUpgradeHistoryPagingPage(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
   ): AsyncIterableIterator<UpgradeOperationHistoricalStatusInfo[]> {
     let result = await this._getOSUpgradeHistory(
       resourceGroupName,
@@ -285,7 +303,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private async *getOSUpgradeHistoryPagingAll(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
   ): AsyncIterableIterator<UpgradeOperationHistoricalStatusInfo> {
     for await (const page of this.getOSUpgradeHistoryPagingPage(
       resourceGroupName,
@@ -307,7 +325,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSet,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>,
@@ -329,16 +347,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -352,7 +366,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSetUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetsUpdateResponse>,
@@ -374,16 +388,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -395,7 +405,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   async delete(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -413,16 +423,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -434,7 +440,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   get(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOptionalParams
   ): Promise<VirtualMachineScaleSetsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -476,16 +482,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deallocateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deallocateOperationSpec,
-      initialOperationResult,
+      deallocateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -499,7 +501,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -518,16 +520,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteInstancesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteInstancesOperationSpec,
-      initialOperationResult,
+      deleteInstancesOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -539,7 +537,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   getInstanceView(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetInstanceViewOptionalParams
   ): Promise<VirtualMachineScaleSetsGetInstanceViewResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -559,7 +557,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListOptionalParams
   ): Promise<VirtualMachineScaleSetsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -578,7 +576,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllOptionalParams
   ): Promise<VirtualMachineScaleSetsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -599,7 +597,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private _listSkus(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusOptionalParams
   ): Promise<VirtualMachineScaleSetsListSkusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -621,7 +619,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private _getOSUpgradeHistory(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams
   ): Promise<VirtualMachineScaleSetsGetOSUpgradeHistoryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -663,16 +661,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      powerOffOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: powerOffOperationSpec,
-      initialOperationResult,
+      powerOffOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -702,16 +696,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restartOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restartOperationSpec,
-      initialOperationResult,
+      restartOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -741,16 +731,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOperationSpec,
-      initialOperationResult,
+      startOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -781,16 +767,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      redeployOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: redeployOperationSpec,
-      initialOperationResult,
+      redeployOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -823,16 +805,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      performMaintenanceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: performMaintenanceOperationSpec,
-      initialOperationResult,
+      performMaintenanceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -846,7 +824,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -865,16 +843,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateInstancesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateInstancesOperationSpec,
-      initialOperationResult,
+      updateInstancesOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -906,16 +880,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reimageOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reimageOperationSpec,
-      initialOperationResult,
+      reimageOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -946,16 +916,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reimageAllOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reimageAllOperationSpec,
-      initialOperationResult,
+      reimageAllOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -970,7 +936,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     platformUpdateDomain: number,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams
   ): Promise<
     VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse
   > {
@@ -999,7 +965,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VMScaleSetConvertToSinglePlacementGroupInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1024,7 +990,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: OrchestrationServiceStateInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1043,16 +1009,12 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      setOrchestrationServiceStateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: setOrchestrationServiceStateOperationSpec,
-      initialOperationResult,
+      setOrchestrationServiceStateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1064,7 +1026,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListNextOptionalParams
   ): Promise<VirtualMachineScaleSetsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1084,7 +1046,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListAllNextOptionalParams
   ): Promise<VirtualMachineScaleSetsListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -1107,7 +1069,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsListSkusNextOptionalParams
   ): Promise<VirtualMachineScaleSetsListSkusNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1132,7 +1094,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
     resourceGroupName: string,
     vmScaleSetName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams
   ): Promise<VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -8,8 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
+  FormdataUploadFileViaBodyOptionalParams,
   FormdataUploadFileViaBodyResponse,
+  FormdataUploadFilesOptionalParams,
   FormdataUploadFilesResponse
 } from "../models";
 
@@ -24,7 +27,7 @@ export interface Formdata {
   uploadFile(
     fileContent: coreHttp.HttpRequestBody,
     fileName: string,
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFileOptionalParams
   ): Promise<FormdataUploadFileResponse>;
   /**
    * Upload file
@@ -33,7 +36,7 @@ export interface Formdata {
    */
   uploadFileViaBody(
     fileContent: coreHttp.HttpRequestBody,
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFileViaBodyOptionalParams
   ): Promise<FormdataUploadFileViaBodyResponse>;
   /**
    * Upload multiple files
@@ -42,6 +45,6 @@ export interface Formdata {
    */
   uploadFiles(
     fileContent: coreHttp.HttpRequestBody[],
-    options?: coreHttp.OperationOptions
+    options?: FormdataUploadFilesOptionalParams
   ): Promise<FormdataUploadFilesResponse>;
 }

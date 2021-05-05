@@ -17,17 +17,30 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
+  SyncGroupsListSyncDatabaseIdsNextOptionalParams,
+  SyncGroupsListSyncDatabaseIdsOptionalParams,
   SyncFullSchemaProperties,
+  SyncGroupsListHubSchemasNextOptionalParams,
+  SyncGroupsListHubSchemasOptionalParams,
   SyncGroupLogProperties,
   Enum21,
   SyncGroupsListLogsNextOptionalParams,
   SyncGroupsListLogsOptionalParams,
   SyncGroup,
+  SyncGroupsListByDatabaseNextOptionalParams,
+  SyncGroupsListByDatabaseOptionalParams,
   SyncGroupsListSyncDatabaseIdsResponse,
+  SyncGroupsRefreshHubSchemaOptionalParams,
   SyncGroupsListHubSchemasResponse,
   SyncGroupsListLogsResponse,
+  SyncGroupsCancelSyncOptionalParams,
+  SyncGroupsTriggerSyncOptionalParams,
+  SyncGroupsGetOptionalParams,
   SyncGroupsGetResponse,
+  SyncGroupsCreateOrUpdateOptionalParams,
   SyncGroupsCreateOrUpdateResponse,
+  SyncGroupsDeleteOptionalParams,
+  SyncGroupsUpdateOptionalParams,
   SyncGroupsUpdateResponse,
   SyncGroupsListByDatabaseResponse,
   SyncGroupsListSyncDatabaseIdsNextResponse,
@@ -56,7 +69,7 @@ export class SyncGroupsImpl implements SyncGroups {
    */
   public listSyncDatabaseIds(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
   ): PagedAsyncIterableIterator<SyncDatabaseIdProperties> {
     const iter = this.listSyncDatabaseIdsPagingAll(locationName, options);
     return {
@@ -74,7 +87,7 @@ export class SyncGroupsImpl implements SyncGroups {
 
   private async *listSyncDatabaseIdsPagingPage(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
   ): AsyncIterableIterator<SyncDatabaseIdProperties[]> {
     let result = await this._listSyncDatabaseIds(locationName, options);
     yield result.value || [];
@@ -92,7 +105,7 @@ export class SyncGroupsImpl implements SyncGroups {
 
   private async *listSyncDatabaseIdsPagingAll(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
   ): AsyncIterableIterator<SyncDatabaseIdProperties> {
     for await (const page of this.listSyncDatabaseIdsPagingPage(
       locationName,
@@ -116,7 +129,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasOptionalParams
   ): PagedAsyncIterableIterator<SyncFullSchemaProperties> {
     const iter = this.listHubSchemasPagingAll(
       resourceGroupName,
@@ -149,7 +162,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasOptionalParams
   ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
     let result = await this._listHubSchemas(
       resourceGroupName,
@@ -179,7 +192,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasOptionalParams
   ): AsyncIterableIterator<SyncFullSchemaProperties> {
     for await (const page of this.listHubSchemasPagingPage(
       resourceGroupName,
@@ -321,7 +334,7 @@ export class SyncGroupsImpl implements SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<SyncGroup> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -351,7 +364,7 @@ export class SyncGroupsImpl implements SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseOptionalParams
   ): AsyncIterableIterator<SyncGroup[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -378,7 +391,7 @@ export class SyncGroupsImpl implements SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseOptionalParams
   ): AsyncIterableIterator<SyncGroup> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -397,7 +410,7 @@ export class SyncGroupsImpl implements SyncGroups {
    */
   private _listSyncDatabaseIds(
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
   ): Promise<SyncGroupsListSyncDatabaseIdsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -423,7 +436,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsRefreshHubSchemaOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -443,16 +456,12 @@ export class SyncGroupsImpl implements SyncGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      refreshHubSchemaOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: refreshHubSchemaOperationSpec,
-      initialOperationResult,
+      refreshHubSchemaOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -469,7 +478,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasOptionalParams
   ): Promise<SyncGroupsListHubSchemasResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -536,7 +545,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsCancelSyncOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -565,7 +574,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsTriggerSyncOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -594,7 +603,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsGetOptionalParams
   ): Promise<SyncGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -625,7 +634,7 @@ export class SyncGroupsImpl implements SyncGroups {
     databaseName: string,
     syncGroupName: string,
     parameters: SyncGroup,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncGroupsCreateOrUpdateResponse>,
@@ -649,16 +658,12 @@ export class SyncGroupsImpl implements SyncGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -675,7 +680,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -695,16 +700,12 @@ export class SyncGroupsImpl implements SyncGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -723,7 +724,7 @@ export class SyncGroupsImpl implements SyncGroups {
     databaseName: string,
     syncGroupName: string,
     parameters: SyncGroup,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncGroupsUpdateResponse>,
@@ -747,16 +748,12 @@ export class SyncGroupsImpl implements SyncGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -771,7 +768,7 @@ export class SyncGroupsImpl implements SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseOptionalParams
   ): Promise<SyncGroupsListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -794,7 +791,7 @@ export class SyncGroupsImpl implements SyncGroups {
   private _listSyncDatabaseIdsNext(
     locationName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListSyncDatabaseIdsNextOptionalParams
   ): Promise<SyncGroupsListSyncDatabaseIdsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -823,7 +820,7 @@ export class SyncGroupsImpl implements SyncGroups {
     databaseName: string,
     syncGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListHubSchemasNextOptionalParams
   ): Promise<SyncGroupsListHubSchemasNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -894,7 +891,7 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncGroupsListByDatabaseNextOptionalParams
   ): Promise<SyncGroupsListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

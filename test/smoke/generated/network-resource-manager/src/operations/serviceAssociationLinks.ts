@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { ServiceAssociationLinksListResponse } from "../models";
+import {
+  ServiceAssociationLinksListOptionalParams,
+  ServiceAssociationLinksListResponse
+} from "../models";
 
 /** Class representing a ServiceAssociationLinks. */
 export class ServiceAssociationLinksImpl implements ServiceAssociationLinks {
@@ -36,7 +39,7 @@ export class ServiceAssociationLinksImpl implements ServiceAssociationLinks {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceAssociationLinksListOptionalParams
   ): Promise<ServiceAssociationLinksListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

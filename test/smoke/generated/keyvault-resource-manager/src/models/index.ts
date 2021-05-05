@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Parameters for creating or updating a vault */
 export interface VaultCreateOrUpdateParameters {
@@ -732,6 +731,15 @@ export type AccessPolicyUpdateKind = "add" | "replace" | "remove";
 /** Defines values for Reason. */
 export type Reason = "AccountNameInvalid" | "AlreadyExists";
 
+/** Optional parameters. */
+export interface VaultsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VaultsCreateOrUpdateResponse = Vault & {
   /** The underlying HTTP response. */
@@ -741,10 +749,11 @@ export type VaultsCreateOrUpdateResponse = Vault & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Vault;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VaultsUpdateOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the update operation. */
 export type VaultsUpdateResponse = Vault & {
@@ -758,6 +767,12 @@ export type VaultsUpdateResponse = Vault & {
   };
 };
 
+/** Optional parameters. */
+export interface VaultsDeleteOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface VaultsGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type VaultsGetResponse = Vault & {
   /** The underlying HTTP response. */
@@ -769,6 +784,10 @@ export type VaultsGetResponse = Vault & {
     parsedBody: Vault;
   };
 };
+
+/** Optional parameters. */
+export interface VaultsUpdateAccessPolicyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the updateAccessPolicy operation. */
 export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters & {
@@ -820,6 +839,10 @@ export type VaultsListBySubscriptionResponse = VaultListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VaultsListDeletedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeleted operation. */
 export type VaultsListDeletedResponse = DeletedVaultListResult & {
   /** The underlying HTTP response. */
@@ -832,6 +855,10 @@ export type VaultsListDeletedResponse = DeletedVaultListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VaultsGetDeletedOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDeleted operation. */
 export type VaultsGetDeletedResponse = DeletedVault & {
   /** The underlying HTTP response. */
@@ -843,6 +870,15 @@ export type VaultsGetDeletedResponse = DeletedVault & {
     parsedBody: DeletedVault;
   };
 };
+
+/** Optional parameters. */
+export interface VaultsPurgeDeletedOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface VaultsListOptionalParams extends coreHttp.OperationOptions {
@@ -861,6 +897,10 @@ export type VaultsListResponse = ResourceListResult & {
     parsedBody: ResourceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VaultsCheckNameAvailabilityOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
 export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
@@ -912,6 +952,10 @@ export type VaultsListBySubscriptionNextResponse = VaultListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VaultsListDeletedNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listDeletedNext operation. */
 export type VaultsListDeletedNextResponse = DeletedVaultListResult & {
   /** The underlying HTTP response. */
@@ -943,6 +987,10 @@ export type VaultsListNextResponse = ResourceListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
   /** The underlying HTTP response. */
@@ -954,6 +1002,10 @@ export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & 
     parsedBody: PrivateEndpointConnection;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsPutOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the put operation. */
 export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPutHeaders &
@@ -970,6 +1022,15 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPu
     };
   };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the delete operation. */
 export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection & {
   /** The underlying HTTP response. */
@@ -979,10 +1040,12 @@ export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection
 
     /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnection;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateLinkResourcesListByVaultOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByVault operation. */
 export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListResult & {
@@ -996,6 +1059,10 @@ export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListRes
   };
 };
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -1007,6 +1074,10 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {

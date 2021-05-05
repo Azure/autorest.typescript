@@ -17,7 +17,11 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerBlobAuditingPolicy,
+  ServerBlobAuditingPoliciesListByServerNextOptionalParams,
+  ServerBlobAuditingPoliciesListByServerOptionalParams,
+  ServerBlobAuditingPoliciesGetOptionalParams,
   ServerBlobAuditingPoliciesGetResponse,
+  ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   ServerBlobAuditingPoliciesCreateOrUpdateResponse,
   ServerBlobAuditingPoliciesListByServerResponse,
   ServerBlobAuditingPoliciesListByServerNextResponse
@@ -47,7 +51,7 @@ export class ServerBlobAuditingPoliciesImpl
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerBlobAuditingPolicy> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -74,7 +78,7 @@ export class ServerBlobAuditingPoliciesImpl
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
   ): AsyncIterableIterator<ServerBlobAuditingPolicy[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -98,7 +102,7 @@ export class ServerBlobAuditingPoliciesImpl
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
   ): AsyncIterableIterator<ServerBlobAuditingPolicy> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -119,7 +123,7 @@ export class ServerBlobAuditingPoliciesImpl
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesGetOptionalParams
   ): Promise<ServerBlobAuditingPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -144,7 +148,7 @@ export class ServerBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerBlobAuditingPoliciesCreateOrUpdateResponse>,
@@ -166,16 +170,12 @@ export class ServerBlobAuditingPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -188,7 +188,7 @@ export class ServerBlobAuditingPoliciesImpl
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerOptionalParams
   ): Promise<ServerBlobAuditingPoliciesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -213,7 +213,7 @@ export class ServerBlobAuditingPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerBlobAuditingPoliciesListByServerNextOptionalParams
   ): Promise<ServerBlobAuditingPoliciesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

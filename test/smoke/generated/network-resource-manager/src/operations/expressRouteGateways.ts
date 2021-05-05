@@ -14,11 +14,16 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  ExpressRouteGatewaysListBySubscriptionOptionalParams,
   ExpressRouteGatewaysListBySubscriptionResponse,
+  ExpressRouteGatewaysListByResourceGroupOptionalParams,
   ExpressRouteGatewaysListByResourceGroupResponse,
   ExpressRouteGateway,
+  ExpressRouteGatewaysCreateOrUpdateOptionalParams,
   ExpressRouteGatewaysCreateOrUpdateResponse,
-  ExpressRouteGatewaysGetResponse
+  ExpressRouteGatewaysGetOptionalParams,
+  ExpressRouteGatewaysGetResponse,
+  ExpressRouteGatewaysDeleteOptionalParams
 } from "../models";
 
 /** Class representing a ExpressRouteGateways. */
@@ -38,7 +43,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysListBySubscriptionOptionalParams
   ): Promise<ExpressRouteGatewaysListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -56,7 +61,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysListByResourceGroupOptionalParams
   ): Promise<ExpressRouteGatewaysListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -80,7 +85,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteGatewaysCreateOrUpdateResponse>,
@@ -102,17 +107,13 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -124,7 +125,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
   get(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysGetOptionalParams
   ): Promise<ExpressRouteGatewaysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -147,7 +148,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
   async delete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -165,17 +166,13 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

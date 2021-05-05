@@ -12,9 +12,14 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyByteClientContext } from "../bodyByteClientContext";
 import {
+  ByteGetNullOptionalParams,
   ByteGetNullResponse,
+  ByteGetEmptyOptionalParams,
   ByteGetEmptyResponse,
+  ByteGetNonAsciiOptionalParams,
   ByteGetNonAsciiResponse,
+  BytePutNonAsciiOptionalParams,
+  ByteGetInvalidOptionalParams,
   ByteGetInvalidResponse
 } from "../models";
 
@@ -34,7 +39,7 @@ export class ByteImpl implements Byte {
    * Get null byte value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<ByteGetNullResponse> {
+  getNull(options?: ByteGetNullOptionalParams): Promise<ByteGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -48,7 +53,9 @@ export class ByteImpl implements Byte {
    * Get empty byte value ''
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.OperationOptions): Promise<ByteGetEmptyResponse> {
+  getEmpty(
+    options?: ByteGetEmptyOptionalParams
+  ): Promise<ByteGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -63,7 +70,7 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getNonAscii(
-    options?: coreHttp.OperationOptions
+    options?: ByteGetNonAsciiOptionalParams
   ): Promise<ByteGetNonAsciiResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -81,7 +88,7 @@ export class ByteImpl implements Byte {
    */
   putNonAscii(
     byteBody: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: BytePutNonAsciiOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       byteBody,
@@ -98,7 +105,7 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ByteGetInvalidOptionalParams
   ): Promise<ByteGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

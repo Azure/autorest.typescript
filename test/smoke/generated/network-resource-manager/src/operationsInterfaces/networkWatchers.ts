@@ -12,33 +12,51 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkWatcher,
+  NetworkWatchersListOptionalParams,
+  NetworkWatchersListAllOptionalParams,
+  NetworkWatchersCreateOrUpdateOptionalParams,
   NetworkWatchersCreateOrUpdateResponse,
+  NetworkWatchersGetOptionalParams,
   NetworkWatchersGetResponse,
+  NetworkWatchersDeleteOptionalParams,
   TagsObject,
+  NetworkWatchersUpdateTagsOptionalParams,
   NetworkWatchersUpdateTagsResponse,
   TopologyParameters,
+  NetworkWatchersGetTopologyOptionalParams,
   NetworkWatchersGetTopologyResponse,
   VerificationIPFlowParameters,
+  NetworkWatchersVerifyIPFlowOptionalParams,
   NetworkWatchersVerifyIPFlowResponse,
   NextHopParameters,
+  NetworkWatchersGetNextHopOptionalParams,
   NetworkWatchersGetNextHopResponse,
   SecurityGroupViewParameters,
+  NetworkWatchersGetVMSecurityRulesOptionalParams,
   NetworkWatchersGetVMSecurityRulesResponse,
   TroubleshootingParameters,
+  NetworkWatchersGetTroubleshootingOptionalParams,
   NetworkWatchersGetTroubleshootingResponse,
   QueryTroubleshootingParameters,
+  NetworkWatchersGetTroubleshootingResultOptionalParams,
   NetworkWatchersGetTroubleshootingResultResponse,
   FlowLogInformation,
+  NetworkWatchersSetFlowLogConfigurationOptionalParams,
   NetworkWatchersSetFlowLogConfigurationResponse,
   FlowLogStatusParameters,
+  NetworkWatchersGetFlowLogStatusOptionalParams,
   NetworkWatchersGetFlowLogStatusResponse,
   ConnectivityParameters,
+  NetworkWatchersCheckConnectivityOptionalParams,
   NetworkWatchersCheckConnectivityResponse,
   AzureReachabilityReportParameters,
+  NetworkWatchersGetAzureReachabilityReportOptionalParams,
   NetworkWatchersGetAzureReachabilityReportResponse,
   AvailableProvidersListParameters,
+  NetworkWatchersListAvailableProvidersOptionalParams,
   NetworkWatchersListAvailableProvidersResponse,
   NetworkConfigurationDiagnosticParameters,
+  NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams,
   NetworkWatchersGetNetworkConfigurationDiagnosticResponse
 } from "../models";
 
@@ -52,14 +70,14 @@ export interface NetworkWatchers {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListOptionalParams
   ): PagedAsyncIterableIterator<NetworkWatcher>;
   /**
    * Gets all network watchers by subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkWatcher>;
   /**
    * Creates or updates a network watcher in the specified resource group.
@@ -72,7 +90,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkWatcher,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersCreateOrUpdateOptionalParams
   ): Promise<NetworkWatchersCreateOrUpdateResponse>;
   /**
    * Gets the specified network watcher by resource group.
@@ -83,7 +101,7 @@ export interface NetworkWatchers {
   get(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetOptionalParams
   ): Promise<NetworkWatchersGetResponse>;
   /**
    * Deletes the specified network watcher resource.
@@ -94,7 +112,7 @@ export interface NetworkWatchers {
   delete(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -109,7 +127,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersUpdateTagsOptionalParams
   ): Promise<NetworkWatchersUpdateTagsResponse>;
   /**
    * Gets the current network topology by resource group.
@@ -122,7 +140,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TopologyParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTopologyOptionalParams
   ): Promise<NetworkWatchersGetTopologyResponse>;
   /**
    * Verify IP flow from the specified VM to a location given the currently configured NSG rules.
@@ -135,7 +153,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersVerifyIPFlowOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersVerifyIPFlowResponse>,
@@ -153,7 +171,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NextHopParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetNextHopOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetNextHopResponse>,
@@ -171,7 +189,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetVMSecurityRulesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetVMSecurityRulesResponse>,
@@ -189,7 +207,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTroubleshootingOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetTroubleshootingResponse>,
@@ -207,7 +225,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetTroubleshootingResultOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetTroubleshootingResultResponse>,
@@ -225,7 +243,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogInformation,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersSetFlowLogConfigurationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersSetFlowLogConfigurationResponse>,
@@ -244,7 +262,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetFlowLogStatusOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetFlowLogStatusResponse>,
@@ -263,7 +281,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: ConnectivityParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersCheckConnectivityOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersCheckConnectivityResponse>,
@@ -282,7 +300,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetAzureReachabilityReportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersGetAzureReachabilityReportResponse>,
@@ -301,7 +319,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersListAvailableProvidersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkWatchersListAvailableProvidersResponse>,
@@ -323,7 +341,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkConfigurationDiagnosticParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

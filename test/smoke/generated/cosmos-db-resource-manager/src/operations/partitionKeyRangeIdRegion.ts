@@ -15,6 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   PartitionMetric,
+  PartitionKeyRangeIdRegionListMetricsOptionalParams,
   PartitionKeyRangeIdRegionListMetricsResponse
 } from "../models";
 
@@ -54,7 +55,7 @@ export class PartitionKeyRangeIdRegionImpl
     collectionRid: string,
     partitionKeyRangeId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PartitionKeyRangeIdRegionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PartitionMetric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -96,7 +97,7 @@ export class PartitionKeyRangeIdRegionImpl
     collectionRid: string,
     partitionKeyRangeId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PartitionKeyRangeIdRegionListMetricsOptionalParams
   ): AsyncIterableIterator<PartitionMetric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -119,7 +120,7 @@ export class PartitionKeyRangeIdRegionImpl
     collectionRid: string,
     partitionKeyRangeId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PartitionKeyRangeIdRegionListMetricsOptionalParams
   ): AsyncIterableIterator<PartitionMetric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -157,7 +158,7 @@ export class PartitionKeyRangeIdRegionImpl
     collectionRid: string,
     partitionKeyRangeId: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PartitionKeyRangeIdRegionListMetricsOptionalParams
   ): Promise<PartitionKeyRangeIdRegionListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

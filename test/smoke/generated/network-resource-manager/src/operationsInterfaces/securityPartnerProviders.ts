@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SecurityPartnerProvider,
+  SecurityPartnerProvidersListByResourceGroupNextOptionalParams,
+  SecurityPartnerProvidersListByResourceGroupOptionalParams,
+  SecurityPartnerProvidersListNextOptionalParams,
+  SecurityPartnerProvidersListOptionalParams,
+  SecurityPartnerProvidersDeleteOptionalParams,
+  SecurityPartnerProvidersGetOptionalParams,
   SecurityPartnerProvidersGetResponse,
+  SecurityPartnerProvidersCreateOrUpdateOptionalParams,
   SecurityPartnerProvidersCreateOrUpdateResponse,
   TagsObject,
+  SecurityPartnerProvidersUpdateTagsOptionalParams,
   SecurityPartnerProvidersUpdateTagsResponse
 } from "../models";
 
@@ -28,14 +36,14 @@ export interface SecurityPartnerProviders {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<SecurityPartnerProvider>;
   /**
    * Gets all the Security Partner Providers in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListOptionalParams
   ): PagedAsyncIterableIterator<SecurityPartnerProvider>;
   /**
    * Deletes the specified Security Partner Provider.
@@ -46,7 +54,7 @@ export interface SecurityPartnerProviders {
   delete(
     resourceGroupName: string,
     securityPartnerProviderName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface SecurityPartnerProviders {
   get(
     resourceGroupName: string,
     securityPartnerProviderName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersGetOptionalParams
   ): Promise<SecurityPartnerProvidersGetResponse>;
   /**
    * Creates or updates the specified Security Partner Provider.
@@ -72,7 +80,7 @@ export interface SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>,
@@ -90,6 +98,6 @@ export interface SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersUpdateTagsOptionalParams
   ): Promise<SecurityPartnerProvidersUpdateTagsResponse>;
 }

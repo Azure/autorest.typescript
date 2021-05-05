@@ -10,9 +10,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
+  VirtualMachineExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineExtensionsCreateOrUpdateResponse,
   VirtualMachineExtensionUpdate,
+  VirtualMachineExtensionsUpdateOptionalParams,
   VirtualMachineExtensionsUpdateResponse,
+  VirtualMachineExtensionsDeleteOptionalParams,
   VirtualMachineExtensionsGetOptionalParams,
   VirtualMachineExtensionsGetResponse,
   VirtualMachineExtensionsListOptionalParams,
@@ -34,7 +37,7 @@ export interface VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtension,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
@@ -54,7 +57,7 @@ export interface VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsUpdateResponse>,
@@ -72,7 +75,7 @@ export interface VirtualMachineExtensions {
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

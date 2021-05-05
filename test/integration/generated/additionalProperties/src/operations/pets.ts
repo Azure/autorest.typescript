@@ -13,16 +13,22 @@ import * as Parameters from "../models/parameters";
 import { AdditionalPropertiesClientContext } from "../additionalPropertiesClientContext";
 import {
   PetAPTrue,
+  PetsCreateAPTrueOptionalParams,
   PetsCreateAPTrueResponse,
   CatAPTrue,
+  PetsCreateCatAPTrueOptionalParams,
   PetsCreateCatAPTrueResponse,
   PetAPObject,
+  PetsCreateAPObjectOptionalParams,
   PetsCreateAPObjectResponse,
   PetAPString,
+  PetsCreateAPStringOptionalParams,
   PetsCreateAPStringResponse,
   PetAPInProperties,
+  PetsCreateAPInPropertiesOptionalParams,
   PetsCreateAPInPropertiesResponse,
   PetAPInPropertiesWithAPString,
+  PetsCreateAPInPropertiesWithAPStringOptionalParams,
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "../models";
 
@@ -45,7 +51,7 @@ export class PetsImpl implements Pets {
    */
   createAPTrue(
     createParameters: PetAPTrue,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPTrueOptionalParams
   ): Promise<PetsCreateAPTrueResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,
@@ -64,7 +70,7 @@ export class PetsImpl implements Pets {
    */
   createCatAPTrue(
     createParameters: CatAPTrue,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateCatAPTrueOptionalParams
   ): Promise<PetsCreateCatAPTrueResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,
@@ -83,7 +89,7 @@ export class PetsImpl implements Pets {
    */
   createAPObject(
     createParameters: PetAPObject,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPObjectOptionalParams
   ): Promise<PetsCreateAPObjectResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,
@@ -102,7 +108,7 @@ export class PetsImpl implements Pets {
    */
   createAPString(
     createParameters: PetAPString,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPStringOptionalParams
   ): Promise<PetsCreateAPStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,
@@ -121,7 +127,7 @@ export class PetsImpl implements Pets {
    */
   createAPInProperties(
     createParameters: PetAPInProperties,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPInPropertiesOptionalParams
   ): Promise<PetsCreateAPInPropertiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,
@@ -140,7 +146,7 @@ export class PetsImpl implements Pets {
    */
   createAPInPropertiesWithAPString(
     createParameters: PetAPInPropertiesWithAPString,
-    options?: coreHttp.OperationOptions
+    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       createParameters,

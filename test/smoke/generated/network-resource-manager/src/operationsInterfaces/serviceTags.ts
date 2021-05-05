@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { ServiceTagsListResponse } from "../models";
+import {
+  ServiceTagsListOptionalParams,
+  ServiceTagsListResponse
+} from "../models";
 
 /** Interface representing a ServiceTags. */
 export interface ServiceTags {
@@ -20,6 +23,6 @@ export interface ServiceTags {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTagsListOptionalParams
   ): Promise<ServiceTagsListResponse>;
 }

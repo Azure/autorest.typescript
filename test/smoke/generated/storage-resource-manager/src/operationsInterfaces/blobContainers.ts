@@ -14,17 +14,25 @@ import {
   BlobContainersListNextOptionalParams,
   BlobContainersListOptionalParams,
   BlobContainer,
+  BlobContainersCreateOptionalParams,
   BlobContainersCreateResponse,
+  BlobContainersUpdateOptionalParams,
   BlobContainersUpdateResponse,
+  BlobContainersGetOptionalParams,
   BlobContainersGetResponse,
+  BlobContainersDeleteOptionalParams,
   LegalHold,
+  BlobContainersSetLegalHoldOptionalParams,
   BlobContainersSetLegalHoldResponse,
+  BlobContainersClearLegalHoldOptionalParams,
   BlobContainersClearLegalHoldResponse,
   BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams,
   BlobContainersCreateOrUpdateImmutabilityPolicyResponse,
   BlobContainersGetImmutabilityPolicyOptionalParams,
   BlobContainersGetImmutabilityPolicyResponse,
+  BlobContainersDeleteImmutabilityPolicyOptionalParams,
   BlobContainersDeleteImmutabilityPolicyResponse,
+  BlobContainersLockImmutabilityPolicyOptionalParams,
   BlobContainersLockImmutabilityPolicyResponse,
   BlobContainersExtendImmutabilityPolicyOptionalParams,
   BlobContainersExtendImmutabilityPolicyResponse,
@@ -71,7 +79,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     blobContainer: BlobContainer,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersCreateOptionalParams
   ): Promise<BlobContainersCreateResponse>;
   /**
    * Updates container properties as specified in request body. Properties not mentioned in the request
@@ -93,7 +101,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     blobContainer: BlobContainer,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersUpdateOptionalParams
   ): Promise<BlobContainersUpdateResponse>;
   /**
    * Gets properties of a specified container.
@@ -112,7 +120,7 @@ export interface BlobContainers {
     resourceGroupName: string,
     accountName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersGetOptionalParams
   ): Promise<BlobContainersGetResponse>;
   /**
    * Deletes specified container under its account.
@@ -131,7 +139,7 @@ export interface BlobContainers {
     resourceGroupName: string,
     accountName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows
@@ -153,7 +161,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     legalHold: LegalHold,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersSetLegalHoldOptionalParams
   ): Promise<BlobContainersSetLegalHoldResponse>;
   /**
    * Clears legal hold tags. Clearing the same or non-existent tag results in an idempotent operation.
@@ -175,7 +183,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     legalHold: LegalHold,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersClearLegalHoldOptionalParams
   ): Promise<BlobContainersClearLegalHoldResponse>;
   /**
    * Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not
@@ -241,7 +249,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     ifMatch: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersDeleteImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersDeleteImmutabilityPolicyResponse>;
   /**
    * Sets the ImmutabilityPolicy to Locked state. The only action allowed on a Locked policy is
@@ -265,7 +273,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     ifMatch: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersLockImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersLockImmutabilityPolicyResponse>;
   /**
    * Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action

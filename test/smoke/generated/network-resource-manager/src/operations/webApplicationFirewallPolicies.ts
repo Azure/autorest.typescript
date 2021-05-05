@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WebApplicationFirewallPolicy,
+  WebApplicationFirewallPoliciesListNextOptionalParams,
+  WebApplicationFirewallPoliciesListOptionalParams,
+  WebApplicationFirewallPoliciesListAllNextOptionalParams,
+  WebApplicationFirewallPoliciesListAllOptionalParams,
   WebApplicationFirewallPoliciesListResponse,
   WebApplicationFirewallPoliciesListAllResponse,
+  WebApplicationFirewallPoliciesGetOptionalParams,
   WebApplicationFirewallPoliciesGetResponse,
+  WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams,
   WebApplicationFirewallPoliciesCreateOrUpdateResponse,
+  WebApplicationFirewallPoliciesDeleteOptionalParams,
   WebApplicationFirewallPoliciesListNextResponse,
   WebApplicationFirewallPoliciesListAllNextResponse
 } from "../models";
@@ -46,7 +53,7 @@ export class WebApplicationFirewallPoliciesImpl
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<WebApplicationFirewallPolicy> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -64,7 +71,7 @@ export class WebApplicationFirewallPoliciesImpl
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListOptionalParams
   ): AsyncIterableIterator<WebApplicationFirewallPolicy[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -82,7 +89,7 @@ export class WebApplicationFirewallPoliciesImpl
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListOptionalParams
   ): AsyncIterableIterator<WebApplicationFirewallPolicy> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -94,7 +101,7 @@ export class WebApplicationFirewallPoliciesImpl
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllOptionalParams
   ): PagedAsyncIterableIterator<WebApplicationFirewallPolicy> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -111,7 +118,7 @@ export class WebApplicationFirewallPoliciesImpl
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllOptionalParams
   ): AsyncIterableIterator<WebApplicationFirewallPolicy[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -124,7 +131,7 @@ export class WebApplicationFirewallPoliciesImpl
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllOptionalParams
   ): AsyncIterableIterator<WebApplicationFirewallPolicy> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -138,7 +145,7 @@ export class WebApplicationFirewallPoliciesImpl
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListOptionalParams
   ): Promise<WebApplicationFirewallPoliciesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -155,7 +162,7 @@ export class WebApplicationFirewallPoliciesImpl
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllOptionalParams
   ): Promise<WebApplicationFirewallPoliciesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -175,7 +182,7 @@ export class WebApplicationFirewallPoliciesImpl
   get(
     resourceGroupName: string,
     policyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesGetOptionalParams
   ): Promise<WebApplicationFirewallPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -199,7 +206,7 @@ export class WebApplicationFirewallPoliciesImpl
     resourceGroupName: string,
     policyName: string,
     parameters: WebApplicationFirewallPolicy,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams
   ): Promise<WebApplicationFirewallPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -222,7 +229,7 @@ export class WebApplicationFirewallPoliciesImpl
   async delete(
     resourceGroupName: string,
     policyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -240,17 +247,13 @@ export class WebApplicationFirewallPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -262,7 +265,7 @@ export class WebApplicationFirewallPoliciesImpl
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListNextOptionalParams
   ): Promise<WebApplicationFirewallPoliciesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -282,7 +285,7 @@ export class WebApplicationFirewallPoliciesImpl
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebApplicationFirewallPoliciesListAllNextOptionalParams
   ): Promise<WebApplicationFirewallPoliciesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

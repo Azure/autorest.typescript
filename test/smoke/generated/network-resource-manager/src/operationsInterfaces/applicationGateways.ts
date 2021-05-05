@@ -12,21 +12,39 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationGateway,
+  ApplicationGatewaysListNextOptionalParams,
+  ApplicationGatewaysListOptionalParams,
+  ApplicationGatewaysListAllNextOptionalParams,
+  ApplicationGatewaysListAllOptionalParams,
   ApplicationGatewaySslPredefinedPolicy,
+  ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOptionalParams,
+  ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams,
+  ApplicationGatewaysDeleteOptionalParams,
+  ApplicationGatewaysGetOptionalParams,
   ApplicationGatewaysGetResponse,
+  ApplicationGatewaysCreateOrUpdateOptionalParams,
   ApplicationGatewaysCreateOrUpdateResponse,
   TagsObject,
+  ApplicationGatewaysUpdateTagsOptionalParams,
   ApplicationGatewaysUpdateTagsResponse,
+  ApplicationGatewaysStartOptionalParams,
+  ApplicationGatewaysStopOptionalParams,
   ApplicationGatewaysBackendHealthOptionalParams,
   ApplicationGatewaysBackendHealthResponse,
   ApplicationGatewayOnDemandProbe,
   ApplicationGatewaysBackendHealthOnDemandOptionalParams,
   ApplicationGatewaysBackendHealthOnDemandResponse,
+  ApplicationGatewaysListAvailableServerVariablesOptionalParams,
   ApplicationGatewaysListAvailableServerVariablesResponse,
+  ApplicationGatewaysListAvailableRequestHeadersOptionalParams,
   ApplicationGatewaysListAvailableRequestHeadersResponse,
+  ApplicationGatewaysListAvailableResponseHeadersOptionalParams,
   ApplicationGatewaysListAvailableResponseHeadersResponse,
+  ApplicationGatewaysListAvailableWafRuleSetsOptionalParams,
   ApplicationGatewaysListAvailableWafRuleSetsResponse,
+  ApplicationGatewaysListAvailableSslOptionsOptionalParams,
   ApplicationGatewaysListAvailableSslOptionsResponse,
+  ApplicationGatewaysGetSslPredefinedPolicyOptionalParams,
   ApplicationGatewaysGetSslPredefinedPolicyResponse
 } from "../models";
 
@@ -40,21 +58,21 @@ export interface ApplicationGateways {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<ApplicationGateway>;
   /**
    * Gets all the application gateways in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAllOptionalParams
   ): PagedAsyncIterableIterator<ApplicationGateway>;
   /**
    * Lists all SSL predefined policies for configuring Ssl policy.
    * @param options The options parameters.
    */
   listAvailableSslPredefinedPolicies(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams
   ): PagedAsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy>;
   /**
    * Deletes the specified application gateway.
@@ -65,7 +83,7 @@ export interface ApplicationGateways {
   delete(
     resourceGroupName: string,
     applicationGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -78,7 +96,7 @@ export interface ApplicationGateways {
   get(
     resourceGroupName: string,
     applicationGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysGetOptionalParams
   ): Promise<ApplicationGatewaysGetResponse>;
   /**
    * Creates or updates the specified application gateway.
@@ -91,7 +109,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: ApplicationGateway,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationGatewaysCreateOrUpdateResponse>,
@@ -109,7 +127,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysUpdateTagsOptionalParams
   ): Promise<ApplicationGatewaysUpdateTagsResponse>;
   /**
    * Starts the specified application gateway.
@@ -120,7 +138,7 @@ export interface ApplicationGateways {
   start(
     resourceGroupName: string,
     applicationGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -133,7 +151,7 @@ export interface ApplicationGateways {
   stop(
     resourceGroupName: string,
     applicationGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -177,35 +195,35 @@ export interface ApplicationGateways {
    * @param options The options parameters.
    */
   listAvailableServerVariables(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableServerVariablesOptionalParams
   ): Promise<ApplicationGatewaysListAvailableServerVariablesResponse>;
   /**
    * Lists all available request headers.
    * @param options The options parameters.
    */
   listAvailableRequestHeaders(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableRequestHeadersOptionalParams
   ): Promise<ApplicationGatewaysListAvailableRequestHeadersResponse>;
   /**
    * Lists all available response headers.
    * @param options The options parameters.
    */
   listAvailableResponseHeaders(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableResponseHeadersOptionalParams
   ): Promise<ApplicationGatewaysListAvailableResponseHeadersResponse>;
   /**
    * Lists all available web application firewall rule sets.
    * @param options The options parameters.
    */
   listAvailableWafRuleSets(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableWafRuleSetsOptionalParams
   ): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
   /**
    * Lists available Ssl options for configuring Ssl policy.
    * @param options The options parameters.
    */
   listAvailableSslOptions(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysListAvailableSslOptionsOptionalParams
   ): Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
   /**
    * Gets Ssl predefined policy with the specified policy name.
@@ -214,6 +232,6 @@ export interface ApplicationGateways {
    */
   getSslPredefinedPolicy(
     predefinedPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationGatewaysGetSslPredefinedPolicyOptionalParams
   ): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
 }

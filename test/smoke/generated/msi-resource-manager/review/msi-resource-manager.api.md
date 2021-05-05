@@ -89,7 +89,11 @@ export interface OperationListResult {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -99,6 +103,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -120,7 +128,11 @@ export interface Resource {
 
 // @public
 export interface SystemAssignedIdentities {
-    getByScope(scope: string, options?: coreHttp.OperationOptions): Promise<SystemAssignedIdentitiesGetByScopeResponse>;
+    getByScope(scope: string, options?: SystemAssignedIdentitiesGetByScopeOptionalParams): Promise<SystemAssignedIdentitiesGetByScopeResponse>;
+}
+
+// @public
+export interface SystemAssignedIdentitiesGetByScopeOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -153,12 +165,16 @@ export type TrackedResource = Resource & {
 
 // @public
 export interface UserAssignedIdentities {
-    createOrUpdate(resourceGroupName: string, resourceName: string, parameters: Identity, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, resourceName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, resourceName: string, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesGetResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identity>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Identity>;
-    update(resourceGroupName: string, resourceName: string, parameters: IdentityUpdate, options?: coreHttp.OperationOptions): Promise<UserAssignedIdentitiesUpdateResponse>;
+    createOrUpdate(resourceGroupName: string, resourceName: string, parameters: Identity, options?: UserAssignedIdentitiesCreateOrUpdateOptionalParams): Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, resourceName: string, options?: UserAssignedIdentitiesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, resourceName: string, options?: UserAssignedIdentitiesGetOptionalParams): Promise<UserAssignedIdentitiesGetResponse>;
+    listByResourceGroup(resourceGroupName: string, options?: UserAssignedIdentitiesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Identity>;
+    listBySubscription(options?: UserAssignedIdentitiesListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Identity>;
+    update(resourceGroupName: string, resourceName: string, parameters: IdentityUpdate, options?: UserAssignedIdentitiesUpdateOptionalParams): Promise<UserAssignedIdentitiesUpdateResponse>;
+}
+
+// @public
+export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -170,12 +186,24 @@ export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
 };
 
 // @public
+export interface UserAssignedIdentitiesDeleteOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface UserAssignedIdentitiesGetOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UserAssignedIdentitiesGetResponse = Identity & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: Identity;
     };
 };
+
+// @public
+export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult & {
@@ -186,6 +214,10 @@ export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssigned
 };
 
 // @public
+export interface UserAssignedIdentitiesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -194,12 +226,20 @@ export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIden
 };
 
 // @public
+export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: UserAssignedIdentitiesListResult;
     };
 };
+
+// @public
+export interface UserAssignedIdentitiesListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult & {
@@ -213,6 +253,10 @@ export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdent
 export interface UserAssignedIdentitiesListResult {
     nextLink?: string;
     value?: Identity[];
+}
+
+// @public
+export interface UserAssignedIdentitiesUpdateOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public

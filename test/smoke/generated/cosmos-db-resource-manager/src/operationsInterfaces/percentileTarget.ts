@@ -9,7 +9,10 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { PercentileMetric } from "../models";
+import {
+  PercentileMetric,
+  PercentileTargetListMetricsOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a PercentileTarget. */
@@ -31,6 +34,6 @@ export interface PercentileTarget {
     accountName: string,
     targetRegion: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: PercentileTargetListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PercentileMetric>;
 }

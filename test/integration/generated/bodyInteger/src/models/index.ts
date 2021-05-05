@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface IntGetNullOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type IntGetNullResponse = {
   /** The parsed response body. */
@@ -27,6 +30,10 @@ export type IntGetNullResponse = {
     parsedBody: number;
   };
 };
+
+/** Optional parameters. */
+export interface IntGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type IntGetInvalidResponse = {
@@ -43,6 +50,10 @@ export type IntGetInvalidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface IntGetOverflowInt32OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOverflowInt32 operation. */
 export type IntGetOverflowInt32Response = {
   /** The parsed response body. */
@@ -57,6 +68,10 @@ export type IntGetOverflowInt32Response = {
     parsedBody: number;
   };
 };
+
+/** Optional parameters. */
+export interface IntGetUnderflowInt32OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflowInt32 operation. */
 export type IntGetUnderflowInt32Response = {
@@ -73,6 +88,10 @@ export type IntGetUnderflowInt32Response = {
   };
 };
 
+/** Optional parameters. */
+export interface IntGetOverflowInt64OptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOverflowInt64 operation. */
 export type IntGetOverflowInt64Response = {
   /** The parsed response body. */
@@ -87,6 +106,10 @@ export type IntGetOverflowInt64Response = {
     parsedBody: number;
   };
 };
+
+/** Optional parameters. */
+export interface IntGetUnderflowInt64OptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflowInt64 operation. */
 export type IntGetUnderflowInt64Response = {
@@ -103,6 +126,22 @@ export type IntGetUnderflowInt64Response = {
   };
 };
 
+/** Optional parameters. */
+export interface IntPutMax32OptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface IntPutMax64OptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface IntPutMin32OptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface IntPutMin64OptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface IntGetUnixTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUnixTime operation. */
 export type IntGetUnixTimeResponse = {
   /** The parsed response body. */
@@ -118,6 +157,14 @@ export type IntGetUnixTimeResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface IntPutUnixTimeDateOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface IntGetInvalidUnixTimeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInvalidUnixTime operation. */
 export type IntGetInvalidUnixTimeResponse = {
   /** The parsed response body. */
@@ -132,6 +179,10 @@ export type IntGetInvalidUnixTimeResponse = {
     parsedBody: Date;
   };
 };
+
+/** Optional parameters. */
+export interface IntGetNullUnixTimeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNullUnixTime operation. */
 export type IntGetNullUnixTimeResponse = {

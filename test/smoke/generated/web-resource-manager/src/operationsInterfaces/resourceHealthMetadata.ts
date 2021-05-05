@@ -11,7 +11,17 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ResourceHealthMetadataDef,
+  ResourceHealthMetadataListNextOptionalParams,
+  ResourceHealthMetadataListOptionalParams,
+  ResourceHealthMetadataListByResourceGroupNextOptionalParams,
+  ResourceHealthMetadataListByResourceGroupOptionalParams,
+  ResourceHealthMetadataListBySiteNextOptionalParams,
+  ResourceHealthMetadataListBySiteOptionalParams,
+  ResourceHealthMetadataListBySiteSlotNextOptionalParams,
+  ResourceHealthMetadataListBySiteSlotOptionalParams,
+  ResourceHealthMetadataGetBySiteOptionalParams,
   ResourceHealthMetadataGetBySiteResponse,
+  ResourceHealthMetadataGetBySiteSlotOptionalParams,
   ResourceHealthMetadataGetBySiteSlotResponse
 } from "../models";
 
@@ -23,7 +33,7 @@ export interface ResourceHealthMetadata {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
   /**
    * Description for List all ResourceHealthMetadata for all sites in the resource group in the
@@ -33,7 +43,7 @@ export interface ResourceHealthMetadata {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
@@ -45,7 +55,7 @@ export interface ResourceHealthMetadata {
   listBySite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
@@ -59,7 +69,7 @@ export interface ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site
@@ -70,7 +80,7 @@ export interface ResourceHealthMetadata {
   getBySite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataGetBySiteOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteResponse>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site
@@ -83,6 +93,6 @@ export interface ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataGetBySiteSlotOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
 }

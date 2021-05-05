@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   FrontendIPConfiguration,
+  LoadBalancerFrontendIPConfigurationsListNextOptionalParams,
+  LoadBalancerFrontendIPConfigurationsListOptionalParams,
+  LoadBalancerFrontendIPConfigurationsGetOptionalParams,
   LoadBalancerFrontendIPConfigurationsGetResponse
 } from "../models";
 
@@ -26,7 +29,7 @@ export interface LoadBalancerFrontendIPConfigurations {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<FrontendIPConfiguration>;
   /**
    * Gets load balancer frontend IP configuration.
@@ -39,6 +42,6 @@ export interface LoadBalancerFrontendIPConfigurations {
     resourceGroupName: string,
     loadBalancerName: string,
     frontendIPConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerFrontendIPConfigurationsGetOptionalParams
   ): Promise<LoadBalancerFrontendIPConfigurationsGetResponse>;
 }

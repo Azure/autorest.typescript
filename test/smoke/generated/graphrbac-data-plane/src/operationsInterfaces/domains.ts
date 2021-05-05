@@ -12,6 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import {
   Domain,
   DomainsListOptionalParams,
+  DomainsGetOptionalParams,
   DomainsGetResponse
 } from "../models";
 
@@ -30,6 +31,6 @@ export interface Domains {
    */
   get(
     domainName: string,
-    options?: coreHttp.OperationOptions
+    options?: DomainsGetOptionalParams
   ): Promise<DomainsGetResponse>;
 }

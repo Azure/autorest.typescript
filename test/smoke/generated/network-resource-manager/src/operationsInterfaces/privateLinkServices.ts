@@ -12,16 +12,32 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateLinkService,
+  PrivateLinkServicesListNextOptionalParams,
+  PrivateLinkServicesListOptionalParams,
+  PrivateLinkServicesListBySubscriptionNextOptionalParams,
+  PrivateLinkServicesListBySubscriptionOptionalParams,
   PrivateEndpointConnection,
+  PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams,
+  PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams,
   AutoApprovedPrivateLinkService,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams,
+  PrivateLinkServicesDeleteOptionalParams,
   PrivateLinkServicesGetOptionalParams,
   PrivateLinkServicesGetResponse,
+  PrivateLinkServicesCreateOrUpdateOptionalParams,
   PrivateLinkServicesCreateOrUpdateResponse,
   PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesGetPrivateEndpointConnectionResponse,
+  PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesUpdatePrivateEndpointConnectionResponse,
+  PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams,
   CheckPrivateLinkServiceVisibilityRequest,
+  PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse,
+  PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
 } from "../models";
 
@@ -35,14 +51,14 @@ export interface PrivateLinkServices {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkService>;
   /**
    * Gets all private link service in a subscription.
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkService>;
   /**
    * Gets all private end point connections for a specific private link service.
@@ -53,7 +69,7 @@ export interface PrivateLinkServices {
   listPrivateEndpointConnections(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection>;
   /**
    * Returns all of the private link service ids that can be linked to a Private Endpoint with auto
@@ -63,7 +79,7 @@ export interface PrivateLinkServices {
    */
   listAutoApprovedPrivateLinkServices(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
   ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
   /**
    * Returns all of the private link service ids that can be linked to a Private Endpoint with auto
@@ -75,7 +91,7 @@ export interface PrivateLinkServices {
   listAutoApprovedPrivateLinkServicesByResourceGroup(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AutoApprovedPrivateLinkService>;
   /**
    * Deletes the specified private link service.
@@ -86,7 +102,7 @@ export interface PrivateLinkServices {
   delete(
     resourceGroupName: string,
     serviceName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -112,7 +128,7 @@ export interface PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     parameters: PrivateLinkService,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
@@ -146,7 +162,7 @@ export interface PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     parameters: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams
   ): Promise<PrivateLinkServicesUpdatePrivateEndpointConnectionResponse>;
   /**
    * Delete private end point connection for a private link service in a subscription.
@@ -159,7 +175,7 @@ export interface PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     peConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -172,7 +188,7 @@ export interface PrivateLinkServices {
   checkPrivateLinkServiceVisibility(
     location: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
   ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse>;
   /**
    * Checks whether the subscription is visible to private link service in the specified resource group.
@@ -185,7 +201,7 @@ export interface PrivateLinkServices {
     location: string,
     resourceGroupName: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
   ): Promise<
     PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
   >;

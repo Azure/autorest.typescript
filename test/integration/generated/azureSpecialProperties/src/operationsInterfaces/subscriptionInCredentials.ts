@@ -7,6 +7,13 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import {
+  SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
+  SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
+  SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
+  SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
+  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+} from "../models";
 
 /** Interface representing a SubscriptionInCredentials. */
 export interface SubscriptionInCredentials {
@@ -16,7 +23,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to null,
@@ -24,7 +31,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalNull(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -32,7 +39,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalNotProvidedValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -40,7 +47,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postPathGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -48,6 +55,6 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postSwaggerGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   ExpressRouteServiceProvider,
+  ExpressRouteServiceProvidersListNextOptionalParams,
+  ExpressRouteServiceProvidersListOptionalParams,
   ExpressRouteServiceProvidersListResponse,
   ExpressRouteServiceProvidersListNextResponse
 } from "../models";
@@ -38,7 +40,7 @@ export class ExpressRouteServiceProvidersImpl
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteServiceProvidersListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteServiceProvider> {
     const iter = this.listPagingAll(options);
     return {
@@ -55,7 +57,7 @@ export class ExpressRouteServiceProvidersImpl
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteServiceProvidersListOptionalParams
   ): AsyncIterableIterator<ExpressRouteServiceProvider[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -68,7 +70,7 @@ export class ExpressRouteServiceProvidersImpl
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteServiceProvidersListOptionalParams
   ): AsyncIterableIterator<ExpressRouteServiceProvider> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -80,7 +82,7 @@ export class ExpressRouteServiceProvidersImpl
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteServiceProvidersListOptionalParams
   ): Promise<ExpressRouteServiceProvidersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -98,7 +100,7 @@ export class ExpressRouteServiceProvidersImpl
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteServiceProvidersListNextOptionalParams
   ): Promise<ExpressRouteServiceProvidersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AzureFirewall,
+  AzureFirewallsListNextOptionalParams,
+  AzureFirewallsListOptionalParams,
+  AzureFirewallsListAllNextOptionalParams,
+  AzureFirewallsListAllOptionalParams,
+  AzureFirewallsDeleteOptionalParams,
+  AzureFirewallsGetOptionalParams,
   AzureFirewallsGetResponse,
+  AzureFirewallsCreateOrUpdateOptionalParams,
   AzureFirewallsCreateOrUpdateResponse,
   TagsObject,
+  AzureFirewallsUpdateTagsOptionalParams,
   AzureFirewallsUpdateTagsResponse
 } from "../models";
 
@@ -28,14 +36,14 @@ export interface AzureFirewalls {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListOptionalParams
   ): PagedAsyncIterableIterator<AzureFirewall>;
   /**
    * Gets all the Azure Firewalls in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllOptionalParams
   ): PagedAsyncIterableIterator<AzureFirewall>;
   /**
    * Deletes the specified Azure Firewall.
@@ -46,7 +54,7 @@ export interface AzureFirewalls {
   delete(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface AzureFirewalls {
   get(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsGetOptionalParams
   ): Promise<AzureFirewallsGetResponse>;
   /**
    * Creates or updates the specified Azure Firewall.
@@ -72,7 +80,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AzureFirewallsCreateOrUpdateResponse>,
@@ -90,7 +98,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AzureFirewallsUpdateTagsResponse>,

@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitPeering,
+  ExpressRouteCircuitPeeringsListNextOptionalParams,
+  ExpressRouteCircuitPeeringsListOptionalParams,
+  ExpressRouteCircuitPeeringsDeleteOptionalParams,
+  ExpressRouteCircuitPeeringsGetOptionalParams,
   ExpressRouteCircuitPeeringsGetResponse,
+  ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitPeeringsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface ExpressRouteCircuitPeerings {
   list(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuitPeering>;
   /**
    * Deletes the specified peering from the specified express route circuit.
@@ -41,7 +46,7 @@ export interface ExpressRouteCircuitPeerings {
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface ExpressRouteCircuitPeerings {
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitPeeringsGetOptionalParams
   ): Promise<ExpressRouteCircuitPeeringsGetResponse>;
   /**
    * Creates or updates a peering in the specified express route circuits.
@@ -72,7 +77,7 @@ export interface ExpressRouteCircuitPeerings {
     circuitName: string,
     peeringName: string,
     peeringParameters: ExpressRouteCircuitPeering,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>,

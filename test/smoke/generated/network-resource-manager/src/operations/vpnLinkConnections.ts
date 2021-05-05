@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   VpnSiteLinkConnection,
+  VpnLinkConnectionsListByVpnConnectionNextOptionalParams,
+  VpnLinkConnectionsListByVpnConnectionOptionalParams,
   VpnLinkConnectionsListByVpnConnectionResponse,
   VpnLinkConnectionsListByVpnConnectionNextResponse
 } from "../models";
@@ -43,7 +45,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): PagedAsyncIterableIterator<VpnSiteLinkConnection> {
     const iter = this.listByVpnConnectionPagingAll(
       resourceGroupName,
@@ -73,7 +75,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): AsyncIterableIterator<VpnSiteLinkConnection[]> {
     let result = await this._listByVpnConnection(
       resourceGroupName,
@@ -100,7 +102,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): AsyncIterableIterator<VpnSiteLinkConnection> {
     for await (const page of this.listByVpnConnectionPagingPage(
       resourceGroupName,
@@ -123,7 +125,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): Promise<VpnLinkConnectionsListByVpnConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -150,7 +152,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     gatewayName: string,
     connectionName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnLinkConnectionsListByVpnConnectionNextOptionalParams
   ): Promise<VpnLinkConnectionsListByVpnConnectionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

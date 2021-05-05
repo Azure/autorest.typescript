@@ -15,9 +15,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
+  VirtualMachineExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineExtensionsCreateOrUpdateResponse,
   VirtualMachineExtensionUpdate,
+  VirtualMachineExtensionsUpdateOptionalParams,
   VirtualMachineExtensionsUpdateResponse,
+  VirtualMachineExtensionsDeleteOptionalParams,
   VirtualMachineExtensionsGetOptionalParams,
   VirtualMachineExtensionsGetResponse,
   VirtualMachineExtensionsListOptionalParams,
@@ -49,7 +52,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtension,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>,
@@ -72,16 +75,12 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -97,7 +96,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineExtensionsUpdateResponse>,
@@ -120,16 +119,12 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -143,7 +138,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineExtensionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -162,16 +157,12 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

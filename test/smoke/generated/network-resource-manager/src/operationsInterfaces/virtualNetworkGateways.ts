@@ -12,33 +12,54 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
+  VirtualNetworkGatewaysListNextOptionalParams,
+  VirtualNetworkGatewaysListOptionalParams,
   VirtualNetworkGatewayConnectionListEntity,
+  VirtualNetworkGatewaysListConnectionsNextOptionalParams,
+  VirtualNetworkGatewaysListConnectionsOptionalParams,
+  VirtualNetworkGatewaysCreateOrUpdateOptionalParams,
   VirtualNetworkGatewaysCreateOrUpdateResponse,
+  VirtualNetworkGatewaysGetOptionalParams,
   VirtualNetworkGatewaysGetResponse,
+  VirtualNetworkGatewaysDeleteOptionalParams,
   TagsObject,
+  VirtualNetworkGatewaysUpdateTagsOptionalParams,
   VirtualNetworkGatewaysUpdateTagsResponse,
   VirtualNetworkGatewaysResetOptionalParams,
   VirtualNetworkGatewaysResetResponse,
+  VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams,
   VpnClientParameters,
+  VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams,
   VirtualNetworkGatewaysGeneratevpnclientpackageResponse,
+  VirtualNetworkGatewaysGenerateVpnProfileOptionalParams,
   VirtualNetworkGatewaysGenerateVpnProfileResponse,
+  VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams,
   VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse,
   VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams,
   VirtualNetworkGatewaysGetBgpPeerStatusResponse,
+  VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams,
   VirtualNetworkGatewaysSupportedVpnDevicesResponse,
+  VirtualNetworkGatewaysGetLearnedRoutesOptionalParams,
   VirtualNetworkGatewaysGetLearnedRoutesResponse,
+  VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams,
   VirtualNetworkGatewaysGetAdvertisedRoutesResponse,
   VpnClientIPsecParameters,
+  VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams,
   VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse,
+  VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams,
   VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse,
   VpnDeviceScriptParameters,
+  VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams,
   VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse,
   VirtualNetworkGatewaysStartPacketCaptureOptionalParams,
   VirtualNetworkGatewaysStartPacketCaptureResponse,
   VpnPacketCaptureStopParameters,
+  VirtualNetworkGatewaysStopPacketCaptureOptionalParams,
   VirtualNetworkGatewaysStopPacketCaptureResponse,
+  VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams,
   VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse,
-  P2SVpnConnectionRequest
+  P2SVpnConnectionRequest,
+  VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -51,7 +72,7 @@ export interface VirtualNetworkGateways {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGateway>;
   /**
    * Gets all the connections in a virtual network gateway.
@@ -62,7 +83,7 @@ export interface VirtualNetworkGateways {
   listConnections(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity>;
   /**
    * Creates or updates a virtual network gateway in the specified resource group.
@@ -75,7 +96,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
@@ -91,7 +112,7 @@ export interface VirtualNetworkGateways {
   get(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetOptionalParams
   ): Promise<VirtualNetworkGatewaysGetResponse>;
   /**
    * Deletes the specified virtual network gateway.
@@ -102,7 +123,7 @@ export interface VirtualNetworkGateways {
   delete(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -117,7 +138,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
@@ -149,7 +170,7 @@ export interface VirtualNetworkGateways {
   resetVpnClientSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -166,7 +187,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -188,7 +209,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGenerateVpnProfileOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
@@ -205,7 +226,7 @@ export interface VirtualNetworkGateways {
   getVpnProfilePackageUrl(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
@@ -237,7 +258,7 @@ export interface VirtualNetworkGateways {
   supportedVpnDevices(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams
   ): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
   /**
    * This operation retrieves a list of routes the virtual network gateway has learned, including routes
@@ -249,7 +270,7 @@ export interface VirtualNetworkGateways {
   getLearnedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
@@ -268,7 +289,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     peer: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
@@ -288,7 +309,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     vpnclientIpsecParams: VpnClientIPsecParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -308,7 +329,7 @@ export interface VirtualNetworkGateways {
   getVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -329,7 +350,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnDeviceScriptParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams
   ): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
   /**
    * Starts packet capture on virtual network gateway in the specified resource group.
@@ -359,7 +380,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysStopPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
@@ -376,7 +397,7 @@ export interface VirtualNetworkGateways {
   getVpnclientConnectionHealth(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -396,7 +417,7 @@ export interface VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

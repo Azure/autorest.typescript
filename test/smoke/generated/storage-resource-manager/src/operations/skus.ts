@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
-import { SkuInformation, SkusListResponse } from "../models";
+import {
+  SkuInformation,
+  SkusListOptionalParams,
+  SkusListResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Skus. */
@@ -33,7 +37,7 @@ export class SkusImpl implements Skus {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: SkusListOptionalParams
   ): PagedAsyncIterableIterator<SkuInformation> {
     const iter = this.listPagingAll(options);
     return {
@@ -50,14 +54,14 @@ export class SkusImpl implements Skus {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SkusListOptionalParams
   ): AsyncIterableIterator<SkuInformation[]> {
     let result = await this._list(options);
     yield result.value || [];
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SkusListOptionalParams
   ): AsyncIterableIterator<SkuInformation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -68,9 +72,7 @@ export class SkusImpl implements Skus {
    * Lists the available SKUs supported by Microsoft.Storage for given subscription.
    * @param options The options parameters.
    */
-  private _list(
-    options?: coreHttp.OperationOptions
-  ): Promise<SkusListResponse> {
+  private _list(options?: SkusListOptionalParams): Promise<SkusListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };

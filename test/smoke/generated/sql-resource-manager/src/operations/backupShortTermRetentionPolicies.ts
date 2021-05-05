@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BackupShortTermRetentionPolicy,
+  BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  BackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
   ShortTermRetentionPolicyName,
+  BackupShortTermRetentionPoliciesGetOptionalParams,
   BackupShortTermRetentionPoliciesGetResponse,
+  BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  BackupShortTermRetentionPoliciesUpdateOptionalParams,
   BackupShortTermRetentionPoliciesUpdateResponse,
   BackupShortTermRetentionPoliciesListByDatabaseResponse,
   BackupShortTermRetentionPoliciesListByDatabaseNextResponse
@@ -51,7 +56,7 @@ export class BackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<BackupShortTermRetentionPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -81,7 +86,7 @@ export class BackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<BackupShortTermRetentionPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -108,7 +113,7 @@ export class BackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<BackupShortTermRetentionPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -134,7 +139,7 @@ export class BackupShortTermRetentionPoliciesImpl
     serverName: string,
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<BackupShortTermRetentionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -165,7 +170,7 @@ export class BackupShortTermRetentionPoliciesImpl
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -191,16 +196,12 @@ export class BackupShortTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -219,7 +220,7 @@ export class BackupShortTermRetentionPoliciesImpl
     databaseName: string,
     policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
@@ -243,16 +244,12 @@ export class BackupShortTermRetentionPoliciesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -267,7 +264,7 @@ export class BackupShortTermRetentionPoliciesImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<BackupShortTermRetentionPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -295,7 +292,7 @@ export class BackupShortTermRetentionPoliciesImpl
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
   ): Promise<BackupShortTermRetentionPoliciesListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

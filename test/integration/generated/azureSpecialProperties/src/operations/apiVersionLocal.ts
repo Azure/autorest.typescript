@@ -11,7 +11,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
-import { ApiVersionLocalGetMethodLocalNullOptionalParams } from "../models";
+import {
+  ApiVersionLocalGetMethodLocalValidOptionalParams,
+  ApiVersionLocalGetMethodLocalNullOptionalParams,
+  ApiVersionLocalGetPathLocalValidOptionalParams,
+  ApiVersionLocalGetSwaggerLocalValidOptionalParams
+} from "../models";
 
 /** Class representing a ApiVersionLocal. */
 export class ApiVersionLocalImpl implements ApiVersionLocal {
@@ -30,7 +35,7 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getMethodLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetMethodLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -62,7 +67,7 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getPathLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetPathLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -78,7 +83,7 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getSwaggerLocalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

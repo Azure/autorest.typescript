@@ -12,10 +12,16 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
 import {
+  DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
   DictionaryWrapper,
+  DictionaryPutValidOptionalParams,
+  DictionaryGetEmptyOptionalParams,
   DictionaryGetEmptyResponse,
+  DictionaryPutEmptyOptionalParams,
+  DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
+  DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse
 } from "../models";
 
@@ -36,7 +42,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetValidOptionalParams
   ): Promise<DictionaryGetValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -55,7 +61,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putValid(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -72,7 +78,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetEmptyOptionalParams
   ): Promise<DictionaryGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -90,7 +96,7 @@ export class DictionaryImpl implements Dictionary {
    */
   putEmpty(
     complexBody: DictionaryWrapper,
-    options?: coreHttp.OperationOptions
+    options?: DictionaryPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       complexBody,
@@ -107,7 +113,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNullOptionalParams
   ): Promise<DictionaryGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -123,7 +129,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: DictionaryGetNotProvidedOptionalParams
   ): Promise<DictionaryGetNotProvidedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

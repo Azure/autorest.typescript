@@ -12,9 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
+  ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
   ManagedShortTermRetentionPolicyName,
+  ManagedBackupShortTermRetentionPoliciesGetOptionalParams,
   ManagedBackupShortTermRetentionPoliciesGetResponse,
+  ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+  ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams,
   ManagedBackupShortTermRetentionPoliciesUpdateResponse
 } from "../models";
 
@@ -33,7 +38,7 @@ export interface ManagedBackupShortTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedBackupShortTermRetentionPolicy>;
   /**
    * Gets a managed database's short term retention policy.
@@ -49,7 +54,7 @@ export interface ManagedBackupShortTermRetentionPolicies {
     managedInstanceName: string,
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse>;
   /**
    * Updates a managed database's short term retention policy.
@@ -67,7 +72,7 @@ export interface ManagedBackupShortTermRetentionPolicies {
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -92,7 +97,7 @@ export interface ManagedBackupShortTermRetentionPolicies {
     databaseName: string,
     policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedBackupShortTermRetentionPoliciesUpdateResponse>,

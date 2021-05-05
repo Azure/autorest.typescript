@@ -26,14 +26,22 @@ import {
   RecommendationsListRecommendedRulesForWebAppNextOptionalParams,
   RecommendationsListRecommendedRulesForWebAppOptionalParams,
   RecommendationsListResponse,
+  RecommendationsResetAllFiltersOptionalParams,
+  RecommendationsDisableRecommendationForSubscriptionOptionalParams,
   RecommendationsListHistoryForHostingEnvironmentResponse,
   RecommendationsListRecommendedRulesForHostingEnvironmentResponse,
+  RecommendationsDisableAllForHostingEnvironmentOptionalParams,
+  RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams,
   RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams,
   RecommendationsGetRuleDetailsByHostingEnvironmentResponse,
+  RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams,
   RecommendationsListHistoryForWebAppResponse,
   RecommendationsListRecommendedRulesForWebAppResponse,
+  RecommendationsDisableAllForWebAppOptionalParams,
+  RecommendationsResetAllFiltersForWebAppOptionalParams,
   RecommendationsGetRuleDetailsByWebAppOptionalParams,
   RecommendationsGetRuleDetailsByWebAppResponse,
+  RecommendationsDisableRecommendationForSiteOptionalParams,
   RecommendationsListNextResponse,
   RecommendationsListHistoryForHostingEnvironmentNextResponse,
   RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse,
@@ -401,7 +409,7 @@ export class RecommendationsImpl implements Recommendations {
    * @param options The options parameters.
    */
   resetAllFilters(
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -419,7 +427,7 @@ export class RecommendationsImpl implements Recommendations {
    */
   disableRecommendationForSubscription(
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForSubscriptionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       name,
@@ -488,7 +496,7 @@ export class RecommendationsImpl implements Recommendations {
     resourceGroupName: string,
     environmentName: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableAllForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -513,7 +521,7 @@ export class RecommendationsImpl implements Recommendations {
     resourceGroupName: string,
     environmentName: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -565,7 +573,7 @@ export class RecommendationsImpl implements Recommendations {
     environmentName: string,
     name: string,
     hostingEnvironmentName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -633,7 +641,7 @@ export class RecommendationsImpl implements Recommendations {
   disableAllForWebApp(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableAllForWebAppOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -655,7 +663,7 @@ export class RecommendationsImpl implements Recommendations {
   resetAllFiltersForWebApp(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsResetAllFiltersForWebAppOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -704,7 +712,7 @@ export class RecommendationsImpl implements Recommendations {
     resourceGroupName: string,
     siteName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: RecommendationsDisableRecommendationForSiteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

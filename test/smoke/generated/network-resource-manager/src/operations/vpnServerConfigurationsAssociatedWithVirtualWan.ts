@@ -13,7 +13,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { VpnServerConfigurationsAssociatedWithVirtualWanListResponse } from "../models";
+import {
+  VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams,
+  VpnServerConfigurationsAssociatedWithVirtualWanListResponse
+} from "../models";
 
 /** Class representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
 export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
@@ -37,7 +40,7 @@ export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
   async list(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -60,17 +63,13 @@ export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listOperationSpec,
-      initialOperationResult,
+      listOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

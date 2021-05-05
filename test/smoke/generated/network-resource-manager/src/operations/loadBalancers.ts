@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LoadBalancer,
+  LoadBalancersListAllNextOptionalParams,
+  LoadBalancersListAllOptionalParams,
+  LoadBalancersListNextOptionalParams,
+  LoadBalancersListOptionalParams,
+  LoadBalancersDeleteOptionalParams,
   LoadBalancersGetOptionalParams,
   LoadBalancersGetResponse,
+  LoadBalancersCreateOrUpdateOptionalParams,
   LoadBalancersCreateOrUpdateResponse,
   TagsObject,
+  LoadBalancersUpdateTagsOptionalParams,
   LoadBalancersUpdateTagsResponse,
   LoadBalancersListAllResponse,
   LoadBalancersListResponse,
@@ -46,7 +53,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class LoadBalancersImpl implements LoadBalancers {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllOptionalParams
   ): AsyncIterableIterator<LoadBalancer[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class LoadBalancersImpl implements LoadBalancers {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllOptionalParams
   ): AsyncIterableIterator<LoadBalancer> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class LoadBalancersImpl implements LoadBalancers {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListOptionalParams
   ): AsyncIterableIterator<LoadBalancer[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class LoadBalancersImpl implements LoadBalancers {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListOptionalParams
   ): AsyncIterableIterator<LoadBalancer> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class LoadBalancersImpl implements LoadBalancers {
   async delete(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class LoadBalancersImpl implements LoadBalancers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class LoadBalancersImpl implements LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LoadBalancersCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class LoadBalancersImpl implements LoadBalancers {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -252,7 +251,7 @@ export class LoadBalancersImpl implements LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersUpdateTagsOptionalParams
   ): Promise<LoadBalancersUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +270,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllOptionalParams
   ): Promise<LoadBalancersListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -289,7 +288,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListOptionalParams
   ): Promise<LoadBalancersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +307,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListAllNextOptionalParams
   ): Promise<LoadBalancersListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -329,7 +328,7 @@ export class LoadBalancersImpl implements LoadBalancers {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancersListNextOptionalParams
   ): Promise<LoadBalancersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

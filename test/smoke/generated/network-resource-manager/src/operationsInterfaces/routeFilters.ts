@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilter,
+  RouteFiltersListByResourceGroupNextOptionalParams,
+  RouteFiltersListByResourceGroupOptionalParams,
+  RouteFiltersListNextOptionalParams,
+  RouteFiltersListOptionalParams,
+  RouteFiltersDeleteOptionalParams,
   RouteFiltersGetOptionalParams,
   RouteFiltersGetResponse,
+  RouteFiltersCreateOrUpdateOptionalParams,
   RouteFiltersCreateOrUpdateResponse,
   TagsObject,
+  RouteFiltersUpdateTagsOptionalParams,
   RouteFiltersUpdateTagsResponse
 } from "../models";
 
@@ -29,14 +36,14 @@ export interface RouteFilters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<RouteFilter>;
   /**
    * Gets all route filters in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersListOptionalParams
   ): PagedAsyncIterableIterator<RouteFilter>;
   /**
    * Deletes the specified route filter.
@@ -47,7 +54,7 @@ export interface RouteFilters {
   delete(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface RouteFilters {
     resourceGroupName: string,
     routeFilterName: string,
     routeFilterParameters: RouteFilter,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteFiltersCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface RouteFilters {
     resourceGroupName: string,
     routeFilterName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: RouteFiltersUpdateTagsOptionalParams
   ): Promise<RouteFiltersUpdateTagsResponse>;
 }

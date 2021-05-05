@@ -12,17 +12,33 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
 import {
+  QueriesGetBooleanTrueOptionalParams,
+  QueriesGetBooleanFalseOptionalParams,
   QueriesGetBooleanNullOptionalParams,
+  QueriesGetIntOneMillionOptionalParams,
+  QueriesGetIntNegativeOneMillionOptionalParams,
   QueriesGetIntNullOptionalParams,
+  QueriesGetTenBillionOptionalParams,
+  QueriesGetNegativeTenBillionOptionalParams,
   QueriesGetLongNullOptionalParams,
+  QueriesFloatScientificPositiveOptionalParams,
+  QueriesFloatScientificNegativeOptionalParams,
   QueriesFloatNullOptionalParams,
+  QueriesDoubleDecimalPositiveOptionalParams,
+  QueriesDoubleDecimalNegativeOptionalParams,
   QueriesDoubleNullOptionalParams,
+  QueriesStringUnicodeOptionalParams,
+  QueriesStringUrlEncodedOptionalParams,
+  QueriesStringEmptyOptionalParams,
   QueriesStringNullOptionalParams,
   QueriesEnumValidOptionalParams,
   QueriesEnumNullOptionalParams,
   QueriesByteMultiByteOptionalParams,
+  QueriesByteEmptyOptionalParams,
   QueriesByteNullOptionalParams,
+  QueriesDateValidOptionalParams,
   QueriesDateNullOptionalParams,
+  QueriesDateTimeValidOptionalParams,
   QueriesDateTimeNullOptionalParams,
   QueriesArrayStringCsvValidOptionalParams,
   QueriesArrayStringCsvNullOptionalParams,
@@ -50,7 +66,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetBooleanTrueOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -66,7 +82,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetBooleanFalseOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -98,7 +114,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetIntOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -114,7 +130,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetIntNegativeOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -146,7 +162,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -162,7 +178,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: QueriesGetNegativeTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -194,7 +210,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.OperationOptions
+    options?: QueriesFloatScientificPositiveOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -210,7 +226,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.OperationOptions
+    options?: QueriesFloatScientificNegativeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -242,7 +258,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDoubleDecimalPositiveOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -258,7 +274,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDoubleDecimalNegativeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -290,7 +306,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringUnicodeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -306,7 +322,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringUrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -322,7 +338,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.OperationOptions
+    options?: QueriesStringEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -402,7 +418,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.OperationOptions
+    options?: QueriesByteEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -434,7 +450,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDateValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -466,7 +482,7 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: QueriesDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -12,8 +12,11 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
+  HttpFailureGetEmptyErrorOptionalParams,
   HttpFailureGetEmptyErrorResponse,
+  HttpFailureGetNoModelErrorOptionalParams,
   HttpFailureGetNoModelErrorResponse,
+  HttpFailureGetNoModelEmptyOptionalParams,
   HttpFailureGetNoModelEmptyResponse
 } from "../models";
 
@@ -34,7 +37,7 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getEmptyError(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetEmptyErrorOptionalParams
   ): Promise<HttpFailureGetEmptyErrorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -50,7 +53,7 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getNoModelError(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetNoModelErrorOptionalParams
   ): Promise<HttpFailureGetNoModelErrorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -66,7 +69,7 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getNoModelEmpty(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetNoModelEmptyOptionalParams
   ): Promise<HttpFailureGetNoModelEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

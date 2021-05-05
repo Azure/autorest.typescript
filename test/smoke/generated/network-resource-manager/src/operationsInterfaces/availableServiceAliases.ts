@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { AvailableServiceAlias } from "../models";
+import {
+  AvailableServiceAlias,
+  AvailableServiceAliasesListNextOptionalParams,
+  AvailableServiceAliasesListOptionalParams,
+  AvailableServiceAliasesListByResourceGroupNextOptionalParams,
+  AvailableServiceAliasesListByResourceGroupOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a AvailableServiceAliases. */
@@ -21,7 +27,7 @@ export interface AvailableServiceAliases {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListOptionalParams
   ): PagedAsyncIterableIterator<AvailableServiceAlias>;
   /**
    * Gets all available service aliases for this resource group in this region.
@@ -32,6 +38,6 @@ export interface AvailableServiceAliases {
   listByResourceGroup(
     resourceGroupName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AvailableServiceAlias>;
 }

@@ -15,8 +15,11 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   GeoBackupPolicy,
+  GeoBackupPoliciesListByDatabaseOptionalParams,
   GeoBackupPolicyName,
+  GeoBackupPoliciesCreateOrUpdateOptionalParams,
   GeoBackupPoliciesCreateOrUpdateResponse,
+  GeoBackupPoliciesGetOptionalParams,
   GeoBackupPoliciesGetResponse,
   GeoBackupPoliciesListByDatabaseResponse
 } from "../models";
@@ -46,7 +49,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<GeoBackupPolicy> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -76,7 +79,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<GeoBackupPolicy[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -91,7 +94,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): AsyncIterableIterator<GeoBackupPolicy> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -119,7 +122,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     databaseName: string,
     geoBackupPolicyName: GeoBackupPolicyName,
     parameters: GeoBackupPolicy,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesCreateOrUpdateOptionalParams
   ): Promise<GeoBackupPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -149,7 +152,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     serverName: string,
     databaseName: string,
     geoBackupPolicyName: GeoBackupPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesGetOptionalParams
   ): Promise<GeoBackupPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -176,7 +179,7 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): Promise<GeoBackupPoliciesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

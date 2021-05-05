@@ -8,60 +8,129 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
+  ArrayGetInvalidOptionalParams,
   ArrayGetInvalidResponse,
+  ArrayGetEmptyOptionalParams,
   ArrayGetEmptyResponse,
+  ArrayPutEmptyOptionalParams,
+  ArrayGetBooleanTfftOptionalParams,
   ArrayGetBooleanTfftResponse,
+  ArrayPutBooleanTfftOptionalParams,
+  ArrayGetBooleanInvalidNullOptionalParams,
   ArrayGetBooleanInvalidNullResponse,
+  ArrayGetBooleanInvalidStringOptionalParams,
   ArrayGetBooleanInvalidStringResponse,
+  ArrayGetIntegerValidOptionalParams,
   ArrayGetIntegerValidResponse,
+  ArrayPutIntegerValidOptionalParams,
+  ArrayGetIntInvalidNullOptionalParams,
   ArrayGetIntInvalidNullResponse,
+  ArrayGetIntInvalidStringOptionalParams,
   ArrayGetIntInvalidStringResponse,
+  ArrayGetLongValidOptionalParams,
   ArrayGetLongValidResponse,
+  ArrayPutLongValidOptionalParams,
+  ArrayGetLongInvalidNullOptionalParams,
   ArrayGetLongInvalidNullResponse,
+  ArrayGetLongInvalidStringOptionalParams,
   ArrayGetLongInvalidStringResponse,
+  ArrayGetFloatValidOptionalParams,
   ArrayGetFloatValidResponse,
+  ArrayPutFloatValidOptionalParams,
+  ArrayGetFloatInvalidNullOptionalParams,
   ArrayGetFloatInvalidNullResponse,
+  ArrayGetFloatInvalidStringOptionalParams,
   ArrayGetFloatInvalidStringResponse,
+  ArrayGetDoubleValidOptionalParams,
   ArrayGetDoubleValidResponse,
+  ArrayPutDoubleValidOptionalParams,
+  ArrayGetDoubleInvalidNullOptionalParams,
   ArrayGetDoubleInvalidNullResponse,
+  ArrayGetDoubleInvalidStringOptionalParams,
   ArrayGetDoubleInvalidStringResponse,
+  ArrayGetStringValidOptionalParams,
   ArrayGetStringValidResponse,
+  ArrayPutStringValidOptionalParams,
+  ArrayGetEnumValidOptionalParams,
   ArrayGetEnumValidResponse,
   FooEnum,
+  ArrayPutEnumValidOptionalParams,
+  ArrayGetStringEnumValidOptionalParams,
   ArrayGetStringEnumValidResponse,
   Enum1,
+  ArrayPutStringEnumValidOptionalParams,
+  ArrayGetStringWithNullOptionalParams,
   ArrayGetStringWithNullResponse,
+  ArrayGetStringWithInvalidOptionalParams,
   ArrayGetStringWithInvalidResponse,
+  ArrayGetUuidValidOptionalParams,
   ArrayGetUuidValidResponse,
+  ArrayPutUuidValidOptionalParams,
+  ArrayGetUuidInvalidCharsOptionalParams,
   ArrayGetUuidInvalidCharsResponse,
+  ArrayGetDateValidOptionalParams,
   ArrayGetDateValidResponse,
+  ArrayPutDateValidOptionalParams,
+  ArrayGetDateInvalidNullOptionalParams,
   ArrayGetDateInvalidNullResponse,
+  ArrayGetDateInvalidCharsOptionalParams,
   ArrayGetDateInvalidCharsResponse,
+  ArrayGetDateTimeValidOptionalParams,
   ArrayGetDateTimeValidResponse,
+  ArrayPutDateTimeValidOptionalParams,
+  ArrayGetDateTimeInvalidNullOptionalParams,
   ArrayGetDateTimeInvalidNullResponse,
+  ArrayGetDateTimeInvalidCharsOptionalParams,
   ArrayGetDateTimeInvalidCharsResponse,
+  ArrayGetDateTimeRfc1123ValidOptionalParams,
   ArrayGetDateTimeRfc1123ValidResponse,
+  ArrayPutDateTimeRfc1123ValidOptionalParams,
+  ArrayGetDurationValidOptionalParams,
   ArrayGetDurationValidResponse,
+  ArrayPutDurationValidOptionalParams,
+  ArrayGetByteValidOptionalParams,
   ArrayGetByteValidResponse,
+  ArrayPutByteValidOptionalParams,
+  ArrayGetByteInvalidNullOptionalParams,
   ArrayGetByteInvalidNullResponse,
+  ArrayGetBase64UrlOptionalParams,
   ArrayGetBase64UrlResponse,
+  ArrayGetComplexNullOptionalParams,
   ArrayGetComplexNullResponse,
+  ArrayGetComplexEmptyOptionalParams,
   ArrayGetComplexEmptyResponse,
+  ArrayGetComplexItemNullOptionalParams,
   ArrayGetComplexItemNullResponse,
+  ArrayGetComplexItemEmptyOptionalParams,
   ArrayGetComplexItemEmptyResponse,
+  ArrayGetComplexValidOptionalParams,
   ArrayGetComplexValidResponse,
   Product,
+  ArrayPutComplexValidOptionalParams,
+  ArrayGetArrayNullOptionalParams,
   ArrayGetArrayNullResponse,
+  ArrayGetArrayEmptyOptionalParams,
   ArrayGetArrayEmptyResponse,
+  ArrayGetArrayItemNullOptionalParams,
   ArrayGetArrayItemNullResponse,
+  ArrayGetArrayItemEmptyOptionalParams,
   ArrayGetArrayItemEmptyResponse,
+  ArrayGetArrayValidOptionalParams,
   ArrayGetArrayValidResponse,
+  ArrayPutArrayValidOptionalParams,
+  ArrayGetDictionaryNullOptionalParams,
   ArrayGetDictionaryNullResponse,
+  ArrayGetDictionaryEmptyOptionalParams,
   ArrayGetDictionaryEmptyResponse,
+  ArrayGetDictionaryItemNullOptionalParams,
   ArrayGetDictionaryItemNullResponse,
+  ArrayGetDictionaryItemEmptyOptionalParams,
   ArrayGetDictionaryItemEmptyResponse,
-  ArrayGetDictionaryValidResponse
+  ArrayGetDictionaryValidOptionalParams,
+  ArrayGetDictionaryValidResponse,
+  ArrayPutDictionaryValidOptionalParams
 } from "../models";
 
 /** Interface representing a Array. */
@@ -70,19 +139,21 @@ export interface Array {
    * Get null array value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<ArrayGetNullResponse>;
+  getNull(options?: ArrayGetNullOptionalParams): Promise<ArrayGetNullResponse>;
   /**
    * Get invalid array [1, 2, 3
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetInvalidOptionalParams
   ): Promise<ArrayGetInvalidResponse>;
   /**
    * Get empty array value []
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.OperationOptions): Promise<ArrayGetEmptyResponse>;
+  getEmpty(
+    options?: ArrayGetEmptyOptionalParams
+  ): Promise<ArrayGetEmptyResponse>;
   /**
    * Set array value empty []
    * @param arrayBody The empty array value []
@@ -90,14 +161,14 @@ export interface Array {
    */
   putEmpty(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get boolean array value [true, false, false, true]
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanTfftOptionalParams
   ): Promise<ArrayGetBooleanTfftResponse>;
   /**
    * Set array value empty [true, false, false, true]
@@ -106,28 +177,28 @@ export interface Array {
    */
   putBooleanTfft(
     arrayBody: boolean[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutBooleanTfftOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get boolean array value [true, null, false]
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanInvalidNullOptionalParams
   ): Promise<ArrayGetBooleanInvalidNullResponse>;
   /**
    * Get boolean array value [true, 'boolean', false]
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanInvalidStringOptionalParams
   ): Promise<ArrayGetBooleanInvalidStringResponse>;
   /**
    * Get integer array value [1, -1, 3, 300]
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntegerValidOptionalParams
   ): Promise<ArrayGetIntegerValidResponse>;
   /**
    * Set array value empty [1, -1, 3, 300]
@@ -136,28 +207,28 @@ export interface Array {
    */
   putIntegerValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutIntegerValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get integer array value [1, null, 0]
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntInvalidNullOptionalParams
   ): Promise<ArrayGetIntInvalidNullResponse>;
   /**
    * Get integer array value [1, 'integer', 0]
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntInvalidStringOptionalParams
   ): Promise<ArrayGetIntInvalidStringResponse>;
   /**
    * Get integer array value [1, -1, 3, 300]
    * @param options The options parameters.
    */
   getLongValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongValidOptionalParams
   ): Promise<ArrayGetLongValidResponse>;
   /**
    * Set array value empty [1, -1, 3, 300]
@@ -166,28 +237,28 @@ export interface Array {
    */
   putLongValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutLongValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get long array value [1, null, 0]
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongInvalidNullOptionalParams
   ): Promise<ArrayGetLongInvalidNullResponse>;
   /**
    * Get long array value [1, 'integer', 0]
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongInvalidStringOptionalParams
   ): Promise<ArrayGetLongInvalidStringResponse>;
   /**
    * Get float array value [0, -0.01, 1.2e20]
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatValidOptionalParams
   ): Promise<ArrayGetFloatValidResponse>;
   /**
    * Set array value [0, -0.01, 1.2e20]
@@ -196,28 +267,28 @@ export interface Array {
    */
   putFloatValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutFloatValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatInvalidNullOptionalParams
   ): Promise<ArrayGetFloatInvalidNullResponse>;
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatInvalidStringOptionalParams
   ): Promise<ArrayGetFloatInvalidStringResponse>;
   /**
    * Get float array value [0, -0.01, 1.2e20]
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleValidOptionalParams
   ): Promise<ArrayGetDoubleValidResponse>;
   /**
    * Set array value [0, -0.01, 1.2e20]
@@ -226,28 +297,28 @@ export interface Array {
    */
   putDoubleValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDoubleValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleInvalidNullOptionalParams
   ): Promise<ArrayGetDoubleInvalidNullResponse>;
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleInvalidStringOptionalParams
   ): Promise<ArrayGetDoubleInvalidStringResponse>;
   /**
    * Get string array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getStringValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringValidOptionalParams
   ): Promise<ArrayGetStringValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -256,14 +327,14 @@ export interface Array {
    */
   putStringValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutStringValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getEnumValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetEnumValidOptionalParams
   ): Promise<ArrayGetEnumValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -272,14 +343,14 @@ export interface Array {
    */
   putEnumValid(
     arrayBody: FooEnum[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getStringEnumValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringEnumValidOptionalParams
   ): Promise<ArrayGetStringEnumValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -288,21 +359,21 @@ export interface Array {
    */
   putStringEnumValid(
     arrayBody: Enum1[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutStringEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get string array value ['foo', null, 'foo2']
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringWithNullOptionalParams
   ): Promise<ArrayGetStringWithNullResponse>;
   /**
    * Get string array value ['foo', 123, 'foo2']
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringWithInvalidOptionalParams
   ): Promise<ArrayGetStringWithInvalidResponse>;
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -310,7 +381,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getUuidValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetUuidValidOptionalParams
   ): Promise<ArrayGetUuidValidResponse>;
   /**
    * Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db',
@@ -321,21 +392,21 @@ export interface Array {
    */
   putUuidValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutUuidValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
    * @param options The options parameters.
    */
   getUuidInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetUuidInvalidCharsOptionalParams
   ): Promise<ArrayGetUuidInvalidCharsResponse>;
   /**
    * Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12']
    * @param options The options parameters.
    */
   getDateValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateValidOptionalParams
   ): Promise<ArrayGetDateValidResponse>;
   /**
    * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
@@ -344,21 +415,21 @@ export interface Array {
    */
   putDateValid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get date array value ['2012-01-01', null, '1776-07-04']
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateInvalidNullOptionalParams
   ): Promise<ArrayGetDateInvalidNullResponse>;
   /**
    * Get date array value ['2011-03-22', 'date']
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateInvalidCharsOptionalParams
   ): Promise<ArrayGetDateInvalidCharsResponse>;
   /**
    * Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -366,7 +437,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeValidOptionalParams
   ): Promise<ArrayGetDateTimeValidResponse>;
   /**
    * Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00']
@@ -376,21 +447,21 @@ export interface Array {
    */
   putDateTimeValid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get date array value ['2000-12-01t00:00:01z', null]
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeInvalidNullOptionalParams
   ): Promise<ArrayGetDateTimeInvalidNullResponse>;
   /**
    * Get date array value ['2000-12-01t00:00:01z', 'date-time']
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeInvalidCharsOptionalParams
   ): Promise<ArrayGetDateTimeInvalidCharsResponse>;
   /**
    * Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed,
@@ -398,7 +469,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeRfc1123ValidOptionalParams
   ): Promise<ArrayGetDateTimeRfc1123ValidResponse>;
   /**
    * Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
@@ -409,14 +480,14 @@ export interface Array {
    */
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateTimeRfc1123ValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDurationValidOptionalParams
   ): Promise<ArrayGetDurationValidResponse>;
   /**
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
@@ -425,7 +496,7 @@ export interface Array {
    */
   putDurationValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDurationValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in
@@ -433,7 +504,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetByteValidOptionalParams
   ): Promise<ArrayGetByteValidResponse>;
   /**
    * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in
@@ -444,14 +515,14 @@ export interface Array {
    */
   putByteValid(
     arrayBody: Uint8Array[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutByteValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetByteInvalidNullOptionalParams
   ): Promise<ArrayGetByteInvalidNullResponse>;
   /**
    * Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the
@@ -459,21 +530,21 @@ export interface Array {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBase64UrlOptionalParams
   ): Promise<ArrayGetBase64UrlResponse>;
   /**
    * Get array of complex type null value
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexNullOptionalParams
   ): Promise<ArrayGetComplexNullResponse>;
   /**
    * Get empty array of complex type []
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexEmptyOptionalParams
   ): Promise<ArrayGetComplexEmptyResponse>;
   /**
    * Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
@@ -481,7 +552,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexItemNullOptionalParams
   ): Promise<ArrayGetComplexItemNullResponse>;
   /**
    * Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
@@ -489,7 +560,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexItemEmptyOptionalParams
   ): Promise<ArrayGetComplexItemEmptyResponse>;
   /**
    * Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
@@ -497,7 +568,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexValidOptionalParams
   ): Promise<ArrayGetComplexValidResponse>;
   /**
    * Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string':
@@ -508,42 +579,42 @@ export interface Array {
    */
   putComplexValid(
     arrayBody: Product[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutComplexValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a null array
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayNullOptionalParams
   ): Promise<ArrayGetArrayNullResponse>;
   /**
    * Get an empty array []
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayEmptyOptionalParams
   ): Promise<ArrayGetArrayEmptyResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayItemNullOptionalParams
   ): Promise<ArrayGetArrayItemNullResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayItemEmptyOptionalParams
   ): Promise<ArrayGetArrayItemEmptyResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayValidOptionalParams
   ): Promise<ArrayGetArrayValidResponse>;
   /**
    * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
@@ -552,21 +623,21 @@ export interface Array {
    */
   putArrayValid(
     arrayBody: string[][],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutArrayValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get an array of Dictionaries with value null
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryNullOptionalParams
   ): Promise<ArrayGetDictionaryNullResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value []
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryEmptyOptionalParams
   ): Promise<ArrayGetDictionaryEmptyResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -574,7 +645,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryItemNullOptionalParams
   ): Promise<ArrayGetDictionaryItemNullResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -582,7 +653,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryItemEmptyOptionalParams
   ): Promise<ArrayGetDictionaryItemEmptyResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -590,7 +661,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryValidOptionalParams
   ): Promise<ArrayGetDictionaryValidResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -602,6 +673,6 @@ export interface Array {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDictionaryValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BackendAddressPool,
+  LoadBalancerBackendAddressPoolsListNextOptionalParams,
+  LoadBalancerBackendAddressPoolsListOptionalParams,
+  LoadBalancerBackendAddressPoolsGetOptionalParams,
   LoadBalancerBackendAddressPoolsGetResponse,
-  LoadBalancerBackendAddressPoolsCreateOrUpdateResponse
+  LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams,
+  LoadBalancerBackendAddressPoolsCreateOrUpdateResponse,
+  LoadBalancerBackendAddressPoolsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +33,7 @@ export interface LoadBalancerBackendAddressPools {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsListOptionalParams
   ): PagedAsyncIterableIterator<BackendAddressPool>;
   /**
    * Gets load balancer backend address pool.
@@ -41,7 +46,7 @@ export interface LoadBalancerBackendAddressPools {
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsGetOptionalParams
   ): Promise<LoadBalancerBackendAddressPoolsGetResponse>;
   /**
    * Creates or updates a load balancer backend address pool.
@@ -57,7 +62,7 @@ export interface LoadBalancerBackendAddressPools {
     loadBalancerName: string,
     backendAddressPoolName: string,
     parameters: BackendAddressPool,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>,
@@ -75,7 +80,7 @@ export interface LoadBalancerBackendAddressPools {
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerBackendAddressPoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface BoolGetTrueOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getTrue operation. */
 export type BoolGetTrueResponse = {
   /** The parsed response body. */
@@ -27,6 +30,12 @@ export type BoolGetTrueResponse = {
     parsedBody: boolean;
   };
 };
+
+/** Optional parameters. */
+export interface BoolPutTrueOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface BoolGetFalseOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFalse operation. */
 export type BoolGetFalseResponse = {
@@ -43,6 +52,12 @@ export type BoolGetFalseResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface BoolPutFalseOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface BoolGetNullOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type BoolGetNullResponse = {
   /** The parsed response body. */
@@ -57,6 +72,10 @@ export type BoolGetNullResponse = {
     parsedBody: boolean;
   };
 };
+
+/** Optional parameters. */
+export interface BoolGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type BoolGetInvalidResponse = {

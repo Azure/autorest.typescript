@@ -29,11 +29,15 @@ import {
   LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams,
+  LongTermRetentionManagedInstanceBackupsGetOptionalParams,
   LongTermRetentionManagedInstanceBackupsGetResponse,
+  LongTermRetentionManagedInstanceBackupsDeleteOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByDatabaseResponse,
   LongTermRetentionManagedInstanceBackupsListByInstanceResponse,
   LongTermRetentionManagedInstanceBackupsListByLocationResponse,
+  LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams,
   LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse,
+  LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseResponse,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceResponse,
   LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse,
@@ -519,7 +523,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsGetOptionalParams
   ): Promise<LongTermRetentionManagedInstanceBackupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       locationName,
@@ -547,7 +551,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -567,16 +571,12 @@ export class LongTermRetentionManagedInstanceBackupsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -661,7 +661,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams
   ): Promise<
     LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse
   > {
@@ -697,7 +697,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
     managedInstanceName: string,
     databaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -718,16 +718,12 @@ export class LongTermRetentionManagedInstanceBackupsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteByResourceGroupOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteByResourceGroupOperationSpec,
-      initialOperationResult,
+      deleteByResourceGroupOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

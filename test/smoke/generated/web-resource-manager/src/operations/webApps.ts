@@ -17,358 +17,758 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Site,
+  WebAppsListNextOptionalParams,
+  WebAppsListOptionalParams,
   WebAppsListByResourceGroupNextOptionalParams,
   WebAppsListByResourceGroupOptionalParams,
   BackupItem,
+  WebAppsListBackupsNextOptionalParams,
+  WebAppsListBackupsOptionalParams,
   SiteConfigResource,
+  WebAppsListConfigurationsNextOptionalParams,
+  WebAppsListConfigurationsOptionalParams,
   SiteConfigurationSnapshotInfo,
+  WebAppsListConfigurationSnapshotInfoNextOptionalParams,
+  WebAppsListConfigurationSnapshotInfoOptionalParams,
   ContinuousWebJob,
+  WebAppsListContinuousWebJobsNextOptionalParams,
+  WebAppsListContinuousWebJobsOptionalParams,
   Deployment,
+  WebAppsListDeploymentsNextOptionalParams,
+  WebAppsListDeploymentsOptionalParams,
   Identifier,
+  WebAppsListDomainOwnershipIdentifiersNextOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersOptionalParams,
   FunctionEnvelope,
+  WebAppsListFunctionsNextOptionalParams,
+  WebAppsListFunctionsOptionalParams,
   HostNameBinding,
+  WebAppsListHostNameBindingsNextOptionalParams,
+  WebAppsListHostNameBindingsOptionalParams,
   SiteInstance,
+  WebAppsListInstanceIdentifiersNextOptionalParams,
+  WebAppsListInstanceIdentifiersOptionalParams,
   ProcessInfo,
+  WebAppsListInstanceProcessesNextOptionalParams,
+  WebAppsListInstanceProcessesOptionalParams,
   ProcessModuleInfo,
+  WebAppsListInstanceProcessModulesNextOptionalParams,
+  WebAppsListInstanceProcessModulesOptionalParams,
   ProcessThreadInfo,
+  WebAppsListInstanceProcessThreadsNextOptionalParams,
+  WebAppsListInstanceProcessThreadsOptionalParams,
+  WebAppsListSiteBackupsNextOptionalParams,
+  WebAppsListSiteBackupsOptionalParams,
   PerfMonResponse,
   WebAppsListPerfMonCountersNextOptionalParams,
   WebAppsListPerfMonCountersOptionalParams,
+  WebAppsListProcessesNextOptionalParams,
+  WebAppsListProcessesOptionalParams,
+  WebAppsListProcessModulesNextOptionalParams,
+  WebAppsListProcessModulesOptionalParams,
+  WebAppsListProcessThreadsNextOptionalParams,
+  WebAppsListProcessThreadsOptionalParams,
   PublicCertificate,
+  WebAppsListPublicCertificatesNextOptionalParams,
+  WebAppsListPublicCertificatesOptionalParams,
   SiteExtensionInfo,
+  WebAppsListSiteExtensionsNextOptionalParams,
+  WebAppsListSiteExtensionsOptionalParams,
+  WebAppsListSlotsNextOptionalParams,
+  WebAppsListSlotsOptionalParams,
+  WebAppsListBackupsSlotNextOptionalParams,
+  WebAppsListBackupsSlotOptionalParams,
+  WebAppsListConfigurationsSlotNextOptionalParams,
+  WebAppsListConfigurationsSlotOptionalParams,
+  WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams,
+  WebAppsListConfigurationSnapshotInfoSlotOptionalParams,
+  WebAppsListContinuousWebJobsSlotNextOptionalParams,
+  WebAppsListContinuousWebJobsSlotOptionalParams,
+  WebAppsListDeploymentsSlotNextOptionalParams,
+  WebAppsListDeploymentsSlotOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams,
+  WebAppsListDomainOwnershipIdentifiersSlotOptionalParams,
+  WebAppsListInstanceFunctionsSlotNextOptionalParams,
+  WebAppsListInstanceFunctionsSlotOptionalParams,
+  WebAppsListHostNameBindingsSlotNextOptionalParams,
+  WebAppsListHostNameBindingsSlotOptionalParams,
+  WebAppsListInstanceIdentifiersSlotNextOptionalParams,
+  WebAppsListInstanceIdentifiersSlotOptionalParams,
+  WebAppsListInstanceProcessesSlotNextOptionalParams,
+  WebAppsListInstanceProcessesSlotOptionalParams,
+  WebAppsListInstanceProcessModulesSlotNextOptionalParams,
+  WebAppsListInstanceProcessModulesSlotOptionalParams,
+  WebAppsListInstanceProcessThreadsSlotNextOptionalParams,
+  WebAppsListInstanceProcessThreadsSlotOptionalParams,
+  WebAppsListSiteBackupsSlotNextOptionalParams,
+  WebAppsListSiteBackupsSlotOptionalParams,
   WebAppsListPerfMonCountersSlotNextOptionalParams,
   WebAppsListPerfMonCountersSlotOptionalParams,
+  WebAppsListProcessesSlotNextOptionalParams,
+  WebAppsListProcessesSlotOptionalParams,
+  WebAppsListProcessModulesSlotNextOptionalParams,
+  WebAppsListProcessModulesSlotOptionalParams,
+  WebAppsListProcessThreadsSlotNextOptionalParams,
+  WebAppsListProcessThreadsSlotOptionalParams,
+  WebAppsListPublicCertificatesSlotNextOptionalParams,
+  WebAppsListPublicCertificatesSlotOptionalParams,
+  WebAppsListSiteExtensionsSlotNextOptionalParams,
+  WebAppsListSiteExtensionsSlotOptionalParams,
   SlotDifference,
   CsmSlotEntity,
+  WebAppsListSlotDifferencesSlotNextOptionalParams,
+  WebAppsListSlotDifferencesSlotOptionalParams,
   Snapshot,
+  WebAppsListSnapshotsSlotNextOptionalParams,
+  WebAppsListSnapshotsSlotOptionalParams,
+  WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams,
+  WebAppsListSnapshotsFromDRSecondarySlotOptionalParams,
   TriggeredWebJob,
+  WebAppsListTriggeredWebJobsSlotNextOptionalParams,
+  WebAppsListTriggeredWebJobsSlotOptionalParams,
   TriggeredJobHistory,
+  WebAppsListTriggeredWebJobHistorySlotNextOptionalParams,
+  WebAppsListTriggeredWebJobHistorySlotOptionalParams,
   CsmUsageQuota,
   WebAppsListUsagesSlotNextOptionalParams,
   WebAppsListUsagesSlotOptionalParams,
   WebJob,
+  WebAppsListWebJobsSlotNextOptionalParams,
+  WebAppsListWebJobsSlotOptionalParams,
+  WebAppsListSlotDifferencesFromProductionNextOptionalParams,
+  WebAppsListSlotDifferencesFromProductionOptionalParams,
+  WebAppsListSnapshotsNextOptionalParams,
+  WebAppsListSnapshotsOptionalParams,
+  WebAppsListSnapshotsFromDRSecondaryNextOptionalParams,
+  WebAppsListSnapshotsFromDRSecondaryOptionalParams,
+  WebAppsListTriggeredWebJobsNextOptionalParams,
+  WebAppsListTriggeredWebJobsOptionalParams,
+  WebAppsListTriggeredWebJobHistoryNextOptionalParams,
+  WebAppsListTriggeredWebJobHistoryOptionalParams,
   WebAppsListUsagesNextOptionalParams,
   WebAppsListUsagesOptionalParams,
+  WebAppsListWebJobsNextOptionalParams,
+  WebAppsListWebJobsOptionalParams,
   WebAppsListResponse,
   WebAppsListByResourceGroupResponse,
+  WebAppsGetOptionalParams,
   WebAppsGetResponse,
+  WebAppsCreateOrUpdateOptionalParams,
   WebAppsCreateOrUpdateResponse,
   WebAppsDeleteOptionalParams,
   SitePatchResource,
+  WebAppsUpdateOptionalParams,
   WebAppsUpdateResponse,
   WebAppsAnalyzeCustomHostnameOptionalParams,
   WebAppsAnalyzeCustomHostnameResponse,
+  WebAppsApplySlotConfigToProductionOptionalParams,
   BackupRequest,
+  WebAppsBackupOptionalParams,
   WebAppsBackupResponse,
   WebAppsListBackupsResponse,
+  WebAppsGetBackupStatusOptionalParams,
   WebAppsGetBackupStatusResponse,
+  WebAppsDeleteBackupOptionalParams,
+  WebAppsListBackupStatusSecretsOptionalParams,
   WebAppsListBackupStatusSecretsResponse,
   RestoreRequest,
+  WebAppsRestoreOptionalParams,
   WebAppsListConfigurationsResponse,
   StringDictionary,
+  WebAppsUpdateApplicationSettingsOptionalParams,
   WebAppsUpdateApplicationSettingsResponse,
+  WebAppsListApplicationSettingsOptionalParams,
   WebAppsListApplicationSettingsResponse,
   SiteAuthSettings,
+  WebAppsUpdateAuthSettingsOptionalParams,
   WebAppsUpdateAuthSettingsResponse,
+  WebAppsGetAuthSettingsOptionalParams,
   WebAppsGetAuthSettingsResponse,
   AzureStoragePropertyDictionaryResource,
+  WebAppsUpdateAzureStorageAccountsOptionalParams,
   WebAppsUpdateAzureStorageAccountsResponse,
+  WebAppsListAzureStorageAccountsOptionalParams,
   WebAppsListAzureStorageAccountsResponse,
+  WebAppsUpdateBackupConfigurationOptionalParams,
   WebAppsUpdateBackupConfigurationResponse,
+  WebAppsDeleteBackupConfigurationOptionalParams,
+  WebAppsGetBackupConfigurationOptionalParams,
   WebAppsGetBackupConfigurationResponse,
+  WebAppsGetAppSettingsKeyVaultReferencesOptionalParams,
   WebAppsGetAppSettingsKeyVaultReferencesResponse,
+  WebAppsGetAppSettingKeyVaultReferenceOptionalParams,
   WebAppsGetAppSettingKeyVaultReferenceResponse,
   ConnectionStringDictionary,
+  WebAppsUpdateConnectionStringsOptionalParams,
   WebAppsUpdateConnectionStringsResponse,
+  WebAppsListConnectionStringsOptionalParams,
   WebAppsListConnectionStringsResponse,
+  WebAppsGetDiagnosticLogsConfigurationOptionalParams,
   WebAppsGetDiagnosticLogsConfigurationResponse,
   SiteLogsConfig,
+  WebAppsUpdateDiagnosticLogsConfigOptionalParams,
   WebAppsUpdateDiagnosticLogsConfigResponse,
+  WebAppsUpdateMetadataOptionalParams,
   WebAppsUpdateMetadataResponse,
+  WebAppsListMetadataOptionalParams,
   WebAppsListMetadataResponse,
+  WebAppsListPublishingCredentialsOptionalParams,
   WebAppsListPublishingCredentialsResponse,
   PushSettings,
+  WebAppsUpdateSitePushSettingsOptionalParams,
   WebAppsUpdateSitePushSettingsResponse,
+  WebAppsListSitePushSettingsOptionalParams,
   WebAppsListSitePushSettingsResponse,
+  WebAppsListSlotConfigurationNamesOptionalParams,
   WebAppsListSlotConfigurationNamesResponse,
   SlotConfigNamesResource,
+  WebAppsUpdateSlotConfigurationNamesOptionalParams,
   WebAppsUpdateSlotConfigurationNamesResponse,
+  WebAppsGetConfigurationOptionalParams,
   WebAppsGetConfigurationResponse,
+  WebAppsCreateOrUpdateConfigurationOptionalParams,
   WebAppsCreateOrUpdateConfigurationResponse,
+  WebAppsUpdateConfigurationOptionalParams,
   WebAppsUpdateConfigurationResponse,
   WebAppsListConfigurationSnapshotInfoResponse,
+  WebAppsGetConfigurationSnapshotOptionalParams,
   WebAppsGetConfigurationSnapshotResponse,
+  WebAppsRecoverSiteConfigurationSnapshotOptionalParams,
+  WebAppsGetWebSiteContainerLogsOptionalParams,
   WebAppsGetWebSiteContainerLogsResponse,
+  WebAppsGetContainerLogsZipOptionalParams,
   WebAppsGetContainerLogsZipResponse,
   WebAppsListContinuousWebJobsResponse,
+  WebAppsGetContinuousWebJobOptionalParams,
   WebAppsGetContinuousWebJobResponse,
+  WebAppsDeleteContinuousWebJobOptionalParams,
+  WebAppsStartContinuousWebJobOptionalParams,
+  WebAppsStopContinuousWebJobOptionalParams,
   WebAppsListDeploymentsResponse,
+  WebAppsGetDeploymentOptionalParams,
   WebAppsGetDeploymentResponse,
+  WebAppsCreateDeploymentOptionalParams,
   WebAppsCreateDeploymentResponse,
+  WebAppsDeleteDeploymentOptionalParams,
+  WebAppsListDeploymentLogOptionalParams,
   WebAppsListDeploymentLogResponse,
+  WebAppsDiscoverBackupOptionalParams,
   WebAppsDiscoverBackupResponse,
   WebAppsListDomainOwnershipIdentifiersResponse,
+  WebAppsGetDomainOwnershipIdentifierOptionalParams,
   WebAppsGetDomainOwnershipIdentifierResponse,
+  WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams,
   WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse,
+  WebAppsDeleteDomainOwnershipIdentifierOptionalParams,
+  WebAppsUpdateDomainOwnershipIdentifierOptionalParams,
   WebAppsUpdateDomainOwnershipIdentifierResponse,
+  WebAppsGetMSDeployStatusOptionalParams,
   WebAppsGetMSDeployStatusResponse,
   MSDeploy,
+  WebAppsCreateMSDeployOperationOptionalParams,
   WebAppsCreateMSDeployOperationResponse,
+  WebAppsGetMSDeployLogOptionalParams,
   WebAppsGetMSDeployLogResponse,
   WebAppsListFunctionsResponse,
+  WebAppsGetFunctionsAdminTokenOptionalParams,
   WebAppsGetFunctionsAdminTokenResponse,
+  WebAppsGetFunctionOptionalParams,
   WebAppsGetFunctionResponse,
+  WebAppsCreateFunctionOptionalParams,
   WebAppsCreateFunctionResponse,
+  WebAppsDeleteFunctionOptionalParams,
   KeyInfo,
+  WebAppsCreateOrUpdateFunctionSecretOptionalParams,
   WebAppsCreateOrUpdateFunctionSecretResponse,
+  WebAppsDeleteFunctionSecretOptionalParams,
+  WebAppsListFunctionKeysOptionalParams,
   WebAppsListFunctionKeysResponse,
+  WebAppsListFunctionSecretsOptionalParams,
   WebAppsListFunctionSecretsResponse,
+  WebAppsListHostKeysOptionalParams,
   WebAppsListHostKeysResponse,
+  WebAppsListSyncStatusOptionalParams,
+  WebAppsSyncFunctionsOptionalParams,
+  WebAppsCreateOrUpdateHostSecretOptionalParams,
   WebAppsCreateOrUpdateHostSecretResponse,
+  WebAppsDeleteHostSecretOptionalParams,
   WebAppsListHostNameBindingsResponse,
+  WebAppsGetHostNameBindingOptionalParams,
   WebAppsGetHostNameBindingResponse,
+  WebAppsCreateOrUpdateHostNameBindingOptionalParams,
   WebAppsCreateOrUpdateHostNameBindingResponse,
+  WebAppsDeleteHostNameBindingOptionalParams,
+  WebAppsGetHybridConnectionOptionalParams,
   WebAppsGetHybridConnectionResponse,
   HybridConnection,
+  WebAppsCreateOrUpdateHybridConnectionOptionalParams,
   WebAppsCreateOrUpdateHybridConnectionResponse,
+  WebAppsDeleteHybridConnectionOptionalParams,
+  WebAppsUpdateHybridConnectionOptionalParams,
   WebAppsUpdateHybridConnectionResponse,
+  WebAppsListHybridConnectionsOptionalParams,
   WebAppsListHybridConnectionsResponse,
+  WebAppsListRelayServiceConnectionsOptionalParams,
   WebAppsListRelayServiceConnectionsResponse,
+  WebAppsGetRelayServiceConnectionOptionalParams,
   WebAppsGetRelayServiceConnectionResponse,
   RelayServiceConnectionEntity,
+  WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams,
   WebAppsCreateOrUpdateRelayServiceConnectionResponse,
+  WebAppsDeleteRelayServiceConnectionOptionalParams,
+  WebAppsUpdateRelayServiceConnectionOptionalParams,
   WebAppsUpdateRelayServiceConnectionResponse,
   WebAppsListInstanceIdentifiersResponse,
+  WebAppsGetInstanceInfoOptionalParams,
   WebAppsGetInstanceInfoResponse,
+  WebAppsGetInstanceMsDeployStatusOptionalParams,
   WebAppsGetInstanceMsDeployStatusResponse,
+  WebAppsCreateInstanceMSDeployOperationOptionalParams,
   WebAppsCreateInstanceMSDeployOperationResponse,
+  WebAppsGetInstanceMSDeployLogOptionalParams,
   WebAppsGetInstanceMSDeployLogResponse,
   WebAppsListInstanceProcessesResponse,
+  WebAppsGetInstanceProcessOptionalParams,
   WebAppsGetInstanceProcessResponse,
+  WebAppsDeleteInstanceProcessOptionalParams,
+  WebAppsGetInstanceProcessDumpOptionalParams,
   WebAppsGetInstanceProcessDumpResponse,
   WebAppsListInstanceProcessModulesResponse,
+  WebAppsGetInstanceProcessModuleOptionalParams,
   WebAppsGetInstanceProcessModuleResponse,
   WebAppsListInstanceProcessThreadsResponse,
+  WebAppsIsCloneableOptionalParams,
   WebAppsIsCloneableResponse,
   WebAppsListSiteBackupsResponse,
+  WebAppsListSyncFunctionTriggersOptionalParams,
   WebAppsListSyncFunctionTriggersResponse,
   StorageMigrationOptions,
+  WebAppsMigrateStorageOptionalParams,
   WebAppsMigrateStorageResponse,
   MigrateMySqlRequest,
+  WebAppsMigrateMySqlOptionalParams,
   WebAppsMigrateMySqlResponse,
+  WebAppsGetMigrateMySqlStatusOptionalParams,
   WebAppsGetMigrateMySqlStatusResponse,
+  WebAppsGetSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionResponse,
   SwiftVirtualNetwork,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsDeleteSwiftVirtualNetworkOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams,
   WebAppsUpdateSwiftVirtualNetworkConnectionResponse,
+  WebAppsListNetworkFeaturesOptionalParams,
   WebAppsListNetworkFeaturesResponse,
+  WebAppsGetNetworkTraceOperationOptionalParams,
   WebAppsGetNetworkTraceOperationResponse,
   WebAppsStartWebSiteNetworkTraceOptionalParams,
   WebAppsStartWebSiteNetworkTraceResponse,
   WebAppsStartWebSiteNetworkTraceOperationOptionalParams,
   WebAppsStartWebSiteNetworkTraceOperationResponse,
+  WebAppsStopWebSiteNetworkTraceOptionalParams,
+  WebAppsGetNetworkTracesOptionalParams,
   WebAppsGetNetworkTracesResponse,
+  WebAppsGetNetworkTraceOperationV2OptionalParams,
   WebAppsGetNetworkTraceOperationV2Response,
+  WebAppsGetNetworkTracesV2OptionalParams,
   WebAppsGetNetworkTracesV2Response,
+  WebAppsGenerateNewSitePublishingPasswordOptionalParams,
   WebAppsListPerfMonCountersResponse,
+  WebAppsGetSitePhpErrorLogFlagOptionalParams,
   WebAppsGetSitePhpErrorLogFlagResponse,
+  WebAppsListPremierAddOnsOptionalParams,
   WebAppsListPremierAddOnsResponse,
+  WebAppsGetPremierAddOnOptionalParams,
   WebAppsGetPremierAddOnResponse,
   PremierAddOn,
+  WebAppsAddPremierAddOnOptionalParams,
   WebAppsAddPremierAddOnResponse,
+  WebAppsDeletePremierAddOnOptionalParams,
   PremierAddOnPatchResource,
+  WebAppsUpdatePremierAddOnOptionalParams,
   WebAppsUpdatePremierAddOnResponse,
+  WebAppsGetPrivateAccessOptionalParams,
   WebAppsGetPrivateAccessResponse,
   PrivateAccess,
+  WebAppsPutPrivateAccessVnetOptionalParams,
   WebAppsPutPrivateAccessVnetResponse,
   WebAppsListProcessesResponse,
+  WebAppsGetProcessOptionalParams,
   WebAppsGetProcessResponse,
+  WebAppsDeleteProcessOptionalParams,
+  WebAppsGetProcessDumpOptionalParams,
   WebAppsGetProcessDumpResponse,
   WebAppsListProcessModulesResponse,
+  WebAppsGetProcessModuleOptionalParams,
   WebAppsGetProcessModuleResponse,
   WebAppsListProcessThreadsResponse,
   WebAppsListPublicCertificatesResponse,
+  WebAppsGetPublicCertificateOptionalParams,
   WebAppsGetPublicCertificateResponse,
+  WebAppsCreateOrUpdatePublicCertificateOptionalParams,
   WebAppsCreateOrUpdatePublicCertificateResponse,
+  WebAppsDeletePublicCertificateOptionalParams,
   CsmPublishingProfileOptions,
+  WebAppsListPublishingProfileXmlWithSecretsOptionalParams,
   WebAppsListPublishingProfileXmlWithSecretsResponse,
+  WebAppsResetProductionSlotConfigOptionalParams,
   WebAppsRestartOptionalParams,
+  WebAppsRestoreFromBackupBlobOptionalParams,
   DeletedAppRestoreRequest,
+  WebAppsRestoreFromDeletedAppOptionalParams,
   SnapshotRestoreRequest,
+  WebAppsRestoreSnapshotOptionalParams,
   WebAppsListSiteExtensionsResponse,
+  WebAppsGetSiteExtensionOptionalParams,
   WebAppsGetSiteExtensionResponse,
+  WebAppsInstallSiteExtensionOptionalParams,
   WebAppsInstallSiteExtensionResponse,
+  WebAppsDeleteSiteExtensionOptionalParams,
   CsmCopySlotEntity,
+  WebAppsCopyProductionSlotOptionalParams,
   WebAppsListSlotsResponse,
+  WebAppsGetSlotOptionalParams,
   WebAppsGetSlotResponse,
+  WebAppsCreateOrUpdateSlotOptionalParams,
   WebAppsCreateOrUpdateSlotResponse,
   WebAppsDeleteSlotOptionalParams,
+  WebAppsUpdateSlotOptionalParams,
   WebAppsUpdateSlotResponse,
   WebAppsAnalyzeCustomHostnameSlotOptionalParams,
   WebAppsAnalyzeCustomHostnameSlotResponse,
+  WebAppsApplySlotConfigurationSlotOptionalParams,
+  WebAppsBackupSlotOptionalParams,
   WebAppsBackupSlotResponse,
   WebAppsListBackupsSlotResponse,
+  WebAppsGetBackupStatusSlotOptionalParams,
   WebAppsGetBackupStatusSlotResponse,
+  WebAppsDeleteBackupSlotOptionalParams,
+  WebAppsListBackupStatusSecretsSlotOptionalParams,
   WebAppsListBackupStatusSecretsSlotResponse,
+  WebAppsRestoreSlotOptionalParams,
   WebAppsListConfigurationsSlotResponse,
+  WebAppsUpdateApplicationSettingsSlotOptionalParams,
   WebAppsUpdateApplicationSettingsSlotResponse,
+  WebAppsListApplicationSettingsSlotOptionalParams,
   WebAppsListApplicationSettingsSlotResponse,
+  WebAppsUpdateAuthSettingsSlotOptionalParams,
   WebAppsUpdateAuthSettingsSlotResponse,
+  WebAppsGetAuthSettingsSlotOptionalParams,
   WebAppsGetAuthSettingsSlotResponse,
+  WebAppsUpdateAzureStorageAccountsSlotOptionalParams,
   WebAppsUpdateAzureStorageAccountsSlotResponse,
+  WebAppsListAzureStorageAccountsSlotOptionalParams,
   WebAppsListAzureStorageAccountsSlotResponse,
+  WebAppsUpdateBackupConfigurationSlotOptionalParams,
   WebAppsUpdateBackupConfigurationSlotResponse,
+  WebAppsDeleteBackupConfigurationSlotOptionalParams,
+  WebAppsGetBackupConfigurationSlotOptionalParams,
   WebAppsGetBackupConfigurationSlotResponse,
+  WebAppsUpdateConnectionStringsSlotOptionalParams,
   WebAppsUpdateConnectionStringsSlotResponse,
+  WebAppsListConnectionStringsSlotOptionalParams,
   WebAppsListConnectionStringsSlotResponse,
+  WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams,
   WebAppsGetDiagnosticLogsConfigurationSlotResponse,
+  WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams,
   WebAppsUpdateDiagnosticLogsConfigSlotResponse,
+  WebAppsUpdateMetadataSlotOptionalParams,
   WebAppsUpdateMetadataSlotResponse,
+  WebAppsListMetadataSlotOptionalParams,
   WebAppsListMetadataSlotResponse,
+  WebAppsListPublishingCredentialsSlotOptionalParams,
   WebAppsListPublishingCredentialsSlotResponse,
+  WebAppsUpdateSitePushSettingsSlotOptionalParams,
   WebAppsUpdateSitePushSettingsSlotResponse,
+  WebAppsListSitePushSettingsSlotOptionalParams,
   WebAppsListSitePushSettingsSlotResponse,
+  WebAppsGetConfigurationSlotOptionalParams,
   WebAppsGetConfigurationSlotResponse,
+  WebAppsCreateOrUpdateConfigurationSlotOptionalParams,
   WebAppsCreateOrUpdateConfigurationSlotResponse,
+  WebAppsUpdateConfigurationSlotOptionalParams,
   WebAppsUpdateConfigurationSlotResponse,
   WebAppsListConfigurationSnapshotInfoSlotResponse,
+  WebAppsGetConfigurationSnapshotSlotOptionalParams,
   WebAppsGetConfigurationSnapshotSlotResponse,
+  WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams,
+  WebAppsGetWebSiteContainerLogsSlotOptionalParams,
   WebAppsGetWebSiteContainerLogsSlotResponse,
+  WebAppsGetContainerLogsZipSlotOptionalParams,
   WebAppsGetContainerLogsZipSlotResponse,
   WebAppsListContinuousWebJobsSlotResponse,
+  WebAppsGetContinuousWebJobSlotOptionalParams,
   WebAppsGetContinuousWebJobSlotResponse,
+  WebAppsDeleteContinuousWebJobSlotOptionalParams,
+  WebAppsStartContinuousWebJobSlotOptionalParams,
+  WebAppsStopContinuousWebJobSlotOptionalParams,
   WebAppsListDeploymentsSlotResponse,
+  WebAppsGetDeploymentSlotOptionalParams,
   WebAppsGetDeploymentSlotResponse,
+  WebAppsCreateDeploymentSlotOptionalParams,
   WebAppsCreateDeploymentSlotResponse,
+  WebAppsDeleteDeploymentSlotOptionalParams,
+  WebAppsListDeploymentLogSlotOptionalParams,
   WebAppsListDeploymentLogSlotResponse,
+  WebAppsDiscoverBackupSlotOptionalParams,
   WebAppsDiscoverBackupSlotResponse,
   WebAppsListDomainOwnershipIdentifiersSlotResponse,
+  WebAppsGetDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsGetDomainOwnershipIdentifierSlotResponse,
+  WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse,
+  WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams,
+  WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams,
   WebAppsUpdateDomainOwnershipIdentifierSlotResponse,
+  WebAppsGetMSDeployStatusSlotOptionalParams,
   WebAppsGetMSDeployStatusSlotResponse,
+  WebAppsCreateMSDeployOperationSlotOptionalParams,
   WebAppsCreateMSDeployOperationSlotResponse,
+  WebAppsGetMSDeployLogSlotOptionalParams,
   WebAppsGetMSDeployLogSlotResponse,
   WebAppsListInstanceFunctionsSlotResponse,
+  WebAppsGetFunctionsAdminTokenSlotOptionalParams,
   WebAppsGetFunctionsAdminTokenSlotResponse,
+  WebAppsGetInstanceFunctionSlotOptionalParams,
   WebAppsGetInstanceFunctionSlotResponse,
+  WebAppsCreateInstanceFunctionSlotOptionalParams,
   WebAppsCreateInstanceFunctionSlotResponse,
+  WebAppsDeleteInstanceFunctionSlotOptionalParams,
+  WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams,
   WebAppsCreateOrUpdateFunctionSecretSlotResponse,
+  WebAppsDeleteFunctionSecretSlotOptionalParams,
+  WebAppsListFunctionKeysSlotOptionalParams,
   WebAppsListFunctionKeysSlotResponse,
+  WebAppsListFunctionSecretsSlotOptionalParams,
   WebAppsListFunctionSecretsSlotResponse,
+  WebAppsListHostKeysSlotOptionalParams,
   WebAppsListHostKeysSlotResponse,
+  WebAppsListSyncStatusSlotOptionalParams,
+  WebAppsSyncFunctionsSlotOptionalParams,
+  WebAppsCreateOrUpdateHostSecretSlotOptionalParams,
   WebAppsCreateOrUpdateHostSecretSlotResponse,
+  WebAppsDeleteHostSecretSlotOptionalParams,
   WebAppsListHostNameBindingsSlotResponse,
+  WebAppsGetHostNameBindingSlotOptionalParams,
   WebAppsGetHostNameBindingSlotResponse,
+  WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams,
   WebAppsCreateOrUpdateHostNameBindingSlotResponse,
+  WebAppsDeleteHostNameBindingSlotOptionalParams,
+  WebAppsGetHybridConnectionSlotOptionalParams,
   WebAppsGetHybridConnectionSlotResponse,
+  WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateHybridConnectionSlotResponse,
+  WebAppsDeleteHybridConnectionSlotOptionalParams,
+  WebAppsUpdateHybridConnectionSlotOptionalParams,
   WebAppsUpdateHybridConnectionSlotResponse,
+  WebAppsListHybridConnectionsSlotOptionalParams,
   WebAppsListHybridConnectionsSlotResponse,
+  WebAppsListRelayServiceConnectionsSlotOptionalParams,
   WebAppsListRelayServiceConnectionsSlotResponse,
+  WebAppsGetRelayServiceConnectionSlotOptionalParams,
   WebAppsGetRelayServiceConnectionSlotResponse,
+  WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse,
+  WebAppsDeleteRelayServiceConnectionSlotOptionalParams,
+  WebAppsUpdateRelayServiceConnectionSlotOptionalParams,
   WebAppsUpdateRelayServiceConnectionSlotResponse,
   WebAppsListInstanceIdentifiersSlotResponse,
+  WebAppsGetInstanceInfoSlotOptionalParams,
   WebAppsGetInstanceInfoSlotResponse,
+  WebAppsGetInstanceMsDeployStatusSlotOptionalParams,
   WebAppsGetInstanceMsDeployStatusSlotResponse,
+  WebAppsCreateInstanceMSDeployOperationSlotOptionalParams,
   WebAppsCreateInstanceMSDeployOperationSlotResponse,
+  WebAppsGetInstanceMSDeployLogSlotOptionalParams,
   WebAppsGetInstanceMSDeployLogSlotResponse,
   WebAppsListInstanceProcessesSlotResponse,
+  WebAppsGetInstanceProcessSlotOptionalParams,
   WebAppsGetInstanceProcessSlotResponse,
+  WebAppsDeleteInstanceProcessSlotOptionalParams,
+  WebAppsGetInstanceProcessDumpSlotOptionalParams,
   WebAppsGetInstanceProcessDumpSlotResponse,
   WebAppsListInstanceProcessModulesSlotResponse,
+  WebAppsGetInstanceProcessModuleSlotOptionalParams,
   WebAppsGetInstanceProcessModuleSlotResponse,
   WebAppsListInstanceProcessThreadsSlotResponse,
+  WebAppsIsCloneableSlotOptionalParams,
   WebAppsIsCloneableSlotResponse,
   WebAppsListSiteBackupsSlotResponse,
+  WebAppsListSyncFunctionTriggersSlotOptionalParams,
   WebAppsListSyncFunctionTriggersSlotResponse,
+  WebAppsGetMigrateMySqlStatusSlotOptionalParams,
   WebAppsGetMigrateMySqlStatusSlotResponse,
+  WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsGetSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams,
+  WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams,
   WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse,
+  WebAppsListNetworkFeaturesSlotOptionalParams,
   WebAppsListNetworkFeaturesSlotResponse,
+  WebAppsGetNetworkTraceOperationSlotOptionalParams,
   WebAppsGetNetworkTraceOperationSlotResponse,
   WebAppsStartWebSiteNetworkTraceSlotOptionalParams,
   WebAppsStartWebSiteNetworkTraceSlotResponse,
   WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams,
   WebAppsStartWebSiteNetworkTraceOperationSlotResponse,
+  WebAppsStopWebSiteNetworkTraceSlotOptionalParams,
+  WebAppsGetNetworkTracesSlotOptionalParams,
   WebAppsGetNetworkTracesSlotResponse,
+  WebAppsGetNetworkTraceOperationSlotV2OptionalParams,
   WebAppsGetNetworkTraceOperationSlotV2Response,
+  WebAppsGetNetworkTracesSlotV2OptionalParams,
   WebAppsGetNetworkTracesSlotV2Response,
+  WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams,
   WebAppsListPerfMonCountersSlotResponse,
+  WebAppsGetSitePhpErrorLogFlagSlotOptionalParams,
   WebAppsGetSitePhpErrorLogFlagSlotResponse,
+  WebAppsListPremierAddOnsSlotOptionalParams,
   WebAppsListPremierAddOnsSlotResponse,
+  WebAppsGetPremierAddOnSlotOptionalParams,
   WebAppsGetPremierAddOnSlotResponse,
+  WebAppsAddPremierAddOnSlotOptionalParams,
   WebAppsAddPremierAddOnSlotResponse,
+  WebAppsDeletePremierAddOnSlotOptionalParams,
+  WebAppsUpdatePremierAddOnSlotOptionalParams,
   WebAppsUpdatePremierAddOnSlotResponse,
+  WebAppsGetPrivateAccessSlotOptionalParams,
   WebAppsGetPrivateAccessSlotResponse,
+  WebAppsPutPrivateAccessVnetSlotOptionalParams,
   WebAppsPutPrivateAccessVnetSlotResponse,
+  WebAppsGetPrivateEndpointConnectionOptionalParams,
   WebAppsGetPrivateEndpointConnectionResponse,
   PrivateLinkConnectionApprovalRequestResource,
+  WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams,
   WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
+  WebAppsDeletePrivateEndpointConnectionOptionalParams,
   WebAppsDeletePrivateEndpointConnectionResponse,
+  WebAppsGetPrivateLinkResourcesOptionalParams,
   WebAppsGetPrivateLinkResourcesResponse,
   WebAppsListProcessesSlotResponse,
+  WebAppsGetProcessSlotOptionalParams,
   WebAppsGetProcessSlotResponse,
+  WebAppsDeleteProcessSlotOptionalParams,
+  WebAppsGetProcessDumpSlotOptionalParams,
   WebAppsGetProcessDumpSlotResponse,
   WebAppsListProcessModulesSlotResponse,
+  WebAppsGetProcessModuleSlotOptionalParams,
   WebAppsGetProcessModuleSlotResponse,
   WebAppsListProcessThreadsSlotResponse,
   WebAppsListPublicCertificatesSlotResponse,
+  WebAppsGetPublicCertificateSlotOptionalParams,
   WebAppsGetPublicCertificateSlotResponse,
+  WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams,
   WebAppsCreateOrUpdatePublicCertificateSlotResponse,
+  WebAppsDeletePublicCertificateSlotOptionalParams,
+  WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams,
   WebAppsListPublishingProfileXmlWithSecretsSlotResponse,
+  WebAppsResetSlotConfigurationSlotOptionalParams,
   WebAppsRestartSlotOptionalParams,
+  WebAppsRestoreFromBackupBlobSlotOptionalParams,
+  WebAppsRestoreFromDeletedAppSlotOptionalParams,
+  WebAppsRestoreSnapshotSlotOptionalParams,
   WebAppsListSiteExtensionsSlotResponse,
+  WebAppsGetSiteExtensionSlotOptionalParams,
   WebAppsGetSiteExtensionSlotResponse,
+  WebAppsInstallSiteExtensionSlotOptionalParams,
   WebAppsInstallSiteExtensionSlotResponse,
+  WebAppsDeleteSiteExtensionSlotOptionalParams,
+  WebAppsCopySlotOptionalParams,
   WebAppsListSlotDifferencesSlotResponse,
+  WebAppsSwapSlotOptionalParams,
   WebAppsListSnapshotsSlotResponse,
   WebAppsListSnapshotsFromDRSecondarySlotResponse,
+  WebAppsGetSourceControlSlotOptionalParams,
   WebAppsGetSourceControlSlotResponse,
   SiteSourceControl,
+  WebAppsCreateOrUpdateSourceControlSlotOptionalParams,
   WebAppsCreateOrUpdateSourceControlSlotResponse,
+  WebAppsDeleteSourceControlSlotOptionalParams,
+  WebAppsUpdateSourceControlSlotOptionalParams,
   WebAppsUpdateSourceControlSlotResponse,
+  WebAppsStartSlotOptionalParams,
   WebAppsStartNetworkTraceSlotOptionalParams,
   WebAppsStartNetworkTraceSlotResponse,
+  WebAppsStopSlotOptionalParams,
+  WebAppsStopNetworkTraceSlotOptionalParams,
+  WebAppsSyncRepositorySlotOptionalParams,
+  WebAppsSyncFunctionTriggersSlotOptionalParams,
   WebAppsListTriggeredWebJobsSlotResponse,
+  WebAppsGetTriggeredWebJobSlotOptionalParams,
   WebAppsGetTriggeredWebJobSlotResponse,
+  WebAppsDeleteTriggeredWebJobSlotOptionalParams,
   WebAppsListTriggeredWebJobHistorySlotResponse,
+  WebAppsGetTriggeredWebJobHistorySlotOptionalParams,
   WebAppsGetTriggeredWebJobHistorySlotResponse,
+  WebAppsRunTriggeredWebJobSlotOptionalParams,
   WebAppsListUsagesSlotResponse,
+  WebAppsListVnetConnectionsSlotOptionalParams,
   WebAppsListVnetConnectionsSlotResponse,
+  WebAppsGetVnetConnectionSlotOptionalParams,
   WebAppsGetVnetConnectionSlotResponse,
   VnetInfo,
+  WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionSlotResponse,
+  WebAppsDeleteVnetConnectionSlotOptionalParams,
+  WebAppsUpdateVnetConnectionSlotOptionalParams,
   WebAppsUpdateVnetConnectionSlotResponse,
+  WebAppsGetVnetConnectionGatewaySlotOptionalParams,
   WebAppsGetVnetConnectionGatewaySlotResponse,
   VnetGateway,
+  WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse,
+  WebAppsUpdateVnetConnectionGatewaySlotOptionalParams,
   WebAppsUpdateVnetConnectionGatewaySlotResponse,
   WebAppsListWebJobsSlotResponse,
+  WebAppsGetWebJobSlotOptionalParams,
   WebAppsGetWebJobSlotResponse,
   WebAppsListSlotDifferencesFromProductionResponse,
+  WebAppsSwapSlotWithProductionOptionalParams,
   WebAppsListSnapshotsResponse,
   WebAppsListSnapshotsFromDRSecondaryResponse,
+  WebAppsGetSourceControlOptionalParams,
   WebAppsGetSourceControlResponse,
+  WebAppsCreateOrUpdateSourceControlOptionalParams,
   WebAppsCreateOrUpdateSourceControlResponse,
+  WebAppsDeleteSourceControlOptionalParams,
+  WebAppsUpdateSourceControlOptionalParams,
   WebAppsUpdateSourceControlResponse,
+  WebAppsStartOptionalParams,
   WebAppsStartNetworkTraceOptionalParams,
   WebAppsStartNetworkTraceResponse,
+  WebAppsStopOptionalParams,
+  WebAppsStopNetworkTraceOptionalParams,
+  WebAppsSyncRepositoryOptionalParams,
+  WebAppsSyncFunctionTriggersOptionalParams,
   WebAppsListTriggeredWebJobsResponse,
+  WebAppsGetTriggeredWebJobOptionalParams,
   WebAppsGetTriggeredWebJobResponse,
+  WebAppsDeleteTriggeredWebJobOptionalParams,
   WebAppsListTriggeredWebJobHistoryResponse,
+  WebAppsGetTriggeredWebJobHistoryOptionalParams,
   WebAppsGetTriggeredWebJobHistoryResponse,
+  WebAppsRunTriggeredWebJobOptionalParams,
   WebAppsListUsagesResponse,
+  WebAppsListVnetConnectionsOptionalParams,
   WebAppsListVnetConnectionsResponse,
+  WebAppsGetVnetConnectionOptionalParams,
   WebAppsGetVnetConnectionResponse,
+  WebAppsCreateOrUpdateVnetConnectionOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionResponse,
+  WebAppsDeleteVnetConnectionOptionalParams,
+  WebAppsUpdateVnetConnectionOptionalParams,
   WebAppsUpdateVnetConnectionResponse,
+  WebAppsGetVnetConnectionGatewayOptionalParams,
   WebAppsGetVnetConnectionGatewayResponse,
+  WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams,
   WebAppsCreateOrUpdateVnetConnectionGatewayResponse,
+  WebAppsUpdateVnetConnectionGatewayOptionalParams,
   WebAppsUpdateVnetConnectionGatewayResponse,
   WebAppsListWebJobsResponse,
+  WebAppsGetWebJobOptionalParams,
   WebAppsGetWebJobResponse,
   WebAppsListNextResponse,
   WebAppsListByResourceGroupNextResponse,
@@ -445,7 +845,7 @@ export class WebAppsImpl implements WebApps {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListOptionalParams
   ): PagedAsyncIterableIterator<Site> {
     const iter = this.listPagingAll(options);
     return {
@@ -462,7 +862,7 @@ export class WebAppsImpl implements WebApps {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListOptionalParams
   ): AsyncIterableIterator<Site[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -475,7 +875,7 @@ export class WebAppsImpl implements WebApps {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListOptionalParams
   ): AsyncIterableIterator<Site> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -544,7 +944,7 @@ export class WebAppsImpl implements WebApps {
   public listBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsOptionalParams
   ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listBackupsPagingAll(resourceGroupName, name, options);
     return {
@@ -563,7 +963,7 @@ export class WebAppsImpl implements WebApps {
   private async *listBackupsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsOptionalParams
   ): AsyncIterableIterator<BackupItem[]> {
     let result = await this._listBackups(resourceGroupName, name, options);
     yield result.value || [];
@@ -583,7 +983,7 @@ export class WebAppsImpl implements WebApps {
   private async *listBackupsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsOptionalParams
   ): AsyncIterableIterator<BackupItem> {
     for await (const page of this.listBackupsPagingPage(
       resourceGroupName,
@@ -603,7 +1003,7 @@ export class WebAppsImpl implements WebApps {
   public listConfigurations(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource> {
     const iter = this.listConfigurationsPagingAll(
       resourceGroupName,
@@ -630,7 +1030,7 @@ export class WebAppsImpl implements WebApps {
   private async *listConfigurationsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsOptionalParams
   ): AsyncIterableIterator<SiteConfigResource[]> {
     let result = await this._listConfigurations(
       resourceGroupName,
@@ -654,7 +1054,7 @@ export class WebAppsImpl implements WebApps {
   private async *listConfigurationsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsOptionalParams
   ): AsyncIterableIterator<SiteConfigResource> {
     for await (const page of this.listConfigurationsPagingPage(
       resourceGroupName,
@@ -675,7 +1075,7 @@ export class WebAppsImpl implements WebApps {
   public listConfigurationSnapshotInfo(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     const iter = this.listConfigurationSnapshotInfoPagingAll(
       resourceGroupName,
@@ -702,7 +1102,7 @@ export class WebAppsImpl implements WebApps {
   private async *listConfigurationSnapshotInfoPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): AsyncIterableIterator<SiteConfigurationSnapshotInfo[]> {
     let result = await this._listConfigurationSnapshotInfo(
       resourceGroupName,
@@ -726,7 +1126,7 @@ export class WebAppsImpl implements WebApps {
   private async *listConfigurationSnapshotInfoPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): AsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     for await (const page of this.listConfigurationSnapshotInfoPagingPage(
       resourceGroupName,
@@ -746,7 +1146,7 @@ export class WebAppsImpl implements WebApps {
   public listContinuousWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsOptionalParams
   ): PagedAsyncIterableIterator<ContinuousWebJob> {
     const iter = this.listContinuousWebJobsPagingAll(
       resourceGroupName,
@@ -773,7 +1173,7 @@ export class WebAppsImpl implements WebApps {
   private async *listContinuousWebJobsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsOptionalParams
   ): AsyncIterableIterator<ContinuousWebJob[]> {
     let result = await this._listContinuousWebJobs(
       resourceGroupName,
@@ -797,7 +1197,7 @@ export class WebAppsImpl implements WebApps {
   private async *listContinuousWebJobsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsOptionalParams
   ): AsyncIterableIterator<ContinuousWebJob> {
     for await (const page of this.listContinuousWebJobsPagingPage(
       resourceGroupName,
@@ -817,7 +1217,7 @@ export class WebAppsImpl implements WebApps {
   public listDeployments(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsOptionalParams
   ): PagedAsyncIterableIterator<Deployment> {
     const iter = this.listDeploymentsPagingAll(
       resourceGroupName,
@@ -840,7 +1240,7 @@ export class WebAppsImpl implements WebApps {
   private async *listDeploymentsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsOptionalParams
   ): AsyncIterableIterator<Deployment[]> {
     let result = await this._listDeployments(resourceGroupName, name, options);
     yield result.value || [];
@@ -860,7 +1260,7 @@ export class WebAppsImpl implements WebApps {
   private async *listDeploymentsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsOptionalParams
   ): AsyncIterableIterator<Deployment> {
     for await (const page of this.listDeploymentsPagingPage(
       resourceGroupName,
@@ -880,7 +1280,7 @@ export class WebAppsImpl implements WebApps {
   public listDomainOwnershipIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listDomainOwnershipIdentifiersPagingAll(
       resourceGroupName,
@@ -907,7 +1307,7 @@ export class WebAppsImpl implements WebApps {
   private async *listDomainOwnershipIdentifiersPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): AsyncIterableIterator<Identifier[]> {
     let result = await this._listDomainOwnershipIdentifiers(
       resourceGroupName,
@@ -931,7 +1331,7 @@ export class WebAppsImpl implements WebApps {
   private async *listDomainOwnershipIdentifiersPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): AsyncIterableIterator<Identifier> {
     for await (const page of this.listDomainOwnershipIdentifiersPagingPage(
       resourceGroupName,
@@ -951,7 +1351,7 @@ export class WebAppsImpl implements WebApps {
   public listFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsOptionalParams
   ): PagedAsyncIterableIterator<FunctionEnvelope> {
     const iter = this.listFunctionsPagingAll(resourceGroupName, name, options);
     return {
@@ -970,7 +1370,7 @@ export class WebAppsImpl implements WebApps {
   private async *listFunctionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsOptionalParams
   ): AsyncIterableIterator<FunctionEnvelope[]> {
     let result = await this._listFunctions(resourceGroupName, name, options);
     yield result.value || [];
@@ -990,7 +1390,7 @@ export class WebAppsImpl implements WebApps {
   private async *listFunctionsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsOptionalParams
   ): AsyncIterableIterator<FunctionEnvelope> {
     for await (const page of this.listFunctionsPagingPage(
       resourceGroupName,
@@ -1010,7 +1410,7 @@ export class WebAppsImpl implements WebApps {
   public listHostNameBindings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsOptionalParams
   ): PagedAsyncIterableIterator<HostNameBinding> {
     const iter = this.listHostNameBindingsPagingAll(
       resourceGroupName,
@@ -1037,7 +1437,7 @@ export class WebAppsImpl implements WebApps {
   private async *listHostNameBindingsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsOptionalParams
   ): AsyncIterableIterator<HostNameBinding[]> {
     let result = await this._listHostNameBindings(
       resourceGroupName,
@@ -1061,7 +1461,7 @@ export class WebAppsImpl implements WebApps {
   private async *listHostNameBindingsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsOptionalParams
   ): AsyncIterableIterator<HostNameBinding> {
     for await (const page of this.listHostNameBindingsPagingPage(
       resourceGroupName,
@@ -1081,7 +1481,7 @@ export class WebAppsImpl implements WebApps {
   public listInstanceIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersOptionalParams
   ): PagedAsyncIterableIterator<SiteInstance> {
     const iter = this.listInstanceIdentifiersPagingAll(
       resourceGroupName,
@@ -1108,7 +1508,7 @@ export class WebAppsImpl implements WebApps {
   private async *listInstanceIdentifiersPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersOptionalParams
   ): AsyncIterableIterator<SiteInstance[]> {
     let result = await this._listInstanceIdentifiers(
       resourceGroupName,
@@ -1132,7 +1532,7 @@ export class WebAppsImpl implements WebApps {
   private async *listInstanceIdentifiersPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersOptionalParams
   ): AsyncIterableIterator<SiteInstance> {
     for await (const page of this.listInstanceIdentifiersPagingPage(
       resourceGroupName,
@@ -1156,7 +1556,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listInstanceProcessesPagingAll(
       resourceGroupName,
@@ -1186,7 +1586,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesOptionalParams
   ): AsyncIterableIterator<ProcessInfo[]> {
     let result = await this._listInstanceProcesses(
       resourceGroupName,
@@ -1213,7 +1613,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesOptionalParams
   ): AsyncIterableIterator<ProcessInfo> {
     for await (const page of this.listInstanceProcessesPagingPage(
       resourceGroupName,
@@ -1240,7 +1640,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listInstanceProcessModulesPagingAll(
       resourceGroupName,
@@ -1273,7 +1673,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo[]> {
     let result = await this._listInstanceProcessModules(
       resourceGroupName,
@@ -1303,7 +1703,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo> {
     for await (const page of this.listInstanceProcessModulesPagingPage(
       resourceGroupName,
@@ -1331,7 +1731,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listInstanceProcessThreadsPagingAll(
       resourceGroupName,
@@ -1364,7 +1764,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo[]> {
     let result = await this._listInstanceProcessThreads(
       resourceGroupName,
@@ -1394,7 +1794,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo> {
     for await (const page of this.listInstanceProcessThreadsPagingPage(
       resourceGroupName,
@@ -1416,7 +1816,7 @@ export class WebAppsImpl implements WebApps {
   public listSiteBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsOptionalParams
   ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listSiteBackupsPagingAll(
       resourceGroupName,
@@ -1439,7 +1839,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSiteBackupsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsOptionalParams
   ): AsyncIterableIterator<BackupItem[]> {
     let result = await this._listSiteBackups(resourceGroupName, name, options);
     yield result.value || [];
@@ -1459,7 +1859,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSiteBackupsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsOptionalParams
   ): AsyncIterableIterator<BackupItem> {
     for await (const page of this.listSiteBackupsPagingPage(
       resourceGroupName,
@@ -1551,7 +1951,7 @@ export class WebAppsImpl implements WebApps {
   public listProcesses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listProcessesPagingAll(resourceGroupName, name, options);
     return {
@@ -1570,7 +1970,7 @@ export class WebAppsImpl implements WebApps {
   private async *listProcessesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesOptionalParams
   ): AsyncIterableIterator<ProcessInfo[]> {
     let result = await this._listProcesses(resourceGroupName, name, options);
     yield result.value || [];
@@ -1590,7 +1990,7 @@ export class WebAppsImpl implements WebApps {
   private async *listProcessesPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesOptionalParams
   ): AsyncIterableIterator<ProcessInfo> {
     for await (const page of this.listProcessesPagingPage(
       resourceGroupName,
@@ -1613,7 +2013,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listProcessModulesPagingAll(
       resourceGroupName,
@@ -1643,7 +2043,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo[]> {
     let result = await this._listProcessModules(
       resourceGroupName,
@@ -1670,7 +2070,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo> {
     for await (const page of this.listProcessModulesPagingPage(
       resourceGroupName,
@@ -1694,7 +2094,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listProcessThreadsPagingAll(
       resourceGroupName,
@@ -1724,7 +2124,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo[]> {
     let result = await this._listProcessThreads(
       resourceGroupName,
@@ -1751,7 +2151,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo> {
     for await (const page of this.listProcessThreadsPagingPage(
       resourceGroupName,
@@ -1772,7 +2172,7 @@ export class WebAppsImpl implements WebApps {
   public listPublicCertificates(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesOptionalParams
   ): PagedAsyncIterableIterator<PublicCertificate> {
     const iter = this.listPublicCertificatesPagingAll(
       resourceGroupName,
@@ -1799,7 +2199,7 @@ export class WebAppsImpl implements WebApps {
   private async *listPublicCertificatesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesOptionalParams
   ): AsyncIterableIterator<PublicCertificate[]> {
     let result = await this._listPublicCertificates(
       resourceGroupName,
@@ -1823,7 +2223,7 @@ export class WebAppsImpl implements WebApps {
   private async *listPublicCertificatesPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesOptionalParams
   ): AsyncIterableIterator<PublicCertificate> {
     for await (const page of this.listPublicCertificatesPagingPage(
       resourceGroupName,
@@ -1843,7 +2243,7 @@ export class WebAppsImpl implements WebApps {
   public listSiteExtensions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsOptionalParams
   ): PagedAsyncIterableIterator<SiteExtensionInfo> {
     const iter = this.listSiteExtensionsPagingAll(
       resourceGroupName,
@@ -1870,7 +2270,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSiteExtensionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsOptionalParams
   ): AsyncIterableIterator<SiteExtensionInfo[]> {
     let result = await this._listSiteExtensions(
       resourceGroupName,
@@ -1894,7 +2294,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSiteExtensionsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsOptionalParams
   ): AsyncIterableIterator<SiteExtensionInfo> {
     for await (const page of this.listSiteExtensionsPagingPage(
       resourceGroupName,
@@ -1914,7 +2314,7 @@ export class WebAppsImpl implements WebApps {
   public listSlots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsOptionalParams
   ): PagedAsyncIterableIterator<Site> {
     const iter = this.listSlotsPagingAll(resourceGroupName, name, options);
     return {
@@ -1933,7 +2333,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSlotsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsOptionalParams
   ): AsyncIterableIterator<Site[]> {
     let result = await this._listSlots(resourceGroupName, name, options);
     yield result.value || [];
@@ -1953,7 +2353,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSlotsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsOptionalParams
   ): AsyncIterableIterator<Site> {
     for await (const page of this.listSlotsPagingPage(
       resourceGroupName,
@@ -1976,7 +2376,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotOptionalParams
   ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listBackupsSlotPagingAll(
       resourceGroupName,
@@ -2006,7 +2406,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotOptionalParams
   ): AsyncIterableIterator<BackupItem[]> {
     let result = await this._listBackupsSlot(
       resourceGroupName,
@@ -2033,7 +2433,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotOptionalParams
   ): AsyncIterableIterator<BackupItem> {
     for await (const page of this.listBackupsSlotPagingPage(
       resourceGroupName,
@@ -2057,7 +2457,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigResource> {
     const iter = this.listConfigurationsSlotPagingAll(
       resourceGroupName,
@@ -2087,7 +2487,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotOptionalParams
   ): AsyncIterableIterator<SiteConfigResource[]> {
     let result = await this._listConfigurationsSlot(
       resourceGroupName,
@@ -2114,7 +2514,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotOptionalParams
   ): AsyncIterableIterator<SiteConfigResource> {
     for await (const page of this.listConfigurationsSlotPagingPage(
       resourceGroupName,
@@ -2139,7 +2539,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     const iter = this.listConfigurationSnapshotInfoSlotPagingAll(
       resourceGroupName,
@@ -2169,7 +2569,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): AsyncIterableIterator<SiteConfigurationSnapshotInfo[]> {
     let result = await this._listConfigurationSnapshotInfoSlot(
       resourceGroupName,
@@ -2196,7 +2596,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): AsyncIterableIterator<SiteConfigurationSnapshotInfo> {
     for await (const page of this.listConfigurationSnapshotInfoSlotPagingPage(
       resourceGroupName,
@@ -2220,7 +2620,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<ContinuousWebJob> {
     const iter = this.listContinuousWebJobsSlotPagingAll(
       resourceGroupName,
@@ -2250,7 +2650,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): AsyncIterableIterator<ContinuousWebJob[]> {
     let result = await this._listContinuousWebJobsSlot(
       resourceGroupName,
@@ -2277,7 +2677,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): AsyncIterableIterator<ContinuousWebJob> {
     for await (const page of this.listContinuousWebJobsSlotPagingPage(
       resourceGroupName,
@@ -2301,7 +2701,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotOptionalParams
   ): PagedAsyncIterableIterator<Deployment> {
     const iter = this.listDeploymentsSlotPagingAll(
       resourceGroupName,
@@ -2331,7 +2731,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotOptionalParams
   ): AsyncIterableIterator<Deployment[]> {
     let result = await this._listDeploymentsSlot(
       resourceGroupName,
@@ -2358,7 +2758,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotOptionalParams
   ): AsyncIterableIterator<Deployment> {
     for await (const page of this.listDeploymentsSlotPagingPage(
       resourceGroupName,
@@ -2382,7 +2782,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listDomainOwnershipIdentifiersSlotPagingAll(
       resourceGroupName,
@@ -2412,7 +2812,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): AsyncIterableIterator<Identifier[]> {
     let result = await this._listDomainOwnershipIdentifiersSlot(
       resourceGroupName,
@@ -2439,7 +2839,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): AsyncIterableIterator<Identifier> {
     for await (const page of this.listDomainOwnershipIdentifiersSlotPagingPage(
       resourceGroupName,
@@ -2462,7 +2862,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): PagedAsyncIterableIterator<FunctionEnvelope> {
     const iter = this.listInstanceFunctionsSlotPagingAll(
       resourceGroupName,
@@ -2492,7 +2892,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): AsyncIterableIterator<FunctionEnvelope[]> {
     let result = await this._listInstanceFunctionsSlot(
       resourceGroupName,
@@ -2519,7 +2919,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): AsyncIterableIterator<FunctionEnvelope> {
     for await (const page of this.listInstanceFunctionsSlotPagingPage(
       resourceGroupName,
@@ -2543,7 +2943,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): PagedAsyncIterableIterator<HostNameBinding> {
     const iter = this.listHostNameBindingsSlotPagingAll(
       resourceGroupName,
@@ -2573,7 +2973,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): AsyncIterableIterator<HostNameBinding[]> {
     let result = await this._listHostNameBindingsSlot(
       resourceGroupName,
@@ -2600,7 +3000,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): AsyncIterableIterator<HostNameBinding> {
     for await (const page of this.listHostNameBindingsSlotPagingPage(
       resourceGroupName,
@@ -2624,7 +3024,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteInstance> {
     const iter = this.listInstanceIdentifiersSlotPagingAll(
       resourceGroupName,
@@ -2654,7 +3054,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): AsyncIterableIterator<SiteInstance[]> {
     let result = await this._listInstanceIdentifiersSlot(
       resourceGroupName,
@@ -2681,7 +3081,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): AsyncIterableIterator<SiteInstance> {
     for await (const page of this.listInstanceIdentifiersSlotPagingPage(
       resourceGroupName,
@@ -2709,7 +3109,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listInstanceProcessesSlotPagingAll(
       resourceGroupName,
@@ -2742,7 +3142,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): AsyncIterableIterator<ProcessInfo[]> {
     let result = await this._listInstanceProcessesSlot(
       resourceGroupName,
@@ -2772,7 +3172,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): AsyncIterableIterator<ProcessInfo> {
     for await (const page of this.listInstanceProcessesSlotPagingPage(
       resourceGroupName,
@@ -2803,7 +3203,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listInstanceProcessModulesSlotPagingAll(
       resourceGroupName,
@@ -2839,7 +3239,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo[]> {
     let result = await this._listInstanceProcessModulesSlot(
       resourceGroupName,
@@ -2872,7 +3272,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo> {
     for await (const page of this.listInstanceProcessModulesSlotPagingPage(
       resourceGroupName,
@@ -2904,7 +3304,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listInstanceProcessThreadsSlotPagingAll(
       resourceGroupName,
@@ -2940,7 +3340,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo[]> {
     let result = await this._listInstanceProcessThreadsSlot(
       resourceGroupName,
@@ -2973,7 +3373,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo> {
     for await (const page of this.listInstanceProcessThreadsSlotPagingPage(
       resourceGroupName,
@@ -2999,7 +3399,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotOptionalParams
   ): PagedAsyncIterableIterator<BackupItem> {
     const iter = this.listSiteBackupsSlotPagingAll(
       resourceGroupName,
@@ -3029,7 +3429,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotOptionalParams
   ): AsyncIterableIterator<BackupItem[]> {
     let result = await this._listSiteBackupsSlot(
       resourceGroupName,
@@ -3056,7 +3456,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotOptionalParams
   ): AsyncIterableIterator<BackupItem> {
     for await (const page of this.listSiteBackupsSlotPagingPage(
       resourceGroupName,
@@ -3161,7 +3561,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessInfo> {
     const iter = this.listProcessesSlotPagingAll(
       resourceGroupName,
@@ -3191,7 +3591,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotOptionalParams
   ): AsyncIterableIterator<ProcessInfo[]> {
     let result = await this._listProcessesSlot(
       resourceGroupName,
@@ -3218,7 +3618,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotOptionalParams
   ): AsyncIterableIterator<ProcessInfo> {
     for await (const page of this.listProcessesSlotPagingPage(
       resourceGroupName,
@@ -3245,7 +3645,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessModuleInfo> {
     const iter = this.listProcessModulesSlotPagingAll(
       resourceGroupName,
@@ -3278,7 +3678,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo[]> {
     let result = await this._listProcessModulesSlot(
       resourceGroupName,
@@ -3308,7 +3708,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotOptionalParams
   ): AsyncIterableIterator<ProcessModuleInfo> {
     for await (const page of this.listProcessModulesSlotPagingPage(
       resourceGroupName,
@@ -3336,7 +3736,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotOptionalParams
   ): PagedAsyncIterableIterator<ProcessThreadInfo> {
     const iter = this.listProcessThreadsSlotPagingAll(
       resourceGroupName,
@@ -3369,7 +3769,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo[]> {
     let result = await this._listProcessThreadsSlot(
       resourceGroupName,
@@ -3399,7 +3799,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotOptionalParams
   ): AsyncIterableIterator<ProcessThreadInfo> {
     for await (const page of this.listProcessThreadsSlotPagingPage(
       resourceGroupName,
@@ -3424,7 +3824,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): PagedAsyncIterableIterator<PublicCertificate> {
     const iter = this.listPublicCertificatesSlotPagingAll(
       resourceGroupName,
@@ -3454,7 +3854,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): AsyncIterableIterator<PublicCertificate[]> {
     let result = await this._listPublicCertificatesSlot(
       resourceGroupName,
@@ -3481,7 +3881,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): AsyncIterableIterator<PublicCertificate> {
     for await (const page of this.listPublicCertificatesSlotPagingPage(
       resourceGroupName,
@@ -3505,7 +3905,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): PagedAsyncIterableIterator<SiteExtensionInfo> {
     const iter = this.listSiteExtensionsSlotPagingAll(
       resourceGroupName,
@@ -3535,7 +3935,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): AsyncIterableIterator<SiteExtensionInfo[]> {
     let result = await this._listSiteExtensionsSlot(
       resourceGroupName,
@@ -3562,7 +3962,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): AsyncIterableIterator<SiteExtensionInfo> {
     for await (const page of this.listSiteExtensionsSlotPagingPage(
       resourceGroupName,
@@ -3588,7 +3988,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): PagedAsyncIterableIterator<SlotDifference> {
     const iter = this.listSlotDifferencesSlotPagingAll(
       resourceGroupName,
@@ -3621,7 +4021,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): AsyncIterableIterator<SlotDifference[]> {
     let result = await this._listSlotDifferencesSlot(
       resourceGroupName,
@@ -3651,7 +4051,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): AsyncIterableIterator<SlotDifference> {
     for await (const page of this.listSlotDifferencesSlotPagingPage(
       resourceGroupName,
@@ -3675,7 +4075,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsSlotPagingAll(
       resourceGroupName,
@@ -3705,7 +4105,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._listSnapshotsSlot(
       resourceGroupName,
@@ -3732,7 +4132,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listSnapshotsSlotPagingPage(
       resourceGroupName,
@@ -3755,7 +4155,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsFromDRSecondarySlotPagingAll(
       resourceGroupName,
@@ -3785,7 +4185,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._listSnapshotsFromDRSecondarySlot(
       resourceGroupName,
@@ -3812,7 +4212,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listSnapshotsFromDRSecondarySlotPagingPage(
       resourceGroupName,
@@ -3836,7 +4236,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<TriggeredWebJob> {
     const iter = this.listTriggeredWebJobsSlotPagingAll(
       resourceGroupName,
@@ -3866,7 +4266,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): AsyncIterableIterator<TriggeredWebJob[]> {
     let result = await this._listTriggeredWebJobsSlot(
       resourceGroupName,
@@ -3893,7 +4293,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): AsyncIterableIterator<TriggeredWebJob> {
     for await (const page of this.listTriggeredWebJobsSlotPagingPage(
       resourceGroupName,
@@ -3919,7 +4319,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): PagedAsyncIterableIterator<TriggeredJobHistory> {
     const iter = this.listTriggeredWebJobHistorySlotPagingAll(
       resourceGroupName,
@@ -3952,7 +4352,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): AsyncIterableIterator<TriggeredJobHistory[]> {
     let result = await this._listTriggeredWebJobHistorySlot(
       resourceGroupName,
@@ -3982,7 +4382,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): AsyncIterableIterator<TriggeredJobHistory> {
     for await (const page of this.listTriggeredWebJobHistorySlotPagingPage(
       resourceGroupName,
@@ -4088,7 +4488,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotOptionalParams
   ): PagedAsyncIterableIterator<WebJob> {
     const iter = this.listWebJobsSlotPagingAll(
       resourceGroupName,
@@ -4118,7 +4518,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotOptionalParams
   ): AsyncIterableIterator<WebJob[]> {
     let result = await this._listWebJobsSlot(
       resourceGroupName,
@@ -4145,7 +4545,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotOptionalParams
   ): AsyncIterableIterator<WebJob> {
     for await (const page of this.listWebJobsSlotPagingPage(
       resourceGroupName,
@@ -4168,7 +4568,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): PagedAsyncIterableIterator<SlotDifference> {
     const iter = this.listSlotDifferencesFromProductionPagingAll(
       resourceGroupName,
@@ -4198,7 +4598,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): AsyncIterableIterator<SlotDifference[]> {
     let result = await this._listSlotDifferencesFromProduction(
       resourceGroupName,
@@ -4225,7 +4625,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): AsyncIterableIterator<SlotDifference> {
     for await (const page of this.listSlotDifferencesFromProductionPagingPage(
       resourceGroupName,
@@ -4246,7 +4646,7 @@ export class WebAppsImpl implements WebApps {
   public listSnapshots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsPagingAll(resourceGroupName, name, options);
     return {
@@ -4265,7 +4665,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSnapshotsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._listSnapshots(resourceGroupName, name, options);
     yield result.value || [];
@@ -4285,7 +4685,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSnapshotsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listSnapshotsPagingPage(
       resourceGroupName,
@@ -4305,7 +4705,7 @@ export class WebAppsImpl implements WebApps {
   public listSnapshotsFromDRSecondary(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listSnapshotsFromDRSecondaryPagingAll(
       resourceGroupName,
@@ -4332,7 +4732,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSnapshotsFromDRSecondaryPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._listSnapshotsFromDRSecondary(
       resourceGroupName,
@@ -4356,7 +4756,7 @@ export class WebAppsImpl implements WebApps {
   private async *listSnapshotsFromDRSecondaryPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listSnapshotsFromDRSecondaryPagingPage(
       resourceGroupName,
@@ -4376,7 +4776,7 @@ export class WebAppsImpl implements WebApps {
   public listTriggeredWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsOptionalParams
   ): PagedAsyncIterableIterator<TriggeredWebJob> {
     const iter = this.listTriggeredWebJobsPagingAll(
       resourceGroupName,
@@ -4403,7 +4803,7 @@ export class WebAppsImpl implements WebApps {
   private async *listTriggeredWebJobsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsOptionalParams
   ): AsyncIterableIterator<TriggeredWebJob[]> {
     let result = await this._listTriggeredWebJobs(
       resourceGroupName,
@@ -4427,7 +4827,7 @@ export class WebAppsImpl implements WebApps {
   private async *listTriggeredWebJobsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsOptionalParams
   ): AsyncIterableIterator<TriggeredWebJob> {
     for await (const page of this.listTriggeredWebJobsPagingPage(
       resourceGroupName,
@@ -4449,7 +4849,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): PagedAsyncIterableIterator<TriggeredJobHistory> {
     const iter = this.listTriggeredWebJobHistoryPagingAll(
       resourceGroupName,
@@ -4479,7 +4879,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): AsyncIterableIterator<TriggeredJobHistory[]> {
     let result = await this._listTriggeredWebJobHistory(
       resourceGroupName,
@@ -4506,7 +4906,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): AsyncIterableIterator<TriggeredJobHistory> {
     for await (const page of this.listTriggeredWebJobHistoryPagingPage(
       resourceGroupName,
@@ -4586,7 +4986,7 @@ export class WebAppsImpl implements WebApps {
   public listWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsOptionalParams
   ): PagedAsyncIterableIterator<WebJob> {
     const iter = this.listWebJobsPagingAll(resourceGroupName, name, options);
     return {
@@ -4605,7 +5005,7 @@ export class WebAppsImpl implements WebApps {
   private async *listWebJobsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsOptionalParams
   ): AsyncIterableIterator<WebJob[]> {
     let result = await this._listWebJobs(resourceGroupName, name, options);
     yield result.value || [];
@@ -4625,7 +5025,7 @@ export class WebAppsImpl implements WebApps {
   private async *listWebJobsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsOptionalParams
   ): AsyncIterableIterator<WebJob> {
     for await (const page of this.listWebJobsPagingPage(
       resourceGroupName,
@@ -4641,7 +5041,7 @@ export class WebAppsImpl implements WebApps {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListOptionalParams
   ): Promise<WebAppsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -4680,7 +5080,7 @@ export class WebAppsImpl implements WebApps {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetOptionalParams
   ): Promise<WebAppsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4706,7 +5106,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteEnvelope: Site,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateResponse>,
@@ -4728,16 +5128,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -4775,7 +5171,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteEnvelope: SitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateOptionalParams
   ): Promise<WebAppsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4822,7 +5218,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApplySlotConfigToProductionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4848,7 +5244,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsBackupOptionalParams
   ): Promise<WebAppsBackupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4871,7 +5267,7 @@ export class WebAppsImpl implements WebApps {
   private _listBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsOptionalParams
   ): Promise<WebAppsListBackupsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4895,7 +5291,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     backupId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupStatusOptionalParams
   ): Promise<WebAppsGetBackupStatusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4920,7 +5316,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     backupId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4949,7 +5345,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     backupId: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupStatusSecretsOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -4977,7 +5373,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     backupId: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -4997,16 +5393,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreOperationSpec,
-      initialOperationResult,
+      restoreOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -5018,7 +5410,7 @@ export class WebAppsImpl implements WebApps {
   private _listConfigurations(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsOptionalParams
   ): Promise<WebAppsListConfigurationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5042,7 +5434,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateApplicationSettingsOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5065,7 +5457,7 @@ export class WebAppsImpl implements WebApps {
   listApplicationSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListApplicationSettingsOptionalParams
   ): Promise<WebAppsListApplicationSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5089,7 +5481,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteAuthSettings: SiteAuthSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAuthSettingsOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5112,7 +5504,7 @@ export class WebAppsImpl implements WebApps {
   getAuthSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAuthSettingsOptionalParams
   ): Promise<WebAppsGetAuthSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5136,7 +5528,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAzureStorageAccountsOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5159,7 +5551,7 @@ export class WebAppsImpl implements WebApps {
   listAzureStorageAccounts(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListAzureStorageAccountsOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5183,7 +5575,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateBackupConfigurationOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5206,7 +5598,7 @@ export class WebAppsImpl implements WebApps {
   deleteBackupConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupConfigurationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5228,7 +5620,7 @@ export class WebAppsImpl implements WebApps {
   getBackupConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupConfigurationOptionalParams
   ): Promise<WebAppsGetBackupConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5250,7 +5642,7 @@ export class WebAppsImpl implements WebApps {
   getAppSettingsKeyVaultReferences(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
   ): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5274,7 +5666,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     appSettingKey: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams
   ): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5299,7 +5691,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     connectionStrings: ConnectionStringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConnectionStringsOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5322,7 +5714,7 @@ export class WebAppsImpl implements WebApps {
   listConnectionStrings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConnectionStringsOptionalParams
   ): Promise<WebAppsListConnectionStringsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5344,7 +5736,7 @@ export class WebAppsImpl implements WebApps {
   getDiagnosticLogsConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDiagnosticLogsConfigurationOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5369,7 +5761,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteLogsConfig: SiteLogsConfig,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDiagnosticLogsConfigOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5394,7 +5786,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     metadata: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateMetadataOptionalParams
   ): Promise<WebAppsUpdateMetadataResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5417,7 +5809,7 @@ export class WebAppsImpl implements WebApps {
   listMetadata(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListMetadataOptionalParams
   ): Promise<WebAppsListMetadataResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5439,7 +5831,7 @@ export class WebAppsImpl implements WebApps {
   async listPublishingCredentials(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingCredentialsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsListPublishingCredentialsResponse>,
@@ -5460,16 +5852,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listPublishingCredentialsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listPublishingCredentialsOperationSpec,
-      initialOperationResult,
+      listPublishingCredentialsOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -5483,7 +5871,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     pushSettings: PushSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSitePushSettingsOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5506,7 +5894,7 @@ export class WebAppsImpl implements WebApps {
   listSitePushSettings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSitePushSettingsOptionalParams
   ): Promise<WebAppsListSitePushSettingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5529,7 +5917,7 @@ export class WebAppsImpl implements WebApps {
   listSlotConfigurationNames(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsListSlotConfigurationNamesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5554,7 +5942,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotConfigNames: SlotConfigNamesResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsUpdateSlotConfigurationNamesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5578,7 +5966,7 @@ export class WebAppsImpl implements WebApps {
   getConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationOptionalParams
   ): Promise<WebAppsGetConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5602,7 +5990,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateConfigurationOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5627,7 +6015,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConfigurationOptionalParams
   ): Promise<WebAppsUpdateConfigurationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5651,7 +6039,7 @@ export class WebAppsImpl implements WebApps {
   private _listConfigurationSnapshotInfo(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5675,7 +6063,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     snapshotId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSnapshotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5700,7 +6088,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     snapshotId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRecoverSiteConfigurationSnapshotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5723,7 +6111,7 @@ export class WebAppsImpl implements WebApps {
   getWebSiteContainerLogs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebSiteContainerLogsOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5745,7 +6133,7 @@ export class WebAppsImpl implements WebApps {
   getContainerLogsZip(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContainerLogsZipOptionalParams
   ): Promise<WebAppsGetContainerLogsZipResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5767,7 +6155,7 @@ export class WebAppsImpl implements WebApps {
   private _listContinuousWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsOptionalParams
   ): Promise<WebAppsListContinuousWebJobsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5791,7 +6179,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContinuousWebJobOptionalParams
   ): Promise<WebAppsGetContinuousWebJobResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5816,7 +6204,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5841,7 +6229,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5866,7 +6254,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopContinuousWebJobOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5889,7 +6277,7 @@ export class WebAppsImpl implements WebApps {
   private _listDeployments(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsOptionalParams
   ): Promise<WebAppsListDeploymentsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5913,7 +6301,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDeploymentOptionalParams
   ): Promise<WebAppsGetDeploymentResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5940,7 +6328,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     id: string,
     deployment: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateDeploymentOptionalParams
   ): Promise<WebAppsCreateDeploymentResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5966,7 +6354,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDeploymentOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -5992,7 +6380,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentLogOptionalParams
   ): Promise<WebAppsListDeploymentLogResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6019,7 +6407,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDiscoverBackupOptionalParams
   ): Promise<WebAppsDiscoverBackupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6042,7 +6430,7 @@ export class WebAppsImpl implements WebApps {
   private _listDomainOwnershipIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6066,7 +6454,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6094,7 +6482,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6120,7 +6508,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDomainOwnershipIdentifierOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6148,7 +6536,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6172,7 +6560,7 @@ export class WebAppsImpl implements WebApps {
   getMSDeployStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployStatusOptionalParams
   ): Promise<WebAppsGetMSDeployStatusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6196,7 +6584,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateMSDeployOperationResponse>,
@@ -6218,16 +6606,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createMSDeployOperationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createMSDeployOperationOperationSpec,
-      initialOperationResult,
+      createMSDeployOperationOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -6239,7 +6623,7 @@ export class WebAppsImpl implements WebApps {
   getMSDeployLog(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployLogOptionalParams
   ): Promise<WebAppsGetMSDeployLogResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6261,7 +6645,7 @@ export class WebAppsImpl implements WebApps {
   private _listFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsOptionalParams
   ): Promise<WebAppsListFunctionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6283,7 +6667,7 @@ export class WebAppsImpl implements WebApps {
   getFunctionsAdminToken(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionsAdminTokenOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6307,7 +6691,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionOptionalParams
   ): Promise<WebAppsGetFunctionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6334,7 +6718,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     functionEnvelope: FunctionEnvelope,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateFunctionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateFunctionResponse>,
@@ -6357,16 +6741,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createFunctionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createFunctionOperationSpec,
-      initialOperationResult,
+      createFunctionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -6380,7 +6760,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6409,7 +6789,7 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     keyName: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateFunctionSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6438,7 +6818,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionSecretOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6464,7 +6844,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionKeysOptionalParams
   ): Promise<WebAppsListFunctionKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6489,7 +6869,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     functionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionSecretsOptionalParams
   ): Promise<WebAppsListFunctionSecretsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6512,7 +6892,7 @@ export class WebAppsImpl implements WebApps {
   listHostKeys(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostKeysOptionalParams
   ): Promise<WebAppsListHostKeysResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6534,7 +6914,7 @@ export class WebAppsImpl implements WebApps {
   listSyncStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncStatusOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6556,7 +6936,7 @@ export class WebAppsImpl implements WebApps {
   syncFunctions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6584,7 +6964,7 @@ export class WebAppsImpl implements WebApps {
     keyType: string,
     keyName: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6613,7 +6993,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     keyType: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostSecretOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6637,7 +7017,7 @@ export class WebAppsImpl implements WebApps {
   private _listHostNameBindings(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsOptionalParams
   ): Promise<WebAppsListHostNameBindingsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6661,7 +7041,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHostNameBindingOptionalParams
   ): Promise<WebAppsGetHostNameBindingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6688,7 +7068,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     hostName: string,
     hostNameBinding: HostNameBinding,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostNameBindingOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6714,7 +7094,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostNameBindingOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6741,7 +7121,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHybridConnectionOptionalParams
   ): Promise<WebAppsGetHybridConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6771,7 +7151,7 @@ export class WebAppsImpl implements WebApps {
     namespaceName: string,
     relayName: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6800,7 +7180,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHybridConnectionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6830,7 +7210,7 @@ export class WebAppsImpl implements WebApps {
     namespaceName: string,
     relayName: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6855,7 +7235,7 @@ export class WebAppsImpl implements WebApps {
   listHybridConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHybridConnectionsOptionalParams
   ): Promise<WebAppsListHybridConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6877,7 +7257,7 @@ export class WebAppsImpl implements WebApps {
   listRelayServiceConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListRelayServiceConnectionsOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6901,7 +7281,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     entityName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetRelayServiceConnectionOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6929,7 +7309,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     entityName: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6955,7 +7335,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     entityName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteRelayServiceConnectionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -6983,7 +7363,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     entityName: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7007,7 +7387,7 @@ export class WebAppsImpl implements WebApps {
   private _listInstanceIdentifiers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7031,7 +7411,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceInfoOptionalParams
   ): Promise<WebAppsGetInstanceInfoResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7056,7 +7436,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMsDeployStatusOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7083,7 +7463,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     instanceId: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
@@ -7106,16 +7486,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createInstanceMSDeployOperationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createInstanceMSDeployOperationOperationSpec,
-      initialOperationResult,
+      createInstanceMSDeployOperationOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -7129,7 +7505,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMSDeployLogOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7156,7 +7532,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesOptionalParams
   ): Promise<WebAppsListInstanceProcessesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7184,7 +7560,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessOptionalParams
   ): Promise<WebAppsGetInstanceProcessResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7214,7 +7590,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceProcessOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7244,7 +7620,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessDumpOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7274,7 +7650,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7305,7 +7681,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     baseAddress: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessModuleOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7336,7 +7712,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7360,7 +7736,7 @@ export class WebAppsImpl implements WebApps {
   isCloneable(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsIsCloneableOptionalParams
   ): Promise<WebAppsIsCloneableResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7382,7 +7758,7 @@ export class WebAppsImpl implements WebApps {
   private _listSiteBackups(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsOptionalParams
   ): Promise<WebAppsListSiteBackupsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7404,7 +7780,7 @@ export class WebAppsImpl implements WebApps {
   listSyncFunctionTriggers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncFunctionTriggersOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7430,7 +7806,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     migrationOptions: StorageMigrationOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsMigrateStorageOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsMigrateStorageResponse>,
@@ -7453,16 +7829,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      migrateStorageOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: migrateStorageOperationSpec,
-      initialOperationResult,
+      migrateStorageOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -7476,7 +7848,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsMigrateMySqlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsMigrateMySqlResponse>,
@@ -7498,16 +7870,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      migrateMySqlOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: migrateMySqlOperationSpec,
-      initialOperationResult,
+      migrateMySqlOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -7520,7 +7888,7 @@ export class WebAppsImpl implements WebApps {
   getMigrateMySqlStatus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMigrateMySqlStatusOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7542,7 +7910,7 @@ export class WebAppsImpl implements WebApps {
   getSwiftVirtualNetworkConnection(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7569,7 +7937,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7592,7 +7960,7 @@ export class WebAppsImpl implements WebApps {
   deleteSwiftVirtualNetwork(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSwiftVirtualNetworkOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7619,7 +7987,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7644,7 +8012,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     view: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListNetworkFeaturesOptionalParams
   ): Promise<WebAppsListNetworkFeaturesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7670,7 +8038,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7736,16 +8104,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startWebSiteNetworkTraceOperationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startWebSiteNetworkTraceOperationOperationSpec,
-      initialOperationResult,
+      startWebSiteNetworkTraceOperationOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -7757,7 +8121,7 @@ export class WebAppsImpl implements WebApps {
   stopWebSiteNetworkTrace(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopWebSiteNetworkTraceOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7782,7 +8146,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesOptionalParams
   ): Promise<WebAppsGetNetworkTracesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7808,7 +8172,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationV2Response> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7834,7 +8198,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesV2Response> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7857,7 +8221,7 @@ export class WebAppsImpl implements WebApps {
   generateNewSitePublishingPassword(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGenerateNewSitePublishingPasswordOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7901,7 +8265,7 @@ export class WebAppsImpl implements WebApps {
   getSitePhpErrorLogFlag(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSitePhpErrorLogFlagOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7923,7 +8287,7 @@ export class WebAppsImpl implements WebApps {
   listPremierAddOns(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPremierAddOnsOptionalParams
   ): Promise<WebAppsListPremierAddOnsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7947,7 +8311,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPremierAddOnOptionalParams
   ): Promise<WebAppsGetPremierAddOnResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -7974,7 +8338,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     premierAddOnName: string,
     premierAddOn: PremierAddOn,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsAddPremierAddOnOptionalParams
   ): Promise<WebAppsAddPremierAddOnResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8000,7 +8364,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePremierAddOnOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8027,7 +8391,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     premierAddOnName: string,
     premierAddOn: PremierAddOnPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdatePremierAddOnOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8052,7 +8416,7 @@ export class WebAppsImpl implements WebApps {
   getPrivateAccess(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateAccessOptionalParams
   ): Promise<WebAppsGetPrivateAccessResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8077,7 +8441,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     access: PrivateAccess,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsPutPrivateAccessVnetOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8101,7 +8465,7 @@ export class WebAppsImpl implements WebApps {
   private _listProcesses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesOptionalParams
   ): Promise<WebAppsListProcessesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8125,7 +8489,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessOptionalParams
   ): Promise<WebAppsGetProcessResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8151,7 +8515,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteProcessOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8177,7 +8541,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessDumpOptionalParams
   ): Promise<WebAppsGetProcessDumpResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8203,7 +8567,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesOptionalParams
   ): Promise<WebAppsListProcessModulesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8230,7 +8594,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     baseAddress: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessModuleOptionalParams
   ): Promise<WebAppsGetProcessModuleResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8257,7 +8621,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     processId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsOptionalParams
   ): Promise<WebAppsListProcessThreadsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8280,7 +8644,7 @@ export class WebAppsImpl implements WebApps {
   private _listPublicCertificates(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesOptionalParams
   ): Promise<WebAppsListPublicCertificatesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8304,7 +8668,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPublicCertificateOptionalParams
   ): Promise<WebAppsGetPublicCertificateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8332,7 +8696,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     publicCertificateName: string,
     publicCertificate: PublicCertificate,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdatePublicCertificateOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8358,7 +8722,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePublicCertificateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8384,7 +8748,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingProfileXmlWithSecretsOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8408,7 +8772,7 @@ export class WebAppsImpl implements WebApps {
   resetProductionSlotConfig(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsResetProductionSlotConfigOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8454,7 +8818,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromBackupBlobOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -8473,16 +8837,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreFromBackupBlobOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreFromBackupBlobOperationSpec,
-      initialOperationResult,
+      restoreFromBackupBlobOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8496,7 +8856,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromDeletedAppOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -8515,16 +8875,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreFromDeletedAppOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreFromDeletedAppOperationSpec,
-      initialOperationResult,
+      restoreFromDeletedAppOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8539,7 +8895,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     restoreRequest: SnapshotRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSnapshotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -8558,16 +8914,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreSnapshotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreSnapshotOperationSpec,
-      initialOperationResult,
+      restoreSnapshotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8579,7 +8931,7 @@ export class WebAppsImpl implements WebApps {
   private _listSiteExtensions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsOptionalParams
   ): Promise<WebAppsListSiteExtensionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8603,7 +8955,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSiteExtensionOptionalParams
   ): Promise<WebAppsGetSiteExtensionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8628,7 +8980,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsInstallSiteExtensionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsInstallSiteExtensionResponse>,
@@ -8650,16 +9002,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      installSiteExtensionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: installSiteExtensionOperationSpec,
-      initialOperationResult,
+      installSiteExtensionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8673,7 +9021,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSiteExtensionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8699,7 +9047,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     copySlotEntity: CsmCopySlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCopyProductionSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -8718,16 +9066,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      copyProductionSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: copyProductionSlotOperationSpec,
-      initialOperationResult,
+      copyProductionSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8739,7 +9083,7 @@ export class WebAppsImpl implements WebApps {
   private _listSlots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsOptionalParams
   ): Promise<WebAppsListSlotsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8763,7 +9107,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSlotOptionalParams
   ): Promise<WebAppsGetSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8793,7 +9137,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteEnvelope: Site,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
@@ -8816,16 +9160,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateSlotOperationSpec,
-      initialOperationResult,
+      createOrUpdateSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -8869,7 +9209,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteEnvelope: SitePatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSlotOptionalParams
   ): Promise<WebAppsUpdateSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8923,7 +9263,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApplySlotConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8953,7 +9293,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsBackupSlotOptionalParams
   ): Promise<WebAppsBackupSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -8980,7 +9320,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotOptionalParams
   ): Promise<WebAppsListBackupsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9008,7 +9348,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     backupId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupStatusSlotOptionalParams
   ): Promise<WebAppsGetBackupStatusSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9037,7 +9377,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     backupId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9069,7 +9409,7 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupStatusSecretsSlotOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9101,7 +9441,7 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -9122,16 +9462,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreSlotOperationSpec,
-      initialOperationResult,
+      restoreSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -9146,7 +9482,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotOptionalParams
   ): Promise<WebAppsListConfigurationsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9174,7 +9510,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     appSettings: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9201,7 +9537,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsListApplicationSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9228,7 +9564,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteAuthSettings: SiteAuthSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAuthSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9255,7 +9591,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetAuthSettingsSlotOptionalParams
   ): Promise<WebAppsGetAuthSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9283,7 +9619,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9310,7 +9646,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9338,7 +9674,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     request: BackupRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9365,7 +9701,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteBackupConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9391,7 +9727,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsGetBackupConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9419,7 +9755,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     connectionStrings: ConnectionStringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConnectionStringsSlotOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9446,7 +9782,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConnectionStringsSlotOptionalParams
   ): Promise<WebAppsListConnectionStringsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9472,7 +9808,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9501,7 +9837,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteLogsConfig: SiteLogsConfig,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9530,7 +9866,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     metadata: StringDictionary,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateMetadataSlotOptionalParams
   ): Promise<WebAppsUpdateMetadataSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9557,7 +9893,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListMetadataSlotOptionalParams
   ): Promise<WebAppsListMetadataSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9583,7 +9919,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingCredentialsSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
@@ -9605,16 +9941,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      listPublishingCredentialsSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: listPublishingCredentialsSlotOperationSpec,
-      initialOperationResult,
+      listPublishingCredentialsSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -9630,7 +9962,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     pushSettings: PushSettings,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9656,7 +9988,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsListSitePushSettingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9683,7 +10015,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9711,7 +10043,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9740,7 +10072,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteConfig: SiteConfigResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateConfigurationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9768,7 +10100,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9796,7 +10128,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     snapshotId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetConfigurationSnapshotSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9825,7 +10157,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     snapshotId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9851,7 +10183,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebSiteContainerLogsSlotOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9876,7 +10208,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContainerLogsZipSlotOptionalParams
   ): Promise<WebAppsGetContainerLogsZipSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9902,7 +10234,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): Promise<WebAppsListContinuousWebJobsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9930,7 +10262,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetContinuousWebJobSlotOptionalParams
   ): Promise<WebAppsGetContinuousWebJobSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9959,7 +10291,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -9988,7 +10320,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10017,7 +10349,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopContinuousWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10044,7 +10376,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotOptionalParams
   ): Promise<WebAppsListDeploymentsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10072,7 +10404,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDeploymentSlotOptionalParams
   ): Promise<WebAppsGetDeploymentSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10103,7 +10435,7 @@ export class WebAppsImpl implements WebApps {
     id: string,
     slot: string,
     deployment: Deployment,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateDeploymentSlotOptionalParams
   ): Promise<WebAppsCreateDeploymentSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10133,7 +10465,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDeploymentSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10163,7 +10495,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentLogSlotOptionalParams
   ): Promise<WebAppsListDeploymentLogSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10194,7 +10526,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDiscoverBackupSlotOptionalParams
   ): Promise<WebAppsDiscoverBackupSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10221,7 +10553,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10249,7 +10581,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10281,7 +10613,7 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10311,7 +10643,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10343,7 +10675,7 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     domainOwnershipIdentifier: Identifier,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10370,7 +10702,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetMSDeployStatusSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10397,7 +10729,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
@@ -10420,16 +10752,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createMSDeployOperationSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createMSDeployOperationSlotOperationSpec,
-      initialOperationResult,
+      createMSDeployOperationSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -10443,7 +10771,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetMSDeployLogSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10468,7 +10796,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): Promise<WebAppsListInstanceFunctionsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10493,7 +10821,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetFunctionsAdminTokenSlotOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10520,7 +10848,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceFunctionSlotOptionalParams
   ): Promise<WebAppsGetInstanceFunctionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10550,7 +10878,7 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     slot: string,
     functionEnvelope: FunctionEnvelope,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceFunctionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
@@ -10574,16 +10902,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createInstanceFunctionSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createInstanceFunctionSlotOperationSpec,
-      initialOperationResult,
+      createInstanceFunctionSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -10599,7 +10923,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceFunctionSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10631,7 +10955,7 @@ export class WebAppsImpl implements WebApps {
     keyName: string,
     slot: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10663,7 +10987,7 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     keyName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteFunctionSecretSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10692,7 +11016,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionKeysSlotOptionalParams
   ): Promise<WebAppsListFunctionKeysSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10720,7 +11044,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionSecretsSlotOptionalParams
   ): Promise<WebAppsListFunctionSecretsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10746,7 +11070,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostKeysSlotOptionalParams
   ): Promise<WebAppsListHostKeysSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10771,7 +11095,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncStatusSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10796,7 +11120,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionsSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10827,7 +11151,7 @@ export class WebAppsImpl implements WebApps {
     keyName: string,
     slot: string,
     key: KeyInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10859,7 +11183,7 @@ export class WebAppsImpl implements WebApps {
     keyType: string,
     keyName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostSecretSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10887,7 +11211,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): Promise<WebAppsListHostNameBindingsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10915,7 +11239,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHostNameBindingSlotOptionalParams
   ): Promise<WebAppsGetHostNameBindingSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10946,7 +11270,7 @@ export class WebAppsImpl implements WebApps {
     hostName: string,
     slot: string,
     hostNameBinding: HostNameBinding,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -10976,7 +11300,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHostNameBindingSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11006,7 +11330,7 @@ export class WebAppsImpl implements WebApps {
     namespaceName: string,
     relayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetHybridConnectionSlotOptionalParams
   ): Promise<WebAppsGetHybridConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11039,7 +11363,7 @@ export class WebAppsImpl implements WebApps {
     relayName: string,
     slot: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11071,7 +11395,7 @@ export class WebAppsImpl implements WebApps {
     namespaceName: string,
     relayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteHybridConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11104,7 +11428,7 @@ export class WebAppsImpl implements WebApps {
     relayName: string,
     slot: string,
     connectionEnvelope: HybridConnection,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11132,7 +11456,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHybridConnectionsSlotOptionalParams
   ): Promise<WebAppsListHybridConnectionsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11158,7 +11482,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListRelayServiceConnectionsSlotOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11186,7 +11510,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     entityName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11218,7 +11542,7 @@ export class WebAppsImpl implements WebApps {
     entityName: string,
     slot: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11248,7 +11572,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     entityName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteRelayServiceConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11280,7 +11604,7 @@ export class WebAppsImpl implements WebApps {
     entityName: string,
     slot: string,
     connectionEnvelope: RelayServiceConnectionEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11308,7 +11632,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11336,7 +11660,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     instanceId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceInfoSlotOptionalParams
   ): Promise<WebAppsGetInstanceInfoSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11364,7 +11688,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMsDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11394,7 +11718,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     instanceId: string,
     mSDeploy: MSDeploy,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
@@ -11418,16 +11742,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createInstanceMSDeployOperationSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createInstanceMSDeployOperationSlotOperationSpec,
-      initialOperationResult,
+      createInstanceMSDeployOperationSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -11443,7 +11763,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11474,7 +11794,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11506,7 +11826,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11540,7 +11860,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteInstanceProcessSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11574,7 +11894,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11608,7 +11928,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11643,7 +11963,7 @@ export class WebAppsImpl implements WebApps {
     baseAddress: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetInstanceProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11678,7 +11998,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     instanceId: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11706,7 +12026,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsIsCloneableSlotOptionalParams
   ): Promise<WebAppsIsCloneableSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11732,7 +12052,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotOptionalParams
   ): Promise<WebAppsListSiteBackupsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11757,7 +12077,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSyncFunctionTriggersSlotOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11783,7 +12103,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetMigrateMySqlStatusSlotOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11809,7 +12129,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11840,7 +12160,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11869,7 +12189,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11900,7 +12220,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     connectionEnvelope: SwiftVirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11929,7 +12249,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     view: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListNetworkFeaturesSlotOptionalParams
   ): Promise<WebAppsListNetworkFeaturesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -11959,7 +12279,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationSlotOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12032,16 +12352,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startWebSiteNetworkTraceOperationSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startWebSiteNetworkTraceOperationSlotOperationSpec,
-      initialOperationResult,
+      startWebSiteNetworkTraceOperationSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -12055,7 +12371,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopWebSiteNetworkTraceSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12084,7 +12400,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesSlotOptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12114,7 +12430,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTraceOperationSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotV2Response> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12144,7 +12460,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     operationId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetNetworkTracesSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotV2Response> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12171,7 +12487,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12221,7 +12537,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSitePhpErrorLogFlagSlotOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12247,7 +12563,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPremierAddOnsSlotOptionalParams
   ): Promise<WebAppsListPremierAddOnsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12275,7 +12591,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     premierAddOnName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPremierAddOnSlotOptionalParams
   ): Promise<WebAppsGetPremierAddOnSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12306,7 +12622,7 @@ export class WebAppsImpl implements WebApps {
     premierAddOnName: string,
     slot: string,
     premierAddOn: PremierAddOn,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsAddPremierAddOnSlotOptionalParams
   ): Promise<WebAppsAddPremierAddOnSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12336,7 +12652,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     premierAddOnName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePremierAddOnSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12367,7 +12683,7 @@ export class WebAppsImpl implements WebApps {
     premierAddOnName: string,
     slot: string,
     premierAddOn: PremierAddOnPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdatePremierAddOnSlotOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12395,7 +12711,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateAccessSlotOptionalParams
   ): Promise<WebAppsGetPrivateAccessSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12423,7 +12739,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     access: PrivateAccess,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsPutPrivateAccessVnetSlotOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12449,7 +12765,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateEndpointConnectionOptionalParams
   ): Promise<WebAppsGetPrivateEndpointConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12476,7 +12792,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -12501,16 +12817,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      approveOrRejectPrivateEndpointConnectionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: approveOrRejectPrivateEndpointConnectionOperationSpec,
-      initialOperationResult,
+      approveOrRejectPrivateEndpointConnectionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -12524,7 +12836,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
@@ -12546,16 +12858,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deletePrivateEndpointConnectionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deletePrivateEndpointConnectionOperationSpec,
-      initialOperationResult,
+      deletePrivateEndpointConnectionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -12567,7 +12875,7 @@ export class WebAppsImpl implements WebApps {
   getPrivateLinkResources(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPrivateLinkResourcesOptionalParams
   ): Promise<WebAppsGetPrivateLinkResourcesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12593,7 +12901,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotOptionalParams
   ): Promise<WebAppsListProcessesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12621,7 +12929,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessSlotOptionalParams
   ): Promise<WebAppsGetProcessSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12651,7 +12959,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteProcessSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12681,7 +12989,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetProcessDumpSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12711,7 +13019,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotOptionalParams
   ): Promise<WebAppsListProcessModulesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12742,7 +13050,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     baseAddress: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetProcessModuleSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12773,7 +13081,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotOptionalParams
   ): Promise<WebAppsListProcessThreadsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12800,7 +13108,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): Promise<WebAppsListPublicCertificatesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12828,7 +13136,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetPublicCertificateSlotOptionalParams
   ): Promise<WebAppsGetPublicCertificateSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12860,7 +13168,7 @@ export class WebAppsImpl implements WebApps {
     publicCertificateName: string,
     slot: string,
     publicCertificate: PublicCertificate,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12890,7 +13198,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     publicCertificateName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeletePublicCertificateSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12920,7 +13228,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -12948,7 +13256,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsResetSlotConfigurationSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13002,7 +13310,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     request: RestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -13022,16 +13330,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreFromBackupBlobSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreFromBackupBlobSlotOperationSpec,
-      initialOperationResult,
+      restoreFromBackupBlobSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13047,7 +13351,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -13067,16 +13371,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreFromDeletedAppSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreFromDeletedAppSlotOperationSpec,
-      initialOperationResult,
+      restoreFromDeletedAppSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13093,7 +13393,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRestoreSnapshotSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -13113,16 +13413,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restoreSnapshotSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restoreSnapshotSlotOperationSpec,
-      initialOperationResult,
+      restoreSnapshotSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13137,7 +13433,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): Promise<WebAppsListSiteExtensionsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13165,7 +13461,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSiteExtensionSlotOptionalParams
   ): Promise<WebAppsGetSiteExtensionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13194,7 +13490,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsInstallSiteExtensionSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
@@ -13217,16 +13513,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      installSiteExtensionSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: installSiteExtensionSlotOperationSpec,
-      initialOperationResult,
+      installSiteExtensionSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13243,7 +13535,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteExtensionId: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSiteExtensionSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13273,7 +13565,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCopySlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -13293,16 +13585,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      copySlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: copySlotOperationSpec,
-      initialOperationResult,
+      copySlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13319,7 +13607,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): Promise<WebAppsListSlotDifferencesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13348,7 +13636,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSwapSlotOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -13368,16 +13656,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      swapSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: swapSlotOperationSpec,
-      initialOperationResult,
+      swapSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13391,7 +13675,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotOptionalParams
   ): Promise<WebAppsListSnapshotsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13416,7 +13700,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondarySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13442,7 +13726,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSourceControlSlotOptionalParams
   ): Promise<WebAppsGetSourceControlSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13470,7 +13754,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
@@ -13493,16 +13777,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateSourceControlSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateSourceControlSlotOperationSpec,
-      initialOperationResult,
+      createOrUpdateSourceControlSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13517,7 +13797,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSourceControlSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13545,7 +13825,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSourceControlSlotOptionalParams
   ): Promise<WebAppsUpdateSourceControlSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13572,7 +13852,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13619,16 +13899,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startNetworkTraceSlotOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startNetworkTraceSlotOperationSpec,
-      initialOperationResult,
+      startNetworkTraceSlotOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -13643,7 +13919,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13668,7 +13944,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopNetworkTraceSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13693,7 +13969,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncRepositorySlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13718,7 +13994,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionTriggersSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13744,7 +14020,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13772,7 +14048,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobSlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13801,7 +14077,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteTriggeredWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13830,7 +14106,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistorySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13861,7 +14137,7 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     id: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobHistorySlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistorySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13891,7 +14167,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRunTriggeredWebJobSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13944,7 +14220,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListVnetConnectionsSlotOptionalParams
   ): Promise<WebAppsListVnetConnectionsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -13972,7 +14248,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionSlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14004,7 +14280,7 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14034,7 +14310,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteVnetConnectionSlotOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14066,7 +14342,7 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14098,7 +14374,7 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     gatewayName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewaySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14132,7 +14408,7 @@ export class WebAppsImpl implements WebApps {
     gatewayName: string,
     slot: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14167,7 +14443,7 @@ export class WebAppsImpl implements WebApps {
     gatewayName: string,
     slot: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14196,7 +14472,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotOptionalParams
   ): Promise<WebAppsListWebJobsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14224,7 +14500,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebJobSlotOptionalParams
   ): Promise<WebAppsGetWebJobSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14250,7 +14526,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): Promise<WebAppsListSlotDifferencesFromProductionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14275,7 +14551,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSwapSlotWithProductionOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -14294,16 +14570,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      swapSlotWithProductionOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: swapSlotWithProductionOperationSpec,
-      initialOperationResult,
+      swapSlotWithProductionOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -14315,7 +14587,7 @@ export class WebAppsImpl implements WebApps {
   private _listSnapshots(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsOptionalParams
   ): Promise<WebAppsListSnapshotsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14337,7 +14609,7 @@ export class WebAppsImpl implements WebApps {
   private _listSnapshotsFromDRSecondary(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondaryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14359,7 +14631,7 @@ export class WebAppsImpl implements WebApps {
   getSourceControl(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetSourceControlOptionalParams
   ): Promise<WebAppsGetSourceControlResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14383,7 +14655,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateSourceControlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
@@ -14405,16 +14677,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateSourceControlOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateSourceControlOperationSpec,
-      initialOperationResult,
+      createOrUpdateSourceControlOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -14426,7 +14694,7 @@ export class WebAppsImpl implements WebApps {
   deleteSourceControl(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteSourceControlOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14450,7 +14718,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateSourceControlOptionalParams
   ): Promise<WebAppsUpdateSourceControlResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14473,7 +14741,7 @@ export class WebAppsImpl implements WebApps {
   start(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStartOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14516,16 +14784,12 @@ export class WebAppsImpl implements WebApps {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startNetworkTraceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startNetworkTraceOperationSpec,
-      initialOperationResult,
+      startNetworkTraceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -14537,7 +14801,7 @@ export class WebAppsImpl implements WebApps {
   stop(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14559,7 +14823,7 @@ export class WebAppsImpl implements WebApps {
   stopNetworkTrace(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsStopNetworkTraceOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14581,7 +14845,7 @@ export class WebAppsImpl implements WebApps {
   syncRepository(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncRepositoryOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14603,7 +14867,7 @@ export class WebAppsImpl implements WebApps {
   syncFunctionTriggers(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsSyncFunctionTriggersOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14625,7 +14889,7 @@ export class WebAppsImpl implements WebApps {
   private _listTriggeredWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14649,7 +14913,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14674,7 +14938,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteTriggeredWebJobOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14699,7 +14963,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistoryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14726,7 +14990,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     id: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetTriggeredWebJobHistoryOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistoryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14752,7 +15016,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsRunTriggeredWebJobOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14797,7 +15061,7 @@ export class WebAppsImpl implements WebApps {
   listVnetConnections(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListVnetConnectionsOptionalParams
   ): Promise<WebAppsListVnetConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14821,7 +15085,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionOptionalParams
   ): Promise<WebAppsGetVnetConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14849,7 +15113,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14875,7 +15139,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     vnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsDeleteVnetConnectionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14903,7 +15167,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     connectionEnvelope: VnetInfo,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14931,7 +15195,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14961,7 +15225,7 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -14992,7 +15256,7 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewayResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15017,7 +15281,7 @@ export class WebAppsImpl implements WebApps {
   private _listWebJobs(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsOptionalParams
   ): Promise<WebAppsListWebJobsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15041,7 +15305,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsGetWebJobOptionalParams
   ): Promise<WebAppsGetWebJobResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15062,7 +15326,7 @@ export class WebAppsImpl implements WebApps {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListNextOptionalParams
   ): Promise<WebAppsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -15107,7 +15371,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsNextOptionalParams
   ): Promise<WebAppsListBackupsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15132,7 +15396,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsNextOptionalParams
   ): Promise<WebAppsListConfigurationsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15158,7 +15422,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoNextOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15183,7 +15447,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsNextOptionalParams
   ): Promise<WebAppsListContinuousWebJobsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15208,7 +15472,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsNextOptionalParams
   ): Promise<WebAppsListDeploymentsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15234,7 +15498,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersNextOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15259,7 +15523,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListFunctionsNextOptionalParams
   ): Promise<WebAppsListFunctionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15284,7 +15548,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsNextOptionalParams
   ): Promise<WebAppsListHostNameBindingsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15310,7 +15574,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersNextOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15338,7 +15602,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesNextOptionalParams
   ): Promise<WebAppsListInstanceProcessesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15370,7 +15634,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesNextOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15403,7 +15667,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsNextOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15430,7 +15694,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsNextOptionalParams
   ): Promise<WebAppsListSiteBackupsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15480,7 +15744,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesNextOptionalParams
   ): Promise<WebAppsListProcessesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15507,7 +15771,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesNextOptionalParams
   ): Promise<WebAppsListProcessModulesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15535,7 +15799,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsNextOptionalParams
   ): Promise<WebAppsListProcessThreadsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15561,7 +15825,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesNextOptionalParams
   ): Promise<WebAppsListPublicCertificatesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15586,7 +15850,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsNextOptionalParams
   ): Promise<WebAppsListSiteExtensionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15611,7 +15875,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotsNextOptionalParams
   ): Promise<WebAppsListSlotsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15639,7 +15903,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListBackupsSlotNextOptionalParams
   ): Promise<WebAppsListBackupsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15668,7 +15932,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationsSlotNextOptionalParams
   ): Promise<WebAppsListConfigurationsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15698,7 +15962,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15728,7 +15992,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListContinuousWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListContinuousWebJobsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15757,7 +16021,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDeploymentsSlotNextOptionalParams
   ): Promise<WebAppsListDeploymentsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15787,7 +16051,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15816,7 +16080,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceFunctionsSlotNextOptionalParams
   ): Promise<WebAppsListInstanceFunctionsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15846,7 +16110,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListHostNameBindingsSlotNextOptionalParams
   ): Promise<WebAppsListHostNameBindingsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15876,7 +16140,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceIdentifiersSlotNextOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15909,7 +16173,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessesSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15945,7 +16209,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessModulesSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -15982,7 +16246,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     instanceId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListInstanceProcessThreadsSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16013,7 +16277,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteBackupsSlotNextOptionalParams
   ): Promise<WebAppsListSiteBackupsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16071,7 +16335,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessesSlotNextOptionalParams
   ): Promise<WebAppsListProcessesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16102,7 +16366,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessModulesSlotNextOptionalParams
   ): Promise<WebAppsListProcessModulesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16134,7 +16398,7 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListProcessThreadsSlotNextOptionalParams
   ): Promise<WebAppsListProcessThreadsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16165,7 +16429,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListPublicCertificatesSlotNextOptionalParams
   ): Promise<WebAppsListPublicCertificatesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16194,7 +16458,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSiteExtensionsSlotNextOptionalParams
   ): Promise<WebAppsListSiteExtensionsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16226,7 +16490,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesSlotNextOptionalParams
   ): Promise<WebAppsListSlotDifferencesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16255,7 +16519,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsSlotNextOptionalParams
   ): Promise<WebAppsListSnapshotsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16284,7 +16548,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondarySlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16314,7 +16578,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16346,7 +16610,7 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistorySlotNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistorySlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16405,7 +16669,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListWebJobsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16434,7 +16698,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSlotDifferencesFromProductionNextOptionalParams
   ): Promise<WebAppsListSlotDifferencesFromProductionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16460,7 +16724,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsNextOptionalParams
   ): Promise<WebAppsListSnapshotsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16486,7 +16750,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListSnapshotsFromDRSecondaryNextOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondaryNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16511,7 +16775,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobsNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16539,7 +16803,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListTriggeredWebJobHistoryNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistoryNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -16590,7 +16854,7 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: WebAppsListWebJobsNextOptionalParams
   ): Promise<WebAppsListWebJobsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -12,23 +12,37 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   StorageAccount,
+  StorageAccountsListNextOptionalParams,
+  StorageAccountsListOptionalParams,
+  StorageAccountsListByResourceGroupOptionalParams,
   StorageAccountCheckNameAvailabilityParameters,
+  StorageAccountsCheckNameAvailabilityOptionalParams,
   StorageAccountsCheckNameAvailabilityResponse,
   StorageAccountCreateParameters,
+  StorageAccountsCreateOptionalParams,
   StorageAccountsCreateResponse,
+  StorageAccountsDeleteOptionalParams,
   StorageAccountsGetPropertiesOptionalParams,
   StorageAccountsGetPropertiesResponse,
   StorageAccountUpdateParameters,
+  StorageAccountsUpdateOptionalParams,
   StorageAccountsUpdateResponse,
+  StorageAccountsListKeysOptionalParams,
   StorageAccountsListKeysResponse,
   StorageAccountRegenerateKeyParameters,
+  StorageAccountsRegenerateKeyOptionalParams,
   StorageAccountsRegenerateKeyResponse,
   AccountSasParameters,
+  StorageAccountsListAccountSASOptionalParams,
   StorageAccountsListAccountSASResponse,
   ServiceSasParameters,
+  StorageAccountsListServiceSASOptionalParams,
   StorageAccountsListServiceSASResponse,
+  StorageAccountsFailoverOptionalParams,
   BlobRestoreParameters,
-  StorageAccountsRestoreBlobRangesResponse
+  StorageAccountsRestoreBlobRangesOptionalParams,
+  StorageAccountsRestoreBlobRangesResponse,
+  StorageAccountsRevokeUserDelegationKeysOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -40,7 +54,7 @@ export interface StorageAccounts {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListOptionalParams
   ): PagedAsyncIterableIterator<StorageAccount>;
   /**
    * Lists all the storage accounts available under the given resource group. Note that storage keys are
@@ -51,7 +65,7 @@ export interface StorageAccounts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<StorageAccount>;
   /**
    * Checks that the storage account name is valid and is not already in use.
@@ -62,7 +76,7 @@ export interface StorageAccounts {
    */
   checkNameAvailability(
     accountName: StorageAccountCheckNameAvailabilityParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsCheckNameAvailabilityOptionalParams
   ): Promise<StorageAccountsCheckNameAvailabilityResponse>;
   /**
    * Asynchronously creates a new storage account with the specified parameters. If an account is already
@@ -81,7 +95,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<StorageAccountsCreateResponse>,
@@ -100,7 +114,7 @@ export interface StorageAccounts {
   delete(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Returns the properties for the specified storage account including but not limited to name, SKU
@@ -137,7 +151,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsUpdateOptionalParams
   ): Promise<StorageAccountsUpdateResponse>;
   /**
    * Lists the access keys or Kerberos keys (if active directory enabled) for the specified storage
@@ -152,7 +166,7 @@ export interface StorageAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListKeysOptionalParams
   ): Promise<StorageAccountsListKeysResponse>;
   /**
    * Regenerates one of the access keys or Kerberos keys for the specified storage account.
@@ -169,7 +183,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     regenerateKey: StorageAccountRegenerateKeyParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRegenerateKeyOptionalParams
   ): Promise<StorageAccountsRegenerateKeyResponse>;
   /**
    * List SAS credentials of a storage account.
@@ -185,7 +199,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: AccountSasParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListAccountSASOptionalParams
   ): Promise<StorageAccountsListAccountSASResponse>;
   /**
    * List service SAS credentials of a specific resource.
@@ -201,7 +215,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: ServiceSasParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsListServiceSASOptionalParams
   ): Promise<StorageAccountsListServiceSASResponse>;
   /**
    * Failover request can be triggered for a storage account in case of availability issues. The failover
@@ -217,7 +231,7 @@ export interface StorageAccounts {
   failover(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -235,7 +249,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRestoreBlobRangesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
@@ -254,6 +268,6 @@ export interface StorageAccounts {
   revokeUserDelegationKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: StorageAccountsRevokeUserDelegationKeysOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

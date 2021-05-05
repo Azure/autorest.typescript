@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualRouterPeering,
+  VirtualRouterPeeringsListNextOptionalParams,
+  VirtualRouterPeeringsListOptionalParams,
+  VirtualRouterPeeringsDeleteOptionalParams,
+  VirtualRouterPeeringsGetOptionalParams,
   VirtualRouterPeeringsGetResponse,
+  VirtualRouterPeeringsCreateOrUpdateOptionalParams,
   VirtualRouterPeeringsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface VirtualRouterPeerings {
   list(
     resourceGroupName: string,
     virtualRouterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRouterPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualRouterPeering>;
   /**
    * Deletes the specified peering from a Virtual Router.
@@ -41,7 +46,7 @@ export interface VirtualRouterPeerings {
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRouterPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface VirtualRouterPeerings {
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRouterPeeringsGetOptionalParams
   ): Promise<VirtualRouterPeeringsGetResponse>;
   /**
    * Creates or updates the specified Virtual Router Peering.
@@ -71,7 +76,7 @@ export interface VirtualRouterPeerings {
     virtualRouterName: string,
     peeringName: string,
     parameters: VirtualRouterPeering,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRouterPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualRouterPeeringsCreateOrUpdateResponse>,

@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { ResourceNavigationLinksListResponse } from "../models";
+import {
+  ResourceNavigationLinksListOptionalParams,
+  ResourceNavigationLinksListResponse
+} from "../models";
 
 /** Interface representing a ResourceNavigationLinks. */
 export interface ResourceNavigationLinks {
@@ -22,6 +25,6 @@ export interface ResourceNavigationLinks {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceNavigationLinksListOptionalParams
   ): Promise<ResourceNavigationLinksListResponse>;
 }

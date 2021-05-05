@@ -8,8 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
   DatabaseAutomaticTuningDef,
+  DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
@@ -27,7 +29,7 @@ export interface DatabaseAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAutomaticTuningGetOptionalParams
   ): Promise<DatabaseAutomaticTuningGetResponse>;
   /**
    * Update automatic tuning properties for target database.
@@ -43,6 +45,6 @@ export interface DatabaseAutomaticTuning {
     serverName: string,
     databaseName: string,
     parameters: DatabaseAutomaticTuningDef,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseAutomaticTuningUpdateOptionalParams
   ): Promise<DatabaseAutomaticTuningUpdateResponse>;
 }

@@ -14,10 +14,15 @@ import {
   FileSharesListNextOptionalParams,
   FileSharesListOptionalParams,
   FileShare,
+  FileSharesCreateOptionalParams,
   FileSharesCreateResponse,
+  FileSharesUpdateOptionalParams,
   FileSharesUpdateResponse,
+  FileSharesGetOptionalParams,
   FileSharesGetResponse,
-  DeletedShare
+  FileSharesDeleteOptionalParams,
+  DeletedShare,
+  FileSharesRestoreOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -57,7 +62,7 @@ export interface FileShares {
     accountName: string,
     shareName: string,
     fileShare: FileShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesCreateOptionalParams
   ): Promise<FileSharesCreateResponse>;
   /**
    * Updates share properties as specified in request body. Properties not mentioned in the request will
@@ -78,7 +83,7 @@ export interface FileShares {
     accountName: string,
     shareName: string,
     fileShare: FileShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesUpdateOptionalParams
   ): Promise<FileSharesUpdateResponse>;
   /**
    * Gets properties of a specified share.
@@ -96,7 +101,7 @@ export interface FileShares {
     resourceGroupName: string,
     accountName: string,
     shareName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesGetOptionalParams
   ): Promise<FileSharesGetResponse>;
   /**
    * Deletes specified share under its account.
@@ -114,7 +119,7 @@ export interface FileShares {
     resourceGroupName: string,
     accountName: string,
     shareName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Restore a file share within a valid retention days if share soft delete is enabled
@@ -134,6 +139,6 @@ export interface FileShares {
     accountName: string,
     shareName: string,
     deletedShare: DeletedShare,
-    options?: coreHttp.OperationOptions
+    options?: FileSharesRestoreOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -12,12 +12,22 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Disk,
+  DisksListByResourceGroupNextOptionalParams,
+  DisksListByResourceGroupOptionalParams,
+  DisksListNextOptionalParams,
+  DisksListOptionalParams,
+  DisksCreateOrUpdateOptionalParams,
   DisksCreateOrUpdateResponse,
   DiskUpdate,
+  DisksUpdateOptionalParams,
   DisksUpdateResponse,
+  DisksGetOptionalParams,
   DisksGetResponse,
+  DisksDeleteOptionalParams,
   GrantAccessData,
-  DisksGrantAccessResponse
+  DisksGrantAccessOptionalParams,
+  DisksGrantAccessResponse,
+  DisksRevokeAccessOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,13 +40,13 @@ export interface Disks {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Disk>;
   /**
    * Lists all the disks under a subscription.
    * @param options The options parameters.
    */
-  list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Disk>;
+  list(options?: DisksListOptionalParams): PagedAsyncIterableIterator<Disk>;
   /**
    * Creates or updates a disk.
    * @param resourceGroupName The name of the resource group.
@@ -50,7 +60,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     disk: Disk,
-    options?: coreHttp.OperationOptions
+    options?: DisksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DisksCreateOrUpdateResponse>,
@@ -70,7 +80,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     disk: DiskUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DisksUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>
   >;
@@ -85,7 +95,7 @@ export interface Disks {
   get(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksGetOptionalParams
   ): Promise<DisksGetResponse>;
   /**
    * Deletes a disk.
@@ -98,7 +108,7 @@ export interface Disks {
   delete(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -115,7 +125,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     grantAccessData: GrantAccessData,
-    options?: coreHttp.OperationOptions
+    options?: DisksGrantAccessOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DisksGrantAccessResponse>,
@@ -133,7 +143,7 @@ export interface Disks {
   revokeAccess(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksRevokeAccessOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

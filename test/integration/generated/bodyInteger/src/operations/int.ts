@@ -12,14 +12,28 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyIntegerClientContext } from "../bodyIntegerClientContext";
 import {
+  IntGetNullOptionalParams,
   IntGetNullResponse,
+  IntGetInvalidOptionalParams,
   IntGetInvalidResponse,
+  IntGetOverflowInt32OptionalParams,
   IntGetOverflowInt32Response,
+  IntGetUnderflowInt32OptionalParams,
   IntGetUnderflowInt32Response,
+  IntGetOverflowInt64OptionalParams,
   IntGetOverflowInt64Response,
+  IntGetUnderflowInt64OptionalParams,
   IntGetUnderflowInt64Response,
+  IntPutMax32OptionalParams,
+  IntPutMax64OptionalParams,
+  IntPutMin32OptionalParams,
+  IntPutMin64OptionalParams,
+  IntGetUnixTimeOptionalParams,
   IntGetUnixTimeResponse,
+  IntPutUnixTimeDateOptionalParams,
+  IntGetInvalidUnixTimeOptionalParams,
   IntGetInvalidUnixTimeResponse,
+  IntGetNullUnixTimeOptionalParams,
   IntGetNullUnixTimeResponse
 } from "../models";
 
@@ -39,7 +53,7 @@ export class IntImpl implements Int {
    * Get null Int value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<IntGetNullResponse> {
+  getNull(options?: IntGetNullOptionalParams): Promise<IntGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -54,7 +68,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: IntGetInvalidOptionalParams
   ): Promise<IntGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -70,7 +84,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getOverflowInt32(
-    options?: coreHttp.OperationOptions
+    options?: IntGetOverflowInt32OptionalParams
   ): Promise<IntGetOverflowInt32Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -86,7 +100,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnderflowInt32(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnderflowInt32OptionalParams
   ): Promise<IntGetUnderflowInt32Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -102,7 +116,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getOverflowInt64(
-    options?: coreHttp.OperationOptions
+    options?: IntGetOverflowInt64OptionalParams
   ): Promise<IntGetOverflowInt64Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -118,7 +132,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnderflowInt64(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnderflowInt64OptionalParams
   ): Promise<IntGetUnderflowInt64Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -136,7 +150,7 @@ export class IntImpl implements Int {
    */
   putMax32(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMax32OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       intBody,
@@ -155,7 +169,7 @@ export class IntImpl implements Int {
    */
   putMax64(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMax64OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       intBody,
@@ -174,7 +188,7 @@ export class IntImpl implements Int {
    */
   putMin32(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMin32OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       intBody,
@@ -193,7 +207,7 @@ export class IntImpl implements Int {
    */
   putMin64(
     intBody: number,
-    options?: coreHttp.OperationOptions
+    options?: IntPutMin64OptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       intBody,
@@ -210,7 +224,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetUnixTimeOptionalParams
   ): Promise<IntGetUnixTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -228,7 +242,7 @@ export class IntImpl implements Int {
    */
   putUnixTimeDate(
     intBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: IntPutUnixTimeDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       intBody,
@@ -245,7 +259,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getInvalidUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetInvalidUnixTimeOptionalParams
   ): Promise<IntGetInvalidUnixTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -261,7 +275,7 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getNullUnixTime(
-    options?: coreHttp.OperationOptions
+    options?: IntGetNullUnixTimeOptionalParams
   ): Promise<IntGetNullUnixTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

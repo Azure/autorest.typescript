@@ -11,9 +11,17 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   JobStep,
+  JobStepsListByVersionNextOptionalParams,
+  JobStepsListByVersionOptionalParams,
+  JobStepsListByJobNextOptionalParams,
+  JobStepsListByJobOptionalParams,
+  JobStepsGetByVersionOptionalParams,
   JobStepsGetByVersionResponse,
+  JobStepsGetOptionalParams,
   JobStepsGetResponse,
-  JobStepsCreateOrUpdateResponse
+  JobStepsCreateOrUpdateOptionalParams,
+  JobStepsCreateOrUpdateResponse,
+  JobStepsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -35,7 +43,7 @@ export interface JobSteps {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByVersionOptionalParams
   ): PagedAsyncIterableIterator<JobStep>;
   /**
    * Gets all job steps for a job's current version.
@@ -51,7 +59,7 @@ export interface JobSteps {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsListByJobOptionalParams
   ): PagedAsyncIterableIterator<JobStep>;
   /**
    * Gets the specified version of a job step.
@@ -71,7 +79,7 @@ export interface JobSteps {
     jobName: string,
     jobVersion: number,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsGetByVersionOptionalParams
   ): Promise<JobStepsGetByVersionResponse>;
   /**
    * Gets a job step in a job's current version.
@@ -89,7 +97,7 @@ export interface JobSteps {
     jobAgentName: string,
     jobName: string,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsGetOptionalParams
   ): Promise<JobStepsGetResponse>;
   /**
    * Creates or updates a job step. This will implicitly create a new job version.
@@ -109,7 +117,7 @@ export interface JobSteps {
     jobName: string,
     stepName: string,
     parameters: JobStep,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsCreateOrUpdateOptionalParams
   ): Promise<JobStepsCreateOrUpdateResponse>;
   /**
    * Deletes a job step. This will implicitly create a new job version.
@@ -127,6 +135,6 @@ export interface JobSteps {
     jobAgentName: string,
     jobName: string,
     stepName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobStepsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   RecoverableManagedDatabase,
+  RecoverableManagedDatabasesListByInstanceNextOptionalParams,
+  RecoverableManagedDatabasesListByInstanceOptionalParams,
+  RecoverableManagedDatabasesGetOptionalParams,
   RecoverableManagedDatabasesGetResponse
 } from "../models";
 
@@ -27,7 +30,7 @@ export interface RecoverableManagedDatabases {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<RecoverableManagedDatabase>;
   /**
    * Gets a recoverable managed database.
@@ -41,6 +44,6 @@ export interface RecoverableManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     recoverableDatabaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: RecoverableManagedDatabasesGetOptionalParams
   ): Promise<RecoverableManagedDatabasesGetResponse>;
 }

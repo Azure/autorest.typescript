@@ -11,7 +11,15 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
-import { SkipUrlEncodingGetMethodQueryNullOptionalParams } from "../models";
+import {
+  SkipUrlEncodingGetMethodPathValidOptionalParams,
+  SkipUrlEncodingGetPathValidOptionalParams,
+  SkipUrlEncodingGetSwaggerPathValidOptionalParams,
+  SkipUrlEncodingGetMethodQueryValidOptionalParams,
+  SkipUrlEncodingGetMethodQueryNullOptionalParams,
+  SkipUrlEncodingGetPathQueryValidOptionalParams,
+  SkipUrlEncodingGetSwaggerQueryValidOptionalParams
+} from "../models";
 
 /** Class representing a SkipUrlEncoding. */
 export class SkipUrlEncodingImpl implements SkipUrlEncoding {
@@ -32,7 +40,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getMethodPathValid(
     unencodedPathParam: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetMethodPathValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       unencodedPathParam,
@@ -51,7 +59,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getPathValid(
     unencodedPathParam: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetPathValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       unencodedPathParam,
@@ -68,7 +76,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    * @param options The options parameters.
    */
   getSwaggerPathValid(
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetSwaggerPathValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -86,7 +94,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getMethodQueryValid(
     q1: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetMethodQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       q1,
@@ -121,7 +129,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getPathQueryValid(
     q1: string,
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetPathQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       q1,
@@ -138,7 +146,7 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    * @param options The options parameters.
    */
   getSwaggerQueryValid(
-    options?: coreHttp.OperationOptions
+    options?: SkipUrlEncodingGetSwaggerQueryValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

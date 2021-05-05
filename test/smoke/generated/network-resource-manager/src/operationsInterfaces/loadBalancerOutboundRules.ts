@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { OutboundRule, LoadBalancerOutboundRulesGetResponse } from "../models";
+import {
+  OutboundRule,
+  LoadBalancerOutboundRulesListNextOptionalParams,
+  LoadBalancerOutboundRulesListOptionalParams,
+  LoadBalancerOutboundRulesGetOptionalParams,
+  LoadBalancerOutboundRulesGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a LoadBalancerOutboundRules. */
@@ -23,7 +29,7 @@ export interface LoadBalancerOutboundRules {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesListOptionalParams
   ): PagedAsyncIterableIterator<OutboundRule>;
   /**
    * Gets the specified load balancer outbound rule.
@@ -36,6 +42,6 @@ export interface LoadBalancerOutboundRules {
     resourceGroupName: string,
     loadBalancerName: string,
     outboundRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerOutboundRulesGetOptionalParams
   ): Promise<LoadBalancerOutboundRulesGetResponse>;
 }

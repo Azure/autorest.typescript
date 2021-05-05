@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SecurityPartnerProvider,
+  SecurityPartnerProvidersListByResourceGroupNextOptionalParams,
+  SecurityPartnerProvidersListByResourceGroupOptionalParams,
+  SecurityPartnerProvidersListNextOptionalParams,
+  SecurityPartnerProvidersListOptionalParams,
+  SecurityPartnerProvidersDeleteOptionalParams,
+  SecurityPartnerProvidersGetOptionalParams,
   SecurityPartnerProvidersGetResponse,
+  SecurityPartnerProvidersCreateOrUpdateOptionalParams,
   SecurityPartnerProvidersCreateOrUpdateResponse,
   TagsObject,
+  SecurityPartnerProvidersUpdateTagsOptionalParams,
   SecurityPartnerProvidersUpdateTagsResponse,
   SecurityPartnerProvidersListByResourceGroupResponse,
   SecurityPartnerProvidersListResponse,
@@ -47,7 +55,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<SecurityPartnerProvider> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<SecurityPartnerProvider[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<SecurityPartnerProvider> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListOptionalParams
   ): PagedAsyncIterableIterator<SecurityPartnerProvider> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListOptionalParams
   ): AsyncIterableIterator<SecurityPartnerProvider[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListOptionalParams
   ): AsyncIterableIterator<SecurityPartnerProvider> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -144,7 +152,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   async delete(
     resourceGroupName: string,
     securityPartnerProviderName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -162,17 +170,13 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -184,7 +188,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   get(
     resourceGroupName: string,
     securityPartnerProviderName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersGetOptionalParams
   ): Promise<SecurityPartnerProvidersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -208,7 +212,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SecurityPartnerProvidersCreateOrUpdateResponse>,
@@ -230,17 +234,13 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -254,7 +254,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersUpdateTagsOptionalParams
   ): Promise<SecurityPartnerProvidersUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -275,7 +275,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupOptionalParams
   ): Promise<SecurityPartnerProvidersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -292,7 +292,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListOptionalParams
   ): Promise<SecurityPartnerProvidersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +312,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListByResourceGroupNextOptionalParams
   ): Promise<SecurityPartnerProvidersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -332,7 +332,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SecurityPartnerProvidersListNextOptionalParams
   ): Promise<SecurityPartnerProvidersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

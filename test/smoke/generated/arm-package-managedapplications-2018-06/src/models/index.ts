@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** Plan for the managed application. */
 export interface Plan {
@@ -254,6 +253,10 @@ export type ApplicationLockLevel = "CanNotDelete" | "ReadOnly" | "None";
 /** Defines values for ApplicationArtifactType. */
 export type ApplicationArtifactType = "Template" | "Custom";
 
+/** Optional parameters. */
+export interface ApplicationsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ApplicationsGetResponse = Application & {
   /** The underlying HTTP response. */
@@ -266,6 +269,24 @@ export type ApplicationsGetResponse = Application & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ApplicationsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ApplicationsCreateOrUpdateResponse = Application & {
   /** The underlying HTTP response. */
@@ -275,8 +296,6 @@ export type ApplicationsCreateOrUpdateResponse = Application & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Application;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -299,6 +318,10 @@ export type ApplicationsUpdateResponse = Application & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type ApplicationsListByResourceGroupResponse = ApplicationListResult & {
   /** The underlying HTTP response. */
@@ -310,6 +333,10 @@ export type ApplicationsListByResourceGroupResponse = ApplicationListResult & {
     parsedBody: ApplicationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
 export type ApplicationsListBySubscriptionResponse = ApplicationListResult & {
@@ -323,6 +350,10 @@ export type ApplicationsListBySubscriptionResponse = ApplicationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsGetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getById operation. */
 export type ApplicationsGetByIdResponse = Application & {
   /** The underlying HTTP response. */
@@ -335,6 +366,24 @@ export type ApplicationsGetByIdResponse = Application & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsDeleteByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ApplicationsCreateOrUpdateByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateById operation. */
 export type ApplicationsCreateOrUpdateByIdResponse = Application & {
   /** The underlying HTTP response. */
@@ -344,8 +393,6 @@ export type ApplicationsCreateOrUpdateByIdResponse = Application & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Application;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -368,6 +415,10 @@ export type ApplicationsUpdateByIdResponse = Application & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult & {
   /** The underlying HTTP response. */
@@ -379,6 +430,10 @@ export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult 
     parsedBody: ApplicationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationsListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
 export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult & {
@@ -392,6 +447,10 @@ export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult &
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationDefinitionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ApplicationDefinitionsGetResponse = ApplicationDefinition & {
   /** The underlying HTTP response. */
@@ -404,6 +463,24 @@ export type ApplicationDefinitionsGetResponse = ApplicationDefinition & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationDefinitionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition & {
   /** The underlying HTTP response. */
@@ -413,10 +490,12 @@ export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition
 
     /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult & {
@@ -430,6 +509,10 @@ export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefin
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationDefinitionsGetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getById operation. */
 export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition & {
   /** The underlying HTTP response. */
@@ -442,6 +525,24 @@ export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition & {
   };
 };
 
+/** Optional parameters. */
+export interface ApplicationDefinitionsDeleteByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdateById operation. */
 export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition & {
   /** The underlying HTTP response. */
@@ -451,10 +552,12 @@ export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefini
 
     /** The response body as parsed JSON or XML */
     parsedBody: ApplicationDefinition;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult & {

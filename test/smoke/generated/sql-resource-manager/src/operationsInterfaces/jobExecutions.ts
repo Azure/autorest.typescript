@@ -16,8 +16,12 @@ import {
   JobExecutionsListByAgentOptionalParams,
   JobExecutionsListByJobNextOptionalParams,
   JobExecutionsListByJobOptionalParams,
+  JobExecutionsCancelOptionalParams,
+  JobExecutionsCreateOptionalParams,
   JobExecutionsCreateResponse,
+  JobExecutionsGetOptionalParams,
   JobExecutionsGetResponse,
+  JobExecutionsCreateOrUpdateOptionalParams,
   JobExecutionsCreateOrUpdateResponse
 } from "../models";
 
@@ -70,7 +74,7 @@ export interface JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCancelOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Starts an elastic job execution.
@@ -86,7 +90,7 @@ export interface JobExecutions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobExecutionsCreateResponse>,
@@ -109,7 +113,7 @@ export interface JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsGetOptionalParams
   ): Promise<JobExecutionsGetResponse>;
   /**
    * Creates or updates a job execution.
@@ -127,7 +131,7 @@ export interface JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobExecutionsCreateOrUpdateResponse>,

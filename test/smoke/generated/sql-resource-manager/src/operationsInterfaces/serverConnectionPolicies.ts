@@ -10,7 +10,9 @@ import * as coreHttp from "@azure/core-http";
 import {
   ServerConnectionPolicy,
   ConnectionPolicyName,
+  ServerConnectionPoliciesCreateOrUpdateOptionalParams,
   ServerConnectionPoliciesCreateOrUpdateResponse,
+  ServerConnectionPoliciesGetOptionalParams,
   ServerConnectionPoliciesGetResponse
 } from "../models";
 
@@ -30,7 +32,7 @@ export interface ServerConnectionPolicies {
     serverName: string,
     connectionPolicyName: ConnectionPolicyName,
     parameters: ServerConnectionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
   /**
    * Gets the server's secure connection policy.
@@ -44,6 +46,6 @@ export interface ServerConnectionPolicies {
     resourceGroupName: string,
     serverName: string,
     connectionPolicyName: ConnectionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ServerConnectionPoliciesGetOptionalParams
   ): Promise<ServerConnectionPoliciesGetResponse>;
 }

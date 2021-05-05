@@ -14,11 +14,17 @@ import {
   ResourceGroup,
   ResourceGroupsListNextOptionalParams,
   ResourceGroupsListOptionalParams,
+  ResourceGroupsCheckExistenceOptionalParams,
+  ResourceGroupsCreateOrUpdateOptionalParams,
   ResourceGroupsCreateOrUpdateResponse,
+  ResourceGroupsDeleteOptionalParams,
+  ResourceGroupsGetOptionalParams,
   ResourceGroupsGetResponse,
   ResourceGroupPatchable,
+  ResourceGroupsUpdateOptionalParams,
   ResourceGroupsUpdateResponse,
   ExportTemplateRequest,
+  ResourceGroupsExportTemplateOptionalParams,
   ResourceGroupsExportTemplateResponse
 } from "../models";
 
@@ -39,7 +45,7 @@ export interface ResourceGroups {
    */
   checkExistence(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsCheckExistenceOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Creates or updates a resource group.
@@ -52,7 +58,7 @@ export interface ResourceGroups {
   createOrUpdate(
     resourceGroupName: string,
     parameters: ResourceGroup,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsCreateOrUpdateOptionalParams
   ): Promise<ResourceGroupsCreateOrUpdateResponse>;
   /**
    * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
@@ -62,7 +68,7 @@ export interface ResourceGroups {
    */
   delete(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +79,7 @@ export interface ResourceGroups {
    */
   get(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsGetOptionalParams
   ): Promise<ResourceGroupsGetResponse>;
   /**
    * Resource groups can be updated through a simple PATCH operation to a group address. The format of
@@ -86,7 +92,7 @@ export interface ResourceGroups {
   update(
     resourceGroupName: string,
     parameters: ResourceGroupPatchable,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsUpdateOptionalParams
   ): Promise<ResourceGroupsUpdateResponse>;
   /**
    * Captures the specified resource group as a template.
@@ -97,7 +103,7 @@ export interface ResourceGroups {
   exportTemplate(
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
-    options?: coreHttp.OperationOptions
+    options?: ResourceGroupsExportTemplateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourceGroupsExportTemplateResponse>,

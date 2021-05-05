@@ -8,9 +8,14 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
   ArrayWrapper,
+  ArrayPutValidOptionalParams,
+  ArrayGetEmptyOptionalParams,
   ArrayGetEmptyResponse,
+  ArrayPutEmptyOptionalParams,
+  ArrayGetNotProvidedOptionalParams,
   ArrayGetNotProvidedResponse
 } from "../models";
 
@@ -20,7 +25,9 @@ export interface Array {
    * Get complex types with array property
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.OperationOptions): Promise<ArrayGetValidResponse>;
+  getValid(
+    options?: ArrayGetValidOptionalParams
+  ): Promise<ArrayGetValidResponse>;
   /**
    * Put complex types with array property
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick
@@ -29,13 +36,15 @@ export interface Array {
    */
   putValid(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with array property which is empty
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.OperationOptions): Promise<ArrayGetEmptyResponse>;
+  getEmpty(
+    options?: ArrayGetEmptyOptionalParams
+  ): Promise<ArrayGetEmptyResponse>;
   /**
    * Put complex types with array property which is empty
    * @param complexBody Please put an empty array
@@ -43,13 +52,13 @@ export interface Array {
    */
   putEmpty(
     complexBody: ArrayWrapper,
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with array property while server doesn't provide a response payload
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse>;
 }

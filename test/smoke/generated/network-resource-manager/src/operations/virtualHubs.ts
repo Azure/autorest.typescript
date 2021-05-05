@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualHub,
+  VirtualHubsListByResourceGroupNextOptionalParams,
+  VirtualHubsListByResourceGroupOptionalParams,
+  VirtualHubsListNextOptionalParams,
+  VirtualHubsListOptionalParams,
+  VirtualHubsGetOptionalParams,
   VirtualHubsGetResponse,
+  VirtualHubsCreateOrUpdateOptionalParams,
   VirtualHubsCreateOrUpdateResponse,
   TagsObject,
+  VirtualHubsUpdateTagsOptionalParams,
   VirtualHubsUpdateTagsResponse,
+  VirtualHubsDeleteOptionalParams,
   VirtualHubsListByResourceGroupResponse,
   VirtualHubsListResponse,
   VirtualHubsListByResourceGroupNextResponse,
@@ -47,7 +55,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualHub> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class VirtualHubsImpl implements VirtualHubs {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualHub[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class VirtualHubsImpl implements VirtualHubs {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualHub> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualHub> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class VirtualHubsImpl implements VirtualHubs {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListOptionalParams
   ): AsyncIterableIterator<VirtualHub[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class VirtualHubsImpl implements VirtualHubs {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListOptionalParams
   ): AsyncIterableIterator<VirtualHub> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -144,7 +152,7 @@ export class VirtualHubsImpl implements VirtualHubs {
   get(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsGetOptionalParams
   ): Promise<VirtualHubsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -168,7 +176,7 @@ export class VirtualHubsImpl implements VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: VirtualHub,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualHubsCreateOrUpdateResponse>,
@@ -190,17 +198,13 @@ export class VirtualHubsImpl implements VirtualHubs {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -214,7 +218,7 @@ export class VirtualHubsImpl implements VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsUpdateTagsOptionalParams
   ): Promise<VirtualHubsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -237,7 +241,7 @@ export class VirtualHubsImpl implements VirtualHubs {
   async delete(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -255,17 +259,13 @@ export class VirtualHubsImpl implements VirtualHubs {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -275,7 +275,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupOptionalParams
   ): Promise<VirtualHubsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -292,7 +292,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListOptionalParams
   ): Promise<VirtualHubsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -312,7 +312,7 @@ export class VirtualHubsImpl implements VirtualHubs {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListByResourceGroupNextOptionalParams
   ): Promise<VirtualHubsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -332,7 +332,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubsListNextOptionalParams
   ): Promise<VirtualHubsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

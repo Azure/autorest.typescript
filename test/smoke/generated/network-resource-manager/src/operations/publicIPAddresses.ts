@@ -17,10 +17,21 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPAddress,
+  PublicIPAddressesListAllNextOptionalParams,
+  PublicIPAddressesListAllOptionalParams,
+  PublicIPAddressesListNextOptionalParams,
+  PublicIPAddressesListOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams,
+  PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams,
+  PublicIPAddressesDeleteOptionalParams,
   PublicIPAddressesGetOptionalParams,
   PublicIPAddressesGetResponse,
+  PublicIPAddressesCreateOrUpdateOptionalParams,
   PublicIPAddressesCreateOrUpdateResponse,
   TagsObject,
+  PublicIPAddressesUpdateTagsOptionalParams,
   PublicIPAddressesUpdateTagsResponse,
   PublicIPAddressesListAllResponse,
   PublicIPAddressesListResponse,
@@ -52,7 +63,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -69,7 +80,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllOptionalParams
   ): AsyncIterableIterator<PublicIPAddress[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -82,7 +93,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllOptionalParams
   ): AsyncIterableIterator<PublicIPAddress> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -96,7 +107,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -114,7 +125,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListOptionalParams
   ): AsyncIterableIterator<PublicIPAddress[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -132,7 +143,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListOptionalParams
   ): AsyncIterableIterator<PublicIPAddress> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -148,7 +159,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   public listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listVirtualMachineScaleSetPublicIPAddressesPagingAll(
       resourceGroupName,
@@ -175,7 +186,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   private async *listVirtualMachineScaleSetPublicIPAddressesPagingPage(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
   ): AsyncIterableIterator<PublicIPAddress[]> {
     let result = await this._listVirtualMachineScaleSetPublicIPAddresses(
       resourceGroupName,
@@ -199,7 +210,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   private async *listVirtualMachineScaleSetPublicIPAddressesPagingAll(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
   ): AsyncIterableIterator<PublicIPAddress> {
     for await (const page of this.listVirtualMachineScaleSetPublicIPAddressesPagingPage(
       resourceGroupName,
@@ -226,7 +237,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): PagedAsyncIterableIterator<PublicIPAddress> {
     const iter = this.listVirtualMachineScaleSetVMPublicIPAddressesPagingAll(
       resourceGroupName,
@@ -262,7 +273,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): AsyncIterableIterator<PublicIPAddress[]> {
     let result = await this._listVirtualMachineScaleSetVMPublicIPAddresses(
       resourceGroupName,
@@ -295,7 +306,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): AsyncIterableIterator<PublicIPAddress> {
     for await (const page of this.listVirtualMachineScaleSetVMPublicIPAddressesPagingPage(
       resourceGroupName,
@@ -318,7 +329,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   async delete(
     resourceGroupName: string,
     publicIpAddressName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -336,17 +347,13 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -382,7 +389,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: PublicIPAddress,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PublicIPAddressesCreateOrUpdateResponse>,
@@ -404,17 +411,13 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -428,7 +431,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesUpdateTagsOptionalParams
   ): Promise<PublicIPAddressesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -447,7 +450,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllOptionalParams
   ): Promise<PublicIPAddressesListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -465,7 +468,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListOptionalParams
   ): Promise<PublicIPAddressesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -486,7 +489,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   private _listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
   > {
@@ -519,7 +522,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     virtualmachineIndex: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse
   > {
@@ -584,7 +587,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListAllNextOptionalParams
   ): Promise<PublicIPAddressesListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -605,7 +608,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListNextOptionalParams
   ): Promise<PublicIPAddressesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -630,7 +633,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse
   > {
@@ -666,7 +669,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     networkInterfaceName: string,
     ipConfigurationName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse
   > {

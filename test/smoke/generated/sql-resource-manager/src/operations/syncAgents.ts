@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncAgent,
+  SyncAgentsListByServerNextOptionalParams,
+  SyncAgentsListByServerOptionalParams,
   SyncAgentLinkedDatabase,
+  SyncAgentsListLinkedDatabasesNextOptionalParams,
+  SyncAgentsListLinkedDatabasesOptionalParams,
+  SyncAgentsGetOptionalParams,
   SyncAgentsGetResponse,
+  SyncAgentsCreateOrUpdateOptionalParams,
   SyncAgentsCreateOrUpdateResponse,
+  SyncAgentsDeleteOptionalParams,
   SyncAgentsListByServerResponse,
+  SyncAgentsGenerateKeyOptionalParams,
   SyncAgentsGenerateKeyResponse,
   SyncAgentsListLinkedDatabasesResponse,
   SyncAgentsListByServerNextResponse,
@@ -50,7 +58,7 @@ export class SyncAgentsImpl implements SyncAgents {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerOptionalParams
   ): PagedAsyncIterableIterator<SyncAgent> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -77,7 +85,7 @@ export class SyncAgentsImpl implements SyncAgents {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerOptionalParams
   ): AsyncIterableIterator<SyncAgent[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -101,7 +109,7 @@ export class SyncAgentsImpl implements SyncAgents {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerOptionalParams
   ): AsyncIterableIterator<SyncAgent> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -124,7 +132,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesOptionalParams
   ): PagedAsyncIterableIterator<SyncAgentLinkedDatabase> {
     const iter = this.listLinkedDatabasesPagingAll(
       resourceGroupName,
@@ -154,7 +162,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesOptionalParams
   ): AsyncIterableIterator<SyncAgentLinkedDatabase[]> {
     let result = await this._listLinkedDatabases(
       resourceGroupName,
@@ -181,7 +189,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesOptionalParams
   ): AsyncIterableIterator<SyncAgentLinkedDatabase> {
     for await (const page of this.listLinkedDatabasesPagingPage(
       resourceGroupName,
@@ -205,7 +213,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsGetOptionalParams
   ): Promise<SyncAgentsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -233,7 +241,7 @@ export class SyncAgentsImpl implements SyncAgents {
     serverName: string,
     syncAgentName: string,
     parameters: SyncAgent,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncAgentsCreateOrUpdateResponse>,
@@ -256,16 +264,12 @@ export class SyncAgentsImpl implements SyncAgents {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -280,7 +284,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -299,16 +303,12 @@ export class SyncAgentsImpl implements SyncAgents {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -321,7 +321,7 @@ export class SyncAgentsImpl implements SyncAgents {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerOptionalParams
   ): Promise<SyncAgentsListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -346,7 +346,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsGenerateKeyOptionalParams
   ): Promise<SyncAgentsGenerateKeyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -372,7 +372,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesOptionalParams
   ): Promise<SyncAgentsListLinkedDatabasesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -398,7 +398,7 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListByServerNextOptionalParams
   ): Promise<SyncAgentsListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -426,7 +426,7 @@ export class SyncAgentsImpl implements SyncAgents {
     serverName: string,
     syncAgentName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncAgentsListLinkedDatabasesNextOptionalParams
   ): Promise<SyncAgentsListLinkedDatabasesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

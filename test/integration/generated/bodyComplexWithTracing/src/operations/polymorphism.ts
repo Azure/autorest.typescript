@@ -14,14 +14,23 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
 import {
+  PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
   FishUnion,
+  PolymorphismPutValidOptionalParams,
+  PolymorphismGetDotSyntaxOptionalParams,
   PolymorphismGetDotSyntaxResponse,
+  PolymorphismGetComposedWithDiscriminatorOptionalParams,
   PolymorphismGetComposedWithDiscriminatorResponse,
+  PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   PolymorphismGetComposedWithoutDiscriminatorResponse,
+  PolymorphismGetComplicatedOptionalParams,
   PolymorphismGetComplicatedResponse,
   SalmonUnion,
-  PolymorphismPutMissingDiscriminatorResponse
+  PolymorphismPutComplicatedOptionalParams,
+  PolymorphismPutMissingDiscriminatorOptionalParams,
+  PolymorphismPutMissingDiscriminatorResponse,
+  PolymorphismPutValidMissingRequiredOptionalParams
 } from "../models";
 
 /** Class representing a Polymorphism. */
@@ -41,7 +50,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getValid(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getValid",
@@ -108,7 +117,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putValid(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValid",
@@ -142,7 +151,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getDotSyntax(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getDotSyntax",
@@ -177,7 +186,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComposedWithDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getComposedWithDiscriminator",
@@ -212,7 +221,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComposedWithoutDiscriminator(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getComposedWithoutDiscriminator",
@@ -246,7 +255,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComplicated(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-getComplicated",
@@ -282,7 +291,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putComplicated(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutComplicatedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putComplicated",
@@ -318,7 +327,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putMissingDiscriminator",
@@ -381,7 +390,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putValidMissingRequired(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphismPutValidMissingRequiredOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const { span, updatedOptions } = createSpan(
       "BodyComplexWithTracing-putValidMissingRequired",

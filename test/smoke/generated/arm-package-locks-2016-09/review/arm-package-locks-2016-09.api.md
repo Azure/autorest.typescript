@@ -9,7 +9,11 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
 export interface AuthorizationOperations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: AuthorizationOperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface AuthorizationOperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -19,6 +23,10 @@ export type AuthorizationOperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface AuthorizationOperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type AuthorizationOperationsListResponse = OperationListResult & {
@@ -91,22 +99,26 @@ export interface ManagementLockOwner {
 
 // @public
 export interface ManagementLocks {
-    createOrUpdateAtResourceGroupLevel(resourceGroupName: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
-    createOrUpdateAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
-    createOrUpdateAtSubscriptionLevel(lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
-    createOrUpdateByScope(scope: string, lockName: string, parameters: ManagementLockObject, options?: coreHttp.OperationOptions): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
-    deleteAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteAtSubscriptionLevel(lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    deleteByScope(scope: string, lockName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    getAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
-    getAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtResourceLevelResponse>;
-    getAtSubscriptionLevel(lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
-    getByScope(scope: string, lockName: string, options?: coreHttp.OperationOptions): Promise<ManagementLocksGetByScopeResponse>;
+    createOrUpdateAtResourceGroupLevel(resourceGroupName: string, lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
+    createOrUpdateAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
+    createOrUpdateAtSubscriptionLevel(lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
+    createOrUpdateByScope(scope: string, lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateByScopeOptionalParams): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
+    deleteAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: ManagementLocksDeleteAtResourceLevelOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteAtSubscriptionLevel(lockName: string, options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteByScope(scope: string, lockName: string, options?: ManagementLocksDeleteByScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    getAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: ManagementLocksGetAtResourceGroupLevelOptionalParams): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
+    getAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: ManagementLocksGetAtResourceLevelOptionalParams): Promise<ManagementLocksGetAtResourceLevelResponse>;
+    getAtSubscriptionLevel(lockName: string, options?: ManagementLocksGetAtSubscriptionLevelOptionalParams): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
+    getByScope(scope: string, lockName: string, options?: ManagementLocksGetByScopeOptionalParams): Promise<ManagementLocksGetByScopeResponse>;
     listAtResourceGroupLevel(resourceGroupName: string, options?: ManagementLocksListAtResourceGroupLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, options?: ManagementLocksListAtResourceLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listAtSubscriptionLevel(options?: ManagementLocksListAtSubscriptionLevelOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
     listByScope(scope: string, options?: ManagementLocksListByScopeOptionalParams): PagedAsyncIterableIterator<ManagementLockObject>;
+}
+
+// @public
+export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -118,12 +130,20 @@ export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = Manageme
 };
 
 // @public
+export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagementLockObject;
     };
 };
+
+// @public
+export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject & {
@@ -134,12 +154,36 @@ export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = Managemen
 };
 
 // @public
+export interface ManagementLocksCreateOrUpdateByScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagementLockObject;
     };
 };
+
+// @public
+export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagementLocksDeleteAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagementLocksDeleteByScopeOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
+export interface ManagementLocksGetAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject & {
@@ -150,6 +194,10 @@ export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObjec
 };
 
 // @public
+export interface ManagementLocksGetAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -158,12 +206,20 @@ export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
 };
 
 // @public
+export interface ManagementLocksGetAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ManagementLockObject;
     };
 };
+
+// @public
+export interface ManagementLocksGetByScopeOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type ManagementLocksGetByScopeResponse = ManagementLockObject & {

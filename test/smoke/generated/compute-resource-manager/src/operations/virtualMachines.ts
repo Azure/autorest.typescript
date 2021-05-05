@@ -17,23 +17,44 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachine,
+  VirtualMachinesListByLocationNextOptionalParams,
+  VirtualMachinesListByLocationOptionalParams,
+  VirtualMachinesListNextOptionalParams,
+  VirtualMachinesListOptionalParams,
   VirtualMachinesListAllNextOptionalParams,
   VirtualMachinesListAllOptionalParams,
   VirtualMachineSize,
+  VirtualMachinesListAvailableSizesOptionalParams,
   VirtualMachinesListByLocationResponse,
   VirtualMachineCaptureParameters,
+  VirtualMachinesCaptureOptionalParams,
   VirtualMachinesCaptureResponse,
+  VirtualMachinesCreateOrUpdateOptionalParams,
   VirtualMachinesCreateOrUpdateResponse,
   VirtualMachineUpdate,
+  VirtualMachinesUpdateOptionalParams,
   VirtualMachinesUpdateResponse,
+  VirtualMachinesDeleteOptionalParams,
+  VirtualMachinesGetOptionalParams,
   VirtualMachinesGetResponse,
+  VirtualMachinesInstanceViewOptionalParams,
   VirtualMachinesInstanceViewResponse,
+  VirtualMachinesConvertToManagedDisksOptionalParams,
+  VirtualMachinesDeallocateOptionalParams,
+  VirtualMachinesGeneralizeOptionalParams,
   VirtualMachinesListResponse,
   VirtualMachinesListAllResponse,
   VirtualMachinesListAvailableSizesResponse,
   VirtualMachinesPowerOffOptionalParams,
+  VirtualMachinesReapplyOptionalParams,
+  VirtualMachinesRestartOptionalParams,
+  VirtualMachinesStartOptionalParams,
+  VirtualMachinesRedeployOptionalParams,
   VirtualMachinesReimageOptionalParams,
+  VirtualMachinesPerformMaintenanceOptionalParams,
+  VirtualMachinesSimulateEvictionOptionalParams,
   RunCommandInput,
+  VirtualMachinesRunCommandOptionalParams,
   VirtualMachinesRunCommandResponse,
   VirtualMachinesListByLocationNextResponse,
   VirtualMachinesListNextResponse,
@@ -60,7 +81,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    */
   public listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachine> {
     const iter = this.listByLocationPagingAll(location, options);
     return {
@@ -78,7 +99,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
 
   private async *listByLocationPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationOptionalParams
   ): AsyncIterableIterator<VirtualMachine[]> {
     let result = await this._listByLocation(location, options);
     yield result.value || [];
@@ -96,7 +117,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
 
   private async *listByLocationPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationOptionalParams
   ): AsyncIterableIterator<VirtualMachine> {
     for await (const page of this.listByLocationPagingPage(location, options)) {
       yield* page;
@@ -111,7 +132,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachine> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -129,7 +150,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListOptionalParams
   ): AsyncIterableIterator<VirtualMachine[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -147,7 +168,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListOptionalParams
   ): AsyncIterableIterator<VirtualMachine> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -206,7 +227,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   public listAvailableSizes(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListAvailableSizesOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineSize> {
     const iter = this.listAvailableSizesPagingAll(
       resourceGroupName,
@@ -233,7 +254,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   private async *listAvailableSizesPagingPage(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListAvailableSizesOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize[]> {
     let result = await this._listAvailableSizes(
       resourceGroupName,
@@ -246,7 +267,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   private async *listAvailableSizesPagingAll(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListAvailableSizesOptionalParams
   ): AsyncIterableIterator<VirtualMachineSize> {
     for await (const page of this.listAvailableSizesPagingPage(
       resourceGroupName,
@@ -264,7 +285,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    */
   private _listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationOptionalParams
   ): Promise<VirtualMachinesListByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -288,7 +309,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesCaptureResponse>,
@@ -310,17 +331,13 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      captureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: captureOperationSpec,
-      initialOperationResult,
+      captureOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -335,7 +352,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachine,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesCreateOrUpdateResponse>,
@@ -357,16 +374,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -380,7 +393,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesUpdateResponse>,
@@ -402,16 +415,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -423,7 +432,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async delete(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -441,16 +450,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -462,7 +467,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   get(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesGetOptionalParams
   ): Promise<VirtualMachinesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -484,7 +489,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   instanceView(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesInstanceViewOptionalParams
   ): Promise<VirtualMachinesInstanceViewResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -507,7 +512,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async convertToManagedDisks(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesConvertToManagedDisksOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -525,16 +530,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      convertToManagedDisksOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: convertToManagedDisksOperationSpec,
-      initialOperationResult,
+      convertToManagedDisksOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -547,7 +548,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async deallocate(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesDeallocateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -565,16 +566,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deallocateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deallocateOperationSpec,
-      initialOperationResult,
+      deallocateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -591,7 +588,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   generalize(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesGeneralizeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -612,7 +609,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListOptionalParams
   ): Promise<VirtualMachinesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -650,7 +647,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   private _listAvailableSizes(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListAvailableSizesOptionalParams
   ): Promise<VirtualMachinesListAvailableSizesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -691,16 +688,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      powerOffOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: powerOffOperationSpec,
-      initialOperationResult,
+      powerOffOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -712,7 +705,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async reapply(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesReapplyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -730,16 +723,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reapplyOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reapplyOperationSpec,
-      initialOperationResult,
+      reapplyOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -751,7 +740,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async restart(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRestartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -769,16 +758,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      restartOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: restartOperationSpec,
-      initialOperationResult,
+      restartOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -790,7 +775,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async start(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -808,16 +793,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOperationSpec,
-      initialOperationResult,
+      startOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -829,7 +810,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async redeploy(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRedeployOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -847,16 +828,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      redeployOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: redeployOperationSpec,
-      initialOperationResult,
+      redeployOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -886,16 +863,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      reimageOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: reimageOperationSpec,
-      initialOperationResult,
+      reimageOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -907,7 +880,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   async performMaintenance(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesPerformMaintenanceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -925,16 +898,12 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      performMaintenanceOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: performMaintenanceOperationSpec,
-      initialOperationResult,
+      performMaintenanceOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -947,7 +916,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   simulateEviction(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesSimulateEvictionOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -971,7 +940,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: RunCommandInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesRunCommandResponse>,
@@ -993,17 +962,13 @@ export class VirtualMachinesImpl implements VirtualMachines {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      runCommandOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: runCommandOperationSpec,
-      initialOperationResult,
+      runCommandOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -1015,7 +980,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   private _listByLocationNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationNextOptionalParams
   ): Promise<VirtualMachinesListByLocationNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -1037,7 +1002,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListNextOptionalParams
   ): Promise<VirtualMachinesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

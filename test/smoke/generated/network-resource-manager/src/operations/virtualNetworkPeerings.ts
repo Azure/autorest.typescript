@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkPeering,
+  VirtualNetworkPeeringsListNextOptionalParams,
+  VirtualNetworkPeeringsListOptionalParams,
+  VirtualNetworkPeeringsDeleteOptionalParams,
+  VirtualNetworkPeeringsGetOptionalParams,
   VirtualNetworkPeeringsGetResponse,
+  VirtualNetworkPeeringsCreateOrUpdateOptionalParams,
   VirtualNetworkPeeringsCreateOrUpdateResponse,
   VirtualNetworkPeeringsListResponse,
   VirtualNetworkPeeringsListNextResponse
@@ -45,7 +50,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
   public list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkPeering> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -72,7 +77,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
   private async *listPagingPage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkPeering[]> {
     let result = await this._list(
       resourceGroupName,
@@ -96,7 +101,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
   private async *listPagingAll(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkPeering> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +142,13 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -161,7 +162,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsGetOptionalParams
   ): Promise<VirtualNetworkPeeringsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -189,7 +190,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
     virtualNetworkPeeringParameters: VirtualNetworkPeering,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkPeeringsCreateOrUpdateResponse>,
@@ -212,17 +213,13 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -234,7 +231,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
   private _list(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListOptionalParams
   ): Promise<VirtualNetworkPeeringsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -258,7 +255,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
     resourceGroupName: string,
     virtualNetworkName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkPeeringsListNextOptionalParams
   ): Promise<VirtualNetworkPeeringsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

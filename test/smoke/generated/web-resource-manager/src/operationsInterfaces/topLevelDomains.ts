@@ -11,8 +11,13 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   TopLevelDomain,
+  TopLevelDomainsListNextOptionalParams,
+  TopLevelDomainsListOptionalParams,
   TldLegalAgreement,
   TopLevelDomainAgreementOption,
+  TopLevelDomainsListAgreementsNextOptionalParams,
+  TopLevelDomainsListAgreementsOptionalParams,
+  TopLevelDomainsGetOptionalParams,
   TopLevelDomainsGetResponse
 } from "../models";
 
@@ -24,7 +29,7 @@ export interface TopLevelDomains {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListOptionalParams
   ): PagedAsyncIterableIterator<TopLevelDomain>;
   /**
    * Description for Gets all legal agreements that user needs to accept before purchasing a domain.
@@ -35,7 +40,7 @@ export interface TopLevelDomains {
   listAgreements(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsListAgreementsOptionalParams
   ): PagedAsyncIterableIterator<TldLegalAgreement>;
   /**
    * Description for Get details of a top-level domain.
@@ -44,6 +49,6 @@ export interface TopLevelDomains {
    */
   get(
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: TopLevelDomainsGetOptionalParams
   ): Promise<TopLevelDomainsGetResponse>;
 }

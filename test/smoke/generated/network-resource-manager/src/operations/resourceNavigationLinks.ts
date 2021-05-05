@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
-import { ResourceNavigationLinksListResponse } from "../models";
+import {
+  ResourceNavigationLinksListOptionalParams,
+  ResourceNavigationLinksListResponse
+} from "../models";
 
 /** Class representing a ResourceNavigationLinks. */
 export class ResourceNavigationLinksImpl implements ResourceNavigationLinks {
@@ -36,7 +39,7 @@ export class ResourceNavigationLinksImpl implements ResourceNavigationLinks {
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceNavigationLinksListOptionalParams
   ): Promise<ResourceNavigationLinksListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FlowLog,
+  FlowLogsListNextOptionalParams,
+  FlowLogsListOptionalParams,
+  FlowLogsCreateOrUpdateOptionalParams,
   FlowLogsCreateOrUpdateResponse,
-  FlowLogsGetResponse
+  FlowLogsGetOptionalParams,
+  FlowLogsGetResponse,
+  FlowLogsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +33,7 @@ export interface FlowLogs {
   list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsListOptionalParams
   ): PagedAsyncIterableIterator<FlowLog>;
   /**
    * Create or update a flow log for the specified network security group.
@@ -43,7 +48,7 @@ export interface FlowLogs {
     networkWatcherName: string,
     flowLogName: string,
     parameters: FlowLog,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FlowLogsCreateOrUpdateResponse>,
@@ -61,7 +66,7 @@ export interface FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsGetOptionalParams
   ): Promise<FlowLogsGetResponse>;
   /**
    * Deletes the specified flow log resource.
@@ -74,7 +79,7 @@ export interface FlowLogs {
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
-    options?: coreHttp.OperationOptions
+    options?: FlowLogsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

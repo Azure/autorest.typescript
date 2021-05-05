@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DedicatedHost,
+  DedicatedHostsListByHostGroupNextOptionalParams,
+  DedicatedHostsListByHostGroupOptionalParams,
+  DedicatedHostsCreateOrUpdateOptionalParams,
   DedicatedHostsCreateOrUpdateResponse,
   DedicatedHostUpdate,
+  DedicatedHostsUpdateOptionalParams,
   DedicatedHostsUpdateResponse,
+  DedicatedHostsDeleteOptionalParams,
+  DedicatedHostsGetOptionalParams,
   DedicatedHostsGetResponse
 } from "../models";
 
@@ -31,7 +37,7 @@ export interface DedicatedHosts {
   listByHostGroup(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsListByHostGroupOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHost>;
   /**
    * Create or update a dedicated host .
@@ -46,7 +52,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHost,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DedicatedHostsCreateOrUpdateResponse>,
@@ -66,7 +72,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHostUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DedicatedHostsUpdateResponse>,
@@ -84,7 +90,7 @@ export interface DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -99,6 +105,6 @@ export interface DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostsGetOptionalParams
   ): Promise<DedicatedHostsGetResponse>;
 }

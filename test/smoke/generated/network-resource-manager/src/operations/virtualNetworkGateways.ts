@@ -17,35 +17,56 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
+  VirtualNetworkGatewaysListNextOptionalParams,
+  VirtualNetworkGatewaysListOptionalParams,
   VirtualNetworkGatewayConnectionListEntity,
+  VirtualNetworkGatewaysListConnectionsNextOptionalParams,
+  VirtualNetworkGatewaysListConnectionsOptionalParams,
+  VirtualNetworkGatewaysCreateOrUpdateOptionalParams,
   VirtualNetworkGatewaysCreateOrUpdateResponse,
+  VirtualNetworkGatewaysGetOptionalParams,
   VirtualNetworkGatewaysGetResponse,
+  VirtualNetworkGatewaysDeleteOptionalParams,
   TagsObject,
+  VirtualNetworkGatewaysUpdateTagsOptionalParams,
   VirtualNetworkGatewaysUpdateTagsResponse,
   VirtualNetworkGatewaysListResponse,
   VirtualNetworkGatewaysListConnectionsResponse,
   VirtualNetworkGatewaysResetOptionalParams,
   VirtualNetworkGatewaysResetResponse,
+  VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams,
   VpnClientParameters,
+  VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams,
   VirtualNetworkGatewaysGeneratevpnclientpackageResponse,
+  VirtualNetworkGatewaysGenerateVpnProfileOptionalParams,
   VirtualNetworkGatewaysGenerateVpnProfileResponse,
+  VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams,
   VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse,
   VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams,
   VirtualNetworkGatewaysGetBgpPeerStatusResponse,
+  VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams,
   VirtualNetworkGatewaysSupportedVpnDevicesResponse,
+  VirtualNetworkGatewaysGetLearnedRoutesOptionalParams,
   VirtualNetworkGatewaysGetLearnedRoutesResponse,
+  VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams,
   VirtualNetworkGatewaysGetAdvertisedRoutesResponse,
   VpnClientIPsecParameters,
+  VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams,
   VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse,
+  VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams,
   VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse,
   VpnDeviceScriptParameters,
+  VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams,
   VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse,
   VirtualNetworkGatewaysStartPacketCaptureOptionalParams,
   VirtualNetworkGatewaysStartPacketCaptureResponse,
   VpnPacketCaptureStopParameters,
+  VirtualNetworkGatewaysStopPacketCaptureOptionalParams,
   VirtualNetworkGatewaysStopPacketCaptureResponse,
+  VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams,
   VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse,
   P2SVpnConnectionRequest,
+  VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams,
   VirtualNetworkGatewaysListNextResponse,
   VirtualNetworkGatewaysListConnectionsNextResponse
 } from "../models";
@@ -70,7 +91,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -88,7 +109,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGateway[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -106,7 +127,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGateway> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -122,7 +143,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   public listConnections(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity> {
     const iter = this.listConnectionsPagingAll(
       resourceGroupName,
@@ -149,7 +170,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   private async *listConnectionsPagingPage(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity[]> {
     let result = await this._listConnections(
       resourceGroupName,
@@ -173,7 +194,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   private async *listConnectionsPagingAll(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): AsyncIterableIterator<VirtualNetworkGatewayConnectionListEntity> {
     for await (const page of this.listConnectionsPagingPage(
       resourceGroupName,
@@ -195,7 +216,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysCreateOrUpdateResponse>,
@@ -217,17 +238,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -239,7 +256,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   get(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetOptionalParams
   ): Promise<VirtualNetworkGatewaysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -261,7 +278,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async delete(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -279,17 +296,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -303,7 +316,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysUpdateTagsResponse>,
@@ -325,17 +338,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateTagsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateTagsOperationSpec,
-      initialOperationResult,
+      updateTagsOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -345,7 +354,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListOptionalParams
   ): Promise<VirtualNetworkGatewaysListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -366,7 +375,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   private _listConnections(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): Promise<VirtualNetworkGatewaysListConnectionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -409,17 +418,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      resetOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: resetOperationSpec,
-      initialOperationResult,
+      resetOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -431,7 +436,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async resetVpnClientSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -449,17 +454,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      resetVpnClientSharedKeyOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: resetVpnClientSharedKeyOperationSpec,
-      initialOperationResult,
+      resetVpnClientSharedKeyOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -475,7 +476,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -499,17 +500,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      generatevpnclientpackageOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: generatevpnclientpackageOperationSpec,
-      initialOperationResult,
+      generatevpnclientpackageOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -525,7 +522,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGenerateVpnProfileOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGenerateVpnProfileResponse>,
@@ -547,17 +544,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      generateVpnProfileOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: generateVpnProfileOperationSpec,
-      initialOperationResult,
+      generateVpnProfileOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -570,7 +563,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async getVpnProfilePackageUrl(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>,
@@ -591,17 +584,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getVpnProfilePackageUrlOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getVpnProfilePackageUrlOperationSpec,
-      initialOperationResult,
+      getVpnProfilePackageUrlOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -634,17 +623,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getBgpPeerStatusOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getBgpPeerStatusOperationSpec,
-      initialOperationResult,
+      getBgpPeerStatusOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -656,7 +641,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   supportedVpnDevices(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams
   ): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -679,7 +664,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async getLearnedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetLearnedRoutesResponse>,
@@ -700,17 +685,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getLearnedRoutesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getLearnedRoutesOperationSpec,
-      initialOperationResult,
+      getLearnedRoutesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -725,7 +706,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     peer: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysGetAdvertisedRoutesResponse>,
@@ -747,17 +728,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getAdvertisedRoutesOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getAdvertisedRoutesOperationSpec,
-      initialOperationResult,
+      getAdvertisedRoutesOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -773,7 +750,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     vpnclientIpsecParams: VpnClientIPsecParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -797,17 +774,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      setVpnclientIpsecParametersOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: setVpnclientIpsecParametersOperationSpec,
-      initialOperationResult,
+      setVpnclientIpsecParametersOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -821,7 +794,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async getVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -844,17 +817,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getVpnclientIpsecParametersOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getVpnclientIpsecParametersOperationSpec,
-      initialOperationResult,
+      getVpnclientIpsecParametersOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -869,7 +838,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnDeviceScriptParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams
   ): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -913,17 +882,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startPacketCaptureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startPacketCaptureOperationSpec,
-      initialOperationResult,
+      startPacketCaptureOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -938,7 +903,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysStopPacketCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworkGatewaysStopPacketCaptureResponse>,
@@ -960,17 +925,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      stopPacketCaptureOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: stopPacketCaptureOperationSpec,
-      initialOperationResult,
+      stopPacketCaptureOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -983,7 +944,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   async getVpnclientConnectionHealth(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -1006,17 +967,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getVpnclientConnectionHealthOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getVpnclientConnectionHealthOperationSpec,
-      initialOperationResult,
+      getVpnclientConnectionHealthOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -1030,7 +987,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -1049,17 +1006,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec,
-      initialOperationResult,
+      disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -1071,7 +1024,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListNextOptionalParams
   ): Promise<VirtualNetworkGatewaysListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1095,7 +1048,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworkGatewaysListConnectionsNextOptionalParams
   ): Promise<VirtualNetworkGatewaysListConnectionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

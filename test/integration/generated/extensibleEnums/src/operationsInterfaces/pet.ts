@@ -8,6 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
   PetAddPetResponse
@@ -22,7 +23,7 @@ export interface Pet {
    */
   getByPetId(
     petId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetGetByPetIdOptionalParams
   ): Promise<PetGetByPetIdResponse>;
   /**
    * add pet

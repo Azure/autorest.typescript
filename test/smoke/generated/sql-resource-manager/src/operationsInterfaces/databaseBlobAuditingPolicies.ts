@@ -11,7 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   DatabaseBlobAuditingPolicy,
+  DatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams,
+  DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams,
+  DatabaseBlobAuditingPoliciesGetOptionalParams,
   DatabaseBlobAuditingPoliciesGetResponse,
+  DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams,
   DatabaseBlobAuditingPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -30,7 +34,7 @@ export interface DatabaseBlobAuditingPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<DatabaseBlobAuditingPolicy>;
   /**
    * Gets a database's blob auditing policy.
@@ -44,7 +48,7 @@ export interface DatabaseBlobAuditingPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseBlobAuditingPoliciesGetOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesGetResponse>;
   /**
    * Creates or updates a database's blob auditing policy.
@@ -60,6 +64,6 @@ export interface DatabaseBlobAuditingPolicies {
     serverName: string,
     databaseName: string,
     parameters: DatabaseBlobAuditingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
 }

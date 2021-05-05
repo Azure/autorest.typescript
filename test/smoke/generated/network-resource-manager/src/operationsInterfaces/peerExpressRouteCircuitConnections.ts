@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PeerExpressRouteCircuitConnection,
+  PeerExpressRouteCircuitConnectionsListNextOptionalParams,
+  PeerExpressRouteCircuitConnectionsListOptionalParams,
+  PeerExpressRouteCircuitConnectionsGetOptionalParams,
   PeerExpressRouteCircuitConnectionsGetResponse
 } from "../models";
 
@@ -29,7 +32,7 @@ export interface PeerExpressRouteCircuitConnections {
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<PeerExpressRouteCircuitConnection>;
   /**
    * Gets the specified Peer Express Route Circuit Connection from the specified express route circuit.
@@ -44,6 +47,6 @@ export interface PeerExpressRouteCircuitConnections {
     circuitName: string,
     peeringName: string,
     connectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PeerExpressRouteCircuitConnectionsGetOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
 }

@@ -9,7 +9,10 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { VirtualMachineSize } from "../models";
+import {
+  VirtualMachineSize,
+  VirtualMachineSizesListOptionalParams
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a VirtualMachineSizes. */
@@ -22,6 +25,6 @@ export interface VirtualMachineSizes {
    */
   list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineSizesListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineSize>;
 }

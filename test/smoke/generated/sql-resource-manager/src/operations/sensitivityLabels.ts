@@ -21,9 +21,14 @@ import {
   SensitivityLabelsListRecommendedByDatabaseOptionalParams,
   SensitivityLabelsListCurrentByDatabaseResponse,
   SensitivityLabelsListRecommendedByDatabaseResponse,
+  SensitivityLabelsEnableRecommendationOptionalParams,
+  SensitivityLabelsDisableRecommendationOptionalParams,
   SensitivityLabelSource,
+  SensitivityLabelsGetOptionalParams,
   SensitivityLabelsGetResponse,
+  SensitivityLabelsCreateOrUpdateOptionalParams,
   SensitivityLabelsCreateOrUpdateResponse,
+  SensitivityLabelsDeleteOptionalParams,
   SensitivityLabelsListCurrentByDatabaseNextResponse,
   SensitivityLabelsListRecommendedByDatabaseNextResponse
 } from "../models";
@@ -274,7 +279,7 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsEnableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -309,7 +314,7 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsDisableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -346,7 +351,7 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     tableName: string,
     columnName: string,
     sensitivityLabelSource: SensitivityLabelSource,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsGetOptionalParams
   ): Promise<SensitivityLabelsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -384,7 +389,7 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     tableName: string,
     columnName: string,
     parameters: SensitivityLabel,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsCreateOrUpdateOptionalParams
   ): Promise<SensitivityLabelsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -420,7 +425,7 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: SensitivityLabelsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

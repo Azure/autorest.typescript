@@ -149,13 +149,9 @@
                   "text": "listOperations(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeatureClientListOperationsOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -186,8 +182,8 @@
               ],
               "isStatic": false,
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -196,7 +192,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -396,6 +392,39 @@
           "implementsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeatureClientListOperationsNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOperationsNext operation.\n */\n",
@@ -442,6 +471,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeatureClientListOperationsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -868,13 +930,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeaturesGetOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeaturesGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -904,8 +962,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -928,7 +986,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -952,13 +1010,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeaturesListOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeaturesListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -988,8 +1042,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 6,
-                "endIndex": 10
+                "startIndex": 5,
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1005,7 +1059,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 3,
-                    "endIndex": 5
+                    "endIndex": 4
                   }
                 }
               ],
@@ -1021,13 +1075,9 @@
                   "text": "listAll(options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeaturesListAllOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeaturesListAllOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1057,8 +1107,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 8
+                "startIndex": 3,
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1067,7 +1117,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 3
+                    "endIndex": 2
                   }
                 }
               ],
@@ -1099,13 +1149,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeaturesRegisterOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1135,8 +1181,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1159,7 +1205,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1191,13 +1237,9 @@
                   "text": ", options?: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "coreHttp."
-                },
-                {
                   "kind": "Reference",
-                  "text": "OperationOptions",
-                  "canonicalReference": "@azure/core-http!OperationOptions:interface"
+                  "text": "FeaturesUnregisterOptionalParams",
+                  "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1227,8 +1269,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 12
+                "startIndex": 7,
+                "endIndex": 11
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1251,7 +1293,7 @@
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
-                    "endIndex": 7
+                    "endIndex": 6
                   }
                 }
               ],
@@ -1259,6 +1301,39 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesGetOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesGetOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesGetOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1309,6 +1384,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-features-2015-12!FeaturesListAllNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAllNext operation.\n */\n",
@@ -1355,6 +1463,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListAllOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListAllOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1405,6 +1546,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesListNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-features-2015-12!FeaturesListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
@@ -1451,6 +1625,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesListOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesListOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesListOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",
@@ -1501,6 +1708,39 @@
           }
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesRegisterOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesRegisterOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterResponse:type",
           "docComment": "/**\n * Contains response data for the register operation.\n */\n",
@@ -1547,6 +1787,39 @@
             "startIndex": 1,
             "endIndex": 7
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeaturesUnregisterOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeaturesUnregisterOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
         },
         {
           "kind": "TypeAlias",

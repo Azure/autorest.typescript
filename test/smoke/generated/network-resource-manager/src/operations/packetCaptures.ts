@@ -17,9 +17,15 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PacketCaptureResult,
+  PacketCapturesListOptionalParams,
   PacketCapture,
+  PacketCapturesCreateOptionalParams,
   PacketCapturesCreateResponse,
+  PacketCapturesGetOptionalParams,
   PacketCapturesGetResponse,
+  PacketCapturesDeleteOptionalParams,
+  PacketCapturesStopOptionalParams,
+  PacketCapturesGetStatusOptionalParams,
   PacketCapturesGetStatusResponse,
   PacketCapturesListResponse
 } from "../models";
@@ -46,7 +52,7 @@ export class PacketCapturesImpl implements PacketCaptures {
   public list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesListOptionalParams
   ): PagedAsyncIterableIterator<PacketCaptureResult> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -73,7 +79,7 @@ export class PacketCapturesImpl implements PacketCaptures {
   private async *listPagingPage(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesListOptionalParams
   ): AsyncIterableIterator<PacketCaptureResult[]> {
     let result = await this._list(
       resourceGroupName,
@@ -86,7 +92,7 @@ export class PacketCapturesImpl implements PacketCaptures {
   private async *listPagingAll(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesListOptionalParams
   ): AsyncIterableIterator<PacketCaptureResult> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -110,7 +116,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     parameters: PacketCapture,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PacketCapturesCreateResponse>,
@@ -133,17 +139,13 @@ export class PacketCapturesImpl implements PacketCaptures {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -157,7 +159,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesGetOptionalParams
   ): Promise<PacketCapturesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -182,7 +184,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -201,17 +203,13 @@ export class PacketCapturesImpl implements PacketCaptures {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -225,7 +223,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -244,17 +242,13 @@ export class PacketCapturesImpl implements PacketCaptures {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      stopOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: stopOperationSpec,
-      initialOperationResult,
+      stopOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -268,7 +262,7 @@ export class PacketCapturesImpl implements PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesGetStatusOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PacketCapturesGetStatusResponse>,
@@ -290,17 +284,13 @@ export class PacketCapturesImpl implements PacketCaptures {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getStatusOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getStatusOperationSpec,
-      initialOperationResult,
+      getStatusOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -312,7 +302,7 @@ export class PacketCapturesImpl implements PacketCaptures {
   private _list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesListOptionalParams
   ): Promise<PacketCapturesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

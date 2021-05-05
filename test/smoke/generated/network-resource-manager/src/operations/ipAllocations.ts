@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   IpAllocation,
+  IpAllocationsListNextOptionalParams,
+  IpAllocationsListOptionalParams,
+  IpAllocationsListByResourceGroupNextOptionalParams,
+  IpAllocationsListByResourceGroupOptionalParams,
+  IpAllocationsDeleteOptionalParams,
   IpAllocationsGetOptionalParams,
   IpAllocationsGetResponse,
+  IpAllocationsCreateOrUpdateOptionalParams,
   IpAllocationsCreateOrUpdateResponse,
   TagsObject,
+  IpAllocationsUpdateTagsOptionalParams,
   IpAllocationsUpdateTagsResponse,
   IpAllocationsListResponse,
   IpAllocationsListByResourceGroupResponse,
@@ -46,7 +53,7 @@ export class IpAllocationsImpl implements IpAllocations {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListOptionalParams
   ): PagedAsyncIterableIterator<IpAllocation> {
     const iter = this.listPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class IpAllocationsImpl implements IpAllocations {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListOptionalParams
   ): AsyncIterableIterator<IpAllocation[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class IpAllocationsImpl implements IpAllocations {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListOptionalParams
   ): AsyncIterableIterator<IpAllocation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class IpAllocationsImpl implements IpAllocations {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<IpAllocation> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class IpAllocationsImpl implements IpAllocations {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<IpAllocation[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class IpAllocationsImpl implements IpAllocations {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<IpAllocation> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -145,7 +152,7 @@ export class IpAllocationsImpl implements IpAllocations {
   async delete(
     resourceGroupName: string,
     ipAllocationName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -163,17 +170,13 @@ export class IpAllocationsImpl implements IpAllocations {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -209,7 +212,7 @@ export class IpAllocationsImpl implements IpAllocations {
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: IpAllocation,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<IpAllocationsCreateOrUpdateResponse>,
@@ -231,17 +234,13 @@ export class IpAllocationsImpl implements IpAllocations {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -255,7 +254,7 @@ export class IpAllocationsImpl implements IpAllocations {
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsUpdateTagsOptionalParams
   ): Promise<IpAllocationsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -274,7 +273,7 @@ export class IpAllocationsImpl implements IpAllocations {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListOptionalParams
   ): Promise<IpAllocationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -292,7 +291,7 @@ export class IpAllocationsImpl implements IpAllocations {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupOptionalParams
   ): Promise<IpAllocationsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -311,7 +310,7 @@ export class IpAllocationsImpl implements IpAllocations {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListNextOptionalParams
   ): Promise<IpAllocationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -332,7 +331,7 @@ export class IpAllocationsImpl implements IpAllocations {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: IpAllocationsListByResourceGroupNextOptionalParams
   ): Promise<IpAllocationsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

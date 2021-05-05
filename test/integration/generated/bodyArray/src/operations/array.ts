@@ -12,60 +12,129 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyArrayClientContext } from "../bodyArrayClientContext";
 import {
+  ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
+  ArrayGetInvalidOptionalParams,
   ArrayGetInvalidResponse,
+  ArrayGetEmptyOptionalParams,
   ArrayGetEmptyResponse,
+  ArrayPutEmptyOptionalParams,
+  ArrayGetBooleanTfftOptionalParams,
   ArrayGetBooleanTfftResponse,
+  ArrayPutBooleanTfftOptionalParams,
+  ArrayGetBooleanInvalidNullOptionalParams,
   ArrayGetBooleanInvalidNullResponse,
+  ArrayGetBooleanInvalidStringOptionalParams,
   ArrayGetBooleanInvalidStringResponse,
+  ArrayGetIntegerValidOptionalParams,
   ArrayGetIntegerValidResponse,
+  ArrayPutIntegerValidOptionalParams,
+  ArrayGetIntInvalidNullOptionalParams,
   ArrayGetIntInvalidNullResponse,
+  ArrayGetIntInvalidStringOptionalParams,
   ArrayGetIntInvalidStringResponse,
+  ArrayGetLongValidOptionalParams,
   ArrayGetLongValidResponse,
+  ArrayPutLongValidOptionalParams,
+  ArrayGetLongInvalidNullOptionalParams,
   ArrayGetLongInvalidNullResponse,
+  ArrayGetLongInvalidStringOptionalParams,
   ArrayGetLongInvalidStringResponse,
+  ArrayGetFloatValidOptionalParams,
   ArrayGetFloatValidResponse,
+  ArrayPutFloatValidOptionalParams,
+  ArrayGetFloatInvalidNullOptionalParams,
   ArrayGetFloatInvalidNullResponse,
+  ArrayGetFloatInvalidStringOptionalParams,
   ArrayGetFloatInvalidStringResponse,
+  ArrayGetDoubleValidOptionalParams,
   ArrayGetDoubleValidResponse,
+  ArrayPutDoubleValidOptionalParams,
+  ArrayGetDoubleInvalidNullOptionalParams,
   ArrayGetDoubleInvalidNullResponse,
+  ArrayGetDoubleInvalidStringOptionalParams,
   ArrayGetDoubleInvalidStringResponse,
+  ArrayGetStringValidOptionalParams,
   ArrayGetStringValidResponse,
+  ArrayPutStringValidOptionalParams,
+  ArrayGetEnumValidOptionalParams,
   ArrayGetEnumValidResponse,
   FooEnum,
+  ArrayPutEnumValidOptionalParams,
+  ArrayGetStringEnumValidOptionalParams,
   ArrayGetStringEnumValidResponse,
   Enum1,
+  ArrayPutStringEnumValidOptionalParams,
+  ArrayGetStringWithNullOptionalParams,
   ArrayGetStringWithNullResponse,
+  ArrayGetStringWithInvalidOptionalParams,
   ArrayGetStringWithInvalidResponse,
+  ArrayGetUuidValidOptionalParams,
   ArrayGetUuidValidResponse,
+  ArrayPutUuidValidOptionalParams,
+  ArrayGetUuidInvalidCharsOptionalParams,
   ArrayGetUuidInvalidCharsResponse,
+  ArrayGetDateValidOptionalParams,
   ArrayGetDateValidResponse,
+  ArrayPutDateValidOptionalParams,
+  ArrayGetDateInvalidNullOptionalParams,
   ArrayGetDateInvalidNullResponse,
+  ArrayGetDateInvalidCharsOptionalParams,
   ArrayGetDateInvalidCharsResponse,
+  ArrayGetDateTimeValidOptionalParams,
   ArrayGetDateTimeValidResponse,
+  ArrayPutDateTimeValidOptionalParams,
+  ArrayGetDateTimeInvalidNullOptionalParams,
   ArrayGetDateTimeInvalidNullResponse,
+  ArrayGetDateTimeInvalidCharsOptionalParams,
   ArrayGetDateTimeInvalidCharsResponse,
+  ArrayGetDateTimeRfc1123ValidOptionalParams,
   ArrayGetDateTimeRfc1123ValidResponse,
+  ArrayPutDateTimeRfc1123ValidOptionalParams,
+  ArrayGetDurationValidOptionalParams,
   ArrayGetDurationValidResponse,
+  ArrayPutDurationValidOptionalParams,
+  ArrayGetByteValidOptionalParams,
   ArrayGetByteValidResponse,
+  ArrayPutByteValidOptionalParams,
+  ArrayGetByteInvalidNullOptionalParams,
   ArrayGetByteInvalidNullResponse,
+  ArrayGetBase64UrlOptionalParams,
   ArrayGetBase64UrlResponse,
+  ArrayGetComplexNullOptionalParams,
   ArrayGetComplexNullResponse,
+  ArrayGetComplexEmptyOptionalParams,
   ArrayGetComplexEmptyResponse,
+  ArrayGetComplexItemNullOptionalParams,
   ArrayGetComplexItemNullResponse,
+  ArrayGetComplexItemEmptyOptionalParams,
   ArrayGetComplexItemEmptyResponse,
+  ArrayGetComplexValidOptionalParams,
   ArrayGetComplexValidResponse,
   Product,
+  ArrayPutComplexValidOptionalParams,
+  ArrayGetArrayNullOptionalParams,
   ArrayGetArrayNullResponse,
+  ArrayGetArrayEmptyOptionalParams,
   ArrayGetArrayEmptyResponse,
+  ArrayGetArrayItemNullOptionalParams,
   ArrayGetArrayItemNullResponse,
+  ArrayGetArrayItemEmptyOptionalParams,
   ArrayGetArrayItemEmptyResponse,
+  ArrayGetArrayValidOptionalParams,
   ArrayGetArrayValidResponse,
+  ArrayPutArrayValidOptionalParams,
+  ArrayGetDictionaryNullOptionalParams,
   ArrayGetDictionaryNullResponse,
+  ArrayGetDictionaryEmptyOptionalParams,
   ArrayGetDictionaryEmptyResponse,
+  ArrayGetDictionaryItemNullOptionalParams,
   ArrayGetDictionaryItemNullResponse,
+  ArrayGetDictionaryItemEmptyOptionalParams,
   ArrayGetDictionaryItemEmptyResponse,
-  ArrayGetDictionaryValidResponse
+  ArrayGetDictionaryValidOptionalParams,
+  ArrayGetDictionaryValidResponse,
+  ArrayPutDictionaryValidOptionalParams
 } from "../models";
 
 /** Class representing a Array. */
@@ -84,7 +153,7 @@ export class ArrayImpl implements Array {
    * Get null array value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<ArrayGetNullResponse> {
+  getNull(options?: ArrayGetNullOptionalParams): Promise<ArrayGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -99,7 +168,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetInvalidOptionalParams
   ): Promise<ArrayGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -115,7 +184,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -133,7 +202,7 @@ export class ArrayImpl implements Array {
    */
   putEmpty(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -150,7 +219,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanTfftOptionalParams
   ): Promise<ArrayGetBooleanTfftResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -168,7 +237,7 @@ export class ArrayImpl implements Array {
    */
   putBooleanTfft(
     arrayBody: boolean[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutBooleanTfftOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -185,7 +254,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanInvalidNullOptionalParams
   ): Promise<ArrayGetBooleanInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -201,7 +270,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBooleanInvalidStringOptionalParams
   ): Promise<ArrayGetBooleanInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -217,7 +286,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntegerValidOptionalParams
   ): Promise<ArrayGetIntegerValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -235,7 +304,7 @@ export class ArrayImpl implements Array {
    */
   putIntegerValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutIntegerValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -252,7 +321,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntInvalidNullOptionalParams
   ): Promise<ArrayGetIntInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -268,7 +337,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetIntInvalidStringOptionalParams
   ): Promise<ArrayGetIntInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -284,7 +353,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongValidOptionalParams
   ): Promise<ArrayGetLongValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -302,7 +371,7 @@ export class ArrayImpl implements Array {
    */
   putLongValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutLongValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -319,7 +388,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongInvalidNullOptionalParams
   ): Promise<ArrayGetLongInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -335,7 +404,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetLongInvalidStringOptionalParams
   ): Promise<ArrayGetLongInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -351,7 +420,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatValidOptionalParams
   ): Promise<ArrayGetFloatValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -369,7 +438,7 @@ export class ArrayImpl implements Array {
    */
   putFloatValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutFloatValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -386,7 +455,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatInvalidNullOptionalParams
   ): Promise<ArrayGetFloatInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -402,7 +471,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetFloatInvalidStringOptionalParams
   ): Promise<ArrayGetFloatInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -418,7 +487,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleValidOptionalParams
   ): Promise<ArrayGetDoubleValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -436,7 +505,7 @@ export class ArrayImpl implements Array {
    */
   putDoubleValid(
     arrayBody: number[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDoubleValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -453,7 +522,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleInvalidNullOptionalParams
   ): Promise<ArrayGetDoubleInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -469,7 +538,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDoubleInvalidStringOptionalParams
   ): Promise<ArrayGetDoubleInvalidStringResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -485,7 +554,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringValidOptionalParams
   ): Promise<ArrayGetStringValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -503,7 +572,7 @@ export class ArrayImpl implements Array {
    */
   putStringValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutStringValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -520,7 +589,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getEnumValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetEnumValidOptionalParams
   ): Promise<ArrayGetEnumValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -538,7 +607,7 @@ export class ArrayImpl implements Array {
    */
   putEnumValid(
     arrayBody: FooEnum[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -555,7 +624,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringEnumValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringEnumValidOptionalParams
   ): Promise<ArrayGetStringEnumValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -573,7 +642,7 @@ export class ArrayImpl implements Array {
    */
   putStringEnumValid(
     arrayBody: Enum1[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutStringEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -590,7 +659,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringWithNullOptionalParams
   ): Promise<ArrayGetStringWithNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -606,7 +675,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetStringWithInvalidOptionalParams
   ): Promise<ArrayGetStringWithInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -623,7 +692,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getUuidValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetUuidValidOptionalParams
   ): Promise<ArrayGetUuidValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -643,7 +712,7 @@ export class ArrayImpl implements Array {
    */
   putUuidValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutUuidValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -660,7 +729,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getUuidInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetUuidInvalidCharsOptionalParams
   ): Promise<ArrayGetUuidInvalidCharsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -676,7 +745,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateValidOptionalParams
   ): Promise<ArrayGetDateValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -694,7 +763,7 @@ export class ArrayImpl implements Array {
    */
   putDateValid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -711,7 +780,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateInvalidNullOptionalParams
   ): Promise<ArrayGetDateInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -727,7 +796,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateInvalidCharsOptionalParams
   ): Promise<ArrayGetDateInvalidCharsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -744,7 +813,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeValidOptionalParams
   ): Promise<ArrayGetDateTimeValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -763,7 +832,7 @@ export class ArrayImpl implements Array {
    */
   putDateTimeValid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -780,7 +849,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeInvalidNullOptionalParams
   ): Promise<ArrayGetDateTimeInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -796,7 +865,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeInvalidCharsOptionalParams
   ): Promise<ArrayGetDateTimeInvalidCharsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -813,7 +882,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDateTimeRfc1123ValidOptionalParams
   ): Promise<ArrayGetDateTimeRfc1123ValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -833,7 +902,7 @@ export class ArrayImpl implements Array {
    */
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDateTimeRfc1123ValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -850,7 +919,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDurationValidOptionalParams
   ): Promise<ArrayGetDurationValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -868,7 +937,7 @@ export class ArrayImpl implements Array {
    */
   putDurationValid(
     arrayBody: string[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDurationValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -886,7 +955,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetByteValidOptionalParams
   ): Promise<ArrayGetByteValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -906,7 +975,7 @@ export class ArrayImpl implements Array {
    */
   putByteValid(
     arrayBody: Uint8Array[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutByteValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -923,7 +992,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetByteInvalidNullOptionalParams
   ): Promise<ArrayGetByteInvalidNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -940,7 +1009,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetBase64UrlOptionalParams
   ): Promise<ArrayGetBase64UrlResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -956,7 +1025,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexNullOptionalParams
   ): Promise<ArrayGetComplexNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -972,7 +1041,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexEmptyOptionalParams
   ): Promise<ArrayGetComplexEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -989,7 +1058,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexItemNullOptionalParams
   ): Promise<ArrayGetComplexItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1006,7 +1075,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexItemEmptyOptionalParams
   ): Promise<ArrayGetComplexItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1023,7 +1092,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetComplexValidOptionalParams
   ): Promise<ArrayGetComplexValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1043,7 +1112,7 @@ export class ArrayImpl implements Array {
    */
   putComplexValid(
     arrayBody: Product[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutComplexValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -1060,7 +1129,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayNullOptionalParams
   ): Promise<ArrayGetArrayNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1076,7 +1145,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayEmptyOptionalParams
   ): Promise<ArrayGetArrayEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1092,7 +1161,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayItemNullOptionalParams
   ): Promise<ArrayGetArrayItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1108,7 +1177,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayItemEmptyOptionalParams
   ): Promise<ArrayGetArrayItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1124,7 +1193,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetArrayValidOptionalParams
   ): Promise<ArrayGetArrayValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1142,7 +1211,7 @@ export class ArrayImpl implements Array {
    */
   putArrayValid(
     arrayBody: string[][],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutArrayValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,
@@ -1159,7 +1228,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryNullOptionalParams
   ): Promise<ArrayGetDictionaryNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1175,7 +1244,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryEmptyOptionalParams
   ): Promise<ArrayGetDictionaryEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1192,7 +1261,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryItemNullOptionalParams
   ): Promise<ArrayGetDictionaryItemNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1209,7 +1278,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryItemEmptyOptionalParams
   ): Promise<ArrayGetDictionaryItemEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1226,7 +1295,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: coreHttp.OperationOptions
+    options?: ArrayGetDictionaryValidOptionalParams
   ): Promise<ArrayGetDictionaryValidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1247,7 +1316,7 @@ export class ArrayImpl implements Array {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
-    options?: coreHttp.OperationOptions
+    options?: ArrayPutDictionaryValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       arrayBody,

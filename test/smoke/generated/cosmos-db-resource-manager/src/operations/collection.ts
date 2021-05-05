@@ -15,9 +15,11 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   Metric,
+  CollectionListMetricsOptionalParams,
   Usage,
   CollectionListUsagesOptionalParams,
   MetricDefinition,
+  CollectionListMetricDefinitionsOptionalParams,
   CollectionListMetricsResponse,
   CollectionListUsagesResponse,
   CollectionListMetricDefinitionsResponse
@@ -53,7 +55,7 @@ export class CollectionImpl implements Collection {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -89,7 +91,7 @@ export class CollectionImpl implements Collection {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -108,7 +110,7 @@ export class CollectionImpl implements Collection {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -211,7 +213,7 @@ export class CollectionImpl implements Collection {
     accountName: string,
     databaseRid: string,
     collectionRid: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -244,7 +246,7 @@ export class CollectionImpl implements Collection {
     accountName: string,
     databaseRid: string,
     collectionRid: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result = await this._listMetricDefinitions(
       resourceGroupName,
@@ -261,7 +263,7 @@ export class CollectionImpl implements Collection {
     accountName: string,
     databaseRid: string,
     collectionRid: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -291,7 +293,7 @@ export class CollectionImpl implements Collection {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricsOptionalParams
   ): Promise<CollectionListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -348,7 +350,7 @@ export class CollectionImpl implements Collection {
     accountName: string,
     databaseRid: string,
     collectionRid: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionListMetricDefinitionsOptionalParams
   ): Promise<CollectionListMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

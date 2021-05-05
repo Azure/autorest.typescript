@@ -7,7 +7,12 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { PolymorphicrecursiveGetValidResponse, FishUnion } from "../models";
+import {
+  PolymorphicrecursiveGetValidOptionalParams,
+  PolymorphicrecursiveGetValidResponse,
+  FishUnion,
+  PolymorphicrecursivePutValidOptionalParams
+} from "../models";
 
 /** Interface representing a Polymorphicrecursive. */
 export interface Polymorphicrecursive {
@@ -16,7 +21,7 @@ export interface Polymorphicrecursive {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: PolymorphicrecursiveGetValidOptionalParams
   ): Promise<PolymorphicrecursiveGetValidResponse>;
   /**
    * Put complex types that are polymorphic and have recursive references
@@ -77,6 +82,6 @@ export interface Polymorphicrecursive {
    */
   putValid(
     complexBody: FishUnion,
-    options?: coreHttp.OperationOptions
+    options?: PolymorphicrecursivePutValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

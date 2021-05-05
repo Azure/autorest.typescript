@@ -9,7 +9,13 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { VpnSiteLink, VpnSiteLinksGetResponse } from "../models";
+import {
+  VpnSiteLink,
+  VpnSiteLinksListByVpnSiteNextOptionalParams,
+  VpnSiteLinksListByVpnSiteOptionalParams,
+  VpnSiteLinksGetOptionalParams,
+  VpnSiteLinksGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a VpnSiteLinks. */
@@ -23,7 +29,7 @@ export interface VpnSiteLinks {
   listByVpnSite(
     resourceGroupName: string,
     vpnSiteName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): PagedAsyncIterableIterator<VpnSiteLink>;
   /**
    * Retrieves the details of a VPN site link.
@@ -36,6 +42,6 @@ export interface VpnSiteLinks {
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnSiteLinksGetOptionalParams
   ): Promise<VpnSiteLinksGetResponse>;
 }

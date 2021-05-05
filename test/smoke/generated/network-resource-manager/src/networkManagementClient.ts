@@ -210,16 +210,28 @@ import {
   NetworkManagementClientOptionalParams,
   BastionShareableLink,
   BastionShareableLinkListRequest,
+  NetworkManagementClientPutBastionShareableLinkNextOptionalParams,
+  NetworkManagementClientPutBastionShareableLinkOptionalParams,
+  NetworkManagementClientGetBastionShareableLinkNextOptionalParams,
+  NetworkManagementClientGetBastionShareableLinkOptionalParams,
   BastionActiveSession,
+  NetworkManagementClientGetActiveSessionsNextOptionalParams,
+  NetworkManagementClientGetActiveSessionsOptionalParams,
   BastionSessionState,
   SessionIds,
+  NetworkManagementClientDisconnectActiveSessionsNextOptionalParams,
+  NetworkManagementClientDisconnectActiveSessionsOptionalParams,
   NetworkManagementClientPutBastionShareableLinkResponse,
+  NetworkManagementClientDeleteBastionShareableLinkOptionalParams,
   NetworkManagementClientGetBastionShareableLinkResponse,
   NetworkManagementClientGetActiveSessionsResponse,
   NetworkManagementClientDisconnectActiveSessionsResponse,
+  NetworkManagementClientCheckDnsNameAvailabilityOptionalParams,
   NetworkManagementClientCheckDnsNameAvailabilityResponse,
+  NetworkManagementClientSupportedSecurityProvidersOptionalParams,
   NetworkManagementClientSupportedSecurityProvidersResponse,
   VirtualWanVpnProfileParameters,
+  NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams,
   NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse,
   NetworkManagementClientPutBastionShareableLinkNextResponse,
   NetworkManagementClientGetBastionShareableLinkNextResponse,
@@ -403,7 +415,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientPutBastionShareableLinkOptionalParams
   ): PagedAsyncIterableIterator<BastionShareableLink> {
     const iter = this.putBastionShareableLinkPagingAll(
       resourceGroupName,
@@ -433,7 +445,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientPutBastionShareableLinkOptionalParams
   ): AsyncIterableIterator<BastionShareableLink[]> {
     const poller = await this._putBastionShareableLink(
       resourceGroupName,
@@ -461,7 +473,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientPutBastionShareableLinkOptionalParams
   ): AsyncIterableIterator<BastionShareableLink> {
     for await (const page of this.putBastionShareableLinkPagingPage(
       resourceGroupName,
@@ -484,7 +496,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetBastionShareableLinkOptionalParams
   ): PagedAsyncIterableIterator<BastionShareableLink> {
     const iter = this.getBastionShareableLinkPagingAll(
       resourceGroupName,
@@ -514,7 +526,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetBastionShareableLinkOptionalParams
   ): AsyncIterableIterator<BastionShareableLink[]> {
     let result = await this._getBastionShareableLink(
       resourceGroupName,
@@ -541,7 +553,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetBastionShareableLinkOptionalParams
   ): AsyncIterableIterator<BastionShareableLink> {
     for await (const page of this.getBastionShareableLinkPagingPage(
       resourceGroupName,
@@ -562,7 +574,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   public listActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetActiveSessionsOptionalParams
   ): PagedAsyncIterableIterator<BastionActiveSession> {
     const iter = this.getActiveSessionsPagingAll(
       resourceGroupName,
@@ -589,7 +601,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   private async *getActiveSessionsPagingPage(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetActiveSessionsOptionalParams
   ): AsyncIterableIterator<BastionActiveSession[]> {
     const poller = await this._getActiveSessions(
       resourceGroupName,
@@ -614,7 +626,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   private async *getActiveSessionsPagingAll(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetActiveSessionsOptionalParams
   ): AsyncIterableIterator<BastionActiveSession> {
     for await (const page of this.getActiveSessionsPagingPage(
       resourceGroupName,
@@ -636,7 +648,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams
   ): PagedAsyncIterableIterator<BastionSessionState> {
     const iter = this.disconnectActiveSessionsPagingAll(
       resourceGroupName,
@@ -666,7 +678,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams
   ): AsyncIterableIterator<BastionSessionState[]> {
     let result = await this._disconnectActiveSessions(
       resourceGroupName,
@@ -693,7 +705,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams
   ): AsyncIterableIterator<BastionSessionState> {
     for await (const page of this.disconnectActiveSessionsPagingPage(
       resourceGroupName,
@@ -716,7 +728,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientPutBastionShareableLinkOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -740,17 +752,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      putBastionShareableLinkOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: putBastionShareableLinkOperationSpec,
-      initialOperationResult,
+      putBastionShareableLinkOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -764,7 +772,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -783,17 +791,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteBastionShareableLinkOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteBastionShareableLinkOperationSpec,
-      initialOperationResult,
+      deleteBastionShareableLinkOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -807,7 +811,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetBastionShareableLinkOptionalParams
   ): Promise<NetworkManagementClientGetBastionShareableLinkResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -830,7 +834,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   private async _getActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetActiveSessionsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NetworkManagementClientGetActiveSessionsResponse>,
@@ -851,17 +855,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getActiveSessionsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getActiveSessionsOperationSpec,
-      initialOperationResult,
+      getActiveSessionsOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -875,7 +875,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams
   ): Promise<NetworkManagementClientDisconnectActiveSessionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -899,7 +899,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   checkDnsNameAvailability(
     location: string,
     domainNameLabel: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientCheckDnsNameAvailabilityOptionalParams
   ): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -921,7 +921,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   supportedSecurityProviders(
     resourceGroupName: string,
     virtualWANName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientSupportedSecurityProvidersOptionalParams
   ): Promise<NetworkManagementClientSupportedSecurityProvidersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -947,7 +947,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     virtualWANName: string,
     vpnClientParams: VirtualWanVpnProfileParameters,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -971,17 +971,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
-      initialOperationResult,
+      generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -998,7 +994,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientPutBastionShareableLinkNextOptionalParams
   ): Promise<NetworkManagementClientPutBastionShareableLinkNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1027,7 +1023,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetBastionShareableLinkNextOptionalParams
   ): Promise<NetworkManagementClientGetBastionShareableLinkNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1053,7 +1049,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     resourceGroupName: string,
     bastionHostName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientGetActiveSessionsNextOptionalParams
   ): Promise<NetworkManagementClientGetActiveSessionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1081,7 +1077,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     sessionIds: SessionIds,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkManagementClientDisconnectActiveSessionsNextOptionalParams
   ): Promise<NetworkManagementClientDisconnectActiveSessionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

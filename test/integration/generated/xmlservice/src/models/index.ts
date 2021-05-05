@@ -354,6 +354,10 @@ export type BlobType = "BlockBlob" | "PageBlob" | "AppendBlob";
 /** Defines values for CopyStatusType. */
 export type CopyStatusType = "pending" | "success" | "aborted" | "failed";
 
+/** Optional parameters. */
+export interface XmlGetComplexTypeRefNoMetaOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexTypeRefNoMeta operation. */
 export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta & {
   /** The underlying HTTP response. */
@@ -365,6 +369,14 @@ export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta & {
     parsedBody: RootWithRefAndNoMeta;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutComplexTypeRefNoMetaOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetComplexTypeRefWithMetaOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexTypeRefWithMeta operation. */
 export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta & {
@@ -378,6 +390,13 @@ export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutComplexTypeRefWithMetaOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetSimpleOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getSimple operation. */
 export type XmlGetSimpleResponse = Slideshow & {
   /** The underlying HTTP response. */
@@ -389,6 +408,13 @@ export type XmlGetSimpleResponse = Slideshow & {
     parsedBody: Slideshow;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutSimpleOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetWrappedListsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWrappedLists operation. */
 export type XmlGetWrappedListsResponse = AppleBarrel & {
@@ -402,6 +428,14 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutWrappedListsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetHeadersOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getHeaders operation. */
 export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
   /** The underlying HTTP response. */
@@ -410,6 +444,10 @@ export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
     parsedHeaders: XmlGetHeadersHeaders;
   };
 };
+
+/** Optional parameters. */
+export interface XmlGetEmptyListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyList operation. */
 export type XmlGetEmptyListResponse = Slideshow & {
@@ -423,6 +461,14 @@ export type XmlGetEmptyListResponse = Slideshow & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutEmptyListOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetEmptyWrappedListsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmptyWrappedLists operation. */
 export type XmlGetEmptyWrappedListsResponse = AppleBarrel & {
   /** The underlying HTTP response. */
@@ -434,6 +480,14 @@ export type XmlGetEmptyWrappedListsResponse = AppleBarrel & {
     parsedBody: AppleBarrel;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutEmptyWrappedListsOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetRootListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getRootList operation. */
 export type XmlGetRootListResponse = Banana[] & {
@@ -447,6 +501,14 @@ export type XmlGetRootListResponse = Banana[] & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutRootListOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetRootListSingleItemOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getRootListSingleItem operation. */
 export type XmlGetRootListSingleItemResponse = Banana[] & {
   /** The underlying HTTP response. */
@@ -458,6 +520,14 @@ export type XmlGetRootListSingleItemResponse = Banana[] & {
     parsedBody: Banana[];
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutRootListSingleItemOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetEmptyRootListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyRootList operation. */
 export type XmlGetEmptyRootListResponse = Banana[] & {
@@ -471,6 +541,14 @@ export type XmlGetEmptyRootListResponse = Banana[] & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutEmptyRootListOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetEmptyChildElementOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmptyChildElement operation. */
 export type XmlGetEmptyChildElementResponse = Banana & {
   /** The underlying HTTP response. */
@@ -482,6 +560,14 @@ export type XmlGetEmptyChildElementResponse = Banana & {
     parsedBody: Banana;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutEmptyChildElementOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlListContainersOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listContainers operation. */
 export type XmlListContainersResponse = ListContainersResponse & {
@@ -495,6 +581,10 @@ export type XmlListContainersResponse = ListContainersResponse & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlGetServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getServiceProperties operation. */
 export type XmlGetServicePropertiesResponse = StorageServiceProperties & {
   /** The underlying HTTP response. */
@@ -506,6 +596,13 @@ export type XmlGetServicePropertiesResponse = StorageServiceProperties & {
     parsedBody: StorageServiceProperties;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutServicePropertiesOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetAclsOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAcls operation. */
 export type XmlGetAclsResponse = SignedIdentifier[] & {
@@ -519,6 +616,12 @@ export type XmlGetAclsResponse = SignedIdentifier[] & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutAclsOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlListBlobsOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBlobs operation. */
 export type XmlListBlobsResponse = ListBlobsResponse & {
   /** The underlying HTTP response. */
@@ -530,6 +633,13 @@ export type XmlListBlobsResponse = ListBlobsResponse & {
     parsedBody: ListBlobsResponse;
   };
 };
+
+/** Optional parameters. */
+export interface XmlJsonInputOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlJsonOutputOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the jsonOutput operation. */
 export type XmlJsonOutputResponse = JsonOutput & {
@@ -543,6 +653,10 @@ export type XmlJsonOutputResponse = JsonOutput & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlGetXMsTextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getXMsText operation. */
 export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty & {
   /** The underlying HTTP response. */
@@ -554,6 +668,9 @@ export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty & {
     parsedBody: ObjectWithXMsTextProperty;
   };
 };
+
+/** Optional parameters. */
+export interface XmlGetBytesOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBytes operation. */
 export type XmlGetBytesResponse = ModelWithByteProperty & {
@@ -567,6 +684,12 @@ export type XmlGetBytesResponse = ModelWithByteProperty & {
   };
 };
 
+/** Optional parameters. */
+export interface XmlPutBinaryOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface XmlGetUriOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUri operation. */
 export type XmlGetUriResponse = ModelWithUrlProperty & {
   /** The underlying HTTP response. */
@@ -578,6 +701,9 @@ export type XmlGetUriResponse = ModelWithUrlProperty & {
     parsedBody: ModelWithUrlProperty;
   };
 };
+
+/** Optional parameters. */
+export interface XmlPutUriOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlServiceClientOptionalParams

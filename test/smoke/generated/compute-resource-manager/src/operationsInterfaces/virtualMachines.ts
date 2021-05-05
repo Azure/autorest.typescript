@@ -12,19 +12,40 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachine,
+  VirtualMachinesListByLocationNextOptionalParams,
+  VirtualMachinesListByLocationOptionalParams,
+  VirtualMachinesListNextOptionalParams,
+  VirtualMachinesListOptionalParams,
   VirtualMachinesListAllNextOptionalParams,
   VirtualMachinesListAllOptionalParams,
   VirtualMachineSize,
+  VirtualMachinesListAvailableSizesOptionalParams,
   VirtualMachineCaptureParameters,
+  VirtualMachinesCaptureOptionalParams,
   VirtualMachinesCaptureResponse,
+  VirtualMachinesCreateOrUpdateOptionalParams,
   VirtualMachinesCreateOrUpdateResponse,
   VirtualMachineUpdate,
+  VirtualMachinesUpdateOptionalParams,
   VirtualMachinesUpdateResponse,
+  VirtualMachinesDeleteOptionalParams,
+  VirtualMachinesGetOptionalParams,
   VirtualMachinesGetResponse,
+  VirtualMachinesInstanceViewOptionalParams,
   VirtualMachinesInstanceViewResponse,
+  VirtualMachinesConvertToManagedDisksOptionalParams,
+  VirtualMachinesDeallocateOptionalParams,
+  VirtualMachinesGeneralizeOptionalParams,
   VirtualMachinesPowerOffOptionalParams,
+  VirtualMachinesReapplyOptionalParams,
+  VirtualMachinesRestartOptionalParams,
+  VirtualMachinesStartOptionalParams,
+  VirtualMachinesRedeployOptionalParams,
   VirtualMachinesReimageOptionalParams,
+  VirtualMachinesPerformMaintenanceOptionalParams,
+  VirtualMachinesSimulateEvictionOptionalParams,
   RunCommandInput,
+  VirtualMachinesRunCommandOptionalParams,
   VirtualMachinesRunCommandResponse
 } from "../models";
 
@@ -38,7 +59,7 @@ export interface VirtualMachines {
    */
   listByLocation(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListByLocationOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachine>;
   /**
    * Lists all of the virtual machines in the specified resource group. Use the nextLink property in the
@@ -48,7 +69,7 @@ export interface VirtualMachines {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachine>;
   /**
    * Lists all of the virtual machines in the specified subscription. Use the nextLink property in the
@@ -67,7 +88,7 @@ export interface VirtualMachines {
   listAvailableSizes(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesListAvailableSizesOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineSize>;
   /**
    * Captures the VM by copying virtual hard disks of the VM and outputs a template that can be used to
@@ -81,7 +102,7 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesCaptureOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesCaptureResponse>,
@@ -100,7 +121,7 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachine,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesCreateOrUpdateResponse>,
@@ -118,7 +139,7 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesUpdateResponse>,
@@ -134,7 +155,7 @@ export interface VirtualMachines {
   delete(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -147,7 +168,7 @@ export interface VirtualMachines {
   get(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesGetOptionalParams
   ): Promise<VirtualMachinesGetResponse>;
   /**
    * Retrieves information about the run-time state of a virtual machine.
@@ -158,7 +179,7 @@ export interface VirtualMachines {
   instanceView(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesInstanceViewOptionalParams
   ): Promise<VirtualMachinesInstanceViewResponse>;
   /**
    * Converts virtual machine disks from blob-based to managed disks. Virtual machine must be
@@ -170,7 +191,7 @@ export interface VirtualMachines {
   convertToManagedDisks(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesConvertToManagedDisksOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -184,7 +205,7 @@ export interface VirtualMachines {
   deallocate(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesDeallocateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -202,7 +223,7 @@ export interface VirtualMachines {
   generalize(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesGeneralizeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * The operation to power off (stop) a virtual machine. The virtual machine can be restarted with the
@@ -227,7 +248,7 @@ export interface VirtualMachines {
   reapply(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesReapplyOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -240,7 +261,7 @@ export interface VirtualMachines {
   restart(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRestartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -253,7 +274,7 @@ export interface VirtualMachines {
   start(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -266,7 +287,7 @@ export interface VirtualMachines {
   redeploy(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRedeployOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -292,7 +313,7 @@ export interface VirtualMachines {
   performMaintenance(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesPerformMaintenanceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -306,7 +327,7 @@ export interface VirtualMachines {
   simulateEviction(
     resourceGroupName: string,
     vmName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesSimulateEvictionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Run command on the VM.
@@ -319,7 +340,7 @@ export interface VirtualMachines {
     resourceGroupName: string,
     vmName: string,
     parameters: RunCommandInput,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachinesRunCommandOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachinesRunCommandResponse>,

@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 /** ARM resource. */
 export interface Resource {
@@ -7413,6 +7412,10 @@ export type RecommendedIndexType =
   | "COLUMNSTORE"
   | "CLUSTERED COLUMNSTORE";
 
+/** Optional parameters. */
+export interface RecoverableDatabasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type RecoverableDatabasesGetResponse = RecoverableDatabase & {
   /** The underlying HTTP response. */
@@ -7424,6 +7427,10 @@ export type RecoverableDatabasesGetResponse = RecoverableDatabase & {
     parsedBody: RecoverableDatabase;
   };
 };
+
+/** Optional parameters. */
+export interface RecoverableDatabasesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListResult & {
@@ -7437,6 +7444,10 @@ export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListRe
   };
 };
 
+/** Optional parameters. */
+export interface RestorableDroppedDatabasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase & {
   /** The underlying HTTP response. */
@@ -7448,6 +7459,10 @@ export type RestorableDroppedDatabasesGetResponse = RestorableDroppedDatabase & 
     parsedBody: RestorableDroppedDatabase;
   };
 };
+
+/** Optional parameters. */
+export interface RestorableDroppedDatabasesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type RestorableDroppedDatabasesListByServerResponse = RestorableDroppedDatabaseListResult & {
@@ -7461,6 +7476,10 @@ export type RestorableDroppedDatabasesListByServerResponse = RestorableDroppedDa
   };
 };
 
+/** Optional parameters. */
+export interface ServerConnectionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPolicy & {
   /** The underlying HTTP response. */
@@ -7472,6 +7491,10 @@ export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPol
     parsedBody: ServerConnectionPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface ServerConnectionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy & {
@@ -7485,6 +7508,10 @@ export type ServerConnectionPoliciesGetResponse = ServerConnectionPolicy & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseThreatDetectionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type DatabaseThreatDetectionPoliciesGetResponse = DatabaseSecurityAlertPolicy & {
   /** The underlying HTTP response. */
@@ -7496,6 +7523,10 @@ export type DatabaseThreatDetectionPoliciesGetResponse = DatabaseSecurityAlertPo
     parsedBody: DatabaseSecurityAlertPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy & {
@@ -7509,6 +7540,10 @@ export type DatabaseThreatDetectionPoliciesCreateOrUpdateResponse = DatabaseSecu
   };
 };
 
+/** Optional parameters. */
+export interface DataMaskingPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DataMaskingPoliciesCreateOrUpdateResponse = DataMaskingPolicy & {
   /** The underlying HTTP response. */
@@ -7520,6 +7555,10 @@ export type DataMaskingPoliciesCreateOrUpdateResponse = DataMaskingPolicy & {
     parsedBody: DataMaskingPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface DataMaskingPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DataMaskingPoliciesGetResponse = DataMaskingPolicy & {
@@ -7533,6 +7572,10 @@ export type DataMaskingPoliciesGetResponse = DataMaskingPolicy & {
   };
 };
 
+/** Optional parameters. */
+export interface DataMaskingRulesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DataMaskingRulesCreateOrUpdateResponse = DataMaskingRule & {
   /** The underlying HTTP response. */
@@ -7544,6 +7587,10 @@ export type DataMaskingRulesCreateOrUpdateResponse = DataMaskingRule & {
     parsedBody: DataMaskingRule;
   };
 };
+
+/** Optional parameters. */
+export interface DataMaskingRulesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type DataMaskingRulesListByDatabaseResponse = DataMaskingRuleListResult & {
@@ -7557,6 +7604,10 @@ export type DataMaskingRulesListByDatabaseResponse = DataMaskingRuleListResult &
   };
 };
 
+/** Optional parameters. */
+export interface FirewallRulesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type FirewallRulesCreateOrUpdateResponse = FirewallRule & {
   /** The underlying HTTP response. */
@@ -7568,6 +7619,14 @@ export type FirewallRulesCreateOrUpdateResponse = FirewallRule & {
     parsedBody: FirewallRule;
   };
 };
+
+/** Optional parameters. */
+export interface FirewallRulesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface FirewallRulesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type FirewallRulesGetResponse = FirewallRule & {
@@ -7581,6 +7640,10 @@ export type FirewallRulesGetResponse = FirewallRule & {
   };
 };
 
+/** Optional parameters. */
+export interface FirewallRulesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServer operation. */
 export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
   /** The underlying HTTP response. */
@@ -7592,6 +7655,10 @@ export type FirewallRulesListByServerResponse = FirewallRuleListResult & {
     parsedBody: FirewallRuleListResult;
   };
 };
+
+/** Optional parameters. */
+export interface GeoBackupPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type GeoBackupPoliciesCreateOrUpdateResponse = GeoBackupPolicy & {
@@ -7605,6 +7672,10 @@ export type GeoBackupPoliciesCreateOrUpdateResponse = GeoBackupPolicy & {
   };
 };
 
+/** Optional parameters. */
+export interface GeoBackupPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type GeoBackupPoliciesGetResponse = GeoBackupPolicy & {
   /** The underlying HTTP response. */
@@ -7616,6 +7687,10 @@ export type GeoBackupPoliciesGetResponse = GeoBackupPolicy & {
     parsedBody: GeoBackupPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface GeoBackupPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type GeoBackupPoliciesListByDatabaseResponse = GeoBackupPolicyListResult & {
@@ -7629,6 +7704,15 @@ export type GeoBackupPoliciesListByDatabaseResponse = GeoBackupPolicyListResult 
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesImportOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the import operation. */
 export type DatabasesImportResponse = ImportExportResponse & {
   /** The underlying HTTP response. */
@@ -7638,10 +7722,17 @@ export type DatabasesImportResponse = ImportExportResponse & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesCreateImportOperationOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the createImportOperation operation. */
 export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
@@ -7652,10 +7743,17 @@ export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesExportOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the export operation. */
 export type DatabasesExportResponse = ImportExportResponse & {
@@ -7666,10 +7764,12 @@ export type DatabasesExportResponse = ImportExportResponse & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ImportExportResponse;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesListMetricsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMetrics operation. */
 export type DatabasesListMetricsResponse = MetricListResult & {
@@ -7683,6 +7783,10 @@ export type DatabasesListMetricsResponse = MetricListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesListMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMetricDefinitions operation. */
 export type DatabasesListMetricDefinitionsResponse = MetricDefinitionListResult & {
   /** The underlying HTTP response. */
@@ -7694,6 +7798,10 @@ export type DatabasesListMetricDefinitionsResponse = MetricDefinitionListResult 
     parsedBody: MetricDefinitionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type DatabasesListByServerResponse = DatabaseListResult & {
@@ -7707,6 +7815,9 @@ export type DatabasesListByServerResponse = DatabaseListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type DatabasesGetResponse = Database & {
   /** The underlying HTTP response. */
@@ -7719,6 +7830,15 @@ export type DatabasesGetResponse = Database & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DatabasesCreateOrUpdateResponse = Database & {
   /** The underlying HTTP response. */
@@ -7728,10 +7848,26 @@ export type DatabasesCreateOrUpdateResponse = Database & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DatabasesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type DatabasesUpdateResponse = Database & {
@@ -7742,10 +7878,12 @@ export type DatabasesUpdateResponse = Database & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesListByElasticPoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByElasticPool operation. */
 export type DatabasesListByElasticPoolResponse = DatabaseListResult & {
@@ -7759,6 +7897,15 @@ export type DatabasesListByElasticPoolResponse = DatabaseListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesPauseOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the pause operation. */
 export type DatabasesPauseResponse = Database & {
   /** The underlying HTTP response. */
@@ -7768,10 +7915,17 @@ export type DatabasesPauseResponse = Database & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesResumeOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the resume operation. */
 export type DatabasesResumeResponse = Database & {
@@ -7782,17 +7936,36 @@ export type DatabasesResumeResponse = Database & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Database;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface DatabasesUpgradeDataWarehouseOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DatabasesRenameOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatabasesFailoverOptionalParams
   extends coreHttp.OperationOptions {
   /** The type of replica to be failed over. */
   replicaType?: ReplicaType;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
 }
+
+/** Optional parameters. */
+export interface DatabasesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type DatabasesListByServerNextResponse = DatabaseListResult & {
@@ -7806,6 +7979,10 @@ export type DatabasesListByServerNextResponse = DatabaseListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabasesListByElasticPoolNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByElasticPoolNext operation. */
 export type DatabasesListByElasticPoolNextResponse = DatabaseListResult & {
   /** The underlying HTTP response. */
@@ -7818,6 +7995,10 @@ export type DatabasesListByElasticPoolNextResponse = DatabaseListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ElasticPoolsListMetricsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMetrics operation. */
 export type ElasticPoolsListMetricsResponse = MetricListResult & {
   /** The underlying HTTP response. */
@@ -7829,6 +8010,10 @@ export type ElasticPoolsListMetricsResponse = MetricListResult & {
     parsedBody: MetricListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ElasticPoolsListMetricDefinitionsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listMetricDefinitions operation. */
 export type ElasticPoolsListMetricDefinitionsResponse = MetricDefinitionListResult & {
@@ -7861,6 +8046,10 @@ export type ElasticPoolsListByServerResponse = ElasticPoolListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ElasticPoolsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ElasticPoolsGetResponse = ElasticPool & {
   /** The underlying HTTP response. */
@@ -7873,6 +8062,15 @@ export type ElasticPoolsGetResponse = ElasticPool & {
   };
 };
 
+/** Optional parameters. */
+export interface ElasticPoolsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
   /** The underlying HTTP response. */
@@ -7882,10 +8080,26 @@ export type ElasticPoolsCreateOrUpdateResponse = ElasticPool & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ElasticPool;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ElasticPoolsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ElasticPoolsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ElasticPoolsUpdateResponse = ElasticPool & {
@@ -7896,10 +8110,17 @@ export type ElasticPoolsUpdateResponse = ElasticPool & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ElasticPool;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ElasticPoolsFailoverOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface ElasticPoolsListByServerNextOptionalParams
@@ -7920,6 +8141,10 @@ export type ElasticPoolsListByServerNextResponse = ElasticPoolListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface RecommendedElasticPoolsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool & {
   /** The underlying HTTP response. */
@@ -7931,6 +8156,10 @@ export type RecommendedElasticPoolsGetResponse = RecommendedElasticPool & {
     parsedBody: RecommendedElasticPool;
   };
 };
+
+/** Optional parameters. */
+export interface RecommendedElasticPoolsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type RecommendedElasticPoolsListByServerResponse = RecommendedElasticPoolListResult & {
@@ -7944,6 +8173,10 @@ export type RecommendedElasticPoolsListByServerResponse = RecommendedElasticPool
   };
 };
 
+/** Optional parameters. */
+export interface RecommendedElasticPoolsListMetricsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMetrics operation. */
 export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolListMetricsResult & {
   /** The underlying HTTP response. */
@@ -7955,6 +8188,14 @@ export type RecommendedElasticPoolsListMetricsResponse = RecommendedElasticPoolL
     parsedBody: RecommendedElasticPoolListMetricsResult;
   };
 };
+
+/** Optional parameters. */
+export interface ReplicationLinksDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ReplicationLinksGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ReplicationLinksGetResponse = ReplicationLink & {
@@ -7968,6 +8209,37 @@ export type ReplicationLinksGetResponse = ReplicationLink & {
   };
 };
 
+/** Optional parameters. */
+export interface ReplicationLinksFailoverOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ReplicationLinksFailoverAllowDataLossOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ReplicationLinksUnlinkOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ReplicationLinksListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult & {
   /** The underlying HTTP response. */
@@ -7979,6 +8251,14 @@ export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult &
     parsedBody: ReplicationLinkListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerCommunicationLinksDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServerCommunicationLinksGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerCommunicationLinksGetResponse = ServerCommunicationLink & {
@@ -7992,6 +8272,15 @@ export type ServerCommunicationLinksGetResponse = ServerCommunicationLink & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerCommunicationLinksCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunicationLink & {
   /** The underlying HTTP response. */
@@ -8001,10 +8290,12 @@ export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunication
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerCommunicationLink;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerCommunicationLinksListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLinkListResult & {
@@ -8018,6 +8309,10 @@ export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLi
   };
 };
 
+/** Optional parameters. */
+export interface ServiceObjectivesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ServiceObjectivesGetResponse = ServiceObjective & {
   /** The underlying HTTP response. */
@@ -8029,6 +8324,10 @@ export type ServiceObjectivesGetResponse = ServiceObjective & {
     parsedBody: ServiceObjective;
   };
 };
+
+/** Optional parameters. */
+export interface ServiceObjectivesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult & {
@@ -8042,6 +8341,10 @@ export type ServiceObjectivesListByServerResponse = ServiceObjectiveListResult &
   };
 };
 
+/** Optional parameters. */
+export interface ElasticPoolActivitiesListByElasticPoolOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivityListResult & {
   /** The underlying HTTP response. */
@@ -8053,6 +8356,10 @@ export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivity
     parsedBody: ElasticPoolActivityListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPoolDatabaseActivityListResult & {
@@ -8066,6 +8373,10 @@ export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPool
   };
 };
 
+/** Optional parameters. */
+export interface ServiceTierAdvisorsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor & {
   /** The underlying HTTP response. */
@@ -8077,6 +8388,10 @@ export type ServiceTierAdvisorsGetResponse = ServiceTierAdvisor & {
     parsedBody: ServiceTierAdvisor;
   };
 };
+
+/** Optional parameters. */
+export interface ServiceTierAdvisorsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListResult & {
@@ -8090,6 +8405,10 @@ export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListRe
   };
 };
 
+/** Optional parameters. */
+export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption & {
   /** The underlying HTTP response. */
@@ -8101,6 +8420,10 @@ export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEn
     parsedBody: TransparentDataEncryption;
   };
 };
+
+/** Optional parameters. */
+export interface TransparentDataEncryptionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & {
@@ -8114,6 +8437,10 @@ export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & 
   };
 };
 
+/** Optional parameters. */
+export interface TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByConfiguration operation. */
 export type TransparentDataEncryptionActivitiesListByConfigurationResponse = TransparentDataEncryptionActivityListResult & {
   /** The underlying HTTP response. */
@@ -8125,6 +8452,10 @@ export type TransparentDataEncryptionActivitiesListByConfigurationResponse = Tra
     parsedBody: TransparentDataEncryptionActivityListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerUsagesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerUsagesListByServerResponse = ServerUsageListResult & {
@@ -8138,6 +8469,10 @@ export type ServerUsagesListByServerResponse = ServerUsageListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseUsagesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
   /** The underlying HTTP response. */
@@ -8149,6 +8484,10 @@ export type DatabaseUsagesListByDatabaseResponse = DatabaseUsageListResult & {
     parsedBody: DatabaseUsageListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseAutomaticTuningGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef & {
@@ -8162,6 +8501,10 @@ export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef & {
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseAutomaticTuningUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef & {
   /** The underlying HTTP response. */
@@ -8173,6 +8516,19 @@ export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef &
     parsedBody: DatabaseAutomaticTuningDef;
   };
 };
+
+/** Optional parameters. */
+export interface EncryptionProtectorsRevalidateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface EncryptionProtectorsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListResult & {
@@ -8186,6 +8542,10 @@ export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListRe
   };
 };
 
+/** Optional parameters. */
+export interface EncryptionProtectorsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type EncryptionProtectorsGetResponse = EncryptionProtector & {
   /** The underlying HTTP response. */
@@ -8198,6 +8558,15 @@ export type EncryptionProtectorsGetResponse = EncryptionProtector & {
   };
 };
 
+/** Optional parameters. */
+export interface EncryptionProtectorsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
   /** The underlying HTTP response. */
@@ -8207,10 +8576,12 @@ export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: EncryptionProtector;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface EncryptionProtectorsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorListResult & {
@@ -8224,6 +8595,10 @@ export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorLi
   };
 };
 
+/** Optional parameters. */
+export interface FailoverGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type FailoverGroupsGetResponse = FailoverGroup & {
   /** The underlying HTTP response. */
@@ -8236,6 +8611,15 @@ export type FailoverGroupsGetResponse = FailoverGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface FailoverGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
   /** The underlying HTTP response. */
@@ -8245,10 +8629,26 @@ export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface FailoverGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface FailoverGroupsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type FailoverGroupsUpdateResponse = FailoverGroup & {
@@ -8259,10 +8659,12 @@ export type FailoverGroupsUpdateResponse = FailoverGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface FailoverGroupsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type FailoverGroupsListByServerResponse = FailoverGroupListResult & {
@@ -8276,6 +8678,15 @@ export type FailoverGroupsListByServerResponse = FailoverGroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface FailoverGroupsFailoverOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the failover operation. */
 export type FailoverGroupsFailoverResponse = FailoverGroup & {
   /** The underlying HTTP response. */
@@ -8285,10 +8696,17 @@ export type FailoverGroupsFailoverResponse = FailoverGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface FailoverGroupsForceFailoverAllowDataLossOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the forceFailoverAllowDataLoss operation. */
 export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
@@ -8299,10 +8717,12 @@ export type FailoverGroupsForceFailoverAllowDataLossResponse = FailoverGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: FailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface FailoverGroupsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type FailoverGroupsListByServerNextResponse = FailoverGroupListResult & {
@@ -8316,6 +8736,10 @@ export type FailoverGroupsListByServerNextResponse = FailoverGroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -8327,6 +8751,10 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
@@ -8340,6 +8768,10 @@ export type OperationsListNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerKeysListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServer operation. */
 export type ServerKeysListByServerResponse = ServerKeyListResult & {
   /** The underlying HTTP response. */
@@ -8351,6 +8783,10 @@ export type ServerKeysListByServerResponse = ServerKeyListResult & {
     parsedBody: ServerKeyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerKeysGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerKeysGetResponse = ServerKey & {
@@ -8364,6 +8800,15 @@ export type ServerKeysGetResponse = ServerKey & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerKeysCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerKeysCreateOrUpdateResponse = ServerKey & {
   /** The underlying HTTP response. */
@@ -8373,10 +8818,21 @@ export type ServerKeysCreateOrUpdateResponse = ServerKey & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerKey;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerKeysDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ServerKeysListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type ServerKeysListByServerNextResponse = ServerKeyListResult & {
@@ -8390,6 +8846,10 @@ export type ServerKeysListByServerNextResponse = ServerKeyListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncAgentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SyncAgentsGetResponse = SyncAgent & {
   /** The underlying HTTP response. */
@@ -8402,6 +8862,15 @@ export type SyncAgentsGetResponse = SyncAgent & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncAgentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
   /** The underlying HTTP response. */
@@ -8411,10 +8880,21 @@ export type SyncAgentsCreateOrUpdateResponse = SyncAgent & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SyncAgent;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SyncAgentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SyncAgentsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type SyncAgentsListByServerResponse = SyncAgentListResult & {
@@ -8428,6 +8908,10 @@ export type SyncAgentsListByServerResponse = SyncAgentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncAgentsGenerateKeyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the generateKey operation. */
 export type SyncAgentsGenerateKeyResponse = SyncAgentKeyProperties & {
   /** The underlying HTTP response. */
@@ -8439,6 +8923,10 @@ export type SyncAgentsGenerateKeyResponse = SyncAgentKeyProperties & {
     parsedBody: SyncAgentKeyProperties;
   };
 };
+
+/** Optional parameters. */
+export interface SyncAgentsListLinkedDatabasesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listLinkedDatabases operation. */
 export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListResult & {
@@ -8452,6 +8940,10 @@ export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListR
   };
 };
 
+/** Optional parameters. */
+export interface SyncAgentsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type SyncAgentsListByServerNextResponse = SyncAgentListResult & {
   /** The underlying HTTP response. */
@@ -8463,6 +8955,10 @@ export type SyncAgentsListByServerNextResponse = SyncAgentListResult & {
     parsedBody: SyncAgentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SyncAgentsListLinkedDatabasesNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listLinkedDatabasesNext operation. */
 export type SyncAgentsListLinkedDatabasesNextResponse = SyncAgentLinkedDatabaseListResult & {
@@ -8476,6 +8972,10 @@ export type SyncAgentsListLinkedDatabasesNextResponse = SyncAgentLinkedDatabaseL
   };
 };
 
+/** Optional parameters. */
+export interface SyncGroupsListSyncDatabaseIdsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSyncDatabaseIds operation. */
 export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
   /** The underlying HTTP response. */
@@ -8487,6 +8987,19 @@ export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
     parsedBody: SyncDatabaseIdListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SyncGroupsRefreshHubSchemaOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SyncGroupsListHubSchemasOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHubSchemas operation. */
 export type SyncGroupsListHubSchemasResponse = SyncFullSchemaPropertiesListResult & {
@@ -8519,6 +9032,18 @@ export type SyncGroupsListLogsResponse = SyncGroupLogListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncGroupsCancelSyncOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface SyncGroupsTriggerSyncOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface SyncGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SyncGroupsGetResponse = SyncGroup & {
   /** The underlying HTTP response. */
@@ -8531,6 +9056,15 @@ export type SyncGroupsGetResponse = SyncGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
   /** The underlying HTTP response. */
@@ -8540,10 +9074,26 @@ export type SyncGroupsCreateOrUpdateResponse = SyncGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SyncGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SyncGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SyncGroupsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type SyncGroupsUpdateResponse = SyncGroup & {
@@ -8554,10 +9104,12 @@ export type SyncGroupsUpdateResponse = SyncGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SyncGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SyncGroupsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type SyncGroupsListByDatabaseResponse = SyncGroupListResult & {
@@ -8571,6 +9123,10 @@ export type SyncGroupsListByDatabaseResponse = SyncGroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncGroupsListSyncDatabaseIdsNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listSyncDatabaseIdsNext operation. */
 export type SyncGroupsListSyncDatabaseIdsNextResponse = SyncDatabaseIdListResult & {
   /** The underlying HTTP response. */
@@ -8582,6 +9138,10 @@ export type SyncGroupsListSyncDatabaseIdsNextResponse = SyncDatabaseIdListResult
     parsedBody: SyncDatabaseIdListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SyncGroupsListHubSchemasNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listHubSchemasNext operation. */
 export type SyncGroupsListHubSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
@@ -8614,6 +9174,10 @@ export type SyncGroupsListLogsNextResponse = SyncGroupLogListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncGroupsListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type SyncGroupsListByDatabaseNextResponse = SyncGroupListResult & {
   /** The underlying HTTP response. */
@@ -8625,6 +9189,10 @@ export type SyncGroupsListByDatabaseNextResponse = SyncGroupListResult & {
     parsedBody: SyncGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SyncMembersGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type SyncMembersGetResponse = SyncMember & {
@@ -8638,6 +9206,15 @@ export type SyncMembersGetResponse = SyncMember & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncMembersCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type SyncMembersCreateOrUpdateResponse = SyncMember & {
   /** The underlying HTTP response. */
@@ -8647,10 +9224,26 @@ export type SyncMembersCreateOrUpdateResponse = SyncMember & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SyncMember;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SyncMembersDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SyncMembersUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type SyncMembersUpdateResponse = SyncMember & {
@@ -8661,10 +9254,12 @@ export type SyncMembersUpdateResponse = SyncMember & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: SyncMember;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface SyncMembersListBySyncGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySyncGroup operation. */
 export type SyncMembersListBySyncGroupResponse = SyncMemberListResult & {
@@ -8678,6 +9273,10 @@ export type SyncMembersListBySyncGroupResponse = SyncMemberListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncMembersListMemberSchemasOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMemberSchemas operation. */
 export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListResult & {
   /** The underlying HTTP response. */
@@ -8689,6 +9288,19 @@ export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListR
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SyncMembersRefreshMemberSchemaOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface SyncMembersListBySyncGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySyncGroupNext operation. */
 export type SyncMembersListBySyncGroupNextResponse = SyncMemberListResult & {
@@ -8702,6 +9314,10 @@ export type SyncMembersListBySyncGroupNextResponse = SyncMemberListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SyncMembersListMemberSchemasNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listMemberSchemasNext operation. */
 export type SyncMembersListMemberSchemasNextResponse = SyncFullSchemaPropertiesListResult & {
   /** The underlying HTTP response. */
@@ -8713,6 +9329,10 @@ export type SyncMembersListMemberSchemasNextResponse = SyncFullSchemaPropertiesL
     parsedBody: SyncFullSchemaPropertiesListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SubscriptionUsagesListByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
 export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResult & {
@@ -8726,6 +9346,10 @@ export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResu
   };
 };
 
+/** Optional parameters. */
+export interface SubscriptionUsagesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SubscriptionUsagesGetResponse = SubscriptionUsage & {
   /** The underlying HTTP response. */
@@ -8737,6 +9361,10 @@ export type SubscriptionUsagesGetResponse = SubscriptionUsage & {
     parsedBody: SubscriptionUsage;
   };
 };
+
+/** Optional parameters. */
+export interface SubscriptionUsagesListByLocationNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
 export type SubscriptionUsagesListByLocationNextResponse = SubscriptionUsageListResult & {
@@ -8750,6 +9378,10 @@ export type SubscriptionUsagesListByLocationNextResponse = SubscriptionUsageList
   };
 };
 
+/** Optional parameters. */
+export interface VirtualClustersListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type VirtualClustersListResponse = VirtualClusterListResult & {
   /** The underlying HTTP response. */
@@ -8761,6 +9393,10 @@ export type VirtualClustersListResponse = VirtualClusterListResult & {
     parsedBody: VirtualClusterListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualClustersListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResult & {
@@ -8774,6 +9410,10 @@ export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResul
   };
 };
 
+/** Optional parameters. */
+export interface VirtualClustersGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type VirtualClustersGetResponse = VirtualCluster & {
   /** The underlying HTTP response. */
@@ -8786,6 +9426,24 @@ export type VirtualClustersGetResponse = VirtualCluster & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualClustersDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualClustersUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the update operation. */
 export type VirtualClustersUpdateResponse = VirtualCluster & {
   /** The underlying HTTP response. */
@@ -8795,10 +9453,12 @@ export type VirtualClustersUpdateResponse = VirtualCluster & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualCluster;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualClustersListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type VirtualClustersListNextResponse = VirtualClusterListResult & {
@@ -8812,6 +9472,10 @@ export type VirtualClustersListNextResponse = VirtualClusterListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualClustersListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type VirtualClustersListByResourceGroupNextResponse = VirtualClusterListResult & {
   /** The underlying HTTP response. */
@@ -8823,6 +9487,10 @@ export type VirtualClustersListByResourceGroupNextResponse = VirtualClusterListR
     parsedBody: VirtualClusterListResult;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualNetworkRulesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type VirtualNetworkRulesGetResponse = VirtualNetworkRule & {
@@ -8836,6 +9504,15 @@ export type VirtualNetworkRulesGetResponse = VirtualNetworkRule & {
   };
 };
 
+/** Optional parameters. */
+export interface VirtualNetworkRulesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
   /** The underlying HTTP response. */
@@ -8845,10 +9522,21 @@ export type VirtualNetworkRulesCreateOrUpdateResponse = VirtualNetworkRule & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: VirtualNetworkRule;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface VirtualNetworkRulesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface VirtualNetworkRulesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResult & {
@@ -8862,6 +9550,10 @@ export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResu
   };
 };
 
+/** Optional parameters. */
+export interface VirtualNetworkRulesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type VirtualNetworkRulesListByServerNextResponse = VirtualNetworkRuleListResult & {
   /** The underlying HTTP response. */
@@ -8873,6 +9565,10 @@ export type VirtualNetworkRulesListByServerNextResponse = VirtualNetworkRuleList
     parsedBody: VirtualNetworkRuleListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBlobAuditingPolicy & {
@@ -8886,6 +9582,10 @@ export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBl
   };
 };
 
+/** Optional parameters. */
+export interface ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedDatabaseBlobAuditingPolicy & {
   /** The underlying HTTP response. */
@@ -8897,6 +9597,10 @@ export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse = Extende
     parsedBody: ExtendedDatabaseBlobAuditingPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
@@ -8910,6 +9614,10 @@ export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = Extende
   };
 };
 
+/** Optional parameters. */
+export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse = ExtendedDatabaseBlobAuditingPolicyListResult & {
   /** The underlying HTTP response. */
@@ -8921,6 +9629,10 @@ export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse = Ext
     parsedBody: ExtendedDatabaseBlobAuditingPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ExtendedServerBlobAuditingPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAuditingPolicy & {
@@ -8934,6 +9646,15 @@ export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAu
   };
 };
 
+/** Optional parameters. */
+export interface ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedServerBlobAuditingPolicy & {
   /** The underlying HTTP response. */
@@ -8943,10 +9664,12 @@ export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedS
 
     /** The response body as parsed JSON or XML */
     parsedBody: ExtendedServerBlobAuditingPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedServerBlobAuditingPolicyListResult & {
@@ -8960,6 +9683,10 @@ export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedSer
   };
 };
 
+/** Optional parameters. */
+export interface ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse = ExtendedServerBlobAuditingPolicyListResult & {
   /** The underlying HTTP response. */
@@ -8971,6 +9698,10 @@ export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse = Extende
     parsedBody: ExtendedServerBlobAuditingPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerBlobAuditingPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerBlobAuditingPoliciesGetResponse = ServerBlobAuditingPolicy & {
@@ -8984,6 +9715,15 @@ export type ServerBlobAuditingPoliciesGetResponse = ServerBlobAuditingPolicy & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditingPolicy & {
   /** The underlying HTTP response. */
@@ -8993,10 +9733,12 @@ export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditin
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerBlobAuditingPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerBlobAuditingPoliciesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingPolicyListResult & {
@@ -9010,6 +9752,10 @@ export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingP
   };
 };
 
+/** Optional parameters. */
+export interface ServerBlobAuditingPoliciesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type ServerBlobAuditingPoliciesListByServerNextResponse = ServerBlobAuditingPolicyListResult & {
   /** The underlying HTTP response. */
@@ -9021,6 +9767,10 @@ export type ServerBlobAuditingPoliciesListByServerNextResponse = ServerBlobAudit
     parsedBody: ServerBlobAuditingPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseBlobAuditingPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy & {
@@ -9034,6 +9784,10 @@ export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAuditingPolicy & {
   /** The underlying HTTP response. */
@@ -9045,6 +9799,10 @@ export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAud
     parsedBody: DatabaseBlobAuditingPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAuditingPolicyListResult & {
@@ -9058,6 +9816,10 @@ export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAud
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse = DatabaseBlobAuditingPolicyListResult & {
   /** The underlying HTTP response. */
@@ -9069,6 +9831,10 @@ export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse = DatabaseBlo
     parsedBody: DatabaseBlobAuditingPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
@@ -9082,6 +9848,10 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVu
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
   /** The underlying HTTP response. */
@@ -9093,6 +9863,14 @@ export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse =
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
@@ -9106,6 +9884,10 @@ export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityA
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
   /** The underlying HTTP response. */
@@ -9117,6 +9899,14 @@ export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVul
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
@@ -9130,6 +9920,10 @@ export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVul
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
   /** The underlying HTTP response. */
@@ -9141,6 +9935,10 @@ export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = Databas
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobAgentsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type JobAgentsListByServerResponse = JobAgentListResult & {
@@ -9154,6 +9952,9 @@ export type JobAgentsListByServerResponse = JobAgentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobAgentsGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type JobAgentsGetResponse = JobAgent & {
   /** The underlying HTTP response. */
@@ -9166,6 +9967,15 @@ export type JobAgentsGetResponse = JobAgent & {
   };
 };
 
+/** Optional parameters. */
+export interface JobAgentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobAgentsCreateOrUpdateResponse = JobAgent & {
   /** The underlying HTTP response. */
@@ -9175,10 +9985,26 @@ export type JobAgentsCreateOrUpdateResponse = JobAgent & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: JobAgent;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface JobAgentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface JobAgentsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type JobAgentsUpdateResponse = JobAgent & {
@@ -9189,10 +10015,12 @@ export type JobAgentsUpdateResponse = JobAgent & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: JobAgent;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface JobAgentsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type JobAgentsListByServerNextResponse = JobAgentListResult & {
@@ -9206,6 +10034,10 @@ export type JobAgentsListByServerNextResponse = JobAgentListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobCredentialsListByAgentOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByAgent operation. */
 export type JobCredentialsListByAgentResponse = JobCredentialListResult & {
   /** The underlying HTTP response. */
@@ -9217,6 +10049,10 @@ export type JobCredentialsListByAgentResponse = JobCredentialListResult & {
     parsedBody: JobCredentialListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobCredentialsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type JobCredentialsGetResponse = JobCredential & {
@@ -9230,6 +10066,10 @@ export type JobCredentialsGetResponse = JobCredential & {
   };
 };
 
+/** Optional parameters. */
+export interface JobCredentialsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobCredentialsCreateOrUpdateResponse = JobCredential & {
   /** The underlying HTTP response. */
@@ -9241,6 +10081,14 @@ export type JobCredentialsCreateOrUpdateResponse = JobCredential & {
     parsedBody: JobCredential;
   };
 };
+
+/** Optional parameters. */
+export interface JobCredentialsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface JobCredentialsListByAgentNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByAgentNext operation. */
 export type JobCredentialsListByAgentNextResponse = JobCredentialListResult & {
@@ -9285,6 +10133,19 @@ export type JobExecutionsListByAgentResponse = JobExecutionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobExecutionsCancelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface JobExecutionsCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the create operation. */
 export type JobExecutionsCreateResponse = JobExecution & {
   /** The underlying HTTP response. */
@@ -9294,8 +10155,6 @@ export type JobExecutionsCreateResponse = JobExecution & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9330,6 +10189,10 @@ export type JobExecutionsListByJobResponse = JobExecutionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobExecutionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type JobExecutionsGetResponse = JobExecution & {
   /** The underlying HTTP response. */
@@ -9342,6 +10205,15 @@ export type JobExecutionsGetResponse = JobExecution & {
   };
 };
 
+/** Optional parameters. */
+export interface JobExecutionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
   /** The underlying HTTP response. */
@@ -9351,8 +10223,6 @@ export type JobExecutionsCreateOrUpdateResponse = JobExecution & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: JobExecution;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -9418,6 +10288,10 @@ export type JobExecutionsListByJobNextResponse = JobExecutionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobsListByAgentOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByAgent operation. */
 export type JobsListByAgentResponse = JobListResult & {
   /** The underlying HTTP response. */
@@ -9429,6 +10303,9 @@ export type JobsListByAgentResponse = JobListResult & {
     parsedBody: JobListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type JobsGetResponse = Job & {
@@ -9442,6 +10319,10 @@ export type JobsGetResponse = Job & {
   };
 };
 
+/** Optional parameters. */
+export interface JobsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobsCreateOrUpdateResponse = Job & {
   /** The underlying HTTP response. */
@@ -9453,6 +10334,13 @@ export type JobsCreateOrUpdateResponse = Job & {
     parsedBody: Job;
   };
 };
+
+/** Optional parameters. */
+export interface JobsDeleteOptionalParams extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface JobsListByAgentNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByAgentNext operation. */
 export type JobsListByAgentNextResponse = JobListResult & {
@@ -9497,6 +10385,10 @@ export type JobStepExecutionsListByJobExecutionResponse = JobExecutionListResult
   };
 };
 
+/** Optional parameters. */
+export interface JobStepExecutionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type JobStepExecutionsGetResponse = JobExecution & {
   /** The underlying HTTP response. */
@@ -9540,6 +10432,10 @@ export type JobStepExecutionsListByJobExecutionNextResponse = JobExecutionListRe
   };
 };
 
+/** Optional parameters. */
+export interface JobStepsListByVersionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByVersion operation. */
 export type JobStepsListByVersionResponse = JobStepListResult & {
   /** The underlying HTTP response. */
@@ -9551,6 +10447,10 @@ export type JobStepsListByVersionResponse = JobStepListResult & {
     parsedBody: JobStepListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobStepsGetByVersionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByVersion operation. */
 export type JobStepsGetByVersionResponse = JobStep & {
@@ -9564,6 +10464,10 @@ export type JobStepsGetByVersionResponse = JobStep & {
   };
 };
 
+/** Optional parameters. */
+export interface JobStepsListByJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByJob operation. */
 export type JobStepsListByJobResponse = JobStepListResult & {
   /** The underlying HTTP response. */
@@ -9575,6 +10479,9 @@ export type JobStepsListByJobResponse = JobStepListResult & {
     parsedBody: JobStepListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobStepsGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type JobStepsGetResponse = JobStep & {
@@ -9588,6 +10495,10 @@ export type JobStepsGetResponse = JobStep & {
   };
 };
 
+/** Optional parameters. */
+export interface JobStepsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobStepsCreateOrUpdateResponse = JobStep & {
   /** The underlying HTTP response. */
@@ -9600,6 +10511,14 @@ export type JobStepsCreateOrUpdateResponse = JobStep & {
   };
 };
 
+/** Optional parameters. */
+export interface JobStepsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface JobStepsListByVersionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByVersionNext operation. */
 export type JobStepsListByVersionNextResponse = JobStepListResult & {
   /** The underlying HTTP response. */
@@ -9611,6 +10530,10 @@ export type JobStepsListByVersionNextResponse = JobStepListResult & {
     parsedBody: JobStepListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobStepsListByJobNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByJobNext operation. */
 export type JobStepsListByJobNextResponse = JobStepListResult & {
@@ -9686,6 +10609,10 @@ export type JobTargetExecutionsListByStepResponse = JobExecutionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface JobTargetExecutionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type JobTargetExecutionsGetResponse = JobExecution & {
   /** The underlying HTTP response. */
@@ -9760,6 +10687,10 @@ export type JobTargetExecutionsListByStepNextResponse = JobExecutionListResult &
   };
 };
 
+/** Optional parameters. */
+export interface JobTargetGroupsListByAgentOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByAgent operation. */
 export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
   /** The underlying HTTP response. */
@@ -9771,6 +10702,10 @@ export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
     parsedBody: JobTargetGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobTargetGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type JobTargetGroupsGetResponse = JobTargetGroup & {
@@ -9784,6 +10719,10 @@ export type JobTargetGroupsGetResponse = JobTargetGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface JobTargetGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type JobTargetGroupsCreateOrUpdateResponse = JobTargetGroup & {
   /** The underlying HTTP response. */
@@ -9795,6 +10734,14 @@ export type JobTargetGroupsCreateOrUpdateResponse = JobTargetGroup & {
     parsedBody: JobTargetGroup;
   };
 };
+
+/** Optional parameters. */
+export interface JobTargetGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface JobTargetGroupsListByAgentNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByAgentNext operation. */
 export type JobTargetGroupsListByAgentNextResponse = JobTargetGroupListResult & {
@@ -9808,6 +10755,10 @@ export type JobTargetGroupsListByAgentNextResponse = JobTargetGroupListResult & 
   };
 };
 
+/** Optional parameters. */
+export interface JobVersionsListByJobOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByJob operation. */
 export type JobVersionsListByJobResponse = JobVersionListResult & {
   /** The underlying HTTP response. */
@@ -9819,6 +10770,10 @@ export type JobVersionsListByJobResponse = JobVersionListResult & {
     parsedBody: JobVersionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface JobVersionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type JobVersionsGetResponse = JobVersion & {
@@ -9832,6 +10787,10 @@ export type JobVersionsGetResponse = JobVersion & {
   };
 };
 
+/** Optional parameters. */
+export interface JobVersionsListByJobNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByJobNext operation. */
 export type JobVersionsListByJobNextResponse = JobVersionListResult & {
   /** The underlying HTTP response. */
@@ -9844,6 +10803,10 @@ export type JobVersionsListByJobNextResponse = JobVersionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface LongTermRetentionBackupsGetByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByResourceGroup operation. */
 export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetentionBackup & {
   /** The underlying HTTP response. */
@@ -9855,6 +10818,15 @@ export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetenti
     parsedBody: LongTermRetentionBackup;
   };
 };
+
+/** Optional parameters. */
+export interface LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
@@ -9919,6 +10891,10 @@ export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTerm
   };
 };
 
+/** Optional parameters. */
+export interface LongTermRetentionBackupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup & {
   /** The underlying HTTP response. */
@@ -9930,6 +10906,15 @@ export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup & {
     parsedBody: LongTermRetentionBackup;
   };
 };
+
+/** Optional parameters. */
+export interface LongTermRetentionBackupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByDatabaseOptionalParams
@@ -10120,6 +11105,10 @@ export type LongTermRetentionBackupsListByServerNextResponse = LongTermRetention
   };
 };
 
+/** Optional parameters. */
+export interface BackupLongTermRetentionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -10132,6 +11121,15 @@ export type BackupLongTermRetentionPoliciesGetResponse = BackupLongTermRetention
   };
 };
 
+/** Optional parameters. */
+export interface BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -10141,10 +11139,12 @@ export type BackupLongTermRetentionPoliciesCreateOrUpdateResponse = BackupLongTe
 
     /** The response body as parsed JSON or XML */
     parsedBody: BackupLongTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface BackupLongTermRetentionPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTermRetentionPolicy & {
@@ -10158,6 +11158,10 @@ export type BackupLongTermRetentionPoliciesListByDatabaseResponse = BackupLongTe
   };
 };
 
+/** Optional parameters. */
+export interface ManagedBackupShortTermRetentionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -10170,6 +11174,15 @@ export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupSh
   };
 };
 
+/** Optional parameters. */
+export interface ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -10179,10 +11192,17 @@ export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = Mana
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -10193,10 +11213,12 @@ export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBacku
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
@@ -10210,6 +11232,10 @@ export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = Mana
   };
 };
 
+/** Optional parameters. */
+export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
   /** The underlying HTTP response. */
@@ -10221,6 +11247,10 @@ export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse = 
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -10234,6 +11264,15 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetR
   };
 };
 
+/** Optional parameters. */
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -10243,10 +11282,17 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCrea
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -10257,10 +11303,12 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedBackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByRestorableDroppedDatabase operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult & {
@@ -10274,6 +11322,10 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesList
   };
 };
 
+/** Optional parameters. */
+export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByRestorableDroppedDatabaseNext operation. */
 export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult & {
   /** The underlying HTTP response. */
@@ -10285,6 +11337,10 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesList
     parsedBody: ManagedBackupShortTermRetentionPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerAutomaticTuningGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef & {
@@ -10298,6 +11354,10 @@ export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerAutomaticTuningUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef & {
   /** The underlying HTTP response. */
@@ -10309,6 +11369,10 @@ export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef & {
     parsedBody: ServerAutomaticTuningDef;
   };
 };
+
+/** Optional parameters. */
+export interface ServerDnsAliasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerDnsAliasesGetResponse = ServerDnsAlias & {
@@ -10322,6 +11386,15 @@ export type ServerDnsAliasesGetResponse = ServerDnsAlias & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerDnsAliasesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
   /** The underlying HTTP response. */
@@ -10331,10 +11404,21 @@ export type ServerDnsAliasesCreateOrUpdateResponse = ServerDnsAlias & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerDnsAlias;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerDnsAliasesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ServerDnsAliasesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerDnsAliasesListByServerResponse = ServerDnsAliasListResult & {
@@ -10348,6 +11432,19 @@ export type ServerDnsAliasesListByServerResponse = ServerDnsAliasListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServerDnsAliasesAcquireOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ServerDnsAliasesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type ServerDnsAliasesListByServerNextResponse = ServerDnsAliasListResult & {
   /** The underlying HTTP response. */
@@ -10359,6 +11456,10 @@ export type ServerDnsAliasesListByServerNextResponse = ServerDnsAliasListResult 
     parsedBody: ServerDnsAliasListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerSecurityAlertPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerSecurityAlertPoliciesGetResponse = ServerSecurityAlertPolicy & {
@@ -10372,6 +11473,15 @@ export type ServerSecurityAlertPoliciesGetResponse = ServerSecurityAlertPolicy &
   };
 };
 
+/** Optional parameters. */
+export interface ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAlertPolicy & {
   /** The underlying HTTP response. */
@@ -10381,10 +11491,12 @@ export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAl
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerSecurityAlertPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerSecurityAlertPoliciesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecurityAlertPolicyListResult & {
@@ -10398,6 +11510,10 @@ export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecur
   };
 };
 
+/** Optional parameters. */
+export interface ServerSecurityAlertPoliciesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type ServerSecurityAlertPoliciesListByServerNextResponse = LogicalServerSecurityAlertPolicyListResult & {
   /** The underlying HTTP response. */
@@ -10409,6 +11525,10 @@ export type ServerSecurityAlertPoliciesListByServerNextResponse = LogicalServerS
     parsedBody: LogicalServerSecurityAlertPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface RestorableDroppedManagedDatabasesListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
 export type RestorableDroppedManagedDatabasesListByInstanceResponse = RestorableDroppedManagedDatabaseListResult & {
@@ -10422,6 +11542,10 @@ export type RestorableDroppedManagedDatabasesListByInstanceResponse = Restorable
   };
 };
 
+/** Optional parameters. */
+export interface RestorableDroppedManagedDatabasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type RestorableDroppedManagedDatabasesGetResponse = RestorableDroppedManagedDatabase & {
   /** The underlying HTTP response. */
@@ -10433,6 +11557,10 @@ export type RestorableDroppedManagedDatabasesGetResponse = RestorableDroppedMana
     parsedBody: RestorableDroppedManagedDatabase;
   };
 };
+
+/** Optional parameters. */
+export interface RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type RestorableDroppedManagedDatabasesListByInstanceNextResponse = RestorableDroppedManagedDatabaseListResult & {
@@ -10446,6 +11574,10 @@ export type RestorableDroppedManagedDatabasesListByInstanceNextResponse = Restor
   };
 };
 
+/** Optional parameters. */
+export interface RestorePointsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
   /** The underlying HTTP response. */
@@ -10458,6 +11590,15 @@ export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface RestorePointsCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the create operation. */
 export type RestorePointsCreateResponse = RestorePoint & {
   /** The underlying HTTP response. */
@@ -10467,10 +11608,12 @@ export type RestorePointsCreateResponse = RestorePoint & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: RestorePoint;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface RestorePointsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type RestorePointsGetResponse = RestorePoint & {
@@ -10484,6 +11627,14 @@ export type RestorePointsGetResponse = RestorePoint & {
   };
 };
 
+/** Optional parameters. */
+export interface RestorePointsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedDatabaseSecurityAlertPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSecurityAlertPolicy & {
   /** The underlying HTTP response. */
@@ -10495,6 +11646,10 @@ export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSec
     parsedBody: ManagedDatabaseSecurityAlertPolicy;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = ManagedDatabaseSecurityAlertPolicy & {
@@ -10508,6 +11663,10 @@ export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = Managed
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
   /** The underlying HTTP response. */
@@ -10519,6 +11678,10 @@ export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = Managed
     parsedBody: ManagedDatabaseSecurityAlertPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse = ManagedDatabaseSecurityAlertPolicyListResult & {
@@ -10532,6 +11695,10 @@ export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse = Man
   };
 };
 
+/** Optional parameters. */
+export interface ManagedServerSecurityAlertPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurityAlertPolicy & {
   /** The underlying HTTP response. */
@@ -10544,6 +11711,15 @@ export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurit
   };
 };
 
+/** Optional parameters. */
+export interface ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy & {
   /** The underlying HTTP response. */
@@ -10553,10 +11729,12 @@ export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedSe
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedServerSecurityAlertPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
 export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedServerSecurityAlertPolicyListResult & {
@@ -10569,6 +11747,10 @@ export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedSe
     parsedBody: ManagedServerSecurityAlertPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedServerSecurityAlertPoliciesListByInstanceNextResponse = ManagedServerSecurityAlertPolicyListResult & {
@@ -10623,6 +11805,18 @@ export type SensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabe
   };
 };
 
+/** Optional parameters. */
+export interface SensitivityLabelsEnableRecommendationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface SensitivityLabelsDisableRecommendationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface SensitivityLabelsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type SensitivityLabelsGetResponse = SensitivityLabel & {
   /** The underlying HTTP response. */
@@ -10635,6 +11829,10 @@ export type SensitivityLabelsGetResponse = SensitivityLabel & {
   };
 };
 
+/** Optional parameters. */
+export interface SensitivityLabelsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type SensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
   /** The underlying HTTP response. */
@@ -10646,6 +11844,10 @@ export type SensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
     parsedBody: SensitivityLabel;
   };
 };
+
+/** Optional parameters. */
+export interface SensitivityLabelsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams
@@ -10688,6 +11890,10 @@ export type SensitivityLabelsListRecommendedByDatabaseNextResponse = Sensitivity
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceAdministratorsListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstance operation. */
 export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanceAdministratorListResult & {
   /** The underlying HTTP response. */
@@ -10699,6 +11905,10 @@ export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanc
     parsedBody: ManagedInstanceAdministratorListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceAdministratorsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministrator & {
@@ -10712,6 +11922,15 @@ export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministra
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanceAdministrator & {
   /** The underlying HTTP response. */
@@ -10721,10 +11940,21 @@ export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanc
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceAdministrator;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceAdministratorsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedInstanceAdministratorsListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceAdministratorsListByInstanceNextResponse = ManagedInstanceAdministratorListResult & {
@@ -10738,6 +11968,14 @@ export type ManagedInstanceAdministratorsListByInstanceNextResponse = ManagedIns
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseOperationsCancelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DatabaseOperationsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResult & {
   /** The underlying HTTP response. */
@@ -10749,6 +11987,10 @@ export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResu
     parsedBody: DatabaseOperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseOperationsListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationListResult & {
@@ -10762,6 +12004,14 @@ export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationList
   };
 };
 
+/** Optional parameters. */
+export interface ElasticPoolOperationsCancelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ElasticPoolOperationsListByElasticPoolOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByElasticPool operation. */
 export type ElasticPoolOperationsListByElasticPoolResponse = ElasticPoolOperationListResult & {
   /** The underlying HTTP response. */
@@ -10773,6 +12023,10 @@ export type ElasticPoolOperationsListByElasticPoolResponse = ElasticPoolOperatio
     parsedBody: ElasticPoolOperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ElasticPoolOperationsListByElasticPoolNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByElasticPoolNext operation. */
 export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOperationListResult & {
@@ -10786,6 +12040,10 @@ export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOper
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
   /** The underlying HTTP response. */
@@ -10797,6 +12055,10 @@ export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse = Vulnera
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentScansGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type DatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
@@ -10810,6 +12072,19 @@ export type DatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAsses
   };
 };
 
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentScansExportOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the export operation. */
 export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
   /** The underlying HTTP response. */
@@ -10821,6 +12096,10 @@ export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnera
     parsedBody: DatabaseVulnerabilityAssessmentScansExport;
   };
 };
+
+/** Optional parameters. */
+export interface DatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
@@ -10834,6 +12113,10 @@ export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = Vul
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
   /** The underlying HTTP response. */
@@ -10845,6 +12128,10 @@ export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = Dat
     parsedBody: DatabaseVulnerabilityAssessmentRuleBaseline;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline & {
@@ -10858,6 +12145,14 @@ export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateRes
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult & {
   /** The underlying HTTP response. */
@@ -10869,6 +12164,10 @@ export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse = 
     parsedBody: VulnerabilityAssessmentScanRecordListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentScansGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord & {
@@ -10882,6 +12181,19 @@ export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse = Vulnerabili
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentScansExportOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the export operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport & {
   /** The underlying HTTP response. */
@@ -10893,6 +12205,10 @@ export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = Database
     parsedBody: DatabaseVulnerabilityAssessmentScansExport;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult & {
@@ -10906,6 +12222,10 @@ export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextRespons
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment & {
   /** The underlying HTTP response. */
@@ -10917,6 +12237,10 @@ export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnera
     parsedBody: DatabaseVulnerabilityAssessment;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment & {
@@ -10930,6 +12254,14 @@ export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = Data
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabase operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult & {
   /** The underlying HTTP response. */
@@ -10941,6 +12273,10 @@ export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = Data
     parsedBody: DatabaseVulnerabilityAssessmentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult & {
@@ -10954,6 +12290,10 @@ export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = 
   };
 };
 
+/** Optional parameters. */
+export interface InstanceFailoverGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type InstanceFailoverGroupsGetResponse = InstanceFailoverGroup & {
   /** The underlying HTTP response. */
@@ -10966,6 +12306,15 @@ export type InstanceFailoverGroupsGetResponse = InstanceFailoverGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface InstanceFailoverGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup & {
   /** The underlying HTTP response. */
@@ -10975,10 +12324,21 @@ export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup
 
     /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface InstanceFailoverGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface InstanceFailoverGroupsListByLocationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
 export type InstanceFailoverGroupsListByLocationResponse = InstanceFailoverGroupListResult & {
@@ -10992,6 +12352,15 @@ export type InstanceFailoverGroupsListByLocationResponse = InstanceFailoverGroup
   };
 };
 
+/** Optional parameters. */
+export interface InstanceFailoverGroupsFailoverOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the failover operation. */
 export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
   /** The underlying HTTP response. */
@@ -11001,10 +12370,17 @@ export type InstanceFailoverGroupsFailoverResponse = InstanceFailoverGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the forceFailoverAllowDataLoss operation. */
 export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceFailoverGroup & {
@@ -11015,10 +12391,12 @@ export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceF
 
     /** The response body as parsed JSON or XML */
     parsedBody: InstanceFailoverGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface InstanceFailoverGroupsListByLocationNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
 export type InstanceFailoverGroupsListByLocationNextResponse = InstanceFailoverGroupListResult & {
@@ -11032,6 +12410,10 @@ export type InstanceFailoverGroupsListByLocationNextResponse = InstanceFailoverG
   };
 };
 
+/** Optional parameters. */
+export interface BackupShortTermRetentionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -11044,6 +12426,15 @@ export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetenti
   };
 };
 
+/** Optional parameters. */
+export interface BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShortTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -11053,10 +12444,17 @@ export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShort
 
     /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface BackupShortTermRetentionPoliciesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRetentionPolicy & {
@@ -11067,10 +12465,12 @@ export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRete
 
     /** The response body as parsed JSON or XML */
     parsedBody: BackupShortTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShortTermRetentionPolicyListResult & {
@@ -11084,6 +12484,10 @@ export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShort
   };
 };
 
+/** Optional parameters. */
+export interface BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse = BackupShortTermRetentionPolicyListResult & {
   /** The underlying HTTP response. */
@@ -11095,6 +12499,24 @@ export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse = BackupS
     parsedBody: BackupShortTermRetentionPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface TdeCertificatesCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedInstanceTdeCertificatesCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceOptionalParams
@@ -11115,6 +12537,10 @@ export type ManagedInstanceKeysListByInstanceResponse = ManagedInstanceKeyListRe
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceKeysGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedInstanceKeysGetResponse = ManagedInstanceKey & {
   /** The underlying HTTP response. */
@@ -11127,6 +12553,15 @@ export type ManagedInstanceKeysGetResponse = ManagedInstanceKey & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceKeysCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
   /** The underlying HTTP response. */
@@ -11136,10 +12571,17 @@ export type ManagedInstanceKeysCreateOrUpdateResponse = ManagedInstanceKey & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceKey;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceKeysDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceNextOptionalParams
@@ -11160,6 +12602,19 @@ export type ManagedInstanceKeysListByInstanceNextResponse = ManagedInstanceKeyLi
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstance operation. */
 export type ManagedInstanceEncryptionProtectorsListByInstanceResponse = ManagedInstanceEncryptionProtectorListResult & {
   /** The underlying HTTP response. */
@@ -11171,6 +12626,10 @@ export type ManagedInstanceEncryptionProtectorsListByInstanceResponse = ManagedI
     parsedBody: ManagedInstanceEncryptionProtectorListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceEncryptionProtectorsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncryptionProtector & {
@@ -11184,6 +12643,15 @@ export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncr
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedInstanceEncryptionProtector & {
   /** The underlying HTTP response. */
@@ -11193,10 +12661,12 @@ export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedI
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceEncryptionProtector;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = ManagedInstanceEncryptionProtectorListResult & {
@@ -11210,6 +12680,10 @@ export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = Mana
   };
 };
 
+/** Optional parameters. */
+export interface RecoverableManagedDatabasesListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstance operation. */
 export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManagedDatabaseListResult & {
   /** The underlying HTTP response. */
@@ -11221,6 +12695,10 @@ export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManag
     parsedBody: RecoverableManagedDatabaseListResult;
   };
 };
+
+/** Optional parameters. */
+export interface RecoverableManagedDatabasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type RecoverableManagedDatabasesGetResponse = RecoverableManagedDatabase & {
@@ -11234,6 +12712,10 @@ export type RecoverableManagedDatabasesGetResponse = RecoverableManagedDatabase 
   };
 };
 
+/** Optional parameters. */
+export interface RecoverableManagedDatabasesListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstanceNext operation. */
 export type RecoverableManagedDatabasesListByInstanceNextResponse = RecoverableManagedDatabaseListResult & {
   /** The underlying HTTP response. */
@@ -11245,6 +12727,10 @@ export type RecoverableManagedDatabasesListByInstanceNextResponse = RecoverableM
     parsedBody: RecoverableManagedDatabaseListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceVulnerabilityAssessmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstanceVulnerabilityAssessment & {
@@ -11258,6 +12744,10 @@ export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstance
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = ManagedInstanceVulnerabilityAssessment & {
   /** The underlying HTTP response. */
@@ -11269,6 +12759,14 @@ export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = Mana
     parsedBody: ManagedInstanceVulnerabilityAssessment;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceVulnerabilityAssessmentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
@@ -11282,6 +12780,10 @@ export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = Mana
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse = ManagedInstanceVulnerabilityAssessmentListResult & {
   /** The underlying HTTP response. */
@@ -11293,6 +12795,10 @@ export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse = 
     parsedBody: ManagedInstanceVulnerabilityAssessmentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServerVulnerabilityAssessmentsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAssessment & {
@@ -11306,6 +12812,10 @@ export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAsses
   };
 };
 
+/** Optional parameters. */
+export interface ServerVulnerabilityAssessmentsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse = ServerVulnerabilityAssessment & {
   /** The underlying HTTP response. */
@@ -11317,6 +12827,14 @@ export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse = ServerVulnera
     parsedBody: ServerVulnerabilityAssessment;
   };
 };
+
+/** Optional parameters. */
+export interface ServerVulnerabilityAssessmentsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ServerVulnerabilityAssessmentsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabilityAssessmentListResult & {
@@ -11330,6 +12848,10 @@ export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabi
   };
 };
 
+/** Optional parameters. */
+export interface ServerVulnerabilityAssessmentsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type ServerVulnerabilityAssessmentsListByServerNextResponse = ServerVulnerabilityAssessmentListResult & {
   /** The underlying HTTP response. */
@@ -11341,6 +12863,10 @@ export type ServerVulnerabilityAssessmentsListByServerNextResponse = ServerVulne
     parsedBody: ServerVulnerabilityAssessmentListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseSensitivityLabelsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel & {
@@ -11354,6 +12880,10 @@ export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse = SensitivityLabel & {
   /** The underlying HTTP response. */
@@ -11365,6 +12895,18 @@ export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse = Sensitivity
     parsedBody: SensitivityLabel;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseSensitivityLabelsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
@@ -11448,6 +12990,10 @@ export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextRespons
   };
 };
 
+/** Optional parameters. */
+export interface InstancePoolsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type InstancePoolsGetResponse = InstancePool & {
   /** The underlying HTTP response. */
@@ -11460,6 +13006,15 @@ export type InstancePoolsGetResponse = InstancePool & {
   };
 };
 
+/** Optional parameters. */
+export interface InstancePoolsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
   /** The underlying HTTP response. */
@@ -11469,10 +13024,26 @@ export type InstancePoolsCreateOrUpdateResponse = InstancePool & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: InstancePool;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface InstancePoolsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface InstancePoolsUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type InstancePoolsUpdateResponse = InstancePool & {
@@ -11483,10 +13054,12 @@ export type InstancePoolsUpdateResponse = InstancePool & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: InstancePool;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface InstancePoolsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type InstancePoolsListByResourceGroupResponse = InstancePoolListResult & {
@@ -11500,6 +13073,10 @@ export type InstancePoolsListByResourceGroupResponse = InstancePoolListResult & 
   };
 };
 
+/** Optional parameters. */
+export interface InstancePoolsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type InstancePoolsListResponse = InstancePoolListResult & {
   /** The underlying HTTP response. */
@@ -11512,6 +13089,10 @@ export type InstancePoolsListResponse = InstancePoolListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface InstancePoolsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type InstancePoolsListByResourceGroupNextResponse = InstancePoolListResult & {
   /** The underlying HTTP response. */
@@ -11523,6 +13104,10 @@ export type InstancePoolsListByResourceGroupNextResponse = InstancePoolListResul
     parsedBody: InstancePoolListResult;
   };
 };
+
+/** Optional parameters. */
+export interface InstancePoolsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type InstancePoolsListNextResponse = InstancePoolListResult & {
@@ -11574,6 +13159,10 @@ export type UsagesListByInstancePoolNextResponse = UsageListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstancesListByInstancePoolOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstancePool operation. */
 export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResult & {
   /** The underlying HTTP response. */
@@ -11585,6 +13174,10 @@ export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResu
     parsedBody: ManagedInstanceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstancesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
 export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListResult & {
@@ -11598,6 +13191,10 @@ export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListRes
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstancesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedInstancesGetResponse = ManagedInstance & {
   /** The underlying HTTP response. */
@@ -11610,6 +13207,15 @@ export type ManagedInstancesGetResponse = ManagedInstance & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstancesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
   /** The underlying HTTP response. */
@@ -11619,10 +13225,26 @@ export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstance;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstancesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedInstancesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ManagedInstancesUpdateResponse = ManagedInstance & {
@@ -11633,10 +13255,12 @@ export type ManagedInstancesUpdateResponse = ManagedInstance & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstance;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstancesListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type ManagedInstancesListResponse = ManagedInstanceListResult & {
@@ -11650,6 +13274,10 @@ export type ManagedInstancesListResponse = ManagedInstanceListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstancesListByInstancePoolNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstancePoolNext operation. */
 export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceListResult & {
   /** The underlying HTTP response. */
@@ -11661,6 +13289,10 @@ export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceList
     parsedBody: ManagedInstanceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstancesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceListResult & {
@@ -11674,6 +13306,10 @@ export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceLis
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstancesListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type ManagedInstancesListNextResponse = ManagedInstanceListResult & {
   /** The underlying HTTP response. */
@@ -11685,6 +13321,10 @@ export type ManagedInstancesListNextResponse = ManagedInstanceListResult & {
     parsedBody: ManagedInstanceListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -11698,6 +13338,15 @@ export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & 
   };
 };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnection & {
   /** The underlying HTTP response. */
@@ -11707,10 +13356,21 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointCo
 
     /** The response body as parsed JSON or XML */
     parsedBody: PrivateEndpointConnection;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type PrivateEndpointConnectionsListByServerResponse = PrivateEndpointConnectionListResult & {
@@ -11724,6 +13384,10 @@ export type PrivateEndpointConnectionsListByServerResponse = PrivateEndpointConn
   };
 };
 
+/** Optional parameters. */
+export interface PrivateEndpointConnectionsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByServerNext operation. */
 export type PrivateEndpointConnectionsListByServerNextResponse = PrivateEndpointConnectionListResult & {
   /** The underlying HTTP response. */
@@ -11735,6 +13399,10 @@ export type PrivateEndpointConnectionsListByServerNextResponse = PrivateEndpoint
     parsedBody: PrivateEndpointConnectionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateLinkResourcesListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListResult & {
@@ -11748,6 +13416,10 @@ export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListRe
   };
 };
 
+/** Optional parameters. */
+export interface PrivateLinkResourcesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type PrivateLinkResourcesGetResponse = PrivateLinkResource & {
   /** The underlying HTTP response. */
@@ -11759,6 +13431,10 @@ export type PrivateLinkResourcesGetResponse = PrivateLinkResource & {
     parsedBody: PrivateLinkResource;
   };
 };
+
+/** Optional parameters. */
+export interface PrivateLinkResourcesListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type PrivateLinkResourcesListByServerNextResponse = PrivateLinkResourceListResult & {
@@ -11772,6 +13448,10 @@ export type PrivateLinkResourcesListByServerNextResponse = PrivateLinkResourceLi
   };
 };
 
+/** Optional parameters. */
+export interface ServersListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type ServersListByResourceGroupResponse = ServerListResult & {
   /** The underlying HTTP response. */
@@ -11783,6 +13463,9 @@ export type ServersListByResourceGroupResponse = ServerListResult & {
     parsedBody: ServerListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServersGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ServersGetResponse = Server & {
@@ -11796,6 +13479,15 @@ export type ServersGetResponse = Server & {
   };
 };
 
+/** Optional parameters. */
+export interface ServersCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServersCreateOrUpdateResponse = Server & {
   /** The underlying HTTP response. */
@@ -11805,10 +13497,24 @@ export type ServersCreateOrUpdateResponse = Server & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Server;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServersDeleteOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ServersUpdateOptionalParams extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ServersUpdateResponse = Server & {
@@ -11819,10 +13525,11 @@ export type ServersUpdateResponse = Server & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: Server;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServersListOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type ServersListResponse = ServerListResult & {
@@ -11836,6 +13543,10 @@ export type ServersListResponse = ServerListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ServersCheckNameAvailabilityOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the checkNameAvailability operation. */
 export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse & {
   /** The underlying HTTP response. */
@@ -11848,6 +13559,10 @@ export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse
   };
 };
 
+/** Optional parameters. */
+export interface ServersListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ServersListByResourceGroupNextResponse = ServerListResult & {
   /** The underlying HTTP response. */
@@ -11859,6 +13574,10 @@ export type ServersListByResourceGroupNextResponse = ServerListResult & {
     parsedBody: ServerListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ServersListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ServersListNextResponse = ServerListResult & {
@@ -11891,6 +13610,10 @@ export type CapabilitiesListByLocationResponse = LocationCapabilities & {
   };
 };
 
+/** Optional parameters. */
+export interface LongTermRetentionManagedInstanceBackupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstanceLongTermRetentionBackup & {
   /** The underlying HTTP response. */
@@ -11902,6 +13625,15 @@ export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstance
     parsedBody: ManagedInstanceLongTermRetentionBackup;
   };
 };
+
+/** Optional parameters. */
+export interface LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalParams
@@ -11966,6 +13698,10 @@ export type LongTermRetentionManagedInstanceBackupsListByLocationResponse = Mana
   };
 };
 
+/** Optional parameters. */
+export interface LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByResourceGroup operation. */
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
   /** The underlying HTTP response. */
@@ -11977,6 +13713,15 @@ export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = 
     parsedBody: ManagedInstanceLongTermRetentionBackup;
   };
 };
+
+/** Optional parameters. */
+export interface LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseOptionalParams
@@ -12167,6 +13912,10 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNe
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceLongTermRetentionPoliciesGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanceLongTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -12179,6 +13928,15 @@ export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanc
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = ManagedInstanceLongTermRetentionPolicy & {
   /** The underlying HTTP response. */
@@ -12188,10 +13946,12 @@ export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = Man
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedInstanceLongTermRetentionPolicy;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
@@ -12205,6 +13965,10 @@ export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = Man
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse = ManagedInstanceLongTermRetentionPolicyListResult & {
   /** The underlying HTTP response. */
@@ -12216,6 +13980,10 @@ export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse =
     parsedBody: ManagedInstanceLongTermRetentionPolicyListResult;
   };
 };
+
+/** Optional parameters. */
+export interface WorkloadGroupsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type WorkloadGroupsGetResponse = WorkloadGroup & {
@@ -12229,6 +13997,15 @@ export type WorkloadGroupsGetResponse = WorkloadGroup & {
   };
 };
 
+/** Optional parameters. */
+export interface WorkloadGroupsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
   /** The underlying HTTP response. */
@@ -12238,10 +14015,21 @@ export type WorkloadGroupsCreateOrUpdateResponse = WorkloadGroup & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WorkloadGroup;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WorkloadGroupsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WorkloadGroupsListByDatabaseOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
 export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
@@ -12255,6 +14043,10 @@ export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface WorkloadGroupsListByDatabaseNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByDatabaseNext operation. */
 export type WorkloadGroupsListByDatabaseNextResponse = WorkloadGroupListResult & {
   /** The underlying HTTP response. */
@@ -12266,6 +14058,10 @@ export type WorkloadGroupsListByDatabaseNextResponse = WorkloadGroupListResult &
     parsedBody: WorkloadGroupListResult;
   };
 };
+
+/** Optional parameters. */
+export interface WorkloadClassifiersGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type WorkloadClassifiersGetResponse = WorkloadClassifier & {
@@ -12279,6 +14075,15 @@ export type WorkloadClassifiersGetResponse = WorkloadClassifier & {
   };
 };
 
+/** Optional parameters. */
+export interface WorkloadClassifiersCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
   /** The underlying HTTP response. */
@@ -12288,10 +14093,21 @@ export type WorkloadClassifiersCreateOrUpdateResponse = WorkloadClassifier & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: WorkloadClassifier;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface WorkloadClassifiersDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface WorkloadClassifiersListByWorkloadGroupOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByWorkloadGroup operation. */
 export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierListResult & {
@@ -12305,6 +14121,10 @@ export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierL
   };
 };
 
+/** Optional parameters. */
+export interface WorkloadClassifiersListByWorkloadGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByWorkloadGroupNext operation. */
 export type WorkloadClassifiersListByWorkloadGroupNextResponse = WorkloadClassifierListResult & {
   /** The underlying HTTP response. */
@@ -12316,6 +14136,10 @@ export type WorkloadClassifiersListByWorkloadGroupNextResponse = WorkloadClassif
     parsedBody: WorkloadClassifierListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabaseRestoreDetailsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDetailsResult & {
@@ -12329,6 +14153,10 @@ export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDet
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabasesListByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstance operation. */
 export type ManagedDatabasesListByInstanceResponse = ManagedDatabaseListResult & {
   /** The underlying HTTP response. */
@@ -12340,6 +14168,10 @@ export type ManagedDatabasesListByInstanceResponse = ManagedDatabaseListResult &
     parsedBody: ManagedDatabaseListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabasesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type ManagedDatabasesGetResponse = ManagedDatabase & {
@@ -12353,6 +14185,15 @@ export type ManagedDatabasesGetResponse = ManagedDatabase & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabasesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
   /** The underlying HTTP response. */
@@ -12362,10 +14203,26 @@ export type ManagedDatabasesCreateOrUpdateResponse = ManagedDatabase & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabase;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabasesDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedDatabasesUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 /** Contains response data for the update operation. */
 export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
@@ -12376,10 +14233,12 @@ export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: ManagedDatabase;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabasesListInaccessibleByInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInaccessibleByInstance operation. */
 export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabaseListResult & {
@@ -12393,6 +14252,19 @@ export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabase
   };
 };
 
+/** Optional parameters. */
+export interface ManagedDatabasesCompleteRestoreOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ManagedDatabasesListByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResult & {
   /** The underlying HTTP response. */
@@ -12404,6 +14276,10 @@ export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResu
     parsedBody: ManagedDatabaseListResult;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedDatabasesListInaccessibleByInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listInaccessibleByInstanceNext operation. */
 export type ManagedDatabasesListInaccessibleByInstanceNextResponse = ManagedDatabaseListResult & {
@@ -12417,6 +14293,10 @@ export type ManagedDatabasesListInaccessibleByInstanceNextResponse = ManagedData
   };
 };
 
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ServerAzureADAdministratorsGetResponse = ServerAzureADAdministrator & {
   /** The underlying HTTP response. */
@@ -12429,6 +14309,15 @@ export type ServerAzureADAdministratorsGetResponse = ServerAzureADAdministrator 
   };
 };
 
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the createOrUpdate operation. */
 export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdministrator & {
   /** The underlying HTTP response. */
@@ -12438,10 +14327,21 @@ export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdm
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerAzureADAdministrator;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsDeleteOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsListByServerOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
 export type ServerAzureADAdministratorsListByServerResponse = AdministratorListResult & {
@@ -12455,6 +14355,15 @@ export type ServerAzureADAdministratorsListByServerResponse = AdministratorListR
   };
 };
 
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the disableAzureADOnlyAuthentication operation. */
 export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse = ServerAzureADAdministrator & {
   /** The underlying HTTP response. */
@@ -12464,10 +14373,12 @@ export type ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse 
 
     /** The response body as parsed JSON or XML */
     parsedBody: ServerAzureADAdministrator;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
+
+/** Optional parameters. */
+export interface ServerAzureADAdministratorsListByServerNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type ServerAzureADAdministratorsListByServerNextResponse = AdministratorListResult & {
@@ -12481,6 +14392,14 @@ export type ServerAzureADAdministratorsListByServerNextResponse = AdministratorL
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceOperationsCancelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagedInstanceOperationsListByManagedInstanceOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByManagedInstance operation. */
 export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInstanceOperationListResult & {
   /** The underlying HTTP response. */
@@ -12493,6 +14412,10 @@ export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInst
   };
 };
 
+/** Optional parameters. */
+export interface ManagedInstanceOperationsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ManagedInstanceOperationsGetResponse = ManagedInstanceOperation & {
   /** The underlying HTTP response. */
@@ -12504,6 +14427,10 @@ export type ManagedInstanceOperationsGetResponse = ManagedInstanceOperation & {
     parsedBody: ManagedInstanceOperation;
   };
 };
+
+/** Optional parameters. */
+export interface ManagedInstanceOperationsListByManagedInstanceNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
 export type ManagedInstanceOperationsListByManagedInstanceNextResponse = ManagedInstanceOperationListResult & {

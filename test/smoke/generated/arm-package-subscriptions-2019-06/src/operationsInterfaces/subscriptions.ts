@@ -9,7 +9,15 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
-import { Location, Subscription, SubscriptionsGetResponse } from "../models";
+import {
+  Location,
+  SubscriptionsListLocationsOptionalParams,
+  Subscription,
+  SubscriptionsListNextOptionalParams,
+  SubscriptionsListOptionalParams,
+  SubscriptionsGetOptionalParams,
+  SubscriptionsGetResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Subscriptions. */
@@ -22,14 +30,14 @@ export interface Subscriptions {
    */
   listLocations(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListLocationsOptionalParams
   ): PagedAsyncIterableIterator<Location>;
   /**
    * Gets all subscriptions for a tenant.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsListOptionalParams
   ): PagedAsyncIterableIterator<Subscription>;
   /**
    * Gets details about a specified subscription.
@@ -38,6 +46,6 @@ export interface Subscriptions {
    */
   get(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionsGetOptionalParams
   ): Promise<SubscriptionsGetResponse>;
 }

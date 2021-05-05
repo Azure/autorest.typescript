@@ -12,9 +12,19 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstance,
+  ManagedInstancesListByInstancePoolNextOptionalParams,
+  ManagedInstancesListByInstancePoolOptionalParams,
+  ManagedInstancesListByResourceGroupNextOptionalParams,
+  ManagedInstancesListByResourceGroupOptionalParams,
+  ManagedInstancesListNextOptionalParams,
+  ManagedInstancesListOptionalParams,
+  ManagedInstancesGetOptionalParams,
   ManagedInstancesGetResponse,
+  ManagedInstancesCreateOrUpdateOptionalParams,
   ManagedInstancesCreateOrUpdateResponse,
+  ManagedInstancesDeleteOptionalParams,
   ManagedInstanceUpdate,
+  ManagedInstancesUpdateOptionalParams,
   ManagedInstancesUpdateResponse
 } from "../models";
 
@@ -31,7 +41,7 @@ export interface ManagedInstances {
   listByInstancePool(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByInstancePoolOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance>;
   /**
    * Gets a list of managed instances in a resource group.
@@ -41,14 +51,14 @@ export interface ManagedInstances {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance>;
   /**
    * Gets a list of all managed instances in the subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesListOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstance>;
   /**
    * Gets a managed instance.
@@ -60,7 +70,7 @@ export interface ManagedInstances {
   get(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesGetOptionalParams
   ): Promise<ManagedInstancesGetResponse>;
   /**
    * Creates or updates a managed instance.
@@ -74,7 +84,7 @@ export interface ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstance,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstancesCreateOrUpdateResponse>,
@@ -91,7 +101,7 @@ export interface ManagedInstances {
   delete(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -107,7 +117,7 @@ export interface ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstancesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstancesUpdateResponse>,

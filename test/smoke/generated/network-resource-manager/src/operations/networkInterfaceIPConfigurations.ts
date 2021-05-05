@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   NetworkInterfaceIPConfiguration,
+  NetworkInterfaceIPConfigurationsListNextOptionalParams,
+  NetworkInterfaceIPConfigurationsListOptionalParams,
   NetworkInterfaceIPConfigurationsListResponse,
+  NetworkInterfaceIPConfigurationsGetOptionalParams,
   NetworkInterfaceIPConfigurationsGetResponse,
   NetworkInterfaceIPConfigurationsListNextResponse
 } from "../models";
@@ -43,7 +46,7 @@ export class NetworkInterfaceIPConfigurationsImpl
   public list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<NetworkInterfaceIPConfiguration> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -70,7 +73,7 @@ export class NetworkInterfaceIPConfigurationsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListOptionalParams
   ): AsyncIterableIterator<NetworkInterfaceIPConfiguration[]> {
     let result = await this._list(
       resourceGroupName,
@@ -94,7 +97,7 @@ export class NetworkInterfaceIPConfigurationsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListOptionalParams
   ): AsyncIterableIterator<NetworkInterfaceIPConfiguration> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -114,7 +117,7 @@ export class NetworkInterfaceIPConfigurationsImpl
   private _list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListOptionalParams
   ): Promise<NetworkInterfaceIPConfigurationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -138,7 +141,7 @@ export class NetworkInterfaceIPConfigurationsImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     ipConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsGetOptionalParams
   ): Promise<NetworkInterfaceIPConfigurationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -163,7 +166,7 @@ export class NetworkInterfaceIPConfigurationsImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceIPConfigurationsListNextOptionalParams
   ): Promise<NetworkInterfaceIPConfigurationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

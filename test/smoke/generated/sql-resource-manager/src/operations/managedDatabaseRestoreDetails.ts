@@ -13,6 +13,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RestoreDetailsName,
+  ManagedDatabaseRestoreDetailsGetOptionalParams,
   ManagedDatabaseRestoreDetailsGetResponse
 } from "../models";
 
@@ -43,7 +44,7 @@ export class ManagedDatabaseRestoreDetailsImpl
     managedInstanceName: string,
     databaseName: string,
     restoreDetailsName: RestoreDetailsName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseRestoreDetailsGetOptionalParams
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

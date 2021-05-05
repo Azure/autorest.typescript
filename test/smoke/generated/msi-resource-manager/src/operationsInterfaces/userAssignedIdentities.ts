@@ -11,10 +11,18 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Identity,
+  UserAssignedIdentitiesListBySubscriptionNextOptionalParams,
+  UserAssignedIdentitiesListBySubscriptionOptionalParams,
+  UserAssignedIdentitiesListByResourceGroupNextOptionalParams,
+  UserAssignedIdentitiesListByResourceGroupOptionalParams,
+  UserAssignedIdentitiesCreateOrUpdateOptionalParams,
   UserAssignedIdentitiesCreateOrUpdateResponse,
   IdentityUpdate,
+  UserAssignedIdentitiesUpdateOptionalParams,
   UserAssignedIdentitiesUpdateResponse,
-  UserAssignedIdentitiesGetResponse
+  UserAssignedIdentitiesGetOptionalParams,
+  UserAssignedIdentitiesGetResponse,
+  UserAssignedIdentitiesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -25,7 +33,7 @@ export interface UserAssignedIdentities {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<Identity>;
   /**
    * Lists all the userAssignedIdentities available under the specified ResourceGroup.
@@ -34,7 +42,7 @@ export interface UserAssignedIdentities {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Identity>;
   /**
    * Create or update an identity in the specified subscription and resource group.
@@ -47,7 +55,7 @@ export interface UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     parameters: Identity,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesCreateOrUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
   /**
    * Update an identity in the specified subscription and resource group.
@@ -60,7 +68,7 @@ export interface UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     parameters: IdentityUpdate,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesUpdateResponse>;
   /**
    * Gets the identity.
@@ -71,7 +79,7 @@ export interface UserAssignedIdentities {
   get(
     resourceGroupName: string,
     resourceName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesGetOptionalParams
   ): Promise<UserAssignedIdentitiesGetResponse>;
   /**
    * Deletes the identity.
@@ -82,6 +90,6 @@ export interface UserAssignedIdentities {
   delete(
     resourceGroupName: string,
     resourceName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

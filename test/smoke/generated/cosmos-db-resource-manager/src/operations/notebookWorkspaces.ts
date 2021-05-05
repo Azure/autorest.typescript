@@ -17,12 +17,19 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NotebookWorkspace,
+  NotebookWorkspacesListByDatabaseAccountOptionalParams,
   NotebookWorkspacesListByDatabaseAccountResponse,
   NotebookWorkspaceName,
+  NotebookWorkspacesGetOptionalParams,
   NotebookWorkspacesGetResponse,
   NotebookWorkspaceCreateUpdateParameters,
+  NotebookWorkspacesCreateOrUpdateOptionalParams,
   NotebookWorkspacesCreateOrUpdateResponse,
-  NotebookWorkspacesListConnectionInfoResponse
+  NotebookWorkspacesDeleteOptionalParams,
+  NotebookWorkspacesListConnectionInfoOptionalParams,
+  NotebookWorkspacesListConnectionInfoResponse,
+  NotebookWorkspacesRegenerateAuthTokenOptionalParams,
+  NotebookWorkspacesStartOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -47,7 +54,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   public listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListByDatabaseAccountOptionalParams
   ): PagedAsyncIterableIterator<NotebookWorkspace> {
     const iter = this.listByDatabaseAccountPagingAll(
       resourceGroupName,
@@ -74,7 +81,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   private async *listByDatabaseAccountPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListByDatabaseAccountOptionalParams
   ): AsyncIterableIterator<NotebookWorkspace[]> {
     let result = await this._listByDatabaseAccount(
       resourceGroupName,
@@ -87,7 +94,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   private async *listByDatabaseAccountPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListByDatabaseAccountOptionalParams
   ): AsyncIterableIterator<NotebookWorkspace> {
     for await (const page of this.listByDatabaseAccountPagingPage(
       resourceGroupName,
@@ -107,7 +114,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   private _listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListByDatabaseAccountOptionalParams
   ): Promise<NotebookWorkspacesListByDatabaseAccountResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -131,7 +138,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesGetOptionalParams
   ): Promise<NotebookWorkspacesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -159,7 +166,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
@@ -182,16 +189,12 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -205,7 +208,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -224,16 +227,12 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -247,7 +246,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListConnectionInfoOptionalParams
   ): Promise<NotebookWorkspacesListConnectionInfoResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -272,7 +271,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -291,16 +290,12 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      regenerateAuthTokenOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: regenerateAuthTokenOperationSpec,
-      initialOperationResult,
+      regenerateAuthTokenOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -314,7 +309,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -333,16 +328,12 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOperationSpec,
-      initialOperationResult,
+      startOperationSpec,
       sendOperation
-    });
+    );
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

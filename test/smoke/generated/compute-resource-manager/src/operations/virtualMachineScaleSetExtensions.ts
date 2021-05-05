@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetExtension,
+  VirtualMachineScaleSetExtensionsListNextOptionalParams,
+  VirtualMachineScaleSetExtensionsListOptionalParams,
+  VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetExtensionsCreateOrUpdateResponse,
   VirtualMachineScaleSetExtensionUpdate,
+  VirtualMachineScaleSetExtensionsUpdateOptionalParams,
   VirtualMachineScaleSetExtensionsUpdateResponse,
+  VirtualMachineScaleSetExtensionsDeleteOptionalParams,
   VirtualMachineScaleSetExtensionsGetOptionalParams,
   VirtualMachineScaleSetExtensionsGetResponse,
   VirtualMachineScaleSetExtensionsListResponse,
@@ -49,7 +54,7 @@ export class VirtualMachineScaleSetExtensionsImpl
   public list(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListOptionalParams
   ): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension> {
     const iter = this.listPagingAll(resourceGroupName, vmScaleSetName, options);
     return {
@@ -68,7 +73,7 @@ export class VirtualMachineScaleSetExtensionsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSetExtension[]> {
     let result = await this._list(resourceGroupName, vmScaleSetName, options);
     yield result.value || [];
@@ -88,7 +93,7 @@ export class VirtualMachineScaleSetExtensionsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListOptionalParams
   ): AsyncIterableIterator<VirtualMachineScaleSetExtension> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -112,7 +117,7 @@ export class VirtualMachineScaleSetExtensionsImpl
     vmScaleSetName: string,
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtension,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -137,16 +142,12 @@ export class VirtualMachineScaleSetExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -162,7 +163,7 @@ export class VirtualMachineScaleSetExtensionsImpl
     vmScaleSetName: string,
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>,
@@ -185,16 +186,12 @@ export class VirtualMachineScaleSetExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -208,7 +205,7 @@ export class VirtualMachineScaleSetExtensionsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -227,16 +224,12 @@ export class VirtualMachineScaleSetExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -273,7 +266,7 @@ export class VirtualMachineScaleSetExtensionsImpl
   private _list(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListOptionalParams
   ): Promise<VirtualMachineScaleSetExtensionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -297,7 +290,7 @@ export class VirtualMachineScaleSetExtensionsImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetExtensionsListNextOptionalParams
   ): Promise<VirtualMachineScaleSetExtensionsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

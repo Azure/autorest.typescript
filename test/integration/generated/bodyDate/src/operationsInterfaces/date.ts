@@ -8,11 +8,19 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  DateGetNullOptionalParams,
   DateGetNullResponse,
+  DateGetInvalidDateOptionalParams,
   DateGetInvalidDateResponse,
+  DateGetOverflowDateOptionalParams,
   DateGetOverflowDateResponse,
+  DateGetUnderflowDateOptionalParams,
   DateGetUnderflowDateResponse,
+  DatePutMaxDateOptionalParams,
+  DateGetMaxDateOptionalParams,
   DateGetMaxDateResponse,
+  DatePutMinDateOptionalParams,
+  DateGetMinDateOptionalParams,
   DateGetMinDateResponse
 } from "../models";
 
@@ -22,27 +30,27 @@ export interface DateOperations {
    * Get null date value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<DateGetNullResponse>;
+  getNull(options?: DateGetNullOptionalParams): Promise<DateGetNullResponse>;
   /**
    * Get invalid date value
    * @param options The options parameters.
    */
   getInvalidDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetInvalidDateOptionalParams
   ): Promise<DateGetInvalidDateResponse>;
   /**
    * Get overflow date value
    * @param options The options parameters.
    */
   getOverflowDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetOverflowDateOptionalParams
   ): Promise<DateGetOverflowDateResponse>;
   /**
    * Get underflow date value
    * @param options The options parameters.
    */
   getUnderflowDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetUnderflowDateOptionalParams
   ): Promise<DateGetUnderflowDateResponse>;
   /**
    * Put max date value 9999-12-31
@@ -51,14 +59,14 @@ export interface DateOperations {
    */
   putMaxDate(
     dateBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatePutMaxDateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get max date value 9999-12-31
    * @param options The options parameters.
    */
   getMaxDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetMaxDateOptionalParams
   ): Promise<DateGetMaxDateResponse>;
   /**
    * Put min date value 0000-01-01
@@ -67,13 +75,13 @@ export interface DateOperations {
    */
   putMinDate(
     dateBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatePutMinDateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get min date value 0000-01-01
    * @param options The options parameters.
    */
   getMinDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetMinDateOptionalParams
   ): Promise<DateGetMinDateResponse>;
 }

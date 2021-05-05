@@ -17,8 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualRouter,
+  VirtualRoutersListByResourceGroupNextOptionalParams,
+  VirtualRoutersListByResourceGroupOptionalParams,
+  VirtualRoutersListNextOptionalParams,
+  VirtualRoutersListOptionalParams,
+  VirtualRoutersDeleteOptionalParams,
   VirtualRoutersGetOptionalParams,
   VirtualRoutersGetResponse,
+  VirtualRoutersCreateOrUpdateOptionalParams,
   VirtualRoutersCreateOrUpdateResponse,
   VirtualRoutersListByResourceGroupResponse,
   VirtualRoutersListResponse,
@@ -46,7 +52,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualRouter> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -64,7 +70,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualRouter[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -82,7 +88,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualRouter> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -97,7 +103,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListOptionalParams
   ): PagedAsyncIterableIterator<VirtualRouter> {
     const iter = this.listPagingAll(options);
     return {
@@ -114,7 +120,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListOptionalParams
   ): AsyncIterableIterator<VirtualRouter[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -127,7 +133,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListOptionalParams
   ): AsyncIterableIterator<VirtualRouter> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -143,7 +149,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
   async delete(
     resourceGroupName: string,
     virtualRouterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -161,17 +167,13 @@ export class VirtualRoutersImpl implements VirtualRouters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -207,7 +209,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
     resourceGroupName: string,
     virtualRouterName: string,
     parameters: VirtualRouter,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualRoutersCreateOrUpdateResponse>,
@@ -229,17 +231,13 @@ export class VirtualRoutersImpl implements VirtualRouters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -249,7 +247,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupOptionalParams
   ): Promise<VirtualRoutersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -266,7 +264,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListOptionalParams
   ): Promise<VirtualRoutersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -286,7 +284,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListByResourceGroupNextOptionalParams
   ): Promise<VirtualRoutersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -306,7 +304,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualRoutersListNextOptionalParams
   ): Promise<VirtualRoutersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

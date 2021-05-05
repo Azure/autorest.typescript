@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { ServerUsage, ServerUsagesListByServerResponse } from "../models";
+import {
+  ServerUsage,
+  ServerUsagesListByServerOptionalParams,
+  ServerUsagesListByServerResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a ServerUsages. */
@@ -38,7 +42,7 @@ export class ServerUsagesImpl implements ServerUsages {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerUsagesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerUsage> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -65,7 +69,7 @@ export class ServerUsagesImpl implements ServerUsages {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerUsagesListByServerOptionalParams
   ): AsyncIterableIterator<ServerUsage[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -78,7 +82,7 @@ export class ServerUsagesImpl implements ServerUsages {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerUsagesListByServerOptionalParams
   ): AsyncIterableIterator<ServerUsage> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -99,7 +103,7 @@ export class ServerUsagesImpl implements ServerUsages {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerUsagesListByServerOptionalParams
   ): Promise<ServerUsagesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,8 +11,14 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   TagDetails,
+  TagsListNextOptionalParams,
+  TagsListOptionalParams,
+  TagsDeleteValueOptionalParams,
+  TagsCreateOrUpdateValueOptionalParams,
   TagsCreateOrUpdateValueResponse,
-  TagsCreateOrUpdateResponse
+  TagsCreateOrUpdateOptionalParams,
+  TagsCreateOrUpdateResponse,
+  TagsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,7 +29,7 @@ export interface Tags {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: TagsListOptionalParams
   ): PagedAsyncIterableIterator<TagDetails>;
   /**
    * Deletes a tag value.
@@ -34,7 +40,7 @@ export interface Tags {
   deleteValue(
     tagName: string,
     tagValue: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsDeleteValueOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Creates a tag value. The name of the tag must already exist.
@@ -45,7 +51,7 @@ export interface Tags {
   createOrUpdateValue(
     tagName: string,
     tagValue: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsCreateOrUpdateValueOptionalParams
   ): Promise<TagsCreateOrUpdateValueResponse>;
   /**
    * The tag name can have a maximum of 512 characters and is case insensitive. Tag names created by
@@ -56,7 +62,7 @@ export interface Tags {
    */
   createOrUpdate(
     tagName: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsCreateOrUpdateOptionalParams
   ): Promise<TagsCreateOrUpdateResponse>;
   /**
    * You must remove all values from a resource tag before you can delete it.
@@ -65,6 +71,6 @@ export interface Tags {
    */
   delete(
     tagName: string,
-    options?: coreHttp.OperationOptions
+    options?: TagsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -15,12 +15,20 @@ import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
 import {
   Identity,
+  UserAssignedIdentitiesListBySubscriptionNextOptionalParams,
+  UserAssignedIdentitiesListBySubscriptionOptionalParams,
+  UserAssignedIdentitiesListByResourceGroupNextOptionalParams,
+  UserAssignedIdentitiesListByResourceGroupOptionalParams,
   UserAssignedIdentitiesListBySubscriptionResponse,
   UserAssignedIdentitiesListByResourceGroupResponse,
+  UserAssignedIdentitiesCreateOrUpdateOptionalParams,
   UserAssignedIdentitiesCreateOrUpdateResponse,
   IdentityUpdate,
+  UserAssignedIdentitiesUpdateOptionalParams,
   UserAssignedIdentitiesUpdateResponse,
+  UserAssignedIdentitiesGetOptionalParams,
   UserAssignedIdentitiesGetResponse,
+  UserAssignedIdentitiesDeleteOptionalParams,
   UserAssignedIdentitiesListBySubscriptionNextResponse,
   UserAssignedIdentitiesListByResourceGroupNextResponse
 } from "../models";
@@ -43,7 +51,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<Identity> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -60,7 +68,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): AsyncIterableIterator<Identity[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -73,7 +81,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): AsyncIterableIterator<Identity> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -87,7 +95,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Identity> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -105,7 +113,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Identity[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -123,7 +131,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Identity> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -138,7 +146,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): Promise<UserAssignedIdentitiesListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -156,7 +164,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): Promise<UserAssignedIdentitiesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -179,7 +187,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     parameters: Identity,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesCreateOrUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -204,7 +212,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     parameters: IdentityUpdate,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -227,7 +235,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   get(
     resourceGroupName: string,
     resourceName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesGetOptionalParams
   ): Promise<UserAssignedIdentitiesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -249,7 +257,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   delete(
     resourceGroupName: string,
     resourceName: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -269,7 +277,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListBySubscriptionNextOptionalParams
   ): Promise<UserAssignedIdentitiesListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -290,7 +298,7 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UserAssignedIdentitiesListByResourceGroupNextOptionalParams
   ): Promise<UserAssignedIdentitiesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

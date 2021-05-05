@@ -12,6 +12,7 @@ import { LicenseHeaderClientContext } from "./licenseHeaderClientContext";
 import {
   LicenseHeaderClientOptionalParams,
   Enum0,
+  LicenseHeaderClientApiV1ValueGetOptionalParams,
   LicenseHeaderClientApiV1ValueGetResponse
 } from "./models";
 
@@ -32,7 +33,7 @@ export class LicenseHeaderClient extends LicenseHeaderClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: coreHttp.OperationOptions
+    options?: LicenseHeaderClientApiV1ValueGetOptionalParams
   ): Promise<LicenseHeaderClientApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

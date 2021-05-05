@@ -7,6 +7,34 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import {
+  HttpClientFailureHead400OptionalParams,
+  HttpClientFailureGet400OptionalParams,
+  HttpClientFailureOptions400OptionalParams,
+  HttpClientFailurePut400OptionalParams,
+  HttpClientFailurePatch400OptionalParams,
+  HttpClientFailurePost400OptionalParams,
+  HttpClientFailureDelete400OptionalParams,
+  HttpClientFailureHead401OptionalParams,
+  HttpClientFailureGet402OptionalParams,
+  HttpClientFailureOptions403OptionalParams,
+  HttpClientFailureGet403OptionalParams,
+  HttpClientFailurePut404OptionalParams,
+  HttpClientFailurePatch405OptionalParams,
+  HttpClientFailurePost406OptionalParams,
+  HttpClientFailureDelete407OptionalParams,
+  HttpClientFailurePut409OptionalParams,
+  HttpClientFailureHead410OptionalParams,
+  HttpClientFailureGet411OptionalParams,
+  HttpClientFailureOptions412OptionalParams,
+  HttpClientFailureGet412OptionalParams,
+  HttpClientFailurePut413OptionalParams,
+  HttpClientFailurePatch414OptionalParams,
+  HttpClientFailurePost415OptionalParams,
+  HttpClientFailureGet416OptionalParams,
+  HttpClientFailureDelete417OptionalParams,
+  HttpClientFailureHead429OptionalParams
+} from "../models";
 
 /** Interface representing a HttpClientFailure. */
 export interface HttpClientFailure {
@@ -14,142 +42,182 @@ export interface HttpClientFailure {
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  head400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head400(
+    options?: HttpClientFailureHead400OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get400(
+    options?: HttpClientFailureGet400OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   options400(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureOptions400OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  put400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put400(
+    options?: HttpClientFailurePut400OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  patch400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch400(
+    options?: HttpClientFailurePatch400OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  post400(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post400(
+    options?: HttpClientFailurePost400OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 400 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   delete400(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureDelete400OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 401 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  head401(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head401(
+    options?: HttpClientFailureHead401OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 402 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get402(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get402(
+    options?: HttpClientFailureGet402OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 403 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   options403(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureOptions403OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 403 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get403(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get403(
+    options?: HttpClientFailureGet403OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 404 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  put404(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put404(
+    options?: HttpClientFailurePut404OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 405 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  patch405(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch405(
+    options?: HttpClientFailurePatch405OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 406 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  post406(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post406(
+    options?: HttpClientFailurePost406OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 407 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   delete407(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureDelete407OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 409 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  put409(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put409(
+    options?: HttpClientFailurePut409OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 410 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  head410(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head410(
+    options?: HttpClientFailureHead410OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 411 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get411(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get411(
+    options?: HttpClientFailureGet411OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 412 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   options412(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureOptions412OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 412 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get412(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get412(
+    options?: HttpClientFailureGet412OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 413 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  put413(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  put413(
+    options?: HttpClientFailurePut413OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 414 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  patch414(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  patch414(
+    options?: HttpClientFailurePatch414OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 415 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  post415(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  post415(
+    options?: HttpClientFailurePost415OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 416 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get416(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  get416(
+    options?: HttpClientFailureGet416OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Return 417 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
   delete417(
-    options?: coreHttp.OperationOptions
+    options?: HttpClientFailureDelete417OptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Return 429 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  head429(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
+  head429(
+    options?: HttpClientFailureHead429OptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

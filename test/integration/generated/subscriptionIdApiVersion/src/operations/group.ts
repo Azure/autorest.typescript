@@ -11,7 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SubscriptionIdApiVersionClientContext } from "../subscriptionIdApiVersionClientContext";
-import { GroupGetSampleResourceGroupResponse } from "../models";
+import {
+  GroupGetSampleResourceGroupOptionalParams,
+  GroupGetSampleResourceGroupResponse
+} from "../models";
 
 /** Class representing a Group. */
 export class GroupImpl implements Group {
@@ -32,7 +35,7 @@ export class GroupImpl implements Group {
    */
   getSampleResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupGetSampleResourceGroupOptionalParams
   ): Promise<GroupGetSampleResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

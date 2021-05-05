@@ -19,7 +19,9 @@ import {
   ProvidersListOptionalParams,
   ProvidersListAtTenantScopeNextOptionalParams,
   ProvidersListAtTenantScopeOptionalParams,
+  ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
+  ProvidersRegisterOptionalParams,
   ProvidersRegisterResponse,
   ProvidersListResponse,
   ProvidersListAtTenantScopeResponse,
@@ -135,7 +137,7 @@ export class ProvidersImpl implements Providers {
    */
   unregister(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: ProvidersUnregisterOptionalParams
   ): Promise<ProvidersUnregisterResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,
@@ -154,7 +156,7 @@ export class ProvidersImpl implements Providers {
    */
   register(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: ProvidersRegisterOptionalParams
   ): Promise<ProvidersRegisterResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceProviderNamespace,

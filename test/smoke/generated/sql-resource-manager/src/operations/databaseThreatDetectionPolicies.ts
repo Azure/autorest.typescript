@@ -13,8 +13,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   SecurityAlertPolicyName,
+  DatabaseThreatDetectionPoliciesGetOptionalParams,
   DatabaseThreatDetectionPoliciesGetResponse,
   DatabaseSecurityAlertPolicy,
+  DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams,
   DatabaseThreatDetectionPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -45,7 +47,7 @@ export class DatabaseThreatDetectionPoliciesImpl
     serverName: string,
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseThreatDetectionPoliciesGetOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -76,7 +78,7 @@ export class DatabaseThreatDetectionPoliciesImpl
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: DatabaseSecurityAlertPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

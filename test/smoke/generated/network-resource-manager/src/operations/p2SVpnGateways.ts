@@ -17,18 +17,30 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   P2SVpnGateway,
+  P2SVpnGatewaysListByResourceGroupNextOptionalParams,
+  P2SVpnGatewaysListByResourceGroupOptionalParams,
+  P2SVpnGatewaysListNextOptionalParams,
+  P2SVpnGatewaysListOptionalParams,
+  P2SVpnGatewaysGetOptionalParams,
   P2SVpnGatewaysGetResponse,
+  P2SVpnGatewaysCreateOrUpdateOptionalParams,
   P2SVpnGatewaysCreateOrUpdateResponse,
   TagsObject,
+  P2SVpnGatewaysUpdateTagsOptionalParams,
   P2SVpnGatewaysUpdateTagsResponse,
+  P2SVpnGatewaysDeleteOptionalParams,
   P2SVpnGatewaysListByResourceGroupResponse,
   P2SVpnGatewaysListResponse,
   P2SVpnProfileParameters,
+  P2SVpnGatewaysGenerateVpnProfileOptionalParams,
   P2SVpnGatewaysGenerateVpnProfileResponse,
+  P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams,
   P2SVpnGatewaysGetP2SVpnConnectionHealthResponse,
   P2SVpnConnectionHealthRequest,
+  P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams,
   P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse,
   P2SVpnConnectionRequest,
+  P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams,
   P2SVpnGatewaysListByResourceGroupNextResponse,
   P2SVpnGatewaysListNextResponse
 } from "../models";
@@ -53,7 +65,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<P2SVpnGateway> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -71,7 +83,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
   ): AsyncIterableIterator<P2SVpnGateway[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -89,7 +101,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
   ): AsyncIterableIterator<P2SVpnGateway> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -104,7 +116,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<P2SVpnGateway> {
     const iter = this.listPagingAll(options);
     return {
@@ -121,7 +133,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListOptionalParams
   ): AsyncIterableIterator<P2SVpnGateway[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -134,7 +146,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListOptionalParams
   ): AsyncIterableIterator<P2SVpnGateway> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -150,7 +162,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   get(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetOptionalParams
   ): Promise<P2SVpnGatewaysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -175,7 +187,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysCreateOrUpdateResponse>,
@@ -197,17 +209,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -221,7 +229,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysUpdateTagsOptionalParams
   ): Promise<P2SVpnGatewaysUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -244,7 +252,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   async delete(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -262,17 +270,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -282,7 +286,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
   ): Promise<P2SVpnGatewaysListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -299,7 +303,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListOptionalParams
   ): Promise<P2SVpnGatewaysListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -321,7 +325,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGenerateVpnProfileOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysGenerateVpnProfileResponse>,
@@ -343,17 +347,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      generateVpnProfileOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: generateVpnProfileOperationSpec,
-      initialOperationResult,
+      generateVpnProfileOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -366,7 +366,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   async getP2SVpnConnectionHealth(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse>,
@@ -387,17 +387,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getP2SVpnConnectionHealthOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getP2SVpnConnectionHealthOperationSpec,
-      initialOperationResult,
+      getP2SVpnConnectionHealthOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -412,7 +408,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     request: P2SVpnConnectionHealthRequest,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -436,17 +432,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getP2SVpnConnectionHealthDetailedOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getP2SVpnConnectionHealthDetailedOperationSpec,
-      initialOperationResult,
+      getP2SVpnConnectionHealthDetailedOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -460,7 +452,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
     resourceGroupName: string,
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -479,17 +471,13 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      disconnectP2SVpnConnectionsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: disconnectP2SVpnConnectionsOperationSpec,
-      initialOperationResult,
+      disconnectP2SVpnConnectionsOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -501,7 +489,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListByResourceGroupNextOptionalParams
   ): Promise<P2SVpnGatewaysListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -521,7 +509,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: P2SVpnGatewaysListNextOptionalParams
   ): Promise<P2SVpnGatewaysListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

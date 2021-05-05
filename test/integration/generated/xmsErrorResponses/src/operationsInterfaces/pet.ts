@@ -8,7 +8,9 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  PetGetPetByIdOptionalParams,
   PetGetPetByIdResponse,
+  PetDoSomethingOptionalParams,
   PetDoSomethingResponse,
   PetHasModelsParamOptionalParams
 } from "../models";
@@ -22,7 +24,7 @@ export interface Pet {
    */
   getPetById(
     petId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetGetPetByIdOptionalParams
   ): Promise<PetGetPetByIdResponse>;
   /**
    * Asks pet to do something
@@ -31,7 +33,7 @@ export interface Pet {
    */
   doSomething(
     whatAction: string,
-    options?: coreHttp.OperationOptions
+    options?: PetDoSomethingOptionalParams
   ): Promise<PetDoSomethingResponse>;
   /**
    * Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't

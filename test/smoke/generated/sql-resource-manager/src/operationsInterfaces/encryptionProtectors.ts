@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   EncryptionProtector,
+  EncryptionProtectorsListByServerNextOptionalParams,
+  EncryptionProtectorsListByServerOptionalParams,
   EncryptionProtectorName,
+  EncryptionProtectorsRevalidateOptionalParams,
+  EncryptionProtectorsGetOptionalParams,
   EncryptionProtectorsGetResponse,
+  EncryptionProtectorsCreateOrUpdateOptionalParams,
   EncryptionProtectorsCreateOrUpdateResponse
 } from "../models";
 
@@ -30,7 +35,7 @@ export interface EncryptionProtectors {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerOptionalParams
   ): PagedAsyncIterableIterator<EncryptionProtector>;
   /**
    * Revalidates an existing encryption protector.
@@ -44,7 +49,7 @@ export interface EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsRevalidateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -60,7 +65,7 @@ export interface EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsGetOptionalParams
   ): Promise<EncryptionProtectorsGetResponse>;
   /**
    * Updates an existing encryption protector.
@@ -76,7 +81,7 @@ export interface EncryptionProtectors {
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
     parameters: EncryptionProtector,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>,

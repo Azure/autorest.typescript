@@ -19,13 +19,25 @@ import {
   ManagementLocksListAtSubscriptionLevelOptionalParams,
   ManagementLocksListByScopeNextOptionalParams,
   ManagementLocksListByScopeOptionalParams,
+  ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse,
+  ManagementLocksDeleteAtResourceGroupLevelOptionalParams,
+  ManagementLocksGetAtResourceGroupLevelOptionalParams,
   ManagementLocksGetAtResourceGroupLevelResponse,
+  ManagementLocksCreateOrUpdateByScopeOptionalParams,
   ManagementLocksCreateOrUpdateByScopeResponse,
+  ManagementLocksDeleteByScopeOptionalParams,
+  ManagementLocksGetByScopeOptionalParams,
   ManagementLocksGetByScopeResponse,
+  ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceLevelResponse,
+  ManagementLocksDeleteAtResourceLevelOptionalParams,
+  ManagementLocksGetAtResourceLevelOptionalParams,
   ManagementLocksGetAtResourceLevelResponse,
+  ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse,
+  ManagementLocksDeleteAtSubscriptionLevelOptionalParams,
+  ManagementLocksGetAtSubscriptionLevelOptionalParams,
   ManagementLocksGetAtSubscriptionLevelResponse
 } from "../models";
 
@@ -94,7 +106,7 @@ export interface ManagementLocks {
     resourceGroupName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -107,7 +119,7 @@ export interface ManagementLocks {
   deleteAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a management lock at the resource group level.
@@ -118,7 +130,7 @@ export interface ManagementLocks {
   getAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
   /**
    * Create or update a management lock by scope.
@@ -135,7 +147,7 @@ export interface ManagementLocks {
     scope: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateByScopeOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
   /**
    * Delete a management lock by scope.
@@ -146,7 +158,7 @@ export interface ManagementLocks {
   deleteByScope(
     scope: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteByScopeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a management lock by scope.
@@ -157,7 +169,7 @@ export interface ManagementLocks {
   getByScope(
     scope: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetByScopeOptionalParams
   ): Promise<ManagementLocksGetByScopeResponse>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create
@@ -182,7 +194,7 @@ export interface ManagementLocks {
     resourceName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -205,7 +217,7 @@ export interface ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtResourceLevelOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get the management lock of a resource or any level below resource.
@@ -224,7 +236,7 @@ export interface ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtResourceLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceLevelResponse>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create
@@ -239,7 +251,7 @@ export interface ManagementLocks {
   createOrUpdateAtSubscriptionLevel(
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -250,7 +262,7 @@ export interface ManagementLocks {
    */
   deleteAtSubscriptionLevel(
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a management lock at the subscription level.
@@ -259,6 +271,6 @@ export interface ManagementLocks {
    */
   getAtSubscriptionLevel(
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
 }

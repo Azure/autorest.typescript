@@ -17,52 +17,104 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
+  AppServiceEnvironmentsListNextOptionalParams,
+  AppServiceEnvironmentsListOptionalParams,
+  AppServiceEnvironmentsListByResourceGroupNextOptionalParams,
+  AppServiceEnvironmentsListByResourceGroupOptionalParams,
   StampCapacity,
+  AppServiceEnvironmentsListCapacitiesNextOptionalParams,
+  AppServiceEnvironmentsListCapacitiesOptionalParams,
   Site,
   VirtualNetworkProfile,
+  AppServiceEnvironmentsChangeVnetNextOptionalParams,
+  AppServiceEnvironmentsChangeVnetOptionalParams,
   InboundEnvironmentEndpoint,
+  AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextOptionalParams,
+  AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams,
   WorkerPoolResource,
+  AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolsOptionalParams,
   ResourceMetricDefinition,
+  AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams,
   SkuInfo,
+  AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams,
   Usage,
+  AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams,
+  AppServiceEnvironmentsListMultiRoleUsagesOptionalParams,
   OutboundEnvironmentEndpoint,
+  AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams,
+  AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams,
+  AppServiceEnvironmentsResumeNextOptionalParams,
+  AppServiceEnvironmentsResumeOptionalParams,
   AppServicePlan,
+  AppServiceEnvironmentsListAppServicePlansNextOptionalParams,
+  AppServiceEnvironmentsListAppServicePlansOptionalParams,
   AppServiceEnvironmentsListWebAppsNextOptionalParams,
   AppServiceEnvironmentsListWebAppsOptionalParams,
+  AppServiceEnvironmentsSuspendNextOptionalParams,
+  AppServiceEnvironmentsSuspendOptionalParams,
   CsmUsageQuota,
   AppServiceEnvironmentsListUsagesNextOptionalParams,
   AppServiceEnvironmentsListUsagesOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolsNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolsOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolSkusOptionalParams,
+  AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams,
+  AppServiceEnvironmentsListWebWorkerUsagesOptionalParams,
   AppServiceEnvironmentsListResponse,
   AppServiceEnvironmentsListByResourceGroupResponse,
+  AppServiceEnvironmentsGetOptionalParams,
   AppServiceEnvironmentsGetResponse,
+  AppServiceEnvironmentsCreateOrUpdateOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateResponse,
   AppServiceEnvironmentsDeleteOptionalParams,
   AppServiceEnvironmentPatchResource,
+  AppServiceEnvironmentsUpdateOptionalParams,
   AppServiceEnvironmentsUpdateResponse,
   AppServiceEnvironmentsListCapacitiesResponse,
+  AppServiceEnvironmentsGetVipInfoOptionalParams,
   AppServiceEnvironmentsGetVipInfoResponse,
   AppServiceEnvironmentsChangeVnetResponse,
+  AppServiceEnvironmentsListDiagnosticsOptionalParams,
   AppServiceEnvironmentsListDiagnosticsResponse,
+  AppServiceEnvironmentsGetDiagnosticsItemOptionalParams,
   AppServiceEnvironmentsGetDiagnosticsItemResponse,
   AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse,
   AppServiceEnvironmentsListMultiRolePoolsResponse,
+  AppServiceEnvironmentsGetMultiRolePoolOptionalParams,
   AppServiceEnvironmentsGetMultiRolePoolResponse,
+  AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse,
+  AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams,
   AppServiceEnvironmentsUpdateMultiRolePoolResponse,
   AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse,
   AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse,
   AppServiceEnvironmentsListMultiRolePoolSkusResponse,
   AppServiceEnvironmentsListMultiRoleUsagesResponse,
+  AppServiceEnvironmentsListOperationsOptionalParams,
   AppServiceEnvironmentsListOperationsResponse,
   AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse,
+  AppServiceEnvironmentsRebootOptionalParams,
   AppServiceEnvironmentsResumeResponse,
   AppServiceEnvironmentsListAppServicePlansResponse,
   AppServiceEnvironmentsListWebAppsResponse,
   AppServiceEnvironmentsSuspendResponse,
   AppServiceEnvironmentsListUsagesResponse,
   AppServiceEnvironmentsListWorkerPoolsResponse,
+  AppServiceEnvironmentsGetWorkerPoolOptionalParams,
   AppServiceEnvironmentsGetWorkerPoolResponse,
+  AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse,
+  AppServiceEnvironmentsUpdateWorkerPoolOptionalParams,
   AppServiceEnvironmentsUpdateWorkerPoolResponse,
   AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse,
   AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse,
@@ -109,7 +161,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOptionalParams
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
     const iter = this.listPagingAll(options);
     return {
@@ -126,7 +178,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOptionalParams
   ): AsyncIterableIterator<AppServiceEnvironmentResource[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -139,7 +191,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOptionalParams
   ): AsyncIterableIterator<AppServiceEnvironmentResource> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -153,7 +205,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -171,7 +223,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServiceEnvironmentResource[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -189,7 +241,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<AppServiceEnvironmentResource> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -208,7 +260,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listCapacities(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): PagedAsyncIterableIterator<StampCapacity> {
     const iter = this.listCapacitiesPagingAll(resourceGroupName, name, options);
     return {
@@ -227,7 +279,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listCapacitiesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): AsyncIterableIterator<StampCapacity[]> {
     let result = await this._listCapacities(resourceGroupName, name, options);
     yield result.value || [];
@@ -247,7 +299,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listCapacitiesPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): AsyncIterableIterator<StampCapacity> {
     for await (const page of this.listCapacitiesPagingPage(
       resourceGroupName,
@@ -269,7 +321,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams
   ): PagedAsyncIterableIterator<Site> {
     const iter = this.changeVnetPagingAll(
       resourceGroupName,
@@ -299,7 +351,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams
   ): AsyncIterableIterator<Site[]> {
     const poller = await this._changeVnet(
       resourceGroupName,
@@ -327,7 +379,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams
   ): AsyncIterableIterator<Site> {
     for await (const page of this.changeVnetPagingPage(
       resourceGroupName,
@@ -348,7 +400,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listInboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
   ): PagedAsyncIterableIterator<InboundEnvironmentEndpoint> {
     const iter = this.getInboundNetworkDependenciesEndpointsPagingAll(
       resourceGroupName,
@@ -375,7 +427,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *getInboundNetworkDependenciesEndpointsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
   ): AsyncIterableIterator<InboundEnvironmentEndpoint[]> {
     let result = await this._getInboundNetworkDependenciesEndpoints(
       resourceGroupName,
@@ -399,7 +451,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *getInboundNetworkDependenciesEndpointsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
   ): AsyncIterableIterator<InboundEnvironmentEndpoint> {
     for await (const page of this.getInboundNetworkDependenciesEndpointsPagingPage(
       resourceGroupName,
@@ -419,7 +471,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listMultiRolePools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): PagedAsyncIterableIterator<WorkerPoolResource> {
     const iter = this.listMultiRolePoolsPagingAll(
       resourceGroupName,
@@ -446,7 +498,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRolePoolsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): AsyncIterableIterator<WorkerPoolResource[]> {
     let result = await this._listMultiRolePools(
       resourceGroupName,
@@ -470,7 +522,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRolePoolsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): AsyncIterableIterator<WorkerPoolResource> {
     for await (const page of this.listMultiRolePoolsPagingPage(
       resourceGroupName,
@@ -493,7 +545,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listMultiRolePoolInstanceMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -523,7 +575,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition[]> {
     let result = await this._listMultiRolePoolInstanceMetricDefinitions(
       resourceGroupName,
@@ -550,7 +602,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition> {
     for await (const page of this.listMultiRolePoolInstanceMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -571,7 +623,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listMultiRoleMetricDefinitions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listMultiRoleMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -598,7 +650,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRoleMetricDefinitionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition[]> {
     let result = await this._listMultiRoleMetricDefinitions(
       resourceGroupName,
@@ -622,7 +674,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRoleMetricDefinitionsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition> {
     for await (const page of this.listMultiRoleMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -642,7 +694,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listMultiRolePoolSkus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): PagedAsyncIterableIterator<SkuInfo> {
     const iter = this.listMultiRolePoolSkusPagingAll(
       resourceGroupName,
@@ -669,7 +721,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRolePoolSkusPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): AsyncIterableIterator<SkuInfo[]> {
     let result = await this._listMultiRolePoolSkus(
       resourceGroupName,
@@ -693,7 +745,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRolePoolSkusPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): AsyncIterableIterator<SkuInfo> {
     for await (const page of this.listMultiRolePoolSkusPagingPage(
       resourceGroupName,
@@ -713,7 +765,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listMultiRoleUsages(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listMultiRoleUsagesPagingAll(
       resourceGroupName,
@@ -740,7 +792,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRoleUsagesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): AsyncIterableIterator<Usage[]> {
     let result = await this._listMultiRoleUsages(
       resourceGroupName,
@@ -764,7 +816,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listMultiRoleUsagesPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): AsyncIterableIterator<Usage> {
     for await (const page of this.listMultiRoleUsagesPagingPage(
       resourceGroupName,
@@ -785,7 +837,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listOutboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint> {
     const iter = this.getOutboundNetworkDependenciesEndpointsPagingAll(
       resourceGroupName,
@@ -812,7 +864,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *getOutboundNetworkDependenciesEndpointsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): AsyncIterableIterator<OutboundEnvironmentEndpoint[]> {
     let result = await this._getOutboundNetworkDependenciesEndpoints(
       resourceGroupName,
@@ -836,7 +888,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *getOutboundNetworkDependenciesEndpointsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): AsyncIterableIterator<OutboundEnvironmentEndpoint> {
     for await (const page of this.getOutboundNetworkDependenciesEndpointsPagingPage(
       resourceGroupName,
@@ -856,7 +908,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listResume(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeOptionalParams
   ): PagedAsyncIterableIterator<Site> {
     const iter = this.resumePagingAll(resourceGroupName, name, options);
     return {
@@ -875,7 +927,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *resumePagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeOptionalParams
   ): AsyncIterableIterator<Site[]> {
     const poller = await this._resume(resourceGroupName, name, options);
     let result: any = await poller.pollUntilDone();
@@ -896,7 +948,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *resumePagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeOptionalParams
   ): AsyncIterableIterator<Site> {
     for await (const page of this.resumePagingPage(
       resourceGroupName,
@@ -916,7 +968,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listAppServicePlans(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): PagedAsyncIterableIterator<AppServicePlan> {
     const iter = this.listAppServicePlansPagingAll(
       resourceGroupName,
@@ -943,7 +995,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listAppServicePlansPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): AsyncIterableIterator<AppServicePlan[]> {
     let result = await this._listAppServicePlans(
       resourceGroupName,
@@ -967,7 +1019,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listAppServicePlansPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): AsyncIterableIterator<AppServicePlan> {
     for await (const page of this.listAppServicePlansPagingPage(
       resourceGroupName,
@@ -1046,7 +1098,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listSuspend(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendOptionalParams
   ): PagedAsyncIterableIterator<Site> {
     const iter = this.suspendPagingAll(resourceGroupName, name, options);
     return {
@@ -1065,7 +1117,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *suspendPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendOptionalParams
   ): AsyncIterableIterator<Site[]> {
     const poller = await this._suspend(resourceGroupName, name, options);
     let result: any = await poller.pollUntilDone();
@@ -1086,7 +1138,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *suspendPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendOptionalParams
   ): AsyncIterableIterator<Site> {
     for await (const page of this.suspendPagingPage(
       resourceGroupName,
@@ -1165,7 +1217,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   public listWorkerPools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): PagedAsyncIterableIterator<WorkerPoolResource> {
     const iter = this.listWorkerPoolsPagingAll(
       resourceGroupName,
@@ -1188,7 +1240,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listWorkerPoolsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): AsyncIterableIterator<WorkerPoolResource[]> {
     let result = await this._listWorkerPools(resourceGroupName, name, options);
     yield result.value || [];
@@ -1208,7 +1260,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async *listWorkerPoolsPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): AsyncIterableIterator<WorkerPoolResource> {
     for await (const page of this.listWorkerPoolsPagingPage(
       resourceGroupName,
@@ -1233,7 +1285,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listWorkerPoolInstanceMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -1266,7 +1318,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition[]> {
     let result = await this._listWorkerPoolInstanceMetricDefinitions(
       resourceGroupName,
@@ -1296,7 +1348,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition> {
     for await (const page of this.listWorkerPoolInstanceMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -1320,7 +1372,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition> {
     const iter = this.listWebWorkerMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -1350,7 +1402,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition[]> {
     let result = await this._listWebWorkerMetricDefinitions(
       resourceGroupName,
@@ -1377,7 +1429,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<ResourceMetricDefinition> {
     for await (const page of this.listWebWorkerMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -1400,7 +1452,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): PagedAsyncIterableIterator<SkuInfo> {
     const iter = this.listWorkerPoolSkusPagingAll(
       resourceGroupName,
@@ -1430,7 +1482,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): AsyncIterableIterator<SkuInfo[]> {
     let result = await this._listWorkerPoolSkus(
       resourceGroupName,
@@ -1457,7 +1509,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): AsyncIterableIterator<SkuInfo> {
     for await (const page of this.listWorkerPoolSkusPagingPage(
       resourceGroupName,
@@ -1480,7 +1532,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listWebWorkerUsagesPagingAll(
       resourceGroupName,
@@ -1510,7 +1562,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): AsyncIterableIterator<Usage[]> {
     let result = await this._listWebWorkerUsages(
       resourceGroupName,
@@ -1537,7 +1589,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): AsyncIterableIterator<Usage> {
     for await (const page of this.listWebWorkerUsagesPagingPage(
       resourceGroupName,
@@ -1554,7 +1606,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOptionalParams
   ): Promise<AppServiceEnvironmentsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -1572,7 +1624,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): Promise<AppServiceEnvironmentsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1593,7 +1645,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOptionalParams
   ): Promise<AppServiceEnvironmentsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1617,7 +1669,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
@@ -1639,16 +1691,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1678,16 +1726,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1701,7 +1745,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1724,7 +1768,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listCapacities(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): Promise<AppServiceEnvironmentsListCapacitiesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1746,7 +1790,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   getVipInfo(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetVipInfoOptionalParams
   ): Promise<AppServiceEnvironmentsGetVipInfoResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1770,7 +1814,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceEnvironmentsChangeVnetResponse>,
@@ -1792,16 +1836,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      changeVnetOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: changeVnetOperationSpec,
-      initialOperationResult,
+      changeVnetOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1813,7 +1853,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   listDiagnostics(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListDiagnosticsOptionalParams
   ): Promise<AppServiceEnvironmentsListDiagnosticsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1837,7 +1877,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     diagnosticsName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
   ): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1860,7 +1900,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _getInboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
   ): Promise<
     AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse
   > {
@@ -1886,7 +1926,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listMultiRolePools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1908,7 +1948,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   getMultiRolePool(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1932,7 +1972,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -1956,16 +1996,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateMultiRolePoolOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateMultiRolePoolOperationSpec,
-      initialOperationResult,
+      createOrUpdateMultiRolePoolOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -1979,7 +2015,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2005,7 +2041,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
   ): Promise<
     AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse
   > {
@@ -2032,7 +2068,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listMultiRoleMetricDefinitions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2054,7 +2090,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listMultiRolePoolSkus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolSkusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2076,7 +2112,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listMultiRoleUsages(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleUsagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2098,7 +2134,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   listOperations(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOperationsOptionalParams
   ): Promise<AppServiceEnvironmentsListOperationsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2121,7 +2157,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _getOutboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): Promise<
     AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse
   > {
@@ -2147,7 +2183,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   reboot(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsRebootOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2169,7 +2205,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async _resume(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceEnvironmentsResumeResponse>,
@@ -2190,16 +2226,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      resumeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: resumeOperationSpec,
-      initialOperationResult,
+      resumeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -2211,7 +2243,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listAppServicePlans(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): Promise<AppServiceEnvironmentsListAppServicePlansResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2255,7 +2287,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private async _suspend(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceEnvironmentsSuspendResponse>,
@@ -2276,16 +2308,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      suspendOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: suspendOperationSpec,
-      initialOperationResult,
+      suspendOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -2319,7 +2347,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listWorkerPools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2343,7 +2371,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetWorkerPoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2370,7 +2398,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -2395,16 +2423,12 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateWorkerPoolOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateWorkerPoolOperationSpec,
-      initialOperationResult,
+      createOrUpdateWorkerPoolOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -2420,7 +2444,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2449,7 +2473,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
   ): Promise<
     AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse
   > {
@@ -2479,7 +2503,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2504,7 +2528,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolSkusResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2529,7 +2553,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerUsagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2550,7 +2574,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListNextOptionalParams
   ): Promise<AppServiceEnvironmentsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -2571,7 +2595,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupNextOptionalParams
   ): Promise<AppServiceEnvironmentsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2595,7 +2619,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListCapacitiesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2622,7 +2646,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     vnetInfo: VirtualNetworkProfile,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetNextOptionalParams
   ): Promise<AppServiceEnvironmentsChangeVnetNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2649,7 +2673,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextOptionalParams
   ): Promise<
     AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse
   > {
@@ -2678,7 +2702,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2706,7 +2730,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     instance: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextOptionalParams
   ): Promise<
     AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse
   > {
@@ -2737,7 +2761,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2764,7 +2788,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolSkusNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2789,7 +2813,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleUsagesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2815,7 +2839,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams
   ): Promise<
     AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse
   > {
@@ -2844,7 +2868,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeNextOptionalParams
   ): Promise<AppServiceEnvironmentsResumeNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2869,7 +2893,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansNextOptionalParams
   ): Promise<AppServiceEnvironmentsListAppServicePlansNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2919,7 +2943,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendNextOptionalParams
   ): Promise<AppServiceEnvironmentsSuspendNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2969,7 +2993,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -2999,7 +3023,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolName: string,
     instance: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextOptionalParams
   ): Promise<
     AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse
   > {
@@ -3033,7 +3057,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -3063,7 +3087,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolSkusNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -3091,7 +3115,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerUsagesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

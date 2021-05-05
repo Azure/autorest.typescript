@@ -12,11 +12,19 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateClientContext } from "../bodyDateClientContext";
 import {
+  DateGetNullOptionalParams,
   DateGetNullResponse,
+  DateGetInvalidDateOptionalParams,
   DateGetInvalidDateResponse,
+  DateGetOverflowDateOptionalParams,
   DateGetOverflowDateResponse,
+  DateGetUnderflowDateOptionalParams,
   DateGetUnderflowDateResponse,
+  DatePutMaxDateOptionalParams,
+  DateGetMaxDateOptionalParams,
   DateGetMaxDateResponse,
+  DatePutMinDateOptionalParams,
+  DateGetMinDateOptionalParams,
   DateGetMinDateResponse
 } from "../models";
 
@@ -36,7 +44,7 @@ export class DateOperationsImpl implements DateOperations {
    * Get null date value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<DateGetNullResponse> {
+  getNull(options?: DateGetNullOptionalParams): Promise<DateGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -51,7 +59,7 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getInvalidDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetInvalidDateOptionalParams
   ): Promise<DateGetInvalidDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -67,7 +75,7 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getOverflowDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetOverflowDateOptionalParams
   ): Promise<DateGetOverflowDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -83,7 +91,7 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getUnderflowDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetUnderflowDateOptionalParams
   ): Promise<DateGetUnderflowDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -101,7 +109,7 @@ export class DateOperationsImpl implements DateOperations {
    */
   putMaxDate(
     dateBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatePutMaxDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       dateBody,
@@ -118,7 +126,7 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getMaxDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetMaxDateOptionalParams
   ): Promise<DateGetMaxDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -136,7 +144,7 @@ export class DateOperationsImpl implements DateOperations {
    */
   putMinDate(
     dateBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: DatePutMinDateOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       dateBody,
@@ -153,7 +161,7 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getMinDate(
-    options?: coreHttp.OperationOptions
+    options?: DateGetMinDateOptionalParams
   ): Promise<DateGetMinDateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

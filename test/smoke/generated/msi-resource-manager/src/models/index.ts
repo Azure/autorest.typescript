@@ -161,6 +161,10 @@ export type Identity = TrackedResource & {
   readonly clientId?: string;
 };
 
+/** Optional parameters. */
+export interface SystemAssignedIdentitiesGetByScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByScope operation. */
 export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity & {
   /** The underlying HTTP response. */
@@ -172,6 +176,10 @@ export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity 
     parsedBody: SystemAssignedIdentity;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
@@ -185,6 +193,10 @@ export type OperationsListResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -196,6 +208,10 @@ export type OperationsListNextResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface UserAssignedIdentitiesListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
 export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult & {
@@ -209,6 +225,10 @@ export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdent
   };
 };
 
+/** Optional parameters. */
+export interface UserAssignedIdentitiesListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult & {
   /** The underlying HTTP response. */
@@ -220,6 +240,10 @@ export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIden
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
+
+/** Optional parameters. */
+export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
 export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
@@ -233,6 +257,10 @@ export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
   };
 };
 
+/** Optional parameters. */
+export interface UserAssignedIdentitiesUpdateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the update operation. */
 export type UserAssignedIdentitiesUpdateResponse = Identity & {
   /** The underlying HTTP response. */
@@ -244,6 +272,10 @@ export type UserAssignedIdentitiesUpdateResponse = Identity & {
     parsedBody: Identity;
   };
 };
+
+/** Optional parameters. */
+export interface UserAssignedIdentitiesGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type UserAssignedIdentitiesGetResponse = Identity & {
@@ -257,6 +289,14 @@ export type UserAssignedIdentitiesGetResponse = Identity & {
   };
 };
 
+/** Optional parameters. */
+export interface UserAssignedIdentitiesDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscriptionNext operation. */
 export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult & {
   /** The underlying HTTP response. */
@@ -268,6 +308,10 @@ export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedI
     parsedBody: UserAssignedIdentitiesListResult;
   };
 };
+
+/** Optional parameters. */
+export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult & {

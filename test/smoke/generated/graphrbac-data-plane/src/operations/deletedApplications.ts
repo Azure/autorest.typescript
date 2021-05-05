@@ -15,9 +15,12 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   Application,
+  DeletedApplicationsListNextOptionalParams,
   DeletedApplicationsListOptionalParams,
+  DeletedApplicationsRestoreOptionalParams,
   DeletedApplicationsRestoreResponse,
   DeletedApplicationsListResponse,
+  DeletedApplicationsHardDeleteOptionalParams,
   DeletedApplicationsListNextResponse
 } from "../models";
 
@@ -83,7 +86,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsListNextOptionalParams
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -101,7 +104,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsListNextOptionalParams
   ): AsyncIterableIterator<Application[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -115,7 +118,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsListNextOptionalParams
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -129,7 +132,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   restore(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsRestoreOptionalParams
   ): Promise<DeletedApplicationsRestoreResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       objectId,
@@ -164,7 +167,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   hardDelete(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsHardDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -183,7 +186,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeletedApplicationsListNextOptionalParams
   ): Promise<DeletedApplicationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -22,23 +22,33 @@ import {
   VaultsListBySubscriptionNextOptionalParams,
   VaultsListBySubscriptionOptionalParams,
   DeletedVault,
+  VaultsListDeletedNextOptionalParams,
+  VaultsListDeletedOptionalParams,
   Resource,
   VaultsListNextOptionalParams,
   VaultsListOptionalParams,
   VaultCreateOrUpdateParameters,
+  VaultsCreateOrUpdateOptionalParams,
   VaultsCreateOrUpdateResponse,
   VaultPatchParameters,
+  VaultsUpdateOptionalParams,
   VaultsUpdateResponse,
+  VaultsDeleteOptionalParams,
+  VaultsGetOptionalParams,
   VaultsGetResponse,
   VaultAccessPolicyParameters,
   AccessPolicyUpdateKind,
+  VaultsUpdateAccessPolicyOptionalParams,
   VaultsUpdateAccessPolicyResponse,
   VaultsListByResourceGroupResponse,
   VaultsListBySubscriptionResponse,
   VaultsListDeletedResponse,
+  VaultsGetDeletedOptionalParams,
   VaultsGetDeletedResponse,
+  VaultsPurgeDeletedOptionalParams,
   VaultsListResponse,
   VaultCheckNameAvailabilityParameters,
+  VaultsCheckNameAvailabilityOptionalParams,
   VaultsCheckNameAvailabilityResponse,
   VaultsListByResourceGroupNextResponse,
   VaultsListBySubscriptionNextResponse,
@@ -160,7 +170,7 @@ export class VaultsImpl implements Vaults {
    * @param options The options parameters.
    */
   public listDeleted(
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedOptionalParams
   ): PagedAsyncIterableIterator<DeletedVault> {
     const iter = this.listDeletedPagingAll(options);
     return {
@@ -177,7 +187,7 @@ export class VaultsImpl implements Vaults {
   }
 
   private async *listDeletedPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedOptionalParams
   ): AsyncIterableIterator<DeletedVault[]> {
     let result = await this._listDeleted(options);
     yield result.value || [];
@@ -190,7 +200,7 @@ export class VaultsImpl implements Vaults {
   }
 
   private async *listDeletedPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedOptionalParams
   ): AsyncIterableIterator<DeletedVault> {
     for await (const page of this.listDeletedPagingPage(options)) {
       yield* page;
@@ -250,7 +260,7 @@ export class VaultsImpl implements Vaults {
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VaultsCreateOrUpdateResponse>,
@@ -272,16 +282,12 @@ export class VaultsImpl implements Vaults {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -295,7 +301,7 @@ export class VaultsImpl implements Vaults {
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultPatchParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsUpdateOptionalParams
   ): Promise<VaultsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -318,7 +324,7 @@ export class VaultsImpl implements Vaults {
   delete(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -340,7 +346,7 @@ export class VaultsImpl implements Vaults {
   get(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsGetOptionalParams
   ): Promise<VaultsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -366,7 +372,7 @@ export class VaultsImpl implements Vaults {
     vaultName: string,
     operationKind: AccessPolicyUpdateKind,
     parameters: VaultAccessPolicyParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsUpdateAccessPolicyOptionalParams
   ): Promise<VaultsUpdateAccessPolicyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -422,7 +428,7 @@ export class VaultsImpl implements Vaults {
    * @param options The options parameters.
    */
   private _listDeleted(
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedOptionalParams
   ): Promise<VaultsListDeletedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -442,7 +448,7 @@ export class VaultsImpl implements Vaults {
   getDeleted(
     vaultName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsGetDeletedOptionalParams
   ): Promise<VaultsGetDeletedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       vaultName,
@@ -464,7 +470,7 @@ export class VaultsImpl implements Vaults {
   async purgeDeleted(
     vaultName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsPurgeDeletedOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -482,16 +488,12 @@ export class VaultsImpl implements Vaults {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      purgeDeletedOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: purgeDeletedOperationSpec,
-      initialOperationResult,
+      purgeDeletedOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -517,7 +519,7 @@ export class VaultsImpl implements Vaults {
    */
   checkNameAvailability(
     vaultName: VaultCheckNameAvailabilityParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsCheckNameAvailabilityOptionalParams
   ): Promise<VaultsCheckNameAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       vaultName,
@@ -577,7 +579,7 @@ export class VaultsImpl implements Vaults {
    */
   private _listDeletedNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedNextOptionalParams
   ): Promise<VaultsListDeletedNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

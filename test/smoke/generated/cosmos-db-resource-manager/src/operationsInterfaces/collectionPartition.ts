@@ -11,6 +11,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PartitionMetric,
+  CollectionPartitionListMetricsOptionalParams,
   PartitionUsage,
   CollectionPartitionListUsagesOptionalParams
 } from "../models";
@@ -35,7 +36,7 @@ export interface CollectionPartition {
     databaseRid: string,
     collectionRid: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: CollectionPartitionListMetricsOptionalParams
   ): PagedAsyncIterableIterator<PartitionMetric>;
   /**
    * Retrieves the usages (most recent storage data) for the given collection, split by partition.

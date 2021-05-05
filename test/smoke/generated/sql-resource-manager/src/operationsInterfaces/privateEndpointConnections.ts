@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsListByServerNextOptionalParams,
+  PrivateEndpointConnectionsListByServerOptionalParams,
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsCreateOrUpdateResponse
+  PrivateEndpointConnectionsCreateOrUpdateOptionalParams,
+  PrivateEndpointConnectionsCreateOrUpdateResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,7 +34,7 @@ export interface PrivateEndpointConnections {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListByServerOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection>;
   /**
    * Gets a private endpoint connection.
@@ -43,7 +48,7 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse>;
   /**
    * Approve or reject a private endpoint connection with a given name.
@@ -59,7 +64,7 @@ export interface PrivateEndpointConnections {
     serverName: string,
     privateEndpointConnectionName: string,
     parameters: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>,
@@ -78,7 +83,7 @@ export interface PrivateEndpointConnections {
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

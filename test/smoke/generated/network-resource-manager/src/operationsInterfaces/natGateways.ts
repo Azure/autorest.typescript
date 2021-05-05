@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NatGateway,
+  NatGatewaysListAllNextOptionalParams,
+  NatGatewaysListAllOptionalParams,
+  NatGatewaysListNextOptionalParams,
+  NatGatewaysListOptionalParams,
+  NatGatewaysDeleteOptionalParams,
   NatGatewaysGetOptionalParams,
   NatGatewaysGetResponse,
+  NatGatewaysCreateOrUpdateOptionalParams,
   NatGatewaysCreateOrUpdateResponse,
   TagsObject,
+  NatGatewaysUpdateTagsOptionalParams,
   NatGatewaysUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface NatGateways {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllOptionalParams
   ): PagedAsyncIterableIterator<NatGateway>;
   /**
    * Gets all nat gateways in a resource group.
@@ -36,7 +43,7 @@ export interface NatGateways {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<NatGateway>;
   /**
    * Deletes the specified nat gateway.
@@ -47,7 +54,7 @@ export interface NatGateways {
   delete(
     resourceGroupName: string,
     natGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface NatGateways {
     resourceGroupName: string,
     natGatewayName: string,
     parameters: NatGateway,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NatGatewaysCreateOrUpdateResponse>,
@@ -91,6 +98,6 @@ export interface NatGateways {
     resourceGroupName: string,
     natGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysUpdateTagsOptionalParams
   ): Promise<NatGatewaysUpdateTagsResponse>;
 }

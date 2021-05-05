@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { GetUuidResponse } from "../models";
+import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Interface representing a Get. */
 export interface Get {
@@ -17,6 +17,6 @@ export interface Get {
    */
   uuid(
     testUuid: string,
-    options?: coreHttp.OperationOptions
+    options?: GetUuidOptionalParams
   ): Promise<GetUuidResponse>;
 }

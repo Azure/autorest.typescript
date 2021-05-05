@@ -12,9 +12,12 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import {
+  HeaderCustomNamedRequestIdOptionalParams,
   HeaderCustomNamedRequestIdResponse,
   HeaderCustomNamedRequestIdParamGroupingParameters,
+  HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   HeaderCustomNamedRequestIdParamGroupingResponse,
+  HeaderCustomNamedRequestIdHeadOptionalParams,
   HeaderCustomNamedRequestIdHeadResponse
 } from "../models";
 
@@ -37,7 +40,7 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestId(
     fooClientRequestId: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdOptionalParams
   ): Promise<HeaderCustomNamedRequestIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       fooClientRequestId,
@@ -57,7 +60,7 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestIdParamGrouping(
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       headerCustomNamedRequestIdParamGroupingParameters,
@@ -76,7 +79,7 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestIdHead(
     fooClientRequestId: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomNamedRequestIdHeadOptionalParams
   ): Promise<HeaderCustomNamedRequestIdHeadResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       fooClientRequestId,

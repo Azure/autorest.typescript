@@ -17,11 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   IpGroup,
+  IpGroupsListByResourceGroupNextOptionalParams,
+  IpGroupsListByResourceGroupOptionalParams,
+  IpGroupsListNextOptionalParams,
+  IpGroupsListOptionalParams,
   IpGroupsGetOptionalParams,
   IpGroupsGetResponse,
+  IpGroupsCreateOrUpdateOptionalParams,
   IpGroupsCreateOrUpdateResponse,
   TagsObject,
+  IpGroupsUpdateGroupsOptionalParams,
   IpGroupsUpdateGroupsResponse,
+  IpGroupsDeleteOptionalParams,
   IpGroupsListByResourceGroupResponse,
   IpGroupsListResponse,
   IpGroupsListByResourceGroupNextResponse,
@@ -48,7 +55,7 @@ export class IpGroupsImpl implements IpGroups {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<IpGroup> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -66,7 +73,7 @@ export class IpGroupsImpl implements IpGroups {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<IpGroup[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -84,7 +91,7 @@ export class IpGroupsImpl implements IpGroups {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<IpGroup> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -99,7 +106,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListOptionalParams
   ): PagedAsyncIterableIterator<IpGroup> {
     const iter = this.listPagingAll(options);
     return {
@@ -116,7 +123,7 @@ export class IpGroupsImpl implements IpGroups {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListOptionalParams
   ): AsyncIterableIterator<IpGroup[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -129,7 +136,7 @@ export class IpGroupsImpl implements IpGroups {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListOptionalParams
   ): AsyncIterableIterator<IpGroup> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -169,7 +176,7 @@ export class IpGroupsImpl implements IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: IpGroup,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<IpGroupsCreateOrUpdateResponse>,
@@ -191,17 +198,13 @@ export class IpGroupsImpl implements IpGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -215,7 +218,7 @@ export class IpGroupsImpl implements IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsUpdateGroupsOptionalParams
   ): Promise<IpGroupsUpdateGroupsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -238,7 +241,7 @@ export class IpGroupsImpl implements IpGroups {
   async delete(
     resourceGroupName: string,
     ipGroupsName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -256,17 +259,13 @@ export class IpGroupsImpl implements IpGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -276,7 +275,7 @@ export class IpGroupsImpl implements IpGroups {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupOptionalParams
   ): Promise<IpGroupsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -293,7 +292,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListOptionalParams
   ): Promise<IpGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -313,7 +312,7 @@ export class IpGroupsImpl implements IpGroups {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListByResourceGroupNextOptionalParams
   ): Promise<IpGroupsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -333,7 +332,7 @@ export class IpGroupsImpl implements IpGroups {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: IpGroupsListNextOptionalParams
   ): Promise<IpGroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

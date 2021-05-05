@@ -11,6 +11,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CustomUrlClientContext } from "../customUrlClientContext";
+import { PathsGetEmptyOptionalParams } from "../models";
 
 /** Class representing a Paths. */
 export class PathsImpl implements Paths {
@@ -31,7 +32,7 @@ export class PathsImpl implements Paths {
    */
   getEmpty(
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PathsGetEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       accountName,

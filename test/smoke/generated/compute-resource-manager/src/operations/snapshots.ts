@@ -17,14 +17,24 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Snapshot,
+  SnapshotsListByResourceGroupNextOptionalParams,
+  SnapshotsListByResourceGroupOptionalParams,
+  SnapshotsListNextOptionalParams,
+  SnapshotsListOptionalParams,
+  SnapshotsCreateOrUpdateOptionalParams,
   SnapshotsCreateOrUpdateResponse,
   SnapshotUpdate,
+  SnapshotsUpdateOptionalParams,
   SnapshotsUpdateResponse,
+  SnapshotsGetOptionalParams,
   SnapshotsGetResponse,
+  SnapshotsDeleteOptionalParams,
   SnapshotsListByResourceGroupResponse,
   SnapshotsListResponse,
   GrantAccessData,
+  SnapshotsGrantAccessOptionalParams,
   SnapshotsGrantAccessResponse,
+  SnapshotsRevokeAccessOptionalParams,
   SnapshotsListByResourceGroupNextResponse,
   SnapshotsListNextResponse
 } from "../models";
@@ -49,7 +59,7 @@ export class SnapshotsImpl implements Snapshots {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -67,7 +77,7 @@ export class SnapshotsImpl implements Snapshots {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -85,7 +95,7 @@ export class SnapshotsImpl implements Snapshots {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -100,7 +110,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListOptionalParams
   ): PagedAsyncIterableIterator<Snapshot> {
     const iter = this.listPagingAll(options);
     return {
@@ -117,7 +127,7 @@ export class SnapshotsImpl implements Snapshots {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListOptionalParams
   ): AsyncIterableIterator<Snapshot[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -130,7 +140,7 @@ export class SnapshotsImpl implements Snapshots {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListOptionalParams
   ): AsyncIterableIterator<Snapshot> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -150,7 +160,7 @@ export class SnapshotsImpl implements Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     snapshot: Snapshot,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsCreateOrUpdateResponse>,
@@ -172,16 +182,12 @@ export class SnapshotsImpl implements Snapshots {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -197,7 +203,7 @@ export class SnapshotsImpl implements Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     snapshot: SnapshotUpdate,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsUpdateResponse>,
@@ -219,16 +225,12 @@ export class SnapshotsImpl implements Snapshots {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -242,7 +244,7 @@ export class SnapshotsImpl implements Snapshots {
   get(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsGetOptionalParams
   ): Promise<SnapshotsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -266,7 +268,7 @@ export class SnapshotsImpl implements Snapshots {
   async delete(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -284,16 +286,12 @@ export class SnapshotsImpl implements Snapshots {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -303,7 +301,7 @@ export class SnapshotsImpl implements Snapshots {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupOptionalParams
   ): Promise<SnapshotsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -320,7 +318,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListOptionalParams
   ): Promise<SnapshotsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -344,7 +342,7 @@ export class SnapshotsImpl implements Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     grantAccessData: GrantAccessData,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsGrantAccessOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsGrantAccessResponse>,
@@ -366,17 +364,13 @@ export class SnapshotsImpl implements Snapshots {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      grantAccessOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: grantAccessOperationSpec,
-      initialOperationResult,
+      grantAccessOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -390,7 +384,7 @@ export class SnapshotsImpl implements Snapshots {
   async revokeAccess(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsRevokeAccessOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -408,17 +402,13 @@ export class SnapshotsImpl implements Snapshots {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      revokeAccessOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: revokeAccessOperationSpec,
-      initialOperationResult,
+      revokeAccessOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -430,7 +420,7 @@ export class SnapshotsImpl implements Snapshots {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupNextOptionalParams
   ): Promise<SnapshotsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -450,7 +440,7 @@ export class SnapshotsImpl implements Snapshots {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListNextOptionalParams
   ): Promise<SnapshotsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

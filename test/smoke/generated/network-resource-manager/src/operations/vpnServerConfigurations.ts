@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnServerConfiguration,
+  VpnServerConfigurationsListByResourceGroupNextOptionalParams,
+  VpnServerConfigurationsListByResourceGroupOptionalParams,
+  VpnServerConfigurationsListNextOptionalParams,
+  VpnServerConfigurationsListOptionalParams,
+  VpnServerConfigurationsGetOptionalParams,
   VpnServerConfigurationsGetResponse,
+  VpnServerConfigurationsCreateOrUpdateOptionalParams,
   VpnServerConfigurationsCreateOrUpdateResponse,
   TagsObject,
+  VpnServerConfigurationsUpdateTagsOptionalParams,
   VpnServerConfigurationsUpdateTagsResponse,
+  VpnServerConfigurationsDeleteOptionalParams,
   VpnServerConfigurationsListByResourceGroupResponse,
   VpnServerConfigurationsListResponse,
   VpnServerConfigurationsListByResourceGroupNextResponse,
@@ -47,7 +55,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VpnServerConfiguration> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VpnServerConfiguration[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VpnServerConfiguration> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListOptionalParams
   ): PagedAsyncIterableIterator<VpnServerConfiguration> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListOptionalParams
   ): AsyncIterableIterator<VpnServerConfiguration[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListOptionalParams
   ): AsyncIterableIterator<VpnServerConfiguration> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -144,7 +152,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   get(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsGetOptionalParams
   ): Promise<VpnServerConfigurationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -170,7 +178,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnServerConfigurationsCreateOrUpdateResponse>,
@@ -192,17 +200,13 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -216,7 +220,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsUpdateTagsOptionalParams
   ): Promise<VpnServerConfigurationsUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -239,7 +243,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   async delete(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -257,17 +261,13 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -277,7 +277,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupOptionalParams
   ): Promise<VpnServerConfigurationsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -294,7 +294,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListOptionalParams
   ): Promise<VpnServerConfigurationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -314,7 +314,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListByResourceGroupNextOptionalParams
   ): Promise<VpnServerConfigurationsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -334,7 +334,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnServerConfigurationsListNextOptionalParams
   ): Promise<VpnServerConfigurationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

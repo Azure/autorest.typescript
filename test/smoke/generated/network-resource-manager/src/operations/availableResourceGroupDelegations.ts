@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   AvailableDelegation,
+  AvailableResourceGroupDelegationsListNextOptionalParams,
+  AvailableResourceGroupDelegationsListOptionalParams,
   AvailableResourceGroupDelegationsListResponse,
   AvailableResourceGroupDelegationsListNextResponse
 } from "../models";
@@ -42,7 +44,7 @@ export class AvailableResourceGroupDelegationsImpl
   public list(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListOptionalParams
   ): PagedAsyncIterableIterator<AvailableDelegation> {
     const iter = this.listPagingAll(location, resourceGroupName, options);
     return {
@@ -61,7 +63,7 @@ export class AvailableResourceGroupDelegationsImpl
   private async *listPagingPage(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListOptionalParams
   ): AsyncIterableIterator<AvailableDelegation[]> {
     let result = await this._list(location, resourceGroupName, options);
     yield result.value || [];
@@ -81,7 +83,7 @@ export class AvailableResourceGroupDelegationsImpl
   private async *listPagingAll(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListOptionalParams
   ): AsyncIterableIterator<AvailableDelegation> {
     for await (const page of this.listPagingPage(
       location,
@@ -101,7 +103,7 @@ export class AvailableResourceGroupDelegationsImpl
   private _list(
     location: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListOptionalParams
   ): Promise<AvailableResourceGroupDelegationsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -125,7 +127,7 @@ export class AvailableResourceGroupDelegationsImpl
     location: string,
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AvailableResourceGroupDelegationsListNextOptionalParams
   ): Promise<AvailableResourceGroupDelegationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   EncryptionProtector,
+  EncryptionProtectorsListByServerNextOptionalParams,
+  EncryptionProtectorsListByServerOptionalParams,
   EncryptionProtectorName,
+  EncryptionProtectorsRevalidateOptionalParams,
   EncryptionProtectorsListByServerResponse,
+  EncryptionProtectorsGetOptionalParams,
   EncryptionProtectorsGetResponse,
+  EncryptionProtectorsCreateOrUpdateOptionalParams,
   EncryptionProtectorsCreateOrUpdateResponse,
   EncryptionProtectorsListByServerNextResponse
 } from "../models";
@@ -47,7 +52,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerOptionalParams
   ): PagedAsyncIterableIterator<EncryptionProtector> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -74,7 +79,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerOptionalParams
   ): AsyncIterableIterator<EncryptionProtector[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -98,7 +103,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerOptionalParams
   ): AsyncIterableIterator<EncryptionProtector> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -121,7 +126,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsRevalidateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -140,16 +145,12 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      revalidateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: revalidateOperationSpec,
-      initialOperationResult,
+      revalidateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -162,7 +163,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerOptionalParams
   ): Promise<EncryptionProtectorsListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -187,7 +188,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsGetOptionalParams
   ): Promise<EncryptionProtectorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -215,7 +216,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
     parameters: EncryptionProtector,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<EncryptionProtectorsCreateOrUpdateResponse>,
@@ -238,16 +239,12 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -262,7 +259,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: EncryptionProtectorsListByServerNextOptionalParams
   ): Promise<EncryptionProtectorsListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   ExpressRouteLink,
+  ExpressRouteLinksListNextOptionalParams,
+  ExpressRouteLinksListOptionalParams,
+  ExpressRouteLinksGetOptionalParams,
   ExpressRouteLinksGetResponse,
   ExpressRouteLinksListResponse,
   ExpressRouteLinksListNextResponse
@@ -42,7 +45,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
   public list(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteLink> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -69,7 +72,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
   private async *listPagingPage(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListOptionalParams
   ): AsyncIterableIterator<ExpressRouteLink[]> {
     let result = await this._list(
       resourceGroupName,
@@ -93,7 +96,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
   private async *listPagingAll(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListOptionalParams
   ): AsyncIterableIterator<ExpressRouteLink> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -115,7 +118,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
     resourceGroupName: string,
     expressRoutePortName: string,
     linkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksGetOptionalParams
   ): Promise<ExpressRouteLinksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -138,7 +141,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
   private _list(
     resourceGroupName: string,
     expressRoutePortName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListOptionalParams
   ): Promise<ExpressRouteLinksListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -162,7 +165,7 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
     resourceGroupName: string,
     expressRoutePortName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteLinksListNextOptionalParams
   ): Promise<ExpressRouteLinksListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,6 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PrivateLinkResource,
+  PrivateLinkResourcesListByDatabaseAccountOptionalParams,
+  PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse
 } from "../models";
 
@@ -26,7 +28,7 @@ export interface PrivateLinkResources {
   listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkResource>;
   /**
    * Gets the private link resources that need to be created for a Cosmos DB account.
@@ -39,6 +41,6 @@ export interface PrivateLinkResources {
     resourceGroupName: string,
     accountName: string,
     groupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesGetOptionalParams
   ): Promise<PrivateLinkResourcesGetResponse>;
 }

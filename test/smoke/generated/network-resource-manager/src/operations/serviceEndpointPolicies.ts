@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServiceEndpointPolicy,
+  ServiceEndpointPoliciesListNextOptionalParams,
+  ServiceEndpointPoliciesListOptionalParams,
+  ServiceEndpointPoliciesListByResourceGroupNextOptionalParams,
+  ServiceEndpointPoliciesListByResourceGroupOptionalParams,
+  ServiceEndpointPoliciesDeleteOptionalParams,
   ServiceEndpointPoliciesGetOptionalParams,
   ServiceEndpointPoliciesGetResponse,
+  ServiceEndpointPoliciesCreateOrUpdateOptionalParams,
   ServiceEndpointPoliciesCreateOrUpdateResponse,
   TagsObject,
+  ServiceEndpointPoliciesUpdateTagsOptionalParams,
   ServiceEndpointPoliciesUpdateTagsResponse,
   ServiceEndpointPoliciesListResponse,
   ServiceEndpointPoliciesListByResourceGroupResponse,
@@ -46,7 +53,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<ServiceEndpointPolicy> {
     const iter = this.listPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListOptionalParams
   ): AsyncIterableIterator<ServiceEndpointPolicy[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListOptionalParams
   ): AsyncIterableIterator<ServiceEndpointPolicy> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ServiceEndpointPolicy> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ServiceEndpointPolicy[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ServiceEndpointPolicy> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -145,7 +152,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   async delete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -163,17 +170,13 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -209,7 +212,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     parameters: ServiceEndpointPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServiceEndpointPoliciesCreateOrUpdateResponse>,
@@ -231,17 +234,13 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -255,7 +254,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesUpdateTagsOptionalParams
   ): Promise<ServiceEndpointPoliciesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -274,7 +273,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListOptionalParams
   ): Promise<ServiceEndpointPoliciesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -292,7 +291,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupOptionalParams
   ): Promise<ServiceEndpointPoliciesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -311,7 +310,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListNextOptionalParams
   ): Promise<ServiceEndpointPoliciesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -332,7 +331,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceEndpointPoliciesListByResourceGroupNextOptionalParams
   ): Promise<ServiceEndpointPoliciesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

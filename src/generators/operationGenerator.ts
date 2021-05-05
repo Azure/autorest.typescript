@@ -798,9 +798,7 @@ function writeLROOperationBody(
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
 
-  const finalStateStr = finalStateVia
-    ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
-    : "";
+  const finalStateStr = finalStateVia ? `"${finalStateVia.toLowerCase()}"` : "";
   const asyncKeyword = isTracingEnabled ? "async" : "";
   let sendOperationStatement = `const sendOperation = ${asyncKeyword} (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
     ${getTracingTryCatchStatement(
@@ -812,14 +810,12 @@ function writeLROOperationBody(
 
   methodDeclaration.addStatements([
     sendOperationStatement,
-    `const initialOperationResult = await sendOperation(${operationParamsName}, ${operationSpecName});`,
-    `return new LROPoller({
-      initialOperationArguments: ${operationParamsName},
-      initialOperationSpec: ${operationSpecName},
-      initialOperationResult,
+    `return new LROPoller({intervalInMs: options?.updateIntervalInMs},
+      ${operationParamsName},
+      ${operationSpecName},
       sendOperation,
       ${finalStateStr}
-    });`
+    );`
   ]);
 
   methodDeclaration.setReturnType(

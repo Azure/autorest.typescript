@@ -12,21 +12,37 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
 import {
+  HttpRedirectsHead300OptionalParams,
   HttpRedirectsHead300Response,
+  HttpRedirectsGet300OptionalParams,
   HttpRedirectsGet300Response,
+  HttpRedirectsHead301OptionalParams,
   HttpRedirectsHead301Response,
+  HttpRedirectsGet301OptionalParams,
   HttpRedirectsGet301Response,
+  HttpRedirectsPut301OptionalParams,
   HttpRedirectsPut301Response,
+  HttpRedirectsHead302OptionalParams,
   HttpRedirectsHead302Response,
+  HttpRedirectsGet302OptionalParams,
   HttpRedirectsGet302Response,
+  HttpRedirectsPatch302OptionalParams,
   HttpRedirectsPatch302Response,
+  HttpRedirectsPost303OptionalParams,
   HttpRedirectsPost303Response,
+  HttpRedirectsHead307OptionalParams,
   HttpRedirectsHead307Response,
+  HttpRedirectsGet307OptionalParams,
   HttpRedirectsGet307Response,
+  HttpRedirectsOptions307OptionalParams,
   HttpRedirectsOptions307Response,
+  HttpRedirectsPut307OptionalParams,
   HttpRedirectsPut307Response,
+  HttpRedirectsPatch307OptionalParams,
   HttpRedirectsPatch307Response,
+  HttpRedirectsPost307OptionalParams,
   HttpRedirectsPost307Response,
+  HttpRedirectsDelete307OptionalParams,
   HttpRedirectsDelete307Response
 } from "../models";
 
@@ -47,7 +63,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   head300(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead300OptionalParams
   ): Promise<HttpRedirectsHead300Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -63,7 +79,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   get300(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet300OptionalParams
   ): Promise<HttpRedirectsGet300Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -79,7 +95,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   head301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead301OptionalParams
   ): Promise<HttpRedirectsHead301Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -95,7 +111,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   get301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet301OptionalParams
   ): Promise<HttpRedirectsGet301Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -112,7 +128,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   put301(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPut301OptionalParams
   ): Promise<HttpRedirectsPut301Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -128,7 +144,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   head302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead302OptionalParams
   ): Promise<HttpRedirectsHead302Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -144,7 +160,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   get302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet302OptionalParams
   ): Promise<HttpRedirectsGet302Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -161,7 +177,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   patch302(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPatch302OptionalParams
   ): Promise<HttpRedirectsPatch302Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -178,7 +194,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   post303(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPost303OptionalParams
   ): Promise<HttpRedirectsPost303Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -194,7 +210,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   head307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsHead307OptionalParams
   ): Promise<HttpRedirectsHead307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -210,7 +226,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   get307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsGet307OptionalParams
   ): Promise<HttpRedirectsGet307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -226,7 +242,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   options307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsOptions307OptionalParams
   ): Promise<HttpRedirectsOptions307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -242,7 +258,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   put307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPut307OptionalParams
   ): Promise<HttpRedirectsPut307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -258,7 +274,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   patch307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPatch307OptionalParams
   ): Promise<HttpRedirectsPatch307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -274,7 +290,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   post307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsPost307OptionalParams
   ): Promise<HttpRedirectsPost307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -290,7 +306,7 @@ export class HttpRedirectsImpl implements HttpRedirects {
    * @param options The options parameters.
    */
   delete307(
-    options?: coreHttp.OperationOptions
+    options?: HttpRedirectsDelete307OptionalParams
   ): Promise<HttpRedirectsDelete307Response> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -21,6 +21,7 @@ import {
   JobTargetExecutionsListByStepOptionalParams,
   JobTargetExecutionsListByJobExecutionResponse,
   JobTargetExecutionsListByStepResponse,
+  JobTargetExecutionsGetOptionalParams,
   JobTargetExecutionsGetResponse,
   JobTargetExecutionsListByJobExecutionNextResponse,
   JobTargetExecutionsListByStepNextResponse
@@ -333,7 +334,7 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
     jobExecutionId: string,
     stepName: string,
     targetId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobTargetExecutionsGetOptionalParams
   ): Promise<JobTargetExecutionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

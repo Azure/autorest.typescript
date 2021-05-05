@@ -7,7 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { GroupGetSampleResourceGroupResponse } from "../models";
+import {
+  GroupGetSampleResourceGroupOptionalParams,
+  GroupGetSampleResourceGroupResponse
+} from "../models";
 
 /** Interface representing a Group. */
 export interface Group {
@@ -18,6 +21,6 @@ export interface Group {
    */
   getSampleResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: GroupGetSampleResourceGroupOptionalParams
   ): Promise<GroupGetSampleResourceGroupResponse>;
 }

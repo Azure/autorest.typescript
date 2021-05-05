@@ -11,6 +11,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import {
+  XMsClientRequestIdGetOptionalParams,
+  XMsClientRequestIdParamGetOptionalParams
+} from "../models";
 
 /** Class representing a XMsClientRequestId. */
 export class XMsClientRequestIdImpl implements XMsClientRequestId {
@@ -29,7 +33,9 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  get(
+    options?: XMsClientRequestIdGetOptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -48,7 +54,7 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
    */
   paramGet(
     xMsClientRequestId: string,
-    options?: coreHttp.OperationOptions
+    options?: XMsClientRequestIdParamGetOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       xMsClientRequestId,

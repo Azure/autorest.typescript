@@ -17,14 +17,24 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetwork,
+  VirtualNetworksListAllNextOptionalParams,
+  VirtualNetworksListAllOptionalParams,
+  VirtualNetworksListNextOptionalParams,
+  VirtualNetworksListOptionalParams,
   VirtualNetworkUsage,
+  VirtualNetworksListUsageNextOptionalParams,
+  VirtualNetworksListUsageOptionalParams,
+  VirtualNetworksDeleteOptionalParams,
   VirtualNetworksGetOptionalParams,
   VirtualNetworksGetResponse,
+  VirtualNetworksCreateOrUpdateOptionalParams,
   VirtualNetworksCreateOrUpdateResponse,
   TagsObject,
+  VirtualNetworksUpdateTagsOptionalParams,
   VirtualNetworksUpdateTagsResponse,
   VirtualNetworksListAllResponse,
   VirtualNetworksListResponse,
+  VirtualNetworksCheckIPAddressAvailabilityOptionalParams,
   VirtualNetworksCheckIPAddressAvailabilityResponse,
   VirtualNetworksListUsageResponse,
   VirtualNetworksListAllNextResponse,
@@ -50,7 +60,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetwork> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -67,7 +77,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllOptionalParams
   ): AsyncIterableIterator<VirtualNetwork[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -80,7 +90,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllOptionalParams
   ): AsyncIterableIterator<VirtualNetwork> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -94,7 +104,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetwork> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -112,7 +122,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListOptionalParams
   ): AsyncIterableIterator<VirtualNetwork[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -130,7 +140,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListOptionalParams
   ): AsyncIterableIterator<VirtualNetwork> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -146,7 +156,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   public listUsage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageOptionalParams
   ): PagedAsyncIterableIterator<VirtualNetworkUsage> {
     const iter = this.listUsagePagingAll(
       resourceGroupName,
@@ -173,7 +183,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   private async *listUsagePagingPage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageOptionalParams
   ): AsyncIterableIterator<VirtualNetworkUsage[]> {
     let result = await this._listUsage(
       resourceGroupName,
@@ -197,7 +207,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   private async *listUsagePagingAll(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageOptionalParams
   ): AsyncIterableIterator<VirtualNetworkUsage> {
     for await (const page of this.listUsagePagingPage(
       resourceGroupName,
@@ -217,7 +227,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   async delete(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -235,17 +245,13 @@ export class VirtualNetworksImpl implements VirtualNetworks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -281,7 +287,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualNetworksCreateOrUpdateResponse>,
@@ -303,17 +309,13 @@ export class VirtualNetworksImpl implements VirtualNetworks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -327,7 +329,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksUpdateTagsOptionalParams
   ): Promise<VirtualNetworksUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -346,7 +348,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllOptionalParams
   ): Promise<VirtualNetworksListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -364,7 +366,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListOptionalParams
   ): Promise<VirtualNetworksListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -387,7 +389,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     ipAddress: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksCheckIPAddressAvailabilityOptionalParams
   ): Promise<VirtualNetworksCheckIPAddressAvailabilityResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -410,7 +412,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   private _listUsage(
     resourceGroupName: string,
     virtualNetworkName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageOptionalParams
   ): Promise<VirtualNetworksListUsageResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -430,7 +432,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListAllNextOptionalParams
   ): Promise<VirtualNetworksListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -451,7 +453,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListNextOptionalParams
   ): Promise<VirtualNetworksListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -475,7 +477,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     resourceGroupName: string,
     virtualNetworkName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualNetworksListUsageNextOptionalParams
   ): Promise<VirtualNetworksListUsageNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

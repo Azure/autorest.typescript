@@ -4,6 +4,7 @@ import { NoLicenseHeaderClientContext } from "./noLicenseHeaderClientContext";
 import {
   NoLicenseHeaderClientOptionalParams,
   Enum0,
+  NoLicenseHeaderClientApiV1ValueGetOptionalParams,
   NoLicenseHeaderClientApiV1ValueGetResponse
 } from "./models";
 
@@ -24,7 +25,7 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: coreHttp.OperationOptions
+    options?: NoLicenseHeaderClientApiV1ValueGetOptionalParams
   ): Promise<NoLicenseHeaderClientApiV1ValueGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -9,8 +9,10 @@
 import * as coreHttp from "@azure/core-http";
 import {
   SecurityAlertPolicyName,
+  DatabaseThreatDetectionPoliciesGetOptionalParams,
   DatabaseThreatDetectionPoliciesGetResponse,
   DatabaseSecurityAlertPolicy,
+  DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams,
   DatabaseThreatDetectionPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -30,7 +32,7 @@ export interface DatabaseThreatDetectionPolicies {
     serverName: string,
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseThreatDetectionPoliciesGetOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesGetResponse>;
   /**
    * Creates or updates a database's threat detection policy.
@@ -48,6 +50,6 @@ export interface DatabaseThreatDetectionPolicies {
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: DatabaseSecurityAlertPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
 }

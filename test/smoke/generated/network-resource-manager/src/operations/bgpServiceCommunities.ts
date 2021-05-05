@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   BgpServiceCommunity,
+  BgpServiceCommunitiesListNextOptionalParams,
+  BgpServiceCommunitiesListOptionalParams,
   BgpServiceCommunitiesListResponse,
   BgpServiceCommunitiesListNextResponse
 } from "../models";
@@ -37,7 +39,7 @@ export class BgpServiceCommunitiesImpl implements BgpServiceCommunities {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: BgpServiceCommunitiesListOptionalParams
   ): PagedAsyncIterableIterator<BgpServiceCommunity> {
     const iter = this.listPagingAll(options);
     return {
@@ -54,7 +56,7 @@ export class BgpServiceCommunitiesImpl implements BgpServiceCommunities {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: BgpServiceCommunitiesListOptionalParams
   ): AsyncIterableIterator<BgpServiceCommunity[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -67,7 +69,7 @@ export class BgpServiceCommunitiesImpl implements BgpServiceCommunities {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: BgpServiceCommunitiesListOptionalParams
   ): AsyncIterableIterator<BgpServiceCommunity> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -79,7 +81,7 @@ export class BgpServiceCommunitiesImpl implements BgpServiceCommunities {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: BgpServiceCommunitiesListOptionalParams
   ): Promise<BgpServiceCommunitiesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -97,7 +99,7 @@ export class BgpServiceCommunitiesImpl implements BgpServiceCommunities {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: BgpServiceCommunitiesListNextOptionalParams
   ): Promise<BgpServiceCommunitiesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -25,6 +25,10 @@ export interface Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMult
   fileContent: coreHttp.HttpRequestBody[];
 }
 
+/** Optional parameters. */
+export interface FormdataUploadFileOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the uploadFile operation. */
 export type FormdataUploadFileResponse = {
   /**
@@ -46,6 +50,10 @@ export type FormdataUploadFileResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface FormdataUploadFileViaBodyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the uploadFileViaBody operation. */
 export type FormdataUploadFileViaBodyResponse = {
   /**
@@ -66,6 +74,10 @@ export type FormdataUploadFileViaBodyResponse = {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
+
+/** Optional parameters. */
+export interface FormdataUploadFilesOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the uploadFiles operation. */
 export type FormdataUploadFilesResponse = {

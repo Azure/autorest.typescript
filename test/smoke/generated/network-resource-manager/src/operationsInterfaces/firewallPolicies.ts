@@ -12,8 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicy,
+  FirewallPoliciesListNextOptionalParams,
+  FirewallPoliciesListOptionalParams,
+  FirewallPoliciesListAllNextOptionalParams,
+  FirewallPoliciesListAllOptionalParams,
+  FirewallPoliciesDeleteOptionalParams,
   FirewallPoliciesGetOptionalParams,
   FirewallPoliciesGetResponse,
+  FirewallPoliciesCreateOrUpdateOptionalParams,
   FirewallPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -27,14 +33,14 @@ export interface FirewallPolicies {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicy>;
   /**
    * Gets all the Firewall Policies in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesListAllOptionalParams
   ): PagedAsyncIterableIterator<FirewallPolicy>;
   /**
    * Deletes the specified Firewall Policy.
@@ -45,7 +51,7 @@ export interface FirewallPolicies {
   delete(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -71,7 +77,7 @@ export interface FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     parameters: FirewallPolicy,
-    options?: coreHttp.OperationOptions
+    options?: FirewallPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<FirewallPoliciesCreateOrUpdateResponse>,

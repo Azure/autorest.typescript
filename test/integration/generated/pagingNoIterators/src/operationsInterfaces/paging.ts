@@ -9,34 +9,53 @@
 import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
+  PagingGetSinglePagesOptionalParams,
   PagingGetSinglePagesResponse,
+  PagingFirstResponseEmptyOptionalParams,
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesOptionalParams,
   PagingGetMultiplePagesResponse,
+  PagingGetWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsResponse,
+  PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetOdataMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetOptionalParams,
   PagingGetMultiplePagesWithOffsetResponse,
+  PagingGetMultiplePagesRetryFirstOptionalParams,
   PagingGetMultiplePagesRetryFirstResponse,
+  PagingGetMultiplePagesRetrySecondOptionalParams,
   PagingGetMultiplePagesRetrySecondResponse,
+  PagingGetSinglePagesFailureOptionalParams,
   PagingGetSinglePagesFailureResponse,
+  PagingGetMultiplePagesFailureOptionalParams,
   PagingGetMultiplePagesFailureResponse,
+  PagingGetMultiplePagesFailureUriOptionalParams,
   PagingGetMultiplePagesFailureUriResponse,
+  PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentNextLinkResponse,
   CustomParameterGroup,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLROOptionalParams,
   PagingGetMultiplePagesLROResponse,
+  PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
+  PagingNextFragmentWithGroupingOptionalParams,
   PagingNextFragmentWithGroupingResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesNextResponse,
+  PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesNextResponse,
@@ -44,13 +63,19 @@ import {
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
   PagingGetMultiplePagesWithOffsetNextResponse,
+  PagingGetMultiplePagesRetryFirstNextOptionalParams,
   PagingGetMultiplePagesRetryFirstNextResponse,
+  PagingGetMultiplePagesRetrySecondNextOptionalParams,
   PagingGetMultiplePagesRetrySecondNextResponse,
+  PagingGetSinglePagesFailureNextOptionalParams,
   PagingGetSinglePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureNextOptionalParams,
   PagingGetMultiplePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriNextResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLRONextResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
@@ -61,21 +86,21 @@ export interface Paging {
    * @param options The options parameters.
    */
   getNoItemNamePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNoItemNamePagesOptionalParams
   ): Promise<PagingGetNoItemNamePagesResponse>;
   /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
   getNullNextLinkNamePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNullNextLinkNamePagesOptionalParams
   ): Promise<PagingGetNullNextLinkNamePagesResponse>;
   /**
    * A paging operation that finishes on the first call without a nextlink
    * @param options The options parameters.
    */
   getSinglePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse>;
   /**
    * A paging operation whose first response's items list is empty, but still returns a next link. Second
@@ -83,7 +108,7 @@ export interface Paging {
    * @param options The options parameters.
    */
   firstResponseEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PagingFirstResponseEmptyOptionalParams
   ): Promise<PagingFirstResponseEmptyResponse>;
   /**
    * A paging operation that includes a nextLink that has 10 pages
@@ -100,14 +125,14 @@ export interface Paging {
    */
   getWithQueryParams(
     requiredQueryParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetWithQueryParamsOptionalParams
   ): Promise<PagingGetWithQueryParamsResponse>;
   /**
    * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
    * @param options The options parameters.
    */
   nextOperationWithQueryParams(
-    options?: coreHttp.OperationOptions
+    options?: PagingNextOperationWithQueryParamsOptionalParams
   ): Promise<PagingNextOperationWithQueryParamsResponse>;
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
@@ -131,7 +156,7 @@ export interface Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetryFirst(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstResponse>;
   /**
    * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
@@ -139,28 +164,28 @@ export interface Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetrySecond(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondResponse>;
   /**
    * A paging operation that receives a 400 on the first call
    * @param options The options parameters.
    */
   getSinglePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesFailureOptionalParams
   ): Promise<PagingGetSinglePagesFailureResponse>;
   /**
    * A paging operation that receives a 400 on the second call
    * @param options The options parameters.
    */
   getMultiplePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureOptionalParams
   ): Promise<PagingGetMultiplePagesFailureResponse>;
   /**
    * A paging operation that receives an invalid nextLink
    * @param options The options parameters.
    */
   getMultiplePagesFailureUri(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureUriOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriResponse>;
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -171,7 +196,7 @@ export interface Paging {
   getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
   /**
    * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
@@ -180,7 +205,7 @@ export interface Paging {
    */
   getMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
@@ -205,7 +230,7 @@ export interface Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingNextFragmentOptionalParams
   ): Promise<PagingNextFragmentResponse>;
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -216,7 +241,7 @@ export interface Paging {
   nextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: PagingNextFragmentWithGroupingOptionalParams
   ): Promise<PagingNextFragmentWithGroupingResponse>;
   /**
    * A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name
@@ -224,7 +249,7 @@ export interface Paging {
    * @param options The options parameters.
    */
   getPagingModelWithItemNameWithXMSClientName(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
   /**
    * GetNoItemNamePagesNext
@@ -233,7 +258,7 @@ export interface Paging {
    */
   getNoItemNamePagesNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse>;
   /**
    * GetSinglePagesNext
@@ -242,7 +267,7 @@ export interface Paging {
    */
   getSinglePagesNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse>;
   /**
    * FirstResponseEmptyNext
@@ -251,7 +276,7 @@ export interface Paging {
    */
   firstResponseEmptyNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingFirstResponseEmptyNextOptionalParams
   ): Promise<PagingFirstResponseEmptyNextResponse>;
   /**
    * GetMultiplePagesNext
@@ -291,7 +316,7 @@ export interface Paging {
    */
   getMultiplePagesRetryFirstNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
   /**
    * GetMultiplePagesRetrySecondNext
@@ -301,7 +326,7 @@ export interface Paging {
    */
   getMultiplePagesRetrySecondNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
   /**
    * GetSinglePagesFailureNext
@@ -310,7 +335,7 @@ export interface Paging {
    */
   getSinglePagesFailureNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesFailureNextOptionalParams
   ): Promise<PagingGetSinglePagesFailureNextResponse>;
   /**
    * GetMultiplePagesFailureNext
@@ -320,7 +345,7 @@ export interface Paging {
    */
   getMultiplePagesFailureNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureNextResponse>;
   /**
    * GetMultiplePagesFailureUriNext
@@ -330,7 +355,7 @@ export interface Paging {
    */
   getMultiplePagesFailureUriNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureUriNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse>;
   /**
    * GetMultiplePagesLRONext
@@ -349,6 +374,6 @@ export interface Paging {
    */
   getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
 }

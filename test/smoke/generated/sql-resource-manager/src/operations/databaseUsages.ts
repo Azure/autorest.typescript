@@ -13,7 +13,11 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { DatabaseUsage, DatabaseUsagesListByDatabaseResponse } from "../models";
+import {
+  DatabaseUsage,
+  DatabaseUsagesListByDatabaseOptionalParams,
+  DatabaseUsagesListByDatabaseResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a DatabaseUsages. */
@@ -40,7 +44,7 @@ export class DatabaseUsagesImpl implements DatabaseUsages {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseUsagesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<DatabaseUsage> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -70,7 +74,7 @@ export class DatabaseUsagesImpl implements DatabaseUsages {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseUsagesListByDatabaseOptionalParams
   ): AsyncIterableIterator<DatabaseUsage[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -85,7 +89,7 @@ export class DatabaseUsagesImpl implements DatabaseUsages {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseUsagesListByDatabaseOptionalParams
   ): AsyncIterableIterator<DatabaseUsage> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -109,7 +113,7 @@ export class DatabaseUsagesImpl implements DatabaseUsages {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseUsagesListByDatabaseOptionalParams
   ): Promise<DatabaseUsagesListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -10,9 +10,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionPolicyName,
+  BackupLongTermRetentionPoliciesGetOptionalParams,
   BackupLongTermRetentionPoliciesGetResponse,
   BackupLongTermRetentionPolicy,
+  BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   BackupLongTermRetentionPoliciesCreateOrUpdateResponse,
+  BackupLongTermRetentionPoliciesListByDatabaseOptionalParams,
   BackupLongTermRetentionPoliciesListByDatabaseResponse
 } from "../models";
 
@@ -32,7 +35,7 @@ export interface BackupLongTermRetentionPolicies {
     serverName: string,
     databaseName: string,
     policyName: LongTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesGetOptionalParams
   ): Promise<BackupLongTermRetentionPoliciesGetResponse>;
   /**
    * Sets a database's long term retention policy.
@@ -50,7 +53,7 @@ export interface BackupLongTermRetentionPolicies {
     databaseName: string,
     policyName: LongTermRetentionPolicyName,
     parameters: BackupLongTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>,
@@ -69,6 +72,6 @@ export interface BackupLongTermRetentionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: BackupLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<BackupLongTermRetentionPoliciesListByDatabaseResponse>;
 }

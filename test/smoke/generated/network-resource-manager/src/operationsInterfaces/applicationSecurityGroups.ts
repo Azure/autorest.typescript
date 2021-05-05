@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationSecurityGroup,
+  ApplicationSecurityGroupsListAllNextOptionalParams,
+  ApplicationSecurityGroupsListAllOptionalParams,
+  ApplicationSecurityGroupsListNextOptionalParams,
+  ApplicationSecurityGroupsListOptionalParams,
+  ApplicationSecurityGroupsDeleteOptionalParams,
+  ApplicationSecurityGroupsGetOptionalParams,
   ApplicationSecurityGroupsGetResponse,
+  ApplicationSecurityGroupsCreateOrUpdateOptionalParams,
   ApplicationSecurityGroupsCreateOrUpdateResponse,
   TagsObject,
+  ApplicationSecurityGroupsUpdateTagsOptionalParams,
   ApplicationSecurityGroupsUpdateTagsResponse
 } from "../models";
 
@@ -26,7 +34,7 @@ export interface ApplicationSecurityGroups {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListAllOptionalParams
   ): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
   /**
    * Gets all the application security groups in a resource group.
@@ -35,7 +43,7 @@ export interface ApplicationSecurityGroups {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsListOptionalParams
   ): PagedAsyncIterableIterator<ApplicationSecurityGroup>;
   /**
    * Deletes the specified application security group.
@@ -46,7 +54,7 @@ export interface ApplicationSecurityGroups {
   delete(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -59,7 +67,7 @@ export interface ApplicationSecurityGroups {
   get(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsGetOptionalParams
   ): Promise<ApplicationSecurityGroupsGetResponse>;
   /**
    * Creates or updates an application security group.
@@ -72,7 +80,7 @@ export interface ApplicationSecurityGroups {
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: ApplicationSecurityGroup,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationSecurityGroupsCreateOrUpdateResponse>,
@@ -90,6 +98,6 @@ export interface ApplicationSecurityGroups {
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationSecurityGroupsUpdateTagsOptionalParams
   ): Promise<ApplicationSecurityGroupsUpdateTagsResponse>;
 }

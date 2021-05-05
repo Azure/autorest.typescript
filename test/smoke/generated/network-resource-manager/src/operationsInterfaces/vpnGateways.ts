@@ -12,10 +12,19 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnGateway,
+  VpnGatewaysListByResourceGroupNextOptionalParams,
+  VpnGatewaysListByResourceGroupOptionalParams,
+  VpnGatewaysListNextOptionalParams,
+  VpnGatewaysListOptionalParams,
+  VpnGatewaysGetOptionalParams,
   VpnGatewaysGetResponse,
+  VpnGatewaysCreateOrUpdateOptionalParams,
   VpnGatewaysCreateOrUpdateResponse,
   TagsObject,
+  VpnGatewaysUpdateTagsOptionalParams,
   VpnGatewaysUpdateTagsResponse,
+  VpnGatewaysDeleteOptionalParams,
+  VpnGatewaysResetOptionalParams,
   VpnGatewaysResetResponse
 } from "../models";
 
@@ -29,14 +38,14 @@ export interface VpnGateways {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VpnGateway>;
   /**
    * Lists all the VpnGateways in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<VpnGateway>;
   /**
    * Retrieves the details of a virtual wan vpn gateway.
@@ -47,7 +56,7 @@ export interface VpnGateways {
   get(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysGetOptionalParams
   ): Promise<VpnGatewaysGetResponse>;
   /**
    * Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
@@ -60,7 +69,7 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnGatewaysCreateOrUpdateResponse>,
@@ -78,7 +87,7 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysUpdateTagsOptionalParams
   ): Promise<VpnGatewaysUpdateTagsResponse>;
   /**
    * Deletes a virtual wan vpn gateway.
@@ -89,7 +98,7 @@ export interface VpnGateways {
   delete(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -102,7 +111,7 @@ export interface VpnGateways {
   reset(
     resourceGroupName: string,
     gatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: VpnGatewaysResetOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VpnGatewaysResetResponse>,

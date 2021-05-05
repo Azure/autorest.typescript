@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { LROSYM, LROResponseInfo } from "../lro/models";
 
 export type DeploymentScriptUnion =
   | DeploymentScript
@@ -455,6 +454,15 @@ export const enum KnownScriptProvisioningState {
  */
 export type ScriptProvisioningState = string;
 
+/** Optional parameters. */
+export interface DeploymentScriptsCreateOptionalParams
+  extends coreHttp.OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
 /** Contains response data for the create operation. */
 export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
   /** The underlying HTTP response. */
@@ -464,8 +472,6 @@ export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
 
     /** The response body as parsed JSON or XML */
     parsedBody: DeploymentScriptUnion;
-    /** The parsed HTTP response headers. */
-    [LROSYM]: LROResponseInfo;
   };
 };
 
@@ -488,6 +494,10 @@ export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentScriptsGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
   /** The underlying HTTP response. */
@@ -500,6 +510,14 @@ export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentScriptsDeleteOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscription operation. */
 export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult & {
   /** The underlying HTTP response. */
@@ -511,6 +529,10 @@ export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListRe
     parsedBody: DeploymentScriptListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentScriptsGetLogsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLogs operation. */
 export type DeploymentScriptsGetLogsResponse = ScriptLogsList & {
@@ -543,6 +565,10 @@ export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog & {
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listByResourceGroup operation. */
 export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult & {
   /** The underlying HTTP response. */
@@ -555,6 +581,10 @@ export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListR
   };
 };
 
+/** Optional parameters. */
+export interface DeploymentScriptsListBySubscriptionNextOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listBySubscriptionNext operation. */
 export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult & {
   /** The underlying HTTP response. */
@@ -566,6 +596,10 @@ export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptLi
     parsedBody: DeploymentScriptListResult;
   };
 };
+
+/** Optional parameters. */
+export interface DeploymentScriptsListByResourceGroupNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult & {

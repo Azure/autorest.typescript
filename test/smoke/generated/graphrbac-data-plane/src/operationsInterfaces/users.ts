@@ -11,12 +11,18 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   User,
+  UsersListNextOptionalParams,
   UsersListOptionalParams,
   UserGetMemberGroupsParameters,
+  UsersGetMemberGroupsOptionalParams,
   UserCreateParameters,
+  UsersCreateOptionalParams,
   UsersCreateResponse,
+  UsersGetOptionalParams,
   UsersGetResponse,
-  UserUpdateParameters
+  UserUpdateParameters,
+  UsersUpdateOptionalParams,
+  UsersDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -36,7 +42,7 @@ export interface Users {
   listMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
   /**
    * Gets a list of users for the current tenant.
@@ -45,7 +51,7 @@ export interface Users {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersListNextOptionalParams
   ): PagedAsyncIterableIterator<User>;
   /**
    * Create a new user.
@@ -54,7 +60,7 @@ export interface Users {
    */
   create(
     parameters: UserCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersCreateOptionalParams
   ): Promise<UsersCreateResponse>;
   /**
    * Gets user information from the directory.
@@ -63,7 +69,7 @@ export interface Users {
    */
   get(
     upnOrObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersGetOptionalParams
   ): Promise<UsersGetResponse>;
   /**
    * Updates a user.
@@ -74,7 +80,7 @@ export interface Users {
   update(
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: UsersUpdateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Delete a user.
@@ -83,6 +89,6 @@ export interface Users {
    */
   delete(
     upnOrObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: UsersDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

@@ -12,12 +12,22 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Snapshot,
+  SnapshotsListByResourceGroupNextOptionalParams,
+  SnapshotsListByResourceGroupOptionalParams,
+  SnapshotsListNextOptionalParams,
+  SnapshotsListOptionalParams,
+  SnapshotsCreateOrUpdateOptionalParams,
   SnapshotsCreateOrUpdateResponse,
   SnapshotUpdate,
+  SnapshotsUpdateOptionalParams,
   SnapshotsUpdateResponse,
+  SnapshotsGetOptionalParams,
   SnapshotsGetResponse,
+  SnapshotsDeleteOptionalParams,
   GrantAccessData,
-  SnapshotsGrantAccessResponse
+  SnapshotsGrantAccessOptionalParams,
+  SnapshotsGrantAccessResponse,
+  SnapshotsRevokeAccessOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,14 +40,14 @@ export interface Snapshots {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Lists snapshots under a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsListOptionalParams
   ): PagedAsyncIterableIterator<Snapshot>;
   /**
    * Creates or updates a snapshot.
@@ -52,7 +62,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     snapshot: Snapshot,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsCreateOrUpdateResponse>,
@@ -72,7 +82,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     snapshot: SnapshotUpdate,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsUpdateResponse>,
@@ -90,7 +100,7 @@ export interface Snapshots {
   get(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsGetOptionalParams
   ): Promise<SnapshotsGetResponse>;
   /**
    * Deletes a snapshot.
@@ -103,7 +113,7 @@ export interface Snapshots {
   delete(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -120,7 +130,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     grantAccessData: GrantAccessData,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsGrantAccessOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SnapshotsGrantAccessResponse>,
@@ -138,7 +148,7 @@ export interface Snapshots {
   revokeAccess(
     resourceGroupName: string,
     snapshotName: string,
-    options?: coreHttp.OperationOptions
+    options?: SnapshotsRevokeAccessOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

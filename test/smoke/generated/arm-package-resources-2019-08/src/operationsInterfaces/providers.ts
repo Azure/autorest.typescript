@@ -15,7 +15,9 @@ import {
   ProvidersListOptionalParams,
   ProvidersListAtTenantScopeNextOptionalParams,
   ProvidersListAtTenantScopeOptionalParams,
+  ProvidersUnregisterOptionalParams,
   ProvidersUnregisterResponse,
+  ProvidersRegisterOptionalParams,
   ProvidersRegisterResponse,
   ProvidersGetOptionalParams,
   ProvidersGetResponse,
@@ -47,7 +49,7 @@ export interface Providers {
    */
   unregister(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: ProvidersUnregisterOptionalParams
   ): Promise<ProvidersUnregisterResponse>;
   /**
    * Registers a subscription with a resource provider.
@@ -56,7 +58,7 @@ export interface Providers {
    */
   register(
     resourceProviderNamespace: string,
-    options?: coreHttp.OperationOptions
+    options?: ProvidersRegisterOptionalParams
   ): Promise<ProvidersRegisterResponse>;
   /**
    * Gets the specified resource provider.

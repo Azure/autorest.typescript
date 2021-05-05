@@ -12,10 +12,14 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
 import {
+  ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
   ImplicitPutOptionalBodyOptionalParams,
-  ImplicitPutOptionalBinaryBodyOptionalParams
+  ImplicitPutOptionalBinaryBodyOptionalParams,
+  ImplicitGetRequiredGlobalPathOptionalParams,
+  ImplicitGetRequiredGlobalQueryOptionalParams,
+  ImplicitGetOptionalGlobalQueryOptionalParams
 } from "../models";
 
 /** Class representing a Implicit. */
@@ -37,7 +41,7 @@ export class ImplicitImpl implements Implicit {
    */
   getRequiredPath(
     pathParameter: string,
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredPathOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       pathParameter,
@@ -118,7 +122,7 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getRequiredGlobalPath(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredGlobalPathOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -134,7 +138,7 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getRequiredGlobalQuery(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetRequiredGlobalQueryOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -150,7 +154,7 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getOptionalGlobalQuery(
-    options?: coreHttp.OperationOptions
+    options?: ImplicitGetOptionalGlobalQueryOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

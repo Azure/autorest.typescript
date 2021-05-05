@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   PrivateLinkResource,
+  PrivateLinkResourcesListByServerNextOptionalParams,
+  PrivateLinkResourcesListByServerOptionalParams,
   PrivateLinkResourcesListByServerResponse,
+  PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse,
   PrivateLinkResourcesListByServerNextResponse
 } from "../models";
@@ -43,7 +46,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkResource> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -70,7 +73,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerOptionalParams
   ): AsyncIterableIterator<PrivateLinkResource[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -94,7 +97,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerOptionalParams
   ): AsyncIterableIterator<PrivateLinkResource> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -115,7 +118,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerOptionalParams
   ): Promise<PrivateLinkResourcesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -140,7 +143,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     resourceGroupName: string,
     serverName: string,
     groupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesGetOptionalParams
   ): Promise<PrivateLinkResourcesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -166,7 +169,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByServerNextOptionalParams
   ): Promise<PrivateLinkResourcesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

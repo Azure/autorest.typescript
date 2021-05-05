@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RestorableDroppedManagedDatabase,
+  RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams,
+  RestorableDroppedManagedDatabasesListByInstanceOptionalParams,
   RestorableDroppedManagedDatabasesListByInstanceResponse,
+  RestorableDroppedManagedDatabasesGetOptionalParams,
   RestorableDroppedManagedDatabasesGetResponse,
   RestorableDroppedManagedDatabasesListByInstanceNextResponse
 } from "../models";
@@ -44,7 +47,7 @@ export class RestorableDroppedManagedDatabasesImpl
   public listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<RestorableDroppedManagedDatabase> {
     const iter = this.listByInstancePagingAll(
       resourceGroupName,
@@ -71,7 +74,7 @@ export class RestorableDroppedManagedDatabasesImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<RestorableDroppedManagedDatabase[]> {
     let result = await this._listByInstance(
       resourceGroupName,
@@ -95,7 +98,7 @@ export class RestorableDroppedManagedDatabasesImpl
   private async *listByInstancePagingAll(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   ): AsyncIterableIterator<RestorableDroppedManagedDatabase> {
     for await (const page of this.listByInstancePagingPage(
       resourceGroupName,
@@ -116,7 +119,7 @@ export class RestorableDroppedManagedDatabasesImpl
   private _listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   ): Promise<RestorableDroppedManagedDatabasesListByInstanceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -141,7 +144,7 @@ export class RestorableDroppedManagedDatabasesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesGetOptionalParams
   ): Promise<RestorableDroppedManagedDatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -167,7 +170,7 @@ export class RestorableDroppedManagedDatabasesImpl
     resourceGroupName: string,
     managedInstanceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams
   ): Promise<RestorableDroppedManagedDatabasesListByInstanceNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

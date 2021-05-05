@@ -11,16 +11,27 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ServicePrincipal,
+  ServicePrincipalsListNextOptionalParams,
   ServicePrincipalsListOptionalParams,
   DirectoryObjectUnion,
+  ServicePrincipalsListOwnersNextOptionalParams,
+  ServicePrincipalsListOwnersOptionalParams,
   KeyCredential,
+  ServicePrincipalsListKeyCredentialsOptionalParams,
   PasswordCredential,
+  ServicePrincipalsListPasswordCredentialsOptionalParams,
   ServicePrincipalCreateParameters,
+  ServicePrincipalsCreateOptionalParams,
   ServicePrincipalsCreateResponse,
   ServicePrincipalUpdateParameters,
+  ServicePrincipalsUpdateOptionalParams,
+  ServicePrincipalsDeleteOptionalParams,
+  ServicePrincipalsGetOptionalParams,
   ServicePrincipalsGetResponse,
   KeyCredentialsUpdateParameters,
-  PasswordCredentialsUpdateParameters
+  ServicePrincipalsUpdateKeyCredentialsOptionalParams,
+  PasswordCredentialsUpdateParameters,
+  ServicePrincipalsUpdatePasswordCredentialsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -40,7 +51,7 @@ export interface ServicePrincipals {
    */
   listOwners(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the keyCredentials associated with the specified service principal.
@@ -49,7 +60,7 @@ export interface ServicePrincipals {
    */
   listKeyCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): PagedAsyncIterableIterator<KeyCredential>;
   /**
    * Gets the passwordCredentials associated with a service principal.
@@ -58,7 +69,7 @@ export interface ServicePrincipals {
    */
   listPasswordCredentials(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): PagedAsyncIterableIterator<PasswordCredential>;
   /**
    * Gets a list of service principals from the current tenant.
@@ -67,7 +78,7 @@ export interface ServicePrincipals {
    */
   listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsListNextOptionalParams
   ): PagedAsyncIterableIterator<ServicePrincipal>;
   /**
    * Creates a service principal in the directory.
@@ -76,7 +87,7 @@ export interface ServicePrincipals {
    */
   create(
     parameters: ServicePrincipalCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsCreateOptionalParams
   ): Promise<ServicePrincipalsCreateResponse>;
   /**
    * Updates a service principal in the directory.
@@ -87,7 +98,7 @@ export interface ServicePrincipals {
   update(
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Deletes a service principal from the directory.
@@ -96,7 +107,7 @@ export interface ServicePrincipals {
    */
   delete(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets service principal information from the directory. Query by objectId or pass a filter to query
@@ -106,7 +117,7 @@ export interface ServicePrincipals {
    */
   get(
     objectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsGetOptionalParams
   ): Promise<ServicePrincipalsGetResponse>;
   /**
    * Update the keyCredentials associated with a service principal.
@@ -117,7 +128,7 @@ export interface ServicePrincipals {
   updateKeyCredentials(
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Updates the passwordCredentials associated with a service principal.
@@ -128,6 +139,6 @@ export interface ServicePrincipals {
   updatePasswordCredentials(
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

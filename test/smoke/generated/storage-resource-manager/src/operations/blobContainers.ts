@@ -19,17 +19,25 @@ import {
   BlobContainersListOptionalParams,
   BlobContainersListResponse,
   BlobContainer,
+  BlobContainersCreateOptionalParams,
   BlobContainersCreateResponse,
+  BlobContainersUpdateOptionalParams,
   BlobContainersUpdateResponse,
+  BlobContainersGetOptionalParams,
   BlobContainersGetResponse,
+  BlobContainersDeleteOptionalParams,
   LegalHold,
+  BlobContainersSetLegalHoldOptionalParams,
   BlobContainersSetLegalHoldResponse,
+  BlobContainersClearLegalHoldOptionalParams,
   BlobContainersClearLegalHoldResponse,
   BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams,
   BlobContainersCreateOrUpdateImmutabilityPolicyResponse,
   BlobContainersGetImmutabilityPolicyOptionalParams,
   BlobContainersGetImmutabilityPolicyResponse,
+  BlobContainersDeleteImmutabilityPolicyOptionalParams,
   BlobContainersDeleteImmutabilityPolicyResponse,
+  BlobContainersLockImmutabilityPolicyOptionalParams,
   BlobContainersLockImmutabilityPolicyResponse,
   BlobContainersExtendImmutabilityPolicyOptionalParams,
   BlobContainersExtendImmutabilityPolicyResponse,
@@ -161,7 +169,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     blobContainer: BlobContainer,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersCreateOptionalParams
   ): Promise<BlobContainersCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -196,7 +204,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     blobContainer: BlobContainer,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersUpdateOptionalParams
   ): Promise<BlobContainersUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -228,7 +236,7 @@ export class BlobContainersImpl implements BlobContainers {
     resourceGroupName: string,
     accountName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersGetOptionalParams
   ): Promise<BlobContainersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -259,7 +267,7 @@ export class BlobContainersImpl implements BlobContainers {
     resourceGroupName: string,
     accountName: string,
     containerName: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -293,7 +301,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     legalHold: LegalHold,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersSetLegalHoldOptionalParams
   ): Promise<BlobContainersSetLegalHoldResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -328,7 +336,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     legalHold: LegalHold,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersClearLegalHoldOptionalParams
   ): Promise<BlobContainersClearLegalHoldResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -431,7 +439,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     ifMatch: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersDeleteImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersDeleteImmutabilityPolicyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -468,7 +476,7 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     ifMatch: string,
-    options?: coreHttp.OperationOptions
+    options?: BlobContainersLockImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersLockImmutabilityPolicyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

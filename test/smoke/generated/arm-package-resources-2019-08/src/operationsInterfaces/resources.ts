@@ -17,12 +17,24 @@ import {
   ResourcesListNextOptionalParams,
   ResourcesListOptionalParams,
   ResourcesMoveInfo,
+  ResourcesMoveResourcesOptionalParams,
+  ResourcesValidateMoveResourcesOptionalParams,
+  ResourcesCheckExistenceOptionalParams,
+  ResourcesDeleteOptionalParams,
   GenericResource,
+  ResourcesCreateOrUpdateOptionalParams,
   ResourcesCreateOrUpdateResponse,
+  ResourcesUpdateOptionalParams,
   ResourcesUpdateResponse,
+  ResourcesGetOptionalParams,
   ResourcesGetResponse,
+  ResourcesCheckExistenceByIdOptionalParams,
+  ResourcesDeleteByIdOptionalParams,
+  ResourcesCreateOrUpdateByIdOptionalParams,
   ResourcesCreateOrUpdateByIdResponse,
+  ResourcesUpdateByIdOptionalParams,
   ResourcesUpdateByIdResponse,
+  ResourcesGetByIdOptionalParams,
   ResourcesGetByIdResponse
 } from "../models";
 
@@ -57,7 +69,7 @@ export interface Resources {
   moveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesMoveResourcesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -75,7 +87,7 @@ export interface Resources {
   validateMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesValidateMoveResourcesOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -97,7 +109,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCheckExistenceOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Deletes a resource.
@@ -117,7 +129,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -141,7 +153,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateResponse>,
@@ -168,7 +180,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateResponse>,
@@ -193,7 +205,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesGetOptionalParams
   ): Promise<ResourcesGetResponse>;
   /**
    * Checks by ID whether a resource exists.
@@ -206,7 +218,7 @@ export interface Resources {
   checkExistenceById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCheckExistenceByIdOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Deletes a resource by ID.
@@ -219,7 +231,7 @@ export interface Resources {
   deleteById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -236,7 +248,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
@@ -256,7 +268,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ResourcesUpdateByIdResponse>,
@@ -274,6 +286,6 @@ export interface Resources {
   getById(
     resourceId: string,
     apiVersion: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourcesGetByIdOptionalParams
   ): Promise<ResourcesGetByIdResponse>;
 }

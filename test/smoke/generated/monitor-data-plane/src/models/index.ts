@@ -59,6 +59,10 @@ export interface ApiError {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface MetricsCreateOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the create operation. */
 export type MetricsCreateResponse = AzureMetricsResult & {
   /** The underlying HTTP response. */

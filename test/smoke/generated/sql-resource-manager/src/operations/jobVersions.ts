@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   JobVersion,
+  JobVersionsListByJobNextOptionalParams,
+  JobVersionsListByJobOptionalParams,
   JobVersionsListByJobResponse,
+  JobVersionsGetOptionalParams,
   JobVersionsGetResponse,
   JobVersionsListByJobNextResponse
 } from "../models";
@@ -47,7 +50,7 @@ export class JobVersionsImpl implements JobVersions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobOptionalParams
   ): PagedAsyncIterableIterator<JobVersion> {
     const iter = this.listByJobPagingAll(
       resourceGroupName,
@@ -80,7 +83,7 @@ export class JobVersionsImpl implements JobVersions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobOptionalParams
   ): AsyncIterableIterator<JobVersion[]> {
     let result = await this._listByJob(
       resourceGroupName,
@@ -110,7 +113,7 @@ export class JobVersionsImpl implements JobVersions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobOptionalParams
   ): AsyncIterableIterator<JobVersion> {
     for await (const page of this.listByJobPagingPage(
       resourceGroupName,
@@ -137,7 +140,7 @@ export class JobVersionsImpl implements JobVersions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobOptionalParams
   ): Promise<JobVersionsListByJobResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -168,7 +171,7 @@ export class JobVersionsImpl implements JobVersions {
     jobAgentName: string,
     jobName: string,
     jobVersion: number,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsGetOptionalParams
   ): Promise<JobVersionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -200,7 +203,7 @@ export class JobVersionsImpl implements JobVersions {
     jobAgentName: string,
     jobName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: JobVersionsListByJobNextOptionalParams
   ): Promise<JobVersionsListByJobNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

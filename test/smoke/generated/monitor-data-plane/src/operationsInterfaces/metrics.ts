@@ -7,7 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { AzureMetricsDocument, MetricsCreateResponse } from "../models";
+import {
+  AzureMetricsDocument,
+  MetricsCreateOptionalParams,
+  MetricsCreateResponse
+} from "../models";
 
 /** Interface representing a Metrics. */
 export interface Metrics {
@@ -35,6 +39,6 @@ export interface Metrics {
     resourceTypeName: string,
     resourceName: string,
     body: AzureMetricsDocument,
-    options?: coreHttp.OperationOptions
+    options?: MetricsCreateOptionalParams
   ): Promise<MetricsCreateResponse>;
 }

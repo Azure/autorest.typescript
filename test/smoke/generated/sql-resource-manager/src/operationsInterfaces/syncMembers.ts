@@ -12,10 +12,19 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncMember,
+  SyncMembersListBySyncGroupNextOptionalParams,
+  SyncMembersListBySyncGroupOptionalParams,
   SyncFullSchemaProperties,
+  SyncMembersListMemberSchemasNextOptionalParams,
+  SyncMembersListMemberSchemasOptionalParams,
+  SyncMembersGetOptionalParams,
   SyncMembersGetResponse,
+  SyncMembersCreateOrUpdateOptionalParams,
   SyncMembersCreateOrUpdateResponse,
-  SyncMembersUpdateResponse
+  SyncMembersDeleteOptionalParams,
+  SyncMembersUpdateOptionalParams,
+  SyncMembersUpdateResponse,
+  SyncMembersRefreshMemberSchemaOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -35,7 +44,7 @@ export interface SyncMembers {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListBySyncGroupOptionalParams
   ): PagedAsyncIterableIterator<SyncMember>;
   /**
    * Gets a sync member database schema.
@@ -53,7 +62,7 @@ export interface SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersListMemberSchemasOptionalParams
   ): PagedAsyncIterableIterator<SyncFullSchemaProperties>;
   /**
    * Gets a sync member.
@@ -71,7 +80,7 @@ export interface SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersGetOptionalParams
   ): Promise<SyncMembersGetResponse>;
   /**
    * Creates or updates a sync member.
@@ -91,7 +100,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     parameters: SyncMember,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncMembersCreateOrUpdateResponse>,
@@ -114,7 +123,7 @@ export interface SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -136,7 +145,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     parameters: SyncMember,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<SyncMembersUpdateResponse>,
@@ -159,7 +168,7 @@ export interface SyncMembers {
     databaseName: string,
     syncGroupName: string,
     syncMemberName: string,
-    options?: coreHttp.OperationOptions
+    options?: SyncMembersRefreshMemberSchemaOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

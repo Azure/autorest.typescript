@@ -12,17 +12,29 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
+  CassandraResourcesListCassandraKeyspacesOptionalParams,
   CassandraTableGetResults,
+  CassandraResourcesListCassandraTablesOptionalParams,
+  CassandraResourcesGetCassandraKeyspaceOptionalParams,
   CassandraResourcesGetCassandraKeyspaceResponse,
   CassandraKeyspaceCreateUpdateParameters,
+  CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams,
   CassandraResourcesCreateUpdateCassandraKeyspaceResponse,
+  CassandraResourcesDeleteCassandraKeyspaceOptionalParams,
+  CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams,
   CassandraResourcesGetCassandraKeyspaceThroughputResponse,
   ThroughputSettingsUpdateParameters,
+  CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams,
   CassandraResourcesUpdateCassandraKeyspaceThroughputResponse,
+  CassandraResourcesGetCassandraTableOptionalParams,
   CassandraResourcesGetCassandraTableResponse,
   CassandraTableCreateUpdateParameters,
+  CassandraResourcesCreateUpdateCassandraTableOptionalParams,
   CassandraResourcesCreateUpdateCassandraTableResponse,
+  CassandraResourcesDeleteCassandraTableOptionalParams,
+  CassandraResourcesGetCassandraTableThroughputOptionalParams,
   CassandraResourcesGetCassandraTableThroughputResponse,
+  CassandraResourcesUpdateCassandraTableThroughputOptionalParams,
   CassandraResourcesUpdateCassandraTableThroughputResponse
 } from "../models";
 
@@ -38,7 +50,7 @@ export interface CassandraResources {
   listCassandraKeyspaces(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraKeyspacesOptionalParams
   ): PagedAsyncIterableIterator<CassandraKeyspaceGetResults>;
   /**
    * Lists the Cassandra table under an existing Azure Cosmos DB database account.
@@ -51,7 +63,7 @@ export interface CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesListCassandraTablesOptionalParams
   ): PagedAsyncIterableIterator<CassandraTableGetResults>;
   /**
    * Gets the Cassandra keyspaces under an existing Azure Cosmos DB database account with the provided
@@ -65,7 +77,7 @@ export interface CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraKeyspaceOptionalParams
   ): Promise<CassandraResourcesGetCassandraKeyspaceResponse>;
   /**
    * Create or update an Azure Cosmos DB Cassandra keyspace
@@ -81,7 +93,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -101,7 +113,7 @@ export interface CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -117,7 +129,7 @@ export interface CassandraResources {
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams
   ): Promise<CassandraResourcesGetCassandraKeyspaceThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB Cassandra Keyspace
@@ -133,7 +145,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -155,7 +167,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraTableOptionalParams
   ): Promise<CassandraResourcesGetCassandraTableResponse>;
   /**
    * Create or update an Azure Cosmos DB Cassandra Table
@@ -173,7 +185,7 @@ export interface CassandraResources {
     keyspaceName: string,
     tableName: string,
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesCreateUpdateCassandraTableOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>,
@@ -193,7 +205,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesDeleteCassandraTableOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -211,7 +223,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     tableName: string,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesGetCassandraTableThroughputOptionalParams
   ): Promise<CassandraResourcesGetCassandraTableThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB Cassandra table
@@ -229,7 +241,7 @@ export interface CassandraResources {
     keyspaceName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: CassandraResourcesUpdateCassandraTableThroughputOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

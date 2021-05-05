@@ -12,10 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkProfile,
+  NetworkProfilesListAllNextOptionalParams,
+  NetworkProfilesListAllOptionalParams,
+  NetworkProfilesListNextOptionalParams,
+  NetworkProfilesListOptionalParams,
+  NetworkProfilesDeleteOptionalParams,
   NetworkProfilesGetOptionalParams,
   NetworkProfilesGetResponse,
+  NetworkProfilesCreateOrUpdateOptionalParams,
   NetworkProfilesCreateOrUpdateResponse,
   TagsObject,
+  NetworkProfilesUpdateTagsOptionalParams,
   NetworkProfilesUpdateTagsResponse
 } from "../models";
 
@@ -27,7 +34,7 @@ export interface NetworkProfiles {
    * @param options The options parameters.
    */
   listAll(
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListAllOptionalParams
   ): PagedAsyncIterableIterator<NetworkProfile>;
   /**
    * Gets all network profiles in a resource group.
@@ -36,7 +43,7 @@ export interface NetworkProfiles {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesListOptionalParams
   ): PagedAsyncIterableIterator<NetworkProfile>;
   /**
    * Deletes the specified network profile.
@@ -47,7 +54,7 @@ export interface NetworkProfiles {
   delete(
     resourceGroupName: string,
     networkProfileName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -73,7 +80,7 @@ export interface NetworkProfiles {
     resourceGroupName: string,
     networkProfileName: string,
     parameters: NetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesCreateOrUpdateOptionalParams
   ): Promise<NetworkProfilesCreateOrUpdateResponse>;
   /**
    * Updates network profile tags.
@@ -86,6 +93,6 @@ export interface NetworkProfiles {
     resourceGroupName: string,
     networkProfileName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NetworkProfilesUpdateTagsOptionalParams
   ): Promise<NetworkProfilesUpdateTagsResponse>;
 }

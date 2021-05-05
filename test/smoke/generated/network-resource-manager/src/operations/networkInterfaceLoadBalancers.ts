@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   LoadBalancer,
+  NetworkInterfaceLoadBalancersListNextOptionalParams,
+  NetworkInterfaceLoadBalancersListOptionalParams,
   NetworkInterfaceLoadBalancersListResponse,
   NetworkInterfaceLoadBalancersListNextResponse
 } from "../models";
@@ -42,7 +44,7 @@ export class NetworkInterfaceLoadBalancersImpl
   public list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceLoadBalancersListOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancer> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -69,7 +71,7 @@ export class NetworkInterfaceLoadBalancersImpl
   private async *listPagingPage(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceLoadBalancersListOptionalParams
   ): AsyncIterableIterator<LoadBalancer[]> {
     let result = await this._list(
       resourceGroupName,
@@ -93,7 +95,7 @@ export class NetworkInterfaceLoadBalancersImpl
   private async *listPagingAll(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceLoadBalancersListOptionalParams
   ): AsyncIterableIterator<LoadBalancer> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -113,7 +115,7 @@ export class NetworkInterfaceLoadBalancersImpl
   private _list(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceLoadBalancersListOptionalParams
   ): Promise<NetworkInterfaceLoadBalancersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -137,7 +139,7 @@ export class NetworkInterfaceLoadBalancersImpl
     resourceGroupName: string,
     networkInterfaceName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NetworkInterfaceLoadBalancersListNextOptionalParams
   ): Promise<NetworkInterfaceLoadBalancersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -12,11 +12,20 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedDatabase,
+  ManagedDatabasesListByInstanceNextOptionalParams,
+  ManagedDatabasesListByInstanceOptionalParams,
+  ManagedDatabasesListInaccessibleByInstanceNextOptionalParams,
+  ManagedDatabasesListInaccessibleByInstanceOptionalParams,
+  ManagedDatabasesGetOptionalParams,
   ManagedDatabasesGetResponse,
+  ManagedDatabasesCreateOrUpdateOptionalParams,
   ManagedDatabasesCreateOrUpdateResponse,
+  ManagedDatabasesDeleteOptionalParams,
   ManagedDatabaseUpdate,
+  ManagedDatabasesUpdateOptionalParams,
   ManagedDatabasesUpdateResponse,
-  CompleteDatabaseRestoreDefinition
+  CompleteDatabaseRestoreDefinition,
+  ManagedDatabasesCompleteRestoreOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +41,7 @@ export interface ManagedDatabases {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a list of inaccessible managed databases in a managed instance
@@ -44,7 +53,7 @@ export interface ManagedDatabases {
   listInaccessibleByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a managed database.
@@ -58,7 +67,7 @@ export interface ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesGetOptionalParams
   ): Promise<ManagedDatabasesGetResponse>;
   /**
    * Creates a new database or updates an existing database.
@@ -74,7 +83,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabase,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
@@ -93,7 +102,7 @@ export interface ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -111,7 +120,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedDatabasesUpdateResponse>,
@@ -132,7 +141,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabasesCompleteRestoreOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

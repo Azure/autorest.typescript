@@ -13,7 +13,13 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { VirtualMachineScaleSetRollingUpgradesGetLatestResponse } from "../models";
+import {
+  VirtualMachineScaleSetRollingUpgradesCancelOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams,
+  VirtualMachineScaleSetRollingUpgradesGetLatestResponse
+} from "../models";
 
 /** Class representing a VirtualMachineScaleSetRollingUpgrades. */
 export class VirtualMachineScaleSetRollingUpgradesImpl
@@ -37,7 +43,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   async cancel(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -55,16 +61,12 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      cancelOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: cancelOperationSpec,
-      initialOperationResult,
+      cancelOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -78,7 +80,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   async startOSUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -96,16 +98,12 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startOSUpgradeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startOSUpgradeOperationSpec,
-      initialOperationResult,
+      startOSUpgradeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -119,7 +117,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   async startExtensionUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,16 +135,12 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      startExtensionUpgradeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: startExtensionUpgradeOperationSpec,
-      initialOperationResult,
+      startExtensionUpgradeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -158,7 +152,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   getLatest(
     resourceGroupName: string,
     vmScaleSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams
   ): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

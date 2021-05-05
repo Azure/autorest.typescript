@@ -7,12 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { FlattencomplexGetValidResponse } from "../models";
+import {
+  FlattencomplexGetValidOptionalParams,
+  FlattencomplexGetValidResponse
+} from "../models";
 
 /** Interface representing a Flattencomplex. */
 export interface Flattencomplex {
   /** @param options The options parameters. */
   getValid(
-    options?: coreHttp.OperationOptions
+    options?: FlattencomplexGetValidOptionalParams
   ): Promise<FlattencomplexGetValidResponse>;
 }

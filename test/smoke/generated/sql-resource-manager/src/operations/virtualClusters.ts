@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualCluster,
+  VirtualClustersListNextOptionalParams,
+  VirtualClustersListOptionalParams,
+  VirtualClustersListByResourceGroupNextOptionalParams,
+  VirtualClustersListByResourceGroupOptionalParams,
   VirtualClustersListResponse,
   VirtualClustersListByResourceGroupResponse,
+  VirtualClustersGetOptionalParams,
   VirtualClustersGetResponse,
+  VirtualClustersDeleteOptionalParams,
   VirtualClusterUpdate,
+  VirtualClustersUpdateOptionalParams,
   VirtualClustersUpdateResponse,
   VirtualClustersListNextResponse,
   VirtualClustersListByResourceGroupNextResponse
@@ -44,7 +51,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListOptionalParams
   ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listPagingAll(options);
     return {
@@ -61,7 +68,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListOptionalParams
   ): AsyncIterableIterator<VirtualCluster[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -74,7 +81,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListOptionalParams
   ): AsyncIterableIterator<VirtualCluster> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -89,7 +96,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -107,7 +114,7 @@ export class VirtualClustersImpl implements VirtualClusters {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualCluster[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -125,7 +132,7 @@ export class VirtualClustersImpl implements VirtualClusters {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupOptionalParams
   ): AsyncIterableIterator<VirtualCluster> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -140,7 +147,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListOptionalParams
   ): Promise<VirtualClustersListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -159,7 +166,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupOptionalParams
   ): Promise<VirtualClustersListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -181,7 +188,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   get(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersGetOptionalParams
   ): Promise<VirtualClustersGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -204,7 +211,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   async delete(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -222,16 +229,12 @@ export class VirtualClustersImpl implements VirtualClusters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -246,7 +249,7 @@ export class VirtualClustersImpl implements VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualClustersUpdateResponse>,
@@ -268,16 +271,12 @@ export class VirtualClustersImpl implements VirtualClusters {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -287,7 +286,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListNextOptionalParams
   ): Promise<VirtualClustersListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -309,7 +308,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualClustersListByResourceGroupNextOptionalParams
   ): Promise<VirtualClustersListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

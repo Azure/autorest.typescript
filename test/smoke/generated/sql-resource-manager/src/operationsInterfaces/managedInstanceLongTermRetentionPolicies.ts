@@ -12,8 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceLongTermRetentionPolicy,
+  ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams,
+  ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams,
   ManagedInstanceLongTermRetentionPolicyName,
+  ManagedInstanceLongTermRetentionPoliciesGetOptionalParams,
   ManagedInstanceLongTermRetentionPoliciesGetResponse,
+  ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams,
   ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -32,7 +36,7 @@ export interface ManagedInstanceLongTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceLongTermRetentionPolicy>;
   /**
    * Gets a managed database's long term retention policy.
@@ -48,7 +52,7 @@ export interface ManagedInstanceLongTermRetentionPolicies {
     managedInstanceName: string,
     databaseName: string,
     policyName: ManagedInstanceLongTermRetentionPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesGetOptionalParams
   ): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse>;
   /**
    * Sets a managed database's long term retention policy.
@@ -66,7 +70,7 @@ export interface ManagedInstanceLongTermRetentionPolicies {
     databaseName: string,
     policyName: ManagedInstanceLongTermRetentionPolicyName,
     parameters: ManagedInstanceLongTermRetentionPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

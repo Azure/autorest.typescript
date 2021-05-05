@@ -13,6 +13,10 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface DurationGetNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type DurationGetNullResponse = {
   /** The parsed response body. */
@@ -28,6 +32,14 @@ export type DurationGetNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface DurationPutPositiveDurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface DurationGetPositiveDurationOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getPositiveDuration operation. */
 export type DurationGetPositiveDurationResponse = {
   /** The parsed response body. */
@@ -42,6 +54,10 @@ export type DurationGetPositiveDurationResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface DurationGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type DurationGetInvalidResponse = {

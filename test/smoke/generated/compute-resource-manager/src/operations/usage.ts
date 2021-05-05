@@ -13,7 +13,13 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
-import { UsageDef, UsageListResponse, UsageListNextResponse } from "../models";
+import {
+  UsageDef,
+  UsageListNextOptionalParams,
+  UsageListOptionalParams,
+  UsageListResponse,
+  UsageListNextResponse
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class representing a Usage. */
@@ -36,7 +42,7 @@ export class UsageImpl implements Usage {
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsageListOptionalParams
   ): PagedAsyncIterableIterator<UsageDef> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -54,7 +60,7 @@ export class UsageImpl implements Usage {
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsageListOptionalParams
   ): AsyncIterableIterator<UsageDef[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -68,7 +74,7 @@ export class UsageImpl implements Usage {
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsageListOptionalParams
   ): AsyncIterableIterator<UsageDef> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -83,7 +89,7 @@ export class UsageImpl implements Usage {
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: UsageListOptionalParams
   ): Promise<UsageListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -104,7 +110,7 @@ export class UsageImpl implements Usage {
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: UsageListNextOptionalParams
   ): Promise<UsageListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

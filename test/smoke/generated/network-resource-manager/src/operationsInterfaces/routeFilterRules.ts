@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilterRule,
+  RouteFilterRulesListByRouteFilterNextOptionalParams,
+  RouteFilterRulesListByRouteFilterOptionalParams,
+  RouteFilterRulesDeleteOptionalParams,
+  RouteFilterRulesGetOptionalParams,
   RouteFilterRulesGetResponse,
+  RouteFilterRulesCreateOrUpdateOptionalParams,
   RouteFilterRulesCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface RouteFilterRules {
   listByRouteFilter(
     resourceGroupName: string,
     routeFilterName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesListByRouteFilterOptionalParams
   ): PagedAsyncIterableIterator<RouteFilterRule>;
   /**
    * Deletes the specified rule from a route filter.
@@ -41,7 +46,7 @@ export interface RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface RouteFilterRules {
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesGetOptionalParams
   ): Promise<RouteFilterRulesGetResponse>;
   /**
    * Creates or updates a route in the specified route filter.
@@ -72,7 +77,7 @@ export interface RouteFilterRules {
     routeFilterName: string,
     ruleName: string,
     routeFilterRuleParameters: RouteFilterRule,
-    options?: coreHttp.OperationOptions
+    options?: RouteFilterRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<RouteFilterRulesCreateOrUpdateResponse>,

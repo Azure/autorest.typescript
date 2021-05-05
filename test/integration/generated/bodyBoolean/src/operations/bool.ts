@@ -12,9 +12,15 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyBooleanClientContext } from "../bodyBooleanClientContext";
 import {
+  BoolGetTrueOptionalParams,
   BoolGetTrueResponse,
+  BoolPutTrueOptionalParams,
+  BoolGetFalseOptionalParams,
   BoolGetFalseResponse,
+  BoolPutFalseOptionalParams,
+  BoolGetNullOptionalParams,
   BoolGetNullResponse,
+  BoolGetInvalidOptionalParams,
   BoolGetInvalidResponse
 } from "../models";
 
@@ -34,7 +40,7 @@ export class BoolImpl implements Bool {
    * Get true Boolean value
    * @param options The options parameters.
    */
-  getTrue(options?: coreHttp.OperationOptions): Promise<BoolGetTrueResponse> {
+  getTrue(options?: BoolGetTrueOptionalParams): Promise<BoolGetTrueResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -48,7 +54,7 @@ export class BoolImpl implements Bool {
    * Set Boolean value true
    * @param options The options parameters.
    */
-  putTrue(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  putTrue(options?: BoolPutTrueOptionalParams): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -62,7 +68,9 @@ export class BoolImpl implements Bool {
    * Get false Boolean value
    * @param options The options parameters.
    */
-  getFalse(options?: coreHttp.OperationOptions): Promise<BoolGetFalseResponse> {
+  getFalse(
+    options?: BoolGetFalseOptionalParams
+  ): Promise<BoolGetFalseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -77,7 +85,7 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   putFalse(
-    options?: coreHttp.OperationOptions
+    options?: BoolPutFalseOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -92,7 +100,7 @@ export class BoolImpl implements Bool {
    * Get null Boolean value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<BoolGetNullResponse> {
+  getNull(options?: BoolGetNullOptionalParams): Promise<BoolGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -107,7 +115,7 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: BoolGetInvalidOptionalParams
   ): Promise<BoolGetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

@@ -15,21 +15,35 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   Application,
+  ApplicationsListNextOptionalParams,
   ApplicationsListOptionalParams,
   DirectoryObjectUnion,
+  ApplicationsListOwnersNextOptionalParams,
+  ApplicationsListOwnersOptionalParams,
   KeyCredential,
+  ApplicationsListKeyCredentialsOptionalParams,
   PasswordCredential,
+  ApplicationsListPasswordCredentialsOptionalParams,
   ApplicationCreateParameters,
+  ApplicationsCreateOptionalParams,
   ApplicationsCreateResponse,
   ApplicationsListResponse,
+  ApplicationsDeleteOptionalParams,
+  ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
   ApplicationUpdateParameters,
+  ApplicationsPatchOptionalParams,
   ApplicationsListOwnersResponse,
   AddOwnerParameters,
+  ApplicationsAddOwnerOptionalParams,
+  ApplicationsRemoveOwnerOptionalParams,
   ApplicationsListKeyCredentialsResponse,
   KeyCredentialsUpdateParameters,
+  ApplicationsUpdateKeyCredentialsOptionalParams,
   ApplicationsListPasswordCredentialsResponse,
   PasswordCredentialsUpdateParameters,
+  ApplicationsUpdatePasswordCredentialsOptionalParams,
+  ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdResponse,
   ApplicationsListNextResponse,
   ApplicationsListOwnersNextResponse
@@ -97,7 +111,7 @@ export class ApplicationsImpl implements Applications {
    */
   public listOwners(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(applicationObjectId, options);
     return {
@@ -115,7 +129,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listOwnersPagingPage(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._listOwners(applicationObjectId, options);
     yield result.value || [];
@@ -133,7 +147,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listOwnersPagingAll(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnersPagingPage(
       applicationObjectId,
@@ -150,7 +164,7 @@ export class ApplicationsImpl implements Applications {
    */
   public listKeyCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListKeyCredentialsOptionalParams
   ): PagedAsyncIterableIterator<KeyCredential> {
     const iter = this.listKeyCredentialsPagingAll(applicationObjectId, options);
     return {
@@ -168,7 +182,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listKeyCredentialsPagingPage(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListKeyCredentialsOptionalParams
   ): AsyncIterableIterator<KeyCredential[]> {
     let result = await this._listKeyCredentials(applicationObjectId, options);
     yield result.value || [];
@@ -176,7 +190,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listKeyCredentialsPagingAll(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListKeyCredentialsOptionalParams
   ): AsyncIterableIterator<KeyCredential> {
     for await (const page of this.listKeyCredentialsPagingPage(
       applicationObjectId,
@@ -193,7 +207,7 @@ export class ApplicationsImpl implements Applications {
    */
   public listPasswordCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListPasswordCredentialsOptionalParams
   ): PagedAsyncIterableIterator<PasswordCredential> {
     const iter = this.listPasswordCredentialsPagingAll(
       applicationObjectId,
@@ -217,7 +231,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listPasswordCredentialsPagingPage(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListPasswordCredentialsOptionalParams
   ): AsyncIterableIterator<PasswordCredential[]> {
     let result = await this._listPasswordCredentials(
       applicationObjectId,
@@ -228,7 +242,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listPasswordCredentialsPagingAll(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListPasswordCredentialsOptionalParams
   ): AsyncIterableIterator<PasswordCredential> {
     for await (const page of this.listPasswordCredentialsPagingPage(
       applicationObjectId,
@@ -245,7 +259,7 @@ export class ApplicationsImpl implements Applications {
    */
   public listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListNextOptionalParams
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -263,7 +277,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListNextOptionalParams
   ): AsyncIterableIterator<Application[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
@@ -277,7 +291,7 @@ export class ApplicationsImpl implements Applications {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListNextOptionalParams
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -291,7 +305,7 @@ export class ApplicationsImpl implements Applications {
    */
   create(
     parameters: ApplicationCreateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOptionalParams
   ): Promise<ApplicationsCreateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       parameters,
@@ -326,7 +340,7 @@ export class ApplicationsImpl implements Applications {
    */
   delete(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -345,7 +359,7 @@ export class ApplicationsImpl implements Applications {
    */
   get(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -366,7 +380,7 @@ export class ApplicationsImpl implements Applications {
   patch(
     applicationObjectId: string,
     parameters: ApplicationUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsPatchOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -386,7 +400,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listOwners(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersOptionalParams
   ): Promise<ApplicationsListOwnersResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -408,7 +422,7 @@ export class ApplicationsImpl implements Applications {
   addOwner(
     applicationObjectId: string,
     parameters: AddOwnerParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsAddOwnerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -430,7 +444,7 @@ export class ApplicationsImpl implements Applications {
   removeOwner(
     applicationObjectId: string,
     ownerObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsRemoveOwnerOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -450,7 +464,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listKeyCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListKeyCredentialsOptionalParams
   ): Promise<ApplicationsListKeyCredentialsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -471,7 +485,7 @@ export class ApplicationsImpl implements Applications {
   updateKeyCredentials(
     applicationObjectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsUpdateKeyCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -491,7 +505,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listPasswordCredentials(
     applicationObjectId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListPasswordCredentialsOptionalParams
   ): Promise<ApplicationsListPasswordCredentialsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -512,7 +526,7 @@ export class ApplicationsImpl implements Applications {
   updatePasswordCredentials(
     applicationObjectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsUpdatePasswordCredentialsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,
@@ -532,7 +546,7 @@ export class ApplicationsImpl implements Applications {
    */
   getServicePrincipalsIdByAppId(
     applicationID: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
   ): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationID,
@@ -551,7 +565,7 @@ export class ApplicationsImpl implements Applications {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListNextOptionalParams
   ): Promise<ApplicationsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -572,7 +586,7 @@ export class ApplicationsImpl implements Applications {
   private _listOwnersNext(
     applicationObjectId: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListOwnersNextOptionalParams
   ): Promise<ApplicationsListOwnersNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       applicationObjectId,

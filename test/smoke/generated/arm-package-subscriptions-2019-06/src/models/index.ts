@@ -206,6 +206,10 @@ export type SpendingLimit = "On" | "Off" | "CurrentPeriodOff";
 /** Defines values for TenantCategory. */
 export type TenantCategory = "Home" | "ProjectedBy" | "ManagedBy";
 
+/** Optional parameters. */
+export interface OperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type OperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -217,6 +221,10 @@ export type OperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface OperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type OperationsListNextResponse = OperationListResult & {
@@ -230,6 +238,10 @@ export type OperationsListNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface SubscriptionsListLocationsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the listLocations operation. */
 export type SubscriptionsListLocationsResponse = LocationListResult & {
   /** The underlying HTTP response. */
@@ -241,6 +253,10 @@ export type SubscriptionsListLocationsResponse = LocationListResult & {
     parsedBody: LocationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SubscriptionsGetOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type SubscriptionsGetResponse = Subscription & {
@@ -254,6 +270,10 @@ export type SubscriptionsGetResponse = Subscription & {
   };
 };
 
+/** Optional parameters. */
+export interface SubscriptionsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type SubscriptionsListResponse = SubscriptionListResult & {
   /** The underlying HTTP response. */
@@ -265,6 +285,10 @@ export type SubscriptionsListResponse = SubscriptionListResult & {
     parsedBody: SubscriptionListResult;
   };
 };
+
+/** Optional parameters. */
+export interface SubscriptionsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type SubscriptionsListNextResponse = SubscriptionListResult & {
@@ -278,6 +302,9 @@ export type SubscriptionsListNextResponse = SubscriptionListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface TenantsListOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type TenantsListResponse = TenantListResult & {
   /** The underlying HTTP response. */
@@ -289,6 +316,10 @@ export type TenantsListResponse = TenantListResult & {
     parsedBody: TenantListResult;
   };
 };
+
+/** Optional parameters. */
+export interface TenantsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type TenantsListNextResponse = TenantListResult & {

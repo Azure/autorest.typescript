@@ -17,19 +17,29 @@ import {
   VaultsListBySubscriptionNextOptionalParams,
   VaultsListBySubscriptionOptionalParams,
   DeletedVault,
+  VaultsListDeletedNextOptionalParams,
+  VaultsListDeletedOptionalParams,
   Resource,
   VaultsListNextOptionalParams,
   VaultsListOptionalParams,
   VaultCreateOrUpdateParameters,
+  VaultsCreateOrUpdateOptionalParams,
   VaultsCreateOrUpdateResponse,
   VaultPatchParameters,
+  VaultsUpdateOptionalParams,
   VaultsUpdateResponse,
+  VaultsDeleteOptionalParams,
+  VaultsGetOptionalParams,
   VaultsGetResponse,
   VaultAccessPolicyParameters,
   AccessPolicyUpdateKind,
+  VaultsUpdateAccessPolicyOptionalParams,
   VaultsUpdateAccessPolicyResponse,
+  VaultsGetDeletedOptionalParams,
   VaultsGetDeletedResponse,
+  VaultsPurgeDeletedOptionalParams,
   VaultCheckNameAvailabilityParameters,
+  VaultsCheckNameAvailabilityOptionalParams,
   VaultsCheckNameAvailabilityResponse
 } from "../models";
 
@@ -58,7 +68,7 @@ export interface Vaults {
    * @param options The options parameters.
    */
   listDeleted(
-    options?: coreHttp.OperationOptions
+    options?: VaultsListDeletedOptionalParams
   ): PagedAsyncIterableIterator<DeletedVault>;
   /**
    * The List operation gets information about the vaults associated with the subscription.
@@ -78,7 +88,7 @@ export interface Vaults {
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VaultsCreateOrUpdateResponse>,
@@ -96,7 +106,7 @@ export interface Vaults {
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultPatchParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsUpdateOptionalParams
   ): Promise<VaultsUpdateResponse>;
   /**
    * Deletes the specified Azure key vault.
@@ -107,7 +117,7 @@ export interface Vaults {
   delete(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified Azure key vault.
@@ -118,7 +128,7 @@ export interface Vaults {
   get(
     resourceGroupName: string,
     vaultName: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsGetOptionalParams
   ): Promise<VaultsGetResponse>;
   /**
    * Update access policies in a key vault in the specified subscription.
@@ -133,7 +143,7 @@ export interface Vaults {
     vaultName: string,
     operationKind: AccessPolicyUpdateKind,
     parameters: VaultAccessPolicyParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsUpdateAccessPolicyOptionalParams
   ): Promise<VaultsUpdateAccessPolicyResponse>;
   /**
    * Gets the deleted Azure key vault.
@@ -144,7 +154,7 @@ export interface Vaults {
   getDeleted(
     vaultName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsGetDeletedOptionalParams
   ): Promise<VaultsGetDeletedResponse>;
   /**
    * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.
@@ -155,7 +165,7 @@ export interface Vaults {
   purgeDeleted(
     vaultName: string,
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VaultsPurgeDeletedOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -166,6 +176,6 @@ export interface Vaults {
    */
   checkNameAvailability(
     vaultName: VaultCheckNameAvailabilityParameters,
-    options?: coreHttp.OperationOptions
+    options?: VaultsCheckNameAvailabilityOptionalParams
   ): Promise<VaultsCheckNameAvailabilityResponse>;
 }

@@ -12,9 +12,16 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstanceFailoverGroup,
+  InstanceFailoverGroupsListByLocationNextOptionalParams,
+  InstanceFailoverGroupsListByLocationOptionalParams,
+  InstanceFailoverGroupsGetOptionalParams,
   InstanceFailoverGroupsGetResponse,
+  InstanceFailoverGroupsCreateOrUpdateOptionalParams,
   InstanceFailoverGroupsCreateOrUpdateResponse,
+  InstanceFailoverGroupsDeleteOptionalParams,
+  InstanceFailoverGroupsFailoverOptionalParams,
   InstanceFailoverGroupsFailoverResponse,
+  InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   InstanceFailoverGroupsForceFailoverAllowDataLossResponse
 } from "../models";
 
@@ -31,7 +38,7 @@ export interface InstanceFailoverGroups {
   listByLocation(
     resourceGroupName: string,
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationOptionalParams
   ): PagedAsyncIterableIterator<InstanceFailoverGroup>;
   /**
    * Gets a failover group.
@@ -45,7 +52,7 @@ export interface InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsGetOptionalParams
   ): Promise<InstanceFailoverGroupsGetResponse>;
   /**
    * Creates or updates a failover group.
@@ -61,7 +68,7 @@ export interface InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
@@ -80,7 +87,7 @@ export interface InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -96,7 +103,7 @@ export interface InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsFailoverOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsFailoverResponse>,
@@ -116,7 +123,7 @@ export interface InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

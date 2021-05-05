@@ -17,11 +17,19 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentScriptUnion,
+  DeploymentScriptsListBySubscriptionNextOptionalParams,
+  DeploymentScriptsListBySubscriptionOptionalParams,
+  DeploymentScriptsListByResourceGroupNextOptionalParams,
+  DeploymentScriptsListByResourceGroupOptionalParams,
+  DeploymentScriptsCreateOptionalParams,
   DeploymentScriptsCreateResponse,
   DeploymentScriptsUpdateOptionalParams,
   DeploymentScriptsUpdateResponse,
+  DeploymentScriptsGetOptionalParams,
   DeploymentScriptsGetResponse,
+  DeploymentScriptsDeleteOptionalParams,
   DeploymentScriptsListBySubscriptionResponse,
+  DeploymentScriptsGetLogsOptionalParams,
   DeploymentScriptsGetLogsResponse,
   DeploymentScriptsGetLogsDefaultOptionalParams,
   DeploymentScriptsGetLogsDefaultResponse,
@@ -48,7 +56,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -65,7 +73,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<DeploymentScriptUnion[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -78,7 +86,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<DeploymentScriptUnion> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -92,7 +100,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -110,7 +118,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DeploymentScriptUnion[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DeploymentScriptUnion> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -149,7 +157,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DeploymentScriptsCreateResponse>,
@@ -171,16 +179,12 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -214,7 +218,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   get(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsGetOptionalParams
   ): Promise<DeploymentScriptsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -236,7 +240,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   delete(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -254,7 +258,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): Promise<DeploymentScriptsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -274,7 +278,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   getLogs(
     resourceGroupName: string,
     scriptName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsGetLogsOptionalParams
   ): Promise<DeploymentScriptsGetLogsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -316,7 +320,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): Promise<DeploymentScriptsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -335,7 +339,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
   ): Promise<DeploymentScriptsListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -356,7 +360,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
   ): Promise<DeploymentScriptsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

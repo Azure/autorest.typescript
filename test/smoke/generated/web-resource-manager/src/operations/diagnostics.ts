@@ -15,9 +15,27 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   DetectorResponse,
+  DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams,
+  DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams,
+  DiagnosticsListSiteDetectorResponsesNextOptionalParams,
+  DiagnosticsListSiteDetectorResponsesOptionalParams,
   DiagnosticCategory,
+  DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesOptionalParams,
   AnalysisDefinition,
+  DiagnosticsListSiteAnalysesNextOptionalParams,
+  DiagnosticsListSiteAnalysesOptionalParams,
   DetectorDefinition,
+  DiagnosticsListSiteDetectorsNextOptionalParams,
+  DiagnosticsListSiteDetectorsOptionalParams,
+  DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams,
+  DiagnosticsListSiteDetectorResponsesSlotOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams,
+  DiagnosticsListSiteAnalysesSlotNextOptionalParams,
+  DiagnosticsListSiteAnalysesSlotOptionalParams,
+  DiagnosticsListSiteDetectorsSlotNextOptionalParams,
+  DiagnosticsListSiteDetectorsSlotOptionalParams,
   DiagnosticsListHostingEnvironmentDetectorResponsesResponse,
   DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseResponse,
@@ -25,12 +43,15 @@ import {
   DiagnosticsGetSiteDetectorResponseOptionalParams,
   DiagnosticsGetSiteDetectorResponseResponse,
   DiagnosticsListSiteDiagnosticCategoriesResponse,
+  DiagnosticsGetSiteDiagnosticCategoryOptionalParams,
   DiagnosticsGetSiteDiagnosticCategoryResponse,
   DiagnosticsListSiteAnalysesResponse,
+  DiagnosticsGetSiteAnalysisOptionalParams,
   DiagnosticsGetSiteAnalysisResponse,
   DiagnosticsExecuteSiteAnalysisOptionalParams,
   DiagnosticsExecuteSiteAnalysisResponse,
   DiagnosticsListSiteDetectorsResponse,
+  DiagnosticsGetSiteDetectorOptionalParams,
   DiagnosticsGetSiteDetectorResponse,
   DiagnosticsExecuteSiteDetectorOptionalParams,
   DiagnosticsExecuteSiteDetectorResponse,
@@ -38,12 +59,15 @@ import {
   DiagnosticsGetSiteDetectorResponseSlotOptionalParams,
   DiagnosticsGetSiteDetectorResponseSlotResponse,
   DiagnosticsListSiteDiagnosticCategoriesSlotResponse,
+  DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams,
   DiagnosticsGetSiteDiagnosticCategorySlotResponse,
   DiagnosticsListSiteAnalysesSlotResponse,
+  DiagnosticsGetSiteAnalysisSlotOptionalParams,
   DiagnosticsGetSiteAnalysisSlotResponse,
   DiagnosticsExecuteSiteAnalysisSlotOptionalParams,
   DiagnosticsExecuteSiteAnalysisSlotResponse,
   DiagnosticsListSiteDetectorsSlotResponse,
+  DiagnosticsGetSiteDetectorSlotOptionalParams,
   DiagnosticsGetSiteDetectorSlotResponse,
   DiagnosticsExecuteSiteDetectorSlotOptionalParams,
   DiagnosticsExecuteSiteDetectorSlotResponse,
@@ -80,7 +104,7 @@ export class DiagnosticsImpl implements Diagnostics {
   public listHostingEnvironmentDetectorResponses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listHostingEnvironmentDetectorResponsesPagingAll(
       resourceGroupName,
@@ -107,7 +131,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listHostingEnvironmentDetectorResponsesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): AsyncIterableIterator<DetectorResponse[]> {
     let result = await this._listHostingEnvironmentDetectorResponses(
       resourceGroupName,
@@ -131,7 +155,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listHostingEnvironmentDetectorResponsesPagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): AsyncIterableIterator<DetectorResponse> {
     for await (const page of this.listHostingEnvironmentDetectorResponsesPagingPage(
       resourceGroupName,
@@ -151,7 +175,7 @@ export class DiagnosticsImpl implements Diagnostics {
   public listSiteDetectorResponses(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listSiteDetectorResponsesPagingAll(
       resourceGroupName,
@@ -178,7 +202,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDetectorResponsesPagingPage(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): AsyncIterableIterator<DetectorResponse[]> {
     let result = await this._listSiteDetectorResponses(
       resourceGroupName,
@@ -202,7 +226,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDetectorResponsesPagingAll(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): AsyncIterableIterator<DetectorResponse> {
     for await (const page of this.listSiteDetectorResponsesPagingPage(
       resourceGroupName,
@@ -222,7 +246,7 @@ export class DiagnosticsImpl implements Diagnostics {
   public listSiteDiagnosticCategories(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): PagedAsyncIterableIterator<DiagnosticCategory> {
     const iter = this.listSiteDiagnosticCategoriesPagingAll(
       resourceGroupName,
@@ -249,7 +273,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDiagnosticCategoriesPagingPage(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): AsyncIterableIterator<DiagnosticCategory[]> {
     let result = await this._listSiteDiagnosticCategories(
       resourceGroupName,
@@ -273,7 +297,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDiagnosticCategoriesPagingAll(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): AsyncIterableIterator<DiagnosticCategory> {
     for await (const page of this.listSiteDiagnosticCategoriesPagingPage(
       resourceGroupName,
@@ -295,7 +319,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesOptionalParams
   ): PagedAsyncIterableIterator<AnalysisDefinition> {
     const iter = this.listSiteAnalysesPagingAll(
       resourceGroupName,
@@ -325,7 +349,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesOptionalParams
   ): AsyncIterableIterator<AnalysisDefinition[]> {
     let result = await this._listSiteAnalyses(
       resourceGroupName,
@@ -352,7 +376,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesOptionalParams
   ): AsyncIterableIterator<AnalysisDefinition> {
     for await (const page of this.listSiteAnalysesPagingPage(
       resourceGroupName,
@@ -375,7 +399,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsOptionalParams
   ): PagedAsyncIterableIterator<DetectorDefinition> {
     const iter = this.listSiteDetectorsPagingAll(
       resourceGroupName,
@@ -405,7 +429,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsOptionalParams
   ): AsyncIterableIterator<DetectorDefinition[]> {
     let result = await this._listSiteDetectors(
       resourceGroupName,
@@ -432,7 +456,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsOptionalParams
   ): AsyncIterableIterator<DetectorDefinition> {
     for await (const page of this.listSiteDetectorsPagingPage(
       resourceGroupName,
@@ -455,7 +479,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): PagedAsyncIterableIterator<DetectorResponse> {
     const iter = this.listSiteDetectorResponsesSlotPagingAll(
       resourceGroupName,
@@ -485,7 +509,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): AsyncIterableIterator<DetectorResponse[]> {
     let result = await this._listSiteDetectorResponsesSlot(
       resourceGroupName,
@@ -512,7 +536,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): AsyncIterableIterator<DetectorResponse> {
     for await (const page of this.listSiteDetectorResponsesSlotPagingPage(
       resourceGroupName,
@@ -535,7 +559,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): PagedAsyncIterableIterator<DiagnosticCategory> {
     const iter = this.listSiteDiagnosticCategoriesSlotPagingAll(
       resourceGroupName,
@@ -565,7 +589,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): AsyncIterableIterator<DiagnosticCategory[]> {
     let result = await this._listSiteDiagnosticCategoriesSlot(
       resourceGroupName,
@@ -592,7 +616,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): AsyncIterableIterator<DiagnosticCategory> {
     for await (const page of this.listSiteDiagnosticCategoriesSlotPagingPage(
       resourceGroupName,
@@ -617,7 +641,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): PagedAsyncIterableIterator<AnalysisDefinition> {
     const iter = this.listSiteAnalysesSlotPagingAll(
       resourceGroupName,
@@ -650,7 +674,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): AsyncIterableIterator<AnalysisDefinition[]> {
     let result = await this._listSiteAnalysesSlot(
       resourceGroupName,
@@ -680,7 +704,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): AsyncIterableIterator<AnalysisDefinition> {
     for await (const page of this.listSiteAnalysesSlotPagingPage(
       resourceGroupName,
@@ -706,7 +730,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): PagedAsyncIterableIterator<DetectorDefinition> {
     const iter = this.listSiteDetectorsSlotPagingAll(
       resourceGroupName,
@@ -739,7 +763,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): AsyncIterableIterator<DetectorDefinition[]> {
     let result = await this._listSiteDetectorsSlot(
       resourceGroupName,
@@ -769,7 +793,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): AsyncIterableIterator<DetectorDefinition> {
     for await (const page of this.listSiteDetectorsSlotPagingPage(
       resourceGroupName,
@@ -791,7 +815,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private _listHostingEnvironmentDetectorResponses(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -838,7 +862,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private _listSiteDetectorResponses(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -885,7 +909,7 @@ export class DiagnosticsImpl implements Diagnostics {
   private _listSiteDiagnosticCategories(
     resourceGroupName: string,
     siteName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -909,7 +933,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDiagnosticCategoryOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategoryResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -934,7 +958,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -961,7 +985,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     analysisName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteAnalysisOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1015,7 +1039,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1042,7 +1066,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     detectorName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDetectorOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1096,7 +1120,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1149,7 +1173,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1176,7 +1200,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1204,7 +1228,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1234,7 +1258,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     analysisName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteAnalysisSlotOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1294,7 +1318,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1324,7 +1348,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     detectorName: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsGetSiteDetectorSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1383,7 +1407,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1411,7 +1435,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1437,7 +1461,7 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1464,7 +1488,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesNextOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1492,7 +1516,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1521,7 +1545,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1550,7 +1574,7 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1580,7 +1604,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteAnalysesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1611,7 +1635,7 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiagnosticsListSiteDetectorsSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

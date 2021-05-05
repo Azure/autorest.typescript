@@ -56,6 +56,9 @@ export type Enum1 = string;
 /** Defines values for FooEnum. */
 export type FooEnum = "foo1" | "foo2" | "foo3";
 
+/** Optional parameters. */
+export interface ArrayGetNullOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getNull operation. */
 export type ArrayGetNullResponse = {
   /** The parsed response body. */
@@ -70,6 +73,10 @@ export type ArrayGetNullResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type ArrayGetInvalidResponse = {
@@ -86,6 +93,10 @@ export type ArrayGetInvalidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getEmpty operation. */
 export type ArrayGetEmptyResponse = {
   /** The parsed response body. */
@@ -100,6 +111,14 @@ export type ArrayGetEmptyResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetBooleanTfftOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanTfft operation. */
 export type ArrayGetBooleanTfftResponse = {
@@ -116,6 +135,14 @@ export type ArrayGetBooleanTfftResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutBooleanTfftOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetBooleanInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getBooleanInvalidNull operation. */
 export type ArrayGetBooleanInvalidNullResponse = {
   /** The parsed response body. */
@@ -130,6 +157,10 @@ export type ArrayGetBooleanInvalidNullResponse = {
     parsedBody: boolean[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetBooleanInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidString operation. */
 export type ArrayGetBooleanInvalidStringResponse = {
@@ -146,6 +177,10 @@ export type ArrayGetBooleanInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetIntegerValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getIntegerValid operation. */
 export type ArrayGetIntegerValidResponse = {
   /** The parsed response body. */
@@ -160,6 +195,14 @@ export type ArrayGetIntegerValidResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutIntegerValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetIntInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getIntInvalidNull operation. */
 export type ArrayGetIntInvalidNullResponse = {
@@ -176,6 +219,10 @@ export type ArrayGetIntInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetIntInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getIntInvalidString operation. */
 export type ArrayGetIntInvalidStringResponse = {
   /** The parsed response body. */
@@ -190,6 +237,10 @@ export type ArrayGetIntInvalidStringResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetLongValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongValid operation. */
 export type ArrayGetLongValidResponse = {
@@ -206,6 +257,14 @@ export type ArrayGetLongValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutLongValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetLongInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getLongInvalidNull operation. */
 export type ArrayGetLongInvalidNullResponse = {
   /** The parsed response body. */
@@ -220,6 +279,10 @@ export type ArrayGetLongInvalidNullResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetLongInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongInvalidString operation. */
 export type ArrayGetLongInvalidStringResponse = {
@@ -236,6 +299,10 @@ export type ArrayGetLongInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetFloatValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFloatValid operation. */
 export type ArrayGetFloatValidResponse = {
   /** The parsed response body. */
@@ -250,6 +317,14 @@ export type ArrayGetFloatValidResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutFloatValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetFloatInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidNull operation. */
 export type ArrayGetFloatInvalidNullResponse = {
@@ -266,6 +341,10 @@ export type ArrayGetFloatInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetFloatInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFloatInvalidString operation. */
 export type ArrayGetFloatInvalidStringResponse = {
   /** The parsed response body. */
@@ -280,6 +359,10 @@ export type ArrayGetFloatInvalidStringResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDoubleValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleValid operation. */
 export type ArrayGetDoubleValidResponse = {
@@ -296,6 +379,14 @@ export type ArrayGetDoubleValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutDoubleValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetDoubleInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDoubleInvalidNull operation. */
 export type ArrayGetDoubleInvalidNullResponse = {
   /** The parsed response body. */
@@ -310,6 +401,10 @@ export type ArrayGetDoubleInvalidNullResponse = {
     parsedBody: number[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDoubleInvalidStringOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidString operation. */
 export type ArrayGetDoubleInvalidStringResponse = {
@@ -326,6 +421,10 @@ export type ArrayGetDoubleInvalidStringResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetStringValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStringValid operation. */
 export type ArrayGetStringValidResponse = {
   /** The parsed response body. */
@@ -340,6 +439,14 @@ export type ArrayGetStringValidResponse = {
     parsedBody: string[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutStringValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetEnumValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEnumValid operation. */
 export type ArrayGetEnumValidResponse = {
@@ -356,6 +463,14 @@ export type ArrayGetEnumValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutEnumValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetStringEnumValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStringEnumValid operation. */
 export type ArrayGetStringEnumValidResponse = {
   /** The parsed response body. */
@@ -370,6 +485,14 @@ export type ArrayGetStringEnumValidResponse = {
     parsedBody: Enum0[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutStringEnumValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetStringWithNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringWithNull operation. */
 export type ArrayGetStringWithNullResponse = {
@@ -386,6 +509,10 @@ export type ArrayGetStringWithNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetStringWithInvalidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getStringWithInvalid operation. */
 export type ArrayGetStringWithInvalidResponse = {
   /** The parsed response body. */
@@ -400,6 +527,10 @@ export type ArrayGetStringWithInvalidResponse = {
     parsedBody: string[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetUuidValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUuidValid operation. */
 export type ArrayGetUuidValidResponse = {
@@ -416,6 +547,14 @@ export type ArrayGetUuidValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutUuidValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetUuidInvalidCharsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUuidInvalidChars operation. */
 export type ArrayGetUuidInvalidCharsResponse = {
   /** The parsed response body. */
@@ -430,6 +569,10 @@ export type ArrayGetUuidInvalidCharsResponse = {
     parsedBody: string[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateValid operation. */
 export type ArrayGetDateValidResponse = {
@@ -446,6 +589,14 @@ export type ArrayGetDateValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutDateValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetDateInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateInvalidNull operation. */
 export type ArrayGetDateInvalidNullResponse = {
   /** The parsed response body. */
@@ -460,6 +611,10 @@ export type ArrayGetDateInvalidNullResponse = {
     parsedBody: Date[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDateInvalidCharsOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateInvalidChars operation. */
 export type ArrayGetDateInvalidCharsResponse = {
@@ -476,6 +631,10 @@ export type ArrayGetDateInvalidCharsResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateTimeValid operation. */
 export type ArrayGetDateTimeValidResponse = {
   /** The parsed response body. */
@@ -490,6 +649,14 @@ export type ArrayGetDateTimeValidResponse = {
     parsedBody: Date[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutDateTimeValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetDateTimeInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidNull operation. */
 export type ArrayGetDateTimeInvalidNullResponse = {
@@ -506,6 +673,10 @@ export type ArrayGetDateTimeInvalidNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetDateTimeInvalidCharsOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDateTimeInvalidChars operation. */
 export type ArrayGetDateTimeInvalidCharsResponse = {
   /** The parsed response body. */
@@ -520,6 +691,10 @@ export type ArrayGetDateTimeInvalidCharsResponse = {
     parsedBody: Date[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDateTimeRfc1123ValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123Valid operation. */
 export type ArrayGetDateTimeRfc1123ValidResponse = {
@@ -536,6 +711,14 @@ export type ArrayGetDateTimeRfc1123ValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutDateTimeRfc1123ValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetDurationValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDurationValid operation. */
 export type ArrayGetDurationValidResponse = {
   /** The parsed response body. */
@@ -550,6 +733,14 @@ export type ArrayGetDurationValidResponse = {
     parsedBody: string[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutDurationValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetByteValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByteValid operation. */
 export type ArrayGetByteValidResponse = {
@@ -566,6 +757,14 @@ export type ArrayGetByteValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutByteValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetByteInvalidNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getByteInvalidNull operation. */
 export type ArrayGetByteInvalidNullResponse = {
   /** The parsed response body. */
@@ -580,6 +779,10 @@ export type ArrayGetByteInvalidNullResponse = {
     parsedBody: Uint8Array[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetBase64UrlOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBase64Url operation. */
 export type ArrayGetBase64UrlResponse = {
@@ -596,6 +799,10 @@ export type ArrayGetBase64UrlResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetComplexNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexNull operation. */
 export type ArrayGetComplexNullResponse = (Product | null)[] & {
   /** The underlying HTTP response. */
@@ -607,6 +814,10 @@ export type ArrayGetComplexNullResponse = (Product | null)[] & {
     parsedBody: (Product | null)[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetComplexEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexEmpty operation. */
 export type ArrayGetComplexEmptyResponse = Product[] & {
@@ -620,6 +831,10 @@ export type ArrayGetComplexEmptyResponse = Product[] & {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetComplexItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexItemNull operation. */
 export type ArrayGetComplexItemNullResponse = (Product | null)[] & {
   /** The underlying HTTP response. */
@@ -631,6 +846,10 @@ export type ArrayGetComplexItemNullResponse = (Product | null)[] & {
     parsedBody: (Product | null)[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetComplexItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexItemEmpty operation. */
 export type ArrayGetComplexItemEmptyResponse = Product[] & {
@@ -644,6 +863,10 @@ export type ArrayGetComplexItemEmptyResponse = Product[] & {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetComplexValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getComplexValid operation. */
 export type ArrayGetComplexValidResponse = Product[] & {
   /** The underlying HTTP response. */
@@ -655,6 +878,14 @@ export type ArrayGetComplexValidResponse = Product[] & {
     parsedBody: Product[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutComplexValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetArrayNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayNull operation. */
 export type ArrayGetArrayNullResponse = {
@@ -671,6 +902,10 @@ export type ArrayGetArrayNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetArrayEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getArrayEmpty operation. */
 export type ArrayGetArrayEmptyResponse = {
   /** The parsed response body. */
@@ -685,6 +920,10 @@ export type ArrayGetArrayEmptyResponse = {
     parsedBody: string[][];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetArrayItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayItemNull operation. */
 export type ArrayGetArrayItemNullResponse = {
@@ -701,6 +940,10 @@ export type ArrayGetArrayItemNullResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetArrayItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getArrayItemEmpty operation. */
 export type ArrayGetArrayItemEmptyResponse = {
   /** The parsed response body. */
@@ -715,6 +958,10 @@ export type ArrayGetArrayItemEmptyResponse = {
     parsedBody: string[][];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetArrayValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayValid operation. */
 export type ArrayGetArrayValidResponse = {
@@ -731,6 +978,14 @@ export type ArrayGetArrayValidResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayPutArrayValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ArrayGetDictionaryNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryNull operation. */
 export type ArrayGetDictionaryNullResponse = ({
   [propertyName: string]: string;
@@ -744,6 +999,10 @@ export type ArrayGetDictionaryNullResponse = ({
     parsedBody: ({ [propertyName: string]: string } | null)[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDictionaryEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryEmpty operation. */
 export type ArrayGetDictionaryEmptyResponse = {
@@ -759,6 +1018,10 @@ export type ArrayGetDictionaryEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetDictionaryItemNullOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryItemNull operation. */
 export type ArrayGetDictionaryItemNullResponse = ({
   [propertyName: string]: string;
@@ -772,6 +1035,10 @@ export type ArrayGetDictionaryItemNullResponse = ({
     parsedBody: ({ [propertyName: string]: string } | null)[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayGetDictionaryItemEmptyOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemEmpty operation. */
 export type ArrayGetDictionaryItemEmptyResponse = {
@@ -787,6 +1054,10 @@ export type ArrayGetDictionaryItemEmptyResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface ArrayGetDictionaryValidOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getDictionaryValid operation. */
 export type ArrayGetDictionaryValidResponse = {
   [propertyName: string]: string;
@@ -800,6 +1071,10 @@ export type ArrayGetDictionaryValidResponse = {
     parsedBody: { [propertyName: string]: string }[];
   };
 };
+
+/** Optional parameters. */
+export interface ArrayPutDictionaryValidOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface BodyArrayClientOptionalParams

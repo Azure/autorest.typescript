@@ -11,6 +11,9 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   LoadBalancingRule,
+  LoadBalancerLoadBalancingRulesListNextOptionalParams,
+  LoadBalancerLoadBalancingRulesListOptionalParams,
+  LoadBalancerLoadBalancingRulesGetOptionalParams,
   LoadBalancerLoadBalancingRulesGetResponse
 } from "../models";
 
@@ -26,7 +29,7 @@ export interface LoadBalancerLoadBalancingRules {
   list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerLoadBalancingRulesListOptionalParams
   ): PagedAsyncIterableIterator<LoadBalancingRule>;
   /**
    * Gets the specified load balancer load balancing rule.
@@ -39,6 +42,6 @@ export interface LoadBalancerLoadBalancingRules {
     resourceGroupName: string,
     loadBalancerName: string,
     loadBalancingRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: LoadBalancerLoadBalancingRulesGetOptionalParams
   ): Promise<LoadBalancerLoadBalancingRulesGetResponse>;
 }

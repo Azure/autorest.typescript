@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
+  ApplicationDefinitionsListByResourceGroupNextOptionalParams,
+  ApplicationDefinitionsListByResourceGroupOptionalParams,
+  ApplicationDefinitionsGetOptionalParams,
   ApplicationDefinitionsGetResponse,
+  ApplicationDefinitionsDeleteOptionalParams,
+  ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ApplicationDefinitionsCreateOrUpdateResponse,
+  ApplicationDefinitionsGetByIdOptionalParams,
   ApplicationDefinitionsGetByIdResponse,
+  ApplicationDefinitionsDeleteByIdOptionalParams,
+  ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdResponse
 } from "../models";
 
@@ -28,7 +36,7 @@ export interface ApplicationDefinitions {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ApplicationDefinition>;
   /**
    * Gets the managed application definition.
@@ -39,7 +47,7 @@ export interface ApplicationDefinitions {
   get(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsGetOptionalParams
   ): Promise<ApplicationDefinitionsGetResponse>;
   /**
    * Deletes the managed application definition.
@@ -50,7 +58,7 @@ export interface ApplicationDefinitions {
   delete(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -65,7 +73,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
@@ -82,7 +90,7 @@ export interface ApplicationDefinitions {
    */
   getById(
     applicationDefinitionId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsGetByIdOptionalParams
   ): Promise<ApplicationDefinitionsGetByIdResponse>;
   /**
    * Deletes the managed application definition.
@@ -94,7 +102,7 @@ export interface ApplicationDefinitions {
    */
   deleteById(
     applicationDefinitionId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -110,7 +118,7 @@ export interface ApplicationDefinitions {
   createOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,

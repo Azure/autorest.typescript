@@ -15,9 +15,17 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
   DedicatedHostGroup,
+  DedicatedHostGroupsListByResourceGroupNextOptionalParams,
+  DedicatedHostGroupsListByResourceGroupOptionalParams,
+  DedicatedHostGroupsListBySubscriptionNextOptionalParams,
+  DedicatedHostGroupsListBySubscriptionOptionalParams,
+  DedicatedHostGroupsCreateOrUpdateOptionalParams,
   DedicatedHostGroupsCreateOrUpdateResponse,
   DedicatedHostGroupUpdate,
+  DedicatedHostGroupsUpdateOptionalParams,
   DedicatedHostGroupsUpdateResponse,
+  DedicatedHostGroupsDeleteOptionalParams,
+  DedicatedHostGroupsGetOptionalParams,
   DedicatedHostGroupsGetResponse,
   DedicatedHostGroupsListByResourceGroupResponse,
   DedicatedHostGroupsListBySubscriptionResponse,
@@ -46,7 +54,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHostGroup> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -64,7 +72,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DedicatedHostGroup[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -82,7 +90,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DedicatedHostGroup> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHostGroup> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<DedicatedHostGroup[]> {
     let result = await this._listBySubscription(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): AsyncIterableIterator<DedicatedHostGroup> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -147,7 +155,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     parameters: DedicatedHostGroup,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsCreateOrUpdateOptionalParams
   ): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -172,7 +180,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     parameters: DedicatedHostGroupUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsUpdateOptionalParams
   ): Promise<DedicatedHostGroupsUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -195,7 +203,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   delete(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -217,7 +225,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   get(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsGetOptionalParams
   ): Promise<DedicatedHostGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -238,7 +246,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): Promise<DedicatedHostGroupsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -256,7 +264,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): Promise<DedicatedHostGroupsListBySubscriptionResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -276,7 +284,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupNextOptionalParams
   ): Promise<DedicatedHostGroupsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -296,7 +304,7 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionNextOptionalParams
   ): Promise<DedicatedHostGroupsListBySubscriptionNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

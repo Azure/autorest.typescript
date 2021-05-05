@@ -12,11 +12,18 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NotebookWorkspace,
+  NotebookWorkspacesListByDatabaseAccountOptionalParams,
   NotebookWorkspaceName,
+  NotebookWorkspacesGetOptionalParams,
   NotebookWorkspacesGetResponse,
   NotebookWorkspaceCreateUpdateParameters,
+  NotebookWorkspacesCreateOrUpdateOptionalParams,
   NotebookWorkspacesCreateOrUpdateResponse,
-  NotebookWorkspacesListConnectionInfoResponse
+  NotebookWorkspacesDeleteOptionalParams,
+  NotebookWorkspacesListConnectionInfoOptionalParams,
+  NotebookWorkspacesListConnectionInfoResponse,
+  NotebookWorkspacesRegenerateAuthTokenOptionalParams,
+  NotebookWorkspacesStartOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +38,7 @@ export interface NotebookWorkspaces {
   listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListByDatabaseAccountOptionalParams
   ): PagedAsyncIterableIterator<NotebookWorkspace>;
   /**
    * Gets the notebook workspace for a Cosmos DB account.
@@ -44,7 +51,7 @@ export interface NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesGetOptionalParams
   ): Promise<NotebookWorkspacesGetResponse>;
   /**
    * Creates the notebook workspace for a Cosmos DB account.
@@ -60,7 +67,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NotebookWorkspacesCreateOrUpdateResponse>,
@@ -78,7 +85,7 @@ export interface NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -93,7 +100,7 @@ export interface NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesListConnectionInfoOptionalParams
   ): Promise<NotebookWorkspacesListConnectionInfoResponse>;
   /**
    * Regenerates the auth token for the notebook workspace
@@ -106,7 +113,7 @@ export interface NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -121,7 +128,7 @@ export interface NotebookWorkspaces {
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
-    options?: coreHttp.OperationOptions
+    options?: NotebookWorkspacesStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

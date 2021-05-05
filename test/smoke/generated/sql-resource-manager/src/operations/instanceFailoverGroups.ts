@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstanceFailoverGroup,
+  InstanceFailoverGroupsListByLocationNextOptionalParams,
+  InstanceFailoverGroupsListByLocationOptionalParams,
+  InstanceFailoverGroupsGetOptionalParams,
   InstanceFailoverGroupsGetResponse,
+  InstanceFailoverGroupsCreateOrUpdateOptionalParams,
   InstanceFailoverGroupsCreateOrUpdateResponse,
+  InstanceFailoverGroupsDeleteOptionalParams,
   InstanceFailoverGroupsListByLocationResponse,
+  InstanceFailoverGroupsFailoverOptionalParams,
   InstanceFailoverGroupsFailoverResponse,
+  InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   InstanceFailoverGroupsForceFailoverAllowDataLossResponse,
   InstanceFailoverGroupsListByLocationNextResponse
 } from "../models";
@@ -48,7 +55,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   public listByLocation(
     resourceGroupName: string,
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationOptionalParams
   ): PagedAsyncIterableIterator<InstanceFailoverGroup> {
     const iter = this.listByLocationPagingAll(
       resourceGroupName,
@@ -75,7 +82,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   private async *listByLocationPagingPage(
     resourceGroupName: string,
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationOptionalParams
   ): AsyncIterableIterator<InstanceFailoverGroup[]> {
     let result = await this._listByLocation(
       resourceGroupName,
@@ -99,7 +106,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   private async *listByLocationPagingAll(
     resourceGroupName: string,
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationOptionalParams
   ): AsyncIterableIterator<InstanceFailoverGroup> {
     for await (const page of this.listByLocationPagingPage(
       resourceGroupName,
@@ -122,7 +129,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsGetOptionalParams
   ): Promise<InstanceFailoverGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -150,7 +157,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
@@ -173,16 +180,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -197,7 +200,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -216,16 +219,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -238,7 +237,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   private _listByLocation(
     resourceGroupName: string,
     locationName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationOptionalParams
   ): Promise<InstanceFailoverGroupsListByLocationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +262,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsFailoverOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstanceFailoverGroupsFailoverResponse>,
@@ -285,16 +284,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverOperationSpec,
-      initialOperationResult,
+      failoverOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -310,7 +305,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -334,16 +329,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      forceFailoverAllowDataLossOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: forceFailoverAllowDataLossOperationSpec,
-      initialOperationResult,
+      forceFailoverAllowDataLossOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -358,7 +349,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: InstanceFailoverGroupsListByLocationNextOptionalParams
   ): Promise<InstanceFailoverGroupsListByLocationNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

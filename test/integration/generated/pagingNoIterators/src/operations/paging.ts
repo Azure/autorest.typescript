@@ -14,34 +14,53 @@ import { PagingNoIteratorsClientContext } from "../pagingNoIteratorsClientContex
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
+  PagingGetSinglePagesOptionalParams,
   PagingGetSinglePagesResponse,
+  PagingFirstResponseEmptyOptionalParams,
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesOptionalParams,
   PagingGetMultiplePagesResponse,
+  PagingGetWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsResponse,
+  PagingNextOperationWithQueryParamsOptionalParams,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetOdataMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetOptionalParams,
   PagingGetMultiplePagesWithOffsetResponse,
+  PagingGetMultiplePagesRetryFirstOptionalParams,
   PagingGetMultiplePagesRetryFirstResponse,
+  PagingGetMultiplePagesRetrySecondOptionalParams,
   PagingGetMultiplePagesRetrySecondResponse,
+  PagingGetSinglePagesFailureOptionalParams,
   PagingGetSinglePagesFailureResponse,
+  PagingGetMultiplePagesFailureOptionalParams,
   PagingGetMultiplePagesFailureResponse,
+  PagingGetMultiplePagesFailureUriOptionalParams,
   PagingGetMultiplePagesFailureUriResponse,
+  PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentNextLinkResponse,
   CustomParameterGroup,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLROOptionalParams,
   PagingGetMultiplePagesLROResponse,
+  PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
+  PagingNextFragmentWithGroupingOptionalParams,
   PagingNextFragmentWithGroupingResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesNextResponse,
+  PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesNextResponse,
@@ -49,13 +68,19 @@ import {
   PagingGetOdataMultiplePagesNextResponse,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
   PagingGetMultiplePagesWithOffsetNextResponse,
+  PagingGetMultiplePagesRetryFirstNextOptionalParams,
   PagingGetMultiplePagesRetryFirstNextResponse,
+  PagingGetMultiplePagesRetrySecondNextOptionalParams,
   PagingGetMultiplePagesRetrySecondNextResponse,
+  PagingGetSinglePagesFailureNextOptionalParams,
   PagingGetSinglePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureNextOptionalParams,
   PagingGetMultiplePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriNextResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLRONextResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
@@ -76,7 +101,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getNoItemNamePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNoItemNamePagesOptionalParams
   ): Promise<PagingGetNoItemNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -92,7 +117,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getNullNextLinkNamePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNullNextLinkNamePagesOptionalParams
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -108,7 +133,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getSinglePages(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -125,7 +150,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   firstResponseEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PagingFirstResponseEmptyOptionalParams
   ): Promise<PagingFirstResponseEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -160,7 +185,7 @@ export class PagingImpl implements Paging {
    */
   getWithQueryParams(
     requiredQueryParameter: number,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetWithQueryParamsOptionalParams
   ): Promise<PagingGetWithQueryParamsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       requiredQueryParameter,
@@ -177,7 +202,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   nextOperationWithQueryParams(
-    options?: coreHttp.OperationOptions
+    options?: PagingNextOperationWithQueryParamsOptionalParams
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -229,7 +254,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetryFirst(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -246,7 +271,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetrySecond(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -262,7 +287,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getSinglePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesFailureOptionalParams
   ): Promise<PagingGetSinglePagesFailureResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -278,7 +303,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureOptionalParams
   ): Promise<PagingGetMultiplePagesFailureResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -294,7 +319,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailureUri(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureUriOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -314,7 +339,7 @@ export class PagingImpl implements Paging {
   getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       apiVersion,
@@ -334,7 +359,7 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       customParameterGroup,
@@ -370,16 +395,12 @@ export class PagingImpl implements Paging {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      getMultiplePagesLROOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: getMultiplePagesLROOperationSpec,
-      initialOperationResult,
+      getMultiplePagesLROOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -393,7 +414,7 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingNextFragmentOptionalParams
   ): Promise<PagingNextFragmentResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       apiVersion,
@@ -416,7 +437,7 @@ export class PagingImpl implements Paging {
   nextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: PagingNextFragmentWithGroupingOptionalParams
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -435,7 +456,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getPagingModelWithItemNameWithXMSClientName(
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -453,7 +474,7 @@ export class PagingImpl implements Paging {
    */
   getNoItemNamePagesNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -472,7 +493,7 @@ export class PagingImpl implements Paging {
    */
   getSinglePagesNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -491,7 +512,7 @@ export class PagingImpl implements Paging {
    */
   firstResponseEmptyNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingFirstResponseEmptyNextOptionalParams
   ): Promise<PagingFirstResponseEmptyNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -572,7 +593,7 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesRetryFirstNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -592,7 +613,7 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesRetrySecondNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -611,7 +632,7 @@ export class PagingImpl implements Paging {
    */
   getSinglePagesFailureNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetSinglePagesFailureNextOptionalParams
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -631,7 +652,7 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFailureNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -651,7 +672,7 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFailureUriNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetMultiplePagesFailureUriNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -690,7 +711,7 @@ export class PagingImpl implements Paging {
    */
   getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

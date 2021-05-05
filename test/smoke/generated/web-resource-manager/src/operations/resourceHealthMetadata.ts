@@ -15,11 +15,21 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
   ResourceHealthMetadataDef,
+  ResourceHealthMetadataListNextOptionalParams,
+  ResourceHealthMetadataListOptionalParams,
+  ResourceHealthMetadataListByResourceGroupNextOptionalParams,
+  ResourceHealthMetadataListByResourceGroupOptionalParams,
+  ResourceHealthMetadataListBySiteNextOptionalParams,
+  ResourceHealthMetadataListBySiteOptionalParams,
+  ResourceHealthMetadataListBySiteSlotNextOptionalParams,
+  ResourceHealthMetadataListBySiteSlotOptionalParams,
   ResourceHealthMetadataListResponse,
   ResourceHealthMetadataListByResourceGroupResponse,
   ResourceHealthMetadataListBySiteResponse,
+  ResourceHealthMetadataGetBySiteOptionalParams,
   ResourceHealthMetadataGetBySiteResponse,
   ResourceHealthMetadataListBySiteSlotResponse,
+  ResourceHealthMetadataGetBySiteSlotOptionalParams,
   ResourceHealthMetadataGetBySiteSlotResponse,
   ResourceHealthMetadataListNextResponse,
   ResourceHealthMetadataListByResourceGroupNextResponse,
@@ -45,7 +55,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
     const iter = this.listPagingAll(options);
     return {
@@ -62,7 +72,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -75,7 +85,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -90,7 +100,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +118,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +136,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -146,7 +156,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   public listBySite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
     const iter = this.listBySitePagingAll(resourceGroupName, name, options);
     return {
@@ -165,7 +175,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private async *listBySitePagingPage(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
     let result = await this._listBySite(resourceGroupName, name, options);
     yield result.value || [];
@@ -185,7 +195,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private async *listBySitePagingAll(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef> {
     for await (const page of this.listBySitePagingPage(
       resourceGroupName,
@@ -208,7 +218,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
     const iter = this.listBySiteSlotPagingAll(
       resourceGroupName,
@@ -238,7 +248,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
     let result = await this._listBySiteSlot(
       resourceGroupName,
@@ -265,7 +275,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): AsyncIterableIterator<ResourceHealthMetadataDef> {
     for await (const page of this.listBySiteSlotPagingPage(
       resourceGroupName,
@@ -282,7 +292,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListOptionalParams
   ): Promise<ResourceHealthMetadataListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -301,7 +311,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): Promise<ResourceHealthMetadataListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -323,7 +333,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private _listBySite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -345,7 +355,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   getBySite(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataGetBySiteOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -370,7 +380,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -395,7 +405,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     slot: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataGetBySiteSlotOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteSlotResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -416,7 +426,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListNextOptionalParams
   ): Promise<ResourceHealthMetadataListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -437,7 +447,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListByResourceGroupNextOptionalParams
   ): Promise<ResourceHealthMetadataListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -461,7 +471,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteNextOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -488,7 +498,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     slot: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ResourceHealthMetadataListBySiteSlotNextOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteSlotNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

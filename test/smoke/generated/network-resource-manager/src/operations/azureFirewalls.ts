@@ -17,9 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AzureFirewall,
+  AzureFirewallsListNextOptionalParams,
+  AzureFirewallsListOptionalParams,
+  AzureFirewallsListAllNextOptionalParams,
+  AzureFirewallsListAllOptionalParams,
+  AzureFirewallsDeleteOptionalParams,
+  AzureFirewallsGetOptionalParams,
   AzureFirewallsGetResponse,
+  AzureFirewallsCreateOrUpdateOptionalParams,
   AzureFirewallsCreateOrUpdateResponse,
   TagsObject,
+  AzureFirewallsUpdateTagsOptionalParams,
   AzureFirewallsUpdateTagsResponse,
   AzureFirewallsListResponse,
   AzureFirewallsListAllResponse,
@@ -47,7 +55,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListOptionalParams
   ): PagedAsyncIterableIterator<AzureFirewall> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListOptionalParams
   ): AsyncIterableIterator<AzureFirewall[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListOptionalParams
   ): AsyncIterableIterator<AzureFirewall> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -95,7 +103,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllOptionalParams
   ): PagedAsyncIterableIterator<AzureFirewall> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -112,7 +120,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllOptionalParams
   ): AsyncIterableIterator<AzureFirewall[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -125,7 +133,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllOptionalParams
   ): AsyncIterableIterator<AzureFirewall> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -141,7 +149,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   async delete(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -159,17 +167,13 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -181,7 +185,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   get(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsGetOptionalParams
   ): Promise<AzureFirewallsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -205,7 +209,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AzureFirewallsCreateOrUpdateResponse>,
@@ -227,17 +231,13 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -251,7 +251,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsUpdateTagsOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AzureFirewallsUpdateTagsResponse>,
@@ -273,17 +273,13 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateTagsOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateTagsOperationSpec,
-      initialOperationResult,
+      updateTagsOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -293,7 +289,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListOptionalParams
   ): Promise<AzureFirewallsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -310,7 +306,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllOptionalParams
   ): Promise<AzureFirewallsListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -330,7 +326,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListNextOptionalParams
   ): Promise<AzureFirewallsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -350,7 +346,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: AzureFirewallsListAllNextOptionalParams
   ): Promise<AzureFirewallsListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -15,7 +15,9 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import {
   PrivateLinkResource,
+  PrivateLinkResourcesListByDatabaseAccountOptionalParams,
   PrivateLinkResourcesListByDatabaseAccountResponse,
+  PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse
 } from "../models";
 
@@ -41,7 +43,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   public listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): PagedAsyncIterableIterator<PrivateLinkResource> {
     const iter = this.listByDatabaseAccountPagingAll(
       resourceGroupName,
@@ -68,7 +70,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private async *listByDatabaseAccountPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): AsyncIterableIterator<PrivateLinkResource[]> {
     let result = await this._listByDatabaseAccount(
       resourceGroupName,
@@ -81,7 +83,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private async *listByDatabaseAccountPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): AsyncIterableIterator<PrivateLinkResource> {
     for await (const page of this.listByDatabaseAccountPagingPage(
       resourceGroupName,
@@ -101,7 +103,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private _listByDatabaseAccount(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): Promise<PrivateLinkResourcesListByDatabaseAccountResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -125,7 +127,7 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     resourceGroupName: string,
     accountName: string,
     groupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateLinkResourcesGetOptionalParams
   ): Promise<PrivateLinkResourcesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

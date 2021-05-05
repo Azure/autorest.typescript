@@ -11,6 +11,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import {
+  ApiVersionDefaultGetMethodGlobalValidOptionalParams,
+  ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
+  ApiVersionDefaultGetPathGlobalValidOptionalParams,
+  ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
+} from "../models";
 
 /** Class representing a ApiVersionDefault. */
 export class ApiVersionDefaultImpl implements ApiVersionDefault {
@@ -29,7 +35,7 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getMethodGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -45,7 +51,7 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getMethodGlobalNotProvidedValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -61,7 +67,7 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getPathGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionDefaultGetPathGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -77,7 +83,7 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getSwaggerGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

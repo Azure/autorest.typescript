@@ -11,6 +11,13 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import {
+  SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
+  SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
+  SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
+  SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
+  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+} from "../models";
 
 /** Class representing a SubscriptionInCredentials. */
 export class SubscriptionInCredentialsImpl
@@ -31,7 +38,7 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -48,7 +55,7 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalNull(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -65,7 +72,7 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalNotProvidedValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -82,7 +89,7 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postPathGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -99,7 +106,7 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postSwaggerGlobalValid(
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

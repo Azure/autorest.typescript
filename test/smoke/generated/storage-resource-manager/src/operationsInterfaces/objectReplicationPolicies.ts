@@ -11,8 +11,12 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ObjectReplicationPolicy,
+  ObjectReplicationPoliciesListOptionalParams,
+  ObjectReplicationPoliciesGetOptionalParams,
   ObjectReplicationPoliciesGetResponse,
-  ObjectReplicationPoliciesCreateOrUpdateResponse
+  ObjectReplicationPoliciesCreateOrUpdateOptionalParams,
+  ObjectReplicationPoliciesCreateOrUpdateResponse,
+  ObjectReplicationPoliciesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +34,7 @@ export interface ObjectReplicationPolicies {
   list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<ObjectReplicationPolicy>;
   /**
    * Get the object replication policy of the storage account by policy ID.
@@ -47,7 +51,7 @@ export interface ObjectReplicationPolicies {
     resourceGroupName: string,
     accountName: string,
     objectReplicationPolicyId: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesGetOptionalParams
   ): Promise<ObjectReplicationPoliciesGetResponse>;
   /**
    * Create or update the object replication policy of the storage account.
@@ -67,7 +71,7 @@ export interface ObjectReplicationPolicies {
     accountName: string,
     objectReplicationPolicyId: string,
     properties: ObjectReplicationPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams
   ): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
   /**
    * Deletes the object replication policy associated with the specified storage account.
@@ -84,6 +88,6 @@ export interface ObjectReplicationPolicies {
     resourceGroupName: string,
     accountName: string,
     objectReplicationPolicyId: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

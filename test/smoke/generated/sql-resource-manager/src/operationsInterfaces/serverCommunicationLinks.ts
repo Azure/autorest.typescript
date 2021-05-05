@@ -12,7 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerCommunicationLink,
+  ServerCommunicationLinksListByServerOptionalParams,
+  ServerCommunicationLinksDeleteOptionalParams,
+  ServerCommunicationLinksGetOptionalParams,
   ServerCommunicationLinksGetResponse,
+  ServerCommunicationLinksCreateOrUpdateOptionalParams,
   ServerCommunicationLinksCreateOrUpdateResponse
 } from "../models";
 
@@ -29,7 +33,7 @@ export interface ServerCommunicationLinks {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerCommunicationLink>;
   /**
    * Deletes a server communication link.
@@ -43,7 +47,7 @@ export interface ServerCommunicationLinks {
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Returns a server communication link.
@@ -57,7 +61,7 @@ export interface ServerCommunicationLinks {
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksGetOptionalParams
   ): Promise<ServerCommunicationLinksGetResponse>;
   /**
    * Creates a server communication link.
@@ -73,7 +77,7 @@ export interface ServerCommunicationLinks {
     serverName: string,
     communicationLinkName: string,
     parameters: ServerCommunicationLink,
-    options?: coreHttp.OperationOptions
+    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerCommunicationLinksCreateOrUpdateResponse>,

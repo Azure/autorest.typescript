@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ServiceObjective,
+  ServiceObjectivesListByServerOptionalParams,
+  ServiceObjectivesGetOptionalParams,
   ServiceObjectivesGetResponse,
   ServiceObjectivesListByServerResponse
 } from "../models";
@@ -42,7 +44,7 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServiceObjective> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -69,7 +71,7 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesListByServerOptionalParams
   ): AsyncIterableIterator<ServiceObjective[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -82,7 +84,7 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesListByServerOptionalParams
   ): AsyncIterableIterator<ServiceObjective> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -105,7 +107,7 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
     resourceGroupName: string,
     serverName: string,
     serviceObjectiveName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesGetOptionalParams
   ): Promise<ServiceObjectivesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -129,7 +131,7 @@ export class ServiceObjectivesImpl implements ServiceObjectives {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceObjectivesListByServerOptionalParams
   ): Promise<ServiceObjectivesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -17,7 +17,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateDnsZoneGroup,
+  PrivateDnsZoneGroupsListNextOptionalParams,
+  PrivateDnsZoneGroupsListOptionalParams,
+  PrivateDnsZoneGroupsDeleteOptionalParams,
+  PrivateDnsZoneGroupsGetOptionalParams,
   PrivateDnsZoneGroupsGetResponse,
+  PrivateDnsZoneGroupsCreateOrUpdateOptionalParams,
   PrivateDnsZoneGroupsCreateOrUpdateResponse,
   PrivateDnsZoneGroupsListResponse,
   PrivateDnsZoneGroupsListNextResponse
@@ -45,7 +50,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
   public list(
     privateEndpointName: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateDnsZoneGroup> {
     const iter = this.listPagingAll(
       privateEndpointName,
@@ -72,7 +77,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
   private async *listPagingPage(
     privateEndpointName: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListOptionalParams
   ): AsyncIterableIterator<PrivateDnsZoneGroup[]> {
     let result = await this._list(
       privateEndpointName,
@@ -96,7 +101,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
   private async *listPagingAll(
     privateEndpointName: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListOptionalParams
   ): AsyncIterableIterator<PrivateDnsZoneGroup> {
     for await (const page of this.listPagingPage(
       privateEndpointName,
@@ -118,7 +123,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -137,17 +142,13 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -161,7 +162,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsGetOptionalParams
   ): Promise<PrivateDnsZoneGroupsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -188,7 +189,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
     parameters: PrivateDnsZoneGroup,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateDnsZoneGroupsCreateOrUpdateResponse>,
@@ -211,17 +212,13 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -233,7 +230,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
   private _list(
     privateEndpointName: string,
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListOptionalParams
   ): Promise<PrivateDnsZoneGroupsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       privateEndpointName,
@@ -257,7 +254,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
     privateEndpointName: string,
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateDnsZoneGroupsListNextOptionalParams
   ): Promise<PrivateDnsZoneGroupsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       privateEndpointName,

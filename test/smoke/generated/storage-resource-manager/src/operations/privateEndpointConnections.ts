@@ -15,9 +15,13 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   PrivateEndpointConnection,
+  PrivateEndpointConnectionsListOptionalParams,
   PrivateEndpointConnectionsListResponse,
+  PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsPutResponse
+  PrivateEndpointConnectionsPutOptionalParams,
+  PrivateEndpointConnectionsPutResponse,
+  PrivateEndpointConnectionsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -46,7 +50,7 @@ export class PrivateEndpointConnectionsImpl
   public list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpointConnection> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
@@ -65,7 +69,7 @@ export class PrivateEndpointConnectionsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection[]> {
     let result = await this._list(resourceGroupName, accountName, options);
     yield result.value || [];
@@ -74,7 +78,7 @@ export class PrivateEndpointConnectionsImpl
   private async *listPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListOptionalParams
   ): AsyncIterableIterator<PrivateEndpointConnection> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -97,7 +101,7 @@ export class PrivateEndpointConnectionsImpl
   private _list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsListOptionalParams
   ): Promise<PrivateEndpointConnectionsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -125,7 +129,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -156,7 +160,7 @@ export class PrivateEndpointConnectionsImpl
     accountName: string,
     privateEndpointConnectionName: string,
     properties: PrivateEndpointConnection,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsPutOptionalParams
   ): Promise<PrivateEndpointConnectionsPutResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -186,7 +190,7 @@ export class PrivateEndpointConnectionsImpl
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

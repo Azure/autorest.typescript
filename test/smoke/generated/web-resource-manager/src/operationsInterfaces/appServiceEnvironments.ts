@@ -12,35 +12,87 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
+  AppServiceEnvironmentsListNextOptionalParams,
+  AppServiceEnvironmentsListOptionalParams,
+  AppServiceEnvironmentsListByResourceGroupNextOptionalParams,
+  AppServiceEnvironmentsListByResourceGroupOptionalParams,
   StampCapacity,
+  AppServiceEnvironmentsListCapacitiesNextOptionalParams,
+  AppServiceEnvironmentsListCapacitiesOptionalParams,
   Site,
   VirtualNetworkProfile,
+  AppServiceEnvironmentsChangeVnetNextOptionalParams,
+  AppServiceEnvironmentsChangeVnetOptionalParams,
   InboundEnvironmentEndpoint,
+  AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextOptionalParams,
+  AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams,
   WorkerPoolResource,
+  AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolsOptionalParams,
   ResourceMetricDefinition,
+  AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams,
   SkuInfo,
+  AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams,
+  AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams,
   Usage,
+  AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams,
+  AppServiceEnvironmentsListMultiRoleUsagesOptionalParams,
   OutboundEnvironmentEndpoint,
+  AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams,
+  AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams,
+  AppServiceEnvironmentsResumeNextOptionalParams,
+  AppServiceEnvironmentsResumeOptionalParams,
   AppServicePlan,
+  AppServiceEnvironmentsListAppServicePlansNextOptionalParams,
+  AppServiceEnvironmentsListAppServicePlansOptionalParams,
   AppServiceEnvironmentsListWebAppsNextOptionalParams,
   AppServiceEnvironmentsListWebAppsOptionalParams,
+  AppServiceEnvironmentsSuspendNextOptionalParams,
+  AppServiceEnvironmentsSuspendOptionalParams,
   CsmUsageQuota,
   AppServiceEnvironmentsListUsagesNextOptionalParams,
   AppServiceEnvironmentsListUsagesOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolsNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolsOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams,
+  AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams,
+  AppServiceEnvironmentsListWorkerPoolSkusOptionalParams,
+  AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams,
+  AppServiceEnvironmentsListWebWorkerUsagesOptionalParams,
+  AppServiceEnvironmentsGetOptionalParams,
   AppServiceEnvironmentsGetResponse,
+  AppServiceEnvironmentsCreateOrUpdateOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateResponse,
   AppServiceEnvironmentsDeleteOptionalParams,
   AppServiceEnvironmentPatchResource,
+  AppServiceEnvironmentsUpdateOptionalParams,
   AppServiceEnvironmentsUpdateResponse,
+  AppServiceEnvironmentsGetVipInfoOptionalParams,
   AppServiceEnvironmentsGetVipInfoResponse,
+  AppServiceEnvironmentsListDiagnosticsOptionalParams,
   AppServiceEnvironmentsListDiagnosticsResponse,
+  AppServiceEnvironmentsGetDiagnosticsItemOptionalParams,
   AppServiceEnvironmentsGetDiagnosticsItemResponse,
+  AppServiceEnvironmentsGetMultiRolePoolOptionalParams,
   AppServiceEnvironmentsGetMultiRolePoolResponse,
+  AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse,
+  AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams,
   AppServiceEnvironmentsUpdateMultiRolePoolResponse,
+  AppServiceEnvironmentsListOperationsOptionalParams,
   AppServiceEnvironmentsListOperationsResponse,
+  AppServiceEnvironmentsRebootOptionalParams,
+  AppServiceEnvironmentsGetWorkerPoolOptionalParams,
   AppServiceEnvironmentsGetWorkerPoolResponse,
+  AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse,
+  AppServiceEnvironmentsUpdateWorkerPoolOptionalParams,
   AppServiceEnvironmentsUpdateWorkerPoolResponse
 } from "../models";
 
@@ -52,7 +104,7 @@ export interface AppServiceEnvironments {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOptionalParams
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
   /**
    * Description for Get all App Service Environments in a resource group.
@@ -61,7 +113,7 @@ export interface AppServiceEnvironments {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
   /**
    * Description for Get the used, available, and total worker capacity an App Service Environment.
@@ -72,7 +124,7 @@ export interface AppServiceEnvironments {
   listCapacities(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): PagedAsyncIterableIterator<StampCapacity>;
   /**
    * Description for Move an App Service Environment to a different VNET.
@@ -85,7 +137,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get the network endpoints of all inbound dependencies of an App Service Environment.
@@ -96,7 +148,7 @@ export interface AppServiceEnvironments {
   listInboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
   ): PagedAsyncIterableIterator<InboundEnvironmentEndpoint>;
   /**
    * Description for Get all multi-role pools.
@@ -107,7 +159,7 @@ export interface AppServiceEnvironments {
   listMultiRolePools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): PagedAsyncIterableIterator<WorkerPoolResource>;
   /**
    * Description for Get metric definitions for a specific instance of a multi-role pool of an App
@@ -121,7 +173,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get metric definitions for a multi-role pool of an App Service Environment.
@@ -132,7 +184,7 @@ export interface AppServiceEnvironments {
   listMultiRoleMetricDefinitions(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get available SKUs for scaling a multi-role pool.
@@ -143,7 +195,7 @@ export interface AppServiceEnvironments {
   listMultiRolePoolSkus(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): PagedAsyncIterableIterator<SkuInfo>;
   /**
    * Description for Get usage metrics for a multi-role pool of an App Service Environment.
@@ -154,7 +206,7 @@ export interface AppServiceEnvironments {
   listMultiRoleUsages(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): PagedAsyncIterableIterator<Usage>;
   /**
    * Description for Get the network endpoints of all outbound dependencies of an App Service
@@ -166,7 +218,7 @@ export interface AppServiceEnvironments {
   listOutboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
   ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
   /**
    * Description for Resume an App Service Environment.
@@ -177,7 +229,7 @@ export interface AppServiceEnvironments {
   listResume(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsResumeOptionalParams
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get all App Service plans in an App Service Environment.
@@ -188,7 +240,7 @@ export interface AppServiceEnvironments {
   listAppServicePlans(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): PagedAsyncIterableIterator<AppServicePlan>;
   /**
    * Description for Get all apps in an App Service Environment.
@@ -210,7 +262,7 @@ export interface AppServiceEnvironments {
   listSuspend(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsSuspendOptionalParams
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get global usage metrics of an App Service Environment.
@@ -232,7 +284,7 @@ export interface AppServiceEnvironments {
   listWorkerPools(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): PagedAsyncIterableIterator<WorkerPoolResource>;
   /**
    * Description for Get metric definitions for a specific instance of a worker pool of an App Service
@@ -248,7 +300,7 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get metric definitions for a worker pool of an App Service Environment.
@@ -261,7 +313,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get available SKUs for scaling a worker pool.
@@ -274,7 +326,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): PagedAsyncIterableIterator<SkuInfo>;
   /**
    * Description for Get usage metrics for a worker pool of an App Service Environment.
@@ -287,7 +339,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): PagedAsyncIterableIterator<Usage>;
   /**
    * Description for Get the properties of an App Service Environment.
@@ -298,7 +350,7 @@ export interface AppServiceEnvironments {
   get(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetOptionalParams
   ): Promise<AppServiceEnvironmentsGetResponse>;
   /**
    * Description for Create or update an App Service Environment.
@@ -311,7 +363,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
@@ -342,7 +394,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateResponse>;
   /**
    * Description for Get IP addresses assigned to an App Service Environment.
@@ -353,7 +405,7 @@ export interface AppServiceEnvironments {
   getVipInfo(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetVipInfoOptionalParams
   ): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
   /**
    * Description for Get diagnostic information for an App Service Environment.
@@ -364,7 +416,7 @@ export interface AppServiceEnvironments {
   listDiagnostics(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListDiagnosticsOptionalParams
   ): Promise<AppServiceEnvironmentsListDiagnosticsResponse>;
   /**
    * Description for Get a diagnostics item for an App Service Environment.
@@ -377,7 +429,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     diagnosticsName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
   ): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
   /**
    * Description for Get properties of a multi-role pool.
@@ -388,7 +440,7 @@ export interface AppServiceEnvironments {
   getMultiRolePool(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
   /**
    * Description for Create or update a multi-role pool.
@@ -401,7 +453,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -421,7 +473,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse>;
   /**
    * Description for List all currently running operations on the App Service Environment.
@@ -432,7 +484,7 @@ export interface AppServiceEnvironments {
   listOperations(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsListOperationsOptionalParams
   ): Promise<AppServiceEnvironmentsListOperationsResponse>;
   /**
    * Description for Reboot all machines in an App Service Environment.
@@ -443,7 +495,7 @@ export interface AppServiceEnvironments {
   reboot(
     resourceGroupName: string,
     name: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsRebootOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get properties of a worker pool.
@@ -456,7 +508,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetWorkerPoolResponse>;
   /**
    * Description for Create or update a worker pool.
@@ -471,7 +523,7 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -493,6 +545,6 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: coreHttp.OperationOptions
+    options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
 }

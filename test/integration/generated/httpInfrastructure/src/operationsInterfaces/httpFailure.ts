@@ -8,8 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  HttpFailureGetEmptyErrorOptionalParams,
   HttpFailureGetEmptyErrorResponse,
+  HttpFailureGetNoModelErrorOptionalParams,
   HttpFailureGetNoModelErrorResponse,
+  HttpFailureGetNoModelEmptyOptionalParams,
   HttpFailureGetNoModelEmptyResponse
 } from "../models";
 
@@ -20,20 +23,20 @@ export interface HttpFailure {
    * @param options The options parameters.
    */
   getEmptyError(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetEmptyErrorOptionalParams
   ): Promise<HttpFailureGetEmptyErrorResponse>;
   /**
    * Get empty error form server
    * @param options The options parameters.
    */
   getNoModelError(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetNoModelErrorOptionalParams
   ): Promise<HttpFailureGetNoModelErrorResponse>;
   /**
    * Get empty response from server
    * @param options The options parameters.
    */
   getNoModelEmpty(
-    options?: coreHttp.OperationOptions
+    options?: HttpFailureGetNoModelEmptyOptionalParams
   ): Promise<HttpFailureGetNoModelEmptyResponse>;
 }

@@ -51,7 +51,11 @@ export interface OperationListResult {
 
 // @public
 export interface Operations {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Operation>;
+    list(options?: OperationsListOptionalParams): PagedAsyncIterableIterator<Operation>;
+}
+
+// @public
+export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -61,6 +65,10 @@ export type OperationsListNextResponse = OperationListResult & {
         parsedBody: OperationListResult;
     };
 };
+
+// @public
+export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type OperationsListResponse = OperationListResult & {
@@ -127,9 +135,13 @@ export interface SubscriptionPolicies {
 
 // @public
 export interface Subscriptions {
-    get(subscriptionId: string, options?: coreHttp.OperationOptions): Promise<SubscriptionsGetResponse>;
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Subscription>;
-    listLocations(subscriptionId: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<Location_2>;
+    get(subscriptionId: string, options?: SubscriptionsGetOptionalParams): Promise<SubscriptionsGetResponse>;
+    list(options?: SubscriptionsListOptionalParams): PagedAsyncIterableIterator<Subscription>;
+    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location_2>;
+}
+
+// @public
+export interface SubscriptionsGetOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -141,6 +153,10 @@ export type SubscriptionsGetResponse = Subscription & {
 };
 
 // @public
+export interface SubscriptionsListLocationsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SubscriptionsListLocationsResponse = LocationListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
@@ -149,12 +165,20 @@ export type SubscriptionsListLocationsResponse = LocationListResult & {
 };
 
 // @public
+export interface SubscriptionsListNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type SubscriptionsListNextResponse = SubscriptionListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SubscriptionListResult;
     };
 };
+
+// @public
+export interface SubscriptionsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type SubscriptionsListResponse = SubscriptionListResult & {
@@ -189,7 +213,11 @@ export interface TenantListResult {
 
 // @public
 export interface Tenants {
-    list(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<TenantIdDescription>;
+    list(options?: TenantsListOptionalParams): PagedAsyncIterableIterator<TenantIdDescription>;
+}
+
+// @public
+export interface TenantsListNextOptionalParams extends coreHttp.OperationOptions {
 }
 
 // @public
@@ -199,6 +227,10 @@ export type TenantsListNextResponse = TenantListResult & {
         parsedBody: TenantListResult;
     };
 };
+
+// @public
+export interface TenantsListOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type TenantsListResponse = TenantListResult & {

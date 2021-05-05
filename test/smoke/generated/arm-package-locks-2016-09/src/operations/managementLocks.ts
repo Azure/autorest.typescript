@@ -23,13 +23,25 @@ import {
   ManagementLocksListAtSubscriptionLevelOptionalParams,
   ManagementLocksListByScopeNextOptionalParams,
   ManagementLocksListByScopeOptionalParams,
+  ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse,
+  ManagementLocksDeleteAtResourceGroupLevelOptionalParams,
+  ManagementLocksGetAtResourceGroupLevelOptionalParams,
   ManagementLocksGetAtResourceGroupLevelResponse,
+  ManagementLocksCreateOrUpdateByScopeOptionalParams,
   ManagementLocksCreateOrUpdateByScopeResponse,
+  ManagementLocksDeleteByScopeOptionalParams,
+  ManagementLocksGetByScopeOptionalParams,
   ManagementLocksGetByScopeResponse,
+  ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtResourceLevelResponse,
+  ManagementLocksDeleteAtResourceLevelOptionalParams,
+  ManagementLocksGetAtResourceLevelOptionalParams,
   ManagementLocksGetAtResourceLevelResponse,
+  ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams,
   ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse,
+  ManagementLocksDeleteAtSubscriptionLevelOptionalParams,
+  ManagementLocksGetAtSubscriptionLevelOptionalParams,
   ManagementLocksGetAtSubscriptionLevelResponse,
   ManagementLocksListAtResourceGroupLevelResponse,
   ManagementLocksListAtResourceLevelResponse,
@@ -325,7 +337,7 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceGroupName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -350,7 +362,7 @@ export class ManagementLocksImpl implements ManagementLocks {
   deleteAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -372,7 +384,7 @@ export class ManagementLocksImpl implements ManagementLocks {
   getAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceGroupLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -400,7 +412,7 @@ export class ManagementLocksImpl implements ManagementLocks {
     scope: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateByScopeOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -423,7 +435,7 @@ export class ManagementLocksImpl implements ManagementLocks {
   deleteByScope(
     scope: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteByScopeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -445,7 +457,7 @@ export class ManagementLocksImpl implements ManagementLocks {
   getByScope(
     scope: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetByScopeOptionalParams
   ): Promise<ManagementLocksGetByScopeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       scope,
@@ -481,7 +493,7 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -520,7 +532,7 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtResourceLevelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -554,7 +566,7 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtResourceLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -584,7 +596,7 @@ export class ManagementLocksImpl implements ManagementLocks {
   createOrUpdateAtSubscriptionLevel(
     lockName: string,
     parameters: ManagementLockObject,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       lockName,
@@ -606,7 +618,7 @@ export class ManagementLocksImpl implements ManagementLocks {
    */
   deleteAtSubscriptionLevel(
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       lockName,
@@ -625,7 +637,7 @@ export class ManagementLocksImpl implements ManagementLocks {
    */
   getAtSubscriptionLevel(
     lockName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagementLocksGetAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksGetAtSubscriptionLevelResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       lockName,

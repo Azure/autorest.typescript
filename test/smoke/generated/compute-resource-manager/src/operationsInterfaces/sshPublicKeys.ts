@@ -11,10 +11,19 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   SshPublicKeyResource,
+  SshPublicKeysListBySubscriptionNextOptionalParams,
+  SshPublicKeysListBySubscriptionOptionalParams,
+  SshPublicKeysListByResourceGroupNextOptionalParams,
+  SshPublicKeysListByResourceGroupOptionalParams,
+  SshPublicKeysCreateOptionalParams,
   SshPublicKeysCreateResponse,
   SshPublicKeyUpdateResource,
+  SshPublicKeysUpdateOptionalParams,
   SshPublicKeysUpdateResponse,
+  SshPublicKeysDeleteOptionalParams,
+  SshPublicKeysGetOptionalParams,
   SshPublicKeysGetResponse,
+  SshPublicKeysGenerateKeyPairOptionalParams,
   SshPublicKeysGenerateKeyPairResponse
 } from "../models";
 
@@ -27,7 +36,7 @@ export interface SshPublicKeys {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<SshPublicKeyResource>;
   /**
    * Lists all of the SSH public keys in the specified resource group. Use the nextLink property in the
@@ -37,7 +46,7 @@ export interface SshPublicKeys {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<SshPublicKeyResource>;
   /**
    * Creates a new SSH public key resource.
@@ -50,7 +59,7 @@ export interface SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     parameters: SshPublicKeyResource,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysCreateOptionalParams
   ): Promise<SshPublicKeysCreateResponse>;
   /**
    * Updates a new SSH public key resource.
@@ -63,7 +72,7 @@ export interface SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     parameters: SshPublicKeyUpdateResource,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysUpdateOptionalParams
   ): Promise<SshPublicKeysUpdateResponse>;
   /**
    * Delete an SSH public key.
@@ -74,7 +83,7 @@ export interface SshPublicKeys {
   delete(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Retrieves information about an SSH public key.
@@ -85,7 +94,7 @@ export interface SshPublicKeys {
   get(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysGetOptionalParams
   ): Promise<SshPublicKeysGetResponse>;
   /**
    * Generates and returns a public/private key pair and populates the SSH public key resource with the
@@ -98,6 +107,6 @@ export interface SshPublicKeys {
   generateKeyPair(
     resourceGroupName: string,
     sshPublicKeyName: string,
-    options?: coreHttp.OperationOptions
+    options?: SshPublicKeysGenerateKeyPairOptionalParams
   ): Promise<SshPublicKeysGenerateKeyPairResponse>;
 }

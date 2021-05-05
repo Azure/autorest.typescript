@@ -8,9 +8,12 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  FileServicesListOptionalParams,
   FileServicesListResponse,
   FileServiceProperties,
+  FileServicesSetServicePropertiesOptionalParams,
   FileServicesSetServicePropertiesResponse,
+  FileServicesGetServicePropertiesOptionalParams,
   FileServicesGetServicePropertiesResponse
 } from "../models";
 
@@ -28,7 +31,7 @@ export interface FileServices {
   list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesListOptionalParams
   ): Promise<FileServicesListResponse>;
   /**
    * Sets the properties of file services in storage accounts, including CORS (Cross-Origin Resource
@@ -46,7 +49,7 @@ export interface FileServices {
     resourceGroupName: string,
     accountName: string,
     parameters: FileServiceProperties,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesSetServicePropertiesOptionalParams
   ): Promise<FileServicesSetServicePropertiesResponse>;
   /**
    * Gets the properties of file services in storage accounts, including CORS (Cross-Origin Resource
@@ -61,6 +64,6 @@ export interface FileServices {
   getServiceProperties(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: FileServicesGetServicePropertiesOptionalParams
   ): Promise<FileServicesGetServicePropertiesResponse>;
 }

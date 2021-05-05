@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   DatabaseOperation,
+  DatabaseOperationsListByDatabaseNextOptionalParams,
+  DatabaseOperationsListByDatabaseOptionalParams,
+  DatabaseOperationsCancelOptionalParams,
   DatabaseOperationsListByDatabaseResponse,
   DatabaseOperationsListByDatabaseNextResponse
 } from "../models";
@@ -44,7 +47,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<DatabaseOperation> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -74,7 +77,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsListByDatabaseOptionalParams
   ): AsyncIterableIterator<DatabaseOperation[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -101,7 +104,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsListByDatabaseOptionalParams
   ): AsyncIterableIterator<DatabaseOperation> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -127,7 +130,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     serverName: string,
     databaseName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsCancelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -154,7 +157,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsListByDatabaseOptionalParams
   ): Promise<DatabaseOperationsListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -182,7 +185,7 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabaseOperationsListByDatabaseNextOptionalParams
   ): Promise<DatabaseOperationsListByDatabaseNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -11,8 +11,12 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ManagedDatabaseSecurityAlertPolicy,
+  ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams,
+  ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams,
   SecurityAlertPolicyName,
+  ManagedDatabaseSecurityAlertPoliciesGetOptionalParams,
   ManagedDatabaseSecurityAlertPoliciesGetResponse,
+  ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams,
   ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse
 } from "../models";
 
@@ -32,7 +36,7 @@ export interface ManagedDatabaseSecurityAlertPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ManagedDatabaseSecurityAlertPolicy>;
   /**
    * Gets a managed database's security alert policy.
@@ -48,7 +52,7 @@ export interface ManagedDatabaseSecurityAlertPolicies {
     managedInstanceName: string,
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesGetOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
   /**
    * Creates or updates a database's security alert policy.
@@ -66,6 +70,6 @@ export interface ManagedDatabaseSecurityAlertPolicies {
     databaseName: string,
     securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: ManagedDatabaseSecurityAlertPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
 }

@@ -17,9 +17,16 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ContainerService,
+  ContainerServicesListNextOptionalParams,
+  ContainerServicesListOptionalParams,
+  ContainerServicesListByResourceGroupNextOptionalParams,
+  ContainerServicesListByResourceGroupOptionalParams,
   ContainerServicesListResponse,
+  ContainerServicesCreateOrUpdateOptionalParams,
   ContainerServicesCreateOrUpdateResponse,
+  ContainerServicesGetOptionalParams,
   ContainerServicesGetResponse,
+  ContainerServicesDeleteOptionalParams,
   ContainerServicesListByResourceGroupResponse,
   ContainerServicesListNextResponse,
   ContainerServicesListByResourceGroupNextResponse
@@ -45,7 +52,7 @@ export class ContainerServicesImpl implements ContainerServices {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListOptionalParams
   ): PagedAsyncIterableIterator<ContainerService> {
     const iter = this.listPagingAll(options);
     return {
@@ -62,7 +69,7 @@ export class ContainerServicesImpl implements ContainerServices {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListOptionalParams
   ): AsyncIterableIterator<ContainerService[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -75,7 +82,7 @@ export class ContainerServicesImpl implements ContainerServices {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListOptionalParams
   ): AsyncIterableIterator<ContainerService> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -91,7 +98,7 @@ export class ContainerServicesImpl implements ContainerServices {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<ContainerService> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -109,7 +116,7 @@ export class ContainerServicesImpl implements ContainerServices {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ContainerService[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -127,7 +134,7 @@ export class ContainerServicesImpl implements ContainerServices {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupOptionalParams
   ): AsyncIterableIterator<ContainerService> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -144,7 +151,7 @@ export class ContainerServicesImpl implements ContainerServices {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListOptionalParams
   ): Promise<ContainerServicesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -168,7 +175,7 @@ export class ContainerServicesImpl implements ContainerServices {
     resourceGroupName: string,
     containerServiceName: string,
     parameters: ContainerService,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ContainerServicesCreateOrUpdateResponse>,
@@ -190,16 +197,12 @@ export class ContainerServicesImpl implements ContainerServices {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -214,7 +217,7 @@ export class ContainerServicesImpl implements ContainerServices {
   get(
     resourceGroupName: string,
     containerServiceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesGetOptionalParams
   ): Promise<ContainerServicesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -240,7 +243,7 @@ export class ContainerServicesImpl implements ContainerServices {
   async delete(
     resourceGroupName: string,
     containerServiceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -258,16 +261,12 @@ export class ContainerServicesImpl implements ContainerServices {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -279,7 +278,7 @@ export class ContainerServicesImpl implements ContainerServices {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupOptionalParams
   ): Promise<ContainerServicesListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -298,7 +297,7 @@ export class ContainerServicesImpl implements ContainerServices {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListNextOptionalParams
   ): Promise<ContainerServicesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -319,7 +318,7 @@ export class ContainerServicesImpl implements ContainerServices {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ContainerServicesListByResourceGroupNextOptionalParams
   ): Promise<ContainerServicesListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -12,20 +12,30 @@ import * as Mappers from "./models/mappers";
 import { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";
 import {
   MultipleInheritanceClientOptionalParams,
+  MultipleInheritanceClientGetHorseOptionalParams,
   MultipleInheritanceClientGetHorseResponse,
   Horse,
+  MultipleInheritanceClientPutHorseOptionalParams,
   MultipleInheritanceClientPutHorseResponse,
+  MultipleInheritanceClientGetPetOptionalParams,
   MultipleInheritanceClientGetPetResponse,
   Pet,
+  MultipleInheritanceClientPutPetOptionalParams,
   MultipleInheritanceClientPutPetResponse,
+  MultipleInheritanceClientGetFelineOptionalParams,
   MultipleInheritanceClientGetFelineResponse,
   Feline,
+  MultipleInheritanceClientPutFelineOptionalParams,
   MultipleInheritanceClientPutFelineResponse,
+  MultipleInheritanceClientGetCatOptionalParams,
   MultipleInheritanceClientGetCatResponse,
   Cat,
+  MultipleInheritanceClientPutCatOptionalParams,
   MultipleInheritanceClientPutCatResponse,
+  MultipleInheritanceClientGetKittenOptionalParams,
   MultipleInheritanceClientGetKittenResponse,
   Kitten,
+  MultipleInheritanceClientPutKittenOptionalParams,
   MultipleInheritanceClientPutKittenResponse
 } from "./models";
 
@@ -43,7 +53,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param options The options parameters.
    */
   getHorse(
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientGetHorseOptionalParams
   ): Promise<MultipleInheritanceClientGetHorseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -61,7 +71,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putHorse(
     horse: Horse,
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientPutHorseOptionalParams
   ): Promise<MultipleInheritanceClientPutHorseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       horse,
@@ -78,7 +88,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param options The options parameters.
    */
   getPet(
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientGetPetOptionalParams
   ): Promise<MultipleInheritanceClientGetPetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -96,7 +106,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putPet(
     pet: Pet,
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientPutPetOptionalParams
   ): Promise<MultipleInheritanceClientPutPetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       pet,
@@ -113,7 +123,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param options The options parameters.
    */
   getFeline(
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientGetFelineOptionalParams
   ): Promise<MultipleInheritanceClientGetFelineResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -131,7 +141,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putFeline(
     feline: Feline,
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientPutFelineOptionalParams
   ): Promise<MultipleInheritanceClientPutFelineResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       feline,
@@ -148,7 +158,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param options The options parameters.
    */
   getCat(
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientGetCatOptionalParams
   ): Promise<MultipleInheritanceClientGetCatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -166,7 +176,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putCat(
     cat: Cat,
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientPutCatOptionalParams
   ): Promise<MultipleInheritanceClientPutCatResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       cat,
@@ -184,7 +194,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param options The options parameters.
    */
   getKitten(
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientGetKittenOptionalParams
   ): Promise<MultipleInheritanceClientGetKittenResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -203,7 +213,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putKitten(
     kitten: Kitten,
-    options?: coreHttp.OperationOptions
+    options?: MultipleInheritanceClientPutKittenOptionalParams
   ): Promise<MultipleInheritanceClientPutKittenResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       kitten,

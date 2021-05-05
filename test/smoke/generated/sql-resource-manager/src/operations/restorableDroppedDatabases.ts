@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   RestorableDroppedDatabase,
+  RestorableDroppedDatabasesListByServerOptionalParams,
+  RestorableDroppedDatabasesGetOptionalParams,
   RestorableDroppedDatabasesGetResponse,
   RestorableDroppedDatabasesListByServerResponse
 } from "../models";
@@ -43,7 +45,7 @@ export class RestorableDroppedDatabasesImpl
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<RestorableDroppedDatabase> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -70,7 +72,7 @@ export class RestorableDroppedDatabasesImpl
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): AsyncIterableIterator<RestorableDroppedDatabase[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -83,7 +85,7 @@ export class RestorableDroppedDatabasesImpl
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): AsyncIterableIterator<RestorableDroppedDatabase> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -107,7 +109,7 @@ export class RestorableDroppedDatabasesImpl
     resourceGroupName: string,
     serverName: string,
     restorableDroppededDatabaseId: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesGetOptionalParams
   ): Promise<RestorableDroppedDatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -131,7 +133,7 @@ export class RestorableDroppedDatabasesImpl
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: RestorableDroppedDatabasesListByServerOptionalParams
   ): Promise<RestorableDroppedDatabasesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

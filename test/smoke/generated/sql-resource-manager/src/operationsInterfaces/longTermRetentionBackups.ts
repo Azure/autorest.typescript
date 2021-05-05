@@ -24,8 +24,12 @@ import {
   LongTermRetentionBackupsListByLocationOptionalParams,
   LongTermRetentionBackupsListByServerNextOptionalParams,
   LongTermRetentionBackupsListByServerOptionalParams,
+  LongTermRetentionBackupsGetByResourceGroupOptionalParams,
   LongTermRetentionBackupsGetByResourceGroupResponse,
-  LongTermRetentionBackupsGetResponse
+  LongTermRetentionBackupsDeleteByResourceGroupOptionalParams,
+  LongTermRetentionBackupsGetOptionalParams,
+  LongTermRetentionBackupsGetResponse,
+  LongTermRetentionBackupsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -122,7 +126,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams
   ): Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
   /**
    * Deletes a long term retention backup.
@@ -140,7 +144,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -157,7 +161,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsGetOptionalParams
   ): Promise<LongTermRetentionBackupsGetResponse>;
   /**
    * Deletes a long term retention backup.
@@ -172,7 +176,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    options?: coreHttp.OperationOptions
+    options?: LongTermRetentionBackupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

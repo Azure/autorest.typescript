@@ -12,14 +12,26 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClientContext } from "../bodyStringClientContext";
 import {
+  StringGetNullOptionalParams,
   StringGetNullResponse,
   StringPutNullOptionalParams,
+  StringGetEmptyOptionalParams,
   StringGetEmptyResponse,
+  StringPutEmptyOptionalParams,
+  StringGetMbcsOptionalParams,
   StringGetMbcsResponse,
+  StringPutMbcsOptionalParams,
+  StringGetWhitespaceOptionalParams,
   StringGetWhitespaceResponse,
+  StringPutWhitespaceOptionalParams,
+  StringGetNotProvidedOptionalParams,
   StringGetNotProvidedResponse,
+  StringGetBase64EncodedOptionalParams,
   StringGetBase64EncodedResponse,
+  StringGetBase64UrlEncodedOptionalParams,
   StringGetBase64UrlEncodedResponse,
+  StringPutBase64UrlEncodedOptionalParams,
+  StringGetNullBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedResponse
 } from "../models";
 
@@ -39,7 +51,9 @@ export class StringOperationsImpl implements StringOperations {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<StringGetNullResponse> {
+  getNull(
+    options?: StringGetNullOptionalParams
+  ): Promise<StringGetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -70,7 +84,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.OperationOptions
+    options?: StringGetEmptyOptionalParams
   ): Promise<StringGetEmptyResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -86,7 +100,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   putEmpty(
-    options?: coreHttp.OperationOptions
+    options?: StringPutEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -101,7 +115,9 @@ export class StringOperationsImpl implements StringOperations {
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(options?: coreHttp.OperationOptions): Promise<StringGetMbcsResponse> {
+  getMbcs(
+    options?: StringGetMbcsOptionalParams
+  ): Promise<StringGetMbcsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -115,7 +131,9 @@ export class StringOperationsImpl implements StringOperations {
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  putMbcs(
+    options?: StringPutMbcsOptionalParams
+  ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -131,7 +149,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getWhitespace(
-    options?: coreHttp.OperationOptions
+    options?: StringGetWhitespaceOptionalParams
   ): Promise<StringGetWhitespaceResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -148,7 +166,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   putWhitespace(
-    options?: coreHttp.OperationOptions
+    options?: StringPutWhitespaceOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -164,7 +182,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.OperationOptions
+    options?: StringGetNotProvidedOptionalParams
   ): Promise<StringGetNotProvidedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -180,7 +198,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getBase64Encoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetBase64EncodedOptionalParams
   ): Promise<StringGetBase64EncodedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -196,7 +214,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getBase64UrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetBase64UrlEncodedOptionalParams
   ): Promise<StringGetBase64UrlEncodedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -214,7 +232,7 @@ export class StringOperationsImpl implements StringOperations {
    */
   putBase64UrlEncoded(
     stringBody: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: StringPutBase64UrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       stringBody,
@@ -231,7 +249,7 @@ export class StringOperationsImpl implements StringOperations {
    * @param options The options parameters.
    */
   getNullBase64UrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: StringGetNullBase64UrlEncodedOptionalParams
   ): Promise<StringGetNullBase64UrlEncodedResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

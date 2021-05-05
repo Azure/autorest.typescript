@@ -8,23 +8,49 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  HeaderParamExistingKeyOptionalParams,
+  HeaderResponseExistingKeyOptionalParams,
   HeaderResponseExistingKeyResponse,
+  HeaderParamProtectedKeyOptionalParams,
+  HeaderResponseProtectedKeyOptionalParams,
   HeaderResponseProtectedKeyResponse,
+  HeaderParamIntegerOptionalParams,
+  HeaderResponseIntegerOptionalParams,
   HeaderResponseIntegerResponse,
+  HeaderParamLongOptionalParams,
+  HeaderResponseLongOptionalParams,
   HeaderResponseLongResponse,
+  HeaderParamFloatOptionalParams,
+  HeaderResponseFloatOptionalParams,
   HeaderResponseFloatResponse,
+  HeaderParamDoubleOptionalParams,
+  HeaderResponseDoubleOptionalParams,
   HeaderResponseDoubleResponse,
+  HeaderParamBoolOptionalParams,
+  HeaderResponseBoolOptionalParams,
   HeaderResponseBoolResponse,
   HeaderParamStringOptionalParams,
+  HeaderResponseStringOptionalParams,
   HeaderResponseStringResponse,
+  HeaderParamDateOptionalParams,
+  HeaderResponseDateOptionalParams,
   HeaderResponseDateResponse,
+  HeaderParamDatetimeOptionalParams,
+  HeaderResponseDatetimeOptionalParams,
   HeaderResponseDatetimeResponse,
   HeaderParamDatetimeRfc1123OptionalParams,
+  HeaderResponseDatetimeRfc1123OptionalParams,
   HeaderResponseDatetimeRfc1123Response,
+  HeaderParamDurationOptionalParams,
+  HeaderResponseDurationOptionalParams,
   HeaderResponseDurationResponse,
+  HeaderParamByteOptionalParams,
+  HeaderResponseByteOptionalParams,
   HeaderResponseByteResponse,
   HeaderParamEnumOptionalParams,
-  HeaderResponseEnumResponse
+  HeaderResponseEnumOptionalParams,
+  HeaderResponseEnumResponse,
+  HeaderCustomRequestIdOptionalParams
 } from "../models";
 
 /** Interface representing a Header. */
@@ -36,14 +62,14 @@ export interface Header {
    */
   paramExistingKey(
     userAgent: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamExistingKeyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "User-Agent": "overwrite"
    * @param options The options parameters.
    */
   responseExistingKey(
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseExistingKeyOptionalParams
   ): Promise<HeaderResponseExistingKeyResponse>;
   /**
    * Send a post request with header value "Content-Type": "text/html"
@@ -52,14 +78,14 @@ export interface Header {
    */
   paramProtectedKey(
     contentType: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamProtectedKeyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "Content-Type": "text/html"
    * @param options The options parameters.
    */
   responseProtectedKey(
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseProtectedKeyOptionalParams
   ): Promise<HeaderResponseProtectedKeyResponse>;
   /**
    * Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative",
@@ -71,7 +97,7 @@ export interface Header {
   paramInteger(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamIntegerOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "value": 1 or -2
@@ -80,7 +106,7 @@ export interface Header {
    */
   responseInteger(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseIntegerOptionalParams
   ): Promise<HeaderResponseIntegerResponse>;
   /**
    * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
@@ -92,7 +118,7 @@ export interface Header {
   paramLong(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamLongOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "value": 105 or -2
@@ -101,7 +127,7 @@ export interface Header {
    */
   responseLong(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseLongOptionalParams
   ): Promise<HeaderResponseLongResponse>;
   /**
    * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
@@ -113,7 +139,7 @@ export interface Header {
   paramFloat(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamFloatOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "value": 0.07 or -3.0
@@ -122,7 +148,7 @@ export interface Header {
    */
   responseFloat(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseFloatOptionalParams
   ): Promise<HeaderResponseFloatResponse>;
   /**
    * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
@@ -134,7 +160,7 @@ export interface Header {
   paramDouble(
     scenario: string,
     value: number,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDoubleOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "value": 7e120 or -3.0
@@ -143,7 +169,7 @@ export interface Header {
    */
   responseDouble(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDoubleOptionalParams
   ): Promise<HeaderResponseDoubleResponse>;
   /**
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
@@ -155,7 +181,7 @@ export interface Header {
   paramBool(
     scenario: string,
     value: boolean,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamBoolOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header value "value": true or false
@@ -164,7 +190,7 @@ export interface Header {
    */
   responseBool(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseBoolOptionalParams
   ): Promise<HeaderResponseBoolResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over
@@ -183,7 +209,7 @@ export interface Header {
    */
   responseString(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseStringOptionalParams
   ): Promise<HeaderResponseStringResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
@@ -195,7 +221,7 @@ export interface Header {
   paramDate(
     scenario: string,
     value: Date,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDateOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
@@ -204,7 +230,7 @@ export interface Header {
    */
   responseDate(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDateOptionalParams
   ): Promise<HeaderResponseDateResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
@@ -216,7 +242,7 @@ export interface Header {
   paramDatetime(
     scenario: string,
     value: Date,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDatetimeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
@@ -225,7 +251,7 @@ export interface Header {
    */
   responseDatetime(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDatetimeOptionalParams
   ): Promise<HeaderResponseDatetimeResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT"
@@ -244,7 +270,7 @@ export interface Header {
    */
   responseDatetimeRfc1123(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDatetimeRfc1123OptionalParams
   ): Promise<HeaderResponseDatetimeRfc1123Response>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
@@ -255,7 +281,7 @@ export interface Header {
   paramDuration(
     scenario: string,
     value: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamDurationOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header values "P123DT22H14M12.011S"
@@ -264,7 +290,7 @@ export interface Header {
    */
   responseDuration(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseDurationOptionalParams
   ): Promise<HeaderResponseDurationResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
@@ -275,7 +301,7 @@ export interface Header {
   paramByte(
     scenario: string,
     value: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: HeaderParamByteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
@@ -284,7 +310,7 @@ export interface Header {
    */
   responseByte(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseByteOptionalParams
   ): Promise<HeaderResponseByteResponse>;
   /**
    * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null",
@@ -303,13 +329,13 @@ export interface Header {
    */
   responseEnum(
     scenario: string,
-    options?: coreHttp.OperationOptions
+    options?: HeaderResponseEnumOptionalParams
   ): Promise<HeaderResponseEnumResponse>;
   /**
    * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    * @param options The options parameters.
    */
   customRequestId(
-    options?: coreHttp.OperationOptions
+    options?: HeaderCustomRequestIdOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

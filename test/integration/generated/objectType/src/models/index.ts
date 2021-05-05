@@ -8,6 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 
+/** Optional parameters. */
+export interface ObjectTypeClientGetOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type ObjectTypeClientGetResponse = {
   /** The parsed response body. */
@@ -22,6 +26,10 @@ export type ObjectTypeClientGetResponse = {
     parsedBody: any;
   };
 };
+
+/** Optional parameters. */
+export interface ObjectTypeClientPutOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ObjectTypeClientOptionalParams

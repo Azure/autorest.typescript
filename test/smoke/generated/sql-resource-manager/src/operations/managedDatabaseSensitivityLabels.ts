@@ -20,8 +20,13 @@ import {
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams,
   SensitivityLabelSource,
+  ManagedDatabaseSensitivityLabelsGetOptionalParams,
   ManagedDatabaseSensitivityLabelsGetResponse,
+  ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams,
   ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse,
+  ManagedDatabaseSensitivityLabelsDeleteOptionalParams,
+  ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams,
+  ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse,
   ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse,
@@ -224,7 +229,7 @@ export class ManagedDatabaseSensitivityLabelsImpl
     tableName: string,
     columnName: string,
     sensitivityLabelSource: SensitivityLabelSource,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsGetOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -262,7 +267,7 @@ export class ManagedDatabaseSensitivityLabelsImpl
     tableName: string,
     columnName: string,
     parameters: SensitivityLabel,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -298,7 +303,7 @@ export class ManagedDatabaseSensitivityLabelsImpl
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -333,7 +338,7 @@ export class ManagedDatabaseSensitivityLabelsImpl
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -369,7 +374,7 @@ export class ManagedDatabaseSensitivityLabelsImpl
     schemaName: string,
     tableName: string,
     columnName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

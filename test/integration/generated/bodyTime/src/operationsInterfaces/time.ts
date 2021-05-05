@@ -7,7 +7,12 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { TimeGetResponse, TimePutResponse } from "../models";
+import {
+  TimeGetOptionalParams,
+  TimeGetResponse,
+  TimePutOptionalParams,
+  TimePutResponse
+} from "../models";
 
 /** Interface representing a Time. */
 export interface Time {
@@ -15,7 +20,7 @@ export interface Time {
    * Get time value "11:34:56"
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<TimeGetResponse>;
+  get(options?: TimeGetOptionalParams): Promise<TimeGetResponse>;
   /**
    * Put time value "08:07:56"
    * @param timeBody Put time value "08:07:56" in parameter to pass testserver
@@ -25,6 +30,6 @@ export interface Time {
    */
   put(
     timeBody: string,
-    options?: coreHttp.OperationOptions
+    options?: TimePutOptionalParams
   ): Promise<TimePutResponse>;
 }

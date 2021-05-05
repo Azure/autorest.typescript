@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
   RunCommandDocumentBase,
+  VirtualMachineRunCommandsListNextOptionalParams,
+  VirtualMachineRunCommandsListOptionalParams,
   VirtualMachineRunCommandsListResponse,
+  VirtualMachineRunCommandsGetOptionalParams,
   VirtualMachineRunCommandsGetResponse,
   VirtualMachineRunCommandsListNextResponse
 } from "../models";
@@ -41,7 +44,7 @@ export class VirtualMachineRunCommandsImpl
    */
   public list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListOptionalParams
   ): PagedAsyncIterableIterator<RunCommandDocumentBase> {
     const iter = this.listPagingAll(location, options);
     return {
@@ -59,7 +62,7 @@ export class VirtualMachineRunCommandsImpl
 
   private async *listPagingPage(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListOptionalParams
   ): AsyncIterableIterator<RunCommandDocumentBase[]> {
     let result = await this._list(location, options);
     yield result.value || [];
@@ -73,7 +76,7 @@ export class VirtualMachineRunCommandsImpl
 
   private async *listPagingAll(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListOptionalParams
   ): AsyncIterableIterator<RunCommandDocumentBase> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
@@ -87,7 +90,7 @@ export class VirtualMachineRunCommandsImpl
    */
   private _list(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListOptionalParams
   ): Promise<VirtualMachineRunCommandsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -108,7 +111,7 @@ export class VirtualMachineRunCommandsImpl
   get(
     location: string,
     commandId: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsGetOptionalParams
   ): Promise<VirtualMachineRunCommandsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,
@@ -130,7 +133,7 @@ export class VirtualMachineRunCommandsImpl
   private _listNext(
     location: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineRunCommandsListNextOptionalParams
   ): Promise<VirtualMachineRunCommandsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       location,

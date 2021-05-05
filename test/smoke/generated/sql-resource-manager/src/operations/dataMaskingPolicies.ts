@@ -13,7 +13,9 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   DataMaskingPolicy,
+  DataMaskingPoliciesCreateOrUpdateOptionalParams,
   DataMaskingPoliciesCreateOrUpdateResponse,
+  DataMaskingPoliciesGetOptionalParams,
   DataMaskingPoliciesGetResponse
 } from "../models";
 
@@ -43,7 +45,7 @@ export class DataMaskingPoliciesImpl implements DataMaskingPolicies {
     serverName: string,
     databaseName: string,
     parameters: DataMaskingPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingPoliciesCreateOrUpdateOptionalParams
   ): Promise<DataMaskingPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -70,7 +72,7 @@ export class DataMaskingPoliciesImpl implements DataMaskingPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DataMaskingPoliciesGetOptionalParams
   ): Promise<DataMaskingPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

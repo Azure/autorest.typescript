@@ -17,9 +17,13 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InboundNatRule,
+  InboundNatRulesListNextOptionalParams,
+  InboundNatRulesListOptionalParams,
   InboundNatRulesListResponse,
+  InboundNatRulesDeleteOptionalParams,
   InboundNatRulesGetOptionalParams,
   InboundNatRulesGetResponse,
+  InboundNatRulesCreateOrUpdateOptionalParams,
   InboundNatRulesCreateOrUpdateResponse,
   InboundNatRulesListNextResponse
 } from "../models";
@@ -46,7 +50,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   public list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListOptionalParams
   ): PagedAsyncIterableIterator<InboundNatRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -73,7 +77,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   private async *listPagingPage(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListOptionalParams
   ): AsyncIterableIterator<InboundNatRule[]> {
     let result = await this._list(resourceGroupName, loadBalancerName, options);
     yield result.value || [];
@@ -93,7 +97,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   private async *listPagingAll(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListOptionalParams
   ): AsyncIterableIterator<InboundNatRule> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -113,7 +117,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
   private _list(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListOptionalParams
   ): Promise<InboundNatRulesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -137,7 +141,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -156,17 +160,13 @@ export class InboundNatRulesImpl implements InboundNatRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -208,7 +208,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
     loadBalancerName: string,
     inboundNatRuleName: string,
     inboundNatRuleParameters: InboundNatRule,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InboundNatRulesCreateOrUpdateResponse>,
@@ -231,17 +231,13 @@ export class InboundNatRulesImpl implements InboundNatRules {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -255,7 +251,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
     resourceGroupName: string,
     loadBalancerName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: InboundNatRulesListNextOptionalParams
   ): Promise<InboundNatRulesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

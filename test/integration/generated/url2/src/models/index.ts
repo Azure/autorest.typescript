@@ -8,6 +8,9 @@
 
 import * as coreHttp from "@azure/core-http";
 
+/** Optional parameters. */
+export interface GetUrlOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the url operation. */
 export type GetUrlResponse = {
   /** The parsed response body. */

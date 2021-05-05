@@ -15,6 +15,9 @@ import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
   DirectoryObjectUnion,
+  SignedInUserListOwnedObjectsNextOptionalParams,
+  SignedInUserListOwnedObjectsOptionalParams,
+  SignedInUserGetOptionalParams,
   SignedInUserGetResponse,
   SignedInUserListOwnedObjectsResponse,
   SignedInUserListOwnedObjectsNextResponse
@@ -38,7 +41,7 @@ export class SignedInUserImpl implements SignedInUser {
    * @param options The options parameters.
    */
   public listOwnedObjects(
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsPagingAll(options);
     return {
@@ -55,7 +58,7 @@ export class SignedInUserImpl implements SignedInUser {
   }
 
   private async *listOwnedObjectsPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._listOwnedObjects(options);
     yield result.value || [];
@@ -68,7 +71,7 @@ export class SignedInUserImpl implements SignedInUser {
   }
 
   private async *listOwnedObjectsPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnedObjectsPagingPage(options)) {
       yield* page;
@@ -82,7 +85,7 @@ export class SignedInUserImpl implements SignedInUser {
    */
   public listOwnedObjectsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsNextPagingAll(nextLink, options);
     return {
@@ -100,7 +103,7 @@ export class SignedInUserImpl implements SignedInUser {
 
   private async *listOwnedObjectsNextPagingPage(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result = await this._listOwnedObjectsNext(nextLink, options);
     yield result.value || [];
@@ -114,7 +117,7 @@ export class SignedInUserImpl implements SignedInUser {
 
   private async *listOwnedObjectsNextPagingAll(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnedObjectsNextPagingPage(
       nextLink,
@@ -128,7 +131,9 @@ export class SignedInUserImpl implements SignedInUser {
    * Gets the details for the currently logged-in user.
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<SignedInUserGetResponse> {
+  get(
+    options?: SignedInUserGetOptionalParams
+  ): Promise<SignedInUserGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -143,7 +148,7 @@ export class SignedInUserImpl implements SignedInUser {
    * @param options The options parameters.
    */
   private _listOwnedObjects(
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsOptionalParams
   ): Promise<SignedInUserListOwnedObjectsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -161,7 +166,7 @@ export class SignedInUserImpl implements SignedInUser {
    */
   private _listOwnedObjectsNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): Promise<SignedInUserListOwnedObjectsNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -12,8 +12,14 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpoint,
+  PrivateEndpointsListNextOptionalParams,
+  PrivateEndpointsListOptionalParams,
+  PrivateEndpointsListBySubscriptionNextOptionalParams,
+  PrivateEndpointsListBySubscriptionOptionalParams,
+  PrivateEndpointsDeleteOptionalParams,
   PrivateEndpointsGetOptionalParams,
   PrivateEndpointsGetResponse,
+  PrivateEndpointsCreateOrUpdateOptionalParams,
   PrivateEndpointsCreateOrUpdateResponse
 } from "../models";
 
@@ -27,14 +33,14 @@ export interface PrivateEndpoints {
    */
   list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpoint>;
   /**
    * Gets all private endpoints in a subscription.
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<PrivateEndpoint>;
   /**
    * Deletes the specified private endpoint.
@@ -45,7 +51,7 @@ export interface PrivateEndpoints {
   delete(
     resourceGroupName: string,
     privateEndpointName: string,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -71,7 +77,7 @@ export interface PrivateEndpoints {
     resourceGroupName: string,
     privateEndpointName: string,
     parameters: PrivateEndpoint,
-    options?: coreHttp.OperationOptions
+    options?: PrivateEndpointsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PrivateEndpointsCreateOrUpdateResponse>,

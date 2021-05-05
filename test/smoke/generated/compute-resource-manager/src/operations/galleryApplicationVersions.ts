@@ -17,11 +17,16 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GalleryApplicationVersion,
+  GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams,
+  GalleryApplicationVersionsListByGalleryApplicationOptionalParams,
+  GalleryApplicationVersionsCreateOrUpdateOptionalParams,
   GalleryApplicationVersionsCreateOrUpdateResponse,
   GalleryApplicationVersionUpdate,
+  GalleryApplicationVersionsUpdateOptionalParams,
   GalleryApplicationVersionsUpdateResponse,
   GalleryApplicationVersionsGetOptionalParams,
   GalleryApplicationVersionsGetResponse,
+  GalleryApplicationVersionsDeleteOptionalParams,
   GalleryApplicationVersionsListByGalleryApplicationResponse,
   GalleryApplicationVersionsListByGalleryApplicationNextResponse
 } from "../models";
@@ -53,7 +58,7 @@ export class GalleryApplicationVersionsImpl
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
   ): PagedAsyncIterableIterator<GalleryApplicationVersion> {
     const iter = this.listByGalleryApplicationPagingAll(
       resourceGroupName,
@@ -83,7 +88,7 @@ export class GalleryApplicationVersionsImpl
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
   ): AsyncIterableIterator<GalleryApplicationVersion[]> {
     let result = await this._listByGalleryApplication(
       resourceGroupName,
@@ -110,7 +115,7 @@ export class GalleryApplicationVersionsImpl
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
   ): AsyncIterableIterator<GalleryApplicationVersion> {
     for await (const page of this.listByGalleryApplicationPagingPage(
       resourceGroupName,
@@ -142,7 +147,7 @@ export class GalleryApplicationVersionsImpl
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersion,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>,
@@ -166,16 +171,12 @@ export class GalleryApplicationVersionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -198,7 +199,7 @@ export class GalleryApplicationVersionsImpl
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
     galleryApplicationVersion: GalleryApplicationVersionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<GalleryApplicationVersionsUpdateResponse>,
@@ -222,16 +223,12 @@ export class GalleryApplicationVersionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -279,7 +276,7 @@ export class GalleryApplicationVersionsImpl
     galleryName: string,
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -299,16 +296,12 @@ export class GalleryApplicationVersionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -324,7 +317,7 @@ export class GalleryApplicationVersionsImpl
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams
   ): Promise<GalleryApplicationVersionsListByGalleryApplicationResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -354,7 +347,7 @@ export class GalleryApplicationVersionsImpl
     galleryName: string,
     galleryApplicationName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams
   ): Promise<GalleryApplicationVersionsListByGalleryApplicationNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

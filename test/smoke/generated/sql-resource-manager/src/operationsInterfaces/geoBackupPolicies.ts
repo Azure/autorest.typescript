@@ -11,8 +11,11 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   GeoBackupPolicy,
+  GeoBackupPoliciesListByDatabaseOptionalParams,
   GeoBackupPolicyName,
+  GeoBackupPoliciesCreateOrUpdateOptionalParams,
   GeoBackupPoliciesCreateOrUpdateResponse,
+  GeoBackupPoliciesGetOptionalParams,
   GeoBackupPoliciesGetResponse
 } from "../models";
 
@@ -31,7 +34,7 @@ export interface GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<GeoBackupPolicy>;
   /**
    * Updates a database geo backup policy.
@@ -49,7 +52,7 @@ export interface GeoBackupPolicies {
     databaseName: string,
     geoBackupPolicyName: GeoBackupPolicyName,
     parameters: GeoBackupPolicy,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesCreateOrUpdateOptionalParams
   ): Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
   /**
    * Gets a geo backup policy.
@@ -65,6 +68,6 @@ export interface GeoBackupPolicies {
     serverName: string,
     databaseName: string,
     geoBackupPolicyName: GeoBackupPolicyName,
-    options?: coreHttp.OperationOptions
+    options?: GeoBackupPoliciesGetOptionalParams
   ): Promise<GeoBackupPoliciesGetResponse>;
 }

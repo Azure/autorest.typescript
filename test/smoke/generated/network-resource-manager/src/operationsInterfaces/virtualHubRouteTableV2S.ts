@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualHubRouteTableV2,
+  VirtualHubRouteTableV2SListNextOptionalParams,
+  VirtualHubRouteTableV2SListOptionalParams,
+  VirtualHubRouteTableV2SGetOptionalParams,
   VirtualHubRouteTableV2SGetResponse,
-  VirtualHubRouteTableV2SCreateOrUpdateResponse
+  VirtualHubRouteTableV2SCreateOrUpdateOptionalParams,
+  VirtualHubRouteTableV2SCreateOrUpdateResponse,
+  VirtualHubRouteTableV2SDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +33,7 @@ export interface VirtualHubRouteTableV2S {
   list(
     resourceGroupName: string,
     virtualHubName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SListOptionalParams
   ): PagedAsyncIterableIterator<VirtualHubRouteTableV2>;
   /**
    * Retrieves the details of a VirtualHubRouteTableV2.
@@ -41,7 +46,7 @@ export interface VirtualHubRouteTableV2S {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SGetOptionalParams
   ): Promise<VirtualHubRouteTableV2SGetResponse>;
   /**
    * Creates a VirtualHubRouteTableV2 resource if it doesn't exist else updates the existing
@@ -58,7 +63,7 @@ export interface VirtualHubRouteTableV2S {
     virtualHubName: string,
     routeTableName: string,
     virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualHubRouteTableV2SCreateOrUpdateResponse>,
@@ -76,7 +81,7 @@ export interface VirtualHubRouteTableV2S {
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualHubRouteTableV2SDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

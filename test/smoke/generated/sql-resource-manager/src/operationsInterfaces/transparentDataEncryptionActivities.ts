@@ -11,7 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   TransparentDataEncryptionActivity,
-  TransparentDataEncryptionName
+  TransparentDataEncryptionName,
+  TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,6 +32,6 @@ export interface TransparentDataEncryptionActivities {
     serverName: string,
     databaseName: string,
     transparentDataEncryptionName: TransparentDataEncryptionName,
-    options?: coreHttp.OperationOptions
+    options?: TransparentDataEncryptionActivitiesListByConfigurationOptionalParams
   ): PagedAsyncIterableIterator<TransparentDataEncryptionActivity>;
 }

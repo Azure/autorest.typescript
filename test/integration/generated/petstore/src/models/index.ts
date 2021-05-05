@@ -154,6 +154,10 @@ export type PetStoreFindPetsByTagsResponse = Pet[] & {
   };
 };
 
+/** Optional parameters. */
+export interface PetStoreFindPetsWithByteArrayOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the findPetsWithByteArray operation. */
 export type PetStoreFindPetsWithByteArrayResponse = {
   /**
@@ -174,6 +178,10 @@ export type PetStoreFindPetsWithByteArrayResponse = {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
+
+/** Optional parameters. */
+export interface PetStoreGetPetByIdOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPetById operation. */
 export type PetStoreGetPetByIdResponse = Pet & {
@@ -208,6 +216,10 @@ export interface PetStoreUploadFileOptionalParams
   file?: coreHttp.HttpRequestBody;
 }
 
+/** Optional parameters. */
+export interface PetStoreGetInventoryOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getInventory operation. */
 export type PetStoreGetInventoryResponse = {
   [propertyName: string]: number;
@@ -241,6 +253,10 @@ export type PetStorePlaceOrderResponse = Order & {
   };
 };
 
+/** Optional parameters. */
+export interface PetStoreGetOrderByIdOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getOrderById operation. */
 export type PetStoreGetOrderByIdResponse = Order & {
   /** The underlying HTTP response. */
@@ -252,6 +268,10 @@ export type PetStoreGetOrderByIdResponse = Order & {
     parsedBody: Order;
   };
 };
+
+/** Optional parameters. */
+export interface PetStoreDeleteOrderOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PetStoreCreateUserOptionalParams
@@ -298,6 +318,14 @@ export type PetStoreLoginUserResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface PetStoreLogoutUserOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface PetStoreGetUserByNameOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getUserByName operation. */
 export type PetStoreGetUserByNameResponse = User & {
   /** The underlying HTTP response. */
@@ -316,6 +344,10 @@ export interface PetStoreUpdateUserOptionalParams
   /** Updated user object */
   body?: User;
 }
+
+/** Optional parameters. */
+export interface PetStoreDeleteUserOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PetStoreOptionalParams extends coreHttp.ServiceClientOptions {

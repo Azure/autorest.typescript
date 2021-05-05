@@ -11,9 +11,17 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   DedicatedHostGroup,
+  DedicatedHostGroupsListByResourceGroupNextOptionalParams,
+  DedicatedHostGroupsListByResourceGroupOptionalParams,
+  DedicatedHostGroupsListBySubscriptionNextOptionalParams,
+  DedicatedHostGroupsListBySubscriptionOptionalParams,
+  DedicatedHostGroupsCreateOrUpdateOptionalParams,
   DedicatedHostGroupsCreateOrUpdateResponse,
   DedicatedHostGroupUpdate,
+  DedicatedHostGroupsUpdateOptionalParams,
   DedicatedHostGroupsUpdateResponse,
+  DedicatedHostGroupsDeleteOptionalParams,
+  DedicatedHostGroupsGetOptionalParams,
   DedicatedHostGroupsGetResponse
 } from "../models";
 
@@ -28,7 +36,7 @@ export interface DedicatedHostGroups {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHostGroup>;
   /**
    * Lists all of the dedicated host groups in the subscription. Use the nextLink property in the
@@ -36,7 +44,7 @@ export interface DedicatedHostGroups {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<DedicatedHostGroup>;
   /**
    * Create or update a dedicated host group. For details of Dedicated Host and Dedicated Host Groups
@@ -50,7 +58,7 @@ export interface DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     parameters: DedicatedHostGroup,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsCreateOrUpdateOptionalParams
   ): Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
   /**
    * Update an dedicated host group.
@@ -63,7 +71,7 @@ export interface DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     parameters: DedicatedHostGroupUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsUpdateOptionalParams
   ): Promise<DedicatedHostGroupsUpdateResponse>;
   /**
    * Delete a dedicated host group.
@@ -74,7 +82,7 @@ export interface DedicatedHostGroups {
   delete(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Retrieves information about a dedicated host group.
@@ -85,6 +93,6 @@ export interface DedicatedHostGroups {
   get(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DedicatedHostGroupsGetOptionalParams
   ): Promise<DedicatedHostGroupsGetResponse>;
 }

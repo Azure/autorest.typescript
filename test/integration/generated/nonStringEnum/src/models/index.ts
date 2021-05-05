@@ -73,6 +73,9 @@ export type IntPutResponse = {
   };
 };
 
+/** Optional parameters. */
+export interface IntGetOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the get operation. */
 export type IntGetResponse = {
   /** The parsed response body. */
@@ -108,6 +111,9 @@ export type FloatPutResponse = {
     parsedBody: string;
   };
 };
+
+/** Optional parameters. */
+export interface FloatGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type FloatGetResponse = {

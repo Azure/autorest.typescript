@@ -17,10 +17,17 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NatGateway,
+  NatGatewaysListAllNextOptionalParams,
+  NatGatewaysListAllOptionalParams,
+  NatGatewaysListNextOptionalParams,
+  NatGatewaysListOptionalParams,
+  NatGatewaysDeleteOptionalParams,
   NatGatewaysGetOptionalParams,
   NatGatewaysGetResponse,
+  NatGatewaysCreateOrUpdateOptionalParams,
   NatGatewaysCreateOrUpdateResponse,
   TagsObject,
+  NatGatewaysUpdateTagsOptionalParams,
   NatGatewaysUpdateTagsResponse,
   NatGatewaysListAllResponse,
   NatGatewaysListResponse,
@@ -46,7 +53,7 @@ export class NatGatewaysImpl implements NatGateways {
    * @param options The options parameters.
    */
   public listAll(
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllOptionalParams
   ): PagedAsyncIterableIterator<NatGateway> {
     const iter = this.listAllPagingAll(options);
     return {
@@ -63,7 +70,7 @@ export class NatGatewaysImpl implements NatGateways {
   }
 
   private async *listAllPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllOptionalParams
   ): AsyncIterableIterator<NatGateway[]> {
     let result = await this._listAll(options);
     yield result.value || [];
@@ -76,7 +83,7 @@ export class NatGatewaysImpl implements NatGateways {
   }
 
   private async *listAllPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllOptionalParams
   ): AsyncIterableIterator<NatGateway> {
     for await (const page of this.listAllPagingPage(options)) {
       yield* page;
@@ -90,7 +97,7 @@ export class NatGatewaysImpl implements NatGateways {
    */
   public list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListOptionalParams
   ): PagedAsyncIterableIterator<NatGateway> {
     const iter = this.listPagingAll(resourceGroupName, options);
     return {
@@ -108,7 +115,7 @@ export class NatGatewaysImpl implements NatGateways {
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListOptionalParams
   ): AsyncIterableIterator<NatGateway[]> {
     let result = await this._list(resourceGroupName, options);
     yield result.value || [];
@@ -126,7 +133,7 @@ export class NatGatewaysImpl implements NatGateways {
 
   private async *listPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListOptionalParams
   ): AsyncIterableIterator<NatGateway> {
     for await (const page of this.listPagingPage(resourceGroupName, options)) {
       yield* page;
@@ -142,7 +149,7 @@ export class NatGatewaysImpl implements NatGateways {
   async delete(
     resourceGroupName: string,
     natGatewayName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -160,17 +167,13 @@ export class NatGatewaysImpl implements NatGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -206,7 +209,7 @@ export class NatGatewaysImpl implements NatGateways {
     resourceGroupName: string,
     natGatewayName: string,
     parameters: NatGateway,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<NatGatewaysCreateOrUpdateResponse>,
@@ -228,17 +231,13 @@ export class NatGatewaysImpl implements NatGateways {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -252,7 +251,7 @@ export class NatGatewaysImpl implements NatGateways {
     resourceGroupName: string,
     natGatewayName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysUpdateTagsOptionalParams
   ): Promise<NatGatewaysUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -271,7 +270,7 @@ export class NatGatewaysImpl implements NatGateways {
    * @param options The options parameters.
    */
   private _listAll(
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllOptionalParams
   ): Promise<NatGatewaysListAllResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -289,7 +288,7 @@ export class NatGatewaysImpl implements NatGateways {
    */
   private _list(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListOptionalParams
   ): Promise<NatGatewaysListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -308,7 +307,7 @@ export class NatGatewaysImpl implements NatGateways {
    */
   private _listAllNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListAllNextOptionalParams
   ): Promise<NatGatewaysListAllNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,
@@ -329,7 +328,7 @@ export class NatGatewaysImpl implements NatGateways {
   private _listNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: NatGatewaysListNextOptionalParams
   ): Promise<NatGatewaysListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

@@ -22,9 +22,13 @@ import {
   JobExecutionsListByJobNextOptionalParams,
   JobExecutionsListByJobOptionalParams,
   JobExecutionsListByAgentResponse,
+  JobExecutionsCancelOptionalParams,
+  JobExecutionsCreateOptionalParams,
   JobExecutionsCreateResponse,
   JobExecutionsListByJobResponse,
+  JobExecutionsGetOptionalParams,
   JobExecutionsGetResponse,
+  JobExecutionsCreateOrUpdateOptionalParams,
   JobExecutionsCreateOrUpdateResponse,
   JobExecutionsListByAgentNextResponse,
   JobExecutionsListByJobNextResponse
@@ -256,7 +260,7 @@ export class JobExecutionsImpl implements JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCancelOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -286,7 +290,7 @@ export class JobExecutionsImpl implements JobExecutions {
     serverName: string,
     jobAgentName: string,
     jobName: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobExecutionsCreateResponse>,
@@ -309,16 +313,12 @@ export class JobExecutionsImpl implements JobExecutions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOperationSpec,
-      initialOperationResult,
+      createOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -366,7 +366,7 @@ export class JobExecutionsImpl implements JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsGetOptionalParams
   ): Promise<JobExecutionsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -398,7 +398,7 @@ export class JobExecutionsImpl implements JobExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: coreHttp.OperationOptions
+    options?: JobExecutionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<JobExecutionsCreateOrUpdateResponse>,
@@ -422,16 +422,12 @@ export class JobExecutionsImpl implements JobExecutions {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

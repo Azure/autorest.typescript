@@ -17,10 +17,18 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DiskEncryptionSet,
+  DiskEncryptionSetsListByResourceGroupNextOptionalParams,
+  DiskEncryptionSetsListByResourceGroupOptionalParams,
+  DiskEncryptionSetsListNextOptionalParams,
+  DiskEncryptionSetsListOptionalParams,
+  DiskEncryptionSetsCreateOrUpdateOptionalParams,
   DiskEncryptionSetsCreateOrUpdateResponse,
   DiskEncryptionSetUpdate,
+  DiskEncryptionSetsUpdateOptionalParams,
   DiskEncryptionSetsUpdateResponse,
+  DiskEncryptionSetsGetOptionalParams,
   DiskEncryptionSetsGetResponse,
+  DiskEncryptionSetsDeleteOptionalParams,
   DiskEncryptionSetsListByResourceGroupResponse,
   DiskEncryptionSetsListResponse,
   DiskEncryptionSetsListByResourceGroupNextResponse,
@@ -47,7 +55,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<DiskEncryptionSet> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -65,7 +73,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DiskEncryptionSet[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -83,7 +91,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
   ): AsyncIterableIterator<DiskEncryptionSet> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -98,7 +106,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListOptionalParams
   ): PagedAsyncIterableIterator<DiskEncryptionSet> {
     const iter = this.listPagingAll(options);
     return {
@@ -115,7 +123,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListOptionalParams
   ): AsyncIterableIterator<DiskEncryptionSet[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -128,7 +136,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListOptionalParams
   ): AsyncIterableIterator<DiskEncryptionSet> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -149,7 +157,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
@@ -171,16 +179,12 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -197,7 +201,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DiskEncryptionSetsUpdateResponse>,
@@ -219,16 +223,12 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -242,7 +242,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   get(
     resourceGroupName: string,
     diskEncryptionSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsGetOptionalParams
   ): Promise<DiskEncryptionSetsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -266,7 +266,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   async delete(
     resourceGroupName: string,
     diskEncryptionSetName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -284,16 +284,12 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -303,7 +299,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
   ): Promise<DiskEncryptionSetsListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -320,7 +316,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListOptionalParams
   ): Promise<DiskEncryptionSetsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -340,7 +336,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListByResourceGroupNextOptionalParams
   ): Promise<DiskEncryptionSetsListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -360,7 +356,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DiskEncryptionSetsListNextOptionalParams
   ): Promise<DiskEncryptionSetsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

@@ -12,12 +12,21 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeRfc1123ClientContext } from "../bodyDateTimeRfc1123ClientContext";
 import {
+  Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
+  Datetimerfc1123GetInvalidOptionalParams,
   Datetimerfc1123GetInvalidResponse,
+  Datetimerfc1123GetOverflowOptionalParams,
   Datetimerfc1123GetOverflowResponse,
+  Datetimerfc1123GetUnderflowOptionalParams,
   Datetimerfc1123GetUnderflowResponse,
+  Datetimerfc1123PutUtcMaxDateTimeOptionalParams,
+  Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams,
   Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse,
+  Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams,
   Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse,
+  Datetimerfc1123PutUtcMinDateTimeOptionalParams,
+  Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeResponse
 } from "../models";
 
@@ -38,7 +47,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetNullOptionalParams
   ): Promise<Datetimerfc1123GetNullResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -54,7 +63,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetInvalidOptionalParams
   ): Promise<Datetimerfc1123GetInvalidResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -70,7 +79,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getOverflow(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetOverflowOptionalParams
   ): Promise<Datetimerfc1123GetOverflowResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -86,7 +95,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUnderflowOptionalParams
   ): Promise<Datetimerfc1123GetUnderflowResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -104,7 +113,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -121,7 +130,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -137,7 +146,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -155,7 +164,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       datetimeBody,
@@ -172,7 +181,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: coreHttp.OperationOptions
+    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams
   ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})

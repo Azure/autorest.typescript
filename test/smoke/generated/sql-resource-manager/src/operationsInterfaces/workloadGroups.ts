@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WorkloadGroup,
+  WorkloadGroupsListByDatabaseNextOptionalParams,
+  WorkloadGroupsListByDatabaseOptionalParams,
+  WorkloadGroupsGetOptionalParams,
   WorkloadGroupsGetResponse,
-  WorkloadGroupsCreateOrUpdateResponse
+  WorkloadGroupsCreateOrUpdateOptionalParams,
+  WorkloadGroupsCreateOrUpdateResponse,
+  WorkloadGroupsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +36,7 @@ export interface WorkloadGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<WorkloadGroup>;
   /**
    * Gets a workload group
@@ -47,7 +52,7 @@ export interface WorkloadGroups {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsGetOptionalParams
   ): Promise<WorkloadGroupsGetResponse>;
   /**
    * Creates or updates a workload group.
@@ -65,7 +70,7 @@ export interface WorkloadGroups {
     databaseName: string,
     workloadGroupName: string,
     parameters: WorkloadGroup,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<WorkloadGroupsCreateOrUpdateResponse>,
@@ -86,7 +91,7 @@ export interface WorkloadGroups {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: WorkloadGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

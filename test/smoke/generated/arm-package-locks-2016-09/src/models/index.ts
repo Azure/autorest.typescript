@@ -91,6 +91,10 @@ export const enum KnownLockLevel {
  */
 export type LockLevel = string;
 
+/** Optional parameters. */
+export interface AuthorizationOperationsListOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the list operation. */
 export type AuthorizationOperationsListResponse = OperationListResult & {
   /** The underlying HTTP response. */
@@ -102,6 +106,10 @@ export type AuthorizationOperationsListResponse = OperationListResult & {
     parsedBody: OperationListResult;
   };
 };
+
+/** Optional parameters. */
+export interface AuthorizationOperationsListNextOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type AuthorizationOperationsListNextResponse = OperationListResult & {
@@ -115,6 +123,10 @@ export type AuthorizationOperationsListNextResponse = OperationListResult & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateAtResourceGroupLevel operation. */
 export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject & {
   /** The underlying HTTP response. */
@@ -126,6 +138,14 @@ export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = Manageme
     parsedBody: ManagementLockObject;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagementLocksGetAtResourceGroupLevelOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtResourceGroupLevel operation. */
 export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject & {
@@ -139,6 +159,10 @@ export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObjec
   };
 };
 
+/** Optional parameters. */
+export interface ManagementLocksCreateOrUpdateByScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateByScope operation. */
 export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject & {
   /** The underlying HTTP response. */
@@ -150,6 +174,14 @@ export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject 
     parsedBody: ManagementLockObject;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementLocksDeleteByScopeOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagementLocksGetByScopeOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByScope operation. */
 export type ManagementLocksGetByScopeResponse = ManagementLockObject & {
@@ -163,6 +195,10 @@ export type ManagementLocksGetByScopeResponse = ManagementLockObject & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateAtResourceLevel operation. */
 export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject & {
   /** The underlying HTTP response. */
@@ -174,6 +210,14 @@ export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLoc
     parsedBody: ManagementLockObject;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementLocksDeleteAtResourceLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagementLocksGetAtResourceLevelOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtResourceLevel operation. */
 export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
@@ -187,6 +231,10 @@ export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
   };
 };
 
+/** Optional parameters. */
+export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the createOrUpdateAtSubscriptionLevel operation. */
 export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject & {
   /** The underlying HTTP response. */
@@ -198,6 +246,14 @@ export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = Managemen
     parsedBody: ManagementLockObject;
   };
 };
+
+/** Optional parameters. */
+export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams
+  extends coreHttp.OperationOptions {}
+
+/** Optional parameters. */
+export interface ManagementLocksGetAtSubscriptionLevelOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionLevel operation. */
 export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject & {

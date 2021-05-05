@@ -12,11 +12,21 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Application,
+  ApplicationsListByResourceGroupNextOptionalParams,
+  ApplicationsListByResourceGroupOptionalParams,
+  ApplicationsListBySubscriptionNextOptionalParams,
+  ApplicationsListBySubscriptionOptionalParams,
+  ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
+  ApplicationsDeleteOptionalParams,
+  ApplicationsCreateOrUpdateOptionalParams,
   ApplicationsCreateOrUpdateResponse,
   ApplicationsUpdateOptionalParams,
   ApplicationsUpdateResponse,
+  ApplicationsGetByIdOptionalParams,
   ApplicationsGetByIdResponse,
+  ApplicationsDeleteByIdOptionalParams,
+  ApplicationsCreateOrUpdateByIdOptionalParams,
   ApplicationsCreateOrUpdateByIdResponse,
   ApplicationsUpdateByIdOptionalParams,
   ApplicationsUpdateByIdResponse
@@ -32,14 +42,14 @@ export interface Applications {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Gets all the applications within a subscription.
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsListBySubscriptionOptionalParams
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Gets the managed application.
@@ -50,7 +60,7 @@ export interface Applications {
   get(
     resourceGroupName: string,
     applicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse>;
   /**
    * Deletes the managed application.
@@ -61,7 +71,7 @@ export interface Applications {
   delete(
     resourceGroupName: string,
     applicationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -76,7 +86,7 @@ export interface Applications {
     resourceGroupName: string,
     applicationName: string,
     parameters: Application,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationsCreateOrUpdateResponse>,
@@ -104,7 +114,7 @@ export interface Applications {
    */
   getById(
     applicationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsGetByIdOptionalParams
   ): Promise<ApplicationsGetByIdResponse>;
   /**
    * Deletes the managed application.
@@ -115,7 +125,7 @@ export interface Applications {
    */
   deleteById(
     applicationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -130,7 +140,7 @@ export interface Applications {
   createOrUpdateById(
     applicationId: string,
     parameters: Application,
-    options?: coreHttp.OperationOptions
+    options?: ApplicationsCreateOrUpdateByIdOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ApplicationsCreateOrUpdateByIdResponse>,

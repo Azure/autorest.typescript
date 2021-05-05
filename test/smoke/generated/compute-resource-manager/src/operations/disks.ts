@@ -17,14 +17,24 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Disk,
+  DisksListByResourceGroupNextOptionalParams,
+  DisksListByResourceGroupOptionalParams,
+  DisksListNextOptionalParams,
+  DisksListOptionalParams,
+  DisksCreateOrUpdateOptionalParams,
   DisksCreateOrUpdateResponse,
   DiskUpdate,
+  DisksUpdateOptionalParams,
   DisksUpdateResponse,
+  DisksGetOptionalParams,
   DisksGetResponse,
+  DisksDeleteOptionalParams,
   DisksListByResourceGroupResponse,
   DisksListResponse,
   GrantAccessData,
+  DisksGrantAccessOptionalParams,
   DisksGrantAccessResponse,
+  DisksRevokeAccessOptionalParams,
   DisksListByResourceGroupNextResponse,
   DisksListNextResponse
 } from "../models";
@@ -49,7 +59,7 @@ export class DisksImpl implements Disks {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<Disk> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -67,7 +77,7 @@ export class DisksImpl implements Disks {
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Disk[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
@@ -85,7 +95,7 @@ export class DisksImpl implements Disks {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupOptionalParams
   ): AsyncIterableIterator<Disk> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
@@ -100,7 +110,7 @@ export class DisksImpl implements Disks {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: DisksListOptionalParams
   ): PagedAsyncIterableIterator<Disk> {
     const iter = this.listPagingAll(options);
     return {
@@ -117,7 +127,7 @@ export class DisksImpl implements Disks {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: DisksListOptionalParams
   ): AsyncIterableIterator<Disk[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -130,7 +140,7 @@ export class DisksImpl implements Disks {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: DisksListOptionalParams
   ): AsyncIterableIterator<Disk> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -150,7 +160,7 @@ export class DisksImpl implements Disks {
     resourceGroupName: string,
     diskName: string,
     disk: Disk,
-    options?: coreHttp.OperationOptions
+    options?: DisksCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DisksCreateOrUpdateResponse>,
@@ -172,16 +182,12 @@ export class DisksImpl implements Disks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -197,7 +203,7 @@ export class DisksImpl implements Disks {
     resourceGroupName: string,
     diskName: string,
     disk: DiskUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DisksUpdateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>
   > {
@@ -216,16 +222,12 @@ export class DisksImpl implements Disks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -239,7 +241,7 @@ export class DisksImpl implements Disks {
   get(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksGetOptionalParams
   ): Promise<DisksGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -263,7 +265,7 @@ export class DisksImpl implements Disks {
   async delete(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -281,16 +283,12 @@ export class DisksImpl implements Disks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -300,7 +298,7 @@ export class DisksImpl implements Disks {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupOptionalParams
   ): Promise<DisksListByResourceGroupResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -316,9 +314,7 @@ export class DisksImpl implements Disks {
    * Lists all the disks under a subscription.
    * @param options The options parameters.
    */
-  private _list(
-    options?: coreHttp.OperationOptions
-  ): Promise<DisksListResponse> {
+  private _list(options?: DisksListOptionalParams): Promise<DisksListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
     };
@@ -341,7 +337,7 @@ export class DisksImpl implements Disks {
     resourceGroupName: string,
     diskName: string,
     grantAccessData: GrantAccessData,
-    options?: coreHttp.OperationOptions
+    options?: DisksGrantAccessOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DisksGrantAccessResponse>,
@@ -363,17 +359,13 @@ export class DisksImpl implements Disks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      grantAccessOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: grantAccessOperationSpec,
-      initialOperationResult,
+      grantAccessOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -387,7 +379,7 @@ export class DisksImpl implements Disks {
   async revokeAccess(
     resourceGroupName: string,
     diskName: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksRevokeAccessOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -405,17 +397,13 @@ export class DisksImpl implements Disks {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      revokeAccessOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: revokeAccessOperationSpec,
-      initialOperationResult,
+      revokeAccessOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -427,7 +415,7 @@ export class DisksImpl implements Disks {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListByResourceGroupNextOptionalParams
   ): Promise<DisksListByResourceGroupNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -447,7 +435,7 @@ export class DisksImpl implements Disks {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DisksListNextOptionalParams
   ): Promise<DisksListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

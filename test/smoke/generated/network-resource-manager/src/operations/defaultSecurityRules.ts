@@ -15,7 +15,10 @@ import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import {
   SecurityRule,
+  DefaultSecurityRulesListNextOptionalParams,
+  DefaultSecurityRulesListOptionalParams,
   DefaultSecurityRulesListResponse,
+  DefaultSecurityRulesGetOptionalParams,
   DefaultSecurityRulesGetResponse,
   DefaultSecurityRulesListNextResponse
 } from "../models";
@@ -42,7 +45,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
   public list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListOptionalParams
   ): PagedAsyncIterableIterator<SecurityRule> {
     const iter = this.listPagingAll(
       resourceGroupName,
@@ -69,7 +72,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
   private async *listPagingPage(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListOptionalParams
   ): AsyncIterableIterator<SecurityRule[]> {
     let result = await this._list(
       resourceGroupName,
@@ -93,7 +96,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
   private async *listPagingAll(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListOptionalParams
   ): AsyncIterableIterator<SecurityRule> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -113,7 +116,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
   private _list(
     resourceGroupName: string,
     networkSecurityGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListOptionalParams
   ): Promise<DefaultSecurityRulesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -137,7 +140,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     defaultSecurityRuleName: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesGetOptionalParams
   ): Promise<DefaultSecurityRulesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -162,7 +165,7 @@ export class DefaultSecurityRulesImpl implements DefaultSecurityRules {
     resourceGroupName: string,
     networkSecurityGroupName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DefaultSecurityRulesListNextOptionalParams
   ): Promise<DefaultSecurityRulesListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

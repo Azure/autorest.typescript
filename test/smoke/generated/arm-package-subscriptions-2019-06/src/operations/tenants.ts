@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SubscriptionClientContext } from "../subscriptionClientContext";
 import {
   TenantIdDescription,
+  TenantsListNextOptionalParams,
+  TenantsListOptionalParams,
   TenantsListResponse,
   TenantsListNextResponse
 } from "../models";
@@ -37,7 +39,7 @@ export class TenantsImpl implements Tenants {
    * @param options The options parameters.
    */
   public list(
-    options?: coreHttp.OperationOptions
+    options?: TenantsListOptionalParams
   ): PagedAsyncIterableIterator<TenantIdDescription> {
     const iter = this.listPagingAll(options);
     return {
@@ -54,7 +56,7 @@ export class TenantsImpl implements Tenants {
   }
 
   private async *listPagingPage(
-    options?: coreHttp.OperationOptions
+    options?: TenantsListOptionalParams
   ): AsyncIterableIterator<TenantIdDescription[]> {
     let result = await this._list(options);
     yield result.value || [];
@@ -67,7 +69,7 @@ export class TenantsImpl implements Tenants {
   }
 
   private async *listPagingAll(
-    options?: coreHttp.OperationOptions
+    options?: TenantsListOptionalParams
   ): AsyncIterableIterator<TenantIdDescription> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -79,7 +81,7 @@ export class TenantsImpl implements Tenants {
    * @param options The options parameters.
    */
   private _list(
-    options?: coreHttp.OperationOptions
+    options?: TenantsListOptionalParams
   ): Promise<TenantsListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -97,7 +99,7 @@ export class TenantsImpl implements Tenants {
    */
   private _listNext(
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: TenantsListNextOptionalParams
   ): Promise<TenantsListNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       nextLink,

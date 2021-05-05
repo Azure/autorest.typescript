@@ -12,9 +12,17 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstancePool,
+  InstancePoolsListByResourceGroupNextOptionalParams,
+  InstancePoolsListByResourceGroupOptionalParams,
+  InstancePoolsListNextOptionalParams,
+  InstancePoolsListOptionalParams,
+  InstancePoolsGetOptionalParams,
   InstancePoolsGetResponse,
+  InstancePoolsCreateOrUpdateOptionalParams,
   InstancePoolsCreateOrUpdateResponse,
+  InstancePoolsDeleteOptionalParams,
   InstancePoolUpdate,
+  InstancePoolsUpdateOptionalParams,
   InstancePoolsUpdateResponse
 } from "../models";
 
@@ -29,14 +37,14 @@ export interface InstancePools {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListByResourceGroupOptionalParams
   ): PagedAsyncIterableIterator<InstancePool>;
   /**
    * Gets a list of all instance pools in the subscription.
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsListOptionalParams
   ): PagedAsyncIterableIterator<InstancePool>;
   /**
    * Gets an instance pool.
@@ -48,7 +56,7 @@ export interface InstancePools {
   get(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsGetOptionalParams
   ): Promise<InstancePoolsGetResponse>;
   /**
    * Creates or updates an instance pool.
@@ -62,7 +70,7 @@ export interface InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstancePoolsCreateOrUpdateResponse>,
@@ -79,7 +87,7 @@ export interface InstancePools {
   delete(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -95,7 +103,7 @@ export interface InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,
-    options?: coreHttp.OperationOptions
+    options?: InstancePoolsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<InstancePoolsUpdateResponse>,

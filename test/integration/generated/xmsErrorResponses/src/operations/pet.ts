@@ -12,7 +12,9 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmsErrorResponsesClientContext } from "../xmsErrorResponsesClientContext";
 import {
+  PetGetPetByIdOptionalParams,
   PetGetPetByIdResponse,
+  PetDoSomethingOptionalParams,
   PetDoSomethingResponse,
   PetHasModelsParamOptionalParams
 } from "../models";
@@ -36,7 +38,7 @@ export class PetImpl implements Pet {
    */
   getPetById(
     petId: string,
-    options?: coreHttp.OperationOptions
+    options?: PetGetPetByIdOptionalParams
   ): Promise<PetGetPetByIdResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       petId,
@@ -55,7 +57,7 @@ export class PetImpl implements Pet {
    */
   doSomething(
     whatAction: string,
-    options?: coreHttp.OperationOptions
+    options?: PetDoSomethingOptionalParams
   ): Promise<PetDoSomethingResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       whatAction,

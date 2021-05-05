@@ -7,7 +7,36 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { UriColor } from "../models";
+import {
+  PathsGetBooleanTrueOptionalParams,
+  PathsGetBooleanFalseOptionalParams,
+  PathsGetIntOneMillionOptionalParams,
+  PathsGetIntNegativeOneMillionOptionalParams,
+  PathsGetTenBillionOptionalParams,
+  PathsGetNegativeTenBillionOptionalParams,
+  PathsFloatScientificPositiveOptionalParams,
+  PathsFloatScientificNegativeOptionalParams,
+  PathsDoubleDecimalPositiveOptionalParams,
+  PathsDoubleDecimalNegativeOptionalParams,
+  PathsStringUnicodeOptionalParams,
+  PathsStringUrlEncodedOptionalParams,
+  PathsStringUrlNonEncodedOptionalParams,
+  PathsStringEmptyOptionalParams,
+  PathsStringNullOptionalParams,
+  UriColor,
+  PathsEnumValidOptionalParams,
+  PathsEnumNullOptionalParams,
+  PathsByteMultiByteOptionalParams,
+  PathsByteEmptyOptionalParams,
+  PathsByteNullOptionalParams,
+  PathsDateValidOptionalParams,
+  PathsDateNullOptionalParams,
+  PathsDateTimeValidOptionalParams,
+  PathsDateTimeNullOptionalParams,
+  PathsBase64UrlOptionalParams,
+  PathsArrayCsvInPathOptionalParams,
+  PathsUnixTimeUrlOptionalParams
+} from "../models";
 
 /** Interface representing a Paths. */
 export interface Paths {
@@ -16,98 +45,98 @@ export interface Paths {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetBooleanTrueOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get false Boolean value on path
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetBooleanFalseOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '1000000' integer value
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetIntOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetIntNegativeOneMillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '10000000000' 64 bit integer value
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-10000000000' 64 bit integer value
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.OperationOptions
+    options?: PathsGetNegativeTenBillionOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '1.034E+20' numeric value
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.OperationOptions
+    options?: PathsFloatScientificPositiveOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.OperationOptions
+    options?: PathsFloatScientificNegativeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.OperationOptions
+    options?: PathsDoubleDecimalPositiveOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.OperationOptions
+    options?: PathsDoubleDecimalNegativeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUnicodeOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUrlEncodedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded
    * @param options The options parameters.
    */
   stringUrlNonEncoded(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringUrlNonEncodedOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get ''
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PathsStringEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null (should throw)
@@ -116,7 +145,7 @@ export interface Paths {
    */
   stringNull(
     stringPath: string,
-    options?: coreHttp.OperationOptions
+    options?: PathsStringNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get using uri with 'green color' in path parameter
@@ -125,7 +154,7 @@ export interface Paths {
    */
   enumValid(
     enumPath: UriColor,
-    options?: coreHttp.OperationOptions
+    options?: PathsEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null (should throw on the client before the request is sent on wire)
@@ -134,7 +163,7 @@ export interface Paths {
    */
   enumNull(
     enumPath: UriColor,
-    options?: coreHttp.OperationOptions
+    options?: PathsEnumNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
@@ -143,14 +172,14 @@ export interface Paths {
    */
   byteMultiByte(
     bytePath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsByteMultiByteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '' as byte array
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.OperationOptions
+    options?: PathsByteEmptyOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as byte array (should throw)
@@ -159,14 +188,14 @@ export interface Paths {
    */
   byteNull(
     bytePath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsByteNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '2012-01-01' as date
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.OperationOptions
+    options?: PathsDateValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as date - this should throw or be unusable on the client side, depending on date
@@ -176,14 +205,14 @@ export interface Paths {
    */
   dateNull(
     datePath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsDateNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.OperationOptions
+    options?: PathsDateTimeValidOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get null as date-time, should be disallowed or throw depending on representation of date-time
@@ -192,7 +221,7 @@ export interface Paths {
    */
   dateTimeNull(
     dateTimePath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsDateTimeNullOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
@@ -201,7 +230,7 @@ export interface Paths {
    */
   base64Url(
     base64UrlPath: Uint8Array,
-    options?: coreHttp.OperationOptions
+    options?: PathsBase64UrlOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array
@@ -212,7 +241,7 @@ export interface Paths {
    */
   arrayCsvInPath(
     arrayPath: string[],
-    options?: coreHttp.OperationOptions
+    options?: PathsArrayCsvInPathOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
@@ -221,6 +250,6 @@ export interface Paths {
    */
   unixTimeUrl(
     unixTimeUrlPath: Date,
-    options?: coreHttp.OperationOptions
+    options?: PathsUnixTimeUrlOptionalParams
   ): Promise<coreHttp.RestResponse>;
 }

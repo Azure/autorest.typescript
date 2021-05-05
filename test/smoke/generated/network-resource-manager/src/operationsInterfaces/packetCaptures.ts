@@ -12,9 +12,15 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PacketCaptureResult,
+  PacketCapturesListOptionalParams,
   PacketCapture,
+  PacketCapturesCreateOptionalParams,
   PacketCapturesCreateResponse,
+  PacketCapturesGetOptionalParams,
   PacketCapturesGetResponse,
+  PacketCapturesDeleteOptionalParams,
+  PacketCapturesStopOptionalParams,
+  PacketCapturesGetStatusOptionalParams,
   PacketCapturesGetStatusResponse
 } from "../models";
 
@@ -30,7 +36,7 @@ export interface PacketCaptures {
   list(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesListOptionalParams
   ): PagedAsyncIterableIterator<PacketCaptureResult>;
   /**
    * Create and start a packet capture on the specified VM.
@@ -45,7 +51,7 @@ export interface PacketCaptures {
     networkWatcherName: string,
     packetCaptureName: string,
     parameters: PacketCapture,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesCreateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PacketCapturesCreateResponse>,
@@ -63,7 +69,7 @@ export interface PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesGetOptionalParams
   ): Promise<PacketCapturesGetResponse>;
   /**
    * Deletes the specified packet capture session.
@@ -76,7 +82,7 @@ export interface PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -91,7 +97,7 @@ export interface PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -106,7 +112,7 @@ export interface PacketCaptures {
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
-    options?: coreHttp.OperationOptions
+    options?: PacketCapturesGetStatusOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<PacketCapturesGetStatusResponse>,

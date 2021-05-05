@@ -15,6 +15,8 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   ServiceTierAdvisor,
+  ServiceTierAdvisorsListByDatabaseOptionalParams,
+  ServiceTierAdvisorsGetOptionalParams,
   ServiceTierAdvisorsGetResponse,
   ServiceTierAdvisorsListByDatabaseResponse
 } from "../models";
@@ -44,7 +46,7 @@ export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsListByDatabaseOptionalParams
   ): PagedAsyncIterableIterator<ServiceTierAdvisor> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
@@ -74,7 +76,7 @@ export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsListByDatabaseOptionalParams
   ): AsyncIterableIterator<ServiceTierAdvisor[]> {
     let result = await this._listByDatabase(
       resourceGroupName,
@@ -89,7 +91,7 @@ export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsListByDatabaseOptionalParams
   ): AsyncIterableIterator<ServiceTierAdvisor> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
@@ -115,7 +117,7 @@ export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
     serverName: string,
     databaseName: string,
     serviceTierAdvisorName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsGetOptionalParams
   ): Promise<ServiceTierAdvisorsGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -142,7 +144,7 @@ export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServiceTierAdvisorsListByDatabaseOptionalParams
   ): Promise<ServiceTierAdvisorsListByDatabaseResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

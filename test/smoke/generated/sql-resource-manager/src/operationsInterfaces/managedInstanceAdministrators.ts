@@ -12,8 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstanceAdministrator,
+  ManagedInstanceAdministratorsListByInstanceNextOptionalParams,
+  ManagedInstanceAdministratorsListByInstanceOptionalParams,
+  ManagedInstanceAdministratorsGetOptionalParams,
   ManagedInstanceAdministratorsGetResponse,
-  ManagedInstanceAdministratorsCreateOrUpdateResponse
+  ManagedInstanceAdministratorsCreateOrUpdateOptionalParams,
+  ManagedInstanceAdministratorsCreateOrUpdateResponse,
+  ManagedInstanceAdministratorsDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,7 +34,7 @@ export interface ManagedInstanceAdministrators {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsListByInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceAdministrator>;
   /**
    * Gets a managed instance administrator.
@@ -41,7 +46,7 @@ export interface ManagedInstanceAdministrators {
   get(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsGetOptionalParams
   ): Promise<ManagedInstanceAdministratorsGetResponse>;
   /**
    * Creates or updates a managed instance administrator.
@@ -55,7 +60,7 @@ export interface ManagedInstanceAdministrators {
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceAdministrator,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ManagedInstanceAdministratorsCreateOrUpdateResponse>,
@@ -72,7 +77,7 @@ export interface ManagedInstanceAdministrators {
   delete(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceAdministratorsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;

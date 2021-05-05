@@ -15,9 +15,12 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
+  VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse,
   VirtualMachineExtensionUpdate,
+  VirtualMachineScaleSetVMExtensionsUpdateOptionalParams,
   VirtualMachineScaleSetVMExtensionsUpdateResponse,
+  VirtualMachineScaleSetVMExtensionsDeleteOptionalParams,
   VirtualMachineScaleSetVMExtensionsGetOptionalParams,
   VirtualMachineScaleSetVMExtensionsGetResponse,
   VirtualMachineScaleSetVMExtensionsListOptionalParams,
@@ -52,7 +55,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     instanceId: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtension,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
@@ -78,16 +81,12 @@ export class VirtualMachineScaleSetVMExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -105,7 +104,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     instanceId: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>,
@@ -129,16 +128,12 @@ export class VirtualMachineScaleSetVMExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -154,7 +149,7 @@ export class VirtualMachineScaleSetVMExtensionsImpl
     vmScaleSetName: string,
     instanceId: string,
     vmExtensionName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -174,16 +169,12 @@ export class VirtualMachineScaleSetVMExtensionsImpl
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**

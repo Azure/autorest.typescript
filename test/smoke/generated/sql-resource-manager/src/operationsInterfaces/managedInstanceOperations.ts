@@ -11,6 +11,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ManagedInstanceOperation,
+  ManagedInstanceOperationsListByManagedInstanceNextOptionalParams,
+  ManagedInstanceOperationsListByManagedInstanceOptionalParams,
+  ManagedInstanceOperationsCancelOptionalParams,
+  ManagedInstanceOperationsGetOptionalParams,
   ManagedInstanceOperationsGetResponse
 } from "../models";
 
@@ -27,7 +31,7 @@ export interface ManagedInstanceOperations {
   listByManagedInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): PagedAsyncIterableIterator<ManagedInstanceOperation>;
   /**
    * Cancels the asynchronous operation on the managed instance.
@@ -41,7 +45,7 @@ export interface ManagedInstanceOperations {
     resourceGroupName: string,
     managedInstanceName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsCancelOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a management operation on a managed instance.
@@ -55,6 +59,6 @@ export interface ManagedInstanceOperations {
     resourceGroupName: string,
     managedInstanceName: string,
     operationId: string,
-    options?: coreHttp.OperationOptions
+    options?: ManagedInstanceOperationsGetOptionalParams
   ): Promise<ManagedInstanceOperationsGetResponse>;
 }

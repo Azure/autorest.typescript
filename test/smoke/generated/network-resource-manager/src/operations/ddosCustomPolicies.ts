@@ -14,10 +14,14 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
+  DdosCustomPoliciesDeleteOptionalParams,
+  DdosCustomPoliciesGetOptionalParams,
   DdosCustomPoliciesGetResponse,
   DdosCustomPolicy,
+  DdosCustomPoliciesCreateOrUpdateOptionalParams,
   DdosCustomPoliciesCreateOrUpdateResponse,
   TagsObject,
+  DdosCustomPoliciesUpdateTagsOptionalParams,
   DdosCustomPoliciesUpdateTagsResponse
 } from "../models";
 
@@ -42,7 +46,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
   async delete(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -60,17 +64,13 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation,
-      finalStateVia: "location"
-    });
+      "location"
+    );
   }
 
   /**
@@ -82,7 +82,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
   get(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesGetOptionalParams
   ): Promise<DdosCustomPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -106,7 +106,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: DdosCustomPolicy,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DdosCustomPoliciesCreateOrUpdateResponse>,
@@ -128,17 +128,13 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation,
-      finalStateVia: "azure-async-operation"
-    });
+      "azure-async-operation"
+    );
   }
 
   /**
@@ -152,7 +148,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: TagsObject,
-    options?: coreHttp.OperationOptions
+    options?: DdosCustomPoliciesUpdateTagsOptionalParams
   ): Promise<DdosCustomPoliciesUpdateTagsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

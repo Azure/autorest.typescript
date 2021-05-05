@@ -13,6 +13,9 @@ export interface ErrorModel {
   message?: string;
 }
 
+/** Optional parameters. */
+export interface FilesGetFileOptionalParams extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFile operation. */
 export type FilesGetFileResponse = {
   /**
@@ -34,6 +37,10 @@ export type FilesGetFileResponse = {
   _response: coreHttp.HttpResponse;
 };
 
+/** Optional parameters. */
+export interface FilesGetFileLargeOptionalParams
+  extends coreHttp.OperationOptions {}
+
 /** Contains response data for the getFileLarge operation. */
 export type FilesGetFileLargeResponse = {
   /**
@@ -54,6 +61,10 @@ export type FilesGetFileLargeResponse = {
   /** The underlying HTTP response. */
   _response: coreHttp.HttpResponse;
 };
+
+/** Optional parameters. */
+export interface FilesGetEmptyFileOptionalParams
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyFile operation. */
 export type FilesGetEmptyFileResponse = {

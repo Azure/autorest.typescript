@@ -12,7 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitAuthorization,
+  ExpressRouteCircuitAuthorizationsListNextOptionalParams,
+  ExpressRouteCircuitAuthorizationsListOptionalParams,
+  ExpressRouteCircuitAuthorizationsDeleteOptionalParams,
+  ExpressRouteCircuitAuthorizationsGetOptionalParams,
   ExpressRouteCircuitAuthorizationsGetResponse,
+  ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams,
   ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
 } from "../models";
 
@@ -28,7 +33,7 @@ export interface ExpressRouteCircuitAuthorizations {
   list(
     resourceGroupName: string,
     circuitName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsListOptionalParams
   ): PagedAsyncIterableIterator<ExpressRouteCircuitAuthorization>;
   /**
    * Deletes the specified authorization from the specified express route circuit.
@@ -41,7 +46,7 @@ export interface ExpressRouteCircuitAuthorizations {
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -56,7 +61,7 @@ export interface ExpressRouteCircuitAuthorizations {
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsGetOptionalParams
   ): Promise<ExpressRouteCircuitAuthorizationsGetResponse>;
   /**
    * Creates or updates an authorization in the specified express route circuit.
@@ -72,7 +77,7 @@ export interface ExpressRouteCircuitAuthorizations {
     circuitName: string,
     authorizationName: string,
     authorizationParameters: ExpressRouteCircuitAuthorization,
-    options?: coreHttp.OperationOptions
+    options?: ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<

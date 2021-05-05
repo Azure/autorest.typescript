@@ -11,10 +11,23 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PolicySetDefinition,
+  PolicySetDefinitionsListNextOptionalParams,
+  PolicySetDefinitionsListOptionalParams,
+  PolicySetDefinitionsListBuiltInNextOptionalParams,
+  PolicySetDefinitionsListBuiltInOptionalParams,
+  PolicySetDefinitionsListByManagementGroupNextOptionalParams,
+  PolicySetDefinitionsListByManagementGroupOptionalParams,
+  PolicySetDefinitionsCreateOrUpdateOptionalParams,
   PolicySetDefinitionsCreateOrUpdateResponse,
+  PolicySetDefinitionsDeleteOptionalParams,
+  PolicySetDefinitionsGetOptionalParams,
   PolicySetDefinitionsGetResponse,
+  PolicySetDefinitionsGetBuiltInOptionalParams,
   PolicySetDefinitionsGetBuiltInResponse,
+  PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse,
+  PolicySetDefinitionsDeleteAtManagementGroupOptionalParams,
+  PolicySetDefinitionsGetAtManagementGroupOptionalParams,
   PolicySetDefinitionsGetAtManagementGroupResponse
 } from "../models";
 
@@ -26,14 +39,14 @@ export interface PolicySetDefinitions {
    * @param options The options parameters.
    */
   list(
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsListOptionalParams
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation retrieves a list of all the built-in policy set definitions.
    * @param options The options parameters.
    */
   listBuiltIn(
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsListBuiltInOptionalParams
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation retrieves a list of all the a policy set definition in the given management group.
@@ -42,7 +55,7 @@ export interface PolicySetDefinitions {
    */
   listByManagementGroup(
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsListByManagementGroupOptionalParams
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation creates or updates a policy set definition in the given subscription with the given
@@ -54,7 +67,7 @@ export interface PolicySetDefinitions {
   createOrUpdate(
     policySetDefinitionName: string,
     parameters: PolicySetDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsCreateOrUpdateOptionalParams
   ): Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
   /**
    * This operation deletes the policy set definition in the given subscription with the given name.
@@ -63,7 +76,7 @@ export interface PolicySetDefinitions {
    */
   delete(
     policySetDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsDeleteOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * This operation retrieves the policy set definition in the given subscription with the given name.
@@ -72,7 +85,7 @@ export interface PolicySetDefinitions {
    */
   get(
     policySetDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsGetOptionalParams
   ): Promise<PolicySetDefinitionsGetResponse>;
   /**
    * This operation retrieves the built-in policy set definition with the given name.
@@ -81,7 +94,7 @@ export interface PolicySetDefinitions {
    */
   getBuiltIn(
     policySetDefinitionName: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsGetBuiltInOptionalParams
   ): Promise<PolicySetDefinitionsGetBuiltInResponse>;
   /**
    * This operation creates or updates a policy set definition in the given management group with the
@@ -95,7 +108,7 @@ export interface PolicySetDefinitions {
     policySetDefinitionName: string,
     managementGroupId: string,
     parameters: PolicySetDefinition,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   ): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
   /**
    * This operation deletes the policy set definition in the given management group with the given name.
@@ -106,7 +119,7 @@ export interface PolicySetDefinitions {
   deleteAtManagementGroup(
     policySetDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * This operation retrieves the policy set definition in the given management group with the given
@@ -118,6 +131,6 @@ export interface PolicySetDefinitions {
   getAtManagementGroup(
     policySetDefinitionName: string,
     managementGroupId: string,
-    options?: coreHttp.OperationOptions
+    options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams
   ): Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
 }

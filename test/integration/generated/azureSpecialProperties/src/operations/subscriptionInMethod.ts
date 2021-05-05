@@ -11,6 +11,12 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import {
+  SubscriptionInMethodPostMethodLocalValidOptionalParams,
+  SubscriptionInMethodPostMethodLocalNullOptionalParams,
+  SubscriptionInMethodPostPathLocalValidOptionalParams,
+  SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+} from "../models";
 
 /** Class representing a SubscriptionInMethod. */
 export class SubscriptionInMethodImpl implements SubscriptionInMethod {
@@ -32,7 +38,7 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postMethodLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,
@@ -53,7 +59,7 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postMethodLocalNull(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,
@@ -73,7 +79,7 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postPathLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostPathLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,
@@ -94,7 +100,7 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postSwaggerLocalValid(
     subscriptionId: string,
-    options?: coreHttp.OperationOptions
+    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       subscriptionId,

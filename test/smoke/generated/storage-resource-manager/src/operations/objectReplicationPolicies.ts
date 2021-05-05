@@ -15,9 +15,13 @@ import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
 import {
   ObjectReplicationPolicy,
+  ObjectReplicationPoliciesListOptionalParams,
   ObjectReplicationPoliciesListResponse,
+  ObjectReplicationPoliciesGetOptionalParams,
   ObjectReplicationPoliciesGetResponse,
-  ObjectReplicationPoliciesCreateOrUpdateResponse
+  ObjectReplicationPoliciesCreateOrUpdateOptionalParams,
+  ObjectReplicationPoliciesCreateOrUpdateResponse,
+  ObjectReplicationPoliciesDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -46,7 +50,7 @@ export class ObjectReplicationPoliciesImpl
   public list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesListOptionalParams
   ): PagedAsyncIterableIterator<ObjectReplicationPolicy> {
     const iter = this.listPagingAll(resourceGroupName, accountName, options);
     return {
@@ -65,7 +69,7 @@ export class ObjectReplicationPoliciesImpl
   private async *listPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesListOptionalParams
   ): AsyncIterableIterator<ObjectReplicationPolicy[]> {
     let result = await this._list(resourceGroupName, accountName, options);
     yield result.value || [];
@@ -74,7 +78,7 @@ export class ObjectReplicationPoliciesImpl
   private async *listPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesListOptionalParams
   ): AsyncIterableIterator<ObjectReplicationPolicy> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
@@ -97,7 +101,7 @@ export class ObjectReplicationPoliciesImpl
   private _list(
     resourceGroupName: string,
     accountName: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesListOptionalParams
   ): Promise<ObjectReplicationPoliciesListResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -125,7 +129,7 @@ export class ObjectReplicationPoliciesImpl
     resourceGroupName: string,
     accountName: string,
     objectReplicationPolicyId: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesGetOptionalParams
   ): Promise<ObjectReplicationPoliciesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -157,7 +161,7 @@ export class ObjectReplicationPoliciesImpl
     accountName: string,
     objectReplicationPolicyId: string,
     properties: ObjectReplicationPolicy,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams
   ): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -187,7 +191,7 @@ export class ObjectReplicationPoliciesImpl
     resourceGroupName: string,
     accountName: string,
     objectReplicationPolicyId: string,
-    options?: coreHttp.OperationOptions
+    options?: ObjectReplicationPoliciesDeleteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

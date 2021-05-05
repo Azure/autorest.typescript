@@ -8,11 +8,15 @@
 
 import * as coreHttp from "@azure/core-http";
 import {
+  VirtualMachineImagesGetOptionalParams,
   VirtualMachineImagesGetResponse,
   VirtualMachineImagesListOptionalParams,
   VirtualMachineImagesListResponse,
+  VirtualMachineImagesListOffersOptionalParams,
   VirtualMachineImagesListOffersResponse,
+  VirtualMachineImagesListPublishersOptionalParams,
   VirtualMachineImagesListPublishersResponse,
+  VirtualMachineImagesListSkusOptionalParams,
   VirtualMachineImagesListSkusResponse
 } from "../models";
 
@@ -33,7 +37,7 @@ export interface VirtualMachineImages {
     offer: string,
     skus: string,
     version: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesGetOptionalParams
   ): Promise<VirtualMachineImagesGetResponse>;
   /**
    * Gets a list of all virtual machine image versions for the specified location, publisher, offer, and
@@ -60,7 +64,7 @@ export interface VirtualMachineImages {
   listOffers(
     location: string,
     publisherName: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListOffersOptionalParams
   ): Promise<VirtualMachineImagesListOffersResponse>;
   /**
    * Gets a list of virtual machine image publishers for the specified Azure location.
@@ -69,7 +73,7 @@ export interface VirtualMachineImages {
    */
   listPublishers(
     location: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListPublishersOptionalParams
   ): Promise<VirtualMachineImagesListPublishersResponse>;
   /**
    * Gets a list of virtual machine image SKUs for the specified location, publisher, and offer.
@@ -82,6 +86,6 @@ export interface VirtualMachineImages {
     location: string,
     publisherName: string,
     offer: string,
-    options?: coreHttp.OperationOptions
+    options?: VirtualMachineImagesListSkusOptionalParams
   ): Promise<VirtualMachineImagesListSkusResponse>;
 }

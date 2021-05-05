@@ -11,7 +11,9 @@ import * as Parameters from "./models/parameters";
 import { ObjectTypeClientContext } from "./objectTypeClientContext";
 import {
   ObjectTypeClientOptionalParams,
-  ObjectTypeClientGetResponse
+  ObjectTypeClientGetOptionalParams,
+  ObjectTypeClientGetResponse,
+  ObjectTypeClientPutOptionalParams
 } from "./models";
 
 export class ObjectTypeClient extends ObjectTypeClientContext {
@@ -29,7 +31,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    * @param options The options parameters.
    */
   get(
-    options?: coreHttp.OperationOptions
+    options?: ObjectTypeClientGetOptionalParams
   ): Promise<ObjectTypeClientGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
@@ -48,7 +50,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    */
   put(
     putObject: any,
-    options?: coreHttp.OperationOptions
+    options?: ObjectTypeClientPutOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       putObject,

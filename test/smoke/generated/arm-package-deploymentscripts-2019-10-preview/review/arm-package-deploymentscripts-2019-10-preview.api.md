@@ -5,7 +5,6 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
-import { HttpMethods } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -111,13 +110,13 @@ export interface DeploymentScriptPropertiesBase {
 
 // @public
 export interface DeploymentScripts {
-    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: coreHttp.OperationOptions): Promise<PollerLike<PollOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
-    delete(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse>;
-    get(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetResponse>;
-    getLogs(resourceGroupName: string, scriptName: string, options?: coreHttp.OperationOptions): Promise<DeploymentScriptsGetLogsResponse>;
+    create(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: DeploymentScriptsCreateOptionalParams): Promise<PollerLike<PollOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
+    delete(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    get(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetOptionalParams): Promise<DeploymentScriptsGetResponse>;
+    getLogs(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsOptionalParams): Promise<DeploymentScriptsGetLogsResponse>;
     getLogsDefault(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsDefaultOptionalParams): Promise<DeploymentScriptsGetLogsDefaultResponse>;
-    listByResourceGroup(resourceGroupName: string, options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeploymentScriptUnion>;
-    listBySubscription(options?: coreHttp.OperationOptions): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listByResourceGroup(resourceGroupName: string, options?: DeploymentScriptsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
+    listBySubscription(options?: DeploymentScriptsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<DeploymentScriptUnion>;
     update(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsUpdateOptionalParams): Promise<DeploymentScriptsUpdateResponse>;
 }
 
@@ -147,13 +146,22 @@ export interface DeploymentScriptsClientOptionalParams extends coreHttp.ServiceC
 }
 
 // @public
+export interface DeploymentScriptsCreateOptionalParams extends coreHttp.OperationOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentScriptUnion;
-        [LROSYM]: LROResponseInfo;
     };
 };
+
+// @public
+export interface DeploymentScriptsDeleteOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export interface DeploymentScriptsError {
@@ -174,12 +182,20 @@ export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog & {
 };
 
 // @public
+export interface DeploymentScriptsGetLogsOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentScriptsGetLogsResponse = ScriptLogsList & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: ScriptLogsList;
     };
 };
+
+// @public
+export interface DeploymentScriptsGetOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
@@ -190,12 +206,20 @@ export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
 };
 
 // @public
+export interface DeploymentScriptsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentScriptListResult;
     };
 };
+
+// @public
+export interface DeploymentScriptsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult & {
@@ -206,12 +230,20 @@ export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListR
 };
 
 // @public
+export interface DeploymentScriptsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+}
+
+// @public
 export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: DeploymentScriptListResult;
     };
 };
+
+// @public
+export interface DeploymentScriptsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+}
 
 // @public
 export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult & {
@@ -389,10 +421,6 @@ export interface UserAssignedIdentity {
     principalId?: string;
 }
 
-
-// Warnings were encountered during analysis:
-//
-// src/models/index.ts:468:5 - (ae-forgotten-export) The symbol "LROResponseInfo" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -17,26 +17,43 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
+  DatabasesListMetricsOptionalParams,
   MetricDefinition,
+  DatabasesListMetricDefinitionsOptionalParams,
   Database,
+  DatabasesListByServerNextOptionalParams,
+  DatabasesListByServerOptionalParams,
+  DatabasesListByElasticPoolNextOptionalParams,
+  DatabasesListByElasticPoolOptionalParams,
   ImportRequest,
+  DatabasesImportOptionalParams,
   DatabasesImportResponse,
   ImportExtensionRequest,
   ExtensionName,
+  DatabasesCreateImportOperationOptionalParams,
   DatabasesCreateImportOperationResponse,
   ExportRequest,
+  DatabasesExportOptionalParams,
   DatabasesExportResponse,
   DatabasesListMetricsResponse,
   DatabasesListMetricDefinitionsResponse,
   DatabasesListByServerResponse,
+  DatabasesGetOptionalParams,
   DatabasesGetResponse,
+  DatabasesCreateOrUpdateOptionalParams,
   DatabasesCreateOrUpdateResponse,
+  DatabasesDeleteOptionalParams,
   DatabaseUpdate,
+  DatabasesUpdateOptionalParams,
   DatabasesUpdateResponse,
   DatabasesListByElasticPoolResponse,
+  DatabasesPauseOptionalParams,
   DatabasesPauseResponse,
+  DatabasesResumeOptionalParams,
   DatabasesResumeResponse,
+  DatabasesUpgradeDataWarehouseOptionalParams,
   ResourceMoveDefinition,
+  DatabasesRenameOptionalParams,
   DatabasesFailoverOptionalParams,
   DatabasesListByServerNextResponse,
   DatabasesListByElasticPoolNextResponse
@@ -69,7 +86,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricsOptionalParams
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
@@ -102,7 +119,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricsOptionalParams
   ): AsyncIterableIterator<Metric[]> {
     let result = await this._listMetrics(
       resourceGroupName,
@@ -119,7 +136,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricsOptionalParams
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
@@ -144,7 +161,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricDefinitionsOptionalParams
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
@@ -174,7 +191,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result = await this._listMetricDefinitions(
       resourceGroupName,
@@ -189,7 +206,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricDefinitionsOptionalParams
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
@@ -211,7 +228,7 @@ export class DatabasesImpl implements Databases {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerOptionalParams
   ): PagedAsyncIterableIterator<Database> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -238,7 +255,7 @@ export class DatabasesImpl implements Databases {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerOptionalParams
   ): AsyncIterableIterator<Database[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -262,7 +279,7 @@ export class DatabasesImpl implements Databases {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerOptionalParams
   ): AsyncIterableIterator<Database> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -285,7 +302,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolOptionalParams
   ): PagedAsyncIterableIterator<Database> {
     const iter = this.listByElasticPoolPagingAll(
       resourceGroupName,
@@ -315,7 +332,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolOptionalParams
   ): AsyncIterableIterator<Database[]> {
     let result = await this._listByElasticPool(
       resourceGroupName,
@@ -342,7 +359,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolOptionalParams
   ): AsyncIterableIterator<Database> {
     for await (const page of this.listByElasticPoolPagingPage(
       resourceGroupName,
@@ -366,7 +383,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     parameters: ImportRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesImportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesImportResponse>,
@@ -388,16 +405,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      importOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: importOperationSpec,
-      initialOperationResult,
+      importOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -417,7 +430,7 @@ export class DatabasesImpl implements Databases {
     databaseName: string,
     extensionName: ExtensionName,
     parameters: ImportExtensionRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesCreateImportOperationOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesCreateImportOperationResponse>,
@@ -441,16 +454,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createImportOperationOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createImportOperationOperationSpec,
-      initialOperationResult,
+      createImportOperationOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -467,7 +476,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ExportRequest,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesExportOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesExportResponse>,
@@ -490,16 +499,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      exportOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: exportOperationSpec,
-      initialOperationResult,
+      exportOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -516,7 +521,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricsOptionalParams
   ): Promise<DatabasesListMetricsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -543,7 +548,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListMetricDefinitionsOptionalParams
   ): Promise<DatabasesListMetricDefinitionsResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -567,7 +572,7 @@ export class DatabasesImpl implements Databases {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerOptionalParams
   ): Promise<DatabasesListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -592,7 +597,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesGetOptionalParams
   ): Promise<DatabasesGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -620,7 +625,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: Database,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesCreateOrUpdateResponse>,
@@ -643,16 +648,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -667,7 +668,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -686,16 +687,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -712,7 +709,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: DatabaseUpdate,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesUpdateResponse>,
@@ -735,16 +732,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      updateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: updateOperationSpec,
-      initialOperationResult,
+      updateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -759,7 +752,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolOptionalParams
   ): Promise<DatabasesListByElasticPoolResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -785,7 +778,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesPauseOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesPauseResponse>,
@@ -807,16 +800,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      pauseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: pauseOperationSpec,
-      initialOperationResult,
+      pauseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -831,7 +820,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesResumeOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<DatabasesResumeResponse>,
@@ -853,16 +842,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      resumeOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: resumeOperationSpec,
-      initialOperationResult,
+      resumeOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -877,7 +862,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesUpgradeDataWarehouseOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -896,16 +881,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      upgradeDataWarehouseOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: upgradeDataWarehouseOperationSpec,
-      initialOperationResult,
+      upgradeDataWarehouseOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -922,7 +903,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ResourceMoveDefinition,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesRenameOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -968,16 +949,12 @@ export class DatabasesImpl implements Databases {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      failoverOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: failoverOperationSpec,
-      initialOperationResult,
+      failoverOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -992,7 +969,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByServerNextOptionalParams
   ): Promise<DatabasesListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -1020,7 +997,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     elasticPoolName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: DatabasesListByElasticPoolNextOptionalParams
   ): Promise<DatabasesListByElasticPoolNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,

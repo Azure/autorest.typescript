@@ -17,9 +17,14 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerKey,
+  ServerKeysListByServerNextOptionalParams,
+  ServerKeysListByServerOptionalParams,
   ServerKeysListByServerResponse,
+  ServerKeysGetOptionalParams,
   ServerKeysGetResponse,
+  ServerKeysCreateOrUpdateOptionalParams,
   ServerKeysCreateOrUpdateResponse,
+  ServerKeysDeleteOptionalParams,
   ServerKeysListByServerNextResponse
 } from "../models";
 
@@ -46,7 +51,7 @@ export class ServerKeysImpl implements ServerKeys {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerOptionalParams
   ): PagedAsyncIterableIterator<ServerKey> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
@@ -73,7 +78,7 @@ export class ServerKeysImpl implements ServerKeys {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerOptionalParams
   ): AsyncIterableIterator<ServerKey[]> {
     let result = await this._listByServer(
       resourceGroupName,
@@ -97,7 +102,7 @@ export class ServerKeysImpl implements ServerKeys {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerOptionalParams
   ): AsyncIterableIterator<ServerKey> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
@@ -118,7 +123,7 @@ export class ServerKeysImpl implements ServerKeys {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerOptionalParams
   ): Promise<ServerKeysListByServerResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -143,7 +148,7 @@ export class ServerKeysImpl implements ServerKeys {
     resourceGroupName: string,
     serverName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysGetOptionalParams
   ): Promise<ServerKeysGetResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
@@ -174,7 +179,7 @@ export class ServerKeysImpl implements ServerKeys {
     serverName: string,
     keyName: string,
     parameters: ServerKey,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<ServerKeysCreateOrUpdateResponse>,
@@ -197,16 +202,12 @@ export class ServerKeysImpl implements ServerKeys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      createOrUpdateOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: createOrUpdateOperationSpec,
-      initialOperationResult,
+      createOrUpdateOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -221,7 +222,7 @@ export class ServerKeysImpl implements ServerKeys {
     resourceGroupName: string,
     serverName: string,
     keyName: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   > {
@@ -240,16 +241,12 @@ export class ServerKeysImpl implements ServerKeys {
       >;
     };
 
-    const initialOperationResult = await sendOperation(
+    return new LROPoller(
+      { intervalInMs: options?.updateIntervalInMs },
       operationArguments,
-      deleteOperationSpec
-    );
-    return new LROPoller({
-      initialOperationArguments: operationArguments,
-      initialOperationSpec: deleteOperationSpec,
-      initialOperationResult,
+      deleteOperationSpec,
       sendOperation
-    });
+    );
   }
 
   /**
@@ -264,7 +261,7 @@ export class ServerKeysImpl implements ServerKeys {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: ServerKeysListByServerNextOptionalParams
   ): Promise<ServerKeysListByServerNextResponse> {
     const operationArguments: coreHttp.OperationArguments = {
       resourceGroupName,
