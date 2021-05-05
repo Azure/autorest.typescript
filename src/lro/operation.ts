@@ -32,13 +32,13 @@ import {
  *    - Response doesn't contain any of the following headers Location, Azure-AsyncOperation or Operation-Location
  *    - Last operation method is PUT
  */
-async function createPollingMethod<TResult extends BaseResult>(
+function createPollingMethod<TResult extends BaseResult>(
   sendOperationFn: SendOperationFn<TResult>,
   args: OperationArguments,
   spec: OperationSpec,
   config: LROConfig,
   finalStateVia?: FinalStateVia
-): Promise<(pollingURL: string) => Promise<LROResult<TResult>>> {
+): (pollingURL: string) => Promise<LROResult<TResult>> {
   const pollOnce = createPollOnce(sendOperationFn, args, spec, config.mode);
   switch (config.mode) {
     case "AzureAsync": {
@@ -131,7 +131,7 @@ export class GenericPollOperation<TResult extends BaseResult>
         this.config = inferLROMode(this.initialResponse);
       }
       if (this.poll === undefined) {
-        this.poll = await createPollingMethod(
+        this.poll = createPollingMethod(
           this.sendOperation,
           this.initialOperationArguments,
           this.initialOperationSpec,
