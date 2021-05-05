@@ -1,5 +1,5 @@
-import { BlockBlobImpl } from "./operations";
-import { BlockBlob } from "./operationsInterfaces";
+import { PageBlobImpl, BlockBlobImpl, AppendBlobImpl } from "./operations";
+import { PageBlob, BlockBlob, AppendBlob } from "./operationsInterfaces";
 import { StorageBlobClientContext } from "./storageBlobClientContext";
 import { StorageBlobClientOptionalParams } from "./models";
 
@@ -12,8 +12,12 @@ export class StorageBlobClient extends StorageBlobClientContext {
    */
   constructor(url: string, options?: StorageBlobClientOptionalParams) {
     super(url, options);
+    this.pageBlob = new PageBlobImpl(this);
     this.blockBlob = new BlockBlobImpl(this);
+    this.appendBlob = new AppendBlobImpl(this);
   }
 
+  pageBlob: PageBlob;
   blockBlob: BlockBlob;
+  appendBlob: AppendBlob;
 }
