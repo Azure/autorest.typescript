@@ -3844,7 +3844,7 @@ export type IpAllocation = Resource & {
     readonly virtualNetwork?: SubResource;
     typePropertiesType?: IpAllocationType;
     prefix?: string;
-    prefixLength?: number | null;
+    prefixLength?: number;
     prefixType?: IPVersion;
     ipamAllocationId?: string;
     allocationTags?: {

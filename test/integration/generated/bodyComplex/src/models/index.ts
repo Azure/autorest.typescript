@@ -16,7 +16,7 @@ export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
 export interface BasicDef {
   /** Basic Id */
-  id?: number | null;
+  id?: number;
   /** Name property with a very long description that does not fit on a single line and a line break. */
   name?: string;
   color?: CMYKColors;
@@ -87,7 +87,7 @@ export interface ArrayWrapper {
 
 export interface DictionaryWrapper {
   /** Dictionary of <string> */
-  defaultProgram?: { [propertyName: string]: string } | null;
+  defaultProgram?: { [propertyName: string]: string };
 }
 
 export interface Pet {

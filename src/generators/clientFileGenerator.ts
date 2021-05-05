@@ -24,13 +24,14 @@ import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
 import { addPagingEsNextRef, addPagingImports } from "./utils/pagingOperations";
+import { OptionsBag } from "../utils/optionsBag";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
 export function generateClient(
   clientDetails: ClientDetails,
   project: Project,
-  hideClients: boolean
+  optionsBag: OptionsBag
 ) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
@@ -150,7 +151,7 @@ export function generateClient(
     isExported: true
   });
 
-  if (hideClients) {
+  if (optionsBag.hideClients) {
     clientClass.addJsDoc({
       tags: [
         {
