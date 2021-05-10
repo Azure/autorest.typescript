@@ -122,61 +122,51 @@ function getLROData(result: HttpOperationResponse): LROResponseInfo {
  * where both azure-asyncoperation and location could be present in the same response but
  * azure-asyncoperation should be the one to use for polling.
  */
-export function getPollingURL<TResult extends BaseResult>(
-  result: TResult,
+export function getPollingURL(
+  rawResponse: unknown,
   defaultPath: string
 ): string {
   return (
-    getAzureAsyncoperation(result) ??
-    getLocation(result) ??
-    getOperationLocation(result) ??
+    getAzureAsyncoperation(rawResponse) ??
+    getLocation(rawResponse) ??
+    getOperationLocation(rawResponse) ??
     defaultPath
   );
 }
 
-export function getLocation<TResult extends BaseResult>(
-  result: TResult
-): string | undefined {
-  return result._response.headers?.get("location");
+function castRawResponse(rawResponse: any): HttpOperationResponse {
+  return rawResponse._response;
 }
 
-export function getOperationLocation<TResult extends BaseResult>(
-  result: TResult
-): string | undefined {
-  return result._response.headers?.get("operation-location");
+export function getLocation(rawResponse: unknown): string | undefined {
+  return castRawResponse(rawResponse).headers?.get("location");
 }
 
-export function getAzureAsyncoperation<TResult extends BaseResult>(
-  result: TResult
-): string | undefined {
-  return result._response.headers?.get("azure-asyncoperation");
+export function getOperationLocation(rawResponse: unknown): string | undefined {
+  return castRawResponse(rawResponse).headers?.get("operation-location");
 }
 
-export function getRequestMethod<TResult extends BaseResult>(
-  result: TResult
-): HttpMethods {
-  return result._response.request.method;
+export function getAzureAsyncoperation(
+  rawResponse: unknown
+): string | undefined {
+  return castRawResponse(rawResponse).headers?.get("azure-asyncoperation");
 }
 
-export function getProvisioningStateIfDefined(
-  result: HttpOperationResponse
-): string | undefined {
+export function getProvisioningState(rawResponse: unknown): string {
+  const castResponse = castRawResponse(rawResponse);
   const { properties, provisioningState } =
-    result.parsedBody ??
-    (result.bodyAsText ? JSON.parse(result.bodyAsText) : {});
+    castResponse.parsedBody ??
+    (castResponse.bodyAsText ? JSON.parse(castResponse.bodyAsText) : {});
   const state: string | undefined =
     properties?.provisioningState ?? provisioningState;
-  return state?.toLowerCase();
+  return state?.toLowerCase() ?? "succeeded";
 }
 
-export function getProvisioningState(result: HttpOperationResponse): string {
-  return getProvisioningStateIfDefined(result) ?? "succeeded";
-}
-
-export function getResponseStatus(result: HttpOperationResponse): string {
+export function getResponseStatus(rawResponse: unknown): string {
+  const castResponse = castRawResponse(rawResponse);
   const { status } =
-    result.parsedBody ??
-    (result.bodyAsText ? JSON.parse(result.bodyAsText) : {});
+    castResponse.parsedBody ??
+    (castResponse.bodyAsText ? JSON.parse(castResponse.bodyAsText) : {});
   return status?.toLowerCase() ?? "succeeded";
 }
 
@@ -255,28 +245,29 @@ export function createRetrieveAzureAsyncResource<TResult extends BaseResult>(
   return createPollOnce(sendOperationFn, updatedArgs, spec);
 }
 
-export function inferLROMode<TResult extends BaseResult>(
-  result: TResult
+export function inferLROMode(
+  spec: OperationSpec,
+  rawResponse: unknown
 ): LROConfig {
-  if (getAzureAsyncoperation(result) !== undefined) {
-    const requestMethod = getRequestMethod(result);
+  const requestMethod = spec.httpMethod;
+  if (getAzureAsyncoperation(rawResponse) !== undefined) {
     return {
       mode: "AzureAsync",
       resourceLocation:
         requestMethod === "PUT"
-          ? result._response.request.url
+          ? spec.path
           : requestMethod === "POST"
-          ? getLocation(result)
+          ? getLocation(rawResponse)
           : undefined
     };
   } else if (
-    getLocation(result) !== undefined ||
-    getOperationLocation(result) !== undefined
+    getLocation(rawResponse) !== undefined ||
+    getOperationLocation(rawResponse) !== undefined
   ) {
     return {
       mode: "Location"
     };
-  } else if (["PUT", "PATCH"].includes(getRequestMethod(result))) {
+  } else if (["PUT", "PATCH"].includes(requestMethod)) {
     return {
       mode: "Body"
     };
@@ -284,6 +275,14 @@ export function inferLROMode<TResult extends BaseResult>(
   return {};
 }
 
-export function isBodyPollingDone<TResult extends BaseResult>(result: TResult) {
-  return terminalStates.includes(getProvisioningState(result._response));
+export function isBodyPollingDone(rawResponse: unknown) {
+  return terminalStates.includes(getProvisioningState(rawResponse));
+}
+
+export function getSpecPath(spec: OperationSpec): string {
+  if (spec.path) {
+    return spec.path;
+  } else {
+    throw Error("Bad spec: request path is not found!");
+  }
 }
