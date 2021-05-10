@@ -4,6 +4,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageBlobClientContext } from "../storageBlobClientContext";
 import {
+  BlockBlobStageBlockOptionalParams,
+  BlockBlobStageBlockResponse,
   BlockBlobUploadOptionalParams,
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
@@ -20,6 +22,33 @@ export class BlockBlobImpl implements BlockBlob {
    */
   constructor(client: StorageBlobClientContext) {
     this.client = client;
+  }
+
+  /**
+   * The Stage Block operation creates a new block to be committed as part of a blob
+   * @param blockId A valid Base64 string value that identifies the block. Prior to encoding, the string
+   *                must be less than or equal to 64 bytes in size. For a given blob, the length of the value specified
+   *                for the blockid parameter must be the same size for each block.
+   * @param contentLength The length of the request.
+   * @param body Initial data
+   * @param options The options parameters.
+   */
+  stageBlock(
+    blockId: string,
+    contentLength: number,
+    body: coreHttp.HttpRequestBody,
+    options?: BlockBlobStageBlockOptionalParams
+  ): Promise<BlockBlobStageBlockResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      blockId,
+      contentLength,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      stageBlockOperationSpec
+    ) as Promise<BlockBlobStageBlockResponse>;
   }
 
   /**
@@ -79,8 +108,40 @@ export class BlockBlobImpl implements BlockBlob {
 // Operation Specifications
 const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
 
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
-
+const stageBlockOperationSpec: coreHttp.OperationSpec = {
+  path: "/{containerName}/{blob}",
+  httpMethod: "PUT",
+  responses: {
+    201: {
+      headersMapper: Mappers.BlockBlobStageBlockHeaders
+    },
+    default: {
+      bodyMapper: Mappers.StorageError,
+      headersMapper: Mappers.BlockBlobStageBlockExceptionHeaders
+    }
+  },
+  requestBody: Parameters.body,
+  queryParameters: [Parameters.timeout, Parameters.comp1, Parameters.blockId],
+  urlParameters: [Parameters.url],
+  headerParameters: [
+    Parameters.contentType,
+    Parameters.accept,
+    Parameters.contentLength,
+    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentCrc64,
+    Parameters.leaseId,
+    Parameters.encryptionKey,
+    Parameters.encryptionKeySha256,
+    Parameters.encryptionAlgorithm,
+    Parameters.encryptionScope,
+    Parameters.version,
+    Parameters.requestId
+  ],
+  isXML: true,
+  contentType: "application/xml; charset=utf-8",
+  mediaType: "binary",
+  serializer: xmlSerializer
+};
 const uploadOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
@@ -99,22 +160,13 @@ const uploadOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [
     Parameters.contentType,
     Parameters.accept,
-    Parameters.blobType,
-    Parameters.transactionalContentMD5,
     Parameters.contentLength,
-    Parameters.blobContentType,
-    Parameters.blobContentEncoding,
-    Parameters.blobContentLanguage,
-    Parameters.blobContentMD5,
-    Parameters.blobCacheControl,
-    Parameters.metadata,
+    Parameters.transactionalContentMD5,
     Parameters.leaseId,
-    Parameters.blobContentDisposition,
     Parameters.encryptionKey,
     Parameters.encryptionKeySha256,
     Parameters.encryptionAlgorithm,
     Parameters.encryptionScope,
-    Parameters.tier,
     Parameters.ifModifiedSince,
     Parameters.ifUnmodifiedSince,
     Parameters.ifMatch,
@@ -122,10 +174,21 @@ const uploadOperationSpec: coreHttp.OperationSpec = {
     Parameters.ifTags,
     Parameters.version,
     Parameters.requestId,
+    Parameters.blobType,
+    Parameters.blobContentType,
+    Parameters.blobContentEncoding,
+    Parameters.blobContentLanguage,
+    Parameters.blobContentMD5,
+    Parameters.blobCacheControl,
+    Parameters.metadata,
+    Parameters.blobContentDisposition,
+    Parameters.tier,
     Parameters.blobTagsString
   ],
+  isXML: true,
+  contentType: "application/xml; charset=utf-8",
   mediaType: "binary",
-  serializer
+  serializer: xmlSerializer
 };
 const putBlobFromUrlOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
@@ -142,22 +205,13 @@ const putBlobFromUrlOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.timeout],
   urlParameters: [Parameters.url],
   headerParameters: [
-    Parameters.blobType,
-    Parameters.transactionalContentMD5,
     Parameters.contentLength,
-    Parameters.blobContentType,
-    Parameters.blobContentEncoding,
-    Parameters.blobContentLanguage,
-    Parameters.blobContentMD5,
-    Parameters.blobCacheControl,
-    Parameters.metadata,
+    Parameters.transactionalContentMD5,
     Parameters.leaseId,
-    Parameters.blobContentDisposition,
     Parameters.encryptionKey,
     Parameters.encryptionKeySha256,
     Parameters.encryptionAlgorithm,
     Parameters.encryptionScope,
-    Parameters.tier,
     Parameters.ifModifiedSince,
     Parameters.ifUnmodifiedSince,
     Parameters.ifMatch,
@@ -165,6 +219,15 @@ const putBlobFromUrlOperationSpec: coreHttp.OperationSpec = {
     Parameters.ifTags,
     Parameters.version,
     Parameters.requestId,
+    Parameters.blobType,
+    Parameters.blobContentType,
+    Parameters.blobContentEncoding,
+    Parameters.blobContentLanguage,
+    Parameters.blobContentMD5,
+    Parameters.blobCacheControl,
+    Parameters.metadata,
+    Parameters.blobContentDisposition,
+    Parameters.tier,
     Parameters.blobTagsString,
     Parameters.accept1,
     Parameters.sourceIfModifiedSince,

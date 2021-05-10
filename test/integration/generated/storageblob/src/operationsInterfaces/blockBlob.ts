@@ -1,5 +1,7 @@
 import * as coreHttp from "@azure/core-http";
 import {
+  BlockBlobStageBlockOptionalParams,
+  BlockBlobStageBlockResponse,
   BlockBlobUploadOptionalParams,
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
@@ -8,6 +10,21 @@ import {
 
 /** Interface representing a BlockBlob. */
 export interface BlockBlob {
+  /**
+   * The Stage Block operation creates a new block to be committed as part of a blob
+   * @param blockId A valid Base64 string value that identifies the block. Prior to encoding, the string
+   *                must be less than or equal to 64 bytes in size. For a given blob, the length of the value specified
+   *                for the blockid parameter must be the same size for each block.
+   * @param contentLength The length of the request.
+   * @param body Initial data
+   * @param options The options parameters.
+   */
+  stageBlock(
+    blockId: string,
+    contentLength: number,
+    body: coreHttp.HttpRequestBody,
+    options?: BlockBlobStageBlockOptionalParams
+  ): Promise<BlockBlobStageBlockResponse>;
   /**
    * The Upload Block Blob operation updates the content of an existing block blob. Updating an existing
    * block blob overwrites any existing metadata on the blob. Partial updates are not supported with Put

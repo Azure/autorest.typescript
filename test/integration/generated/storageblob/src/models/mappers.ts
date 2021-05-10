@@ -1953,6 +1953,207 @@ export const StorageServiceStats: coreHttp.CompositeMapper = {
   }
 };
 
+export const PageBlobUploadPagesHeaders: coreHttp.CompositeMapper = {
+  serializedName: "PageBlob_uploadPagesHeaders",
+  type: {
+    name: "Composite",
+    className: "PageBlobUploadPagesHeaders",
+    modelProperties: {
+      eTag: {
+        serializedName: "etag",
+        xmlName: "etag",
+        type: {
+          name: "String"
+        }
+      },
+      lastModified: {
+        serializedName: "last-modified",
+        xmlName: "last-modified",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      },
+      contentMD5: {
+        serializedName: "content-md5",
+        xmlName: "content-md5",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      xMsContentCrc64: {
+        serializedName: "x-ms-content-crc64",
+        xmlName: "x-ms-content-crc64",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      blobSequenceNumber: {
+        serializedName: "x-ms-blob-sequence-number",
+        xmlName: "x-ms-blob-sequence-number",
+        type: {
+          name: "Number"
+        }
+      },
+      clientRequestId: {
+        serializedName: "x-ms-client-request-id",
+        xmlName: "x-ms-client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      requestId: {
+        serializedName: "x-ms-request-id",
+        xmlName: "x-ms-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "x-ms-version",
+        xmlName: "x-ms-version",
+        type: {
+          name: "String"
+        }
+      },
+      date: {
+        serializedName: "date",
+        xmlName: "date",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      },
+      isServerEncrypted: {
+        serializedName: "x-ms-request-server-encrypted",
+        xmlName: "x-ms-request-server-encrypted",
+        type: {
+          name: "Boolean"
+        }
+      },
+      encryptionKeySha256: {
+        serializedName: "x-ms-encryption-key-sha256",
+        xmlName: "x-ms-encryption-key-sha256",
+        type: {
+          name: "String"
+        }
+      },
+      encryptionScope: {
+        serializedName: "x-ms-encryption-scope",
+        xmlName: "x-ms-encryption-scope",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PageBlobUploadPagesExceptionHeaders: coreHttp.CompositeMapper = {
+  serializedName: "PageBlob_uploadPagesExceptionHeaders",
+  type: {
+    name: "Composite",
+    className: "PageBlobUploadPagesExceptionHeaders",
+    modelProperties: {
+      errorCode: {
+        serializedName: "x-ms-error-code",
+        xmlName: "x-ms-error-code",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const BlockBlobStageBlockHeaders: coreHttp.CompositeMapper = {
+  serializedName: "BlockBlob_stageBlockHeaders",
+  type: {
+    name: "Composite",
+    className: "BlockBlobStageBlockHeaders",
+    modelProperties: {
+      contentMD5: {
+        serializedName: "content-md5",
+        xmlName: "content-md5",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      clientRequestId: {
+        serializedName: "x-ms-client-request-id",
+        xmlName: "x-ms-client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      requestId: {
+        serializedName: "x-ms-request-id",
+        xmlName: "x-ms-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "x-ms-version",
+        xmlName: "x-ms-version",
+        type: {
+          name: "String"
+        }
+      },
+      date: {
+        serializedName: "date",
+        xmlName: "date",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      },
+      xMsContentCrc64: {
+        serializedName: "x-ms-content-crc64",
+        xmlName: "x-ms-content-crc64",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      isServerEncrypted: {
+        serializedName: "x-ms-request-server-encrypted",
+        xmlName: "x-ms-request-server-encrypted",
+        type: {
+          name: "Boolean"
+        }
+      },
+      encryptionKeySha256: {
+        serializedName: "x-ms-encryption-key-sha256",
+        xmlName: "x-ms-encryption-key-sha256",
+        type: {
+          name: "String"
+        }
+      },
+      encryptionScope: {
+        serializedName: "x-ms-encryption-scope",
+        xmlName: "x-ms-encryption-scope",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const BlockBlobStageBlockExceptionHeaders: coreHttp.CompositeMapper = {
+  serializedName: "BlockBlob_stageBlockExceptionHeaders",
+  type: {
+    name: "Composite",
+    className: "BlockBlobStageBlockExceptionHeaders",
+    modelProperties: {
+      errorCode: {
+        serializedName: "x-ms-error-code",
+        xmlName: "x-ms-error-code",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const BlockBlobUploadHeaders: coreHttp.CompositeMapper = {
   serializedName: "BlockBlob_uploadHeaders",
   type: {
@@ -2149,6 +2350,124 @@ export const BlockBlobPutBlobFromUrlExceptionHeaders: coreHttp.CompositeMapper =
   type: {
     name: "Composite",
     className: "BlockBlobPutBlobFromUrlExceptionHeaders",
+    modelProperties: {
+      errorCode: {
+        serializedName: "x-ms-error-code",
+        xmlName: "x-ms-error-code",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const AppendBlobAppendBlockHeaders: coreHttp.CompositeMapper = {
+  serializedName: "AppendBlob_appendBlockHeaders",
+  type: {
+    name: "Composite",
+    className: "AppendBlobAppendBlockHeaders",
+    modelProperties: {
+      eTag: {
+        serializedName: "etag",
+        xmlName: "etag",
+        type: {
+          name: "String"
+        }
+      },
+      lastModified: {
+        serializedName: "last-modified",
+        xmlName: "last-modified",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      },
+      contentMD5: {
+        serializedName: "content-md5",
+        xmlName: "content-md5",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      xMsContentCrc64: {
+        serializedName: "x-ms-content-crc64",
+        xmlName: "x-ms-content-crc64",
+        type: {
+          name: "ByteArray"
+        }
+      },
+      clientRequestId: {
+        serializedName: "x-ms-client-request-id",
+        xmlName: "x-ms-client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      requestId: {
+        serializedName: "x-ms-request-id",
+        xmlName: "x-ms-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "x-ms-version",
+        xmlName: "x-ms-version",
+        type: {
+          name: "String"
+        }
+      },
+      date: {
+        serializedName: "date",
+        xmlName: "date",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      },
+      blobAppendOffset: {
+        serializedName: "x-ms-blob-append-offset",
+        xmlName: "x-ms-blob-append-offset",
+        type: {
+          name: "String"
+        }
+      },
+      blobCommittedBlockCount: {
+        serializedName: "x-ms-blob-committed-block-count",
+        xmlName: "x-ms-blob-committed-block-count",
+        type: {
+          name: "Number"
+        }
+      },
+      isServerEncrypted: {
+        serializedName: "x-ms-request-server-encrypted",
+        xmlName: "x-ms-request-server-encrypted",
+        type: {
+          name: "Boolean"
+        }
+      },
+      encryptionKeySha256: {
+        serializedName: "x-ms-encryption-key-sha256",
+        xmlName: "x-ms-encryption-key-sha256",
+        type: {
+          name: "String"
+        }
+      },
+      encryptionScope: {
+        serializedName: "x-ms-encryption-scope",
+        xmlName: "x-ms-encryption-scope",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const AppendBlobAppendBlockExceptionHeaders: coreHttp.CompositeMapper = {
+  serializedName: "AppendBlob_appendBlockExceptionHeaders",
+  type: {
+    name: "Composite",
+    className: "AppendBlobAppendBlockExceptionHeaders",
     modelProperties: {
       errorCode: {
         serializedName: "x-ms-error-code",

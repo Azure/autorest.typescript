@@ -16881,6 +16881,8 @@ export class WebAppsImpl implements WebApps {
   }
 }
 // Operation Specifications
+const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreHttp.OperationSpec = {

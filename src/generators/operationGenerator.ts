@@ -150,11 +150,27 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
   const formDataParams = buildParameters(spec, "formDataParameters");
-  const contentType = buildContentType(spec);
   const mediaType = buildMediaType(spec);
 
+  // The targetMediaType should be used to determine if we want to
+  // build content type. Else, we will end up with mediaType json
+  // and content type xml.
+  let targetMediaType: string | undefined = undefined;
+  if (Array.isArray(spec.requestBody)) {
+    targetMediaType = spec.requestBody[0]?.targetMediaType;
+  } else {
+    targetMediaType = spec.requestBody?.targetMediaType;
+  }
+
+  const contentType =
+    targetMediaType !== KnownMediaType.Json
+      ? buildContentType(spec)
+      : undefined;
+
   const serializerName = spec.isXML
-    ? "serializer: xmlSerializer"
+    ? targetMediaType !== KnownMediaType.Json
+      ? "serializer: xmlSerializer"
+      : "serializer"
     : "serializer";
 
   writer.block(() => {
@@ -205,7 +221,7 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
       writer.write(", ");
     }
 
-    if (spec.isXML) {
+    if (spec.isXML && targetMediaType != KnownMediaType.Json) {
       writer.write("isXML: true");
       writer.write(", ");
     }
@@ -997,11 +1013,7 @@ function hasMediaType(
   operationDetails: OperationDetails,
   mediaType: KnownMediaType
 ) {
-  if (!operationDetails.requests.some(r => !!r.mediaType)) {
-    return operationDetails.mediaTypes.has(mediaType);
-  }
-
-  return operationDetails.requests.some(r => r.mediaType === mediaType);
+  return operationDetails.mediaTypes.has(mediaType);
 }
 
 /**
@@ -1022,7 +1034,6 @@ export function addOperationSpecs(
     operation =>
       hasMediaType(operation, KnownMediaType.Json) ||
       hasMediaType(operation, KnownMediaType.Form) ||
-      hasMediaType(operation, KnownMediaType.Binary) ||
       hasMediaType(operation, KnownMediaType.Multipart) ||
       hasMediaType(operation, KnownMediaType.Text) ||
       hasMediaType(operation, KnownMediaType.Unknown)
