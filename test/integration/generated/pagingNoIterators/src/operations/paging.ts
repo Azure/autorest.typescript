@@ -375,7 +375,7 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  async getMultiplePagesLRO(
+  async beginGetMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<

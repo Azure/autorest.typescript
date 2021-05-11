@@ -33,7 +33,7 @@ export interface LRORetrys {
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  put201CreatingSucceeded200(
+  beginPut201CreatingSucceeded200(
     options?: LRORetrysPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
@@ -47,7 +47,7 @@ export interface LRORetrys {
    * header for operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetrySucceeded(
+  beginPutAsyncRelativeRetrySucceeded(
     options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -61,7 +61,7 @@ export interface LRORetrys {
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  deleteProvisioning202Accepted200Succeeded(
+  beginDeleteProvisioning202Accepted200Succeeded(
     options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -76,7 +76,7 @@ export interface LRORetrys {
    * this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  delete202Retry200(
+  beginDelete202Retry200(
     options?: LRORetrysDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -89,7 +89,7 @@ export interface LRORetrys {
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetrySucceeded(
+  beginDeleteAsyncRelativeRetrySucceeded(
     options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -102,7 +102,7 @@ export interface LRORetrys {
    * and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
    */
-  post202Retry200(
+  beginPost202Retry200(
     options?: LRORetrysPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -116,7 +116,7 @@ export interface LRORetrys {
    * header for operation status
    * @param options The options parameters.
    */
-  postAsyncRelativeRetrySucceeded(
+  beginPostAsyncRelativeRetrySucceeded(
     options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<

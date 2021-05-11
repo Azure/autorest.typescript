@@ -28,7 +28,7 @@ export interface LROsCustomHeader {
    * header for operation status
    * @param options The options parameters.
    */
-  putAsyncRetrySucceeded(
+  beginPutAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -43,7 +43,7 @@ export interface LROsCustomHeader {
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  put201CreatingSucceeded200(
+  beginPut201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
@@ -57,7 +57,7 @@ export interface LROsCustomHeader {
    * and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
    */
-  post202Retry200(
+  beginPost202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -72,7 +72,7 @@ export interface LROsCustomHeader {
    * header for operation status
    * @param options The options parameters.
    */
-  postAsyncRetrySucceeded(
+  beginPostAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
