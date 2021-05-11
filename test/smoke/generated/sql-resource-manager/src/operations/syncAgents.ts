@@ -236,7 +236,7 @@ export class SyncAgentsImpl implements SyncAgents {
    * @param parameters The requested sync agent resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
@@ -280,7 +280,7 @@ export class SyncAgentsImpl implements SyncAgents {
    * @param syncAgentName The name of the sync agent.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,

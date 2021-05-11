@@ -5102,7 +5102,7 @@ export class WebAppsImpl implements WebApps {
    * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     siteEnvelope: Site,
@@ -5368,7 +5368,7 @@ export class WebAppsImpl implements WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  async restore(
+  async beginRestore(
     resourceGroupName: string,
     name: string,
     backupId: string,
@@ -5828,7 +5828,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  async listPublishingCredentials(
+  async beginListPublishingCredentials(
     resourceGroupName: string,
     name: string,
     options?: WebAppsListPublishingCredentialsOptionalParams
@@ -6580,7 +6580,7 @@ export class WebAppsImpl implements WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  async createMSDeployOperation(
+  async beginCreateMSDeployOperation(
     resourceGroupName: string,
     name: string,
     mSDeploy: MSDeploy,
@@ -6713,7 +6713,7 @@ export class WebAppsImpl implements WebApps {
    * @param functionEnvelope Function details.
    * @param options The options parameters.
    */
-  async createFunction(
+  async beginCreateFunction(
     resourceGroupName: string,
     name: string,
     functionName: string,
@@ -7458,7 +7458,7 @@ export class WebAppsImpl implements WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  async createInstanceMSDeployOperation(
+  async beginCreateInstanceMSDeployOperation(
     resourceGroupName: string,
     name: string,
     instanceId: string,
@@ -7801,7 +7801,7 @@ export class WebAppsImpl implements WebApps {
    * @param migrationOptions Migration migrationOptions.
    * @param options The options parameters.
    */
-  async migrateStorage(
+  async beginMigrateStorage(
     subscriptionName: string,
     resourceGroupName: string,
     name: string,
@@ -7844,7 +7844,7 @@ export class WebAppsImpl implements WebApps {
    * @param migrationRequestEnvelope MySql migration options.
    * @param options The options parameters.
    */
-  async migrateMySql(
+  async beginMigrateMySql(
     resourceGroupName: string,
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
@@ -8080,7 +8080,7 @@ export class WebAppsImpl implements WebApps {
    * @param name The name of the web app.
    * @param options The options parameters.
    */
-  async startWebSiteNetworkTraceOperation(
+  async beginStartWebSiteNetworkTraceOperation(
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
@@ -8814,7 +8814,7 @@ export class WebAppsImpl implements WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  async restoreFromBackupBlob(
+  async beginRestoreFromBackupBlob(
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
@@ -8852,7 +8852,7 @@ export class WebAppsImpl implements WebApps {
    * @param restoreRequest Deleted web app restore information.
    * @param options The options parameters.
    */
-  async restoreFromDeletedApp(
+  async beginRestoreFromDeletedApp(
     resourceGroupName: string,
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
@@ -8891,7 +8891,7 @@ export class WebAppsImpl implements WebApps {
    *                       GetDeletedSites or GetSiteSnapshots API.
    * @param options The options parameters.
    */
-  async restoreSnapshot(
+  async beginRestoreSnapshot(
     resourceGroupName: string,
     name: string,
     restoreRequest: SnapshotRestoreRequest,
@@ -8976,7 +8976,7 @@ export class WebAppsImpl implements WebApps {
    * @param siteExtensionId Site extension name.
    * @param options The options parameters.
    */
-  async installSiteExtension(
+  async beginInstallSiteExtension(
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
@@ -9043,7 +9043,7 @@ export class WebAppsImpl implements WebApps {
    *                       override the source slot config. See example.
    * @param options The options parameters.
    */
-  async copyProductionSlot(
+  async beginCopyProductionSlot(
     resourceGroupName: string,
     name: string,
     copySlotEntity: CsmCopySlotEntity,
@@ -9132,7 +9132,7 @@ export class WebAppsImpl implements WebApps {
    * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
-  async createOrUpdateSlot(
+  async beginCreateOrUpdateSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -9435,7 +9435,7 @@ export class WebAppsImpl implements WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  async restoreSlot(
+  async beginRestoreSlot(
     resourceGroupName: string,
     name: string,
     backupId: string,
@@ -9915,7 +9915,7 @@ export class WebAppsImpl implements WebApps {
    *             credentials for the production slot.
    * @param options The options parameters.
    */
-  async listPublishingCredentialsSlot(
+  async beginListPublishingCredentialsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -10724,7 +10724,7 @@ export class WebAppsImpl implements WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  async createMSDeployOperationSlot(
+  async beginCreateMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -10872,7 +10872,7 @@ export class WebAppsImpl implements WebApps {
    * @param functionEnvelope Function details.
    * @param options The options parameters.
    */
-  async createInstanceFunctionSlot(
+  async beginCreateInstanceFunctionSlot(
     resourceGroupName: string,
     name: string,
     functionName: string,
@@ -11712,7 +11712,7 @@ export class WebAppsImpl implements WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  async createInstanceMSDeployOperationSlot(
+  async beginCreateInstanceMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -12326,7 +12326,7 @@ export class WebAppsImpl implements WebApps {
    * @param slot The name of the slot for this web app.
    * @param options The options parameters.
    */
-  async startWebSiteNetworkTraceOperationSlot(
+  async beginStartWebSiteNetworkTraceOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -12787,7 +12787,7 @@ export class WebAppsImpl implements WebApps {
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  async approveOrRejectPrivateEndpointConnection(
+  async beginApproveOrRejectPrivateEndpointConnection(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
@@ -12832,7 +12832,7 @@ export class WebAppsImpl implements WebApps {
    * @param privateEndpointConnectionName
    * @param options The options parameters.
    */
-  async deletePrivateEndpointConnection(
+  async beginDeletePrivateEndpointConnection(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
@@ -13305,7 +13305,7 @@ export class WebAppsImpl implements WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  async restoreFromBackupBlobSlot(
+  async beginRestoreFromBackupBlobSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13346,7 +13346,7 @@ export class WebAppsImpl implements WebApps {
    * @param restoreRequest Deleted web app restore information.
    * @param options The options parameters.
    */
-  async restoreFromDeletedAppSlot(
+  async beginRestoreFromDeletedAppSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13388,7 +13388,7 @@ export class WebAppsImpl implements WebApps {
    *                       GetDeletedSites or GetSiteSnapshots API.
    * @param options The options parameters.
    */
-  async restoreSnapshotSlot(
+  async beginRestoreSnapshotSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13485,7 +13485,7 @@ export class WebAppsImpl implements WebApps {
    *             slot.
    * @param options The options parameters.
    */
-  async installSiteExtensionSlot(
+  async beginInstallSiteExtensionSlot(
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
@@ -13560,7 +13560,7 @@ export class WebAppsImpl implements WebApps {
    *                       override the source slot config. See example.
    * @param options The options parameters.
    */
-  async copySlot(
+  async beginCopySlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13631,7 +13631,7 @@ export class WebAppsImpl implements WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  async swapSlot(
+  async beginSwapSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13749,7 +13749,7 @@ export class WebAppsImpl implements WebApps {
    * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
-  async createOrUpdateSourceControlSlot(
+  async beginCreateOrUpdateSourceControlSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -13873,7 +13873,7 @@ export class WebAppsImpl implements WebApps {
    * @param slot The name of the slot for this web app.
    * @param options The options parameters.
    */
-  async startNetworkTraceSlot(
+  async beginStartNetworkTraceSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -14547,7 +14547,7 @@ export class WebAppsImpl implements WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  async swapSlotWithProduction(
+  async beginSwapSlotWithProduction(
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
@@ -14651,7 +14651,7 @@ export class WebAppsImpl implements WebApps {
    * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
-  async createOrUpdateSourceControl(
+  async beginCreateOrUpdateSourceControl(
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
@@ -14760,7 +14760,7 @@ export class WebAppsImpl implements WebApps {
    * @param name The name of the web app.
    * @param options The options parameters.
    */
-  async startNetworkTrace(
+  async beginStartNetworkTrace(
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams

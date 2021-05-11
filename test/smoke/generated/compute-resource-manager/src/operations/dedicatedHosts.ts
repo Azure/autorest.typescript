@@ -124,7 +124,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
    * @param parameters Parameters supplied to the Create Dedicated Host.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -168,7 +168,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
    * @param parameters Parameters supplied to the Update Dedicated Host operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -211,7 +211,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
    * @param hostName The name of the dedicated host.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,

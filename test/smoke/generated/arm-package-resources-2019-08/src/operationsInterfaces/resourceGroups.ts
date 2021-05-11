@@ -66,7 +66,7 @@ export interface ResourceGroups {
    * @param resourceGroupName The name of the resource group to delete. The name is case insensitive.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
   ): Promise<
@@ -100,7 +100,7 @@ export interface ResourceGroups {
    * @param parameters Parameters for exporting the template.
    * @param options The options parameters.
    */
-  exportTemplate(
+  beginExportTemplate(
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
     options?: ResourceGroupsExportTemplateOptionalParams

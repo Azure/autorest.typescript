@@ -109,7 +109,7 @@ export interface SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  refreshHubSchema(
+  beginRefreshHubSchema(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -176,7 +176,7 @@ export interface SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -198,7 +198,7 @@ export interface SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -217,7 +217,7 @@ export interface SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

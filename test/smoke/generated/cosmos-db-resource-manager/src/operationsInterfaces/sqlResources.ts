@@ -155,7 +155,7 @@ export interface SqlResources {
    * @param createUpdateSqlDatabaseParameters The parameters to provide for the current SQL database.
    * @param options The options parameters.
    */
-  createUpdateSqlDatabase(
+  beginCreateUpdateSqlDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -174,7 +174,7 @@ export interface SqlResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  deleteSqlDatabase(
+  beginDeleteSqlDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -205,7 +205,7 @@ export interface SqlResources {
    *                                   SQL database.
    * @param options The options parameters.
    */
-  updateSqlDatabaseThroughput(
+  beginUpdateSqlDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -241,7 +241,7 @@ export interface SqlResources {
    * @param createUpdateSqlContainerParameters The parameters to provide for the current SQL container.
    * @param options The options parameters.
    */
-  createUpdateSqlContainer(
+  beginCreateUpdateSqlContainer(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -262,7 +262,7 @@ export interface SqlResources {
    * @param containerName Cosmos DB container name.
    * @param options The options parameters.
    */
-  deleteSqlContainer(
+  beginDeleteSqlContainer(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -296,7 +296,7 @@ export interface SqlResources {
    *                                   SQL container.
    * @param options The options parameters.
    */
-  updateSqlContainerThroughput(
+  beginUpdateSqlContainerThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -337,7 +337,7 @@ export interface SqlResources {
    *                                                 storedProcedure.
    * @param options The options parameters.
    */
-  createUpdateSqlStoredProcedure(
+  beginCreateUpdateSqlStoredProcedure(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -360,7 +360,7 @@ export interface SqlResources {
    * @param storedProcedureName Cosmos DB storedProcedure name.
    * @param options The options parameters.
    */
-  deleteSqlStoredProcedure(
+  beginDeleteSqlStoredProcedure(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -398,7 +398,7 @@ export interface SqlResources {
    *                                                     userDefinedFunction.
    * @param options The options parameters.
    */
-  createUpdateSqlUserDefinedFunction(
+  beginCreateUpdateSqlUserDefinedFunction(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -423,7 +423,7 @@ export interface SqlResources {
    * @param userDefinedFunctionName Cosmos DB userDefinedFunction name.
    * @param options The options parameters.
    */
-  deleteSqlUserDefinedFunction(
+  beginDeleteSqlUserDefinedFunction(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -460,7 +460,7 @@ export interface SqlResources {
    * @param createUpdateSqlTriggerParameters The parameters to provide for the current SQL trigger.
    * @param options The options parameters.
    */
-  createUpdateSqlTrigger(
+  beginCreateUpdateSqlTrigger(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -483,7 +483,7 @@ export interface SqlResources {
    * @param triggerName Cosmos DB trigger name.
    * @param options The options parameters.
    */
-  deleteSqlTrigger(
+  beginDeleteSqlTrigger(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

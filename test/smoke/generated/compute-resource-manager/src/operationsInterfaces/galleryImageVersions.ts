@@ -54,7 +54,7 @@ export interface GalleryImageVersions {
    *                            operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -79,7 +79,7 @@ export interface GalleryImageVersions {
    * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -115,7 +115,7 @@ export interface GalleryImageVersions {
    * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,

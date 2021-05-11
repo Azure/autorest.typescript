@@ -177,7 +177,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
    * @param linkId The ID of the replication link to be failed over.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -220,7 +220,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
    * @param linkId The ID of the replication link to be failed over.
    * @param options The options parameters.
    */
-  async failoverAllowDataLoss(
+  async beginFailoverAllowDataLoss(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -263,7 +263,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
    * @param parameters The required parameters for unlinking replication link.
    * @param options The options parameters.
    */
-  async unlink(
+  async beginUnlink(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

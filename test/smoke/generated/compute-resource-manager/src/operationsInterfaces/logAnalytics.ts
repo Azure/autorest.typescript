@@ -26,7 +26,7 @@ export interface LogAnalytics {
    * @param parameters Parameters supplied to the LogAnalytics getRequestRateByInterval Api.
    * @param options The options parameters.
    */
-  exportRequestRateByInterval(
+  beginExportRequestRateByInterval(
     location: string,
     parameters: RequestRateByIntervalInput,
     options?: LogAnalyticsExportRequestRateByIntervalOptionalParams
@@ -42,7 +42,7 @@ export interface LogAnalytics {
    * @param parameters Parameters supplied to the LogAnalytics getThrottledRequests Api.
    * @param options The options parameters.
    */
-  exportThrottledRequests(
+  beginExportThrottledRequests(
     location: string,
     parameters: ThrottledRequestsInput,
     options?: LogAnalyticsExportThrottledRequestsOptionalParams

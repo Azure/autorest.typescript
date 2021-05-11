@@ -155,7 +155,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -199,7 +199,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -239,7 +239,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -306,7 +306,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -348,7 +348,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async forceFailoverAllowDataLoss(
+  async beginForceFailoverAllowDataLoss(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,

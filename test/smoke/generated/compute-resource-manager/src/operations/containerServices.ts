@@ -171,7 +171,7 @@ export class ContainerServicesImpl implements ContainerServices {
    * @param parameters Parameters supplied to the Create or Update a Container Service operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     containerServiceName: string,
     parameters: ContainerService,
@@ -240,7 +240,7 @@ export class ContainerServicesImpl implements ContainerServices {
    *                             resource group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     containerServiceName: string,
     options?: ContainerServicesDeleteOptionalParams

@@ -41,7 +41,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
    * @param parameters Parameters supplied to the LogAnalytics getRequestRateByInterval Api.
    * @param options The options parameters.
    */
-  async exportRequestRateByInterval(
+  async beginExportRequestRateByInterval(
     location: string,
     parameters: RequestRateByIntervalInput,
     options?: LogAnalyticsExportRequestRateByIntervalOptionalParams
@@ -80,7 +80,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
    * @param parameters Parameters supplied to the LogAnalytics getThrottledRequests Api.
    * @param options The options parameters.
    */
-  async exportThrottledRequests(
+  async beginExportThrottledRequests(
     location: string,
     parameters: ThrottledRequestsInput,
     options?: LogAnalyticsExportThrottledRequestsOptionalParams

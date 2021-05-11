@@ -368,7 +368,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param updateParameters The parameters to provide for the current database account.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
@@ -410,7 +410,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param createUpdateParameters The parameters to provide for the current database account.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
@@ -450,7 +450,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     accountName: string,
     options?: DatabaseAccountsDeleteOptionalParams
@@ -489,7 +489,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param failoverParameters The new failover policies for the database account.
    * @param options The options parameters.
    */
-  async failoverPriorityChange(
+  async beginFailoverPriorityChange(
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
@@ -606,7 +606,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param regionParameterForOffline Cosmos DB region to offline for the database account.
    * @param options The options parameters.
    */
-  async offlineRegion(
+  async beginOfflineRegion(
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
@@ -644,7 +644,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param regionParameterForOnline Cosmos DB region to online for the database account.
    * @param options The options parameters.
    */
-  async onlineRegion(
+  async beginOnlineRegion(
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
@@ -726,7 +726,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
    * @param keyToRegenerate The name of the key to regenerate.
    * @param options The options parameters.
    */
-  async regenerateKey(
+  async beginRegenerateKey(
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,

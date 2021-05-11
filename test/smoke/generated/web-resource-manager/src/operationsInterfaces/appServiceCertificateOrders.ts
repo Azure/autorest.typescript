@@ -110,7 +110,7 @@ export interface AppServiceCertificateOrders {
    * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
@@ -166,7 +166,7 @@ export interface AppServiceCertificateOrders {
    * @param keyVaultCertificate Key vault certificate resource Id.
    * @param options The options parameters.
    */
-  createOrUpdateCertificate(
+  beginCreateOrUpdateCertificate(
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,

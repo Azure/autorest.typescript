@@ -368,7 +368,7 @@ export class DeploymentsImpl implements Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  async deleteAtScope(
+  async beginDeleteAtScope(
     scope: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtScopeOptionalParams
@@ -426,7 +426,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  async createOrUpdateAtScope(
+  async beginCreateOrUpdateAtScope(
     scope: string,
     deploymentName: string,
     parameters: Deployment,
@@ -584,7 +584,7 @@ export class DeploymentsImpl implements Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  async deleteAtTenantScope(
+  async beginDeleteAtTenantScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtTenantScopeOptionalParams
   ): Promise<
@@ -636,7 +636,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  async createOrUpdateAtTenantScope(
+  async beginCreateOrUpdateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
     options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
@@ -778,7 +778,7 @@ export class DeploymentsImpl implements Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  async deleteAtManagementGroupScope(
+  async beginDeleteAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
@@ -836,7 +836,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  async createOrUpdateAtManagementGroupScope(
+  async beginCreateOrUpdateAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
@@ -996,7 +996,7 @@ export class DeploymentsImpl implements Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  async deleteAtSubscriptionScope(
+  async beginDeleteAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
   ): Promise<
@@ -1048,7 +1048,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  async createOrUpdateAtSubscriptionScope(
+  async beginCreateOrUpdateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
     options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
@@ -1149,7 +1149,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Parameters to What If.
    * @param options The options parameters.
    */
-  async whatIfAtSubscriptionScope(
+  async beginWhatIfAtSubscriptionScope(
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
@@ -1231,7 +1231,7 @@ export class DeploymentsImpl implements Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsDeleteOptionalParams
@@ -1291,7 +1291,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
@@ -1406,7 +1406,7 @@ export class DeploymentsImpl implements Deployments {
    * @param parameters Parameters to validate.
    * @param options The options parameters.
    */
-  async whatIf(
+  async beginWhatIf(
     resourceGroupName: string,
     deploymentName: string,
     parameters: DeploymentWhatIf,

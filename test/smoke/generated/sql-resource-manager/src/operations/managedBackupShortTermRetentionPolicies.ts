@@ -164,7 +164,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -214,7 +214,7 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

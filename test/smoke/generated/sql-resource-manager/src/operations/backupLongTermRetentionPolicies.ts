@@ -76,7 +76,7 @@ export class BackupLongTermRetentionPoliciesImpl
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

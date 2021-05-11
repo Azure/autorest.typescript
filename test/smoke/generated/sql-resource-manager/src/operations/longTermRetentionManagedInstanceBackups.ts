@@ -546,7 +546,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -691,7 +691,7 @@ export class LongTermRetentionManagedInstanceBackupsImpl
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  async deleteByResourceGroup(
+  async beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,

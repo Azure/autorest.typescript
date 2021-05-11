@@ -174,7 +174,7 @@ export class ServerKeysImpl implements ServerKeys {
    * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     keyName: string,
@@ -218,7 +218,7 @@ export class ServerKeysImpl implements ServerKeys {
    * @param keyName The name of the server key to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     keyName: string,

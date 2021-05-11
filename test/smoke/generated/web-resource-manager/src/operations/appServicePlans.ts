@@ -536,7 +536,7 @@ export class AppServicePlansImpl implements AppServicePlans {
    * @param appServicePlan Details of the App Service plan.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,

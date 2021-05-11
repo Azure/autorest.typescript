@@ -47,7 +47,7 @@ export interface DedicatedHosts {
    * @param parameters Parameters supplied to the Create Dedicated Host.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -67,7 +67,7 @@ export interface DedicatedHosts {
    * @param parameters Parameters supplied to the Update Dedicated Host operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -86,7 +86,7 @@ export interface DedicatedHosts {
    * @param hostName The name of the dedicated host.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,

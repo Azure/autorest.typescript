@@ -56,7 +56,7 @@ export interface ManagedInstanceAdministrators {
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceAdministrator,
@@ -74,7 +74,7 @@ export interface ManagedInstanceAdministrators {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams

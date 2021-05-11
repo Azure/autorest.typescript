@@ -46,7 +46,7 @@ export interface VirtualMachineScaleSetExtensions {
    * @param extensionParameters Parameters supplied to the Create VM scale set Extension operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
@@ -68,7 +68,7 @@ export interface VirtualMachineScaleSetExtensions {
    * @param extensionParameters Parameters supplied to the Update VM scale set Extension operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
@@ -87,7 +87,7 @@ export interface VirtualMachineScaleSetExtensions {
    * @param vmssExtensionName The name of the VM scale set extension.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,

@@ -183,7 +183,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
-  async moveResources(
+  async beginMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
@@ -223,7 +223,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
-  async validateMoveResources(
+  async beginValidateMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
@@ -314,7 +314,7 @@ export class ResourcesImpl implements Resources {
    * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -363,7 +363,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Parameters for creating or updating the resource.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -417,7 +417,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Parameters for updating the resource.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -526,7 +526,7 @@ export class ResourcesImpl implements Resources {
    * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
-  async deleteById(
+  async beginDeleteById(
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
@@ -564,7 +564,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Create or update resource parameters.
    * @param options The options parameters.
    */
-  async createOrUpdateById(
+  async beginCreateOrUpdateById(
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
@@ -607,7 +607,7 @@ export class ResourcesImpl implements Resources {
    * @param parameters Update resource parameters.
    * @param options The options parameters.
    */
-  async updateById(
+  async beginUpdateById(
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,

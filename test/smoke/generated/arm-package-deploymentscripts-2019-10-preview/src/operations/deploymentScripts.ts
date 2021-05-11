@@ -153,7 +153,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param deploymentScript Deployment script supplied to the operation.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,

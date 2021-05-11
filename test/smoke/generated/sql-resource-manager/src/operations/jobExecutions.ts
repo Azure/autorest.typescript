@@ -285,7 +285,7 @@ export class JobExecutionsImpl implements JobExecutions {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -392,7 +392,7 @@ export class JobExecutionsImpl implements JobExecutions {
    * @param jobExecutionId The job execution id to create the job execution under.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

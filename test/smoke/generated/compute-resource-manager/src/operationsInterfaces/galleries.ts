@@ -53,7 +53,7 @@ export interface Galleries {
    * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     gallery: Gallery,
@@ -72,7 +72,7 @@ export interface Galleries {
    * @param gallery Parameters supplied to the update Shared Image Gallery operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     gallery: GalleryUpdate,
@@ -100,7 +100,7 @@ export interface Galleries {
    * @param galleryName The name of the Shared Image Gallery to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     galleryName: string,
     options?: GalleriesDeleteOptionalParams

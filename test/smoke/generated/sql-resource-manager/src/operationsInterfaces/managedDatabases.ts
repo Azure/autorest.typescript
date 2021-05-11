@@ -78,7 +78,7 @@ export interface ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -98,7 +98,7 @@ export interface ManagedDatabases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -115,7 +115,7 @@ export interface ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -136,7 +136,7 @@ export interface ManagedDatabases {
    * @param parameters The definition for completing the restore of this managed database.
    * @param options The options parameters.
    */
-  completeRestore(
+  beginCompleteRestore(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

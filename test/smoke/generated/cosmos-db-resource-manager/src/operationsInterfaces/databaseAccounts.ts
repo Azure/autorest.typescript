@@ -121,7 +121,7 @@ export interface DatabaseAccounts {
    * @param updateParameters The parameters to provide for the current database account.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
@@ -140,7 +140,7 @@ export interface DatabaseAccounts {
    * @param createUpdateParameters The parameters to provide for the current database account.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
@@ -157,7 +157,7 @@ export interface DatabaseAccounts {
    * @param accountName Cosmos DB database account name.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     accountName: string,
     options?: DatabaseAccountsDeleteOptionalParams
@@ -174,7 +174,7 @@ export interface DatabaseAccounts {
    * @param failoverParameters The new failover policies for the database account.
    * @param options The options parameters.
    */
-  failoverPriorityChange(
+  beginFailoverPriorityChange(
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
@@ -211,7 +211,7 @@ export interface DatabaseAccounts {
    * @param regionParameterForOffline Cosmos DB region to offline for the database account.
    * @param options The options parameters.
    */
-  offlineRegion(
+  beginOfflineRegion(
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
@@ -226,7 +226,7 @@ export interface DatabaseAccounts {
    * @param regionParameterForOnline Cosmos DB region to online for the database account.
    * @param options The options parameters.
    */
-  onlineRegion(
+  beginOnlineRegion(
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
@@ -263,7 +263,7 @@ export interface DatabaseAccounts {
    * @param keyToRegenerate The name of the key to regenerate.
    * @param options The options parameters.
    */
-  regenerateKey(
+  beginRegenerateKey(
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,

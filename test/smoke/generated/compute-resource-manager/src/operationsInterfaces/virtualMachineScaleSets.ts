@@ -102,7 +102,7 @@ export interface VirtualMachineScaleSets {
    * @param parameters The scale set object.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSet,
@@ -120,7 +120,7 @@ export interface VirtualMachineScaleSets {
    * @param parameters The scale set object.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSetUpdate,
@@ -137,7 +137,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsDeleteOptionalParams
@@ -163,7 +163,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  deallocate(
+  beginDeallocate(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsDeallocateOptionalParams
@@ -177,7 +177,7 @@ export interface VirtualMachineScaleSets {
    * @param vmInstanceIDs A list of virtual machine instance IDs from the VM scale set.
    * @param options The options parameters.
    */
-  deleteInstances(
+  beginDeleteInstances(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
@@ -204,7 +204,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  powerOff(
+  beginPowerOff(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPowerOffOptionalParams
@@ -217,7 +217,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  restart(
+  beginRestart(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRestartOptionalParams
@@ -230,7 +230,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsStartOptionalParams
@@ -244,7 +244,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  redeploy(
+  beginRedeploy(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRedeployOptionalParams
@@ -260,7 +260,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  performMaintenance(
+  beginPerformMaintenance(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams
@@ -274,7 +274,7 @@ export interface VirtualMachineScaleSets {
    * @param vmInstanceIDs A list of virtual machine instance IDs from the VM scale set.
    * @param options The options parameters.
    */
-  updateInstances(
+  beginUpdateInstances(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
@@ -290,7 +290,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  reimage(
+  beginReimage(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageOptionalParams
@@ -304,7 +304,7 @@ export interface VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  reimageAll(
+  beginReimageAll(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageAllOptionalParams
@@ -347,7 +347,7 @@ export interface VirtualMachineScaleSets {
    * @param parameters The input object for SetOrchestrationServiceState API.
    * @param options The options parameters.
    */
-  setOrchestrationServiceState(
+  beginSetOrchestrationServiceState(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: OrchestrationServiceStateInput,

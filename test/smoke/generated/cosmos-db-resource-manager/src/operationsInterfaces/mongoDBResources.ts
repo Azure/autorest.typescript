@@ -88,7 +88,7 @@ export interface MongoDBResources {
    *                                              database.
    * @param options The options parameters.
    */
-  createUpdateMongoDBDatabase(
+  beginCreateUpdateMongoDBDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -107,7 +107,7 @@ export interface MongoDBResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  deleteMongoDBDatabase(
+  beginDeleteMongoDBDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -138,7 +138,7 @@ export interface MongoDBResources {
    *                                   MongoDB database.
    * @param options The options parameters.
    */
-  updateMongoDBDatabaseThroughput(
+  beginUpdateMongoDBDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -177,7 +177,7 @@ export interface MongoDBResources {
    *                                                Collection.
    * @param options The options parameters.
    */
-  createUpdateMongoDBCollection(
+  beginCreateUpdateMongoDBCollection(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -198,7 +198,7 @@ export interface MongoDBResources {
    * @param collectionName Cosmos DB collection name.
    * @param options The options parameters.
    */
-  deleteMongoDBCollection(
+  beginDeleteMongoDBCollection(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -233,7 +233,7 @@ export interface MongoDBResources {
    *                                   MongoDB collection.
    * @param options The options parameters.
    */
-  updateMongoDBCollectionThroughput(
+  beginUpdateMongoDBCollectionThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

@@ -66,7 +66,7 @@ export interface BackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -91,7 +91,7 @@ export interface BackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

@@ -133,7 +133,7 @@ export interface LongTermRetentionManagedInstanceBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -170,7 +170,7 @@ export interface LongTermRetentionManagedInstanceBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  deleteByResourceGroup(
+  beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,

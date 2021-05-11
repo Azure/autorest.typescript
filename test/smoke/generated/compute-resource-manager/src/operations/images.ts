@@ -151,7 +151,7 @@ export class ImagesImpl implements Images {
    * @param parameters Parameters supplied to the Create Image operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: Image,
@@ -192,7 +192,7 @@ export class ImagesImpl implements Images {
    * @param parameters Parameters supplied to the Update Image operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: ImageUpdate,
@@ -229,7 +229,7 @@ export class ImagesImpl implements Images {
    * @param imageName The name of the image.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams

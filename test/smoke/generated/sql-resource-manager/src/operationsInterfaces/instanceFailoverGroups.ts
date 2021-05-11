@@ -63,7 +63,7 @@ export interface InstanceFailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -83,7 +83,7 @@ export interface InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -99,7 +99,7 @@ export interface InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -119,7 +119,7 @@ export interface InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  forceFailoverAllowDataLoss(
+  beginForceFailoverAllowDataLoss(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,

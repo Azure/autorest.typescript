@@ -496,7 +496,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param createUpdateSqlDatabaseParameters The parameters to provide for the current SQL database.
    * @param options The options parameters.
    */
-  async createUpdateSqlDatabase(
+  async beginCreateUpdateSqlDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -539,7 +539,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  async deleteSqlDatabase(
+  async beginDeleteSqlDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -605,7 +605,7 @@ export class SqlResourcesImpl implements SqlResources {
    *                                   SQL database.
    * @param options The options parameters.
    */
-  async updateSqlDatabaseThroughput(
+  async beginUpdateSqlDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -703,7 +703,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param createUpdateSqlContainerParameters The parameters to provide for the current SQL container.
    * @param options The options parameters.
    */
-  async createUpdateSqlContainer(
+  async beginCreateUpdateSqlContainer(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -749,7 +749,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param containerName Cosmos DB container name.
    * @param options The options parameters.
    */
-  async deleteSqlContainer(
+  async beginDeleteSqlContainer(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -820,7 +820,7 @@ export class SqlResourcesImpl implements SqlResources {
    *                                   SQL container.
    * @param options The options parameters.
    */
-  async updateSqlContainerThroughput(
+  async beginUpdateSqlContainerThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -928,7 +928,7 @@ export class SqlResourcesImpl implements SqlResources {
    *                                                 storedProcedure.
    * @param options The options parameters.
    */
-  async createUpdateSqlStoredProcedure(
+  async beginCreateUpdateSqlStoredProcedure(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -977,7 +977,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param storedProcedureName Cosmos DB storedProcedure name.
    * @param options The options parameters.
    */
-  async deleteSqlStoredProcedure(
+  async beginDeleteSqlStoredProcedure(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -1082,7 +1082,7 @@ export class SqlResourcesImpl implements SqlResources {
    *                                                     userDefinedFunction.
    * @param options The options parameters.
    */
-  async createUpdateSqlUserDefinedFunction(
+  async beginCreateUpdateSqlUserDefinedFunction(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -1133,7 +1133,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param userDefinedFunctionName Cosmos DB userDefinedFunction name.
    * @param options The options parameters.
    */
-  async deleteSqlUserDefinedFunction(
+  async beginDeleteSqlUserDefinedFunction(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -1237,7 +1237,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param createUpdateSqlTriggerParameters The parameters to provide for the current SQL trigger.
    * @param options The options parameters.
    */
-  async createUpdateSqlTrigger(
+  async beginCreateUpdateSqlTrigger(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -1286,7 +1286,7 @@ export class SqlResourcesImpl implements SqlResources {
    * @param triggerName Cosmos DB trigger name.
    * @param options The options parameters.
    */
-  async deleteSqlTrigger(
+  async beginDeleteSqlTrigger(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

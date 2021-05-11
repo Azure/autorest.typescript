@@ -88,7 +88,7 @@ export interface GremlinResources {
    *                                              database.
    * @param options The options parameters.
    */
-  createUpdateGremlinDatabase(
+  beginCreateUpdateGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -107,7 +107,7 @@ export interface GremlinResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  deleteGremlinDatabase(
+  beginDeleteGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -138,7 +138,7 @@ export interface GremlinResources {
    *                                   Gremlin database.
    * @param options The options parameters.
    */
-  updateGremlinDatabaseThroughput(
+  beginUpdateGremlinDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -176,7 +176,7 @@ export interface GremlinResources {
    * @param createUpdateGremlinGraphParameters The parameters to provide for the current Gremlin graph.
    * @param options The options parameters.
    */
-  createUpdateGremlinGraph(
+  beginCreateUpdateGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -197,7 +197,7 @@ export interface GremlinResources {
    * @param graphName Cosmos DB graph name.
    * @param options The options parameters.
    */
-  deleteGremlinGraph(
+  beginDeleteGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -232,7 +232,7 @@ export interface GremlinResources {
    *                                   Gremlin graph.
    * @param options The options parameters.
    */
-  updateGremlinGraphThroughput(
+  beginUpdateGremlinGraphThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

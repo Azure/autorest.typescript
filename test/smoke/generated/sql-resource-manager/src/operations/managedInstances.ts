@@ -294,7 +294,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstance,
@@ -335,7 +335,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstancesDeleteOptionalParams
@@ -372,7 +372,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,

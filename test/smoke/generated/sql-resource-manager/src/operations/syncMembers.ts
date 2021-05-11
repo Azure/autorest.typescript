@@ -281,7 +281,7 @@ export class SyncMembersImpl implements SyncMembers {
    * @param parameters The requested sync member resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -331,7 +331,7 @@ export class SyncMembersImpl implements SyncMembers {
    * @param syncMemberName The name of the sync member.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -377,7 +377,7 @@ export class SyncMembersImpl implements SyncMembers {
    * @param parameters The requested sync member resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -488,7 +488,7 @@ export class SyncMembersImpl implements SyncMembers {
    * @param syncMemberName The name of the sync member.
    * @param options The options parameters.
    */
-  async refreshMemberSchema(
+  async beginRefreshMemberSchema(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

@@ -97,7 +97,7 @@ export interface ElasticPools {
    * @param parameters The elastic pool parameters.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -117,7 +117,7 @@ export interface ElasticPools {
    * @param elasticPoolName The name of the elastic pool.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -134,7 +134,7 @@ export interface ElasticPools {
    * @param parameters The elastic pool update parameters.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -154,7 +154,7 @@ export interface ElasticPools {
    * @param elasticPoolName The name of the elastic pool to failover.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,

@@ -327,7 +327,7 @@ export class AppServiceCertificateOrdersImpl
    * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
@@ -463,7 +463,7 @@ export class AppServiceCertificateOrdersImpl
    * @param keyVaultCertificate Key vault certificate resource Id.
    * @param options The options parameters.
    */
-  async createOrUpdateCertificate(
+  async beginCreateOrUpdateCertificate(
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,

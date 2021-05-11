@@ -68,7 +68,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
@@ -93,7 +93,7 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,

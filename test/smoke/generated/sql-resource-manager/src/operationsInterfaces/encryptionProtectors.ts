@@ -45,7 +45,7 @@ export interface EncryptionProtectors {
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  revalidate(
+  beginRevalidate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -76,7 +76,7 @@ export interface EncryptionProtectors {
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,

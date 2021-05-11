@@ -379,7 +379,7 @@ export class DatabasesImpl implements Databases {
    * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
-  async import(
+  async beginImport(
     resourceGroupName: string,
     serverName: string,
     parameters: ImportRequest,
@@ -424,7 +424,7 @@ export class DatabasesImpl implements Databases {
    * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
-  async createImportOperation(
+  async beginCreateImportOperation(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -471,7 +471,7 @@ export class DatabasesImpl implements Databases {
    * @param parameters The required parameters for exporting a database.
    * @param options The options parameters.
    */
-  async export(
+  async beginExport(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -620,7 +620,7 @@ export class DatabasesImpl implements Databases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -664,7 +664,7 @@ export class DatabasesImpl implements Databases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -704,7 +704,7 @@ export class DatabasesImpl implements Databases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -774,7 +774,7 @@ export class DatabasesImpl implements Databases {
    * @param databaseName The name of the database to be paused.
    * @param options The options parameters.
    */
-  async pause(
+  async beginPause(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -816,7 +816,7 @@ export class DatabasesImpl implements Databases {
    * @param databaseName The name of the database to be resumed.
    * @param options The options parameters.
    */
-  async resume(
+  async beginResume(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -858,7 +858,7 @@ export class DatabasesImpl implements Databases {
    * @param databaseName The name of the database to be upgraded.
    * @param options The options parameters.
    */
-  async upgradeDataWarehouse(
+  async beginUpgradeDataWarehouse(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -926,7 +926,7 @@ export class DatabasesImpl implements Databases {
    * @param databaseName The name of the database to failover.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

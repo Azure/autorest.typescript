@@ -359,7 +359,7 @@ export interface AppServiceEnvironments {
    * @param hostingEnvironmentEnvelope Configuration details of the App Service Environment.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
@@ -376,7 +376,7 @@ export interface AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
@@ -449,7 +449,7 @@ export interface AppServiceEnvironments {
    * @param multiRolePoolEnvelope Properties of the multi-role pool.
    * @param options The options parameters.
    */
-  createOrUpdateMultiRolePool(
+  beginCreateOrUpdateMultiRolePool(
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
@@ -518,7 +518,7 @@ export interface AppServiceEnvironments {
    * @param workerPoolEnvelope Properties of the worker pool.
    * @param options The options parameters.
    */
-  createOrUpdateWorkerPool(
+  beginCreateOrUpdateWorkerPool(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,

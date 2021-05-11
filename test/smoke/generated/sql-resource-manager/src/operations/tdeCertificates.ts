@@ -35,7 +35,7 @@ export class TdeCertificatesImpl implements TdeCertificates {
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     serverName: string,
     parameters: TdeCertificate,

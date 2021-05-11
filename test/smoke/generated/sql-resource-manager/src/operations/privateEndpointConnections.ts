@@ -149,7 +149,7 @@ export class PrivateEndpointConnectionsImpl
    * @param parameters A private endpoint connection
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
@@ -193,7 +193,7 @@ export class PrivateEndpointConnectionsImpl
    * @param privateEndpointConnectionName
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,

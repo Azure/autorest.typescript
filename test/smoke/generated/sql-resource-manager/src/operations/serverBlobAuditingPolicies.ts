@@ -144,7 +144,7 @@ export class ServerBlobAuditingPoliciesImpl
    * @param parameters Properties of blob auditing policy
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,

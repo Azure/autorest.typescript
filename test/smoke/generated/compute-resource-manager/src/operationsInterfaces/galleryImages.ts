@@ -50,7 +50,7 @@ export interface GalleryImages {
    * @param galleryImage Parameters supplied to the create or update gallery image operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -73,7 +73,7 @@ export interface GalleryImages {
    * @param galleryImage Parameters supplied to the update gallery image operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -107,7 +107,7 @@ export interface GalleryImages {
    * @param galleryImageName The name of the gallery Image Definition to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,

@@ -58,7 +58,7 @@ export interface Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: Snapshot,
@@ -78,7 +78,7 @@ export interface Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: SnapshotUpdate,
@@ -110,7 +110,7 @@ export interface Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsDeleteOptionalParams
@@ -126,7 +126,7 @@ export interface Snapshots {
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
    */
-  grantAccess(
+  beginGrantAccess(
     resourceGroupName: string,
     snapshotName: string,
     grantAccessData: GrantAccessData,
@@ -145,7 +145,7 @@ export interface Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  revokeAccess(
+  beginRevokeAccess(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsRevokeAccessOptionalParams

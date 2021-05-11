@@ -174,7 +174,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
    * @param parameters The properties of the workload classifier.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -224,7 +224,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
    * @param workloadClassifierName The name of the workload classifier to delete.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

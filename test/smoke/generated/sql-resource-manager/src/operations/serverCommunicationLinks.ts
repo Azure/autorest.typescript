@@ -161,7 +161,7 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
    * @param parameters The required parameters for creating a server communication link.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,

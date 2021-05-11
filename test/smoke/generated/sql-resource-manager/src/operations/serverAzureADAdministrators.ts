@@ -153,7 +153,7 @@ export class ServerAzureADAdministratorsImpl
    *                   Administrator.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -197,7 +197,7 @@ export class ServerAzureADAdministratorsImpl
    * @param administratorName The name of server active directory administrator.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -258,7 +258,7 @@ export class ServerAzureADAdministratorsImpl
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  async disableAzureADOnlyAuthentication(
+  async beginDisableAzureADOnlyAuthentication(
     resourceGroupName: string,
     serverName: string,
     options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams

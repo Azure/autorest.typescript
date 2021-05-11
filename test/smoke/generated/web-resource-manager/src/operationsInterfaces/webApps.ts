@@ -1462,7 +1462,7 @@ export interface WebApps {
    * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     siteEnvelope: Site,
@@ -1588,7 +1588,7 @@ export interface WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  restore(
+  beginRestore(
     resourceGroupName: string,
     name: string,
     backupId: string,
@@ -1807,7 +1807,7 @@ export interface WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  listPublishingCredentials(
+  beginListPublishingCredentials(
     resourceGroupName: string,
     name: string,
     options?: WebAppsListPublishingCredentialsOptionalParams
@@ -2151,7 +2151,7 @@ export interface WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  createMSDeployOperation(
+  beginCreateMSDeployOperation(
     resourceGroupName: string,
     name: string,
     mSDeploy: MSDeploy,
@@ -2205,7 +2205,7 @@ export interface WebApps {
    * @param functionEnvelope Function details.
    * @param options The options parameters.
    */
-  createFunction(
+  beginCreateFunction(
     resourceGroupName: string,
     name: string,
     functionName: string,
@@ -2572,7 +2572,7 @@ export interface WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  createInstanceMSDeployOperation(
+  beginCreateInstanceMSDeployOperation(
     resourceGroupName: string,
     name: string,
     instanceId: string,
@@ -2695,7 +2695,7 @@ export interface WebApps {
    * @param migrationOptions Migration migrationOptions.
    * @param options The options parameters.
    */
-  migrateStorage(
+  beginMigrateStorage(
     subscriptionName: string,
     resourceGroupName: string,
     name: string,
@@ -2714,7 +2714,7 @@ export interface WebApps {
    * @param migrationRequestEnvelope MySql migration options.
    * @param options The options parameters.
    */
-  migrateMySql(
+  beginMigrateMySql(
     resourceGroupName: string,
     name: string,
     migrationRequestEnvelope: MigrateMySqlRequest,
@@ -2835,7 +2835,7 @@ export interface WebApps {
    * @param name The name of the web app.
    * @param options The options parameters.
    */
-  startWebSiteNetworkTraceOperation(
+  beginStartWebSiteNetworkTraceOperation(
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
@@ -3155,7 +3155,7 @@ export interface WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  restoreFromBackupBlob(
+  beginRestoreFromBackupBlob(
     resourceGroupName: string,
     name: string,
     request: RestoreRequest,
@@ -3170,7 +3170,7 @@ export interface WebApps {
    * @param restoreRequest Deleted web app restore information.
    * @param options The options parameters.
    */
-  restoreFromDeletedApp(
+  beginRestoreFromDeletedApp(
     resourceGroupName: string,
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
@@ -3186,7 +3186,7 @@ export interface WebApps {
    *                       GetDeletedSites or GetSiteSnapshots API.
    * @param options The options parameters.
    */
-  restoreSnapshot(
+  beginRestoreSnapshot(
     resourceGroupName: string,
     name: string,
     restoreRequest: SnapshotRestoreRequest,
@@ -3214,7 +3214,7 @@ export interface WebApps {
    * @param siteExtensionId Site extension name.
    * @param options The options parameters.
    */
-  installSiteExtension(
+  beginInstallSiteExtension(
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
@@ -3246,7 +3246,7 @@ export interface WebApps {
    *                       override the source slot config. See example.
    * @param options The options parameters.
    */
-  copyProductionSlot(
+  beginCopyProductionSlot(
     resourceGroupName: string,
     name: string,
     copySlotEntity: CsmCopySlotEntity,
@@ -3278,7 +3278,7 @@ export interface WebApps {
    * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSlot(
+  beginCreateOrUpdateSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -3428,7 +3428,7 @@ export interface WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  restoreSlot(
+  beginRestoreSlot(
     resourceGroupName: string,
     name: string,
     backupId: string,
@@ -3670,7 +3670,7 @@ export interface WebApps {
    *             credentials for the production slot.
    * @param options The options parameters.
    */
-  listPublishingCredentialsSlot(
+  beginListPublishingCredentialsSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -4054,7 +4054,7 @@ export interface WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  createMSDeployOperationSlot(
+  beginCreateMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -4116,7 +4116,7 @@ export interface WebApps {
    * @param functionEnvelope Function details.
    * @param options The options parameters.
    */
-  createInstanceFunctionSlot(
+  beginCreateInstanceFunctionSlot(
     resourceGroupName: string,
     name: string,
     functionName: string,
@@ -4544,7 +4544,7 @@ export interface WebApps {
    * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
-  createInstanceMSDeployOperationSlot(
+  beginCreateInstanceMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -4812,7 +4812,7 @@ export interface WebApps {
    * @param slot The name of the slot for this web app.
    * @param options The options parameters.
    */
-  startWebSiteNetworkTraceOperationSlot(
+  beginStartWebSiteNetworkTraceOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5047,7 +5047,7 @@ export interface WebApps {
    * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
    * @param options The options parameters.
    */
-  approveOrRejectPrivateEndpointConnection(
+  beginApproveOrRejectPrivateEndpointConnection(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
@@ -5068,7 +5068,7 @@ export interface WebApps {
    * @param privateEndpointConnectionName
    * @param options The options parameters.
    */
-  deletePrivateEndpointConnection(
+  beginDeletePrivateEndpointConnection(
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
@@ -5264,7 +5264,7 @@ export interface WebApps {
    * @param request Information on restore request .
    * @param options The options parameters.
    */
-  restoreFromBackupBlobSlot(
+  beginRestoreFromBackupBlobSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5281,7 +5281,7 @@ export interface WebApps {
    * @param restoreRequest Deleted web app restore information.
    * @param options The options parameters.
    */
-  restoreFromDeletedAppSlot(
+  beginRestoreFromDeletedAppSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5299,7 +5299,7 @@ export interface WebApps {
    *                       GetDeletedSites or GetSiteSnapshots API.
    * @param options The options parameters.
    */
-  restoreSnapshotSlot(
+  beginRestoreSnapshotSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5333,7 +5333,7 @@ export interface WebApps {
    *             slot.
    * @param options The options parameters.
    */
-  installSiteExtensionSlot(
+  beginInstallSiteExtensionSlot(
     resourceGroupName: string,
     name: string,
     siteExtensionId: string,
@@ -5371,7 +5371,7 @@ export interface WebApps {
    *                       override the source slot config. See example.
    * @param options The options parameters.
    */
-  copySlot(
+  beginCopySlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5389,7 +5389,7 @@ export interface WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  swapSlot(
+  beginSwapSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5421,7 +5421,7 @@ export interface WebApps {
    * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSourceControlSlot(
+  beginCreateOrUpdateSourceControlSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5484,7 +5484,7 @@ export interface WebApps {
    * @param slot The name of the slot for this web app.
    * @param options The options parameters.
    */
-  startNetworkTraceSlot(
+  beginStartNetworkTraceSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -5779,7 +5779,7 @@ export interface WebApps {
    * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
-  swapSlotWithProduction(
+  beginSwapSlotWithProduction(
     resourceGroupName: string,
     name: string,
     slotSwapEntity: CsmSlotEntity,
@@ -5805,7 +5805,7 @@ export interface WebApps {
    * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
-  createOrUpdateSourceControl(
+  beginCreateOrUpdateSourceControl(
     resourceGroupName: string,
     name: string,
     siteSourceControl: SiteSourceControl,
@@ -5857,7 +5857,7 @@ export interface WebApps {
    * @param name The name of the web app.
    * @param options The options parameters.
    */
-  startNetworkTrace(
+  beginStartNetworkTrace(
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams

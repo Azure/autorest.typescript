@@ -243,7 +243,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                                keyspace.
    * @param options The options parameters.
    */
-  async createUpdateCassandraKeyspace(
+  async beginCreateUpdateCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -288,7 +288,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    * @param keyspaceName Cosmos DB keyspace name.
    * @param options The options parameters.
    */
-  async deleteCassandraKeyspace(
+  async beginDeleteCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -354,7 +354,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                   Cassandra Keyspace.
    * @param options The options parameters.
    */
-  async updateCassandraKeyspaceThroughput(
+  async beginUpdateCassandraKeyspaceThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -455,7 +455,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                             Table.
    * @param options The options parameters.
    */
-  async createUpdateCassandraTable(
+  async beginCreateUpdateCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -501,7 +501,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  async deleteCassandraTable(
+  async beginDeleteCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -573,7 +573,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                   Cassandra table.
    * @param options The options parameters.
    */
-  async updateCassandraTableThroughput(
+  async beginUpdateCassandraTableThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,

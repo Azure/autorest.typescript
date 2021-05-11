@@ -123,7 +123,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  async revalidate(
+  async beginRevalidate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -212,7 +212,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,

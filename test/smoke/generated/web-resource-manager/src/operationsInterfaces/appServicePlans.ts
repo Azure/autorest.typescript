@@ -154,7 +154,7 @@ export interface AppServicePlans {
    * @param appServicePlan Details of the App Service plan.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,

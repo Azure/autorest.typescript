@@ -156,7 +156,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: Snapshot,
@@ -199,7 +199,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: SnapshotUpdate,
@@ -265,7 +265,7 @@ export class SnapshotsImpl implements Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsDeleteOptionalParams
@@ -338,7 +338,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
    */
-  async grantAccess(
+  async beginGrantAccess(
     resourceGroupName: string,
     snapshotName: string,
     grantAccessData: GrantAccessData,
@@ -381,7 +381,7 @@ export class SnapshotsImpl implements Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  async revokeAccess(
+  async beginRevokeAccess(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsRevokeAccessOptionalParams

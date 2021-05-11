@@ -47,7 +47,7 @@ export interface BackupLongTermRetentionPolicies {
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

@@ -198,7 +198,7 @@ export class ServersImpl implements Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
@@ -239,7 +239,7 @@ export class ServersImpl implements Servers {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     options?: ServersDeleteOptionalParams
@@ -276,7 +276,7 @@ export class ServersImpl implements Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,

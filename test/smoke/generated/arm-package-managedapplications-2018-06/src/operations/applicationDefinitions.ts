@@ -127,7 +127,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    * @param applicationDefinitionName The name of the managed application definition to delete.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
@@ -163,7 +163,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    * @param parameters Parameters supplied to the create or update an managed application definition.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
@@ -246,7 +246,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param options The options parameters.
    */
-  async deleteById(
+  async beginDeleteById(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<
@@ -282,7 +282,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
-  async createOrUpdateById(
+  async beginCreateOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams

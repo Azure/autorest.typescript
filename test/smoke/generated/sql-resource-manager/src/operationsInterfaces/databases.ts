@@ -115,7 +115,7 @@ export interface Databases {
    * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
-  import(
+  beginImport(
     resourceGroupName: string,
     serverName: string,
     parameters: ImportRequest,
@@ -137,7 +137,7 @@ export interface Databases {
    * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
-  createImportOperation(
+  beginCreateImportOperation(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -159,7 +159,7 @@ export interface Databases {
    * @param parameters The required parameters for exporting a database.
    * @param options The options parameters.
    */
-  export(
+  beginExport(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -194,7 +194,7 @@ export interface Databases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -214,7 +214,7 @@ export interface Databases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -231,7 +231,7 @@ export interface Databases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -251,7 +251,7 @@ export interface Databases {
    * @param databaseName The name of the database to be paused.
    * @param options The options parameters.
    */
-  pause(
+  beginPause(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -270,7 +270,7 @@ export interface Databases {
    * @param databaseName The name of the database to be resumed.
    * @param options The options parameters.
    */
-  resume(
+  beginResume(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -289,7 +289,7 @@ export interface Databases {
    * @param databaseName The name of the database to be upgraded.
    * @param options The options parameters.
    */
-  upgradeDataWarehouse(
+  beginUpgradeDataWarehouse(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -321,7 +321,7 @@ export interface Databases {
    * @param databaseName The name of the database to failover.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

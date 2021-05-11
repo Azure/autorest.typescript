@@ -145,7 +145,7 @@ export interface Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  deleteAtScope(
+  beginDeleteAtScope(
     scope: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtScopeOptionalParams
@@ -170,7 +170,7 @@ export interface Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  createOrUpdateAtScope(
+  beginCreateOrUpdateAtScope(
     scope: string,
     deploymentName: string,
     parameters: Deployment,
@@ -241,7 +241,7 @@ export interface Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  deleteAtTenantScope(
+  beginDeleteAtTenantScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtTenantScopeOptionalParams
   ): Promise<
@@ -262,7 +262,7 @@ export interface Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  createOrUpdateAtTenantScope(
+  beginCreateOrUpdateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
     options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
@@ -325,7 +325,7 @@ export interface Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  deleteAtManagementGroupScope(
+  beginDeleteAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
@@ -350,7 +350,7 @@ export interface Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  createOrUpdateAtManagementGroupScope(
+  beginCreateOrUpdateAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
@@ -423,7 +423,7 @@ export interface Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  deleteAtSubscriptionScope(
+  beginDeleteAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
   ): Promise<
@@ -444,7 +444,7 @@ export interface Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  createOrUpdateAtSubscriptionScope(
+  beginCreateOrUpdateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
     options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
@@ -492,7 +492,7 @@ export interface Deployments {
    * @param parameters Parameters to What If.
    * @param options The options parameters.
    */
-  whatIfAtSubscriptionScope(
+  beginWhatIfAtSubscriptionScope(
     deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
@@ -525,7 +525,7 @@ export interface Deployments {
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsDeleteOptionalParams
@@ -552,7 +552,7 @@ export interface Deployments {
    * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
@@ -610,7 +610,7 @@ export interface Deployments {
    * @param parameters Parameters to validate.
    * @param options The options parameters.
    */
-  whatIf(
+  beginWhatIf(
     resourceGroupName: string,
     deploymentName: string,
     parameters: DeploymentWhatIf,

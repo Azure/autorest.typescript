@@ -321,7 +321,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param parameters The scale set object.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSet,
@@ -362,7 +362,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param parameters The scale set object.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: VirtualMachineScaleSetUpdate,
@@ -402,7 +402,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsDeleteOptionalParams
@@ -461,7 +461,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async deallocate(
+  async beginDeallocate(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsDeallocateOptionalParams
@@ -497,7 +497,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmInstanceIDs A list of virtual machine instance IDs from the VM scale set.
    * @param options The options parameters.
    */
-  async deleteInstances(
+  async beginDeleteInstances(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
@@ -640,7 +640,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async powerOff(
+  async beginPowerOff(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPowerOffOptionalParams
@@ -675,7 +675,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async restart(
+  async beginRestart(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRestartOptionalParams
@@ -710,7 +710,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsStartOptionalParams
@@ -746,7 +746,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async redeploy(
+  async beginRedeploy(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsRedeployOptionalParams
@@ -784,7 +784,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async performMaintenance(
+  async beginPerformMaintenance(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams
@@ -820,7 +820,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmInstanceIDs A list of virtual machine instance IDs from the VM scale set.
    * @param options The options parameters.
    */
-  async updateInstances(
+  async beginUpdateInstances(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs,
@@ -859,7 +859,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async reimage(
+  async beginReimage(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageOptionalParams
@@ -895,7 +895,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async reimageAll(
+  async beginReimageAll(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetsReimageAllOptionalParams
@@ -986,7 +986,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
    * @param parameters The input object for SetOrchestrationServiceState API.
    * @param options The options parameters.
    */
-  async setOrchestrationServiceState(
+  async beginSetOrchestrationServiceState(
     resourceGroupName: string,
     vmScaleSetName: string,
     parameters: OrchestrationServiceStateInput,
