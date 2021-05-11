@@ -7,8 +7,9 @@ export function calculateMethodName(operation: OperationDetails): string {
     NameType.Property
   )}`;
   const firstLetter = name.substr(0, 1)[0].toUpperCase();
-  const lroName = operation.isLRO
-    ? `begin${firstLetter}${name.substr(1)}`
-    : name;
+  const lroName =
+    operation.isLRO && operation.pagination === undefined
+      ? `begin${firstLetter}${name.substr(1)}`
+      : name;
   return lroName;
 }

@@ -177,7 +177,7 @@ export interface Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  listMultiplePagesLRO(
+  beginListMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**

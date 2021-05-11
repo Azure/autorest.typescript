@@ -843,7 +843,7 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public listMultiplePagesLRO(
+  public beginListMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesLROPagingAll(options);
@@ -1636,7 +1636,7 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  private async begin_getMultiplePagesLRO(
+  private async _getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<
@@ -1645,7 +1645,7 @@ export class PagingImpl implements Paging {
     >
   > {
     const { span, updatedOptions } = createSpan(
-      "PagingClient-begin_getMultiplePagesLRO",
+      "PagingClient-_getMultiplePagesLRO",
       options || {}
     );
     const operationArguments: coreHttp.OperationArguments = {

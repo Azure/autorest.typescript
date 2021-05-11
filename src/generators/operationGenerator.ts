@@ -48,7 +48,7 @@ import {
   preparePageableOperations,
   writeAsyncIterators
 } from "./utils/pagingOperations";
-import { calculateMethodName } from "./utils/operations";
+import { calculateMethodName } from "./utils/operationsUtils";
 
 /**
  * Function that writes the code for all the operations.
