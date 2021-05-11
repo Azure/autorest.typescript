@@ -119,7 +119,7 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -184,7 +184,7 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
    * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,

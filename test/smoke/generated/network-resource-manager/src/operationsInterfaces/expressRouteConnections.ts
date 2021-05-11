@@ -30,7 +30,7 @@ export interface ExpressRouteConnections {
    *                                            operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
@@ -62,7 +62,7 @@ export interface ExpressRouteConnections {
    * @param connectionName The name of the connection subresource.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,

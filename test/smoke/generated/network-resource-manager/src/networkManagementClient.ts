@@ -724,7 +724,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  private async _putBastionShareableLink(
+  private async begin_putBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -768,7 +768,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  async deleteBastionShareableLink(
+  async beginDeleteBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -831,7 +831,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  private async _getActiveSessions(
+  private async begin_getActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
     options?: NetworkManagementClientGetActiveSessionsOptionalParams
@@ -943,7 +943,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    *                        operation.
    * @param options The options parameters.
    */
-  async generatevirtualwanvpnserverconfigurationvpnprofile(
+  async beginGeneratevirtualwanvpnserverconfigurationvpnprofile(
     resourceGroupName: string,
     virtualWANName: string,
     vpnClientParams: VirtualWanVpnProfileParameters,

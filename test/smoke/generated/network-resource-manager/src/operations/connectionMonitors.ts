@@ -115,7 +115,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param parameters Parameters that define the operation to create a connection monitor.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -184,7 +184,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -251,7 +251,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -290,7 +290,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -329,7 +329,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name given to the connection monitor.
    * @param options The options parameters.
    */
-  async query(
+  async beginQuery(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,

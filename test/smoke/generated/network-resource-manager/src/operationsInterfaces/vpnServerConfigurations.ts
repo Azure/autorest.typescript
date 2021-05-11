@@ -65,7 +65,7 @@ export interface VpnServerConfigurations {
    *                                         VpnServerConfiguration.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
@@ -95,7 +95,7 @@ export interface VpnServerConfigurations {
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: VpnServerConfigurationsDeleteOptionalParams

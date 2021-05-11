@@ -149,7 +149,7 @@ export class RouteFiltersImpl implements RouteFilters {
    * @param routeFilterName The name of the route filter.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     options?: RouteFiltersDeleteOptionalParams
@@ -208,7 +208,7 @@ export class RouteFiltersImpl implements RouteFilters {
    * @param routeFilterParameters Parameters supplied to the create or update route filter operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     routeFilterParameters: RouteFilter,

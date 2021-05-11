@@ -43,7 +43,7 @@ export interface LocalNetworkGateways {
    * @param parameters Parameters supplied to the create or update local network gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
@@ -71,7 +71,7 @@ export interface LocalNetworkGateways {
    * @param localNetworkGatewayName The name of the local network gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     options?: LocalNetworkGatewaysDeleteOptionalParams

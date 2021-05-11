@@ -123,7 +123,7 @@ export class SubnetsImpl implements Subnets {
    * @param subnetName The name of the subnet.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -188,7 +188,7 @@ export class SubnetsImpl implements Subnets {
    * @param subnetParameters Parameters supplied to the create or update subnet operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -234,7 +234,7 @@ export class SubnetsImpl implements Subnets {
    *                                                network intent policies.
    * @param options The options parameters.
    */
-  async prepareNetworkPolicies(
+  async beginPrepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -277,7 +277,7 @@ export class SubnetsImpl implements Subnets {
    *                                                  network intent policies.
    * @param options The options parameters.
    */
-  async unprepareNetworkPolicies(
+  async beginUnprepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,

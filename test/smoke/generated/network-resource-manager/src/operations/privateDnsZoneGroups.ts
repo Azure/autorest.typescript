@@ -119,7 +119,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
    * @param privateDnsZoneGroupName The name of the private dns zone group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -184,7 +184,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
    * @param parameters Parameters supplied to the create or update private dns zone group operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,

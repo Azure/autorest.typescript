@@ -146,7 +146,7 @@ export class BastionHostsImpl implements BastionHosts {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     bastionHostName: string,
     options?: BastionHostsDeleteOptionalParams
@@ -205,7 +205,7 @@ export class BastionHostsImpl implements BastionHosts {
    * @param parameters Parameters supplied to the create or update Bastion Host operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     bastionHostName: string,
     parameters: BastionHost,

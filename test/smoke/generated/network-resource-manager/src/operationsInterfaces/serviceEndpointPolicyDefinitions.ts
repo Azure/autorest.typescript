@@ -42,7 +42,7 @@ export interface ServiceEndpointPolicyDefinitions {
    * @param serviceEndpointPolicyDefinitionName The name of the service endpoint policy definition.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
@@ -72,7 +72,7 @@ export interface ServiceEndpointPolicyDefinitions {
    *                                         policy operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,

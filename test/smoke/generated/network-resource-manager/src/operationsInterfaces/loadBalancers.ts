@@ -51,7 +51,7 @@ export interface LoadBalancers {
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     options?: LoadBalancersDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface LoadBalancers {
    * @param parameters Parameters supplied to the create or update load balancer operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,

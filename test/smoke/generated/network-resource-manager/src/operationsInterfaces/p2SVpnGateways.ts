@@ -74,7 +74,7 @@ export interface P2SVpnGateways {
    *                                gateway.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
@@ -104,7 +104,7 @@ export interface P2SVpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
@@ -118,7 +118,7 @@ export interface P2SVpnGateways {
    * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
    * @param options The options parameters.
    */
-  generateVpnProfile(
+  beginGenerateVpnProfile(
     resourceGroupName: string,
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
@@ -136,7 +136,7 @@ export interface P2SVpnGateways {
    * @param gatewayName The name of the P2SVpnGateway.
    * @param options The options parameters.
    */
-  getP2SVpnConnectionHealth(
+  beginGetP2SVpnConnectionHealth(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
@@ -154,7 +154,7 @@ export interface P2SVpnGateways {
    * @param request Request parameters supplied to get p2s vpn connections detailed health.
    * @param options The options parameters.
    */
-  getP2SVpnConnectionHealthDetailed(
+  beginGetP2SVpnConnectionHealthDetailed(
     resourceGroupName: string,
     gatewayName: string,
     request: P2SVpnConnectionHealthRequest,
@@ -174,7 +174,7 @@ export interface P2SVpnGateways {
    * @param request The parameters are supplied to disconnect p2s vpn connections.
    * @param options The options parameters.
    */
-  disconnectP2SVpnConnections(
+  beginDisconnectP2SVpnConnections(
     resourceGroupName: string,
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,

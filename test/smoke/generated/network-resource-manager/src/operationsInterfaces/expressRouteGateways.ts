@@ -47,7 +47,7 @@ export interface ExpressRouteGateways {
    *                                         operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
@@ -76,7 +76,7 @@ export interface ExpressRouteGateways {
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams

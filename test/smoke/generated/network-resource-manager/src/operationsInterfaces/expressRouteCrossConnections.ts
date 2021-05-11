@@ -68,7 +68,7 @@ export interface ExpressRouteCrossConnections {
    * @param parameters Parameters supplied to the update express route crossConnection operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
@@ -101,7 +101,7 @@ export interface ExpressRouteCrossConnections {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listArpTable(
+  beginListArpTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -121,7 +121,7 @@ export interface ExpressRouteCrossConnections {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTableSummary(
+  beginListRoutesTableSummary(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -144,7 +144,7 @@ export interface ExpressRouteCrossConnections {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTable(
+  beginListRoutesTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,

@@ -63,7 +63,7 @@ export interface VirtualWans {
    * @param wANParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: VirtualWAN,
@@ -93,7 +93,7 @@ export interface VirtualWans {
    * @param virtualWANName The name of the VirtualWAN being deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualWANName: string,
     options?: VirtualWansDeleteOptionalParams

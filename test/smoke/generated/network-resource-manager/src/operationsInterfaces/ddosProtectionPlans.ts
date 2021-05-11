@@ -51,7 +51,7 @@ export interface DdosProtectionPlans {
    * @param ddosProtectionPlanName The name of the DDoS protection plan.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: DdosProtectionPlansDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface DdosProtectionPlans {
    * @param parameters Parameters supplied to the create or update operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,

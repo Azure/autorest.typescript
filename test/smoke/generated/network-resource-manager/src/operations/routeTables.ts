@@ -146,7 +146,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param routeTableName The name of the route table.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     options?: RouteTablesDeleteOptionalParams
@@ -205,7 +205,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param parameters Parameters supplied to the create or update route table operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     parameters: RouteTable,

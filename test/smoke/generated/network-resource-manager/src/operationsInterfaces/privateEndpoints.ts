@@ -48,7 +48,7 @@ export interface PrivateEndpoints {
    * @param privateEndpointName The name of the private endpoint.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     options?: PrivateEndpointsDeleteOptionalParams
@@ -73,7 +73,7 @@ export interface PrivateEndpoints {
    * @param parameters Parameters supplied to the create or update private endpoint operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     parameters: PrivateEndpoint,

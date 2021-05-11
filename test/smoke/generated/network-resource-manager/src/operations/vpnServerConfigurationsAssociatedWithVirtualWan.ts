@@ -37,7 +37,7 @@ export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
    * @param virtualWANName The name of the VirtualWAN whose associated VpnServerConfigurations is needed.
    * @param options The options parameters.
    */
-  async list(
+  async beginList(
     resourceGroupName: string,
     virtualWANName: string,
     options?: VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams

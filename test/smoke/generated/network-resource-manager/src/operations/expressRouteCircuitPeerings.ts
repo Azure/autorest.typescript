@@ -108,7 +108,7 @@ export class ExpressRouteCircuitPeeringsImpl
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -174,7 +174,7 @@ export class ExpressRouteCircuitPeeringsImpl
    *                          operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

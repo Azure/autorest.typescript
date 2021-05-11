@@ -72,7 +72,7 @@ export interface WebApplicationFirewallPolicies {
    * @param policyName The name of the policy.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     policyName: string,
     options?: WebApplicationFirewallPoliciesDeleteOptionalParams

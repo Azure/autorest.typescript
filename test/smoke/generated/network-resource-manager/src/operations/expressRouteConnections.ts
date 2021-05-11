@@ -45,7 +45,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
    *                                            operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,
@@ -114,7 +114,7 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
    * @param connectionName The name of the connection subresource.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     connectionName: string,

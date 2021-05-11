@@ -373,7 +373,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param serviceName The name of the private link service.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
@@ -432,7 +432,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param parameters Parameters supplied to the create or update private link service operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serviceName: string,
     parameters: PrivateLinkService,
@@ -563,7 +563,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
    * @param peConnectionName The name of the private end point connection.
    * @param options The options parameters.
    */
-  async deletePrivateEndpointConnection(
+  async beginDeletePrivateEndpointConnection(
     resourceGroupName: string,
     serviceName: string,
     peConnectionName: string,

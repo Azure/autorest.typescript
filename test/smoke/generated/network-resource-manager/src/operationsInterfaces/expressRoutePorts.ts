@@ -51,7 +51,7 @@ export interface ExpressRoutePorts {
    * @param expressRoutePortName The name of the ExpressRoutePort resource.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: ExpressRoutePortsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface ExpressRoutePorts {
    * @param parameters Parameters supplied to the create ExpressRoutePort operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: ExpressRoutePort,

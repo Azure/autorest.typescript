@@ -42,7 +42,7 @@ export interface NetworkInterfaceTapConfigurations {
    * @param tapConfigurationName The name of the tap configuration.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -72,7 +72,7 @@ export interface NetworkInterfaceTapConfigurations {
    *                                   operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,

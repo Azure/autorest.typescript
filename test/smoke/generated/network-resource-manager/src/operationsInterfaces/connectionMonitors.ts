@@ -50,7 +50,7 @@ export interface ConnectionMonitors {
    * @param parameters Parameters that define the operation to create a connection monitor.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -82,7 +82,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -112,7 +112,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  stop(
+  beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -127,7 +127,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -142,7 +142,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name given to the connection monitor.
    * @param options The options parameters.
    */
-  query(
+  beginQuery(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,

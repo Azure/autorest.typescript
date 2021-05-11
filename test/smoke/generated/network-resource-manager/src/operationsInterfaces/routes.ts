@@ -42,7 +42,7 @@ export interface Routes {
    * @param routeName The name of the route.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
@@ -71,7 +71,7 @@ export interface Routes {
    * @param routeParameters Parameters supplied to the create or update route operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,

@@ -99,7 +99,7 @@ export class PrivateEndpointConnectionsImpl
    *                                      vault.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,

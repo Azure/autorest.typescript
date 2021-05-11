@@ -67,7 +67,7 @@ export interface VirtualNetworks {
    * @param virtualNetworkName The name of the virtual network.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksDeleteOptionalParams
@@ -92,7 +92,7 @@ export interface VirtualNetworks {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,

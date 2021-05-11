@@ -143,7 +143,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param privateEndpointName The name of the private endpoint.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     options?: PrivateEndpointsDeleteOptionalParams
@@ -202,7 +202,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param parameters Parameters supplied to the create or update private endpoint operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     parameters: PrivateEndpoint,

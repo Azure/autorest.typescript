@@ -137,7 +137,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
    * @param inboundNatRuleName The name of the inbound nat rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
@@ -203,7 +203,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
    *                                 operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,

@@ -149,7 +149,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    * @param serviceEndpointPolicyName The name of the service endpoint policy.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     options?: ServiceEndpointPoliciesDeleteOptionalParams
@@ -208,7 +208,7 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
    * @param parameters Parameters supplied to the create or update service endpoint policy operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     parameters: ServiceEndpointPolicy,

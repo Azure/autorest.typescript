@@ -119,7 +119,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
    * @param ruleName The name of the rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
@@ -185,7 +185,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
    *                                  operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,

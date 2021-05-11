@@ -130,7 +130,7 @@ export class ExpressRouteCircuitConnectionsImpl
    * @param connectionName The name of the express route circuit connection.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -202,7 +202,7 @@ export class ExpressRouteCircuitConnectionsImpl
    *                                                route circuit connection operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

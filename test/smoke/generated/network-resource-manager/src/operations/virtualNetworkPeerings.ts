@@ -119,7 +119,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
    * @param virtualNetworkPeeringName The name of the virtual network peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
@@ -185,7 +185,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
    *                                        peering operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,

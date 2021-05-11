@@ -22,7 +22,7 @@ export interface VpnSitesConfiguration {
    * @param request Parameters supplied to download vpn-sites configuration.
    * @param options The options parameters.
    */
-  download(
+  beginDownload(
     resourceGroupName: string,
     virtualWANName: string,
     request: GetVpnSitesConfigurationRequest,

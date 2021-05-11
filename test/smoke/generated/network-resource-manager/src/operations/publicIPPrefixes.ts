@@ -146,7 +146,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param publicIpPrefixName The name of the PublicIpPrefix.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     publicIpPrefixName: string,
     options?: PublicIPPrefixesDeleteOptionalParams
@@ -205,7 +205,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param parameters Parameters supplied to the create or update public IP prefix operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,

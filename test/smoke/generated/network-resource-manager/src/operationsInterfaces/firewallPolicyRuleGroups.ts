@@ -42,7 +42,7 @@ export interface FirewallPolicyRuleGroups {
    * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
@@ -71,7 +71,7 @@ export interface FirewallPolicyRuleGroups {
    * @param parameters Parameters supplied to the create or update FirewallPolicyRuleGroup operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,

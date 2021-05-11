@@ -146,7 +146,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     options?: LoadBalancersDeleteOptionalParams
@@ -205,7 +205,7 @@ export class LoadBalancersImpl implements LoadBalancers {
    * @param parameters Parameters supplied to the create or update load balancer operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,

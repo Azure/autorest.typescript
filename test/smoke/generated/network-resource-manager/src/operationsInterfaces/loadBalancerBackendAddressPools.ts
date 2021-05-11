@@ -57,7 +57,7 @@ export interface LoadBalancerBackendAddressPools {
    *                   operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
@@ -76,7 +76,7 @@ export interface LoadBalancerBackendAddressPools {
    * @param backendAddressPoolName The name of the backend address pool.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,

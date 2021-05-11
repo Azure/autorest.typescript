@@ -108,7 +108,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
    * @param routeTableParameters Parameters supplied to create or update RouteTable.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -177,7 +177,7 @@ export class HubRouteTablesImpl implements HubRouteTables {
    * @param routeTableName The name of the RouteTable.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,

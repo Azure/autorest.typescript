@@ -51,7 +51,7 @@ export interface RouteTables {
    * @param routeTableName The name of the route table.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     options?: RouteTablesDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface RouteTables {
    * @param parameters Parameters supplied to the create or update route table operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     parameters: RouteTable,

@@ -146,7 +146,7 @@ export class VpnConnectionsImpl implements VpnConnections {
    * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
@@ -190,7 +190,7 @@ export class VpnConnectionsImpl implements VpnConnections {
    * @param connectionName The name of the connection.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,

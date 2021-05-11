@@ -51,7 +51,7 @@ export interface SecurityPartnerProviders {
    * @param securityPartnerProviderName The name of the Security Partner Provider.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     options?: SecurityPartnerProvidersDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface SecurityPartnerProviders {
    * @param parameters Parameters supplied to the create or update Security Partner Provider operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,

@@ -51,7 +51,7 @@ export interface NetworkProfiles {
    * @param networkProfileName The name of the NetworkProfile.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkProfileName: string,
     options?: NetworkProfilesDeleteOptionalParams

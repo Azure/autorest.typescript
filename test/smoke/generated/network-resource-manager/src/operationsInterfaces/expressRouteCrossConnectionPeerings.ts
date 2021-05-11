@@ -42,7 +42,7 @@ export interface ExpressRouteCrossConnectionPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -72,7 +72,7 @@ export interface ExpressRouteCrossConnectionPeerings {
    *                          peering operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,

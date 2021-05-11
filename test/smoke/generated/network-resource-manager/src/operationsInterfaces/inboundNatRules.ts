@@ -42,7 +42,7 @@ export interface InboundNatRules {
    * @param inboundNatRuleName The name of the inbound nat rule.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
@@ -72,7 +72,7 @@ export interface InboundNatRules {
    *                                 operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,

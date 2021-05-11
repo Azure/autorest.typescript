@@ -119,7 +119,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
    * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,
@@ -184,7 +184,7 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
    * @param parameters Parameters supplied to the create or update FirewallPolicyRuleGroup operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     firewallPolicyName: string,
     ruleGroupName: string,

@@ -146,7 +146,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    * @param virtualRouterName The name of the Virtual Router.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     options?: VirtualRoutersDeleteOptionalParams
@@ -205,7 +205,7 @@ export class VirtualRoutersImpl implements VirtualRouters {
    * @param parameters Parameters supplied to the create or update Virtual Router.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     parameters: VirtualRouter,

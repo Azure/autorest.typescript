@@ -58,7 +58,7 @@ export interface PrivateEndpointConnections {
    *                                      vault.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vaultName: string,
     privateEndpointConnectionName: string,

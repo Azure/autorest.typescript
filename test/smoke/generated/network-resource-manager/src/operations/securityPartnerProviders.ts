@@ -149,7 +149,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    * @param securityPartnerProviderName The name of the Security Partner Provider.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     options?: SecurityPartnerProvidersDeleteOptionalParams
@@ -208,7 +208,7 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
    * @param parameters Parameters supplied to the create or update Security Partner Provider operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,

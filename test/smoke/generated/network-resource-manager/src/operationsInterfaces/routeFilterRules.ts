@@ -42,7 +42,7 @@ export interface RouteFilterRules {
    * @param ruleName The name of the rule.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
@@ -72,7 +72,7 @@ export interface RouteFilterRules {
    *                                  operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,

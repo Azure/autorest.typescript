@@ -48,7 +48,7 @@ export interface BastionHosts {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     bastionHostName: string,
     options?: BastionHostsDeleteOptionalParams
@@ -73,7 +73,7 @@ export interface BastionHosts {
    * @param parameters Parameters supplied to the create or update Bastion Host operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     bastionHostName: string,
     parameters: BastionHost,

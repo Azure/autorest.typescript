@@ -107,7 +107,7 @@ export class RoutesImpl implements Routes {
    * @param routeName The name of the route.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
@@ -172,7 +172,7 @@ export class RoutesImpl implements Routes {
    * @param routeParameters Parameters supplied to the create or update route operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,

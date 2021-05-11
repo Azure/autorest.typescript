@@ -63,7 +63,7 @@ export interface VpnSites {
    * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteParameters: VpnSite,
@@ -93,7 +93,7 @@ export interface VpnSites {
    * @param vpnSiteName The name of the VpnSite being deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vpnSiteName: string,
     options?: VpnSitesDeleteOptionalParams

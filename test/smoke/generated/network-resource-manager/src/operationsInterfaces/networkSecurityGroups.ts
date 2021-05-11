@@ -51,7 +51,7 @@ export interface NetworkSecurityGroups {
    * @param networkSecurityGroupName The name of the network security group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     options?: NetworkSecurityGroupsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface NetworkSecurityGroups {
    * @param parameters Parameters supplied to the create or update network security group operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: NetworkSecurityGroup,

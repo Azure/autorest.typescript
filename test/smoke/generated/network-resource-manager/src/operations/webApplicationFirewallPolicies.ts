@@ -226,7 +226,7 @@ export class WebApplicationFirewallPoliciesImpl
    * @param policyName The name of the policy.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     policyName: string,
     options?: WebApplicationFirewallPoliciesDeleteOptionalParams

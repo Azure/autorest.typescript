@@ -172,7 +172,7 @@ export class VpnSitesImpl implements VpnSites {
    * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteParameters: VpnSite,
@@ -238,7 +238,7 @@ export class VpnSitesImpl implements VpnSites {
    * @param vpnSiteName The name of the VpnSite being deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vpnSiteName: string,
     options?: VpnSitesDeleteOptionalParams

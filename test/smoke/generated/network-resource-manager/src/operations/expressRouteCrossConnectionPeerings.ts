@@ -142,7 +142,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -208,7 +208,7 @@ export class ExpressRouteCrossConnectionPeeringsImpl
    *                          peering operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,

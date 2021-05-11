@@ -42,7 +42,7 @@ export interface SecurityRules {
    * @param securityRuleName The name of the security rule.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
@@ -72,7 +72,7 @@ export interface SecurityRules {
    *                               operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,

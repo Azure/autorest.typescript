@@ -172,7 +172,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param parameters Parameters supplied to the create or update IpGroups operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: IpGroup,
@@ -238,7 +238,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param ipGroupsName The name of the ipGroups.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ipGroupsName: string,
     options?: IpGroupsDeleteOptionalParams

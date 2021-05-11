@@ -42,7 +42,7 @@ export interface ExpressRouteCircuitPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -72,7 +72,7 @@ export interface ExpressRouteCircuitPeerings {
    *                          operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

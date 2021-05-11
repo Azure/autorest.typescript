@@ -172,7 +172,7 @@ export class VirtualWansImpl implements VirtualWans {
    * @param wANParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualWANName: string,
     wANParameters: VirtualWAN,
@@ -238,7 +238,7 @@ export class VirtualWansImpl implements VirtualWans {
    * @param virtualWANName The name of the VirtualWAN being deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualWANName: string,
     options?: VirtualWansDeleteOptionalParams

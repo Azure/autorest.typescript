@@ -156,7 +156,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
    * @param circuitName The name of the express route circuit.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     circuitName: string,
     options?: ExpressRouteCircuitsDeleteOptionalParams
@@ -215,7 +215,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
    * @param parameters Parameters supplied to the create or update express route circuit operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     parameters: ExpressRouteCircuit,
@@ -284,7 +284,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listArpTable(
+  async beginListArpTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -330,7 +330,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTable(
+  async beginListRoutesTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -376,7 +376,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTableSummary(
+  async beginListRoutesTableSummary(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

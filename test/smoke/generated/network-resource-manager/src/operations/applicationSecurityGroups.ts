@@ -147,7 +147,7 @@ export class ApplicationSecurityGroupsImpl
    * @param applicationSecurityGroupName The name of the application security group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     options?: ApplicationSecurityGroupsDeleteOptionalParams
@@ -206,7 +206,7 @@ export class ApplicationSecurityGroupsImpl
    * @param parameters Parameters supplied to the create or update ApplicationSecurityGroup operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: ApplicationSecurityGroup,

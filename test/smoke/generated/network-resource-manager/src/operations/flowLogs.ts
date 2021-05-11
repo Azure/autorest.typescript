@@ -120,7 +120,7 @@ export class FlowLogsImpl implements FlowLogs {
    * @param parameters Parameters that define the create or update flow log resource.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
@@ -189,7 +189,7 @@ export class FlowLogsImpl implements FlowLogs {
    * @param flowLogName The name of the flow log resource.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
