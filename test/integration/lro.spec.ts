@@ -1,16 +1,10 @@
 import { LROClient, Product } from "./generated/lro/src";
 import { assert } from "chai";
 import {
-  HttpOperationResponse,
   InternalPipelineOptions,
   OperationOptions,
   RequestPolicyFactory
 } from "@azure/core-http";
-
-function getLROStatusFromBody(result: HttpOperationResponse): string {
-  const { status } = result.parsedBody || {};
-  return status;
-}
 
 const LROOptions = {
   updateIntervalInMs: 0
@@ -138,11 +132,12 @@ describe("LROs", () => {
       const poller = await client.lROs.beginPut200Acceptedcanceled200(
         LROOptions
       );
-
-      const result = await poller.pollUntilDone();
-      assert.deepEqual(result.provisioningState, "Canceled");
-      assert.deepEqual(result.id, "100");
-      assert.deepEqual(result.name, "foo");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Provisioning state: canceled");
+      }
     });
 
     it("should handle put200UpdatingSucceeded204", async () => {
@@ -157,10 +152,12 @@ describe("LROs", () => {
 
     it("should handle put201CreatingFailed200", async () => {
       const poller = await client.lROs.beginPut201CreatingFailed200(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(result.id, "100");
-      assert.equal(result.name, "foo");
-      assert.equal(result.provisioningState, "Failed");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Provisioning state: failed");
+      }
     });
   });
 
@@ -173,14 +170,22 @@ describe("LROs", () => {
 
     it("should handle post202NoRetry204", async () => {
       const poller = await client.lROs.beginPost202NoRetry204(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(result._response.status, 204);
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation failed");
+      }
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
       const poller = await client.lROs.beginDeleteNoHeaderInRetry(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(result._response.status, 204);
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation failed");
+      }
     });
 
     it("should handle put202Retry200", async () => {
@@ -219,8 +224,12 @@ describe("LROs", () => {
 
     it("should handle delete202NoRetry204", async () => {
       const poller = await client.lROs.beginDelete202NoRetry204(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(result._response.status, 204);
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation failed");
+      }
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
@@ -319,14 +328,22 @@ describe("LROs", () => {
       const poller = await client.lROs.beginDeleteAsyncRetrycanceled(
         LROOptions
       );
-      const result = await poller.pollUntilDone();
-      assert.equal(getLROStatusFromBody(result._response), "Canceled");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: canceled");
+      }
     });
 
     it("should handle DeleteAsyncRetryFailed", async () => {
       const poller = await client.lROs.beginDeleteAsyncRetryFailed(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(getLROStatusFromBody(result._response), "Failed");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: failed");
+      }
     });
 
     it("should handle putAsyncRetrySucceeded", async () => {
@@ -357,8 +374,12 @@ describe("LROs", () => {
 
     it("should handle putAsyncRetryFailed", async () => {
       const poller = await client.lROs.beginPutAsyncRetryFailed(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(getLROStatusFromBody(result._response), "Failed");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: failed");
+      }
     });
 
     it("should handle putAsyncNonResource", async () => {
@@ -388,8 +409,12 @@ describe("LROs", () => {
 
     it("should handle putAsyncNoRetrycanceled", async () => {
       const poller = await client.lROs.beginPutAsyncNoRetrycanceled(LROOptions);
-      const result = await poller.pollUntilDone();
-      assert.equal(getLROStatusFromBody(result._response), "Canceled");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: canceled");
+      }
     });
 
     it("should handle putAsyncSubResource", async () => {
@@ -421,8 +446,12 @@ describe("LROs", () => {
         ...LROOptions,
         product
       });
-      const result = await poller.pollUntilDone();
-      assert.deepEqual(getLROStatusFromBody(result._response), "Failed");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: failed");
+      }
     });
 
     it("should handle postAsyncRetrySucceeded", async () => {
@@ -439,8 +468,12 @@ describe("LROs", () => {
         ...LROOptions,
         product
       });
-      const result = await poller.pollUntilDone();
-      assert.deepInclude(getLROStatusFromBody(result._response), "Canceled");
+      try {
+        await poller.pollUntilDone();
+        throw new Error("should have thrown instead");
+      } catch (e) {
+        assert.equal(e.message, "Operation status: canceled");
+      }
     });
   });
 });

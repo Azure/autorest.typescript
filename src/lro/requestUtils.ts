@@ -5,7 +5,7 @@ import {
   OperationResponse,
   OperationSpec
 } from "@azure/core-http";
-import { terminalStates } from "./constants";
+import { failureStates, successStates, terminalStates } from "./constants";
 import { BaseResult, LROConfig, LROMode, SendOperationFn } from "./models";
 
 /**
@@ -276,7 +276,29 @@ export function inferLROMode(
 }
 
 export function isBodyPollingDone(rawResponse: unknown) {
-  return terminalStates.includes(getProvisioningState(rawResponse));
+  const state = getProvisioningState(rawResponse);
+  if (failureStates.includes(state)) {
+    throw new Error(`Provisioning state: ${state}`);
+  }
+  return successStates.includes(state);
+}
+
+export function isLocationPollingDone<TResult extends BaseResult>(
+  rawResponse: TResult
+) {
+  const code = rawResponse._response.status;
+  if (![202, 200].includes(code)) {
+    throw new Error(`Operation failed`);
+  }
+  return code !== 202;
+}
+
+export function isAzureAsyncPollingDone(rawResponse: unknown) {
+  const state = getResponseStatus(rawResponse);
+  if (failureStates.includes(state)) {
+    throw new Error(`Operation status: ${state}`);
+  }
+  return successStates.includes(state);
 }
 
 export function getSpecPath(spec: OperationSpec): string {

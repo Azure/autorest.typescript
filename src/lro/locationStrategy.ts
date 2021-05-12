@@ -1,4 +1,5 @@
 import { BaseResult, LROResult } from "./models";
+import { isLocationPollingDone } from "./requestUtils";
 
 export function createLocationStrategy<TResult extends BaseResult>(
   pollOnce: (pollingURL: string) => Promise<TResult>
@@ -7,7 +8,7 @@ export function createLocationStrategy<TResult extends BaseResult>(
     const result = await pollOnce(pollingURL);
     return {
       result: result,
-      done: result._response.status !== 202
+      done: isLocationPollingDone(result)
     };
   };
 }
