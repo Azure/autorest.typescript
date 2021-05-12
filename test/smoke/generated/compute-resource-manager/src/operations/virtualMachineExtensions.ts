@@ -47,7 +47,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -91,7 +91,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -134,7 +134,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
    * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,

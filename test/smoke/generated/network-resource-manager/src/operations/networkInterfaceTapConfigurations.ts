@@ -120,7 +120,7 @@ export class NetworkInterfaceTapConfigurationsImpl
    * @param tapConfigurationName The name of the tap configuration.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -186,7 +186,7 @@ export class NetworkInterfaceTapConfigurationsImpl
    *                                   operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,

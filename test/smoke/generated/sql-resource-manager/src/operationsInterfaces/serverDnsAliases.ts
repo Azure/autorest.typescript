@@ -60,7 +60,7 @@ export interface ServerDnsAliases {
    * @param dnsAliasName The name of the server DNS alias.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
@@ -79,7 +79,7 @@ export interface ServerDnsAliases {
    * @param dnsAliasName The name of the server DNS alias.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
@@ -96,7 +96,7 @@ export interface ServerDnsAliases {
    * @param parameters A server DNS alias acquisition request.
    * @param options The options parameters.
    */
-  acquire(
+  beginAcquire(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,

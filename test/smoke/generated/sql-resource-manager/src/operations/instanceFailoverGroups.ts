@@ -152,7 +152,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -196,7 +196,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -258,7 +258,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
@@ -301,7 +301,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async forceFailoverAllowDataLoss(
+  async beginForceFailoverAllowDataLoss(
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,

@@ -24,7 +24,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  cancel(
+  beginCancel(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
@@ -39,7 +39,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  startOSUpgrade(
+  beginStartOSUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
@@ -54,7 +54,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  startExtensionUpgrade(
+  beginStartExtensionUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams

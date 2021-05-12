@@ -80,7 +80,7 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
@@ -105,7 +105,7 @@ export interface ApplicationGateways {
    * @param parameters Parameters supplied to the create or update application gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: ApplicationGateway,
@@ -135,7 +135,7 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
@@ -148,7 +148,7 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  stop(
+  beginStop(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
@@ -161,7 +161,7 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  backendHealth(
+  beginBackendHealth(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
@@ -179,7 +179,7 @@ export interface ApplicationGateways {
    * @param probeRequest Request body for on-demand test probe operation.
    * @param options The options parameters.
    */
-  backendHealthOnDemand(
+  beginBackendHealthOnDemand(
     resourceGroupName: string,
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,

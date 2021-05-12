@@ -42,7 +42,7 @@ export interface ExpressRouteCircuitAuthorizations {
    * @param authorizationName The name of the authorization.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
@@ -72,7 +72,7 @@ export interface ExpressRouteCircuitAuthorizations {
    *                                authorization operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,

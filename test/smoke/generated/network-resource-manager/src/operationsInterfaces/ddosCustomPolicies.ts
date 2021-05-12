@@ -28,7 +28,7 @@ export interface DdosCustomPolicies {
    * @param ddosCustomPolicyName The name of the DDoS custom policy.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     options?: DdosCustomPoliciesDeleteOptionalParams
@@ -53,7 +53,7 @@ export interface DdosCustomPolicies {
    * @param parameters Parameters supplied to the create or update operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: DdosCustomPolicy,

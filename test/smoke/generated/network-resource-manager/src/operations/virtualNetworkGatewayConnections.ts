@@ -117,7 +117,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    *                   operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VirtualNetworkGatewayConnection,
@@ -182,7 +182,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams
@@ -219,7 +219,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    * @param parameters Parameters supplied to update virtual network gateway connection tags.
    * @param options The options parameters.
    */
-  async updateTags(
+  async beginUpdateTags(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
@@ -264,7 +264,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    *                   operation throughNetwork resource provider.
    * @param options The options parameters.
    */
-  async setSharedKey(
+  async beginSetSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
@@ -353,7 +353,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    *                   key operation through network resource provider.
    * @param options The options parameters.
    */
-  async resetSharedKey(
+  async beginResetSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionResetSharedKey,
@@ -396,7 +396,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param options The options parameters.
    */
-  async startPacketCapture(
+  async beginStartPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
@@ -439,7 +439,7 @@ export class VirtualNetworkGatewayConnectionsImpl
    *                   on gateway connection.
    * @param options The options parameters.
    */
-  async stopPacketCapture(
+  async beginStopPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnPacketCaptureStopParameters,

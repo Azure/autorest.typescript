@@ -776,12 +776,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#createOrUpdate:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update an managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdate(resourceGroupName: "
+                  "text": "beginCreateOrUpdate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -903,16 +903,16 @@
                   }
                 }
               ],
-              "name": "createOrUpdate"
+              "name": "beginCreateOrUpdate"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#createOrUpdateById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdateById(applicationDefinitionId: "
+                  "text": "beginCreateOrUpdateById(applicationDefinitionId: "
                 },
                 {
                   "kind": "Content",
@@ -1019,16 +1019,16 @@
                   }
                 }
               ],
-              "name": "createOrUpdateById"
+              "name": "beginCreateOrUpdateById"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#delete:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delete(resourceGroupName: "
+                  "text": "beginDelete(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -1134,16 +1134,16 @@
                   }
                 }
               ],
-              "name": "delete"
+              "name": "beginDelete"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#deleteById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "deleteById(applicationDefinitionId: "
+                  "text": "beginDeleteById(applicationDefinitionId: "
                 },
                 {
                   "kind": "Content",
@@ -1234,7 +1234,7 @@
                   }
                 }
               ],
-              "name": "deleteById"
+              "name": "beginDeleteById"
             },
             {
               "kind": "MethodSignature",
@@ -2454,12 +2454,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#createOrUpdate:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdate(resourceGroupName: "
+                  "text": "beginCreateOrUpdate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -2581,16 +2581,16 @@
                   }
                 }
               ],
-              "name": "createOrUpdate"
+              "name": "beginCreateOrUpdate"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#createOrUpdateById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdateById(applicationId: "
+                  "text": "beginCreateOrUpdateById(applicationId: "
                 },
                 {
                   "kind": "Content",
@@ -2697,16 +2697,16 @@
                   }
                 }
               ],
-              "name": "createOrUpdateById"
+              "name": "beginCreateOrUpdateById"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#delete:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delete(resourceGroupName: "
+                  "text": "beginDelete(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -2812,16 +2812,16 @@
                   }
                 }
               ],
-              "name": "delete"
+              "name": "beginDelete"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#deleteById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "deleteById(applicationId: "
+                  "text": "beginDeleteById(applicationId: "
                 },
                 {
                   "kind": "Content",
@@ -2912,7 +2912,7 @@
                   }
                 }
               ],
-              "name": "deleteById"
+              "name": "beginDeleteById"
             },
             {
               "kind": "MethodSignature",

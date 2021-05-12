@@ -153,7 +153,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    *                          set operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
@@ -197,7 +197,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    *                          encryption set operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
@@ -263,7 +263,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
    *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: DiskEncryptionSetsDeleteOptionalParams

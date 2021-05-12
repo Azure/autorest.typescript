@@ -171,7 +171,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
    * @param parameters The requested managed instance key resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
@@ -215,7 +215,7 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
    * @param keyName The name of the managed instance key to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,

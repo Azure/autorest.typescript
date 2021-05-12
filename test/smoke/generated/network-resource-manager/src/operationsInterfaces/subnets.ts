@@ -46,7 +46,7 @@ export interface Subnets {
    * @param subnetName The name of the subnet.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -75,7 +75,7 @@ export interface Subnets {
    * @param subnetParameters Parameters supplied to the create or update subnet operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -96,7 +96,7 @@ export interface Subnets {
    *                                                network intent policies.
    * @param options The options parameters.
    */
-  prepareNetworkPolicies(
+  beginPrepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -114,7 +114,7 @@ export interface Subnets {
    *                                                  network intent policies.
    * @param options The options parameters.
    */
-  unprepareNetworkPolicies(
+  beginUnprepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,

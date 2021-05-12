@@ -172,7 +172,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    * @param virtualHubParameters Parameters supplied to create or update VirtualHub.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: VirtualHub,
@@ -238,7 +238,7 @@ export class VirtualHubsImpl implements VirtualHubs {
    * @param virtualHubName The name of the VirtualHub.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     options?: VirtualHubsDeleteOptionalParams

@@ -62,7 +62,7 @@ export interface NotebookWorkspaces {
    *                                       account.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -81,7 +81,7 @@ export interface NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -109,7 +109,7 @@ export interface NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  regenerateAuthToken(
+  beginRegenerateAuthToken(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -124,7 +124,7 @@ export interface NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,

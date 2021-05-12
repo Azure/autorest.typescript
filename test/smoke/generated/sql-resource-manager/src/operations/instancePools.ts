@@ -175,7 +175,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
@@ -216,7 +216,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param instancePoolName The name of the instance pool to be deleted
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     instancePoolName: string,
     options?: InstancePoolsDeleteOptionalParams
@@ -253,7 +253,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,

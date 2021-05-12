@@ -188,7 +188,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    * @param parameters The parameters to provide for the created account.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
@@ -467,7 +467,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    *                    only.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
@@ -507,7 +507,7 @@ export class StorageAccountsImpl implements StorageAccounts {
    * @param parameters The parameters to provide for restore blob ranges.
    * @param options The options parameters.
    */
-  async restoreBlobRanges(
+  async beginRestoreBlobRanges(
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,

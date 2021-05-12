@@ -174,7 +174,7 @@ export class JobAgentsImpl implements JobAgents {
    * @param parameters The requested job agent resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -218,7 +218,7 @@ export class JobAgentsImpl implements JobAgents {
    * @param jobAgentName The name of the job agent to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -258,7 +258,7 @@ export class JobAgentsImpl implements JobAgents {
    * @param parameters The update to the job agent.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

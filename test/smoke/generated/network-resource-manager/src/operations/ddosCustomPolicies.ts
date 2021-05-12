@@ -43,7 +43,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
    * @param ddosCustomPolicyName The name of the DDoS custom policy.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     options?: DdosCustomPoliciesDeleteOptionalParams
@@ -102,7 +102,7 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
    * @param parameters Parameters supplied to the create or update operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     parameters: DdosCustomPolicy,

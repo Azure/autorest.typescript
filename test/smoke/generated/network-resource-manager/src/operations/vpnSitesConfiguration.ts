@@ -37,7 +37,7 @@ export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
    * @param request Parameters supplied to download vpn-sites configuration.
    * @param options The options parameters.
    */
-  async download(
+  async beginDownload(
     resourceGroupName: string,
     virtualWANName: string,
     request: GetVpnSitesConfigurationRequest,

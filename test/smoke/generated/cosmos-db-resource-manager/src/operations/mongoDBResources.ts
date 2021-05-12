@@ -243,7 +243,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    *                                              database.
    * @param options The options parameters.
    */
-  async createUpdateMongoDBDatabase(
+  async beginCreateUpdateMongoDBDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -286,7 +286,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  async deleteMongoDBDatabase(
+  async beginDeleteMongoDBDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -352,7 +352,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    *                                   MongoDB database.
    * @param options The options parameters.
    */
-  async updateMongoDBDatabaseThroughput(
+  async beginUpdateMongoDBDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -453,7 +453,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    *                                                Collection.
    * @param options The options parameters.
    */
-  async createUpdateMongoDBCollection(
+  async beginCreateUpdateMongoDBCollection(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -499,7 +499,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    * @param collectionName Cosmos DB collection name.
    * @param options The options parameters.
    */
-  async deleteMongoDBCollection(
+  async beginDeleteMongoDBCollection(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -571,7 +571,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
    *                                   MongoDB collection.
    * @param options The options parameters.
    */
-  async updateMongoDBCollectionThroughput(
+  async beginUpdateMongoDBCollectionThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

@@ -27,6 +27,7 @@ import {
   preparePageableOperations,
   writeAsyncIterators
 } from "./utils/pagingOperations";
+import { calculateMethodName } from "./utils/operationsUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -190,7 +191,7 @@ export function writeOperations(
       )}`;
 
       operationGroupInterface.addMethod({
-        name,
+        name: calculateMethodName(operation),
         parameters: baseMethodParameters,
         returnType,
         docs: [

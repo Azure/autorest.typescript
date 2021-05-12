@@ -20701,86 +20701,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!StorageAccounts#checkNameAvailability:member(1)",
-              "docComment": "/**\n * Checks that the storage account name is valid and is not already in use.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "checkNameAvailability(accountName: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountCheckNameAvailabilityParameters",
-                  "canonicalReference": "storage-resource-manager!StorageAccountCheckNameAvailabilityParameters:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsCheckNameAvailabilityOptionalParams",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsCheckNameAvailabilityOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsCheckNameAvailabilityResponse",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsCheckNameAvailabilityResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                }
-              ],
-              "name": "checkNameAvailability"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!StorageAccounts#create:member(1)",
+              "canonicalReference": "storage-resource-manager!StorageAccounts#beginCreate:member(1)",
               "docComment": "/**\n * Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param parameters - The parameters to provide for the created account.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "create(resourceGroupName: "
+                  "text": "beginCreate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -20902,104 +20828,16 @@
                   }
                 }
               ],
-              "name": "create"
+              "name": "beginCreate"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!StorageAccounts#delete:member(1)",
-              "docComment": "/**\n * Deletes a storage account in Microsoft Azure.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "delete(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsDeleteOptionalParams",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsDeleteOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 11
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                }
-              ],
-              "name": "delete"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!StorageAccounts#failover:member(1)",
+              "canonicalReference": "storage-resource-manager!StorageAccounts#beginFailover:member(1)",
               "docComment": "/**\n * Failover request can be triggered for a storage account in case of availability issues. The failover occurs from the storage account's primary cluster to secondary cluster for RA-GRS accounts. The secondary cluster will become primary after failover.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "failover(resourceGroupName: "
+                  "text": "beginFailover(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -21105,7 +20943,300 @@
                   }
                 }
               ],
-              "name": "failover"
+              "name": "beginFailover"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!StorageAccounts#beginRestoreBlobRanges:member(1)",
+              "docComment": "/**\n * Restore blobs in the specified blob ranges\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param parameters - The parameters to provide for restore blob ranges.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginRestoreBlobRanges(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BlobRestoreParameters",
+                  "canonicalReference": "storage-resource-manager!BlobRestoreParameters:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsRestoreBlobRangesOptionalParams",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PollerLike",
+                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PollOperationState",
+                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsRestoreBlobRangesResponse",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsRestoreBlobRangesResponse",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 19
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginRestoreBlobRanges"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!StorageAccounts#checkNameAvailability:member(1)",
+              "docComment": "/**\n * Checks that the storage account name is valid and is not already in use.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "checkNameAvailability(accountName: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountCheckNameAvailabilityParameters",
+                  "canonicalReference": "storage-resource-manager!StorageAccountCheckNameAvailabilityParameters:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsCheckNameAvailabilityOptionalParams",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsCheckNameAvailabilityOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsCheckNameAvailabilityResponse",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsCheckNameAvailabilityResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "checkNameAvailability"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!StorageAccounts#delete:member(1)",
+              "docComment": "/**\n * Deletes a storage account in Microsoft Azure.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "delete(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountsDeleteOptionalParams",
+                  "canonicalReference": "storage-resource-manager!StorageAccountsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "delete"
             },
             {
               "kind": "MethodSignature",
@@ -21725,137 +21856,6 @@
                 }
               ],
               "name": "regenerateKey"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!StorageAccounts#restoreBlobRanges:member(1)",
-              "docComment": "/**\n * Restore blobs in the specified blob ranges\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param parameters - The parameters to provide for restore blob ranges.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "restoreBlobRanges(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", parameters: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BlobRestoreParameters",
-                  "canonicalReference": "storage-resource-manager!BlobRestoreParameters:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsRestoreBlobRangesOptionalParams",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PollerLike",
-                  "canonicalReference": "@azure/core-lro!PollerLike:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PollOperationState",
-                  "canonicalReference": "@azure/core-lro!PollOperationState:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsRestoreBlobRangesResponse",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">, "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StorageAccountsRestoreBlobRangesResponse",
-                  "canonicalReference": "storage-resource-manager!StorageAccountsRestoreBlobRangesResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 9,
-                "endIndex": 19
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "parameters",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                }
-              ],
-              "name": "restoreBlobRanges"
             },
             {
               "kind": "MethodSignature",

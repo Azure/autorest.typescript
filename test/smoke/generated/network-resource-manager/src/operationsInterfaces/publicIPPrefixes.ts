@@ -51,7 +51,7 @@ export interface PublicIPPrefixes {
    * @param publicIpPrefixName The name of the PublicIpPrefix.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     publicIpPrefixName: string,
     options?: PublicIPPrefixesDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface PublicIPPrefixes {
    * @param parameters Parameters supplied to the create or update public IP prefix operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,

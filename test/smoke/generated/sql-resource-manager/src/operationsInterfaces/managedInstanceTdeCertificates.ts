@@ -23,7 +23,7 @@ export interface ManagedInstanceTdeCertificates {
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: TdeCertificate,

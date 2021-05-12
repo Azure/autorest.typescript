@@ -68,7 +68,7 @@ export interface Applications {
    * @param applicationName The name of the managed application.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
@@ -82,7 +82,7 @@ export interface Applications {
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationName: string,
     parameters: Application,
@@ -123,7 +123,7 @@ export interface Applications {
    *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
    * @param options The options parameters.
    */
-  deleteById(
+  beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
   ): Promise<
@@ -137,7 +137,7 @@ export interface Applications {
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  createOrUpdateById(
+  beginCreateOrUpdateById(
     applicationId: string,
     parameters: Application,
     options?: ApplicationsCreateOrUpdateByIdOptionalParams

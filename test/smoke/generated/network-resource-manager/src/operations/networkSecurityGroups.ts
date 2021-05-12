@@ -146,7 +146,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    * @param networkSecurityGroupName The name of the network security group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     options?: NetworkSecurityGroupsDeleteOptionalParams
@@ -205,7 +205,7 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
    * @param parameters Parameters supplied to the create or update network security group operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: NetworkSecurityGroup,

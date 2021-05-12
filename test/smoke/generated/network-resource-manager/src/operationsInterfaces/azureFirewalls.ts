@@ -51,7 +51,7 @@ export interface AzureFirewalls {
    * @param azureFirewallName The name of the Azure Firewall.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface AzureFirewalls {
    * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
@@ -94,7 +94,7 @@ export interface AzureFirewalls {
    * @param parameters Parameters supplied to update azure firewall tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,

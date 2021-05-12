@@ -81,7 +81,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    *                                         operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
@@ -145,7 +145,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams

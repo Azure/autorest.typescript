@@ -63,7 +63,7 @@ export interface VirtualHubs {
    * @param virtualHubParameters Parameters supplied to create or update VirtualHub.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     virtualHubParameters: VirtualHub,
@@ -93,7 +93,7 @@ export interface VirtualHubs {
    * @param virtualHubName The name of the VirtualHub.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     options?: VirtualHubsDeleteOptionalParams

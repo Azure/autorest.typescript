@@ -42,7 +42,7 @@ export interface PrivateDnsZoneGroups {
    * @param privateDnsZoneGroupName The name of the private dns zone group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -71,7 +71,7 @@ export interface PrivateDnsZoneGroups {
    * @param parameters Parameters supplied to the create or update private dns zone group operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,

@@ -213,7 +213,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param parameters Parameters supplied to the update express route crossConnection operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
@@ -282,7 +282,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listArpTable(
+  async beginListArpTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -327,7 +327,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTableSummary(
+  async beginListRoutesTableSummary(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -375,7 +375,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTable(
+  async beginListRoutesTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,

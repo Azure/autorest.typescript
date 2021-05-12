@@ -111,7 +111,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param parameters Parameters that define the create packet capture operation.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -180,7 +180,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -219,7 +219,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -258,7 +258,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param packetCaptureName The name given to the packet capture session.
    * @param options The options parameters.
    */
-  async getStatus(
+  async beginGetStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,

@@ -208,7 +208,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param virtualClusterName The name of the virtual cluster.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualClusterName: string,
     options?: VirtualClustersDeleteOptionalParams
@@ -245,7 +245,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,

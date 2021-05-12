@@ -67,7 +67,7 @@ export interface Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
@@ -85,7 +85,7 @@ export interface Servers {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     options?: ServersDeleteOptionalParams
@@ -100,7 +100,7 @@ export interface Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,

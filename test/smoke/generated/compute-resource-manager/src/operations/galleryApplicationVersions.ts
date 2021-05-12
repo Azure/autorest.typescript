@@ -141,7 +141,7 @@ export class GalleryApplicationVersionsImpl
    *                                  Version operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -193,7 +193,7 @@ export class GalleryApplicationVersionsImpl
    *                                  operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -271,7 +271,7 @@ export class GalleryApplicationVersionsImpl
    * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,

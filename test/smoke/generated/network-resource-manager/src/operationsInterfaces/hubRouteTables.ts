@@ -43,7 +43,7 @@ export interface HubRouteTables {
    * @param routeTableParameters Parameters supplied to create or update RouteTable.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -75,7 +75,7 @@ export interface HubRouteTables {
    * @param routeTableName The name of the RouteTable.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,

@@ -51,7 +51,7 @@ export interface ApplicationSecurityGroups {
    * @param applicationSecurityGroupName The name of the application security group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     options?: ApplicationSecurityGroupsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface ApplicationSecurityGroups {
    * @param parameters Parameters supplied to the create or update ApplicationSecurityGroup operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: ApplicationSecurityGroup,

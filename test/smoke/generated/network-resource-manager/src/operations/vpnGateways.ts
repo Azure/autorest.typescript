@@ -174,7 +174,7 @@ export class VpnGatewaysImpl implements VpnGateways {
    * @param vpnGatewayParameters Parameters supplied to create or Update a virtual wan vpn gateway.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
@@ -240,7 +240,7 @@ export class VpnGatewaysImpl implements VpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysDeleteOptionalParams
@@ -276,7 +276,7 @@ export class VpnGatewaysImpl implements VpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async reset(
+  async beginReset(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysResetOptionalParams

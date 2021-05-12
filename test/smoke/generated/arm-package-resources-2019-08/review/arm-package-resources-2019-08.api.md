@@ -350,6 +350,18 @@ export interface DeploymentPropertiesExtended {
 
 // @public
 export interface Deployments {
+    beginCreateOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
+    beginCreateOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
+    beginCreateOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
+    beginCreateOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
+    beginDelete(resourceGroupName: string, deploymentName: string, options?: DeploymentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteAtScope(scope: string, deploymentName: string, options?: DeploymentsDeleteAtScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteAtSubscriptionScope(deploymentName: string, options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteAtTenantScope(deploymentName: string, options?: DeploymentsDeleteAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginWhatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
+    beginWhatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
     calculateTemplateHash(template: any, options?: DeploymentsCalculateTemplateHashOptionalParams): Promise<DeploymentsCalculateTemplateHashResponse>;
     cancel(resourceGroupName: string, deploymentName: string, options?: DeploymentsCancelOptionalParams): Promise<coreHttp.RestResponse>;
     cancelAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsCancelAtManagementGroupScopeOptionalParams): Promise<coreHttp.RestResponse>;
@@ -361,16 +373,6 @@ export interface Deployments {
     checkExistenceAtScope(scope: string, deploymentName: string, options?: DeploymentsCheckExistenceAtScopeOptionalParams): Promise<coreHttp.RestResponse>;
     checkExistenceAtSubscriptionScope(deploymentName: string, options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams): Promise<coreHttp.RestResponse>;
     checkExistenceAtTenantScope(deploymentName: string, options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateResponse>, DeploymentsCreateOrUpdateResponse>>;
-    createOrUpdateAtManagementGroupScope(groupId: string, deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>, DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>>;
-    createOrUpdateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtScopeResponse>, DeploymentsCreateOrUpdateAtScopeResponse>>;
-    createOrUpdateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>, DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>>;
-    createOrUpdateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>, DeploymentsCreateOrUpdateAtTenantScopeResponse>>;
-    delete(resourceGroupName: string, deploymentName: string, options?: DeploymentsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtScope(scope: string, deploymentName: string, options?: DeploymentsDeleteAtScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtSubscriptionScope(deploymentName: string, options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteAtTenantScope(deploymentName: string, options?: DeploymentsDeleteAtTenantScopeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     exportTemplate(resourceGroupName: string, deploymentName: string, options?: DeploymentsExportTemplateOptionalParams): Promise<DeploymentsExportTemplateResponse>;
     exportTemplateAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
     exportTemplateAtScope(scope: string, deploymentName: string, options?: DeploymentsExportTemplateAtScopeOptionalParams): Promise<DeploymentsExportTemplateAtScopeResponse>;
@@ -391,8 +393,6 @@ export interface Deployments {
     validateAtScope(scope: string, deploymentName: string, parameters: Deployment, options?: DeploymentsValidateAtScopeOptionalParams): Promise<DeploymentsValidateAtScopeResponse>;
     validateAtSubscriptionScope(deploymentName: string, parameters: Deployment, options?: DeploymentsValidateAtSubscriptionScopeOptionalParams): Promise<DeploymentsValidateAtSubscriptionScopeResponse>;
     validateAtTenantScope(deploymentName: string, parameters: ScopedDeployment, options?: DeploymentsValidateAtTenantScopeOptionalParams): Promise<DeploymentsValidateAtTenantScopeResponse>;
-    whatIf(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfResponse>, DeploymentsWhatIfResponse>>;
-    whatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
 }
 
 // @public
@@ -1274,10 +1274,10 @@ export interface ResourceGroupProperties {
 
 // @public
 export interface ResourceGroups {
+    beginDelete(resourceGroupName: string, options?: ResourceGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginExportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: ResourceGroupsExportTemplateOptionalParams): Promise<PollerLike<PollOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
     checkExistence(resourceGroupName: string, options?: ResourceGroupsCheckExistenceOptionalParams): Promise<coreHttp.RestResponse>;
     createOrUpdate(resourceGroupName: string, parameters: ResourceGroup, options?: ResourceGroupsCreateOrUpdateOptionalParams): Promise<ResourceGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, options?: ResourceGroupsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    exportTemplate(resourceGroupName: string, parameters: ExportTemplateRequest, options?: ResourceGroupsExportTemplateOptionalParams): Promise<PollerLike<PollOperationState<ResourceGroupsExportTemplateResponse>, ResourceGroupsExportTemplateResponse>>;
     get(resourceGroupName: string, options?: ResourceGroupsGetOptionalParams): Promise<ResourceGroupsGetResponse>;
     list(options?: ResourceGroupsListOptionalParams): PagedAsyncIterableIterator<ResourceGroup>;
     update(resourceGroupName: string, parameters: ResourceGroupPatchable, options?: ResourceGroupsUpdateOptionalParams): Promise<ResourceGroupsUpdateResponse>;
@@ -1428,20 +1428,20 @@ export interface ResourceProviderOperationDisplayProperties {
 
 // @public
 export interface Resources {
+    beginCreateOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
+    beginDelete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteById(resourceId: string, apiVersion: string, options?: ResourcesDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
+    beginUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
+    beginValidateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesValidateMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     checkExistence(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesCheckExistenceOptionalParams): Promise<coreHttp.RestResponse>;
     checkExistenceById(resourceId: string, apiVersion: string, options?: ResourcesCheckExistenceByIdOptionalParams): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateResponse>, ResourcesCreateOrUpdateResponse>>;
-    createOrUpdateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesCreateOrUpdateByIdResponse>, ResourcesCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteById(resourceId: string, apiVersion: string, options?: ResourcesDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, options?: ResourcesGetOptionalParams): Promise<ResourcesGetResponse>;
     getById(resourceId: string, apiVersion: string, options?: ResourcesGetByIdOptionalParams): Promise<ResourcesGetByIdResponse>;
     list(options?: ResourcesListOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
     listByResourceGroup(resourceGroupName: string, options?: ResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<GenericResourceExpanded>;
-    moveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateResponse>, ResourcesUpdateResponse>>;
-    updateById(resourceId: string, apiVersion: string, parameters: GenericResource, options?: ResourcesUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ResourcesUpdateByIdResponse>, ResourcesUpdateByIdResponse>>;
-    validateMoveResources(sourceResourceGroupName: string, parameters: ResourcesMoveInfo, options?: ResourcesValidateMoveResourcesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public

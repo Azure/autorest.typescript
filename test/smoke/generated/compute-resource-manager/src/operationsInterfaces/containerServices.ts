@@ -55,7 +55,7 @@ export interface ContainerServices {
    * @param parameters Parameters supplied to the Create or Update a Container Service operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     containerServiceName: string,
     parameters: ContainerService,
@@ -90,7 +90,7 @@ export interface ContainerServices {
    *                             resource group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     containerServiceName: string,
     options?: ContainerServicesDeleteOptionalParams

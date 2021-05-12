@@ -101,7 +101,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
    * @param parameters Parameters supplied to the create or update local network gateway operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
@@ -164,7 +164,7 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
    * @param localNetworkGatewayName The name of the local network gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     options?: LocalNetworkGatewaysDeleteOptionalParams

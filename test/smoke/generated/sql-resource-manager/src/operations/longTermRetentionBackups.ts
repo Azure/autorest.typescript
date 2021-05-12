@@ -551,7 +551,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  async deleteByResourceGroup(
+  async beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -700,7 +700,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,

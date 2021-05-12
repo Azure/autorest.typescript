@@ -55,7 +55,7 @@ export interface ServerBlobAuditingPolicies {
    * @param parameters Properties of blob auditing policy
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,

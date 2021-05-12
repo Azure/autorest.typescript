@@ -20,7 +20,7 @@ export interface TdeCertificates {
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     serverName: string,
     parameters: TdeCertificate,

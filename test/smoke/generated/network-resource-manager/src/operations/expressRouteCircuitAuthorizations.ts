@@ -108,7 +108,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
    * @param authorizationName The name of the authorization.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,
@@ -174,7 +174,7 @@ export class ExpressRouteCircuitAuthorizationsImpl
    *                                authorization operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     authorizationName: string,

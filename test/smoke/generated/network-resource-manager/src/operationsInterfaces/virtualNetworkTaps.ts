@@ -51,7 +51,7 @@ export interface VirtualNetworkTaps {
    * @param tapName The name of the virtual network tap.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     tapName: string,
     options?: VirtualNetworkTapsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface VirtualNetworkTaps {
    * @param parameters Parameters supplied to the create or update virtual network tap operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,

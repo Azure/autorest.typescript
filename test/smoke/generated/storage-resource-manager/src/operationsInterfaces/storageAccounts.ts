@@ -91,7 +91,7 @@ export interface StorageAccounts {
    * @param parameters The parameters to provide for the created account.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
@@ -228,7 +228,7 @@ export interface StorageAccounts {
    *                    only.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
@@ -245,7 +245,7 @@ export interface StorageAccounts {
    * @param parameters The parameters to provide for restore blob ranges.
    * @param options The options parameters.
    */
-  restoreBlobRanges(
+  beginRestoreBlobRanges(
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,

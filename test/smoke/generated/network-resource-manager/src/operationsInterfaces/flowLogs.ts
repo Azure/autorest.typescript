@@ -43,7 +43,7 @@ export interface FlowLogs {
    * @param parameters Parameters that define the create or update flow log resource.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,
@@ -75,7 +75,7 @@ export interface FlowLogs {
    * @param flowLogName The name of the flow log resource.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     flowLogName: string,

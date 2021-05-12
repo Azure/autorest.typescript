@@ -224,7 +224,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param virtualNetworkName The name of the virtual network.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksDeleteOptionalParams
@@ -283,7 +283,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,

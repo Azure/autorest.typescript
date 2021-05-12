@@ -55,7 +55,7 @@ export interface DiskEncryptionSets {
    *                          set operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSet,
@@ -76,7 +76,7 @@ export interface DiskEncryptionSets {
    *                          encryption set operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     diskEncryptionSet: DiskEncryptionSetUpdate,
@@ -108,7 +108,7 @@ export interface DiskEncryptionSets {
    *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: DiskEncryptionSetsDeleteOptionalParams

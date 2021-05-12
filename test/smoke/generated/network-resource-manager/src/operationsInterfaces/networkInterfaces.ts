@@ -105,7 +105,7 @@ export interface NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesDeleteOptionalParams
@@ -130,7 +130,7 @@ export interface NetworkInterfaces {
    * @param parameters Parameters supplied to the create or update network interface operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: NetworkInterface,
@@ -160,7 +160,7 @@ export interface NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  getEffectiveRouteTable(
+  beginGetEffectiveRouteTable(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
@@ -176,7 +176,7 @@ export interface NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  listEffectiveNetworkSecurityGroups(
+  beginListEffectiveNetworkSecurityGroups(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams

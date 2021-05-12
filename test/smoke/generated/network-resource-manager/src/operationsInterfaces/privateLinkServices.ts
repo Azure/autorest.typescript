@@ -99,7 +99,7 @@ export interface PrivateLinkServices {
    * @param serviceName The name of the private link service.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
@@ -124,7 +124,7 @@ export interface PrivateLinkServices {
    * @param parameters Parameters supplied to the create or update private link service operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serviceName: string,
     parameters: PrivateLinkService,
@@ -171,7 +171,7 @@ export interface PrivateLinkServices {
    * @param peConnectionName The name of the private end point connection.
    * @param options The options parameters.
    */
-  deletePrivateEndpointConnection(
+  beginDeletePrivateEndpointConnection(
     resourceGroupName: string,
     serviceName: string,
     peConnectionName: string,

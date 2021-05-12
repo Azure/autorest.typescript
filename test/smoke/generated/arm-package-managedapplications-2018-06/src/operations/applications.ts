@@ -177,7 +177,7 @@ export class ApplicationsImpl implements Applications {
    * @param applicationName The name of the managed application.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
@@ -213,7 +213,7 @@ export class ApplicationsImpl implements Applications {
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationName: string,
     parameters: Application,
@@ -333,7 +333,7 @@ export class ApplicationsImpl implements Applications {
    *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
    * @param options The options parameters.
    */
-  async deleteById(
+  async beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
   ): Promise<
@@ -368,7 +368,7 @@ export class ApplicationsImpl implements Applications {
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  async createOrUpdateById(
+  async beginCreateOrUpdateById(
     applicationId: string,
     parameters: Application,
     options?: ApplicationsCreateOrUpdateByIdOptionalParams

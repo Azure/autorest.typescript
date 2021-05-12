@@ -165,7 +165,7 @@ export class LoadBalancerBackendAddressPoolsImpl
    *                   operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,
@@ -209,7 +209,7 @@ export class LoadBalancerBackendAddressPoolsImpl
    * @param backendAddressPoolName The name of the backend address pool.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     backendAddressPoolName: string,

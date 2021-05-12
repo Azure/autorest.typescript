@@ -408,7 +408,7 @@ export class DomainsImpl implements Domains {
    * @param domain Domain registration information.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     domainName: string,
     domain: Domain,

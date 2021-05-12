@@ -58,7 +58,7 @@ export interface VirtualNetworkGatewayConnections {
    *                   operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VirtualNetworkGatewayConnection,
@@ -88,7 +88,7 @@ export interface VirtualNetworkGatewayConnections {
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams
@@ -102,7 +102,7 @@ export interface VirtualNetworkGatewayConnections {
    * @param parameters Parameters supplied to update virtual network gateway connection tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: TagsObject,
@@ -123,7 +123,7 @@ export interface VirtualNetworkGatewayConnections {
    *                   operation throughNetwork resource provider.
    * @param options The options parameters.
    */
-  setSharedKey(
+  beginSetSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionSharedKey,
@@ -157,7 +157,7 @@ export interface VirtualNetworkGatewayConnections {
    *                   key operation through network resource provider.
    * @param options The options parameters.
    */
-  resetSharedKey(
+  beginResetSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: ConnectionResetSharedKey,
@@ -176,7 +176,7 @@ export interface VirtualNetworkGatewayConnections {
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param options The options parameters.
    */
-  startPacketCapture(
+  beginStartPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
@@ -196,7 +196,7 @@ export interface VirtualNetworkGatewayConnections {
    *                   on gateway connection.
    * @param options The options parameters.
    */
-  stopPacketCapture(
+  beginStopPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayConnectionName: string,
     parameters: VpnPacketCaptureStopParameters,

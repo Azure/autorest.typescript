@@ -64,7 +64,7 @@ export interface ManagedInstanceLongTermRetentionPolicies {
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

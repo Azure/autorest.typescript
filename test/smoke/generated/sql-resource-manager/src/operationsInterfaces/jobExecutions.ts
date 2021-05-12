@@ -85,7 +85,7 @@ export interface JobExecutions {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -125,7 +125,7 @@ export interface JobExecutions {
    * @param jobExecutionId The job execution id to create the job execution under.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

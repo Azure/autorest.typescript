@@ -843,7 +843,7 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public listMultiplePagesLRO(
+  public beginListMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesLROPagingAll(options);

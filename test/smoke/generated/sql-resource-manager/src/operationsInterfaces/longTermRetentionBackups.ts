@@ -138,7 +138,7 @@ export interface LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  deleteByResourceGroup(
+  beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -171,7 +171,7 @@ export interface LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,

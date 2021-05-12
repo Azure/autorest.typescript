@@ -32,7 +32,7 @@ export interface VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -52,7 +52,7 @@ export interface VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -71,7 +71,7 @@ export interface VirtualMachineExtensions {
    * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,

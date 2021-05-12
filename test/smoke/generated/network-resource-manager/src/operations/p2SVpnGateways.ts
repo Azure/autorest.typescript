@@ -183,7 +183,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    *                                gateway.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
@@ -249,7 +249,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
@@ -321,7 +321,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
    * @param options The options parameters.
    */
-  async generateVpnProfile(
+  async beginGenerateVpnProfile(
     resourceGroupName: string,
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
@@ -363,7 +363,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param gatewayName The name of the P2SVpnGateway.
    * @param options The options parameters.
    */
-  async getP2SVpnConnectionHealth(
+  async beginGetP2SVpnConnectionHealth(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
@@ -404,7 +404,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param request Request parameters supplied to get p2s vpn connections detailed health.
    * @param options The options parameters.
    */
-  async getP2SVpnConnectionHealthDetailed(
+  async beginGetP2SVpnConnectionHealthDetailed(
     resourceGroupName: string,
     gatewayName: string,
     request: P2SVpnConnectionHealthRequest,
@@ -448,7 +448,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param request The parameters are supplied to disconnect p2s vpn connections.
    * @param options The options parameters.
    */
-  async disconnectP2SVpnConnections(
+  async beginDisconnectP2SVpnConnections(
     resourceGroupName: string,
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,

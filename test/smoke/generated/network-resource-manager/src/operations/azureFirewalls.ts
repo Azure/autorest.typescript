@@ -146,7 +146,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param azureFirewallName The name of the Azure Firewall.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
@@ -205,7 +205,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
@@ -247,7 +247,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param parameters Parameters supplied to update azure firewall tags.
    * @param options The options parameters.
    */
-  async updateTags(
+  async beginUpdateTags(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,

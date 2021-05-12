@@ -88,7 +88,7 @@ export interface CassandraResources {
    *                                                keyspace.
    * @param options The options parameters.
    */
-  createUpdateCassandraKeyspace(
+  beginCreateUpdateCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -109,7 +109,7 @@ export interface CassandraResources {
    * @param keyspaceName Cosmos DB keyspace name.
    * @param options The options parameters.
    */
-  deleteCassandraKeyspace(
+  beginDeleteCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -140,7 +140,7 @@ export interface CassandraResources {
    *                                   Cassandra Keyspace.
    * @param options The options parameters.
    */
-  updateCassandraKeyspaceThroughput(
+  beginUpdateCassandraKeyspaceThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -179,7 +179,7 @@ export interface CassandraResources {
    *                                             Table.
    * @param options The options parameters.
    */
-  createUpdateCassandraTable(
+  beginCreateUpdateCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -200,7 +200,7 @@ export interface CassandraResources {
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  deleteCassandraTable(
+  beginDeleteCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -235,7 +235,7 @@ export interface CassandraResources {
    *                                   Cassandra table.
    * @param options The options parameters.
    */
-  updateCassandraTableThroughput(
+  beginUpdateCassandraTableThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,

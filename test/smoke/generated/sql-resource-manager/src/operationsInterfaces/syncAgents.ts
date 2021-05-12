@@ -78,7 +78,7 @@ export interface SyncAgents {
    * @param parameters The requested sync agent resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
@@ -98,7 +98,7 @@ export interface SyncAgents {
    * @param syncAgentName The name of the sync agent.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,

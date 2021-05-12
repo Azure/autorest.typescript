@@ -160,7 +160,7 @@ export class TableResourcesImpl implements TableResources {
    * @param createUpdateTableParameters The parameters to provide for the current Table.
    * @param options The options parameters.
    */
-  async createUpdateTable(
+  async beginCreateUpdateTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -203,7 +203,7 @@ export class TableResourcesImpl implements TableResources {
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  async deleteTable(
+  async beginDeleteTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -269,7 +269,7 @@ export class TableResourcesImpl implements TableResources {
    *                                   Table.
    * @param options The options parameters.
    */
-  async updateTableThroughput(
+  async beginUpdateTableThroughput(
     resourceGroupName: string,
     accountName: string,
     tableName: string,

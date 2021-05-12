@@ -51,7 +51,7 @@ export interface IpAllocations {
    * @param ipAllocationName The name of the IpAllocation.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     ipAllocationName: string,
     options?: IpAllocationsDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface IpAllocations {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: IpAllocation,

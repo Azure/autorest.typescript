@@ -98,7 +98,7 @@ export interface VirtualMachines {
    * @param parameters Parameters supplied to the Capture Virtual Machine operation.
    * @param options The options parameters.
    */
-  capture(
+  beginCapture(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
@@ -117,7 +117,7 @@ export interface VirtualMachines {
    * @param parameters Parameters supplied to the Create Virtual Machine operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachine,
@@ -135,7 +135,7 @@ export interface VirtualMachines {
    * @param parameters Parameters supplied to the Update Virtual Machine operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineUpdate,
@@ -152,7 +152,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesDeleteOptionalParams
@@ -188,7 +188,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  convertToManagedDisks(
+  beginConvertToManagedDisks(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesConvertToManagedDisksOptionalParams
@@ -202,7 +202,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  deallocate(
+  beginDeallocate(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesDeallocateOptionalParams
@@ -232,7 +232,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  powerOff(
+  beginPowerOff(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPowerOffOptionalParams
@@ -245,7 +245,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  reapply(
+  beginReapply(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReapplyOptionalParams
@@ -258,7 +258,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  restart(
+  beginRestart(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesRestartOptionalParams
@@ -271,7 +271,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesStartOptionalParams
@@ -284,7 +284,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  redeploy(
+  beginRedeploy(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesRedeployOptionalParams
@@ -297,7 +297,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  reimage(
+  beginReimage(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReimageOptionalParams
@@ -310,7 +310,7 @@ export interface VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  performMaintenance(
+  beginPerformMaintenance(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPerformMaintenanceOptionalParams
@@ -336,7 +336,7 @@ export interface VirtualMachines {
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
-  runCommand(
+  beginRunCommand(
     resourceGroupName: string,
     vmName: string,
     parameters: RunCommandInput,

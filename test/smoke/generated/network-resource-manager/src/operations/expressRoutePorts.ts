@@ -149,7 +149,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    * @param expressRoutePortName The name of the ExpressRoutePort resource.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: ExpressRoutePortsDeleteOptionalParams
@@ -208,7 +208,7 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
    * @param parameters Parameters supplied to the create ExpressRoutePort operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     expressRoutePortName: string,
     parameters: ExpressRoutePort,

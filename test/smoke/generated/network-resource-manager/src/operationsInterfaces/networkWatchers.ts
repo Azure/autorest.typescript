@@ -109,7 +109,7 @@ export interface NetworkWatchers {
    * @param networkWatcherName The name of the network watcher.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     options?: NetworkWatchersDeleteOptionalParams
@@ -149,7 +149,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the IP flow to be verified.
    * @param options The options parameters.
    */
-  verifyIPFlow(
+  beginVerifyIPFlow(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
@@ -167,7 +167,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the source and destination endpoint.
    * @param options The options parameters.
    */
-  getNextHop(
+  beginGetNextHop(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NextHopParameters,
@@ -185,7 +185,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the VM to check security groups for.
    * @param options The options parameters.
    */
-  getVMSecurityRules(
+  beginGetVMSecurityRules(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
@@ -203,7 +203,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the resource to troubleshoot.
    * @param options The options parameters.
    */
-  getTroubleshooting(
+  beginGetTroubleshooting(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
@@ -221,7 +221,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the resource to query the troubleshooting result.
    * @param options The options parameters.
    */
-  getTroubleshootingResult(
+  beginGetTroubleshootingResult(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
@@ -239,7 +239,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that define the configuration of flow log.
    * @param options The options parameters.
    */
-  setFlowLogConfiguration(
+  beginSetFlowLogConfiguration(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogInformation,
@@ -258,7 +258,7 @@ export interface NetworkWatchers {
    *                   (optional) status.
    * @param options The options parameters.
    */
-  getFlowLogStatus(
+  beginGetFlowLogStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
@@ -277,7 +277,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that determine how the connectivity check will be performed.
    * @param options The options parameters.
    */
-  checkConnectivity(
+  beginCheckConnectivity(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: ConnectivityParameters,
@@ -296,7 +296,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that determine Azure reachability report configuration.
    * @param options The options parameters.
    */
-  getAzureReachabilityReport(
+  beginGetAzureReachabilityReport(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
@@ -315,7 +315,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters that scope the list of available providers.
    * @param options The options parameters.
    */
-  listAvailableProviders(
+  beginListAvailableProviders(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
@@ -337,7 +337,7 @@ export interface NetworkWatchers {
    * @param parameters Parameters to get network configuration diagnostic.
    * @param options The options parameters.
    */
-  getNetworkConfigurationDiagnostic(
+  beginGetNetworkConfigurationDiagnostic(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkConfigurationDiagnosticParameters,

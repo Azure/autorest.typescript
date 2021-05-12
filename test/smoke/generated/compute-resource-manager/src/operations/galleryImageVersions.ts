@@ -138,7 +138,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    *                            operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -188,7 +188,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -262,7 +262,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,

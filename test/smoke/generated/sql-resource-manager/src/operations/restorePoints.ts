@@ -144,7 +144,7 @@ export class RestorePointsImpl implements RestorePoints {
    * @param parameters The definition for creating the restore point of this database.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

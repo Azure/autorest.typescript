@@ -83,7 +83,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running put request, service returns a 400 to the initial request
    * @param options The options parameters.
    */
-  async putNonRetry400(
+  async beginPutNonRetry400(
     options?: LrosaDsPutNonRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -116,7 +116,7 @@ export class LrosaDsImpl implements LrosaDs {
    * response code
    * @param options The options parameters.
    */
-  async putNonRetry201Creating400(
+  async beginPutNonRetry201Creating400(
     options?: LrosaDsPutNonRetry201Creating400OptionalParams
   ): Promise<
     PollerLike<
@@ -149,7 +149,7 @@ export class LrosaDsImpl implements LrosaDs {
    * response code
    * @param options The options parameters.
    */
-  async putNonRetry201Creating400InvalidJson(
+  async beginPutNonRetry201Creating400InvalidJson(
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   ): Promise<
     PollerLike<
@@ -182,7 +182,7 @@ export class LrosaDsImpl implements LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async putAsyncRelativeRetry400(
+  async beginPutAsyncRelativeRetry400(
     options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -214,7 +214,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running delete request, service returns a 400 with an error body
    * @param options The options parameters.
    */
-  async deleteNonRetry400(
+  async beginDeleteNonRetry400(
     options?: LrosaDsDeleteNonRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -246,7 +246,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running delete request, service returns a 202 with a location header
    * @param options The options parameters.
    */
-  async delete202NonRetry400(
+  async beginDelete202NonRetry400(
     options?: LrosaDsDelete202NonRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -279,7 +279,7 @@ export class LrosaDsImpl implements LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRelativeRetry400(
+  async beginDeleteAsyncRelativeRetry400(
     options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -311,7 +311,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running post request, service returns a 400 with no error body
    * @param options The options parameters.
    */
-  async postNonRetry400(
+  async beginPostNonRetry400(
     options?: LrosaDsPostNonRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -343,7 +343,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running post request, service returns a 202 with a location header
    * @param options The options parameters.
    */
-  async post202NonRetry400(
+  async beginPost202NonRetry400(
     options?: LrosaDsPost202NonRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -376,7 +376,7 @@ export class LrosaDsImpl implements LrosaDs {
    * in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRelativeRetry400(
+  async beginPostAsyncRelativeRetry400(
     options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
   ): Promise<
     PollerLike<
@@ -408,7 +408,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running put request, service returns a 201 to the initial request with no payload
    * @param options The options parameters.
    */
-  async putError201NoProvisioningStatePayload(
+  async beginPutError201NoProvisioningStatePayload(
     options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
   ): Promise<
     PollerLike<
@@ -442,7 +442,7 @@ export class LrosaDsImpl implements LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncRelativeRetryNoStatus(
+  async beginPutAsyncRelativeRetryNoStatus(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
     PollerLike<
@@ -476,7 +476,7 @@ export class LrosaDsImpl implements LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncRelativeRetryNoStatusPayload(
+  async beginPutAsyncRelativeRetryNoStatusPayload(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   ): Promise<
     PollerLike<
@@ -508,7 +508,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
-  async delete204Succeeded(
+  async beginDelete204Succeeded(
     options?: LrosaDsDelete204SucceededOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
@@ -538,7 +538,7 @@ export class LrosaDsImpl implements LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRelativeRetryNoStatus(
+  async beginDeleteAsyncRelativeRetryNoStatus(
     options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
     PollerLike<
@@ -570,7 +570,7 @@ export class LrosaDsImpl implements LrosaDs {
    * Long running post request, service returns a 202 to the initial request, without a location header.
    * @param options The options parameters.
    */
-  async post202NoLocation(
+  async beginPost202NoLocation(
     options?: LrosaDsPost202NoLocationOptionalParams
   ): Promise<
     PollerLike<
@@ -604,7 +604,7 @@ export class LrosaDsImpl implements LrosaDs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRelativeRetryNoPayload(
+  async beginPostAsyncRelativeRetryNoPayload(
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
   ): Promise<
     PollerLike<
@@ -637,7 +637,7 @@ export class LrosaDsImpl implements LrosaDs {
    * valid json
    * @param options The options parameters.
    */
-  async put200InvalidJson(
+  async beginPut200InvalidJson(
     options?: LrosaDsPut200InvalidJsonOptionalParams
   ): Promise<
     PollerLike<
@@ -670,7 +670,7 @@ export class LrosaDsImpl implements LrosaDs {
    * ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
    * @param options The options parameters.
    */
-  async putAsyncRelativeRetryInvalidHeader(
+  async beginPutAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
@@ -704,7 +704,7 @@ export class LrosaDsImpl implements LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncRelativeRetryInvalidJsonPolling(
+  async beginPutAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
     PollerLike<
@@ -739,7 +739,7 @@ export class LrosaDsImpl implements LrosaDs {
    * invalid 'Location' and 'Retry-After' headers
    * @param options The options parameters.
    */
-  async delete202RetryInvalidHeader(
+  async beginDelete202RetryInvalidHeader(
     options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
@@ -772,7 +772,7 @@ export class LrosaDsImpl implements LrosaDs {
    * the Azure-AsyncOperation header is invalid
    * @param options The options parameters.
    */
-  async deleteAsyncRelativeRetryInvalidHeader(
+  async beginDeleteAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
@@ -805,7 +805,7 @@ export class LrosaDsImpl implements LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRelativeRetryInvalidJsonPolling(
+  async beginDeleteAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
     PollerLike<
@@ -840,7 +840,7 @@ export class LrosaDsImpl implements LrosaDs {
    * 'Retry-After' headers.
    * @param options The options parameters.
    */
-  async post202RetryInvalidHeader(
+  async beginPost202RetryInvalidHeader(
     options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
@@ -874,7 +874,7 @@ export class LrosaDsImpl implements LrosaDs {
    * invalid.
    * @param options The options parameters.
    */
-  async postAsyncRelativeRetryInvalidHeader(
+  async beginPostAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
     PollerLike<
@@ -908,7 +908,7 @@ export class LrosaDsImpl implements LrosaDs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRelativeRetryInvalidJsonPolling(
+  async beginPostAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
     PollerLike<

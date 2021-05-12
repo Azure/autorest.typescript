@@ -256,7 +256,7 @@ export class VaultsImpl implements Vaults {
    * @param parameters Parameters to create or update the vault
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
@@ -467,7 +467,7 @@ export class VaultsImpl implements Vaults {
    * @param location The location of the soft-deleted vault.
    * @param options The options parameters.
    */
-  async purgeDeleted(
+  async beginPurgeDeleted(
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams

@@ -63,7 +63,7 @@ export interface IpGroups {
    * @param parameters Parameters supplied to the create or update IpGroups operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: IpGroup,
@@ -93,7 +93,7 @@ export interface IpGroups {
    * @param ipGroupsName The name of the ipGroups.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     ipGroupsName: string,
     options?: IpGroupsDeleteOptionalParams

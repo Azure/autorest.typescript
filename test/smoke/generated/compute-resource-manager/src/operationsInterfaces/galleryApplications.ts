@@ -50,7 +50,7 @@ export interface GalleryApplications {
    * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -73,7 +73,7 @@ export interface GalleryApplications {
    * @param galleryApplication Parameters supplied to the update gallery Application operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -107,7 +107,7 @@ export interface GalleryApplications {
    * @param galleryApplicationName The name of the gallery Application Definition to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,

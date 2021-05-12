@@ -139,7 +139,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
    * @param resourceGroupName The name of the resource group to delete. The name is case insensitive.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
   ): Promise<
@@ -215,7 +215,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
    * @param parameters Parameters for exporting the template.
    * @param options The options parameters.
    */
-  async exportTemplate(
+  async beginExportTemplate(
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
     options?: ResourceGroupsExportTemplateOptionalParams

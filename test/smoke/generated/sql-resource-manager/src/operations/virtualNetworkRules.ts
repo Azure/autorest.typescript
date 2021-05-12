@@ -148,7 +148,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
    * @param parameters The requested virtual Network Rule Resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,
@@ -192,7 +192,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
    * @param virtualNetworkRuleName The name of the virtual network rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     virtualNetworkRuleName: string,

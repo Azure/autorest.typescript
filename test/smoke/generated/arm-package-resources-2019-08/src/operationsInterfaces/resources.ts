@@ -66,7 +66,7 @@ export interface Resources {
    * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
-  moveResources(
+  beginMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
@@ -84,7 +84,7 @@ export interface Resources {
    * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
-  validateMoveResources(
+  beginValidateMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
@@ -122,7 +122,7 @@ export interface Resources {
    * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -145,7 +145,7 @@ export interface Resources {
    * @param parameters Parameters for creating or updating the resource.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -172,7 +172,7 @@ export interface Resources {
    * @param parameters Parameters for updating the resource.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
@@ -228,7 +228,7 @@ export interface Resources {
    * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
-  deleteById(
+  beginDeleteById(
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
@@ -244,7 +244,7 @@ export interface Resources {
    * @param parameters Create or update resource parameters.
    * @param options The options parameters.
    */
-  createOrUpdateById(
+  beginCreateOrUpdateById(
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
@@ -264,7 +264,7 @@ export interface Resources {
    * @param parameters Update resource parameters.
    * @param options The options parameters.
    */
-  updateById(
+  beginUpdateById(
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,

@@ -757,12 +757,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#create:member(1)",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreate:member(1)",
               "docComment": "/**\n * Creates a deployment script.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param deploymentScript - Deployment script supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "create(resourceGroupName: "
+                  "text": "beginCreate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -884,7 +884,7 @@
                   }
                 }
               ],
-              "name": "create"
+              "name": "beginCreate"
             },
             {
               "kind": "MethodSignature",

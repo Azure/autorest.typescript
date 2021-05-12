@@ -431,7 +431,7 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  async refreshHubSchema(
+  async beginRefreshHubSchema(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -628,7 +628,7 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -675,7 +675,7 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -718,7 +718,7 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

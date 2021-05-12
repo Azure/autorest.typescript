@@ -72,7 +72,7 @@ export interface ServerCommunicationLinks {
    * @param parameters The required parameters for creating a server communication link.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     communicationLinkName: string,

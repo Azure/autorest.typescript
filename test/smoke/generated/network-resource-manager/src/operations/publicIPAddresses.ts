@@ -326,7 +326,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param publicIpAddressName The name of the subnet.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
@@ -385,7 +385,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param parameters Parameters supplied to the create or update public IP address operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: PublicIPAddress,

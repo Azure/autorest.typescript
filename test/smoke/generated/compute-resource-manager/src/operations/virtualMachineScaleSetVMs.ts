@@ -134,7 +134,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async reimage(
+  async beginReimage(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -173,7 +173,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async reimageAll(
+  async beginReimageAll(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -213,7 +213,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async deallocate(
+  async beginDeallocate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -252,7 +252,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param parameters Parameters supplied to the Update Virtual Machine Scale Sets VM operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -295,7 +295,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -407,7 +407,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async powerOff(
+  async beginPowerOff(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -445,7 +445,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async restart(
+  async beginRestart(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -483,7 +483,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -522,7 +522,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async redeploy(
+  async beginRedeploy(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -560,7 +560,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  async performMaintenance(
+  async beginPerformMaintenance(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -625,7 +625,7 @@ export class VirtualMachineScaleSetVMsImpl
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
-  async runCommand(
+  async beginRunCommand(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,

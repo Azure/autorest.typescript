@@ -407,7 +407,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesDeleteOptionalParams
@@ -466,7 +466,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param parameters Parameters supplied to the create or update network interface operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: NetworkInterface,
@@ -567,7 +567,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async getEffectiveRouteTable(
+  async beginGetEffectiveRouteTable(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
@@ -606,7 +606,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async listEffectiveNetworkSecurityGroups(
+  async beginListEffectiveNetworkSecurityGroups(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams

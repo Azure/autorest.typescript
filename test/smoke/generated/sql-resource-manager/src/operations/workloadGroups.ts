@@ -161,7 +161,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
    * @param parameters The requested workload group state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -208,7 +208,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
    * @param workloadGroupName The name of the workload group to delete.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

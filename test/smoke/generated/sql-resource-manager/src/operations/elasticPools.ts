@@ -382,7 +382,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param parameters The elastic pool parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -426,7 +426,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param elasticPoolName The name of the elastic pool.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -466,7 +466,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param parameters The elastic pool update parameters.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -510,7 +510,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param elasticPoolName The name of the elastic pool to failover.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,

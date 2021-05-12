@@ -56,7 +56,7 @@ export interface Disks {
    * @param disk Disk object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     diskName: string,
     disk: Disk,
@@ -76,7 +76,7 @@ export interface Disks {
    * @param disk Disk object supplied in the body of the Patch disk operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     diskName: string,
     disk: DiskUpdate,
@@ -105,7 +105,7 @@ export interface Disks {
    *                 length is 80 characters.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     diskName: string,
     options?: DisksDeleteOptionalParams
@@ -121,7 +121,7 @@ export interface Disks {
    * @param grantAccessData Access data object supplied in the body of the get disk access operation.
    * @param options The options parameters.
    */
-  grantAccess(
+  beginGrantAccess(
     resourceGroupName: string,
     diskName: string,
     grantAccessData: GrantAccessData,
@@ -140,7 +140,7 @@ export interface Disks {
    *                 length is 80 characters.
    * @param options The options parameters.
    */
-  revokeAccess(
+  beginRevokeAccess(
     resourceGroupName: string,
     diskName: string,
     options?: DisksRevokeAccessOptionalParams

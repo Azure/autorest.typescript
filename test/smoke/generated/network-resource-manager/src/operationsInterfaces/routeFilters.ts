@@ -51,7 +51,7 @@ export interface RouteFilters {
    * @param routeFilterName The name of the route filter.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     options?: RouteFiltersDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface RouteFilters {
    * @param routeFilterParameters Parameters supplied to the create or update route filter operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     routeFilterParameters: RouteFilter,

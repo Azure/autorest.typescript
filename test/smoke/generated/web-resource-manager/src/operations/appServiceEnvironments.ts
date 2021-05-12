@@ -317,7 +317,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  public listChangeVnet(
+  public beginListChangeVnet(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -905,7 +905,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public listResume(
+  public beginListResume(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -1095,7 +1095,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public listSuspend(
+  public beginListSuspend(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams
@@ -1665,7 +1665,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param hostingEnvironmentEnvelope Configuration details of the App Service Environment.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
@@ -1705,7 +1705,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
@@ -1968,7 +1968,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param multiRolePoolEnvelope Properties of the multi-role pool.
    * @param options The options parameters.
    */
-  async createOrUpdateMultiRolePool(
+  async beginCreateOrUpdateMultiRolePool(
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
@@ -2393,7 +2393,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param workerPoolEnvelope Properties of the worker pool.
    * @param options The options parameters.
    */
-  async createOrUpdateWorkerPool(
+  async beginCreateOrUpdateWorkerPool(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,

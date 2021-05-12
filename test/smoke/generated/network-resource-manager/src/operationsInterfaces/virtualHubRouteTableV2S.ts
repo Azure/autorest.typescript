@@ -58,7 +58,7 @@ export interface VirtualHubRouteTableV2S {
    *                                         VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -77,7 +77,7 @@ export interface VirtualHubRouteTableV2S {
    * @param routeTableName The name of the VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,

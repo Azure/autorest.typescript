@@ -93,7 +93,7 @@ export interface SyncMembers {
    * @param parameters The requested sync member resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -117,7 +117,7 @@ export interface SyncMembers {
    * @param syncMemberName The name of the sync member.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -138,7 +138,7 @@ export interface SyncMembers {
    * @param parameters The requested sync member resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -162,7 +162,7 @@ export interface SyncMembers {
    * @param syncMemberName The name of the sync member.
    * @param options The options parameters.
    */
-  refreshMemberSchema(
+  beginRefreshMemberSchema(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

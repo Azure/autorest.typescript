@@ -305,7 +305,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param parameters Parameters supplied to the Capture Virtual Machine operation.
    * @param options The options parameters.
    */
-  async capture(
+  async beginCapture(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineCaptureParameters,
@@ -348,7 +348,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param parameters Parameters supplied to the Create Virtual Machine operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachine,
@@ -389,7 +389,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param parameters Parameters supplied to the Update Virtual Machine operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmName: string,
     parameters: VirtualMachineUpdate,
@@ -429,7 +429,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesDeleteOptionalParams
@@ -509,7 +509,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async convertToManagedDisks(
+  async beginConvertToManagedDisks(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesConvertToManagedDisksOptionalParams
@@ -545,7 +545,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async deallocate(
+  async beginDeallocate(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesDeallocateOptionalParams
@@ -667,7 +667,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async powerOff(
+  async beginPowerOff(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPowerOffOptionalParams
@@ -702,7 +702,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async reapply(
+  async beginReapply(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReapplyOptionalParams
@@ -737,7 +737,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async restart(
+  async beginRestart(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesRestartOptionalParams
@@ -772,7 +772,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesStartOptionalParams
@@ -807,7 +807,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async redeploy(
+  async beginRedeploy(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesRedeployOptionalParams
@@ -842,7 +842,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async reimage(
+  async beginReimage(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesReimageOptionalParams
@@ -877,7 +877,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param vmName The name of the virtual machine.
    * @param options The options parameters.
    */
-  async performMaintenance(
+  async beginPerformMaintenance(
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesPerformMaintenanceOptionalParams
@@ -936,7 +936,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
-  async runCommand(
+  async beginRunCommand(
     resourceGroupName: string,
     vmName: string,
     parameters: RunCommandInput,

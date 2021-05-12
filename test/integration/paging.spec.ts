@@ -305,7 +305,7 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesLRO", () => {
     it("succeeds and gets 10 pages", async () => {
-      const iter = client.paging.listMultiplePagesLRO({
+      const iter = client.paging.beginListMultiplePagesLRO({
         updateIntervalInMs: 0
       });
       let index = 0;

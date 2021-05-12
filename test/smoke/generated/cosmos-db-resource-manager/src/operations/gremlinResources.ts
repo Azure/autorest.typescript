@@ -243,7 +243,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                              database.
    * @param options The options parameters.
    */
-  async createUpdateGremlinDatabase(
+  async beginCreateUpdateGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -286,7 +286,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  async deleteGremlinDatabase(
+  async beginDeleteGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -352,7 +352,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                   Gremlin database.
    * @param options The options parameters.
    */
-  async updateGremlinDatabaseThroughput(
+  async beginUpdateGremlinDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -452,7 +452,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    * @param createUpdateGremlinGraphParameters The parameters to provide for the current Gremlin graph.
    * @param options The options parameters.
    */
-  async createUpdateGremlinGraph(
+  async beginCreateUpdateGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -498,7 +498,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    * @param graphName Cosmos DB graph name.
    * @param options The options parameters.
    */
-  async deleteGremlinGraph(
+  async beginDeleteGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -570,7 +570,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                   Gremlin graph.
    * @param options The options parameters.
    */
-  async updateGremlinGraphThroughput(
+  async beginUpdateGremlinGraphThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,

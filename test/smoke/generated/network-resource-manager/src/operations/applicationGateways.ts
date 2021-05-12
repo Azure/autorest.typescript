@@ -217,7 +217,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
@@ -276,7 +276,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param parameters Parameters supplied to the create or update application gateway operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: ApplicationGateway,
@@ -377,7 +377,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
@@ -413,7 +413,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
@@ -449,7 +449,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async backendHealth(
+  async beginBackendHealth(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
@@ -490,7 +490,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param probeRequest Request body for on-demand test probe operation.
    * @param options The options parameters.
    */
-  async backendHealthOnDemand(
+  async beginBackendHealthOnDemand(
     resourceGroupName: string,
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,

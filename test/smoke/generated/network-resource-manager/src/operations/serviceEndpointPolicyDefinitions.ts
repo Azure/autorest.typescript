@@ -120,7 +120,7 @@ export class ServiceEndpointPolicyDefinitionsImpl
    * @param serviceEndpointPolicyDefinitionName The name of the service endpoint policy definition.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
@@ -186,7 +186,7 @@ export class ServiceEndpointPolicyDefinitionsImpl
    *                                         policy operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,

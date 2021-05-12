@@ -33,7 +33,7 @@ export interface VirtualMachineScaleSetVMExtensions {
    * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -57,7 +57,7 @@ export interface VirtualMachineScaleSetVMExtensions {
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -78,7 +78,7 @@ export interface VirtualMachineScaleSetVMExtensions {
    * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,

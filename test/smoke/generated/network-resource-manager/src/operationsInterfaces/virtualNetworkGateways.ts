@@ -92,7 +92,7 @@ export interface VirtualNetworkGateways {
    * @param parameters Parameters supplied to create or update virtual network gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
@@ -120,7 +120,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysDeleteOptionalParams
@@ -134,7 +134,7 @@ export interface VirtualNetworkGateways {
    * @param parameters Parameters supplied to update virtual network gateway tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
@@ -151,7 +151,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  reset(
+  beginReset(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetOptionalParams
@@ -167,7 +167,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  resetVpnClientSharedKey(
+  beginResetVpnClientSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
@@ -183,7 +183,7 @@ export interface VirtualNetworkGateways {
    *                   operation.
    * @param options The options parameters.
    */
-  generatevpnclientpackage(
+  beginGeneratevpnclientpackage(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
@@ -205,7 +205,7 @@ export interface VirtualNetworkGateways {
    *                   operation.
    * @param options The options parameters.
    */
-  generateVpnProfile(
+  beginGenerateVpnProfile(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
@@ -223,7 +223,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  getVpnProfilePackageUrl(
+  beginGetVpnProfilePackageUrl(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
@@ -239,7 +239,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  getBgpPeerStatus(
+  beginGetBgpPeerStatus(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
@@ -267,7 +267,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  getLearnedRoutes(
+  beginGetLearnedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
@@ -285,7 +285,7 @@ export interface VirtualNetworkGateways {
    * @param peer The IP address of the peer.
    * @param options The options parameters.
    */
-  getAdvertisedRoutes(
+  beginGetAdvertisedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     peer: string,
@@ -305,7 +305,7 @@ export interface VirtualNetworkGateways {
    *                             Virtual Network Gateway P2S client operation through Network resource provider.
    * @param options The options parameters.
    */
-  setVpnclientIpsecParameters(
+  beginSetVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     vpnclientIpsecParams: VpnClientIPsecParameters,
@@ -326,7 +326,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The virtual network gateway name.
    * @param options The options parameters.
    */
-  getVpnclientIpsecParameters(
+  beginGetVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
@@ -358,7 +358,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  startPacketCapture(
+  beginStartPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
@@ -376,7 +376,7 @@ export interface VirtualNetworkGateways {
    *                   on gateway.
    * @param options The options parameters.
    */
-  stopPacketCapture(
+  beginStopPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
@@ -394,7 +394,7 @@ export interface VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  getVpnclientConnectionHealth(
+  beginGetVpnclientConnectionHealth(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
@@ -413,7 +413,7 @@ export interface VirtualNetworkGateways {
    * @param request The parameters are supplied to disconnect vpn connections.
    * @param options The options parameters.
    */
-  disconnectVirtualNetworkGatewayVpnConnections(
+  beginDisconnectVirtualNetworkGatewayVpnConnections(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,

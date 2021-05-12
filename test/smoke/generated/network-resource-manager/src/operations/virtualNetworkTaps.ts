@@ -149,7 +149,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param tapName The name of the virtual network tap.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     tapName: string,
     options?: VirtualNetworkTapsDeleteOptionalParams
@@ -208,7 +208,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param parameters Parameters supplied to the create or update virtual network tap operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,

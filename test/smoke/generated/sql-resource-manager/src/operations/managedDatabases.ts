@@ -252,7 +252,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -296,7 +296,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -336,7 +336,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -404,7 +404,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The definition for completing the restore of this managed database.
    * @param options The options parameters.
    */
-  async completeRestore(
+  async beginCompleteRestore(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,

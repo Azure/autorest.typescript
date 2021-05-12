@@ -86,7 +86,7 @@ export interface PublicIPAddresses {
    * @param publicIpAddressName The name of the subnet.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
@@ -111,7 +111,7 @@ export interface PublicIPAddresses {
    * @param parameters Parameters supplied to the create or update public IP address operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: PublicIPAddress,

@@ -55,7 +55,7 @@ export interface ApplicationDefinitions {
    * @param applicationDefinitionName The name of the managed application definition to delete.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
@@ -69,7 +69,7 @@ export interface ApplicationDefinitions {
    * @param parameters Parameters supplied to the create or update an managed application definition.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
@@ -100,7 +100,7 @@ export interface ApplicationDefinitions {
    *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
    * @param options The options parameters.
    */
-  deleteById(
+  beginDeleteById(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
   ): Promise<
@@ -115,7 +115,7 @@ export interface ApplicationDefinitions {
    * @param parameters Parameters supplied to the create or update a managed application definition.
    * @param options The options parameters.
    */
-  createOrUpdateById(
+  beginCreateOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams

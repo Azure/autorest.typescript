@@ -116,7 +116,7 @@ export interface Domains {
    * @param domain Domain registration information.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     domainName: string,
     domain: Domain,

@@ -48,6 +48,7 @@ import {
   preparePageableOperations,
   writeAsyncIterators
 } from "./utils/pagingOperations";
+import { calculateMethodName } from "./utils/operationsUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -549,13 +550,9 @@ export function writeOperations(
       modelNames
     );
     const returnType = getReturnType(operation, importedModels, modelNames);
-    const name = `${operation.namePrefix || ""}${normalizeName(
-      operation.name,
-      NameType.Property
-    )}`;
 
     const operationMethod = operationGroupClass.addMethod({
-      name,
+      name: calculateMethodName(operation),
       parameters: baseMethodParameters,
       scope: operation.scope,
       returnType,

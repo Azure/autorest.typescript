@@ -119,7 +119,7 @@ export class SecurityRulesImpl implements SecurityRules {
    * @param securityRuleName The name of the security rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
@@ -185,7 +185,7 @@ export class SecurityRulesImpl implements SecurityRules {
    *                               operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,

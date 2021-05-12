@@ -65,7 +65,7 @@ export interface VpnGateways {
    * @param vpnGatewayParameters Parameters supplied to create or Update a virtual wan vpn gateway.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
@@ -95,7 +95,7 @@ export interface VpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysDeleteOptionalParams
@@ -108,7 +108,7 @@ export interface VpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  reset(
+  beginReset(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysResetOptionalParams

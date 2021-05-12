@@ -45,7 +45,7 @@ export interface ManagedInstanceEncryptionProtectors {
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  revalidate(
+  beginRevalidate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -76,7 +76,7 @@ export interface ManagedInstanceEncryptionProtectors {
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,

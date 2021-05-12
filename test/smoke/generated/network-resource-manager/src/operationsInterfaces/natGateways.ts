@@ -51,7 +51,7 @@ export interface NatGateways {
    * @param natGatewayName The name of the nat gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     natGatewayName: string,
     options?: NatGatewaysDeleteOptionalParams
@@ -76,7 +76,7 @@ export interface NatGateways {
    * @param parameters Parameters supplied to the create or update nat gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     natGatewayName: string,
     parameters: NatGateway,

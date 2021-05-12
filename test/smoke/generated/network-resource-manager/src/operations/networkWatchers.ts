@@ -209,7 +209,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param networkWatcherName The name of the network watcher.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     options?: NetworkWatchersDeleteOptionalParams
@@ -331,7 +331,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the IP flow to be verified.
    * @param options The options parameters.
    */
-  async verifyIPFlow(
+  async beginVerifyIPFlow(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: VerificationIPFlowParameters,
@@ -373,7 +373,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the source and destination endpoint.
    * @param options The options parameters.
    */
-  async getNextHop(
+  async beginGetNextHop(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NextHopParameters,
@@ -415,7 +415,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the VM to check security groups for.
    * @param options The options parameters.
    */
-  async getVMSecurityRules(
+  async beginGetVMSecurityRules(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: SecurityGroupViewParameters,
@@ -457,7 +457,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the resource to troubleshoot.
    * @param options The options parameters.
    */
-  async getTroubleshooting(
+  async beginGetTroubleshooting(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: TroubleshootingParameters,
@@ -499,7 +499,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the resource to query the troubleshooting result.
    * @param options The options parameters.
    */
-  async getTroubleshootingResult(
+  async beginGetTroubleshootingResult(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: QueryTroubleshootingParameters,
@@ -541,7 +541,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that define the configuration of flow log.
    * @param options The options parameters.
    */
-  async setFlowLogConfiguration(
+  async beginSetFlowLogConfiguration(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogInformation,
@@ -584,7 +584,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    *                   (optional) status.
    * @param options The options parameters.
    */
-  async getFlowLogStatus(
+  async beginGetFlowLogStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogStatusParameters,
@@ -627,7 +627,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that determine how the connectivity check will be performed.
    * @param options The options parameters.
    */
-  async checkConnectivity(
+  async beginCheckConnectivity(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: ConnectivityParameters,
@@ -670,7 +670,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that determine Azure reachability report configuration.
    * @param options The options parameters.
    */
-  async getAzureReachabilityReport(
+  async beginGetAzureReachabilityReport(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
@@ -713,7 +713,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters that scope the list of available providers.
    * @param options The options parameters.
    */
-  async listAvailableProviders(
+  async beginListAvailableProviders(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
@@ -759,7 +759,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
    * @param parameters Parameters to get network configuration diagnostic.
    * @param options The options parameters.
    */
-  async getNetworkConfigurationDiagnostic(
+  async beginGetNetworkConfigurationDiagnostic(
     resourceGroupName: string,
     networkWatcherName: string,
     parameters: NetworkConfigurationDiagnosticParameters,

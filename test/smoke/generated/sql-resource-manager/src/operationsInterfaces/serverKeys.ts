@@ -62,7 +62,7 @@ export interface ServerKeys {
    * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     keyName: string,
@@ -82,7 +82,7 @@ export interface ServerKeys {
    * @param keyName The name of the server key to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     keyName: string,

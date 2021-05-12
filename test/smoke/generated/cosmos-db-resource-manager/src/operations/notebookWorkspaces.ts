@@ -161,7 +161,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
    *                                       account.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -204,7 +204,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -267,7 +267,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  async regenerateAuthToken(
+  async beginRegenerateAuthToken(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -305,7 +305,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,

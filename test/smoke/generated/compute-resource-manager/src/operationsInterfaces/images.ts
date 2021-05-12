@@ -51,7 +51,7 @@ export interface Images {
    * @param parameters Parameters supplied to the Create Image operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: Image,
@@ -69,7 +69,7 @@ export interface Images {
    * @param parameters Parameters supplied to the Update Image operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: ImageUpdate,
@@ -83,7 +83,7 @@ export interface Images {
    * @param imageName The name of the image.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams

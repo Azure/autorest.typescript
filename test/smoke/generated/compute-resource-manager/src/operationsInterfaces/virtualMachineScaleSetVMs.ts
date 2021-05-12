@@ -56,7 +56,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  reimage(
+  beginReimage(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -72,7 +72,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  reimageAll(
+  beginReimageAll(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -89,7 +89,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  deallocate(
+  beginDeallocate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -105,7 +105,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param parameters Parameters supplied to the Update Virtual Machine Scale Sets VM operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -124,7 +124,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -167,7 +167,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  powerOff(
+  beginPowerOff(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -182,7 +182,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  restart(
+  beginRestart(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -197,7 +197,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -213,7 +213,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  redeploy(
+  beginRedeploy(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -228,7 +228,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  performMaintenance(
+  beginPerformMaintenance(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -258,7 +258,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
-  runCommand(
+  beginRunCommand(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,

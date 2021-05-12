@@ -146,7 +146,7 @@ export class NatGatewaysImpl implements NatGateways {
    * @param natGatewayName The name of the nat gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     natGatewayName: string,
     options?: NatGatewaysDeleteOptionalParams
@@ -205,7 +205,7 @@ export class NatGatewaysImpl implements NatGateways {
    * @param parameters Parameters supplied to the create or update nat gateway operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     natGatewayName: string,
     parameters: NatGateway,

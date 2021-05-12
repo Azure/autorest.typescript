@@ -66,7 +66,7 @@ export interface InstancePools {
    * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
@@ -84,7 +84,7 @@ export interface InstancePools {
    * @param instancePoolName The name of the instance pool to be deleted
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     instancePoolName: string,
     options?: InstancePoolsDeleteOptionalParams
@@ -99,7 +99,7 @@ export interface InstancePools {
    * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,

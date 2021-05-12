@@ -39,7 +39,7 @@ export class ManagedInstanceTdeCertificatesImpl
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: TdeCertificate,

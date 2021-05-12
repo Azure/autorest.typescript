@@ -48,7 +48,7 @@ export interface VirtualRouters {
    * @param virtualRouterName The name of the Virtual Router.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     options?: VirtualRoutersDeleteOptionalParams
@@ -73,7 +73,7 @@ export interface VirtualRouters {
    * @param parameters Parameters supplied to the create or update Virtual Router.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     parameters: VirtualRouter,

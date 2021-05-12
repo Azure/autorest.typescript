@@ -40,7 +40,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async cancel(
+  async beginCancel(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
@@ -77,7 +77,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async startOSUpgrade(
+  async beginStartOSUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
@@ -114,7 +114,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async startExtensionUpgrade(
+  async beginStartExtensionUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams

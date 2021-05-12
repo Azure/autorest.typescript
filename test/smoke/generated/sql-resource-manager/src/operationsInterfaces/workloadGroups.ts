@@ -64,7 +64,7 @@ export interface WorkloadGroups {
    * @param parameters The requested workload group state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -86,7 +86,7 @@ export interface WorkloadGroups {
    * @param workloadGroupName The name of the workload group to delete.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

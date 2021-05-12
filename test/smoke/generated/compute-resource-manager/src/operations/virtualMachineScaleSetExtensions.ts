@@ -112,7 +112,7 @@ export class VirtualMachineScaleSetExtensionsImpl
    * @param extensionParameters Parameters supplied to the Create VM scale set Extension operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
@@ -158,7 +158,7 @@ export class VirtualMachineScaleSetExtensionsImpl
    * @param extensionParameters Parameters supplied to the Update VM scale set Extension operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,
@@ -201,7 +201,7 @@ export class VirtualMachineScaleSetExtensionsImpl
    * @param vmssExtensionName The name of the VM scale set extension.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     vmssExtensionName: string,

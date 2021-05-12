@@ -61,7 +61,7 @@ export interface ExpressRouteCircuits {
    * @param circuitName The name of the express route circuit.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     options?: ExpressRouteCircuitsDeleteOptionalParams
@@ -86,7 +86,7 @@ export interface ExpressRouteCircuits {
    * @param parameters Parameters supplied to the create or update express route circuit operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     parameters: ExpressRouteCircuit,
@@ -119,7 +119,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listArpTable(
+  beginListArpTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -140,7 +140,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTable(
+  beginListRoutesTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -161,7 +161,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTableSummary(
+  beginListRoutesTableSummary(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,

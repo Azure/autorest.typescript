@@ -47,7 +47,7 @@ export interface RestorePoints {
    * @param parameters The definition for creating the restore point of this database.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

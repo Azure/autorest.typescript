@@ -42,7 +42,7 @@ export interface VirtualRouterPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -71,7 +71,7 @@ export interface VirtualRouterPeerings {
    * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,

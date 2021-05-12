@@ -61,7 +61,7 @@ export interface TableResources {
    * @param createUpdateTableParameters The parameters to provide for the current Table.
    * @param options The options parameters.
    */
-  createUpdateTable(
+  beginCreateUpdateTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -80,7 +80,7 @@ export interface TableResources {
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  deleteTable(
+  beginDeleteTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -111,7 +111,7 @@ export interface TableResources {
    *                                   Table.
    * @param options The options parameters.
    */
-  updateTableThroughput(
+  beginUpdateTableThroughput(
     resourceGroupName: string,
     accountName: string,
     tableName: string,

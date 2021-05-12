@@ -149,7 +149,7 @@ export class IpAllocationsImpl implements IpAllocations {
    * @param ipAllocationName The name of the IpAllocation.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ipAllocationName: string,
     options?: IpAllocationsDeleteOptionalParams
@@ -208,7 +208,7 @@ export class IpAllocationsImpl implements IpAllocations {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: IpAllocation,

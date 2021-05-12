@@ -48,7 +48,7 @@ export interface FirewallPolicies {
    * @param firewallPolicyName The name of the Firewall Policy.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: FirewallPoliciesDeleteOptionalParams
@@ -73,7 +73,7 @@ export interface FirewallPolicies {
    * @param parameters Parameters supplied to the create or update Firewall Policy operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     firewallPolicyName: string,
     parameters: FirewallPolicy,

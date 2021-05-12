@@ -78,10 +78,10 @@ export interface ApplicationDefinitionListResult {
 
 // @public
 export interface ApplicationDefinitions {
-    createOrUpdate(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>, ApplicationDefinitionsCreateOrUpdateResponse>>;
-    createOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>, ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteById(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>, ApplicationDefinitionsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>, ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
+    beginDelete(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteById(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsGetOptionalParams): Promise<ApplicationDefinitionsGetResponse>;
     getById(applicationDefinitionId: string, options?: ApplicationDefinitionsGetByIdOptionalParams): Promise<ApplicationDefinitionsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: ApplicationDefinitionsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ApplicationDefinition>;
@@ -203,10 +203,10 @@ export interface ApplicationProviderAuthorization {
 
 // @public
 export interface Applications {
-    createOrUpdate(resourceGroupName: string, applicationName: string, parameters: Application, options?: ApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationsCreateOrUpdateResponse>, ApplicationsCreateOrUpdateResponse>>;
-    createOrUpdateById(applicationId: string, parameters: Application, options?: ApplicationsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationsCreateOrUpdateByIdResponse>, ApplicationsCreateOrUpdateByIdResponse>>;
-    delete(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteById(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, applicationName: string, parameters: Application, options?: ApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ApplicationsCreateOrUpdateResponse>, ApplicationsCreateOrUpdateResponse>>;
+    beginCreateOrUpdateById(applicationId: string, parameters: Application, options?: ApplicationsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationsCreateOrUpdateByIdResponse>, ApplicationsCreateOrUpdateByIdResponse>>;
+    beginDelete(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteById(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, applicationName: string, options?: ApplicationsGetOptionalParams): Promise<ApplicationsGetResponse>;
     getById(applicationId: string, options?: ApplicationsGetByIdOptionalParams): Promise<ApplicationsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: ApplicationsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Application>;

@@ -59,7 +59,7 @@ export interface ManagedInstanceKeys {
    * @param parameters The requested managed instance key resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
@@ -79,7 +79,7 @@ export interface ManagedInstanceKeys {
    * @param keyName The name of the managed instance key to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,

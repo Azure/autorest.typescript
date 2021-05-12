@@ -55,7 +55,7 @@ export interface PrivateEndpointConnections {
    * @param parameters A private endpoint connection
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,
@@ -74,7 +74,7 @@ export interface PrivateEndpointConnections {
    * @param privateEndpointConnectionName The name of the private endpoint connection.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     accountName: string,
     privateEndpointConnectionName: string,

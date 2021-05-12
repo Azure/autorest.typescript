@@ -55,7 +55,7 @@ export interface DeploymentScripts {
    * @param deploymentScript Deployment script supplied to the operation.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,

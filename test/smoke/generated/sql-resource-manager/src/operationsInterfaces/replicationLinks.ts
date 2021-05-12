@@ -80,7 +80,7 @@ export interface ReplicationLinks {
    * @param linkId The ID of the replication link to be failed over.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -99,7 +99,7 @@ export interface ReplicationLinks {
    * @param linkId The ID of the replication link to be failed over.
    * @param options The options parameters.
    */
-  failoverAllowDataLoss(
+  beginFailoverAllowDataLoss(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -118,7 +118,7 @@ export interface ReplicationLinks {
    * @param parameters The required parameters for unlinking replication link.
    * @param options The options parameters.
    */
-  unlink(
+  beginUnlink(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,

@@ -57,7 +57,7 @@ export interface VpnConnections {
    * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
@@ -76,7 +76,7 @@ export interface VpnConnections {
    * @param connectionName The name of the connection.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,

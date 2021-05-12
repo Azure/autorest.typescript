@@ -62,7 +62,7 @@ export interface JobAgents {
    * @param parameters The requested job agent resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -82,7 +82,7 @@ export interface JobAgents {
    * @param jobAgentName The name of the job agent to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -99,7 +99,7 @@ export interface JobAgents {
    * @param parameters The update to the job agent.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,

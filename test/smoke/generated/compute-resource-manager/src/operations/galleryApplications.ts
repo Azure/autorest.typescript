@@ -127,7 +127,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
    * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -174,7 +174,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
    * @param galleryApplication Parameters supplied to the update gallery Application operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -244,7 +244,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
    * @param galleryApplicationName The name of the gallery Application Definition to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,

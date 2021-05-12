@@ -146,7 +146,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    * @param networkProfileName The name of the NetworkProfile.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkProfileName: string,
     options?: NetworkProfilesDeleteOptionalParams

@@ -84,7 +84,7 @@ export interface Vaults {
    * @param parameters Parameters to create or update the vault
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
@@ -162,7 +162,7 @@ export interface Vaults {
    * @param location The location of the soft-deleted vault.
    * @param options The options parameters.
    */
-  purgeDeleted(
+  beginPurgeDeleted(
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams

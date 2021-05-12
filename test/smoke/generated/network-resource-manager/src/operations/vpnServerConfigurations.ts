@@ -174,7 +174,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    *                                         VpnServerConfiguration.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
@@ -240,7 +240,7 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: VpnServerConfigurationsDeleteOptionalParams

@@ -63,7 +63,7 @@ export interface ServerAzureADAdministrators {
    *                   Administrator.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -83,7 +83,7 @@ export interface ServerAzureADAdministrators {
    * @param administratorName The name of server active directory administrator.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -98,7 +98,7 @@ export interface ServerAzureADAdministrators {
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  disableAzureADOnlyAuthentication(
+  beginDisableAzureADOnlyAuthentication(
     resourceGroupName: string,
     serverName: string,
     options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams

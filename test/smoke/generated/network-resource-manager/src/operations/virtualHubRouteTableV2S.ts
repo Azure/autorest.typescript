@@ -135,7 +135,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
    *                                         VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -179,7 +179,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
    * @param routeTableName The name of the VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,

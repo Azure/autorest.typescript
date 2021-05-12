@@ -149,7 +149,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param ddosProtectionPlanName The name of the DDoS protection plan.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: DdosProtectionPlansDeleteOptionalParams
@@ -208,7 +208,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param parameters Parameters supplied to the create or update operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,

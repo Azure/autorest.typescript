@@ -168,7 +168,7 @@ export class ManagedInstanceAdministratorsImpl
    * @param parameters The requested administrator parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceAdministrator,
@@ -209,7 +209,7 @@ export class ManagedInstanceAdministratorsImpl
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstanceAdministratorsDeleteOptionalParams

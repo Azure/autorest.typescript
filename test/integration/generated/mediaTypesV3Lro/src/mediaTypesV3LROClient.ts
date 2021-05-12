@@ -48,7 +48,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
    * @param data
    * @param options The options parameters.
    */
-  sendOnDefault(
+  beginSendOnDefault(
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
     options?: MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
@@ -61,7 +61,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
    * @param data simple string
    * @param options The options parameters.
    */
-  sendOnDefault(
+  beginSendOnDefault(
     contentType: "text/plain",
     data: string,
     options?: MediaTypesV3LROClientSendOnDefault$textOptionalParams
@@ -72,7 +72,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
    * Send payload to Foo service.
    * @param args Includes all the parameters for this operation.
    */
-  async sendOnDefault(
+  async beginSendOnDefault(
     ...args:
       | [
           "application/octet-stream",

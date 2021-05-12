@@ -44,7 +44,7 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    * @param accountName Account Name. Pass in 'local' to pass test.
    * @param options The options parameters.
    */
-  async pollWithParameterizedEndpoints(
+  async beginPollWithParameterizedEndpoints(
     accountName: string,
     options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
   ): Promise<

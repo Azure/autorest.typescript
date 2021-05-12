@@ -212,7 +212,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param parameters Parameters supplied to create or update virtual network gateway operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VirtualNetworkGateway,
@@ -275,7 +275,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysDeleteOptionalParams
@@ -312,7 +312,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param parameters Parameters supplied to update virtual network gateway tags.
    * @param options The options parameters.
    */
-  async updateTags(
+  async beginUpdateTags(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: TagsObject,
@@ -394,7 +394,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async reset(
+  async beginReset(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetOptionalParams
@@ -433,7 +433,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async resetVpnClientSharedKey(
+  async beginResetVpnClientSharedKey(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
@@ -472,7 +472,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    *                   operation.
    * @param options The options parameters.
    */
-  async generatevpnclientpackage(
+  async beginGeneratevpnclientpackage(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
@@ -518,7 +518,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    *                   operation.
    * @param options The options parameters.
    */
-  async generateVpnProfile(
+  async beginGenerateVpnProfile(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnClientParameters,
@@ -560,7 +560,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async getVpnProfilePackageUrl(
+  async beginGetVpnProfilePackageUrl(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
@@ -599,7 +599,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async getBgpPeerStatus(
+  async beginGetBgpPeerStatus(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
@@ -661,7 +661,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async getLearnedRoutes(
+  async beginGetLearnedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
@@ -702,7 +702,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param peer The IP address of the peer.
    * @param options The options parameters.
    */
-  async getAdvertisedRoutes(
+  async beginGetAdvertisedRoutes(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     peer: string,
@@ -746,7 +746,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    *                             Virtual Network Gateway P2S client operation through Network resource provider.
    * @param options The options parameters.
    */
-  async setVpnclientIpsecParameters(
+  async beginSetVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     vpnclientIpsecParams: VpnClientIPsecParameters,
@@ -791,7 +791,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The virtual network gateway name.
    * @param options The options parameters.
    */
-  async getVpnclientIpsecParameters(
+  async beginGetVpnclientIpsecParameters(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
@@ -858,7 +858,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async startPacketCapture(
+  async beginStartPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
@@ -899,7 +899,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    *                   on gateway.
    * @param options The options parameters.
    */
-  async stopPacketCapture(
+  async beginStopPacketCapture(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     parameters: VpnPacketCaptureStopParameters,
@@ -941,7 +941,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
    * @param options The options parameters.
    */
-  async getVpnclientConnectionHealth(
+  async beginGetVpnclientConnectionHealth(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
@@ -983,7 +983,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
    * @param request The parameters are supplied to disconnect vpn connections.
    * @param options The options parameters.
    */
-  async disconnectVirtualNetworkGatewayVpnConnections(
+  async beginDisconnectVirtualNetworkGatewayVpnConnections(
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,

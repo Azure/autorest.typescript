@@ -63,7 +63,7 @@ export interface VirtualClusters {
    * @param virtualClusterName The name of the virtual cluster.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualClusterName: string,
     options?: VirtualClustersDeleteOptionalParams
@@ -78,7 +78,7 @@ export interface VirtualClusters {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,

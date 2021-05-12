@@ -114,7 +114,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Succeeded’.
    * @param options The options parameters.
    */
-  async put200Succeeded(
+  async beginPut200Succeeded(
     options?: LROsPut200SucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -147,7 +147,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Succeeded’.
    * @param options The options parameters.
    */
-  async put201Succeeded(
+  async beginPut201Succeeded(
     options?: LROsPut201SucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -180,7 +180,7 @@ export class LROsImpl implements LROs {
    * body [{ 'id': '100', 'name': 'foo' }].
    * @param options The options parameters.
    */
-  async post202List(
+  async beginPost202List(
     options?: LROsPost202ListOptionalParams
   ): Promise<
     PollerLike<
@@ -213,7 +213,7 @@ export class LROsImpl implements LROs {
    * contain ProvisioningState=’Succeeded’.
    * @param options The options parameters.
    */
-  async put200SucceededNoState(
+  async beginPut200SucceededNoState(
     options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<
     PollerLike<
@@ -246,7 +246,7 @@ export class LROsImpl implements LROs {
    * points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState
    * @param options The options parameters.
    */
-  async put202Retry200(
+  async beginPut202Retry200(
     options?: LROsPut202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -280,7 +280,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async put201CreatingSucceeded200(
+  async beginPut201CreatingSucceeded200(
     options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
@@ -314,7 +314,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async put200UpdatingSucceeded204(
+  async beginPut200UpdatingSucceeded204(
     options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<
     PollerLike<
@@ -348,7 +348,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Failed’
    * @param options The options parameters.
    */
-  async put201CreatingFailed200(
+  async beginPut201CreatingFailed200(
     options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<
     PollerLike<
@@ -382,7 +382,7 @@ export class LROsImpl implements LROs {
    * ProvisioningState=’Canceled’
    * @param options The options parameters.
    */
-  async put200Acceptedcanceled200(
+  async beginPut200Acceptedcanceled200(
     options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<
     PollerLike<
@@ -415,7 +415,7 @@ export class LROsImpl implements LROs {
    * Subsequent calls to operation status do not contain location header.
    * @param options The options parameters.
    */
-  async putNoHeaderInRetry(
+  async beginPutNoHeaderInRetry(
     options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
@@ -449,7 +449,7 @@ export class LROsImpl implements LROs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncRetrySucceeded(
+  async beginPutAsyncRetrySucceeded(
     options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -483,7 +483,7 @@ export class LROsImpl implements LROs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncNoRetrySucceeded(
+  async beginPutAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -517,7 +517,7 @@ export class LROsImpl implements LROs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncRetryFailed(
+  async beginPutAsyncRetryFailed(
     options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
@@ -551,7 +551,7 @@ export class LROsImpl implements LROs {
    * operation status
    * @param options The options parameters.
    */
-  async putAsyncNoRetrycanceled(
+  async beginPutAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
@@ -584,7 +584,7 @@ export class LROsImpl implements LROs {
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    * @param options The options parameters.
    */
-  async putAsyncNoHeaderInRetry(
+  async beginPutAsyncNoHeaderInRetry(
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
@@ -616,7 +616,7 @@ export class LROsImpl implements LROs {
    * Long running put request with non resource.
    * @param options The options parameters.
    */
-  async putNonResource(
+  async beginPutNonResource(
     options?: LROsPutNonResourceOptionalParams
   ): Promise<
     PollerLike<
@@ -648,7 +648,7 @@ export class LROsImpl implements LROs {
    * Long running put request with non resource.
    * @param options The options parameters.
    */
-  async putAsyncNonResource(
+  async beginPutAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<
     PollerLike<
@@ -680,7 +680,7 @@ export class LROsImpl implements LROs {
    * Long running put request with sub resource.
    * @param options The options parameters.
    */
-  async putSubResource(
+  async beginPutSubResource(
     options?: LROsPutSubResourceOptionalParams
   ): Promise<
     PollerLike<
@@ -712,7 +712,7 @@ export class LROsImpl implements LROs {
    * Long running put request with sub resource.
    * @param options The options parameters.
    */
-  async putAsyncSubResource(
+  async beginPutAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<
     PollerLike<
@@ -746,7 +746,7 @@ export class LROsImpl implements LROs {
    * with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async deleteProvisioning202Accepted200Succeeded(
+  async beginDeleteProvisioning202Accepted200Succeeded(
     options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -780,7 +780,7 @@ export class LROsImpl implements LROs {
    * with ProvisioningState=’Failed’
    * @param options The options parameters.
    */
-  async deleteProvisioning202DeletingFailed200(
+  async beginDeleteProvisioning202DeletingFailed200(
     options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
   ): Promise<
     PollerLike<
@@ -814,7 +814,7 @@ export class LROsImpl implements LROs {
    * with ProvisioningState=’Canceled’
    * @param options The options parameters.
    */
-  async deleteProvisioning202Deletingcanceled200(
+  async beginDeleteProvisioning202Deletingcanceled200(
     options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
   ): Promise<
     PollerLike<
@@ -846,7 +846,7 @@ export class LROsImpl implements LROs {
    * Long running delete succeeds and returns right away
    * @param options The options parameters.
    */
-  async delete204Succeeded(
+  async beginDelete204Succeeded(
     options?: LROsDelete204SucceededOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
@@ -876,7 +876,7 @@ export class LROsImpl implements LROs {
    * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async delete202Retry200(
+  async beginDelete202Retry200(
     options?: LROsDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -909,7 +909,7 @@ export class LROsImpl implements LROs {
    * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async delete202NoRetry204(
+  async beginDelete202NoRetry204(
     options?: LROsDelete202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
@@ -942,7 +942,7 @@ export class LROsImpl implements LROs {
    * calls to operation status do not contain location header.
    * @param options The options parameters.
    */
-  async deleteNoHeaderInRetry(
+  async beginDeleteNoHeaderInRetry(
     options?: LROsDeleteNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
@@ -975,7 +975,7 @@ export class LROsImpl implements LROs {
    * Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    * @param options The options parameters.
    */
-  async deleteAsyncNoHeaderInRetry(
+  async beginDeleteAsyncNoHeaderInRetry(
     options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
@@ -1008,7 +1008,7 @@ export class LROsImpl implements LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRetrySucceeded(
+  async beginDeleteAsyncRetrySucceeded(
     options?: LROsDeleteAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -1041,7 +1041,7 @@ export class LROsImpl implements LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncNoRetrySucceeded(
+  async beginDeleteAsyncNoRetrySucceeded(
     options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -1074,7 +1074,7 @@ export class LROsImpl implements LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRetryFailed(
+  async beginDeleteAsyncRetryFailed(
     options?: LROsDeleteAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
@@ -1107,7 +1107,7 @@ export class LROsImpl implements LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  async deleteAsyncRetrycanceled(
+  async beginDeleteAsyncRetrycanceled(
     options?: LROsDeleteAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
@@ -1140,7 +1140,7 @@ export class LROsImpl implements LROs {
    * Poll returns a 200 with a response body after success.
    * @param options The options parameters.
    */
-  async post200WithPayload(
+  async beginPost200WithPayload(
     options?: LROsPost200WithPayloadOptionalParams
   ): Promise<
     PollerLike<
@@ -1173,7 +1173,7 @@ export class LROsImpl implements LROs {
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
    */
-  async post202Retry200(
+  async beginPost202Retry200(
     options?: LROsPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -1206,7 +1206,7 @@ export class LROsImpl implements LROs {
    * with noresponse body after success
    * @param options The options parameters.
    */
-  async post202NoRetry204(
+  async beginPost202NoRetry204(
     options?: LROsPost202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
@@ -1239,7 +1239,7 @@ export class LROsImpl implements LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object
    * @param options The options parameters.
    */
-  async postDoubleHeadersFinalLocationGet(
+  async beginPostDoubleHeadersFinalLocationGet(
     options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
   ): Promise<
     PollerLike<
@@ -1274,7 +1274,7 @@ export class LROsImpl implements LROs {
    * object
    * @param options The options parameters.
    */
-  async postDoubleHeadersFinalAzureHeaderGet(
+  async beginPostDoubleHeadersFinalAzureHeaderGet(
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
   ): Promise<
     PollerLike<
@@ -1309,7 +1309,7 @@ export class LROsImpl implements LROs {
    * object if you support initial Autorest behavior.
    * @param options The options parameters.
    */
-  async postDoubleHeadersFinalAzureHeaderGetDefault(
+  async beginPostDoubleHeadersFinalAzureHeaderGetDefault(
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
   ): Promise<
     PollerLike<
@@ -1345,7 +1345,7 @@ export class LROsImpl implements LROs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRetrySucceeded(
+  async beginPostAsyncRetrySucceeded(
     options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -1379,7 +1379,7 @@ export class LROsImpl implements LROs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncNoRetrySucceeded(
+  async beginPostAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -1413,7 +1413,7 @@ export class LROsImpl implements LROs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRetryFailed(
+  async beginPostAsyncRetryFailed(
     options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
@@ -1447,7 +1447,7 @@ export class LROsImpl implements LROs {
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRetrycanceled(
+  async beginPostAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<

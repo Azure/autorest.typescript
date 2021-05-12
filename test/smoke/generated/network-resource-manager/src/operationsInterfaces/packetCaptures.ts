@@ -46,7 +46,7 @@ export interface PacketCaptures {
    * @param parameters Parameters that define the create packet capture operation.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -78,7 +78,7 @@ export interface PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -93,7 +93,7 @@ export interface PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  stop(
+  beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -108,7 +108,7 @@ export interface PacketCaptures {
    * @param packetCaptureName The name given to the packet capture session.
    * @param options The options parameters.
    */
-  getStatus(
+  beginGetStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,

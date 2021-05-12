@@ -66,7 +66,7 @@ export interface FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -86,7 +86,7 @@ export interface FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -103,7 +103,7 @@ export interface FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -123,7 +123,7 @@ export interface FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -142,7 +142,7 @@ export interface FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  forceFailoverAllowDataLoss(
+  beginForceFailoverAllowDataLoss(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,

@@ -413,8 +413,8 @@ export interface ContainerServicePrincipalProfile {
 
 // @public
 export interface ContainerServices {
-    createOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: ContainerServicesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: ContainerServicesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     get(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesGetOptionalParams): Promise<ContainerServicesGetResponse>;
     list(options?: ContainerServicesListOptionalParams): PagedAsyncIterableIterator<ContainerService>;
     listByResourceGroup(resourceGroupName: string, options?: ContainerServicesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ContainerService>;
@@ -723,11 +723,11 @@ export interface DedicatedHostListResult {
 
 // @public
 export interface DedicatedHosts {
-    createOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: DedicatedHostsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: DedicatedHostsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: DedicatedHostsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
     get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsGetOptionalParams): Promise<DedicatedHostsGetResponse>;
     listByHostGroup(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostsListByHostGroupOptionalParams): PagedAsyncIterableIterator<DedicatedHost>;
-    update(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: DedicatedHostsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
 }
 
 // @public
@@ -887,12 +887,12 @@ export type DiskEncryptionSetParameters = SubResource & {};
 
 // @public
 export interface DiskEncryptionSets {
-    createOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: DiskEncryptionSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: DiskEncryptionSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: DiskEncryptionSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
     get(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsGetOptionalParams): Promise<DiskEncryptionSetsGetResponse>;
     list(options?: DiskEncryptionSetsListOptionalParams): PagedAsyncIterableIterator<DiskEncryptionSet>;
     listByResourceGroup(resourceGroupName: string, options?: DiskEncryptionSetsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DiskEncryptionSet>;
-    update(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: DiskEncryptionSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
 }
 
 // @public
@@ -1024,14 +1024,14 @@ export interface DiskList {
 
 // @public
 export interface Disks {
-    createOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: DisksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: DisksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginGrantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: DisksGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
+    beginRevokeAccess(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: DisksUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
     get(resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams): Promise<DisksGetResponse>;
-    grantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: DisksGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
     list(options?: DisksListOptionalParams): PagedAsyncIterableIterator<Disk>;
     listByResourceGroup(resourceGroupName: string, options?: DisksListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Disk>;
-    revokeAccess(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: DisksUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
 }
 
 // @public
@@ -1217,12 +1217,12 @@ export type Enum31 = number;
 
 // @public
 export interface Galleries {
-    createOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: GalleriesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
     get(resourceGroupName: string, galleryName: string, options?: GalleriesGetOptionalParams): Promise<GalleriesGetResponse>;
     list(options?: GalleriesListOptionalParams): PagedAsyncIterableIterator<Gallery>;
     listByResourceGroup(resourceGroupName: string, options?: GalleriesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Gallery>;
-    update(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: GalleriesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
 }
 
 // @public
@@ -1344,11 +1344,11 @@ export interface GalleryApplicationList {
 
 // @public
 export interface GalleryApplications {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: GalleryApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: GalleryApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: GalleryApplicationsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsGetOptionalParams): Promise<GalleryApplicationsGetResponse>;
     listByGallery(resourceGroupName: string, galleryName: string, options?: GalleryApplicationsListByGalleryOptionalParams): PagedAsyncIterableIterator<GalleryApplication>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: GalleryApplicationsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
 }
 
 // @public
@@ -1456,11 +1456,11 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
 
 // @public
 export interface GalleryApplicationVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: GalleryApplicationVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsGetOptionalParams): Promise<GalleryApplicationVersionsGetResponse>;
     listByGalleryApplication(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationVersionsListByGalleryApplicationOptionalParams): PagedAsyncIterableIterator<GalleryApplicationVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: GalleryApplicationVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
 }
 
 // @public
@@ -1613,11 +1613,11 @@ export type GalleryImagePropertiesProvisioningState = string;
 
 // @public
 export interface GalleryImages {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: GalleryImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: GalleryImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: GalleryImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesGetOptionalParams): Promise<GalleryImagesGetResponse>;
     listByGallery(resourceGroupName: string, galleryName: string, options?: GalleryImagesListByGalleryOptionalParams): PagedAsyncIterableIterator<GalleryImage>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: GalleryImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
 }
 
 // @public
@@ -1729,11 +1729,11 @@ export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProf
 
 // @public
 export interface GalleryImageVersions {
-    createOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: GalleryImageVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: GalleryImageVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: GalleryImageVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsGetOptionalParams): Promise<GalleryImageVersionsGetResponse>;
     listByGalleryImage(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImageVersionsListByGalleryImageOptionalParams): PagedAsyncIterableIterator<GalleryImageVersion>;
-    update(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: GalleryImageVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
 }
 
 // @public
@@ -1927,12 +1927,12 @@ export type ImageReference = SubResource & {
 
 // @public
 export interface Images {
-    createOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
     get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
     list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image_2>;
     listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image_2>;
-    update(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
 }
 
 // @public
@@ -2847,8 +2847,8 @@ export interface ListUsagesResult {
 
 // @public
 export interface LogAnalytics {
-    exportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: LogAnalyticsExportRequestRateByIntervalOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>, LogAnalyticsExportRequestRateByIntervalResponse>>;
-    exportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: LogAnalyticsExportThrottledRequestsOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportThrottledRequestsResponse>, LogAnalyticsExportThrottledRequestsResponse>>;
+    beginExportRequestRateByInterval(location: string, parameters: RequestRateByIntervalInput, options?: LogAnalyticsExportRequestRateByIntervalOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportRequestRateByIntervalResponse>, LogAnalyticsExportRequestRateByIntervalResponse>>;
+    beginExportThrottledRequests(location: string, parameters: ThrottledRequestsInput, options?: LogAnalyticsExportThrottledRequestsOptionalParams): Promise<PollerLike<PollOperationState<LogAnalyticsExportThrottledRequestsResponse>, LogAnalyticsExportThrottledRequestsResponse>>;
 }
 
 // @public
@@ -3462,14 +3462,14 @@ export interface SnapshotList {
 
 // @public
 export interface Snapshots {
-    createOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: SnapshotsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: SnapshotsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginGrantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: SnapshotsGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
+    beginRevokeAccess(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: SnapshotsUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
     get(resourceGroupName: string, snapshotName: string, options?: SnapshotsGetOptionalParams): Promise<SnapshotsGetResponse>;
-    grantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: SnapshotsGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
     list(options?: SnapshotsListOptionalParams): PagedAsyncIterableIterator<Snapshot>;
     listByResourceGroup(resourceGroupName: string, options?: SnapshotsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Snapshot>;
-    revokeAccess(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: SnapshotsUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
 }
 
 // @public
@@ -4066,11 +4066,11 @@ export interface VirtualMachineExtensionInstanceView {
 
 // @public
 export interface VirtualMachineExtensions {
-    createOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
     get(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsGetOptionalParams): Promise<VirtualMachineExtensionsGetResponse>;
     list(resourceGroupName: string, vmName: string, options?: VirtualMachineExtensionsListOptionalParams): Promise<VirtualMachineExtensionsListResponse>;
-    update(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -4331,11 +4331,20 @@ export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
 
 // @public
 export interface VirtualMachines {
-    capture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: VirtualMachinesCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
-    convertToManagedDisks(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    createOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
-    deallocate(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCapture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: VirtualMachinesCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
+    beginConvertToManagedDisks(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
+    beginDeallocate(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDelete(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPerformMaintenance(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPowerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReapply(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRedeploy(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRestart(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRunCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: VirtualMachinesRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
+    beginStart(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: VirtualMachinesUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
     generalize(resourceGroupName: string, vmName: string, options?: VirtualMachinesGeneralizeOptionalParams): Promise<coreHttp.RestResponse>;
     get(resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams): Promise<VirtualMachinesGetResponse>;
     instanceView(resourceGroupName: string, vmName: string, options?: VirtualMachinesInstanceViewOptionalParams): Promise<VirtualMachinesInstanceViewResponse>;
@@ -4343,16 +4352,7 @@ export interface VirtualMachines {
     listAll(options?: VirtualMachinesListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
     listAvailableSizes(resourceGroupName: string, vmName: string, options?: VirtualMachinesListAvailableSizesOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
     listByLocation(location: string, options?: VirtualMachinesListByLocationOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
-    performMaintenance(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reapply(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: VirtualMachinesRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
     simulateEviction(resourceGroupName: string, vmName: string, options?: VirtualMachinesSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: VirtualMachinesUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
 }
 
 // @public
@@ -4417,11 +4417,11 @@ export interface VirtualMachineScaleSetExtensionProfile {
 
 // @public
 export interface VirtualMachineScaleSetExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetExtensionsGetResponse>;
     list(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetExtensionsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetExtension>;
-    update(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -4651,10 +4651,10 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 
 // @public
 export interface VirtualMachineScaleSetRollingUpgrades {
-    cancel(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCancel(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginStartExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginStartOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getLatest(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
-    startExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    startOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -4689,11 +4689,21 @@ export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalPara
 
 // @public
 export interface VirtualMachineScaleSets {
+    beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
+    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRestart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginSetOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginStart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: VirtualMachineScaleSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
+    beginUpdateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams): Promise<coreHttp.RestResponse>;
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
-    deallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    deleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetOptionalParams): Promise<VirtualMachineScaleSetsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
@@ -4701,16 +4711,6 @@ export interface VirtualMachineScaleSets {
     listAll(options?: VirtualMachineScaleSetsListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSet>;
     listOSUpgradeHistory(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams): PagedAsyncIterableIterator<UpgradeOperationHistoricalStatusInfo>;
     listSkus(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsListSkusOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetSku>;
-    performMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    setOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    start(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: VirtualMachineScaleSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
-    updateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
 }
 
 // @public
@@ -5102,11 +5102,11 @@ export type VirtualMachineScaleSetVM = Resource & {
 
 // @public
 export interface VirtualMachineScaleSetVMExtensions {
-    createOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsGetResponse>;
     list(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMExtensionsListOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsListResponse>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
 }
 
 // @public
@@ -5236,21 +5236,21 @@ export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimagePar
 
 // @public
 export interface VirtualMachineScaleSetVMs {
-    deallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    delete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRestart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginRunCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: VirtualMachineScaleSetVMsRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
+    beginStart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: VirtualMachineScaleSetVMsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetOptionalParams): Promise<VirtualMachineScaleSetVMsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
     list(resourceGroupName: string, virtualMachineScaleSetName: string, options?: VirtualMachineScaleSetVMsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetVM>;
-    performMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    powerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    redeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    reimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    restart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    runCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: VirtualMachineScaleSetVMsRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
     simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
-    start(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    update(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: VirtualMachineScaleSetVMsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
 }
 
 // @public

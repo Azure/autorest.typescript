@@ -45,7 +45,7 @@ export interface ExpressRouteCircuitConnections {
    * @param connectionName The name of the express route circuit connection.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -79,7 +79,7 @@ export interface ExpressRouteCircuitConnections {
    *                                                route circuit connection operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
