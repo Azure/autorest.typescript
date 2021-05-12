@@ -234,7 +234,9 @@ export function writeAsyncIterators(
  */
 function getPublicMethodName(operation: OperationDetails) {
   let initialOperationName = normalizeName(operation.name, NameType.Operation);
-  if (initialOperationName.indexOf("get") === 0) {
+  if (initialOperationName.indexOf("list") === 0) {
+    initialOperationName = initialOperationName.replace("list", "");
+  } else if (initialOperationName.indexOf("get") === 0) {
     initialOperationName = initialOperationName.replace("get", "");
   } else {
     initialOperationName = normalizeName(initialOperationName, NameType.Class);
