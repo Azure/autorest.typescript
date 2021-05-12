@@ -317,7 +317,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  public listChangeVnet(
+  public beginListChangeVnet(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -905,7 +905,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public listResume(
+  public beginListResume(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -1095,7 +1095,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public listSuspend(
+  public beginListSuspend(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams
@@ -1810,7 +1810,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  private async begin_changeVnet(
+  private async _changeVnet(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -2202,7 +2202,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  private async begin_resume(
+  private async _resume(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -2284,7 +2284,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  private async begin_suspend(
+  private async _suspend(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams

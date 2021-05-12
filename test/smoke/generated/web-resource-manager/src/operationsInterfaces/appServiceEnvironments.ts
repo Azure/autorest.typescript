@@ -133,7 +133,7 @@ export interface AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  listChangeVnet(
+  beginListChangeVnet(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -226,7 +226,7 @@ export interface AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listResume(
+  beginListResume(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -259,7 +259,7 @@ export interface AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listSuspend(
+  beginListSuspend(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams

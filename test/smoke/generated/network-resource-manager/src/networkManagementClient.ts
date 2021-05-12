@@ -411,7 +411,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  public listPutBastionShareableLink(
+  public beginListPutBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -571,7 +571,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  public listActiveSessions(
+  public beginListActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
     options?: NetworkManagementClientGetActiveSessionsOptionalParams
@@ -724,7 +724,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  private async begin_putBastionShareableLink(
+  private async _putBastionShareableLink(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -831,7 +831,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  private async begin_getActiveSessions(
+  private async _getActiveSessions(
     resourceGroupName: string,
     bastionHostName: string,
     options?: NetworkManagementClientGetActiveSessionsOptionalParams

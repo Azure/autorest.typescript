@@ -211,7 +211,7 @@ export interface Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  beginGetMultiplePagesLRO(
+  getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<
