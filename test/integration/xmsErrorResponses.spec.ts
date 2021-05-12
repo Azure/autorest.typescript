@@ -5,18 +5,31 @@ import {
   PetGetPetByIdResponse,
   PetHungryOrThirstyError,
   PetSadError,
-  XmsErrorResponsesClient
+  XmsErrorResponsesClient,
+  XmsErrorResponsesClientOptionalParams
 } from "./generated/xmsErrorResponses/src";
+import { parseXML } from "@azure/core-xml";
 
 describe("Integration tests for XmsErrorResponsesClient", () => {
   let client: XmsErrorResponsesClient;
 
   beforeEach(() => {
-    client = new XmsErrorResponsesClient({
+    let generatedClientOptions: XmsErrorResponsesClientOptionalParams = {};
+    const clientOptions = {
       endpoint: "http://localhost:3000",
       $host: "http://localhost:3000",
-      noRetryPolicy: true
-    });
+      allowInsecureConnection: true
+    };
+    generatedClientOptions = {
+      ...clientOptions,
+      ...{
+        deserializationOptions: {
+          parseXML
+        }
+      }
+    };
+
+    client = new XmsErrorResponsesClient(generatedClientOptions);
   });
 
   it("should get an animal not found error", async () => {
@@ -44,7 +57,6 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
       aniType: "Dog"
     };
     assert.deepEqual(response, expected);
-    assert.equal(response._response.status, 200);
   });
 
   it("should get an animal hungry/thirsty error", async () => {

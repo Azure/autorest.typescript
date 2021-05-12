@@ -10,7 +10,8 @@ describe("Custom URL + Paging", () => {
 
   beforeEach(() => {
     const clientOptions: CustomUrlPagingClientOptionalParams = {
-      host: "host:3000"
+      host: "host:3000",
+      allowInsecureConnection: true
     };
     client = new CustomUrlPagingClient(clientOptions);
   });

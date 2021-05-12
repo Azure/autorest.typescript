@@ -30,6 +30,7 @@ export function generateTracingFile(
   ]);
 
   writeCreateSpanFunction(file, clientDetails.tracing);
+  file.fixUnusedIdentifiers();
 }
 
 function writeCreateSpanFunction(

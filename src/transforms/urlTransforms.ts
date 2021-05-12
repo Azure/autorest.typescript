@@ -29,7 +29,7 @@ export async function transformBaseUrl(
   }
 
   return {
-    endpoint: endpoint,
+    endpoint: endpoint?.replace("http://", "https://"),
     isCustom
   };
 }

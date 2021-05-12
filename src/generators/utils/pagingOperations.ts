@@ -16,6 +16,7 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getOperationParameterSignatures } from "./parameterUtils";
 import { generateOperationJSDoc } from "./docsUtils";
 import { getPagingResponseBodyType } from "./responseTypeUtils";
+import { OptionsBag } from "../../utils/optionsBag";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -115,7 +116,8 @@ export function writeAsyncIterators(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
   operationGroupClass: ClassDeclaration | InterfaceDeclaration,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  optionsBag: OptionsBag
 ) {
   if (clientDetails.options.disablePagingAsyncIterators) {
     return;
@@ -170,7 +172,8 @@ export function writeAsyncIterators(
           nextOperation,
           clientDetails.parameters,
           importedModels,
-          operationGroupClass
+          operationGroupClass,
+          optionsBag
         ).baseMethodParameters.map(parameter => {
           if (parameter.name === "nextLink") {
             return { ...parameter, hasQuestionToken: true };
@@ -186,7 +189,8 @@ export function writeAsyncIterators(
         operation,
         clientDetails.parameters,
         importedModels,
-        operationGroupClass
+        operationGroupClass,
+        optionsBag
       );
 
       // Build an object with all the information about the paging methods

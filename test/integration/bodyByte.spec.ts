@@ -1,6 +1,8 @@
 import { BodyByteClient } from "./generated/bodyByte/src";
 import { expect } from "chai";
 import { isNode } from "@azure/core-http";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+
 describe("Body Byte Client", function() {
   let testClient: BodyByteClient;
   const testBytes = new Uint8Array([
@@ -17,7 +19,7 @@ describe("Body Byte Client", function() {
   ]);
 
   beforeEach(() => {
-    testClient = new BodyByteClient();
+    testClient = new BodyByteClient({ allowInsecureConnection: true });
   });
 
   it("should get null value", async () => {
@@ -40,8 +42,10 @@ describe("Body Byte Client", function() {
   });
 
   it("should put non-ascii value", async () => {
-    const result = await testClient.byte.putNonAscii(testBytes);
-    expect(result._response.status).to.equal(200);
+    const result = await testClient.byte.putNonAscii(
+      testBytes,
+      responseStatusChecker
+    );
   });
 
   // This test should cause an error to be thrown during deserialization.

@@ -1,10 +1,12 @@
 import { BodyDateTimeClient } from "./generated/bodyDateTime/src";
 import { expect } from "chai";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+
 describe("BodyDateTime Client", function() {
   let testClient: BodyDateTimeClient;
 
   beforeEach(() => {
-    testClient = new BodyDateTimeClient();
+    testClient = new BodyDateTimeClient({ allowInsecureConnection: true });
   });
 
   it("should get null datetime", async () => {
@@ -122,13 +124,13 @@ describe("BodyDateTime Client", function() {
       body: date
     } = await testClient.datetime.getLocalPositiveOffsetLowercaseMaxDateTime();
 
-    date.getUTCFullYear().should.equal(9999);
-    date.getUTCMonth().should.equal(11);
-    date.getUTCDate().should.equal(31);
-    date.getUTCHours().should.equal(9);
-    date.getUTCMinutes().should.equal(59);
-    date.getUTCSeconds().should.equal(59);
-    date.getUTCMilliseconds().should.equal(999);
+    expect(date.getUTCFullYear()).to.equal(9999);
+    expect(date.getUTCMonth()).to.equal(11);
+    expect(date.getUTCDate()).to.equal(31);
+    expect(date.getUTCHours()).to.equal(9);
+    expect(date.getUTCMinutes()).to.equal(59);
+    expect(date.getUTCSeconds()).to.equal(59);
+    expect(date.getUTCMilliseconds()).to.equal(999);
   });
 
   it("should get local positive offset uppercase Max DateTime", async () => {
@@ -163,45 +165,44 @@ describe("BodyDateTime Client", function() {
   });
 
   it("should put UTC min date time", async () => {
-    const result = await testClient.datetime.putUtcMinDateTime(
-      new Date("0001-01-01T00:00:00Z")
+    await testClient.datetime.putUtcMinDateTime(
+      new Date("0001-01-01T00:00:00Z"),
+      responseStatusChecker
     );
-
-    expect(result._response.status).to.equal(200);
   });
 
   it("should put UTC max date time", async () => {
-    const result = await testClient.datetime.putUtcMaxDateTime(
-      new Date("9999-12-31T23:59:59.9999999Z")
+    await testClient.datetime.putUtcMaxDateTime(
+      new Date("9999-12-31T23:59:59.9999999Z"),
+      responseStatusChecker
     );
-    expect(result._response.status).to.equal(200);
   });
 
   it("should put local negative and positive offset min DateTime", async function() {
-    const result = await testClient.datetime.putLocalNegativeOffsetMinDateTime(
-      new Date("0001-01-01T00:00:00-14:00")
+    await testClient.datetime.putLocalNegativeOffsetMinDateTime(
+      new Date("0001-01-01T00:00:00-14:00"),
+      responseStatusChecker
     );
-    expect(result._response.status).to.equal(200);
   });
 
   it("should put local negative and positive offset min DateTime", async function() {
-    const result = await testClient.datetime.putLocalPositiveOffsetMinDateTime(
-      new Date("0001-01-01T00:00:00+14:00")
+    await testClient.datetime.putLocalPositiveOffsetMinDateTime(
+      new Date("0001-01-01T00:00:00+14:00"),
+      responseStatusChecker
     );
-    expect(result._response.status).to.equal(200);
   });
 
   it("should put local negative offset max DateTime", async () => {
-    const result = await testClient.datetime.putLocalNegativeOffsetMaxDateTime(
-      new Date("9999-12-31T23:59:59.9999999-14:00")
+    await testClient.datetime.putLocalNegativeOffsetMaxDateTime(
+      new Date("9999-12-31T23:59:59.9999999-14:00"),
+      responseStatusChecker
     );
-    expect(result._response.status).to.equal(200);
   });
 
   it("should put local positive offset max Date", async function() {
-    const result = await testClient.datetime.putLocalPositiveOffsetMaxDateTime(
-      new Date("9999-12-31t23:59:59.9999999+14:00")
+    await testClient.datetime.putLocalPositiveOffsetMaxDateTime(
+      new Date("9999-12-31t23:59:59.9999999+14:00"),
+      responseStatusChecker
     );
-    expect(result._response.status).to.equal(200);
   });
 });

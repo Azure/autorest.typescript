@@ -75,14 +75,35 @@ export function generateClient(
     []
   );
 
+  if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
+    if (!optionsBag.useCoreV2) {
+      clientFile.addImportDeclaration({
+        namespaceImport: "coreHttp",
+        moduleSpecifier: "@azure/core-http"
+      });
+    } else {
+      clientFile.addImportDeclaration({
+        namespaceImport: "coreClient",
+        moduleSpecifier: "@azure/core-client"
+      });
+      clientFile.addImportDeclaration({
+        namespaceImport: "coreRestPipeline",
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      });
+      clientFile.addImportDeclaration({
+        namespaceImport: "coreTracing",
+        moduleSpecifier: "@azure/core-tracing"
+      });
+      if (hasCredentials) {
+        clientFile.addImportDeclaration({
+          namespaceImport: "coreAuth",
+          moduleSpecifier: "@azure/core-auth"
+        });
+      }
+    }
+  }
+
   addPagingEsNextRef(flattenedInlineOperations, clientDetails, clientFile);
-
-  (hasCredentials || hasInlineOperations || !hasClientOptionalParams) &&
-    clientFile.addImportDeclaration({
-      namespaceImport: "coreHttp",
-      moduleSpecifier: "@azure/core-http"
-    });
-
   addPagingImports(flattenedInlineOperations, clientDetails, clientFile);
 
   const hasLRO = inlineOperations.some(og => og.operations.some(o => o.isLRO));
@@ -155,7 +176,7 @@ export function generateClient(
     clientClass.addJsDoc({
       tags: [
         {
-          tagName: "hidden"
+          tagName: "internal"
         }
       ]
     });
@@ -169,7 +190,8 @@ export function generateClient(
     clientClass,
     clientDetails,
     hasLRO,
-    importedModels
+    importedModels,
+    optionsBag
   );
 
   // Use named import from Models
@@ -179,6 +201,8 @@ export function generateClient(
       moduleSpecifier: "./models"
     });
   }
+
+  clientFile.fixUnusedIdentifiers();
 }
 
 export function checkForNameCollisions(
@@ -295,7 +319,8 @@ function writeClientOperations(
   classDeclaration: ClassDeclaration,
   clientDetails: ClientDetails,
   hasLRO: boolean,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  optionsBag: OptionsBag
 ) {
   const allModelsNames = getAllModelsNames(clientDetails);
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
@@ -303,7 +328,7 @@ function writeClientOperations(
   // Add top level operation groups as client properties
   if (!!topLevelGroup) {
     if (hasLRO) {
-      writeGetOperationOptions(classDeclaration);
+      writeGetOperationOptions(classDeclaration, optionsBag);
     }
     writeOperations(
       topLevelGroup,
@@ -311,14 +336,16 @@ function writeClientOperations(
       importedModels,
       allModelsNames,
       clientDetails,
-      true // isInline,
+      true, // isInline,
+      optionsBag
     );
 
     addOperationSpecs(
       topLevelGroup,
       file,
       clientDetails.parameters,
-      hasMappers
+      hasMappers,
+      optionsBag
     );
   }
 

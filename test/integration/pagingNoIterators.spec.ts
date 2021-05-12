@@ -19,7 +19,7 @@ describe("Integration tests for Paging", () => {
         retryDelayInMs: 0
       }
     };
-    client = new PagingNoIteratorsClient(pipelineOptions);
+    client = new PagingNoIteratorsClient();
   });
 
   describe("getMultiplePagesRetrySecond", () => {

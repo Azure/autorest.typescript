@@ -14,6 +14,7 @@ import {
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "./generated/additionalProperties/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 /**
  * Returns an interface that omits the _response field.
@@ -26,7 +27,7 @@ describe("AdditionalPropertiesClient", () => {
   let client: AdditionalPropertiesClient;
 
   beforeEach(() => {
-    client = new AdditionalPropertiesClient();
+    client = new AdditionalPropertiesClient({ allowInsecureConnection: true });
   });
 
   describe("#createAPTrue", () => {
@@ -39,9 +40,11 @@ describe("AdditionalPropertiesClient", () => {
           color: "Red"
         }
       };
-      const result = await client.pets.createAPTrue(params);
+      const result = await client.pets.createAPTrue(
+        params,
+        responseStatusChecker
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<PetsCreateAPTrueResponse>, {
         ...params,
         status: true
@@ -60,9 +63,11 @@ describe("AdditionalPropertiesClient", () => {
           color: "Red"
         }
       };
-      const result = await client.pets.createCatAPTrue(params);
+      const result = await client.pets.createCatAPTrue(
+        params,
+        responseStatusChecker
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<PetsCreateCatAPTrueResponse>, {
         ...params,
         status: true
@@ -87,9 +92,11 @@ describe("AdditionalPropertiesClient", () => {
         ],
         picture: "//////4="
       };
-      const result = await client.pets.createAPObject(params);
+      const result = await client.pets.createAPObject(
+        params,
+        responseStatusChecker
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<PetsCreateAPObjectResponse>, {
         ...params,
         status: true
@@ -106,9 +113,11 @@ describe("AdditionalPropertiesClient", () => {
         weight: "10 kg",
         city: "Bombay"
       };
-      const result = await client.pets.createAPString(params);
+      const result = await client.pets.createAPString(
+        params,
+        responseStatusChecker
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<PetsCreateAPStringResponse>, {
         ...params,
         status: true
@@ -127,9 +136,11 @@ describe("AdditionalPropertiesClient", () => {
           footsize: 11.5
         }
       };
-      const result = await client.pets.createAPInProperties(params);
+      const result = await client.pets.createAPInProperties(
+        params,
+        responseStatusChecker
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(
         result as RemoveResponse<PetsCreateAPInPropertiesResponse>,
         {
@@ -155,9 +166,15 @@ describe("AdditionalPropertiesClient", () => {
         city: "Seattle",
         food: "tikka masala"
       };
-      const result = await client.pets.createAPInPropertiesWithAPString(params);
+      const result = await client.pets.createAPInPropertiesWithAPString(
+        params,
+        {
+          onResponse: response => {
+            assert.equal(response.status, 200, "Unexpected status code.");
+          }
+        }
+      );
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(
         result as RemoveResponse<PetsCreateAPInPropertiesWithAPStringResponse>,
         {

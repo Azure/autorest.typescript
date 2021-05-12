@@ -1,21 +1,20 @@
 import { expect } from "chai";
 import { BodyNumberClient } from "./generated/bodyNumber/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("Integration tests for BodyInteger", () => {
   let testClient: BodyNumberClient;
 
   beforeEach(() => {
-    testClient = new BodyNumberClient();
+    testClient = new BodyNumberClient({ allowInsecureConnection: true });
   });
 
   it("should put big float", async () => {
-    const result = await testClient.number.putBigFloat(3.402823e20);
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putBigFloat(3.402823e20, responseStatusChecker);
   });
 
   it("should put big double", async () => {
-    const result = await testClient.number.putBigDouble(2.5976931e101);
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putBigDouble(2.5976931e101, responseStatusChecker);
   });
 
   it("should get big float", async () => {
@@ -29,13 +28,14 @@ describe("Integration tests for BodyInteger", () => {
   });
 
   it("should put small float", async () => {
-    const result = await testClient.number.putSmallFloat(3.402823e-20);
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putSmallFloat(3.402823e-20, responseStatusChecker);
   });
 
   it("should put small double values", async () => {
-    const result = await testClient.number.putSmallDouble(2.5976931e-101);
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putSmallDouble(
+      2.5976931e-101,
+      responseStatusChecker
+    );
   });
 
   it("should get small float value", async () => {
@@ -49,13 +49,11 @@ describe("Integration tests for BodyInteger", () => {
   });
 
   it("should put big positive double value", async () => {
-    const result = await testClient.number.putBigDoublePositiveDecimal();
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putBigDoublePositiveDecimal(responseStatusChecker);
   });
 
   it("should put big negative double value", async () => {
-    const result = await testClient.number.putBigDoubleNegativeDecimal();
-    expect(result._response.status).to.equal(200);
+    await testClient.number.putBigDoubleNegativeDecimal(responseStatusChecker);
   });
 
   it("should get big positive double value", async () => {

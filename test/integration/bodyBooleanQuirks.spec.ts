@@ -1,10 +1,12 @@
 import { BodyBooleanQuirksClient } from "./generated/bodyBooleanQuirks/src";
 import { expect } from "chai";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+
 describe("Bool Quirks Client", function() {
   let testClient: BodyBooleanQuirksClient;
 
   beforeEach(() => {
-    testClient = new BodyBooleanQuirksClient();
+    testClient = new BodyBooleanQuirksClient({ allowInsecureConnection: true });
   });
 
   it("should get true value", async () => {
@@ -18,13 +20,11 @@ describe("Bool Quirks Client", function() {
   });
 
   it("should put true value", async () => {
-    const result = await testClient.bool.putTrue(true);
-    expect(result._response.status).to.equal(200);
+    await testClient.bool.putTrue(true, responseStatusChecker);
   });
 
   it("should put false value", async () => {
-    const result = await testClient.bool.putFalse(false);
-    expect(result._response.status).to.equal(200);
+    await testClient.bool.putFalse(false, responseStatusChecker);
   });
 
   it("should get null boolean value", async () => {

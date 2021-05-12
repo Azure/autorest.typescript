@@ -1,11 +1,5 @@
-import {
-  ValidationClient,
-  Product,
-  ConstantProduct,
-  ChildProduct
-} from "./generated/validation/src";
+import { ValidationClient, Product } from "./generated/validation/src";
 import { assert } from "chai";
-import * as fs from "fs";
 
 const constantBody: Product = {
   child: { constProperty: "constant" },
@@ -18,7 +12,7 @@ const constantBody: Product = {
 };
 
 describe("Integration tests for validation", () => {
-  let client = new ValidationClient("");
+  let client = new ValidationClient("", { allowInsecureConnection: true });
 
   it("should succeed with a GET with a constant in path", async () => {
     await client.getWithConstantInPath();

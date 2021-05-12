@@ -5,6 +5,7 @@ import {
   OperationResponseDetails
 } from "../../models/operationDetails";
 import { normalizeName, NameType } from "../../utils/nameUtils";
+import { OptionsBag } from "../../utils/optionsBag";
 
 /**
  * Helper function that gets a set of object model names,
@@ -45,7 +46,8 @@ export function getResponseTypeName(
 export function getOperationResponseType(
   operation: OperationDetails,
   importedModels: Set<string>,
-  modelNames: Set<string>
+  modelNames: Set<string>,
+  optionsBag: OptionsBag
 ) {
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
@@ -60,7 +62,7 @@ export function getOperationResponseType(
     return typeName;
   }
 
-  return "coreHttp.RestResponse";
+  return !optionsBag.useCoreV2 ? "coreHttp.RestResponse" : "void";
 }
 
 /**

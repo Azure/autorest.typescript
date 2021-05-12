@@ -6,4 +6,6 @@ export interface OptionsBag {
   hideClients: boolean;
   armLibrary: boolean;
   ignoreNullableOnOptional: boolean;
+  useCoreV2: boolean;
+  allowInsecureConnection: boolean;
 }

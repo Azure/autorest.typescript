@@ -1,23 +1,23 @@
 import { assert } from "chai";
 import { ObjectTypeClient } from "./generated/objectType/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("ObjectType", () => {
   let client: ObjectTypeClient;
 
   beforeEach(() => {
-    client = new ObjectTypeClient();
+    client = new ObjectTypeClient({ allowInsecureConnection: true });
   });
 
   it("should get an object", async () => {
     const result = await client.get();
-    assert.deepStrictEqual(result.body, {
+    assert.deepStrictEqual(result as any, {
       message: "An object was successfully returned"
     });
   });
 
   it("should put an object", async () => {
-    const result = await client.put({ foo: "bar" });
-    assert.strictEqual(result._response.status, 200);
+    await client.put({ foo: "bar" }, responseStatusChecker);
   });
 
   it("should throw puttin and invalid object", async () => {

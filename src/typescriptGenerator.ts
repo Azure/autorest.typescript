@@ -59,7 +59,32 @@ export async function generateTypeScriptLibrary(
   const srcPath =
     ((await host.GetValue("source-code-folder-path")) as string) || "src";
 
-  const clientDetails = await transformCodeModel(codeModel, host);
+  const shouldGenerateLicense: boolean =
+    (await host.GetValue("license-header")) || false;
+  const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
+  const armLibrary: boolean =
+    (await host.GetValue("azure-arm")) ||
+    (await host.GetValue("openapi-type")) === "arm" ||
+    false;
+  const ignoreNullableOnOptional: boolean = (await host.GetValue(
+    "ignore-nullable-on-optional"
+  ))
+    ? true
+    : armLibrary;
+  const useCoreV2: boolean = (await host.GetValue("use-core-v2")) || false;
+  const allowInsecureConnection: boolean =
+    (await host.GetValue("allow-insecure-connection")) || false;
+
+  const optionsBag: OptionsBag = {
+    shouldGenerateLicense,
+    hideClients,
+    armLibrary,
+    ignoreNullableOnOptional,
+    useCoreV2,
+    allowInsecureConnection
+  };
+
+  const clientDetails = await transformCodeModel(codeModel, host, optionsBag);
   clientDetails.srcPath = srcPath;
 
   clientDetails.tracing = await getTracingInfo(host);
@@ -73,26 +98,6 @@ export async function generateTypeScriptLibrary(
     nameWithoutScope: packageNameParts[3],
     description: clientDetails.description,
     version: (await host.GetValue("package-version")) || "1.0.0"
-  };
-
-  const shouldGenerateLicense: boolean =
-    (await host.GetValue("license-header")) || false;
-  const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
-  const armLibrary: boolean =
-    (await host.GetValue("azure-arm")) ||
-    (await host.GetValue("openapi-type")) === "arm" ||
-    false;
-  const ignoreNullableOnOptional: boolean = (await host.GetValue(
-    "ignore-nullable-on-optional"
-  ))
-    ? true
-    : armLibrary;
-
-  const optionsBag: OptionsBag = {
-    shouldGenerateLicense,
-    hideClients,
-    armLibrary,
-    ignoreNullableOnOptional
   };
 
   clientDetails.operationGroups.forEach(operationGroup => {
@@ -115,11 +120,11 @@ export async function generateTypeScriptLibrary(
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
-    generatePackageJson(clientDetails, packageDetails, project);
+    generatePackageJson(clientDetails, packageDetails, project, optionsBag);
     generateLicenseFile(project, optionsBag);
     generateReadmeFile(clientDetails, packageDetails, project);
     generateTsConfig(project);
-    generateRollupConfig(clientDetails, packageDetails, project);
+    generateRollupConfig(clientDetails, packageDetails, project, optionsBag);
     generateApiExtractorConfig(clientDetails, project);
   }
 
@@ -127,10 +132,10 @@ export async function generateTypeScriptLibrary(
   generateClientContext(clientDetails, packageDetails, project, optionsBag);
   generateModels(clientDetails, project, optionsBag);
 
-  generateMappers(clientDetails, project);
-  generateOperations(clientDetails, project);
-  generateOperationsInterfaces(clientDetails, project);
-  generateParameters(clientDetails, project);
+  generateMappers(clientDetails, project, optionsBag);
+  generateOperations(clientDetails, project, optionsBag);
+  generateOperationsInterfaces(clientDetails, project, optionsBag);
+  generateParameters(clientDetails, project, optionsBag);
   generateIndexFile(clientDetails, project);
   await generateLROFiles(clientDetails, project);
   generateTracingFile(clientDetails, project);
