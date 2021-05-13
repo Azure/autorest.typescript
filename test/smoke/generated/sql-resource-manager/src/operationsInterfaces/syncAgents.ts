@@ -91,6 +91,22 @@ export interface SyncAgents {
     >
   >;
   /**
+   * Creates or updates a sync agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server on which the sync agent is hosted.
+   * @param syncAgentName The name of the sync agent.
+   * @param parameters The requested sync agent resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    syncAgentName: string,
+    parameters: SyncAgent,
+    options?: SyncAgentsCreateOrUpdateOptionalParams
+  ): Promise<SyncAgentsCreateOrUpdateResponse>;
+  /**
    * Deletes a sync agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -106,6 +122,20 @@ export interface SyncAgents {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a sync agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server on which the sync agent is hosted.
+   * @param syncAgentName The name of the sync agent.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    syncAgentName: string,
+    options?: SyncAgentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Generates a sync agent key.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

@@ -153,6 +153,23 @@ export interface Deployments {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * A template deployment that is currently running cannot be deleted. Deleting a template deployment
+   * removes the associated deployment operations. This is an asynchronous operation that returns a
+   * status of 202 until the template deployment is successfully deleted. The Location response header
+   * contains the URI that is used to obtain the status of the process. While the process is running, a
+   * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
+   * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
+   * URI in the Location header returns an error-level status code.
+   * @param scope The scope of a deployment.
+   * @param deploymentName The name of the deployment.
+   * @param options The options parameters.
+   */
+  beginDeleteAtScopeAndWait(
+    scope: string,
+    deploymentName: string,
+    options?: DeploymentsDeleteAtScopeOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Checks whether the deployment exists.
    * @param scope The scope of a deployment.
    * @param deploymentName The name of the deployment.
@@ -181,6 +198,19 @@ export interface Deployments {
       DeploymentsCreateOrUpdateAtScopeResponse
     >
   >;
+  /**
+   * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param scope The scope of a deployment.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAtScopeAndWait(
+    scope: string,
+    deploymentName: string,
+    parameters: Deployment,
+    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
+  ): Promise<DeploymentsCreateOrUpdateAtScopeResponse>;
   /**
    * Gets a deployment.
    * @param scope The scope of a deployment.
@@ -248,6 +278,21 @@ export interface Deployments {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * A template deployment that is currently running cannot be deleted. Deleting a template deployment
+   * removes the associated deployment operations. This is an asynchronous operation that returns a
+   * status of 202 until the template deployment is successfully deleted. The Location response header
+   * contains the URI that is used to obtain the status of the process. While the process is running, a
+   * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
+   * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
+   * URI in the Location header returns an error-level status code.
+   * @param deploymentName The name of the deployment.
+   * @param options The options parameters.
+   */
+  beginDeleteAtTenantScopeAndWait(
+    deploymentName: string,
+    options?: DeploymentsDeleteAtTenantScopeOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
@@ -272,6 +317,17 @@ export interface Deployments {
       DeploymentsCreateOrUpdateAtTenantScopeResponse
     >
   >;
+  /**
+   * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAtTenantScopeAndWait(
+    deploymentName: string,
+    parameters: ScopedDeployment,
+    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
+  ): Promise<DeploymentsCreateOrUpdateAtTenantScopeResponse>;
   /**
    * Gets a deployment.
    * @param deploymentName The name of the deployment.
@@ -333,6 +389,23 @@ export interface Deployments {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * A template deployment that is currently running cannot be deleted. Deleting a template deployment
+   * removes the associated deployment operations. This is an asynchronous operation that returns a
+   * status of 202 until the template deployment is successfully deleted. The Location response header
+   * contains the URI that is used to obtain the status of the process. While the process is running, a
+   * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
+   * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
+   * URI in the Location header returns an error-level status code.
+   * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
+   * @param options The options parameters.
+   */
+  beginDeleteAtManagementGroupScopeAndWait(
+    groupId: string,
+    deploymentName: string,
+    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Checks whether the deployment exists.
    * @param groupId The management group ID.
    * @param deploymentName The name of the deployment.
@@ -363,6 +436,19 @@ export interface Deployments {
       DeploymentsCreateOrUpdateAtManagementGroupScopeResponse
     >
   >;
+  /**
+   * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAtManagementGroupScopeAndWait(
+    groupId: string,
+    deploymentName: string,
+    parameters: ScopedDeployment,
+    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
+  ): Promise<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>;
   /**
    * Gets a deployment.
    * @param groupId The management group ID.
@@ -430,6 +516,21 @@ export interface Deployments {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * A template deployment that is currently running cannot be deleted. Deleting a template deployment
+   * removes the associated deployment operations. This is an asynchronous operation that returns a
+   * status of 202 until the template deployment is successfully deleted. The Location response header
+   * contains the URI that is used to obtain the status of the process. While the process is running, a
+   * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
+   * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
+   * URI in the Location header returns an error-level status code.
+   * @param deploymentName The name of the deployment.
+   * @param options The options parameters.
+   */
+  beginDeleteAtSubscriptionScopeAndWait(
+    deploymentName: string,
+    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
@@ -454,6 +555,17 @@ export interface Deployments {
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse
     >
   >;
+  /**
+   * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAtSubscriptionScopeAndWait(
+    deploymentName: string,
+    parameters: Deployment,
+    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
+  ): Promise<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>;
   /**
    * Gets a deployment.
    * @param deploymentName The name of the deployment.
@@ -503,6 +615,17 @@ export interface Deployments {
     >
   >;
   /**
+   * Returns changes that will be made by the deployment if executed at the scope of the subscription.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Parameters to What If.
+   * @param options The options parameters.
+   */
+  beginWhatIfAtSubscriptionScopeAndWait(
+    deploymentName: string,
+    parameters: DeploymentWhatIf,
+    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
+  ): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse>;
+  /**
    * Exports the template used for specified deployment.
    * @param deploymentName The name of the deployment.
    * @param options The options parameters.
@@ -532,6 +655,25 @@ export interface Deployments {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * A template deployment that is currently running cannot be deleted. Deleting a template deployment
+   * removes the associated deployment operations. Deleting a template deployment does not affect the
+   * state of the resource group. This is an asynchronous operation that returns a status of 202 until
+   * the template deployment is successfully deleted. The Location response header contains the URI that
+   * is used to obtain the status of the process. While the process is running, a call to the URI in the
+   * Location header returns a status of 202. When the process finishes, the URI in the Location header
+   * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
+   * header returns an error-level status code.
+   * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
+   *                          case insensitive.
+   * @param deploymentName The name of the deployment.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    deploymentName: string,
+    options?: DeploymentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Checks whether the deployment exists.
    * @param resourceGroupName The name of the resource group with the deployment to check. The name is
@@ -563,6 +705,20 @@ export interface Deployments {
       DeploymentsCreateOrUpdateResponse
     >
   >;
+  /**
+   * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
+   *                          insensitive. The resource group must already exist.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    deploymentName: string,
+    parameters: Deployment,
+    options?: DeploymentsCreateOrUpdateOptionalParams
+  ): Promise<DeploymentsCreateOrUpdateResponse>;
   /**
    * Gets a deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -621,6 +777,20 @@ export interface Deployments {
       DeploymentsWhatIfResponse
     >
   >;
+  /**
+   * Returns changes that will be made by the deployment if executed at the scope of the resource group.
+   * @param resourceGroupName The name of the resource group the template will be deployed to. The name
+   *                          is case insensitive.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Parameters to validate.
+   * @param options The options parameters.
+   */
+  beginWhatIfAndWait(
+    resourceGroupName: string,
+    deploymentName: string,
+    parameters: DeploymentWhatIf,
+    options?: DeploymentsWhatIfOptionalParams
+  ): Promise<DeploymentsWhatIfResponse>;
   /**
    * Exports the template used for specified deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.

@@ -248,6 +248,28 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Creates or updates a virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Parameters supplied to create or update virtual network gateway operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    parameters: VirtualNetworkGateway,
+    options?: VirtualNetworkGatewaysCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified virtual network gateway by resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -306,6 +328,25 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Deletes the specified virtual network gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a virtual network gateway tags.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -345,6 +386,28 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Updates a virtual network gateway tags.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Parameters supplied to update virtual network gateway tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    parameters: TagsObject,
+    options?: VirtualNetworkGatewaysUpdateTagsOptionalParams
+  ): Promise<VirtualNetworkGatewaysUpdateTagsResponse> {
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -428,6 +491,25 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Resets the primary of the virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginResetAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysResetOptionalParams
+  ): Promise<VirtualNetworkGatewaysResetResponse> {
+    const poller = await this.beginReset(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Resets the VPN client shared key of the virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -461,6 +543,25 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Resets the VPN client shared key of the virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginResetVpnClientSharedKeyAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginResetVpnClientSharedKey(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -510,6 +611,30 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Generates VPN client package for P2S client of the virtual network gateway in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Parameters supplied to the generate virtual network gateway VPN client package
+   *                   operation.
+   * @param options The options parameters.
+   */
+  async beginGeneratevpnclientpackageAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    parameters: VpnClientParameters,
+    options?: VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams
+  ): Promise<VirtualNetworkGatewaysGeneratevpnclientpackageResponse> {
+    const poller = await this.beginGeneratevpnclientpackage(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Generates VPN profile for P2S client of the virtual network gateway in the specified resource group.
    * Used for IKEV2 and radius based authentication.
    * @param resourceGroupName The name of the resource group.
@@ -554,6 +679,30 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource group.
+   * Used for IKEV2 and radius based authentication.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Parameters supplied to the generate virtual network gateway VPN client package
+   *                   operation.
+   * @param options The options parameters.
+   */
+  async beginGenerateVpnProfileAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    parameters: VpnClientParameters,
+    options?: VirtualNetworkGatewaysGenerateVpnProfileOptionalParams
+  ): Promise<VirtualNetworkGatewaysGenerateVpnProfileResponse> {
+    const poller = await this.beginGenerateVpnProfile(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
    * resource group. The profile needs to be generated first using generateVpnProfile.
    * @param resourceGroupName The name of the resource group.
@@ -594,6 +743,26 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
+   * resource group. The profile needs to be generated first using generateVpnProfile.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginGetVpnProfilePackageUrlAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse> {
+    const poller = await this.beginGetVpnProfilePackageUrl(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The GetBgpPeerStatus operation retrieves the status of all BGP peers.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -630,6 +799,25 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * The GetBgpPeerStatus operation retrieves the status of all BGP peers.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginGetBgpPeerStatusAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetBgpPeerStatusResponse> {
+    const poller = await this.beginGetBgpPeerStatus(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -695,6 +883,26 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * This operation retrieves a list of routes the virtual network gateway has learned, including routes
+   * learned from BGP peers.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginGetLearnedRoutesAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetLearnedRoutesResponse> {
+    const poller = await this.beginGetLearnedRoutes(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * This operation retrieves a list of routes the virtual network gateway is advertising to the
    * specified peer.
    * @param resourceGroupName The name of the resource group.
@@ -735,6 +943,29 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * This operation retrieves a list of routes the virtual network gateway is advertising to the
+   * specified peer.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param peer The IP address of the peer.
+   * @param options The options parameters.
+   */
+  async beginGetAdvertisedRoutesAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    peer: string,
+    options?: VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetAdvertisedRoutesResponse> {
+    const poller = await this.beginGetAdvertisedRoutes(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      peer,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -784,6 +1015,30 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual
+   * network gateway in the specified resource group through Network resource provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param vpnclientIpsecParams Parameters supplied to the Begin Set vpnclient ipsec parameters of
+   *                             Virtual Network Gateway P2S client operation through Network resource provider.
+   * @param options The options parameters.
+   */
+  async beginSetVpnclientIpsecParametersAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    vpnclientIpsecParams: VpnClientIPsecParameters,
+    options?: VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams
+  ): Promise<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse> {
+    const poller = await this.beginSetVpnclientIpsecParameters(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      vpnclientIpsecParams,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy
    * for P2S client of virtual network gateway in the specified resource group through Network resource
    * provider.
@@ -824,6 +1079,27 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy
+   * for P2S client of virtual network gateway in the specified resource group through Network resource
+   * provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The virtual network gateway name.
+   * @param options The options parameters.
+   */
+  async beginGetVpnclientIpsecParametersAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse> {
+    const poller = await this.beginGetVpnclientIpsecParameters(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -892,6 +1168,25 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Starts packet capture on virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginStartPacketCaptureAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysStartPacketCaptureOptionalParams
+  ): Promise<VirtualNetworkGatewaysStartPacketCaptureResponse> {
+    const poller = await this.beginStartPacketCapture(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Stops packet capture on virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -932,6 +1227,29 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Stops packet capture on virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Virtual network gateway packet capture parameters supplied to stop packet capture
+   *                   on gateway.
+   * @param options The options parameters.
+   */
+  async beginStopPacketCaptureAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    parameters: VpnPacketCaptureStopParameters,
+    options?: VirtualNetworkGatewaysStopPacketCaptureOptionalParams
+  ): Promise<VirtualNetworkGatewaysStopPacketCaptureResponse> {
+    const poller = await this.beginStopPacketCapture(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -977,6 +1295,26 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   }
 
   /**
+   * Get VPN client connection health detail per P2S client connection of the virtual network gateway in
+   * the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param options The options parameters.
+   */
+  async beginGetVpnclientConnectionHealthAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    options?: VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
+  ): Promise<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse> {
+    const poller = await this.beginGetVpnclientConnectionHealth(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Disconnect vpn connections of virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
@@ -1013,6 +1351,28 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Disconnect vpn connections of virtual network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param request The parameters are supplied to disconnect vpn connections.
+   * @param options The options parameters.
+   */
+  async beginDisconnectVirtualNetworkGatewayVpnConnectionsAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayName: string,
+    request: P2SVpnConnectionRequest,
+    options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDisconnectVirtualNetworkGatewayVpnConnections(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

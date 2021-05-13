@@ -180,6 +180,25 @@ export class RouteFiltersImpl implements RouteFilters {
   }
 
   /**
+   * Deletes the specified route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    options?: RouteFiltersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      routeFilterName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified route filter.
    * @param resourceGroupName The name of the resource group.
    * @param routeFilterName The name of the route filter.
@@ -241,6 +260,28 @@ export class RouteFiltersImpl implements RouteFilters {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a route filter in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param routeFilterParameters Parameters supplied to the create or update route filter operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    routeFilterParameters: RouteFilter,
+    options?: RouteFiltersCreateOrUpdateOptionalParams
+  ): Promise<RouteFiltersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      routeFilterName,
+      routeFilterParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

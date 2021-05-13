@@ -59,6 +59,17 @@ export interface NetworkVirtualAppliances {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    options?: NetworkVirtualAppliancesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified Network Virtual Appliance.
    * @param resourceGroupName The name of the resource group.
    * @param networkVirtualApplianceName The name of Network Virtual Appliance.
@@ -100,4 +111,17 @@ export interface NetworkVirtualAppliances {
       NetworkVirtualAppliancesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param parameters Parameters supplied to the create or update Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    parameters: NetworkVirtualAppliance,
+    options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
+  ): Promise<NetworkVirtualAppliancesCreateOrUpdateResponse>;
 }

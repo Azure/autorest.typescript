@@ -75,6 +75,22 @@ export interface JobAgents {
     >
   >;
   /**
+   * Creates or updates a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be created or updated.
+   * @param parameters The requested job agent resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    parameters: JobAgent,
+    options?: JobAgentsCreateOrUpdateOptionalParams
+  ): Promise<JobAgentsCreateOrUpdateResponse>;
+  /**
    * Deletes a job agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -90,6 +106,20 @@ export interface JobAgents {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    options?: JobAgentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a job agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -111,4 +141,20 @@ export interface JobAgents {
       JobAgentsUpdateResponse
     >
   >;
+  /**
+   * Updates a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be updated.
+   * @param parameters The update to the job agent.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    parameters: JobAgentUpdate,
+    options?: JobAgentsUpdateOptionalParams
+  ): Promise<JobAgentsUpdateResponse>;
 }

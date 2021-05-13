@@ -411,7 +411,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
    * @param options The options parameters.
    */
-  public beginListPutBastionShareableLink(
+  public beginListPutBastionShareableLinkAndWait(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
@@ -571,7 +571,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param bastionHostName The name of the Bastion Host.
    * @param options The options parameters.
    */
-  public beginListActiveSessions(
+  public beginListActiveSessionsAndWait(
     resourceGroupName: string,
     bastionHostName: string,
     options?: NetworkManagementClientGetActiveSessionsOptionalParams
@@ -801,6 +801,28 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   }
 
   /**
+   * Deletes the Bastion Shareable Links for all the VMs specified in the request.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
+   * @param options The options parameters.
+   */
+  async beginDeleteBastionShareableLinkAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    bslRequest: BastionShareableLinkListRequest,
+    options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteBastionShareableLink(
+      resourceGroupName,
+      bastionHostName,
+      bslRequest,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Return the Bastion Shareable Links for all the VMs specified in the request.
    * @param resourceGroupName The name of the resource group.
    * @param bastionHostName The name of the Bastion Host.
@@ -978,6 +1000,32 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Generates a unique VPN profile for P2S clients for VirtualWan and associated VpnServerConfiguration
+   * combination in the specified resource group.
+   * @param resourceGroupName The resource group name.
+   * @param virtualWANName The name of the VirtualWAN whose associated VpnServerConfigurations is needed.
+   * @param vpnClientParams Parameters supplied to the generate VirtualWan VPN profile generation
+   *                        operation.
+   * @param options The options parameters.
+   */
+  async beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    vpnClientParams: VirtualWanVpnProfileParameters,
+    options?: NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
+  ): Promise<
+    NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
+  > {
+    const poller = await this.beginGeneratevirtualwanvpnserverconfigurationvpnprofile(
+      resourceGroupName,
+      virtualWANName,
+      vpnClientParams,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

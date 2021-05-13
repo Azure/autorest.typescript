@@ -146,6 +146,31 @@ export class HubRouteTablesImpl implements HubRouteTables {
   }
 
   /**
+   * Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the RouteTable.
+   * @param routeTableParameters Parameters supplied to create or update RouteTable.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    routeTableParameters: HubRouteTable,
+    options?: HubRouteTablesCreateOrUpdateOptionalParams
+  ): Promise<HubRouteTablesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      routeTableParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves the details of a RouteTable.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
@@ -207,6 +232,28 @@ export class HubRouteTablesImpl implements HubRouteTables {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a RouteTable.
+   * @param resourceGroupName The resource group name of the RouteTable.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the RouteTable.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    options?: HubRouteTablesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

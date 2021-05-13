@@ -55,6 +55,21 @@ export interface ExpressRouteCircuitConnections {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param connectionName The name of the express route circuit connection.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    connectionName: string,
+    options?: ExpressRouteCircuitConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified Express Route Circuit Connection from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of the express route circuit.
@@ -92,4 +107,22 @@ export interface ExpressRouteCircuitConnections {
       ExpressRouteCircuitConnectionsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param connectionName The name of the express route circuit connection.
+   * @param expressRouteCircuitConnectionParameters Parameters supplied to the create or update express
+   *                                                route circuit connection operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    connectionName: string,
+    expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection,
+    options?: ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitConnectionsCreateOrUpdateResponse>;
 }

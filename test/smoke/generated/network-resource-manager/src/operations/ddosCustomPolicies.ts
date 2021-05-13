@@ -74,6 +74,25 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
   }
 
   /**
+   * Deletes the specified DDoS custom policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosCustomPolicyName The name of the DDoS custom policy.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    ddosCustomPolicyName: string,
+    options?: DdosCustomPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      ddosCustomPolicyName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets information about the specified DDoS custom policy.
    * @param resourceGroupName The name of the resource group.
    * @param ddosCustomPolicyName The name of the DDoS custom policy.
@@ -135,6 +154,28 @@ export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a DDoS custom policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosCustomPolicyName The name of the DDoS custom policy.
+   * @param parameters Parameters supplied to the create or update operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ddosCustomPolicyName: string,
+    parameters: DdosCustomPolicy,
+    options?: DdosCustomPoliciesCreateOrUpdateOptionalParams
+  ): Promise<DdosCustomPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      ddosCustomPolicyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

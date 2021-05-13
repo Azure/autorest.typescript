@@ -60,6 +60,22 @@ export interface RestorePoints {
     >
   >;
   /**
+   * Creates a restore point for a data warehouse.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The definition for creating the restore point of this database.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: CreateDatabaseRestorePointDefinition,
+    options?: RestorePointsCreateOptionalParams
+  ): Promise<RestorePointsCreateResponse>;
+  /**
    * Gets a restore point.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.

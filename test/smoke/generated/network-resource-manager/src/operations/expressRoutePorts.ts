@@ -180,6 +180,25 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
   }
 
   /**
+   * Deletes the specified ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    options?: ExpressRoutePortsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      expressRoutePortName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves the requested ExpressRoutePort resource.
    * @param resourceGroupName The name of the resource group.
    * @param expressRoutePortName The name of ExpressRoutePort.
@@ -241,6 +260,28 @@ export class ExpressRoutePortsImpl implements ExpressRoutePorts {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param parameters Parameters supplied to the create ExpressRoutePort operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    parameters: ExpressRoutePort,
+    options?: ExpressRoutePortsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRoutePortsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      expressRoutePortName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

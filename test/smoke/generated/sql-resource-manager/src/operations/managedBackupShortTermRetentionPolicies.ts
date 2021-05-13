@@ -214,6 +214,35 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    policyName: ManagedShortTermRetentionPolicyName,
+    parameters: ManagedBackupShortTermRetentionPolicy,
+    options?: ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      policyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Updates a managed database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
   async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
@@ -250,6 +279,35 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a managed database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    policyName: ManagedShortTermRetentionPolicyName,
+    parameters: ManagedBackupShortTermRetentionPolicy,
+    options?: ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
+  ): Promise<ManagedBackupShortTermRetentionPoliciesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      policyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

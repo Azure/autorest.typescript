@@ -79,6 +79,22 @@ export interface FailoverGroups {
     >
   >;
   /**
+   * Creates or updates a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param parameters The failover group parameters.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    parameters: FailoverGroup,
+    options?: FailoverGroupsCreateOrUpdateOptionalParams
+  ): Promise<FailoverGroupsCreateOrUpdateResponse>;
+  /**
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -94,6 +110,20 @@ export interface FailoverGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -116,6 +146,22 @@ export interface FailoverGroups {
     >
   >;
   /**
+   * Updates a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param parameters The failover group parameters.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    parameters: FailoverGroupUpdate,
+    options?: FailoverGroupsUpdateOptionalParams
+  ): Promise<FailoverGroupsUpdateResponse>;
+  /**
    * Fails over from the current primary server to this server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -135,6 +181,20 @@ export interface FailoverGroups {
     >
   >;
   /**
+   * Fails over from the current primary server to this server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsFailoverOptionalParams
+  ): Promise<FailoverGroupsFailoverResponse>;
+  /**
    * Fails over from the current primary server to this server. This operation might result in data loss.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -153,4 +213,18 @@ export interface FailoverGroups {
       FailoverGroupsForceFailoverAllowDataLossResponse
     >
   >;
+  /**
+   * Fails over from the current primary server to this server. This operation might result in data loss.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  beginForceFailoverAllowDataLossAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
+  ): Promise<FailoverGroupsForceFailoverAllowDataLossResponse>;
 }

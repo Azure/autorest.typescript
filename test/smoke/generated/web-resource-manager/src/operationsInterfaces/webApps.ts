@@ -1474,6 +1474,21 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
+   * existing app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Unique name of the app to create or update. To create or update a deployment slot, use
+   *             the {slot} parameter.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteEnvelope: Site,
+    options?: WebAppsCreateOrUpdateOptionalParams
+  ): Promise<WebAppsCreateOrUpdateResponse>;
+  /**
    * Description for Deletes a web, mobile, or API app, or one of the deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app to delete.
@@ -1597,6 +1612,21 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a specific backup to another app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param backupId ID of the backup.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  beginRestoreAndWait(
+    resourceGroupName: string,
+    name: string,
+    backupId: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1817,6 +1847,17 @@ export interface WebApps {
       WebAppsListPublishingCredentialsResponse
     >
   >;
+  /**
+   * Description for Gets the Git/FTP publishing credentials of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  beginListPublishingCredentialsAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListPublishingCredentialsOptionalParams
+  ): Promise<WebAppsListPublishingCredentialsResponse>;
   /**
    * Description for Updates the Push settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2163,6 +2204,19 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  beginCreateMSDeployOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateMSDeployOperationOptionalParams
+  ): Promise<WebAppsCreateMSDeployOperationResponse>;
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -2217,6 +2271,21 @@ export interface WebApps {
       WebAppsCreateFunctionResponse
     >
   >;
+  /**
+   * Description for Create function for web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param functionName Function name.
+   * @param functionEnvelope Function details.
+   * @param options The options parameters.
+   */
+  beginCreateFunctionAndWait(
+    resourceGroupName: string,
+    name: string,
+    functionName: string,
+    functionEnvelope: FunctionEnvelope,
+    options?: WebAppsCreateFunctionOptionalParams
+  ): Promise<WebAppsCreateFunctionResponse>;
   /**
    * Description for Delete a function for web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2585,6 +2654,21 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  beginCreateInstanceMSDeployOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    instanceId: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
+  ): Promise<WebAppsCreateInstanceMSDeployOperationResponse>;
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -2708,6 +2792,21 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Restores a web app.
+   * @param subscriptionName Azure subscription.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param migrationOptions Migration migrationOptions.
+   * @param options The options parameters.
+   */
+  beginMigrateStorageAndWait(
+    subscriptionName: string,
+    resourceGroupName: string,
+    name: string,
+    migrationOptions: StorageMigrationOptions,
+    options?: WebAppsMigrateStorageOptionalParams
+  ): Promise<WebAppsMigrateStorageResponse>;
+  /**
    * Description for Migrates a local (in-app) MySql database to a remote MySql database.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -2725,6 +2824,19 @@ export interface WebApps {
       WebAppsMigrateMySqlResponse
     >
   >;
+  /**
+   * Description for Migrates a local (in-app) MySql database to a remote MySql database.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param migrationRequestEnvelope MySql migration options.
+   * @param options The options parameters.
+   */
+  beginMigrateMySqlAndWait(
+    resourceGroupName: string,
+    name: string,
+    migrationRequestEnvelope: MigrateMySqlRequest,
+    options?: WebAppsMigrateMySqlOptionalParams
+  ): Promise<WebAppsMigrateMySqlResponse>;
   /**
    * Description for Returns the status of MySql in app migration, if one is active, and whether or not
    * MySql in app is enabled
@@ -2845,6 +2957,17 @@ export interface WebApps {
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   >;
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param options The options parameters.
+   */
+  beginStartWebSiteNetworkTraceOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
+  ): Promise<WebAppsStartWebSiteNetworkTraceOperationResponse>;
   /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3164,6 +3287,19 @@ export interface WebApps {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Description for Restores an app from a backup blob in Azure Storage.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  beginRestoreFromBackupBlobAndWait(
+    resourceGroupName: string,
+    name: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreFromBackupBlobOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -3178,6 +3314,19 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a deleted web app to this web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param restoreRequest Deleted web app restore information.
+   * @param options The options parameters.
+   */
+  beginRestoreFromDeletedAppAndWait(
+    resourceGroupName: string,
+    name: string,
+    restoreRequest: DeletedAppRestoreRequest,
+    options?: WebAppsRestoreFromDeletedAppOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3194,6 +3343,20 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a web app from a snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param restoreRequest Snapshot restore settings. Snapshot information can be obtained by calling
+   *                       GetDeletedSites or GetSiteSnapshots API.
+   * @param options The options parameters.
+   */
+  beginRestoreSnapshotAndWait(
+    resourceGroupName: string,
+    name: string,
+    restoreRequest: SnapshotRestoreRequest,
+    options?: WebAppsRestoreSnapshotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3226,6 +3389,19 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Install site extension on a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param siteExtensionId Site extension name.
+   * @param options The options parameters.
+   */
+  beginInstallSiteExtensionAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteExtensionId: string,
+    options?: WebAppsInstallSiteExtensionOptionalParams
+  ): Promise<WebAppsInstallSiteExtensionResponse>;
+  /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
@@ -3254,6 +3430,20 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Copies a deployment slot to another deployment slot of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
+   *                       override the source slot config. See example.
+   * @param options The options parameters.
+   */
+  beginCopyProductionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    copySlotEntity: CsmCopySlotEntity,
+    options?: WebAppsCopyProductionSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the details of a web, mobile, or API app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3290,6 +3480,24 @@ export interface WebApps {
       WebAppsCreateOrUpdateSlotResponse
     >
   >;
+  /**
+   * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
+   * existing app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Unique name of the app to create or update. To create or update a deployment slot, use
+   *             the {slot} parameter.
+   * @param slot Name of the deployment slot to create or update. By default, this API attempts to create
+   *             or modify the production slot.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteEnvelope: Site,
+    options?: WebAppsCreateOrUpdateSlotOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSlotResponse>;
   /**
    * Description for Deletes a web, mobile, or API app, or one of the deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3438,6 +3646,24 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a specific backup to another app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param backupId ID of the backup.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
+   *             of the production slot.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  beginRestoreSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    backupId: string,
+    slot: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3681,6 +3907,20 @@ export interface WebApps {
       WebAppsListPublishingCredentialsSlotResponse
     >
   >;
+  /**
+   * Description for Gets the Git/FTP publishing credentials of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get the publishing
+   *             credentials for the production slot.
+   * @param options The options parameters.
+   */
+  beginListPublishingCredentialsSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListPublishingCredentialsSlotOptionalParams
+  ): Promise<WebAppsListPublishingCredentialsSlotResponse>;
   /**
    * Description for Updates the Push settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4067,6 +4307,21 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  beginCreateMSDeployOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateMSDeployOperationSlotOptionalParams
+  ): Promise<WebAppsCreateMSDeployOperationSlotResponse>;
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -4129,6 +4384,23 @@ export interface WebApps {
       WebAppsCreateInstanceFunctionSlotResponse
     >
   >;
+  /**
+   * Description for Create function for web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param functionName Function name.
+   * @param slot Name of the deployment slot.
+   * @param functionEnvelope Function details.
+   * @param options The options parameters.
+   */
+  beginCreateInstanceFunctionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    functionName: string,
+    slot: string,
+    functionEnvelope: FunctionEnvelope,
+    options?: WebAppsCreateInstanceFunctionSlotOptionalParams
+  ): Promise<WebAppsCreateInstanceFunctionSlotResponse>;
   /**
    * Description for Delete a function for web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4558,6 +4830,23 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  beginCreateInstanceMSDeployOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    instanceId: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
+  ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse>;
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -4824,6 +5113,19 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param slot The name of the slot for this web app.
+   * @param options The options parameters.
+   */
+  beginStartWebSiteNetworkTraceOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
+  ): Promise<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>;
+  /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name The name of the web app.
@@ -5062,6 +5364,21 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>;
+  /**
    * Description for Deletes a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
@@ -5079,6 +5396,19 @@ export interface WebApps {
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   >;
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse>;
   /**
    * Description for Gets the private link resources
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5274,6 +5604,22 @@ export interface WebApps {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Description for Restores an app from a backup blob in Azure Storage.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
+   *             of the production slot.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  beginRestoreFromBackupBlobSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -5290,6 +5636,21 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a deleted web app to this web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param restoreRequest Deleted web app restore information.
+   * @param options The options parameters.
+   */
+  beginRestoreFromDeletedAppSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    restoreRequest: DeletedAppRestoreRequest,
+    options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5308,6 +5669,22 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Restores a web app from a snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param restoreRequest Snapshot restore settings. Snapshot information can be obtained by calling
+   *                       GetDeletedSites or GetSiteSnapshots API.
+   * @param options The options parameters.
+   */
+  beginRestoreSnapshotSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    restoreRequest: SnapshotRestoreRequest,
+    options?: WebAppsRestoreSnapshotSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5346,6 +5723,22 @@ export interface WebApps {
     >
   >;
   /**
+   * Description for Install site extension on a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param siteExtensionId Site extension name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API uses the production
+   *             slot.
+   * @param options The options parameters.
+   */
+  beginInstallSiteExtensionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteExtensionId: string,
+    slot: string,
+    options?: WebAppsInstallSiteExtensionSlotOptionalParams
+  ): Promise<WebAppsInstallSiteExtensionSlotResponse>;
+  /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
@@ -5381,6 +5774,23 @@ export interface WebApps {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Description for Copies a deployment slot to another deployment slot of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
+   *             source slot.
+   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
+   *                       override the source slot config. See example.
+   * @param options The options parameters.
+   */
+  beginCopySlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    copySlotEntity: CsmCopySlotEntity,
+    options?: WebAppsCopySlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -5398,6 +5808,22 @@ export interface WebApps {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Swaps two deployment slots of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
+   *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  beginSwapSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: WebAppsSwapSlotOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5433,6 +5859,22 @@ export interface WebApps {
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   >;
+  /**
+   * Description for Updates the source control configuration of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will update the source
+   *             control configuration for the production slot.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateSourceControlSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteSourceControl: SiteSourceControl,
+    options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSourceControlSlotResponse>;
   /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5495,6 +5937,19 @@ export interface WebApps {
       WebAppsStartNetworkTraceSlotResponse
     >
   >;
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param slot The name of the slot for this web app.
+   * @param options The options parameters.
+   */
+  beginStartNetworkTraceSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsStartNetworkTraceSlotOptionalParams
+  ): Promise<WebAppsStartNetworkTraceSlotResponse>;
   /**
    * Description for Stops an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5788,6 +6243,19 @@ export interface WebApps {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Description for Swaps two deployment slots of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  beginSwapSlotWithProductionAndWait(
+    resourceGroupName: string,
+    name: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: WebAppsSwapSlotWithProductionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -5816,6 +6284,19 @@ export interface WebApps {
       WebAppsCreateOrUpdateSourceControlResponse
     >
   >;
+  /**
+   * Description for Updates the source control configuration of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateSourceControlAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteSourceControl: SiteSourceControl,
+    options?: WebAppsCreateOrUpdateSourceControlOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSourceControlResponse>;
   /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5867,6 +6348,17 @@ export interface WebApps {
       WebAppsStartNetworkTraceResponse
     >
   >;
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param options The options parameters.
+   */
+  beginStartNetworkTraceAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsStartNetworkTraceOptionalParams
+  ): Promise<WebAppsStartNetworkTraceResponse>;
   /**
    * Description for Stops an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.

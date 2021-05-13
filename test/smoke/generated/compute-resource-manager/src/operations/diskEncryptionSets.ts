@@ -188,6 +188,31 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   }
 
   /**
+   * Creates or updates a disk encryption set
+   * @param resourceGroupName The name of the resource group.
+   * @param diskEncryptionSetName The name of the disk encryption set that is being created. The name
+   *                              can't be changed after the disk encryption set is created. Supported characters for the name are
+   *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+   * @param diskEncryptionSet disk encryption set object supplied in the body of the Put disk encryption
+   *                          set operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    diskEncryptionSetName: string,
+    diskEncryptionSet: DiskEncryptionSet,
+    options?: DiskEncryptionSetsCreateOrUpdateOptionalParams
+  ): Promise<DiskEncryptionSetsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      diskEncryptionSetName,
+      diskEncryptionSet,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates (patches) a disk encryption set.
    * @param resourceGroupName The name of the resource group.
    * @param diskEncryptionSetName The name of the disk encryption set that is being created. The name
@@ -229,6 +254,31 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates (patches) a disk encryption set.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskEncryptionSetName The name of the disk encryption set that is being created. The name
+   *                              can't be changed after the disk encryption set is created. Supported characters for the name are
+   *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+   * @param diskEncryptionSet disk encryption set object supplied in the body of the Patch disk
+   *                          encryption set operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    diskEncryptionSetName: string,
+    diskEncryptionSet: DiskEncryptionSetUpdate,
+    options?: DiskEncryptionSetsUpdateOptionalParams
+  ): Promise<DiskEncryptionSetsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      diskEncryptionSetName,
+      diskEncryptionSet,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -290,6 +340,27 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a disk encryption set.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskEncryptionSetName The name of the disk encryption set that is being created. The name
+   *                              can't be changed after the disk encryption set is created. Supported characters for the name are
+   *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    diskEncryptionSetName: string,
+    options?: DiskEncryptionSetsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      diskEncryptionSetName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -31,4 +31,18 @@ export interface ManagedInstanceTdeCertificates {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Creates a TDE certificate for a given server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested TDE certificate to be created or updated.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: TdeCertificate,
+    options?: ManagedInstanceTdeCertificatesCreateOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

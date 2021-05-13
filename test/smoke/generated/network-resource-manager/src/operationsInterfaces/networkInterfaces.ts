@@ -113,6 +113,17 @@ export interface NetworkInterfaces {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets information about the specified network interface.
    * @param resourceGroupName The name of the resource group.
    * @param networkInterfaceName The name of the network interface.
@@ -141,6 +152,19 @@ export interface NetworkInterfaces {
       NetworkInterfacesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param parameters Parameters supplied to the create or update network interface operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    parameters: NetworkInterface,
+    options?: NetworkInterfacesCreateOrUpdateOptionalParams
+  ): Promise<NetworkInterfacesCreateOrUpdateResponse>;
   /**
    * Updates a network interface tags.
    * @param resourceGroupName The name of the resource group.
@@ -171,6 +195,17 @@ export interface NetworkInterfaces {
     >
   >;
   /**
+   * Gets all route tables applied to a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  beginGetEffectiveRouteTableAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
+  ): Promise<NetworkInterfacesGetEffectiveRouteTableResponse>;
+  /**
    * Gets all network security groups applied to a network interface.
    * @param resourceGroupName The name of the resource group.
    * @param networkInterfaceName The name of the network interface.
@@ -188,6 +223,17 @@ export interface NetworkInterfaces {
       NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
     >
   >;
+  /**
+   * Gets all network security groups applied to a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  beginListEffectiveNetworkSecurityGroupsAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
+  ): Promise<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>;
   /**
    * Get the specified network interface in a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.

@@ -177,6 +177,25 @@ export class NatGatewaysImpl implements NatGateways {
   }
 
   /**
+   * Deletes the specified nat gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param natGatewayName The name of the nat gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    natGatewayName: string,
+    options?: NatGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      natGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified nat gateway in a specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param natGatewayName The name of the nat gateway.
@@ -238,6 +257,28 @@ export class NatGatewaysImpl implements NatGateways {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a nat gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param natGatewayName The name of the nat gateway.
+   * @param parameters Parameters supplied to the create or update nat gateway operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    natGatewayName: string,
+    parameters: NatGateway,
+    options?: NatGatewaysCreateOrUpdateOptionalParams
+  ): Promise<NatGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      natGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

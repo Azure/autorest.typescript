@@ -91,6 +91,22 @@ export interface ManagedDatabases {
     >
   >;
   /**
+   * Creates a new database or updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: ManagedDatabase,
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams
+  ): Promise<ManagedDatabasesCreateOrUpdateResponse>;
+  /**
    * Deletes a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -106,6 +122,20 @@ export interface ManagedDatabases {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a managed database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -128,6 +158,22 @@ export interface ManagedDatabases {
     >
   >;
   /**
+   * Updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: ManagedDatabaseUpdate,
+    options?: ManagedDatabasesUpdateOptionalParams
+  ): Promise<ManagedDatabasesUpdateResponse>;
+  /**
    * Completes the restore operation on a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -145,4 +191,20 @@ export interface ManagedDatabases {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Completes the restore operation on a managed database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The definition for completing the restore of this managed database.
+   * @param options The options parameters.
+   */
+  beginCompleteRestoreAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: CompleteDatabaseRestoreDefinition,
+    options?: ManagedDatabasesCompleteRestoreOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

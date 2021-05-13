@@ -79,4 +79,15 @@ export interface WebApplicationFirewallPolicies {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes Policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param policyName The name of the policy.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    policyName: string,
+    options?: WebApplicationFirewallPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -133,6 +133,19 @@ export interface DatabaseAccounts {
     >
   >;
   /**
+   * Updates the properties of an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param updateParameters The parameters to provide for the current database account.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    updateParameters: DatabaseAccountUpdateParameters,
+    options?: DatabaseAccountsUpdateOptionalParams
+  ): Promise<DatabaseAccountsUpdateResponse>;
+  /**
    * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
    * performing updates on an account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -152,6 +165,20 @@ export interface DatabaseAccounts {
     >
   >;
   /**
+   * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
+   * performing updates on an account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateParameters The parameters to provide for the current database account.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateParameters: DatabaseAccountCreateUpdateParameters,
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams
+  ): Promise<DatabaseAccountsCreateOrUpdateResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -164,6 +191,17 @@ export interface DatabaseAccounts {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    options?: DatabaseAccountsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
    * indicates a write region. The maximum value for a failover priority = (total number of regions - 1).
@@ -182,6 +220,22 @@ export interface DatabaseAccounts {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
+   * indicates a write region. The maximum value for a failover priority = (total number of regions - 1).
+   * Failover priority values must be unique for each of the regions in which the database account
+   * exists.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param failoverParameters The new failover policies for the database account.
+   * @param options The options parameters.
+   */
+  beginFailoverPriorityChangeAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    failoverParameters: FailoverPolicies,
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Lists the access keys for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -220,6 +274,19 @@ export interface DatabaseAccounts {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Offline the specified region for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param regionParameterForOffline Cosmos DB region to offline for the database account.
+   * @param options The options parameters.
+   */
+  beginOfflineRegionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    regionParameterForOffline: RegionForOnlineOffline,
+    options?: DatabaseAccountsOfflineRegionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Online the specified region for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -234,6 +301,19 @@ export interface DatabaseAccounts {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Online the specified region for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param regionParameterForOnline Cosmos DB region to online for the database account.
+   * @param options The options parameters.
+   */
+  beginOnlineRegionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    regionParameterForOnline: RegionForOnlineOffline,
+    options?: DatabaseAccountsOnlineRegionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -271,6 +351,19 @@ export interface DatabaseAccounts {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Regenerates an access key for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyToRegenerate The name of the key to regenerate.
+   * @param options The options parameters.
+   */
+  beginRegenerateKeyAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
+    options?: DatabaseAccountsRegenerateKeyOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only
    * lowercase letters, numbers, and the '-' character, and must be between 3 and 50 characters.

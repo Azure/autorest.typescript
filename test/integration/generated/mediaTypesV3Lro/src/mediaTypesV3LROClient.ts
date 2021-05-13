@@ -130,6 +130,27 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   }
 
   /**
+   * Send payload to Foo service.
+   * @param args Includes all the parameters for this operation.
+   */
+  async beginSendOnDefaultAndWait(
+    ...args:
+      | [
+          "application/octet-stream",
+          coreHttp.HttpRequestBody,
+          MediaTypesV3LROClientSendOnDefault$binaryOptionalParams?
+        ]
+      | [
+          "text/plain",
+          string,
+          MediaTypesV3LROClientSendOnDefault$textOptionalParams?
+        ]
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginSendOnDefault(args);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Send payload to targetted thing in Foo service.
    * @param thing Target thing name
    * @param contentType Upload file type

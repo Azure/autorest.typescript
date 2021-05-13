@@ -80,6 +80,19 @@ export interface ExpressRouteCrossConnections {
     >
   >;
   /**
+   * Update the specified ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param parameters Parameters supplied to the update express route crossConnection operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    parameters: ExpressRouteCrossConnection,
+    options?: ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsCreateOrUpdateResponse>;
+  /**
    * Updates an express route cross connection tags.
    * @param resourceGroupName The name of the resource group.
    * @param crossConnectionName The name of the cross connection.
@@ -114,6 +127,22 @@ export interface ExpressRouteCrossConnections {
     >
   >;
   /**
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListArpTableAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListArpTableOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListArpTableResponse>;
+  /**
    * Gets the route table summary associated with the express route cross connection in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
@@ -136,6 +165,21 @@ export interface ExpressRouteCrossConnections {
     >
   >;
   /**
+   * Gets the route table summary associated with the express route cross connection in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListRoutesTableSummaryAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>;
+  /**
    * Gets the currently advertised routes table associated with the express route cross connection in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
@@ -156,4 +200,20 @@ export interface ExpressRouteCrossConnections {
       ExpressRouteCrossConnectionsListRoutesTableResponse
     >
   >;
+  /**
+   * Gets the currently advertised routes table associated with the express route cross connection in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListRoutesTableAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListRoutesTableOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListRoutesTableResponse>;
 }

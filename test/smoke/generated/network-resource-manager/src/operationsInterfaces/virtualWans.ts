@@ -75,6 +75,19 @@ export interface VirtualWans {
     >
   >;
   /**
+   * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
+   * @param resourceGroupName The resource group name of the VirtualWan.
+   * @param virtualWANName The name of the VirtualWAN being created or updated.
+   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    wANParameters: VirtualWAN,
+    options?: VirtualWansCreateOrUpdateOptionalParams
+  ): Promise<VirtualWansCreateOrUpdateResponse>;
+  /**
    * Updates a VirtualWAN tags.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being updated.
@@ -100,4 +113,15 @@ export interface VirtualWans {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a VirtualWAN.
+   * @param resourceGroupName The resource group name of the VirtualWan.
+   * @param virtualWANName The name of the VirtualWAN being deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    options?: VirtualWansDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

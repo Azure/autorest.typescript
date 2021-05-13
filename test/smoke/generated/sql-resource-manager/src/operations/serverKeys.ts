@@ -211,6 +211,35 @@ export class ServerKeysImpl implements ServerKeys {
   }
 
   /**
+   * Creates or updates a server key.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param keyName The name of the server key to be operated on (updated or created). The key name is
+   *                required to be in the format of 'vault_key_version'. For example, if the keyId is
+   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/01234567890123456789012345678901, then the
+   *                server key name should be formatted as: YourVaultName_YourKeyName_01234567890123456789012345678901
+   * @param parameters The requested server key resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    keyName: string,
+    parameters: ServerKey,
+    options?: ServerKeysCreateOrUpdateOptionalParams
+  ): Promise<ServerKeysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      keyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the server key with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -247,6 +276,29 @@ export class ServerKeysImpl implements ServerKeys {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the server key with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param keyName The name of the server key to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    keyName: string,
+    options?: ServerKeysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      keyName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

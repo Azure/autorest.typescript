@@ -56,6 +56,17 @@ export interface PrivateEndpoints {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified private endpoint.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    options?: PrivateEndpointsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified private endpoint by resource group.
    * @param resourceGroupName The name of the resource group.
    * @param privateEndpointName The name of the private endpoint.
@@ -84,4 +95,17 @@ export interface PrivateEndpoints {
       PrivateEndpointsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an private endpoint in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param parameters Parameters supplied to the create or update private endpoint operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    parameters: PrivateEndpoint,
+    options?: PrivateEndpointsCreateOrUpdateOptionalParams
+  ): Promise<PrivateEndpointsCreateOrUpdateResponse>;
 }

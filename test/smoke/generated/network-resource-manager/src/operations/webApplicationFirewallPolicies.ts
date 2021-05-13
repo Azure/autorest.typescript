@@ -257,6 +257,25 @@ export class WebApplicationFirewallPoliciesImpl
   }
 
   /**
+   * Deletes Policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param policyName The name of the policy.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    policyName: string,
+    options?: WebApplicationFirewallPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      policyName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the List method.

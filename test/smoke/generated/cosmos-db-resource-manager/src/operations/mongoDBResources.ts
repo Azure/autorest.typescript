@@ -280,6 +280,32 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   }
 
   /**
+   * Create or updates Azure Cosmos DB MongoDB database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param createUpdateMongoDBDatabaseParameters The parameters to provide for the current MongoDB
+   *                                              database.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateMongoDBDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
+    options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
+  ): Promise<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse> {
+    const poller = await this.beginCreateUpdateMongoDBDatabase(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      createUpdateMongoDBDatabaseParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB MongoDB database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -315,6 +341,28 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       deleteMongoDBDatabaseOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB MongoDB database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginDeleteMongoDBDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteMongoDBDatabase(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -388,6 +436,32 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       updateMongoDBDatabaseThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of the an Azure Cosmos DB MongoDB database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   MongoDB database.
+   * @param options The options parameters.
+   */
+  async beginUpdateMongoDBDatabaseThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
+  ): Promise<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse> {
+    const poller = await this.beginUpdateMongoDBDatabaseThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -492,6 +566,35 @@ export class MongoDBResourcesImpl implements MongoDBResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB MongoDB Collection
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param createUpdateMongoDBCollectionParameters The parameters to provide for the current MongoDB
+   *                                                Collection.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateMongoDBCollectionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
+    options?: MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
+  ): Promise<MongoDBResourcesCreateUpdateMongoDBCollectionResponse> {
+    const poller = await this.beginCreateUpdateMongoDBCollection(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      createUpdateMongoDBCollectionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB MongoDB Collection.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -530,6 +633,31 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       deleteMongoDBCollectionOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB MongoDB Collection.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  async beginDeleteMongoDBCollectionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteMongoDBCollection(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -609,6 +737,35 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       updateMongoDBCollectionThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update the RUs per second of an Azure Cosmos DB MongoDB collection
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   MongoDB collection.
+   * @param options The options parameters.
+   */
+  async beginUpdateMongoDBCollectionThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
+  ): Promise<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse> {
+    const poller = await this.beginUpdateMongoDBCollectionThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      collectionName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

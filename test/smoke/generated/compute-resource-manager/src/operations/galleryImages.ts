@@ -164,6 +164,34 @@ export class GalleryImagesImpl implements GalleryImages {
   }
 
   /**
+   * Create or update a gallery Image Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    created.
+   * @param galleryImageName The name of the gallery Image Definition to be created or updated. The
+   *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
+   *                         The maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the create or update gallery image operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImage: GalleryImage,
+    options?: GalleryImagesCreateOrUpdateOptionalParams
+  ): Promise<GalleryImagesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      galleryImage,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
@@ -208,6 +236,34 @@ export class GalleryImagesImpl implements GalleryImages {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update a gallery Image Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    updated.
+   * @param galleryImageName The name of the gallery Image Definition to be updated. The allowed
+   *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
+   *                         maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the update gallery image operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImage: GalleryImageUpdate,
+    options?: GalleryImagesUpdateOptionalParams
+  ): Promise<GalleryImagesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      galleryImage,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -273,6 +329,29 @@ export class GalleryImagesImpl implements GalleryImages {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a gallery image.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    deleted.
+   * @param galleryImageName The name of the gallery Image Definition to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    options?: GalleryImagesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

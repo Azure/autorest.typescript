@@ -155,6 +155,29 @@ export class ManagedInstanceEncryptionProtectorsImpl
   }
 
   /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  async beginRevalidateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRevalidate(
+      resourceGroupName,
+      managedInstanceName,
+      encryptionProtectorName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a list of managed instance encryption protectors
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -248,6 +271,32 @@ export class ManagedInstanceEncryptionProtectorsImpl
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param parameters The requested encryption protector resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    parameters: ManagedInstanceEncryptionProtector,
+    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      encryptionProtectorName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

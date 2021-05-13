@@ -198,6 +198,32 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   }
 
   /**
+   * Creates a server communication link.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param communicationLinkName The name of the server communication link.
+   * @param parameters The required parameters for creating a server communication link.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    communicationLinkName: string,
+    parameters: ServerCommunicationLink,
+    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
+  ): Promise<ServerCommunicationLinksCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      communicationLinkName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a list of server communication links.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.

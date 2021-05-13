@@ -59,6 +59,17 @@ export interface RouteTables {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    options?: RouteTablesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified route table.
    * @param resourceGroupName The name of the resource group.
    * @param routeTableName The name of the route table.
@@ -87,6 +98,19 @@ export interface RouteTables {
       RouteTablesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Create or updates a route table in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param parameters Parameters supplied to the create or update route table operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    parameters: RouteTable,
+    options?: RouteTablesCreateOrUpdateOptionalParams
+  ): Promise<RouteTablesCreateOrUpdateResponse>;
   /**
    * Updates a route table tags.
    * @param resourceGroupName The name of the resource group.

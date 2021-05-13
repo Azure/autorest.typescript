@@ -77,6 +77,19 @@ export interface VpnGateways {
     >
   >;
   /**
+   * Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param vpnGatewayParameters Parameters supplied to create or Update a virtual wan vpn gateway.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnGatewayParameters: VpnGateway,
+    options?: VpnGatewaysCreateOrUpdateOptionalParams
+  ): Promise<VpnGatewaysCreateOrUpdateResponse>;
+  /**
    * Updates virtual wan vpn gateway tags.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
@@ -103,6 +116,17 @@ export interface VpnGateways {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes a virtual wan vpn gateway.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Resets the primary of the vpn gateway in the specified resource group.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
@@ -118,4 +142,15 @@ export interface VpnGateways {
       VpnGatewaysResetResponse
     >
   >;
+  /**
+   * Resets the primary of the vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  beginResetAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysResetOptionalParams
+  ): Promise<VpnGatewaysResetResponse>;
 }

@@ -4203,6 +4203,109 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnections#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * Deletes the specified private endpoint connection associated with the key vault.\n *\n * @param resourceGroupName - Name of the resource group that contains the key vault.\n *\n * @param vaultName - The name of the key vault.\n *\n * @param privateEndpointConnectionName - Name of the private endpoint connection associated with the key vault.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", vaultName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", privateEndpointConnectionName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PrivateEndpointConnectionsDeleteOptionalParams",
+                  "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PrivateEndpointConnectionsDeleteResponse",
+                  "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionsDeleteResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "vaultName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "privateEndpointConnectionName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnections#get:member(1)",
               "docComment": "/**\n * Gets the specified private endpoint connection associated with the key vault.\n *\n * @param resourceGroupName - Name of the resource group that contains the key vault.\n *\n * @param vaultName - The name of the key vault.\n *\n * @param privateEndpointConnectionName - Name of the private endpoint connection associated with the key vault.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -7199,6 +7302,110 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "keyvault-resource-manager!Vaults#beginCreateOrUpdateAndWait:member(1)",
+              "docComment": "/**\n * Create or update a key vault in the specified subscription.\n *\n * @param resourceGroupName - The name of the Resource Group to which the server belongs.\n *\n * @param vaultName - Name of the vault\n *\n * @param parameters - Parameters to create or update the vault\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", vaultName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "VaultCreateOrUpdateParameters",
+                  "canonicalReference": "keyvault-resource-manager!VaultCreateOrUpdateParameters:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "VaultsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "keyvault-resource-manager!VaultsCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "VaultsCreateOrUpdateResponse",
+                  "canonicalReference": "keyvault-resource-manager!VaultsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "vaultName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "keyvault-resource-manager!Vaults#beginPurgeDeleted:member(1)",
               "docComment": "/**\n * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.\n *\n * @param vaultName - The name of the soft-deleted vault.\n *\n * @param location - The location of the soft-deleted vault.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -7311,6 +7518,94 @@
                 }
               ],
               "name": "beginPurgeDeleted"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "keyvault-resource-manager!Vaults#beginPurgeDeletedAndWait:member(1)",
+              "docComment": "/**\n * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.\n *\n * @param vaultName - The name of the soft-deleted vault.\n *\n * @param location - The location of the soft-deleted vault.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginPurgeDeletedAndWait(vaultName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", location: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "VaultsPurgeDeletedOptionalParams",
+                  "canonicalReference": "keyvault-resource-manager!VaultsPurgeDeletedOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "vaultName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "location",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginPurgeDeletedAndWait"
             },
             {
               "kind": "MethodSignature",

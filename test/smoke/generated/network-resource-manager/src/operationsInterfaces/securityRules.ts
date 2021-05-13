@@ -51,6 +51,19 @@ export interface SecurityRules {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified network security rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param securityRuleName The name of the security rule.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    securityRuleName: string,
+    options?: SecurityRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Get the specified network security rule.
    * @param resourceGroupName The name of the resource group.
    * @param networkSecurityGroupName The name of the network security group.
@@ -84,4 +97,20 @@ export interface SecurityRules {
       SecurityRulesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a security rule in the specified network security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param securityRuleName The name of the security rule.
+   * @param securityRuleParameters Parameters supplied to the create or update network security rule
+   *                               operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    securityRuleName: string,
+    securityRuleParameters: SecurityRule,
+    options?: SecurityRulesCreateOrUpdateOptionalParams
+  ): Promise<SecurityRulesCreateOrUpdateResponse>;
 }

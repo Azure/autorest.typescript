@@ -65,6 +65,20 @@ export interface Galleries {
     >
   >;
   /**
+   * Create or update a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
+   *                    numbers with dots and periods allowed in the middle. The maximum length is 80 characters.
+   * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    gallery: Gallery,
+    options?: GalleriesCreateOrUpdateOptionalParams
+  ): Promise<GalleriesCreateOrUpdateResponse>;
+  /**
    * Update a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
@@ -83,6 +97,20 @@ export interface Galleries {
       GalleriesUpdateResponse
     >
   >;
+  /**
+   * Update a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
+   *                    numbers with dots and periods allowed in the middle. The maximum length is 80 characters.
+   * @param gallery Parameters supplied to the update Shared Image Gallery operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    gallery: GalleryUpdate,
+    options?: GalleriesUpdateOptionalParams
+  ): Promise<GalleriesUpdateResponse>;
   /**
    * Retrieves information about a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
@@ -107,4 +135,15 @@ export interface Galleries {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    options?: GalleriesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

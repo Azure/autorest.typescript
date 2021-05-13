@@ -63,6 +63,17 @@ export interface ApplicationDefinitions {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the managed application definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition to delete.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationDefinitionName: string,
+    options?: ApplicationDefinitionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Creates a new managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param applicationDefinitionName The name of the managed application definition.
@@ -80,6 +91,19 @@ export interface ApplicationDefinitions {
       ApplicationDefinitionsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates a new managed application definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
+   * @param parameters Parameters supplied to the create or update an managed application definition.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationDefinitionName: string,
+    parameters: ApplicationDefinition,
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+  ): Promise<ApplicationDefinitionsCreateOrUpdateResponse>;
   /**
    * Gets the managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
@@ -107,6 +131,18 @@ export interface ApplicationDefinitions {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param options The options parameters.
+   */
+  beginDeleteByIdAndWait(
+    applicationDefinitionId: string,
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Creates a new managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
    *                                including the managed application name and the managed application definition resource type. Use the
@@ -125,4 +161,18 @@ export interface ApplicationDefinitions {
       ApplicationDefinitionsCreateOrUpdateByIdResponse
     >
   >;
+  /**
+   * Creates a new managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param parameters Parameters supplied to the create or update a managed application definition.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateByIdAndWait(
+    applicationDefinitionId: string,
+    parameters: ApplicationDefinition,
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+  ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse>;
 }

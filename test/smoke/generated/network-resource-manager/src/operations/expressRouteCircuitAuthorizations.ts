@@ -141,6 +141,28 @@ export class ExpressRouteCircuitAuthorizationsImpl
   }
 
   /**
+   * Deletes the specified authorization from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param authorizationName The name of the authorization.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    authorizationName: string,
+    options?: ExpressRouteCircuitAuthorizationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      circuitName,
+      authorizationName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified authorization from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of the express route circuit.
@@ -211,6 +233,32 @@ export class ExpressRouteCircuitAuthorizationsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an authorization in the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param authorizationName The name of the authorization.
+   * @param authorizationParameters Parameters supplied to the create or update express route circuit
+   *                                authorization operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    authorizationName: string,
+    authorizationParameters: ExpressRouteCircuitAuthorization,
+    options?: ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      circuitName,
+      authorizationName,
+      authorizationParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -322,6 +322,32 @@ export class JobExecutionsImpl implements JobExecutions {
   }
 
   /**
+   * Starts an elastic job execution.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param options The options parameters.
+   */
+  async beginCreateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: JobExecutionsCreateOptionalParams
+  ): Promise<JobExecutionsCreateResponse> {
+    const poller = await this.beginCreate(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists a job's executions.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -428,6 +454,35 @@ export class JobExecutionsImpl implements JobExecutions {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates or updates a job execution.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param jobExecutionId The job execution id to create the job execution under.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    jobExecutionId: string,
+    options?: JobExecutionsCreateOrUpdateOptionalParams
+  ): Promise<JobExecutionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      jobName,
+      jobExecutionId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

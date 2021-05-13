@@ -56,6 +56,17 @@ export interface BastionHosts {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified Bastion Host.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    options?: BastionHostsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified Bastion Host.
    * @param resourceGroupName The name of the resource group.
    * @param bastionHostName The name of the Bastion Host.
@@ -84,4 +95,17 @@ export interface BastionHosts {
       BastionHostsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Bastion Host.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param parameters Parameters supplied to the create or update Bastion Host operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    parameters: BastionHost,
+    options?: BastionHostsCreateOrUpdateOptionalParams
+  ): Promise<BastionHostsCreateOrUpdateResponse>;
 }

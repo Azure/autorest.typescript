@@ -4443,6 +4443,110 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAndWait:member(1)",
+              "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param resourceGroupName - The name of the resource group to deploy the resources to. The name is case insensitive. The resource group must already exist.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Deployment",
+                  "canonicalReference": "arm-package-resources-2019-08!Deployment:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtManagementGroupScope:member(1)",
               "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param groupId - The management group ID.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -4571,6 +4675,110 @@
                 }
               ],
               "name": "beginCreateOrUpdateAtManagementGroupScope"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtManagementGroupScopeAndWait:member(1)",
+              "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param groupId - The management group ID.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAtManagementGroupScopeAndWait(groupId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ScopedDeployment",
+                  "canonicalReference": "arm-package-resources-2019-08!ScopedDeployment:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtManagementGroupScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtManagementGroupScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "groupId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAtManagementGroupScopeAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -4705,6 +4913,110 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtScopeAndWait:member(1)",
+              "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param scope - The scope of a deployment.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAtScopeAndWait(scope: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Deployment",
+                  "canonicalReference": "arm-package-resources-2019-08!Deployment:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "scope",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAtScopeAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtSubscriptionScope:member(1)",
               "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -4818,6 +5130,95 @@
                 }
               ],
               "name": "beginCreateOrUpdateAtSubscriptionScope"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtSubscriptionScopeAndWait:member(1)",
+              "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAtSubscriptionScopeAndWait(deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Deployment",
+                  "canonicalReference": "arm-package-resources-2019-08!Deployment:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtSubscriptionScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtSubscriptionScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAtSubscriptionScopeAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -4937,6 +5338,95 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginCreateOrUpdateAtTenantScopeAndWait:member(1)",
+              "docComment": "/**\n * You can provide the template and parameters directly in the request or link to JSON files.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Additional parameters supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAtTenantScopeAndWait(deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ScopedDeployment",
+                  "canonicalReference": "arm-package-resources-2019-08!ScopedDeployment:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtTenantScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtTenantScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsCreateOrUpdateAtTenantScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsCreateOrUpdateAtTenantScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAtTenantScopeAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDelete:member(1)",
               "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. Deleting a template deployment does not affect the state of the resource group. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param resourceGroupName - The name of the resource group with the deployment to delete. The name is case insensitive.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -5049,6 +5539,94 @@
                 }
               ],
               "name": "beginDelete"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. Deleting a template deployment does not affect the state of the resource group. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param resourceGroupName - The name of the resource group with the deployment to delete. The name is case insensitive.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -5167,6 +5745,94 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtManagementGroupScopeAndWait:member(1)",
+              "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param groupId - The management group ID.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAtManagementGroupScopeAndWait(groupId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsDeleteAtManagementGroupScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsDeleteAtManagementGroupScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "groupId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteAtManagementGroupScopeAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtScope:member(1)",
               "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param scope - The scope of a deployment.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -5282,6 +5948,94 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtScopeAndWait:member(1)",
+              "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param scope - The scope of a deployment.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAtScopeAndWait(scope: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsDeleteAtScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsDeleteAtScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "scope",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteAtScopeAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtSubscriptionScope:member(1)",
               "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -5382,6 +6136,79 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtSubscriptionScopeAndWait:member(1)",
+              "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAtSubscriptionScopeAndWait(deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsDeleteAtSubscriptionScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsDeleteAtSubscriptionScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "beginDeleteAtSubscriptionScopeAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtTenantScope:member(1)",
               "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -5479,6 +6306,79 @@
                 }
               ],
               "name": "beginDeleteAtTenantScope"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginDeleteAtTenantScopeAndWait:member(1)",
+              "docComment": "/**\n * A template deployment that is currently running cannot be deleted. Deleting a template deployment removes the associated deployment operations. This is an asynchronous operation that returns a status of 202 until the template deployment is successfully deleted. The Location response header contains the URI that is used to obtain the status of the process. While the process is running, a call to the URI in the Location header returns a status of 202. When the process finishes, the URI in the Location header returns a status of 204 on success. If the asynchronous request failed, the URI in the Location header returns an error-level status code.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAtTenantScopeAndWait(deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsDeleteAtTenantScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsDeleteAtTenantScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "beginDeleteAtTenantScopeAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -5613,6 +6513,110 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginWhatIfAndWait:member(1)",
+              "docComment": "/**\n * Returns changes that will be made by the deployment if executed at the scope of the resource group.\n *\n * @param resourceGroupName - The name of the resource group the template will be deployed to. The name is case insensitive.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Parameters to validate.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginWhatIfAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentWhatIf",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentWhatIf:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginWhatIfAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Deployments#beginWhatIfAtSubscriptionScope:member(1)",
               "docComment": "/**\n * Returns changes that will be made by the deployment if executed at the scope of the subscription.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Parameters to What If.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -5726,6 +6730,95 @@
                 }
               ],
               "name": "beginWhatIfAtSubscriptionScope"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Deployments#beginWhatIfAtSubscriptionScopeAndWait:member(1)",
+              "docComment": "/**\n * Returns changes that will be made by the deployment if executed at the scope of the subscription.\n *\n * @param deploymentName - The name of the deployment.\n *\n * @param parameters - Parameters to What If.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginWhatIfAtSubscriptionScopeAndWait(deploymentName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentWhatIf",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentWhatIf:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfAtSubscriptionScopeOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfAtSubscriptionScopeOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentsWhatIfAtSubscriptionScopeResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!DeploymentsWhatIfAtSubscriptionScopeResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "deploymentName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginWhatIfAtSubscriptionScopeAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -16984,6 +18077,79 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!ResourceGroups#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * When you delete a resource group, all of its resources are also deleted. Deleting a resource group deletes all of its template deployments and currently stored operations.\n *\n * @param resourceGroupName - The name of the resource group to delete. The name is case insensitive.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceGroupsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourceGroupsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!ResourceGroups#beginExportTemplate:member(1)",
               "docComment": "/**\n * Captures the specified resource group as a template.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param parameters - Parameters for exporting the template.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -17097,6 +18263,95 @@
                 }
               ],
               "name": "beginExportTemplate"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!ResourceGroups#beginExportTemplateAndWait:member(1)",
+              "docComment": "/**\n * Captures the specified resource group as a template.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param parameters - Parameters for exporting the template.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginExportTemplateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExportTemplateRequest",
+                  "canonicalReference": "arm-package-resources-2019-08!ExportTemplateRequest:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceGroupsExportTemplateOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourceGroupsExportTemplateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceGroupsExportTemplateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourceGroupsExportTemplateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginExportTemplateAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -19270,6 +20525,170 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginCreateOrUpdateAndWait:member(1)",
+              "docComment": "/**\n * Creates a resource.\n *\n * @param resourceGroupName - The name of the resource group for the resource. The name is case insensitive.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type of the resource to create.\n *\n * @param resourceName - The name of the resource to create.\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Parameters for creating or updating the resource.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parentResourcePath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceType: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GenericResource",
+                  "canonicalReference": "arm-package-resources-2019-08!GenericResource:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 17,
+                "endIndex": 21
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parentResourcePath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "resourceType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "resourceName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 13,
+                    "endIndex": 14
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 15,
+                    "endIndex": 16
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Resources#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Create a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Create or update resource parameters.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -19398,6 +20817,110 @@
                 }
               ],
               "name": "beginCreateOrUpdateById"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginCreateOrUpdateByIdAndWait:member(1)",
+              "docComment": "/**\n * Create a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Create or update resource parameters.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateByIdAndWait(resourceId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GenericResource",
+                  "canonicalReference": "arm-package-resources-2019-08!GenericResource:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesCreateOrUpdateByIdResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesCreateOrUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateByIdAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -19576,6 +21099,154 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * Deletes a resource.\n *\n * @param resourceGroupName - The name of the resource group that contains the resource to delete. The name is case insensitive.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type.\n *\n * @param resourceName - The name of the resource to delete.\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parentResourcePath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceType: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesDeleteOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 15,
+                "endIndex": 19
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parentResourcePath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "resourceType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "resourceName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 13,
+                    "endIndex": 14
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Resources#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -19688,6 +21359,94 @@
                 }
               ],
               "name": "beginDeleteById"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginDeleteByIdAndWait:member(1)",
+              "docComment": "/**\n * Deletes a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteByIdAndWait(resourceId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesDeleteByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteByIdAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -19804,6 +21563,95 @@
                 }
               ],
               "name": "beginMoveResources"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginMoveResourcesAndWait:member(1)",
+              "docComment": "/**\n * The resources to move must be in the same source resource group. The target resource group may be in a different subscription. When moving resources, both the source group and the target group are locked for the duration of the operation. Write and delete operations are blocked on the groups until the move completes.\n *\n * @param sourceResourceGroupName - The name of the resource group containing the resources to move.\n *\n * @param parameters - Parameters for moving resources.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginMoveResourcesAndWait(sourceResourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesMoveInfo",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesMoveInfo:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesMoveResourcesOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesMoveResourcesOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "sourceResourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginMoveResourcesAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -19998,6 +21846,170 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginUpdateAndWait:member(1)",
+              "docComment": "/**\n * Updates a resource.\n *\n * @param resourceGroupName - The name of the resource group for the resource. The name is case insensitive.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type of the resource to update.\n *\n * @param resourceName - The name of the resource to update.\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Parameters for updating the resource.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceProviderNamespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parentResourcePath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceType: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", resourceName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GenericResource",
+                  "canonicalReference": "arm-package-resources-2019-08!GenericResource:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 17,
+                "endIndex": 21
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "resourceProviderNamespace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parentResourcePath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "resourceType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "resourceName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 13,
+                    "endIndex": 14
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 15,
+                    "endIndex": 16
+                  }
+                }
+              ],
+              "name": "beginUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Resources#beginUpdateById:member(1)",
               "docComment": "/**\n * Updates a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Update resource parameters.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -20129,6 +22141,110 @@
             },
             {
               "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginUpdateByIdAndWait:member(1)",
+              "docComment": "/**\n * Updates a resource by ID.\n *\n * @param resourceId - The fully qualified ID of the resource, including the resource name and resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}\n *\n * @param apiVersion - The API version to use for the operation.\n *\n * @param parameters - Update resource parameters.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginUpdateByIdAndWait(resourceId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "GenericResource",
+                  "canonicalReference": "arm-package-resources-2019-08!GenericResource:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesUpdateByIdResponse",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "apiVersion",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginUpdateByIdAndWait"
+            },
+            {
+              "kind": "MethodSignature",
               "canonicalReference": "arm-package-resources-2019-08!Resources#beginValidateMoveResources:member(1)",
               "docComment": "/**\n * This operation checks whether the specified resources can be moved to the target. The resources to move must be in the same source resource group. The target resource group may be in a different subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the Location header value to check the result of the long-running operation.\n *\n * @param sourceResourceGroupName - The name of the resource group containing the resources to validate for move.\n *\n * @param parameters - Parameters for moving resources.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
@@ -20242,6 +22358,95 @@
                 }
               ],
               "name": "beginValidateMoveResources"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-resources-2019-08!Resources#beginValidateMoveResourcesAndWait:member(1)",
+              "docComment": "/**\n * This operation checks whether the specified resources can be moved to the target. The resources to move must be in the same source resource group. The target resource group may be in a different subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the Location header value to check the result of the long-running operation.\n *\n * @param sourceResourceGroupName - The name of the resource group containing the resources to validate for move.\n *\n * @param parameters - Parameters for moving resources.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginValidateMoveResourcesAndWait(sourceResourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesMoveInfo",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesMoveInfo:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourcesValidateMoveResourcesOptionalParams",
+                  "canonicalReference": "arm-package-resources-2019-08!ResourcesValidateMoveResourcesOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "sourceResourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginValidateMoveResourcesAndWait"
             },
             {
               "kind": "MethodSignature",

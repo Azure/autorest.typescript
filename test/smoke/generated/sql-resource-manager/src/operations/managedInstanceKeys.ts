@@ -208,6 +208,32 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
   }
 
   /**
+   * Creates or updates a managed instance key.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param keyName The name of the managed instance key to be operated on (updated or created).
+   * @param parameters The requested managed instance key resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    keyName: string,
+    parameters: ManagedInstanceKey,
+    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceKeysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      keyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the managed instance key with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -244,6 +270,29 @@ export class ManagedInstanceKeysImpl implements ManagedInstanceKeys {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the managed instance key with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param keyName The name of the managed instance key to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    keyName: string,
+    options?: ManagedInstanceKeysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      managedInstanceName,
+      keyName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

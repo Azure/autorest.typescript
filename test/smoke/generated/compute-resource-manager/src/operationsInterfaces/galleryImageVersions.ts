@@ -68,6 +68,27 @@ export interface GalleryImageVersions {
     >
   >;
   /**
+   * Create or update a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   *                         created.
+   * @param galleryImageVersionName The name of the gallery Image Version to be created. Needs to follow
+   *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
+   *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
+   *                            operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersion,
+    options?: GalleryImageVersionsCreateOrUpdateOptionalParams
+  ): Promise<GalleryImageVersionsCreateOrUpdateResponse>;
+  /**
    * Update a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
@@ -92,6 +113,26 @@ export interface GalleryImageVersions {
       GalleryImageVersionsUpdateResponse
     >
   >;
+  /**
+   * Update a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   *                         updated.
+   * @param galleryImageVersionName The name of the gallery Image Version to be updated. Needs to follow
+   *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
+   *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersionUpdate,
+    options?: GalleryImageVersionsUpdateOptionalParams
+  ): Promise<GalleryImageVersionsUpdateResponse>;
   /**
    * Retrieves information about a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
@@ -124,4 +165,19 @@ export interface GalleryImageVersions {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version resides.
+   * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    options?: GalleryImageVersionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

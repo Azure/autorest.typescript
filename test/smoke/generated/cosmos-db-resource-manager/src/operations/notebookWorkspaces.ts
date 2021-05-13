@@ -198,6 +198,32 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   }
 
   /**
+   * Creates the notebook workspace for a Cosmos DB account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param notebookCreateUpdateParameters The notebook workspace to create for the current database
+   *                                       account.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
+    options?: NotebookWorkspacesCreateOrUpdateOptionalParams
+  ): Promise<NotebookWorkspacesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      notebookCreateUpdateParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -233,6 +259,28 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the notebook workspace for a Cosmos DB account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -299,6 +347,28 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   }
 
   /**
+   * Regenerates the auth token for the notebook workspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  async beginRegenerateAuthTokenAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRegenerateAuthToken(
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -334,6 +404,28 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       startOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Starts the notebook workspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  async beginStartAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesStartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStart(
+      resourceGroupName,
+      accountName,
+      notebookWorkspaceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

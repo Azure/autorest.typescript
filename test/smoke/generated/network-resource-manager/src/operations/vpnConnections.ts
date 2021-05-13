@@ -184,6 +184,32 @@ export class VpnConnectionsImpl implements VpnConnections {
   }
 
   /**
+   * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing
+   * connection.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the connection.
+   * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    vpnConnectionParameters: VpnConnection,
+    options?: VpnConnectionsCreateOrUpdateOptionalParams
+  ): Promise<VpnConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      vpnConnectionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
@@ -220,6 +246,28 @@ export class VpnConnectionsImpl implements VpnConnections {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a vpn connection.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the connection.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    options?: VpnConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      gatewayName,
+      connectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -414,6 +414,29 @@ export class DatabasesImpl implements Databases {
   }
 
   /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The required parameters for importing a Bacpac into a database.
+   * @param options The options parameters.
+   */
+  async beginImportAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportRequest,
+    options?: DatabasesImportOptionalParams
+  ): Promise<DatabasesImportResponse> {
+    const poller = await this.beginImport(
+      resourceGroupName,
+      serverName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Creates an import operation that imports a bacpac into an existing database. The existing database
    * must be empty.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -463,6 +486,36 @@ export class DatabasesImpl implements Databases {
   }
 
   /**
+   * Creates an import operation that imports a bacpac into an existing database. The existing database
+   * must be empty.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to import into
+   * @param extensionName The name of the operation to perform
+   * @param parameters The required parameters for importing a Bacpac into a database.
+   * @param options The options parameters.
+   */
+  async beginCreateImportOperationAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    extensionName: ExtensionName,
+    parameters: ImportExtensionRequest,
+    options?: DatabasesCreateImportOperationOptionalParams
+  ): Promise<DatabasesCreateImportOperationResponse> {
+    const poller = await this.beginCreateImportOperation(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      extensionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Exports a database to a bacpac.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -505,6 +558,32 @@ export class DatabasesImpl implements Databases {
       exportOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Exports a database to a bacpac.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be exported.
+   * @param parameters The required parameters for exporting a database.
+   * @param options The options parameters.
+   */
+  async beginExportAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: ExportRequest,
+    options?: DatabasesExportOptionalParams
+  ): Promise<DatabasesExportResponse> {
+    const poller = await this.beginExport(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -657,6 +736,32 @@ export class DatabasesImpl implements Databases {
   }
 
   /**
+   * Creates a new database or updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: Database,
+    options?: DatabasesCreateOrUpdateOptionalParams
+  ): Promise<DatabasesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -693,6 +798,29 @@ export class DatabasesImpl implements Databases {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -738,6 +866,32 @@ export class DatabasesImpl implements Databases {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: DatabaseUpdate,
+    options?: DatabasesUpdateOptionalParams
+  ): Promise<DatabasesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -809,6 +963,29 @@ export class DatabasesImpl implements Databases {
   }
 
   /**
+   * Pauses a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be paused.
+   * @param options The options parameters.
+   */
+  async beginPauseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesPauseOptionalParams
+  ): Promise<DatabasesPauseResponse> {
+    const poller = await this.beginPause(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Resumes a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -851,6 +1028,29 @@ export class DatabasesImpl implements Databases {
   }
 
   /**
+   * Resumes a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be resumed.
+   * @param options The options parameters.
+   */
+  async beginResumeAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesResumeOptionalParams
+  ): Promise<DatabasesResumeResponse> {
+    const poller = await this.beginResume(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Upgrades a data warehouse.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -887,6 +1087,29 @@ export class DatabasesImpl implements Databases {
       upgradeDataWarehouseOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Upgrades a data warehouse.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be upgraded.
+   * @param options The options parameters.
+   */
+  async beginUpgradeDataWarehouseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesUpgradeDataWarehouseOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginUpgradeDataWarehouse(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -955,6 +1178,29 @@ export class DatabasesImpl implements Databases {
       failoverOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Failovers a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to failover.
+   * @param options The options parameters.
+   */
+  async beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesFailoverOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginFailover(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -61,6 +61,24 @@ export interface BackupLongTermRetentionPolicies {
     >
   >;
   /**
+   * Sets a database's long term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be Default.
+   * @param parameters The long term retention policy info.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    policyName: LongTermRetentionPolicyName,
+    parameters: BackupLongTermRetentionPolicy,
+    options?: BackupLongTermRetentionPoliciesCreateOrUpdateOptionalParams
+  ): Promise<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>;
+  /**
    * Gets a database's long term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.

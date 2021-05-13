@@ -403,6 +403,28 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   }
 
   /**
+   * Updates the properties of an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param updateParameters The parameters to provide for the current database account.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    updateParameters: DatabaseAccountUpdateParameters,
+    options?: DatabaseAccountsUpdateOptionalParams
+  ): Promise<DatabaseAccountsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      accountName,
+      updateParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
    * performing updates on an account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -445,6 +467,29 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   }
 
   /**
+   * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
+   * performing updates on an account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param createUpdateParameters The parameters to provide for the current database account.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    createUpdateParameters: DatabaseAccountCreateUpdateParameters,
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams
+  ): Promise<DatabaseAccountsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      accountName,
+      createUpdateParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -477,6 +522,25 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    options?: DatabaseAccountsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      accountName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -518,6 +582,31 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       failoverPriorityChangeOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
+   * indicates a write region. The maximum value for a failover priority = (total number of regions - 1).
+   * Failover priority values must be unique for each of the regions in which the database account
+   * exists.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param failoverParameters The new failover policies for the database account.
+   * @param options The options parameters.
+   */
+  async beginFailoverPriorityChangeAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    failoverParameters: FailoverPolicies,
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginFailoverPriorityChange(
+      resourceGroupName,
+      accountName,
+      failoverParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -638,6 +727,28 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   }
 
   /**
+   * Offline the specified region for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param regionParameterForOffline Cosmos DB region to offline for the database account.
+   * @param options The options parameters.
+   */
+  async beginOfflineRegionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    regionParameterForOffline: RegionForOnlineOffline,
+    options?: DatabaseAccountsOfflineRegionOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginOfflineRegion(
+      resourceGroupName,
+      accountName,
+      regionParameterForOffline,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Online the specified region for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -673,6 +784,28 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       onlineRegionOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Online the specified region for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param regionParameterForOnline Cosmos DB region to online for the database account.
+   * @param options The options parameters.
+   */
+  async beginOnlineRegionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    regionParameterForOnline: RegionForOnlineOffline,
+    options?: DatabaseAccountsOnlineRegionOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginOnlineRegion(
+      resourceGroupName,
+      accountName,
+      regionParameterForOnline,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -755,6 +888,28 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       regenerateKeyOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Regenerates an access key for the specified Azure Cosmos DB database account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyToRegenerate The name of the key to regenerate.
+   * @param options The options parameters.
+   */
+  async beginRegenerateKeyAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
+    options?: DatabaseAccountsRegenerateKeyOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRegenerateKey(
+      resourceGroupName,
+      accountName,
+      keyToRegenerate,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

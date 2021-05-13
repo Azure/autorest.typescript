@@ -187,6 +187,25 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
   }
 
   /**
+   * Deletes the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    options?: ExpressRouteCircuitsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      circuitName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets information about the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of express route circuit.
@@ -248,6 +267,28 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the circuit.
+   * @param parameters Parameters supplied to the create or update express route circuit operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    parameters: ExpressRouteCircuit,
+    options?: ExpressRouteCircuitsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      circuitName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -322,6 +363,32 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
   }
 
   /**
+   * Gets the currently advertised ARP table associated with the express route circuit in a resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListArpTableAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListArpTableOptionalParams
+  ): Promise<ExpressRouteCircuitsListArpTableResponse> {
+    const poller = await this.beginListArpTable(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the currently advertised routes table associated with the express route circuit in a resource
    * group.
    * @param resourceGroupName The name of the resource group.
@@ -368,6 +435,32 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
   }
 
   /**
+   * Gets the currently advertised routes table associated with the express route circuit in a resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListRoutesTableAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListRoutesTableOptionalParams
+  ): Promise<ExpressRouteCircuitsListRoutesTableResponse> {
+    const poller = await this.beginListRoutesTable(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the currently advertised routes table summary associated with the express route circuit in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
@@ -411,6 +504,32 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Gets the currently advertised routes table summary associated with the express route circuit in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListRoutesTableSummaryAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListRoutesTableSummaryOptionalParams
+  ): Promise<ExpressRouteCircuitsListRoutesTableSummaryResponse> {
+    const poller = await this.beginListRoutesTableSummary(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

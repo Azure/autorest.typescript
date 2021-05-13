@@ -201,7 +201,7 @@ export function writeOperations(
       /**
        * Create a simple method that blocks and waits for the result
        */
-      if (operation.isLRO) {
+      if (operation.isLRO && operation.pagination === undefined) {
         const responseName = getOperationResponseType(
           operation,
           importedModels,

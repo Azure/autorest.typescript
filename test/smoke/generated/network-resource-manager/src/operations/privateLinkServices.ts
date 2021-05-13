@@ -404,6 +404,25 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   }
 
   /**
+   * Deletes the specified private link service.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    options?: PrivateLinkServicesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serviceName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified private link service by resource group.
    * @param resourceGroupName The name of the resource group.
    * @param serviceName The name of the private link service.
@@ -465,6 +484,28 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an private link service in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param parameters Parameters supplied to the create or update private link service operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    parameters: PrivateLinkService,
+    options?: PrivateLinkServicesCreateOrUpdateOptionalParams
+  ): Promise<PrivateLinkServicesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serviceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -593,6 +634,28 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Delete private end point connection for a private link service in a subscription.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param peConnectionName The name of the private end point connection.
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    peConnectionName: string,
+    options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnection(
+      resourceGroupName,
+      serviceName,
+      peConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

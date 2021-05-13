@@ -83,6 +83,32 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
   }
 
   /**
+   * Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param connectionName The name of the connection subresource.
+   * @param putExpressRouteConnectionParameters Parameters required in an ExpressRouteConnection PUT
+   *                                            operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    connectionName: string,
+    putExpressRouteConnectionParameters: ExpressRouteConnection,
+    options?: ExpressRouteConnectionsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      expressRouteGatewayName,
+      connectionName,
+      putExpressRouteConnectionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified ExpressRouteConnection.
    * @param resourceGroupName The name of the resource group.
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
@@ -144,6 +170,28 @@ export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a connection to a ExpressRoute circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param connectionName The name of the connection subresource.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    connectionName: string,
+    options?: ExpressRouteConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      expressRouteGatewayName,
+      connectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

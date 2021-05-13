@@ -84,4 +84,20 @@ export interface ServerCommunicationLinks {
       ServerCommunicationLinksCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates a server communication link.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param communicationLinkName The name of the server communication link.
+   * @param parameters The required parameters for creating a server communication link.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    communicationLinkName: string,
+    parameters: ServerCommunicationLink,
+    options?: ServerCommunicationLinksCreateOrUpdateOptionalParams
+  ): Promise<ServerCommunicationLinksCreateOrUpdateResponse>;
 }

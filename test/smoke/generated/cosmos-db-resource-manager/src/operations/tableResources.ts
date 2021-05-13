@@ -197,6 +197,31 @@ export class TableResourcesImpl implements TableResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB Table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param createUpdateTableParameters The parameters to provide for the current Table.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    createUpdateTableParameters: TableCreateUpdateParameters,
+    options?: TableResourcesCreateUpdateTableOptionalParams
+  ): Promise<TableResourcesCreateUpdateTableResponse> {
+    const poller = await this.beginCreateUpdateTable(
+      resourceGroupName,
+      accountName,
+      tableName,
+      createUpdateTableParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB Table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -232,6 +257,28 @@ export class TableResourcesImpl implements TableResources {
       deleteTableOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB Table.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginDeleteTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesDeleteTableOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteTable(
+      resourceGroupName,
+      accountName,
+      tableName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -303,6 +350,32 @@ export class TableResourcesImpl implements TableResources {
       updateTableThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of an Azure Cosmos DB Table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param updateThroughputParameters The parameters to provide for the RUs per second of the current
+   *                                   Table.
+   * @param options The options parameters.
+   */
+  async beginUpdateTableThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: TableResourcesUpdateTableThroughputOptionalParams
+  ): Promise<TableResourcesUpdateTableThroughputResponse> {
+    const poller = await this.beginUpdateTableThroughput(
+      resourceGroupName,
+      accountName,
+      tableName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

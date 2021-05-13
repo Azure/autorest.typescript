@@ -51,6 +51,19 @@ export interface ExpressRouteCircuitAuthorizations {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified authorization from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param authorizationName The name of the authorization.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    authorizationName: string,
+    options?: ExpressRouteCircuitAuthorizationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified authorization from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of the express route circuit.
@@ -86,4 +99,20 @@ export interface ExpressRouteCircuitAuthorizations {
       ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an authorization in the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param authorizationName The name of the authorization.
+   * @param authorizationParameters Parameters supplied to the create or update express route circuit
+   *                                authorization operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    authorizationName: string,
+    authorizationParameters: ExpressRouteCircuitAuthorization,
+    options?: ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>;
 }

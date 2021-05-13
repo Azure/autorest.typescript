@@ -72,6 +72,22 @@ export interface PrivateEndpointConnections {
     >
   >;
   /**
+   * Approve or reject a private endpoint connection with a given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param privateEndpointConnectionName
+   * @param parameters A private endpoint connection
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    privateEndpointConnectionName: string,
+    parameters: PrivateEndpointConnection,
+    options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams
+  ): Promise<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+  /**
    * Deletes a private endpoint connection with a given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -87,4 +103,18 @@ export interface PrivateEndpointConnections {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a private endpoint connection with a given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    privateEndpointConnectionName: string,
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

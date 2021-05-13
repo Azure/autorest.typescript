@@ -168,6 +168,21 @@ export interface SqlResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB SQL database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param createUpdateSqlDatabaseParameters The parameters to provide for the current SQL database.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateSqlDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlDatabaseResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB SQL database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -182,6 +197,19 @@ export interface SqlResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB SQL database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginDeleteSqlDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: SqlResourcesDeleteSqlDatabaseOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the SQL database under an existing Azure Cosmos DB database account with
    * the provided name.
@@ -217,6 +245,22 @@ export interface SqlResources {
       SqlResourcesUpdateSqlDatabaseThroughputResponse
     >
   >;
+  /**
+   * Update RUs per second of an Azure Cosmos DB SQL database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param updateThroughputParameters The parameters to provide for the RUs per second of the current
+   *                                   SQL database.
+   * @param options The options parameters.
+   */
+  beginUpdateSqlDatabaseThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
+  ): Promise<SqlResourcesUpdateSqlDatabaseThroughputResponse>;
   /**
    * Gets the SQL container under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -255,6 +299,23 @@ export interface SqlResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB SQL container
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param createUpdateSqlContainerParameters The parameters to provide for the current SQL container.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateSqlContainerAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlContainerResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB SQL container.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -271,6 +332,21 @@ export interface SqlResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB SQL container.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param options The options parameters.
+   */
+  beginDeleteSqlContainerAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    options?: SqlResourcesDeleteSqlContainerOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the SQL container under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -309,6 +385,24 @@ export interface SqlResources {
       SqlResourcesUpdateSqlContainerThroughputResponse
     >
   >;
+  /**
+   * Update RUs per second of an Azure Cosmos DB SQL container
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param updateThroughputParameters The parameters to provide for the RUs per second of the current
+   *                                   SQL container.
+   * @param options The options parameters.
+   */
+  beginUpdateSqlContainerThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
+  ): Promise<SqlResourcesUpdateSqlContainerThroughputResponse>;
   /**
    * Gets the SQL storedProcedure under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -352,6 +446,26 @@ export interface SqlResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB SQL storedProcedure
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param storedProcedureName Cosmos DB storedProcedure name.
+   * @param createUpdateSqlStoredProcedureParameters The parameters to provide for the current SQL
+   *                                                 storedProcedure.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateSqlStoredProcedureAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    storedProcedureName: string,
+    createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlStoredProcedureResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB SQL storedProcedure.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -370,6 +484,23 @@ export interface SqlResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB SQL storedProcedure.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param storedProcedureName Cosmos DB storedProcedure name.
+   * @param options The options parameters.
+   */
+  beginDeleteSqlStoredProcedureAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    storedProcedureName: string,
+    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the SQL userDefinedFunction under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -415,6 +546,26 @@ export interface SqlResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB SQL userDefinedFunction
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param userDefinedFunctionName Cosmos DB userDefinedFunction name.
+   * @param createUpdateSqlUserDefinedFunctionParameters The parameters to provide for the current SQL
+   *                                                     userDefinedFunction.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateSqlUserDefinedFunctionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    userDefinedFunctionName: string,
+    createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB SQL userDefinedFunction.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -433,6 +584,23 @@ export interface SqlResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB SQL userDefinedFunction.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param userDefinedFunctionName Cosmos DB userDefinedFunction name.
+   * @param options The options parameters.
+   */
+  beginDeleteSqlUserDefinedFunctionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    userDefinedFunctionName: string,
+    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the SQL trigger under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -475,6 +643,25 @@ export interface SqlResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB SQL trigger
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param triggerName Cosmos DB trigger name.
+   * @param createUpdateSqlTriggerParameters The parameters to provide for the current SQL trigger.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateSqlTriggerAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    triggerName: string,
+    createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
+    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
+  ): Promise<SqlResourcesCreateUpdateSqlTriggerResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB SQL trigger.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -493,4 +680,21 @@ export interface SqlResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB SQL trigger.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param containerName Cosmos DB container name.
+   * @param triggerName Cosmos DB trigger name.
+   * @param options The options parameters.
+   */
+  beginDeleteSqlTriggerAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    containerName: string,
+    triggerName: string,
+    options?: SqlResourcesDeleteSqlTriggerOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

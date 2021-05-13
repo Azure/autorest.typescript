@@ -174,6 +174,25 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   }
 
   /**
+   * Deletes the specified Firewall Policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    options?: FirewallPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      firewallPolicyName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Firewall Policy.
    * @param resourceGroupName The name of the resource group.
    * @param firewallPolicyName The name of the Firewall Policy.
@@ -235,6 +254,28 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Firewall Policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param parameters Parameters supplied to the create or update Firewall Policy operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    parameters: FirewallPolicy,
+    options?: FirewallPoliciesCreateOrUpdateOptionalParams
+  ): Promise<FirewallPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      firewallPolicyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

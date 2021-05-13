@@ -180,6 +180,25 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   }
 
   /**
+   * Deletes the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    options?: NetworkVirtualAppliancesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkVirtualApplianceName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Network Virtual Appliance.
    * @param resourceGroupName The name of the resource group.
    * @param networkVirtualApplianceName The name of Network Virtual Appliance.
@@ -266,6 +285,28 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param parameters Parameters supplied to the create or update Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    parameters: NetworkVirtualAppliance,
+    options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
+  ): Promise<NetworkVirtualAppliancesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkVirtualApplianceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

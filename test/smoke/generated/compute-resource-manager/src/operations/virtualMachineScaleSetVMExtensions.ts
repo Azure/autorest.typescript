@@ -90,6 +90,34 @@ export class VirtualMachineScaleSetVMExtensionsImpl
   }
 
   /**
+   * The operation to create or update the VMSS VM extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtension,
+    options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams
+  ): Promise<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      vmExtensionName,
+      extensionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to update the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -137,6 +165,34 @@ export class VirtualMachineScaleSetVMExtensionsImpl
   }
 
   /**
+   * The operation to update the VMSS VM extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtensionUpdate,
+    options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams
+  ): Promise<VirtualMachineScaleSetVMExtensionsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      vmExtensionName,
+      extensionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to delete the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -175,6 +231,31 @@ export class VirtualMachineScaleSetVMExtensionsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to delete the VMSS VM extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    vmExtensionName: string,
+    options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      vmExtensionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

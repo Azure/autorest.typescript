@@ -72,6 +72,25 @@ export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
     );
   }
 
+  /**
+   * Gives the list of VpnServerConfigurations associated with Virtual Wan in a resource group.
+   * @param resourceGroupName The resource group name.
+   * @param virtualWANName The name of the VirtualWAN whose associated VpnServerConfigurations is needed.
+   * @param options The options parameters.
+   */
+  async beginListAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    options?: VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams
+  ): Promise<VpnServerConfigurationsAssociatedWithVirtualWanListResponse> {
+    const poller = await this.beginList(
+      resourceGroupName,
+      virtualWANName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
     finalStateVia?: string

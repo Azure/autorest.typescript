@@ -210,6 +210,29 @@ export class InstancePoolsImpl implements InstancePools {
   }
 
   /**
+   * Creates or updates an instance pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be created or updated.
+   * @param parameters The requested instance pool resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    parameters: InstancePool,
+    options?: InstancePoolsCreateOrUpdateOptionalParams
+  ): Promise<InstancePoolsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      instancePoolName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an instance pool
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -243,6 +266,26 @@ export class InstancePoolsImpl implements InstancePools {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an instance pool
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be deleted
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    options?: InstancePoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      instancePoolName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -285,6 +328,29 @@ export class InstancePoolsImpl implements InstancePools {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates an instance pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be updated.
+   * @param parameters The requested instance pool resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    parameters: InstancePoolUpdate,
+    options?: InstancePoolsUpdateOptionalParams
+  ): Promise<InstancePoolsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      instancePoolName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

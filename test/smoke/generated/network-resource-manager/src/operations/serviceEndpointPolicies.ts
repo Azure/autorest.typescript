@@ -180,6 +180,25 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   }
 
   /**
+   * Deletes the specified service endpoint policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    options?: ServiceEndpointPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified service Endpoint Policies in a specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param serviceEndpointPolicyName The name of the service endpoint policy.
@@ -241,6 +260,28 @@ export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a service Endpoint Policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy.
+   * @param parameters Parameters supplied to the create or update service endpoint policy operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    parameters: ServiceEndpointPolicy,
+    options?: ServiceEndpointPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ServiceEndpointPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -180,6 +180,25 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   }
 
   /**
+   * Deletes the specified Security Partner Provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param securityPartnerProviderName The name of the Security Partner Provider.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    securityPartnerProviderName: string,
+    options?: SecurityPartnerProvidersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      securityPartnerProviderName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Security Partner Provider.
    * @param resourceGroupName The name of the resource group.
    * @param securityPartnerProviderName The name of the Security Partner Provider.
@@ -241,6 +260,28 @@ export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Security Partner Provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param securityPartnerProviderName The name of the Security Partner Provider.
+   * @param parameters Parameters supplied to the create or update Security Partner Provider operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    securityPartnerProviderName: string,
+    parameters: SecurityPartnerProvider,
+    options?: SecurityPartnerProvidersCreateOrUpdateOptionalParams
+  ): Promise<SecurityPartnerProvidersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      securityPartnerProviderName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
