@@ -422,7 +422,7 @@ function getReturnType(
   operation: OperationDetails,
   importedModels: Set<string>,
   modelNames: Set<string>
-) {
+): string {
   const responseName = getOperationResponseType(
     operation,
     importedModels,
@@ -577,6 +577,35 @@ export function writeOperations(
       responseName,
       isInline
     );
+
+    /**
+     * Create a simple method that blocks and waits for the result
+     */
+    if (operation.isLRO) {
+      const responseName = getOperationResponseType(
+        operation,
+        importedModels,
+        modelNames
+      );
+      const methodName = calculateMethodName(operation);
+      const operationMethod = operationGroupClass.addMethod({
+        name: `${methodName}AndWait`,
+        parameters: baseMethodParameters,
+        scope: operation.scope,
+        returnType: `Promise<${responseName}>`,
+        docs: [
+          generateOperationJSDoc(baseMethodParameters, operation.description)
+        ],
+        isAsync: true
+      });
+      operationMethod.addStatements(
+        `const poller = await this.${methodName}(${baseMethodParameters
+          .map(x => x.name)
+          .join(",")});
+          return poller.pollUntilDone();
+          `
+      );
+    }
   });
 }
 
