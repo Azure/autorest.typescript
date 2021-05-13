@@ -598,13 +598,46 @@ export function writeOperations(
         ],
         isAsync: true
       });
-      operationMethod.addStatements(
-        `const poller = await this.${methodName}(${baseMethodParameters
-          .map(x => x.name)
-          .join(",")});
-          return poller.pollUntilDone();
-          `
-      );
+      if (overloadParameterDeclarations.length > 1) {
+        // Since contentType is always added as a synthetic parameter by modelerfour, it should always
+        // be in the same position for all overloads.
+        let contentTypePosition: number = -1;
+        for (let i = 0; i < overloadParameterDeclarations.length; i++) {
+          const overloadParameters = overloadParameterDeclarations[i];
+
+          contentTypePosition = overloadParameters.findIndex(
+            (param: ParameterWithDescription) => {
+              return param.isContentType;
+            }
+          );
+
+          // Get conditional to handle the current overload
+          const conditional = getContentTypeInfo(operation.requests[i])
+            ?.map(type => `args[${contentTypePosition}] === "${type}"`)
+            .join(" || ");
+
+          const assignments = `const poller = await this.${methodName}(...args);
+          return poller.pollUntilDone();`;
+
+          const elseif = i === 0 ? "if" : "else if";
+
+          // Add conditional statement to handle the current overload
+          operationMethod.addStatements([
+            `${elseif} (${conditional}) {
+        ${assignments}
+       }`
+          ]);
+        }
+        operationMethod.addStatements(`throw new Error("Impossible case");`);
+      } else {
+        operationMethod.addStatements(
+          `const poller = await this.${methodName}(${baseMethodParameters
+            .map(x => x.name)
+            .join(",")});
+            return poller.pollUntilDone();
+            `
+        );
+      }
     }
   });
 }

@@ -146,8 +146,14 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           MediaTypesV3LROClientSendOnDefault$textOptionalParams?
         ]
   ): Promise<coreHttp.RestResponse> {
-    const poller = await this.beginSendOnDefault(args);
-    return poller.pollUntilDone();
+    if (args[0] === "application/octet-stream") {
+      const poller = await this.beginSendOnDefault(...args);
+      return poller.pollUntilDone();
+    } else if (args[0] === "text/plain") {
+      const poller = await this.beginSendOnDefault(...args);
+      return poller.pollUntilDone();
+    }
+    throw new Error("Impossible case");
   }
 
   /**
