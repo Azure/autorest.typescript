@@ -341,6 +341,29 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * Captures the VM by copying virtual hard disks of the VM and outputs a template that can be used to
+   * create similar VMs.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param parameters Parameters supplied to the Capture Virtual Machine operation.
+   * @param options The options parameters.
+   */
+  async beginCaptureAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    parameters: VirtualMachineCaptureParameters,
+    options?: VirtualMachinesCaptureOptionalParams
+  ): Promise<VirtualMachinesCaptureResponse> {
+    const poller = await this.beginCapture(
+      resourceGroupName,
+      vmName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to create or update a virtual machine. Please note some properties can be set only
    * during virtual machine creation.
    * @param resourceGroupName The name of the resource group.
@@ -380,6 +403,29 @@ export class VirtualMachinesImpl implements VirtualMachines {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to create or update a virtual machine. Please note some properties can be set only
+   * during virtual machine creation.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param parameters Parameters supplied to the Create Virtual Machine operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    parameters: VirtualMachine,
+    options?: VirtualMachinesCreateOrUpdateOptionalParams
+  ): Promise<VirtualMachinesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vmName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -424,6 +470,28 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * The operation to update a virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param parameters Parameters supplied to the Update Virtual Machine operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    parameters: VirtualMachineUpdate,
+    options?: VirtualMachinesUpdateOptionalParams
+  ): Promise<VirtualMachinesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      vmName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to delete a virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -456,6 +524,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to delete a virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -539,6 +622,26 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * Converts virtual machine disks from blob-based to managed disks. Virtual machine must be
+   * stop-deallocated before invoking this operation.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginConvertToManagedDisksAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesConvertToManagedDisksOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginConvertToManagedDisks(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Shuts down the virtual machine and releases the compute resources. You are not billed for the
    * compute resources that this virtual machine uses.
    * @param resourceGroupName The name of the resource group.
@@ -572,6 +675,26 @@ export class VirtualMachinesImpl implements VirtualMachines {
       deallocateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Shuts down the virtual machine and releases the compute resources. You are not billed for the
+   * compute resources that this virtual machine uses.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginDeallocateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesDeallocateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeallocate(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -697,6 +820,22 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * The operation to power off (stop) a virtual machine. The virtual machine can be restarted with the
+   * same provisioned resources. You are still charged for this virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginPowerOffAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesPowerOffOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPowerOff(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to reapply a virtual machine's state.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -729,6 +868,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
       reapplyOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to reapply a virtual machine's state.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginReapplyAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesReapplyOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginReapply(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -767,6 +921,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * The operation to restart a virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginRestartAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesRestartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestart(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to start a virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -799,6 +968,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
       startOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to start a virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginStartAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesStartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStart(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -837,6 +1021,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * Shuts down the virtual machine, moves it to a new node, and powers it back on.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginRedeployAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesRedeployOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRedeploy(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -872,6 +1071,21 @@ export class VirtualMachinesImpl implements VirtualMachines {
   }
 
   /**
+   * Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginReimageAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesReimageOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginReimage(resourceGroupName, vmName, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to perform maintenance on a virtual machine.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine.
@@ -904,6 +1118,25 @@ export class VirtualMachinesImpl implements VirtualMachines {
       performMaintenanceOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to perform maintenance on a virtual machine.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginPerformMaintenanceAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    options?: VirtualMachinesPerformMaintenanceOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPerformMaintenance(
+      resourceGroupName,
+      vmName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -969,6 +1202,28 @@ export class VirtualMachinesImpl implements VirtualMachines {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Run command on the VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine.
+   * @param parameters Parameters supplied to the Run command operation.
+   * @param options The options parameters.
+   */
+  async beginRunCommandAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    parameters: RunCommandInput,
+    options?: VirtualMachinesRunCommandOptionalParams
+  ): Promise<VirtualMachinesRunCommandResponse> {
+    const poller = await this.beginRunCommand(
+      resourceGroupName,
+      vmName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

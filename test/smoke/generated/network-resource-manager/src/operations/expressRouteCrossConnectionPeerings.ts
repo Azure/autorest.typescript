@@ -175,6 +175,28 @@ export class ExpressRouteCrossConnectionPeeringsImpl
   }
 
   /**
+   * Deletes the specified peering from the ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    options?: ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified peering for the ExpressRouteCrossConnection.
    * @param resourceGroupName The name of the resource group.
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
@@ -245,6 +267,32 @@ export class ExpressRouteCrossConnectionPeeringsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a peering in the specified ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param peeringParameters Parameters supplied to the create or update ExpressRouteCrossConnection
+   *                          peering operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    peeringParameters: ExpressRouteCrossConnectionPeering,
+    options?: ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      peeringParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

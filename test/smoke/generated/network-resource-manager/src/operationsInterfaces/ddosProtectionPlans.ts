@@ -59,6 +59,17 @@ export interface DdosProtectionPlans {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified DDoS protection plan.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosProtectionPlanName The name of the DDoS protection plan.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    ddosProtectionPlanName: string,
+    options?: DdosProtectionPlansDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets information about the specified DDoS protection plan.
    * @param resourceGroupName The name of the resource group.
    * @param ddosProtectionPlanName The name of the DDoS protection plan.
@@ -87,6 +98,19 @@ export interface DdosProtectionPlans {
       DdosProtectionPlansCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a DDoS protection plan.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosProtectionPlanName The name of the DDoS protection plan.
+   * @param parameters Parameters supplied to the create or update operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ddosProtectionPlanName: string,
+    parameters: DdosProtectionPlan,
+    options?: DdosProtectionPlansCreateOrUpdateOptionalParams
+  ): Promise<DdosProtectionPlansCreateOrUpdateResponse>;
   /**
    * Update a DDoS protection plan tags.
    * @param resourceGroupName The name of the resource group.

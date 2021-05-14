@@ -177,6 +177,25 @@ export class BastionHostsImpl implements BastionHosts {
   }
 
   /**
+   * Deletes the specified Bastion Host.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    options?: BastionHostsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      bastionHostName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Bastion Host.
    * @param resourceGroupName The name of the resource group.
    * @param bastionHostName The name of the Bastion Host.
@@ -238,6 +257,28 @@ export class BastionHostsImpl implements BastionHosts {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Bastion Host.
+   * @param resourceGroupName The name of the resource group.
+   * @param bastionHostName The name of the Bastion Host.
+   * @param parameters Parameters supplied to the create or update Bastion Host operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    bastionHostName: string,
+    parameters: BastionHost,
+    options?: BastionHostsCreateOrUpdateOptionalParams
+  ): Promise<BastionHostsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      bastionHostName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

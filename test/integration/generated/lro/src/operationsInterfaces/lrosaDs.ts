@@ -77,6 +77,13 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running put request, service returns a 400 to the initial request
+   * @param options The options parameters.
+   */
+  beginPutNonRetry400AndWait(
+    options?: LrosaDsPutNonRetry400OptionalParams
+  ): Promise<LrosaDsPutNonRetry400Response>;
+  /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201
    * response code
    * @param options The options parameters.
@@ -94,6 +101,14 @@ export interface LrosaDs {
    * response code
    * @param options The options parameters.
    */
+  beginPutNonRetry201Creating400AndWait(
+    options?: LrosaDsPutNonRetry201Creating400OptionalParams
+  ): Promise<LrosaDsPutNonRetry201Creating400Response>;
+  /**
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201
+   * response code
+   * @param options The options parameters.
+   */
   beginPutNonRetry201Creating400InvalidJson(
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   ): Promise<
@@ -102,6 +117,14 @@ export interface LrosaDs {
       LrosaDsPutNonRetry201Creating400InvalidJsonResponse
     >
   >;
+  /**
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201
+   * response code
+   * @param options The options parameters.
+   */
+  beginPutNonRetry201Creating400InvalidJsonAndWait(
+    options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
+  ): Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>;
   /**
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -116,6 +139,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginPutAsyncRelativeRetry400AndWait(
+    options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
+  ): Promise<LrosaDsPutAsyncRelativeRetry400Response>;
+  /**
    * Long running delete request, service returns a 400 with an error body
    * @param options The options parameters.
    */
@@ -128,6 +159,13 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running delete request, service returns a 400 with an error body
+   * @param options The options parameters.
+   */
+  beginDeleteNonRetry400AndWait(
+    options?: LrosaDsDeleteNonRetry400OptionalParams
+  ): Promise<LrosaDsDeleteNonRetry400Response>;
+  /**
    * Long running delete request, service returns a 202 with a location header
    * @param options The options parameters.
    */
@@ -139,6 +177,13 @@ export interface LrosaDs {
       LrosaDsDelete202NonRetry400Response
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 with a location header
+   * @param options The options parameters.
+   */
+  beginDelete202NonRetry400AndWait(
+    options?: LrosaDsDelete202NonRetry400OptionalParams
+  ): Promise<LrosaDsDelete202NonRetry400Response>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -153,6 +198,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncRelativeRetry400AndWait(
+    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
+  ): Promise<LrosaDsDeleteAsyncRelativeRetry400Response>;
+  /**
    * Long running post request, service returns a 400 with no error body
    * @param options The options parameters.
    */
@@ -165,6 +218,13 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running post request, service returns a 400 with no error body
+   * @param options The options parameters.
+   */
+  beginPostNonRetry400AndWait(
+    options?: LrosaDsPostNonRetry400OptionalParams
+  ): Promise<LrosaDsPostNonRetry400Response>;
+  /**
    * Long running post request, service returns a 202 with a location header
    * @param options The options parameters.
    */
@@ -176,6 +236,13 @@ export interface LrosaDs {
       LrosaDsPost202NonRetry400Response
     >
   >;
+  /**
+   * Long running post request, service returns a 202 with a location header
+   * @param options The options parameters.
+   */
+  beginPost202NonRetry400AndWait(
+    options?: LrosaDsPost202NonRetry400OptionalParams
+  ): Promise<LrosaDsPost202NonRetry400Response>;
   /**
    * Long running post request, service returns a 202 to the initial request Poll the endpoint indicated
    * in the Azure-AsyncOperation header for operation status
@@ -190,6 +257,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running post request, service returns a 202 to the initial request Poll the endpoint indicated
+   * in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginPostAsyncRelativeRetry400AndWait(
+    options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
+  ): Promise<LrosaDsPostAsyncRelativeRetry400Response>;
+  /**
    * Long running put request, service returns a 201 to the initial request with no payload
    * @param options The options parameters.
    */
@@ -201,6 +276,13 @@ export interface LrosaDs {
       LrosaDsPutError201NoProvisioningStatePayloadResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 201 to the initial request with no payload
+   * @param options The options parameters.
+   */
+  beginPutError201NoProvisioningStatePayloadAndWait(
+    options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
+  ): Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -221,6 +303,15 @@ export interface LrosaDs {
    * operation status
    * @param options The options parameters.
    */
+  beginPutAsyncRelativeRetryNoStatusAndWait(
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
+  ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse>;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
   beginPutAsyncRelativeRetryNoStatusPayload(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   ): Promise<
@@ -230,6 +321,15 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
+  beginPutAsyncRelativeRetryNoStatusPayloadAndWait(
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
+  ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>;
+  /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
@@ -238,6 +338,13 @@ export interface LrosaDs {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Long running delete request, service returns a 204 to the initial request, indicating success.
+   * @param options The options parameters.
+   */
+  beginDelete204SucceededAndWait(
+    options?: LrosaDsDelete204SucceededOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -252,6 +359,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncRelativeRetryNoStatusAndWait(
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
+  ): Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>;
+  /**
    * Long running post request, service returns a 202 to the initial request, without a location header.
    * @param options The options parameters.
    */
@@ -263,6 +378,13 @@ export interface LrosaDs {
       LrosaDsPost202NoLocationResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, without a location header.
+   * @param options The options parameters.
+   */
+  beginPost202NoLocationAndWait(
+    options?: LrosaDsPost202NoLocationOptionalParams
+  ): Promise<LrosaDsPost202NoLocationResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -278,6 +400,15 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  beginPostAsyncRelativeRetryNoPayloadAndWait(
+    options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
+  ): Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>;
+  /**
    * Long running put request, service returns a 200 to the initial request, with an entity that is not a
    * valid json
    * @param options The options parameters.
@@ -291,6 +422,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that is not a
+   * valid json
+   * @param options The options parameters.
+   */
+  beginPut200InvalidJsonAndWait(
+    options?: LrosaDsPut200InvalidJsonOptionalParams
+  ): Promise<LrosaDsPut200InvalidJsonResponse>;
+  /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
    * @param options The options parameters.
@@ -303,6 +442,14 @@ export interface LrosaDs {
       LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
+   * @param options The options parameters.
+   */
+  beginPutAsyncRelativeRetryInvalidHeaderAndWait(
+    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
+  ): Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -320,6 +467,15 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
+  beginPutAsyncRelativeRetryInvalidJsonPollingAndWait(
+    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
+  ): Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
+  /**
    * Long running delete request, service returns a 202 to the initial request receing a reponse with an
    * invalid 'Location' and 'Retry-After' headers
    * @param options The options parameters.
@@ -333,6 +489,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running delete request, service returns a 202 to the initial request receing a reponse with an
+   * invalid 'Location' and 'Retry-After' headers
+   * @param options The options parameters.
+   */
+  beginDelete202RetryInvalidHeaderAndWait(
+    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
+  ): Promise<LrosaDsDelete202RetryInvalidHeaderResponse>;
+  /**
    * Long running delete request, service returns a 202 to the initial request. The endpoint indicated in
    * the Azure-AsyncOperation header is invalid
    * @param options The options parameters.
@@ -345,6 +509,14 @@ export interface LrosaDs {
       LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. The endpoint indicated in
+   * the Azure-AsyncOperation header is invalid
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncRelativeRetryInvalidHeaderAndWait(
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
+  ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -361,6 +533,14 @@ export interface LrosaDs {
     >
   >;
   /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncRelativeRetryInvalidJsonPollingAndWait(
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
+  ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
+  /**
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location' and
    * 'Retry-After' headers.
    * @param options The options parameters.
@@ -373,6 +553,14 @@ export interface LrosaDs {
       LrosaDsPost202RetryInvalidHeaderResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with invalid 'Location' and
+   * 'Retry-After' headers.
+   * @param options The options parameters.
+   */
+  beginPost202RetryInvalidHeaderAndWait(
+    options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
+  ): Promise<LrosaDsPost202RetryInvalidHeaderResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is
@@ -389,6 +577,15 @@ export interface LrosaDs {
   >;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is
+   * invalid.
+   * @param options The options parameters.
+   */
+  beginPostAsyncRelativeRetryInvalidHeaderAndWait(
+    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
+  ): Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param options The options parameters.
@@ -403,4 +600,13 @@ export interface LrosaDs {
       LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  beginPostAsyncRelativeRetryInvalidJsonPollingAndWait(
+    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
+  ): Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
 }

@@ -210,6 +210,30 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
   }
 
   /**
+   * Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing
+   * VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being created or updated.
+   * @param vpnServerConfigurationParameters Parameters supplied to create or update
+   *                                         VpnServerConfiguration.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    vpnServerConfigurationParameters: VpnServerConfiguration,
+    options?: VpnServerConfigurationsCreateOrUpdateOptionalParams
+  ): Promise<VpnServerConfigurationsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vpnServerConfigurationName,
+      vpnServerConfigurationParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates VpnServerConfiguration tags.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being updated.
@@ -268,6 +292,25 @@ export class VpnServerConfigurationsImpl implements VpnServerConfigurations {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    options?: VpnServerConfigurationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      vpnServerConfigurationName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

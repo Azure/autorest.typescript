@@ -78,6 +78,20 @@ export interface InstancePools {
     >
   >;
   /**
+   * Creates or updates an instance pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be created or updated.
+   * @param parameters The requested instance pool resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    parameters: InstancePool,
+    options?: InstancePoolsCreateOrUpdateOptionalParams
+  ): Promise<InstancePoolsCreateOrUpdateResponse>;
+  /**
    * Deletes an instance pool
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -91,6 +105,18 @@ export interface InstancePools {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an instance pool
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be deleted
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    options?: InstancePoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates an instance pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -110,4 +136,18 @@ export interface InstancePools {
       InstancePoolsUpdateResponse
     >
   >;
+  /**
+   * Updates an instance pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param instancePoolName The name of the instance pool to be updated.
+   * @param parameters The requested instance pool resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    instancePoolName: string,
+    parameters: InstancePoolUpdate,
+    options?: InstancePoolsUpdateOptionalParams
+  ): Promise<InstancePoolsUpdateResponse>;
 }

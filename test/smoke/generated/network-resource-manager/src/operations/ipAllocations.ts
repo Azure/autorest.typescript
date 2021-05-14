@@ -180,6 +180,25 @@ export class IpAllocationsImpl implements IpAllocations {
   }
 
   /**
+   * Deletes the specified IpAllocation.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipAllocationName The name of the IpAllocation.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    ipAllocationName: string,
+    options?: IpAllocationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      ipAllocationName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified IpAllocation by resource group.
    * @param resourceGroupName The name of the resource group.
    * @param ipAllocationName The name of the IpAllocation.
@@ -241,6 +260,28 @@ export class IpAllocationsImpl implements IpAllocations {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an IpAllocation in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipAllocationName The name of the IpAllocation.
+   * @param parameters Parameters supplied to the create or update virtual network operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ipAllocationName: string,
+    parameters: IpAllocation,
+    options?: IpAllocationsCreateOrUpdateOptionalParams
+  ): Promise<IpAllocationsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      ipAllocationName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -70,6 +70,21 @@ export interface Snapshots {
     >
   >;
   /**
+   * Creates or updates a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param snapshot Snapshot object supplied in the body of the Put disk operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    snapshot: Snapshot,
+    options?: SnapshotsCreateOrUpdateOptionalParams
+  ): Promise<SnapshotsCreateOrUpdateResponse>;
+  /**
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -89,6 +104,21 @@ export interface Snapshots {
       SnapshotsUpdateResponse
     >
   >;
+  /**
+   * Updates (patches) a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    snapshot: SnapshotUpdate,
+    options?: SnapshotsUpdateOptionalParams
+  ): Promise<SnapshotsUpdateResponse>;
   /**
    * Gets information about a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -118,6 +148,19 @@ export interface Snapshots {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    options?: SnapshotsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -138,6 +181,21 @@ export interface Snapshots {
     >
   >;
   /**
+   * Grants access to a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
+   * @param options The options parameters.
+   */
+  beginGrantAccessAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    grantAccessData: GrantAccessData,
+    options?: SnapshotsGrantAccessOptionalParams
+  ): Promise<SnapshotsGrantAccessResponse>;
+  /**
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -152,4 +210,17 @@ export interface Snapshots {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Revokes access to a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param options The options parameters.
+   */
+  beginRevokeAccessAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    options?: SnapshotsRevokeAccessOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

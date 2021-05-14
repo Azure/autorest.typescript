@@ -181,6 +181,29 @@ export class ExtendedServerBlobAuditingPoliciesImpl
   }
 
   /**
+   * Creates or updates an extended server's blob auditing policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters Properties of extended blob auditing policy
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ExtendedServerBlobAuditingPolicy,
+    options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists extended auditing settings of a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.

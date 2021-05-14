@@ -137,6 +137,28 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
   }
 
   /**
+   * Creates or updates a local network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param localNetworkGatewayName The name of the local network gateway.
+   * @param parameters Parameters supplied to the create or update local network gateway operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    localNetworkGatewayName: string,
+    parameters: LocalNetworkGateway,
+    options?: LocalNetworkGatewaysCreateOrUpdateOptionalParams
+  ): Promise<LocalNetworkGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      localNetworkGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified local network gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param localNetworkGatewayName The name of the local network gateway.
@@ -192,6 +214,25 @@ export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified local network gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param localNetworkGatewayName The name of the local network gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    localNetworkGatewayName: string,
+    options?: LocalNetworkGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      localNetworkGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

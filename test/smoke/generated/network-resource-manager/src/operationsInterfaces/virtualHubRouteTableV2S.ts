@@ -71,6 +71,23 @@ export interface VirtualHubRouteTableV2S {
     >
   >;
   /**
+   * Creates a VirtualHubRouteTableV2 resource if it doesn't exist else updates the existing
+   * VirtualHubRouteTableV2.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the VirtualHubRouteTableV2.
+   * @param virtualHubRouteTableV2Parameters Parameters supplied to create or update
+   *                                         VirtualHubRouteTableV2.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
+    options?: VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
+  ): Promise<VirtualHubRouteTableV2SCreateOrUpdateResponse>;
+  /**
    * Deletes a VirtualHubRouteTableV2.
    * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
    * @param virtualHubName The name of the VirtualHub.
@@ -85,4 +102,17 @@ export interface VirtualHubRouteTableV2S {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a VirtualHubRouteTableV2.
+   * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the VirtualHubRouteTableV2.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    options?: VirtualHubRouteTableV2SDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

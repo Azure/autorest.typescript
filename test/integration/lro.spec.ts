@@ -324,6 +324,13 @@ describe("LROs", () => {
       assert.equal(result._response.status, 200);
     });
 
+    it("should handle deleteAsyncNoRetrySucceeded that blocks", async () => {
+      const result = await client.lROs.beginDeleteAsyncNoRetrySucceededAndWait(
+        LROOptions
+      );
+      assert.equal(result._response.status, 200);
+    });
+
     it("should handle deleteAsyncRetrycanceled", async () => {
       const poller = await client.lROs.beginDeleteAsyncRetrycanceled(
         LROOptions

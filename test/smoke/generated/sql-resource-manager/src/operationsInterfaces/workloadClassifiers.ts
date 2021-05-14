@@ -84,6 +84,26 @@ export interface WorkloadClassifiers {
     >
   >;
   /**
+   * Creates or updates a workload classifier.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group from which to receive the classifier from.
+   * @param workloadClassifierName The name of the workload classifier to create/update.
+   * @param parameters The properties of the workload classifier.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    workloadClassifierName: string,
+    parameters: WorkloadClassifier,
+    options?: WorkloadClassifiersCreateOrUpdateOptionalParams
+  ): Promise<WorkloadClassifiersCreateOrUpdateResponse>;
+  /**
    * Deletes a workload classifier.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -103,4 +123,22 @@ export interface WorkloadClassifiers {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a workload classifier.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group from which to receive the classifier from.
+   * @param workloadClassifierName The name of the workload classifier to delete.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    workloadClassifierName: string,
+    options?: WorkloadClassifiersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

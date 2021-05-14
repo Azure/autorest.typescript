@@ -51,6 +51,19 @@ export interface FirewallPolicyRuleGroups {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified FirewallPolicyRuleGroup.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    ruleGroupName: string,
+    options?: FirewallPolicyRuleGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified FirewallPolicyRuleGroup.
    * @param resourceGroupName The name of the resource group.
    * @param firewallPolicyName The name of the Firewall Policy.
@@ -83,4 +96,19 @@ export interface FirewallPolicyRuleGroups {
       FirewallPolicyRuleGroupsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified FirewallPolicyRuleGroup.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
+   * @param parameters Parameters supplied to the create or update FirewallPolicyRuleGroup operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    ruleGroupName: string,
+    parameters: FirewallPolicyRuleGroup,
+    options?: FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
+  ): Promise<FirewallPolicyRuleGroupsCreateOrUpdateResponse>;
 }

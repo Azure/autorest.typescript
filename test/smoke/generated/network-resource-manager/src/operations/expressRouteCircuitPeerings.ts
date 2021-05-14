@@ -141,6 +141,28 @@ export class ExpressRouteCircuitPeeringsImpl
   }
 
   /**
+   * Deletes the specified peering from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    options?: ExpressRouteCircuitPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified peering for the express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of the express route circuit.
@@ -209,6 +231,32 @@ export class ExpressRouteCircuitPeeringsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a peering in the specified express route circuits.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param peeringParameters Parameters supplied to the create or update express route circuit peering
+   *                          operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    peeringParameters: ExpressRouteCircuitPeering,
+    options?: ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitPeeringsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      peeringParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

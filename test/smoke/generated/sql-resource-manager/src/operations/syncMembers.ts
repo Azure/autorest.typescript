@@ -322,6 +322,38 @@ export class SyncMembersImpl implements SyncMembers {
   }
 
   /**
+   * Creates or updates a sync member.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group on which the sync member is hosted.
+   * @param syncMemberName The name of the sync member.
+   * @param parameters The requested sync member resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    parameters: SyncMember,
+    options?: SyncMembersCreateOrUpdateOptionalParams
+  ): Promise<SyncMembersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a sync member.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -364,6 +396,35 @@ export class SyncMembersImpl implements SyncMembers {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a sync member.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group on which the sync member is hosted.
+   * @param syncMemberName The name of the sync member.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    options?: SyncMembersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -415,6 +476,38 @@ export class SyncMembersImpl implements SyncMembers {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates an existing sync member.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group on which the sync member is hosted.
+   * @param syncMemberName The name of the sync member.
+   * @param parameters The requested sync member resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    parameters: SyncMember,
+    options?: SyncMembersUpdateOptionalParams
+  ): Promise<SyncMembersUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -521,6 +614,35 @@ export class SyncMembersImpl implements SyncMembers {
       refreshMemberSchemaOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Refreshes a sync member database schema.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group on which the sync member is hosted.
+   * @param syncMemberName The name of the sync member.
+   * @param options The options parameters.
+   */
+  async beginRefreshMemberSchemaAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    syncMemberName: string,
+    options?: SyncMembersRefreshMemberSchemaOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRefreshMemberSchema(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      syncGroupName,
+      syncMemberName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

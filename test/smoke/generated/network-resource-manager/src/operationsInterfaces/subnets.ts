@@ -55,6 +55,19 @@ export interface Subnets {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified subnet.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    options?: SubnetsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified subnet by virtual network and resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
@@ -88,6 +101,21 @@ export interface Subnets {
     >
   >;
   /**
+   * Creates or updates a subnet in the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param subnetParameters Parameters supplied to the create or update subnet operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    subnetParameters: Subnet,
+    options?: SubnetsCreateOrUpdateOptionalParams
+  ): Promise<SubnetsCreateOrUpdateResponse>;
+  /**
    * Prepares a subnet by applying network intent policies.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
@@ -106,6 +134,22 @@ export interface Subnets {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Prepares a subnet by applying network intent policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param prepareNetworkPoliciesRequestParameters Parameters supplied to prepare subnet by applying
+   *                                                network intent policies.
+   * @param options The options parameters.
+   */
+  beginPrepareNetworkPoliciesAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
+    options?: SubnetsPrepareNetworkPoliciesOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Unprepares a subnet by removing network intent policies.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
@@ -123,4 +167,20 @@ export interface Subnets {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Unprepares a subnet by removing network intent policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param unprepareNetworkPoliciesRequestParameters Parameters supplied to unprepare subnet to remove
+   *                                                  network intent policies.
+   * @param options The options parameters.
+   */
+  beginUnprepareNetworkPoliciesAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
+    options?: SubnetsUnprepareNetworkPoliciesOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

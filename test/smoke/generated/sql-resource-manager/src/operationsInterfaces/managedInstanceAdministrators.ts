@@ -68,6 +68,20 @@ export interface ManagedInstanceAdministrators {
     >
   >;
   /**
+   * Creates or updates a managed instance administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested administrator parameters.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstanceAdministrator,
+    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse>;
+  /**
    * Deletes a managed instance administrator.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -81,4 +95,16 @@ export interface ManagedInstanceAdministrators {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a managed instance administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstanceAdministratorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

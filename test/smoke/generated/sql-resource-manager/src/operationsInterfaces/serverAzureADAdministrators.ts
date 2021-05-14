@@ -76,6 +76,23 @@ export interface ServerAzureADAdministrators {
     >
   >;
   /**
+   * Creates or updates an existing Azure Active Directory administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param administratorName
+   * @param parameters The required parameters for creating or updating an Active Directory
+   *                   Administrator.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    administratorName: AdministratorName,
+    parameters: ServerAzureADAdministrator,
+    options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams
+  ): Promise<ServerAzureADAdministratorsCreateOrUpdateResponse>;
+  /**
    * Deletes the Azure Active Directory administrator with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -91,6 +108,20 @@ export interface ServerAzureADAdministrators {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the Azure Active Directory administrator with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param administratorName The name of server active directory administrator.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    administratorName: AdministratorName,
+    options?: ServerAzureADAdministratorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Disables Azure Active Directory only authentication on logical Server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -109,5 +140,19 @@ export interface ServerAzureADAdministrators {
       >,
       ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
     >
+  >;
+  /**
+   * Disables Azure Active Directory only authentication on logical Server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  beginDisableAzureADOnlyAuthenticationAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
+  ): Promise<
+    ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
   >;
 }

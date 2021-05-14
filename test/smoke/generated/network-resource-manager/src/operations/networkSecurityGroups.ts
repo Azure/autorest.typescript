@@ -177,6 +177,25 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   }
 
   /**
+   * Deletes the specified network security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    options?: NetworkSecurityGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkSecurityGroupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified network security group.
    * @param resourceGroupName The name of the resource group.
    * @param networkSecurityGroupName The name of the network security group.
@@ -238,6 +257,28 @@ export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a network security group in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param parameters Parameters supplied to the create or update network security group operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    parameters: NetworkSecurityGroup,
+    options?: NetworkSecurityGroupsCreateOrUpdateOptionalParams
+  ): Promise<NetworkSecurityGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkSecurityGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

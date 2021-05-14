@@ -51,6 +51,19 @@ export interface VirtualRouterPeerings {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified peering from a Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    options?: VirtualRouterPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified Virtual Router Peering.
    * @param resourceGroupName The name of the resource group.
    * @param virtualRouterName The name of the Virtual Router.
@@ -83,4 +96,19 @@ export interface VirtualRouterPeerings {
       VirtualRouterPeeringsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Virtual Router Peering.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the Virtual Router Peering.
+   * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    parameters: VirtualRouterPeering,
+    options?: VirtualRouterPeeringsCreateOrUpdateOptionalParams
+  ): Promise<VirtualRouterPeeringsCreateOrUpdateResponse>;
 }

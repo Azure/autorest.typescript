@@ -94,6 +94,17 @@ export interface PublicIPAddresses {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified public IP address.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpAddressName The name of the subnet.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    publicIpAddressName: string,
+    options?: PublicIPAddressesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified public IP address in a specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param publicIpAddressName The name of the subnet.
@@ -122,6 +133,19 @@ export interface PublicIPAddresses {
       PublicIPAddressesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a static or dynamic public IP address.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpAddressName The name of the public IP address.
+   * @param parameters Parameters supplied to the create or update public IP address operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    publicIpAddressName: string,
+    parameters: PublicIPAddress,
+    options?: PublicIPAddressesCreateOrUpdateOptionalParams
+  ): Promise<PublicIPAddressesCreateOrUpdateResponse>;
   /**
    * Updates public IP address tags.
    * @param resourceGroupName The name of the resource group.

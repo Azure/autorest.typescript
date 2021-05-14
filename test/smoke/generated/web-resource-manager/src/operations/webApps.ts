@@ -5137,6 +5137,30 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
+   * existing app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Unique name of the app to create or update. To create or update a deployment slot, use
+   *             the {slot} parameter.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteEnvelope: Site,
+    options?: WebAppsCreateOrUpdateOptionalParams
+  ): Promise<WebAppsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      name,
+      siteEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Deletes a web, mobile, or API app, or one of the deployment slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app to delete.
@@ -5399,6 +5423,31 @@ export class WebAppsImpl implements WebApps {
       restoreOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a specific backup to another app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param backupId ID of the backup.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  async beginRestoreAndWait(
+    resourceGroupName: string,
+    name: string,
+    backupId: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestore(
+      resourceGroupName,
+      name,
+      backupId,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -5858,6 +5907,25 @@ export class WebAppsImpl implements WebApps {
       listPublishingCredentialsOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Gets the Git/FTP publishing credentials of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param options The options parameters.
+   */
+  async beginListPublishingCredentialsAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsListPublishingCredentialsOptionalParams
+  ): Promise<WebAppsListPublishingCredentialsResponse> {
+    const poller = await this.beginListPublishingCredentials(
+      resourceGroupName,
+      name,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -6615,6 +6683,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  async beginCreateMSDeployOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateMSDeployOperationOptionalParams
+  ): Promise<WebAppsCreateMSDeployOperationResponse> {
+    const poller = await this.beginCreateMSDeployOperation(
+      resourceGroupName,
+      name,
+      mSDeploy,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -6747,6 +6837,31 @@ export class WebAppsImpl implements WebApps {
       createFunctionOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Create function for web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param functionName Function name.
+   * @param functionEnvelope Function details.
+   * @param options The options parameters.
+   */
+  async beginCreateFunctionAndWait(
+    resourceGroupName: string,
+    name: string,
+    functionName: string,
+    functionEnvelope: FunctionEnvelope,
+    options?: WebAppsCreateFunctionOptionalParams
+  ): Promise<WebAppsCreateFunctionResponse> {
+    const poller = await this.beginCreateFunction(
+      resourceGroupName,
+      name,
+      functionName,
+      functionEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -7495,6 +7610,31 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  async beginCreateInstanceMSDeployOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    instanceId: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
+  ): Promise<WebAppsCreateInstanceMSDeployOperationResponse> {
+    const poller = await this.beginCreateInstanceMSDeployOperation(
+      resourceGroupName,
+      name,
+      instanceId,
+      mSDeploy,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -7838,6 +7978,31 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Restores a web app.
+   * @param subscriptionName Azure subscription.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param migrationOptions Migration migrationOptions.
+   * @param options The options parameters.
+   */
+  async beginMigrateStorageAndWait(
+    subscriptionName: string,
+    resourceGroupName: string,
+    name: string,
+    migrationOptions: StorageMigrationOptions,
+    options?: WebAppsMigrateStorageOptionalParams
+  ): Promise<WebAppsMigrateStorageResponse> {
+    const poller = await this.beginMigrateStorage(
+      subscriptionName,
+      resourceGroupName,
+      name,
+      migrationOptions,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Migrates a local (in-app) MySql database to a remote MySql database.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -7876,6 +8041,28 @@ export class WebAppsImpl implements WebApps {
       migrateMySqlOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Migrates a local (in-app) MySql database to a remote MySql database.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param migrationRequestEnvelope MySql migration options.
+   * @param options The options parameters.
+   */
+  async beginMigrateMySqlAndWait(
+    resourceGroupName: string,
+    name: string,
+    migrationRequestEnvelope: MigrateMySqlRequest,
+    options?: WebAppsMigrateMySqlOptionalParams
+  ): Promise<WebAppsMigrateMySqlResponse> {
+    const poller = await this.beginMigrateMySql(
+      resourceGroupName,
+      name,
+      migrationRequestEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -8110,6 +8297,25 @@ export class WebAppsImpl implements WebApps {
       startWebSiteNetworkTraceOperationOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param options The options parameters.
+   */
+  async beginStartWebSiteNetworkTraceOperationAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
+  ): Promise<WebAppsStartWebSiteNetworkTraceOperationResponse> {
+    const poller = await this.beginStartWebSiteNetworkTraceOperation(
+      resourceGroupName,
+      name,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -8846,6 +9052,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Restores an app from a backup blob in Azure Storage.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  async beginRestoreFromBackupBlobAndWait(
+    resourceGroupName: string,
+    name: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreFromBackupBlobOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreFromBackupBlob(
+      resourceGroupName,
+      name,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -8881,6 +9109,28 @@ export class WebAppsImpl implements WebApps {
       restoreFromDeletedAppOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a deleted web app to this web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param restoreRequest Deleted web app restore information.
+   * @param options The options parameters.
+   */
+  async beginRestoreFromDeletedAppAndWait(
+    resourceGroupName: string,
+    name: string,
+    restoreRequest: DeletedAppRestoreRequest,
+    options?: WebAppsRestoreFromDeletedAppOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreFromDeletedApp(
+      resourceGroupName,
+      name,
+      restoreRequest,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -8920,6 +9170,29 @@ export class WebAppsImpl implements WebApps {
       restoreSnapshotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a web app from a snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param restoreRequest Snapshot restore settings. Snapshot information can be obtained by calling
+   *                       GetDeletedSites or GetSiteSnapshots API.
+   * @param options The options parameters.
+   */
+  async beginRestoreSnapshotAndWait(
+    resourceGroupName: string,
+    name: string,
+    restoreRequest: SnapshotRestoreRequest,
+    options?: WebAppsRestoreSnapshotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreSnapshot(
+      resourceGroupName,
+      name,
+      restoreRequest,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -9011,6 +9284,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Install site extension on a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param siteExtensionId Site extension name.
+   * @param options The options parameters.
+   */
+  async beginInstallSiteExtensionAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteExtensionId: string,
+    options?: WebAppsInstallSiteExtensionOptionalParams
+  ): Promise<WebAppsInstallSiteExtensionResponse> {
+    const poller = await this.beginInstallSiteExtension(
+      resourceGroupName,
+      name,
+      siteExtensionId,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
@@ -9072,6 +9367,29 @@ export class WebAppsImpl implements WebApps {
       copyProductionSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Copies a deployment slot to another deployment slot of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
+   *                       override the source slot config. See example.
+   * @param options The options parameters.
+   */
+  async beginCopyProductionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    copySlotEntity: CsmCopySlotEntity,
+    options?: WebAppsCopyProductionSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCopyProductionSlot(
+      resourceGroupName,
+      name,
+      copySlotEntity,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -9166,6 +9484,34 @@ export class WebAppsImpl implements WebApps {
       createOrUpdateSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
+   * existing app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Unique name of the app to create or update. To create or update a deployment slot, use
+   *             the {slot} parameter.
+   * @param slot Name of the deployment slot to create or update. By default, this API attempts to create
+   *             or modify the production slot.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteEnvelope: Site,
+    options?: WebAppsCreateOrUpdateSlotOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSlotResponse> {
+    const poller = await this.beginCreateOrUpdateSlot(
+      resourceGroupName,
+      name,
+      slot,
+      siteEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -9468,6 +9814,35 @@ export class WebAppsImpl implements WebApps {
       restoreSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a specific backup to another app (or deployment slot, if specified).
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param backupId ID of the backup.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
+   *             of the production slot.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  async beginRestoreSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    backupId: string,
+    slot: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreSlot(
+      resourceGroupName,
+      name,
+      backupId,
+      slot,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -9947,6 +10322,29 @@ export class WebAppsImpl implements WebApps {
       listPublishingCredentialsSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Gets the Git/FTP publishing credentials of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get the publishing
+   *             credentials for the production slot.
+   * @param options The options parameters.
+   */
+  async beginListPublishingCredentialsSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsListPublishingCredentialsSlotOptionalParams
+  ): Promise<WebAppsListPublishingCredentialsSlotResponse> {
+    const poller = await this.beginListPublishingCredentialsSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -10761,6 +11159,31 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  async beginCreateMSDeployOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateMSDeployOperationSlotOptionalParams
+  ): Promise<WebAppsCreateMSDeployOperationSlotResponse> {
+    const poller = await this.beginCreateMSDeployOperationSlot(
+      resourceGroupName,
+      name,
+      slot,
+      mSDeploy,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -10908,6 +11331,34 @@ export class WebAppsImpl implements WebApps {
       createInstanceFunctionSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Create function for web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param functionName Function name.
+   * @param slot Name of the deployment slot.
+   * @param functionEnvelope Function details.
+   * @param options The options parameters.
+   */
+  async beginCreateInstanceFunctionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    functionName: string,
+    slot: string,
+    functionEnvelope: FunctionEnvelope,
+    options?: WebAppsCreateInstanceFunctionSlotOptionalParams
+  ): Promise<WebAppsCreateInstanceFunctionSlotResponse> {
+    const poller = await this.beginCreateInstanceFunctionSlot(
+      resourceGroupName,
+      name,
+      functionName,
+      slot,
+      functionEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -11751,6 +12202,34 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Invoke the MSDeploy web app extension.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
+   * @param options The options parameters.
+   */
+  async beginCreateInstanceMSDeployOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    instanceId: string,
+    mSDeploy: MSDeploy,
+    options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
+  ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse> {
+    const poller = await this.beginCreateInstanceMSDeployOperationSlot(
+      resourceGroupName,
+      name,
+      slot,
+      instanceId,
+      mSDeploy,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -12361,6 +12840,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param slot The name of the slot for this web app.
+   * @param options The options parameters.
+   */
+  async beginStartWebSiteNetworkTraceOperationSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
+  ): Promise<WebAppsStartWebSiteNetworkTraceOperationSlotResponse> {
+    const poller = await this.beginStartWebSiteNetworkTraceOperationSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name The name of the web app.
@@ -12826,6 +13327,31 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Approves or rejects a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param privateEndpointWrapper Private Endpoint Connection Approval ARM resource.
+   * @param options The options parameters.
+   */
+  async beginApproveOrRejectPrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
+    options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> {
+    const poller = await this.beginApproveOrRejectPrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      privateEndpointWrapper,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Deletes a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the site.
@@ -12864,6 +13390,28 @@ export class WebAppsImpl implements WebApps {
       deletePrivateEndpointConnectionOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Deletes a private endpoint connection
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the site.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    name: string,
+    privateEndpointConnectionName: string,
+    options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> {
+    const poller = await this.beginDeletePrivateEndpointConnection(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -13339,6 +13887,32 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Restores an app from a backup blob in Azure Storage.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
+   *             of the production slot.
+   * @param request Information on restore request .
+   * @param options The options parameters.
+   */
+  async beginRestoreFromBackupBlobSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    request: RestoreRequest,
+    options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreFromBackupBlobSlot(
+      resourceGroupName,
+      name,
+      slot,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
@@ -13377,6 +13951,31 @@ export class WebAppsImpl implements WebApps {
       restoreFromDeletedAppSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a deleted web app to this web app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param restoreRequest Deleted web app restore information.
+   * @param options The options parameters.
+   */
+  async beginRestoreFromDeletedAppSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    restoreRequest: DeletedAppRestoreRequest,
+    options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreFromDeletedAppSlot(
+      resourceGroupName,
+      name,
+      slot,
+      restoreRequest,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -13419,6 +14018,32 @@ export class WebAppsImpl implements WebApps {
       restoreSnapshotSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Restores a web app from a snapshot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param restoreRequest Snapshot restore settings. Snapshot information can be obtained by calling
+   *                       GetDeletedSites or GetSiteSnapshots API.
+   * @param options The options parameters.
+   */
+  async beginRestoreSnapshotSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    restoreRequest: SnapshotRestoreRequest,
+    options?: WebAppsRestoreSnapshotSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestoreSnapshotSlot(
+      resourceGroupName,
+      name,
+      slot,
+      restoreRequest,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -13522,6 +14147,32 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Install site extension on a web site, or a deployment slot.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Site name.
+   * @param siteExtensionId Site extension name.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API uses the production
+   *             slot.
+   * @param options The options parameters.
+   */
+  async beginInstallSiteExtensionSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteExtensionId: string,
+    slot: string,
+    options?: WebAppsInstallSiteExtensionSlotOptionalParams
+  ): Promise<WebAppsInstallSiteExtensionSlotResponse> {
+    const poller = await this.beginInstallSiteExtensionSlot(
+      resourceGroupName,
+      name,
+      siteExtensionId,
+      slot,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Remove a site extension from a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
@@ -13594,6 +14245,33 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Copies a deployment slot to another deployment slot of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
+   *             source slot.
+   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
+   *                       override the source slot config. See example.
+   * @param options The options parameters.
+   */
+  async beginCopySlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    copySlotEntity: CsmCopySlotEntity,
+    options?: WebAppsCopySlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCopySlot(
+      resourceGroupName,
+      name,
+      slot,
+      copySlotEntity,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Get the difference in configuration settings between two web app slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -13662,6 +14340,32 @@ export class WebAppsImpl implements WebApps {
       swapSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Swaps two deployment slots of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
+   *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  async beginSwapSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: WebAppsSwapSlotOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginSwapSlot(
+      resourceGroupName,
+      name,
+      slot,
+      slotSwapEntity,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -13786,6 +14490,32 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Updates the source control configuration of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will update the source
+   *             control configuration for the production slot.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateSourceControlSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    siteSourceControl: SiteSourceControl,
+    options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSourceControlSlotResponse> {
+    const poller = await this.beginCreateOrUpdateSourceControlSlot(
+      resourceGroupName,
+      name,
+      slot,
+      siteSourceControl,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -13905,6 +14635,28 @@ export class WebAppsImpl implements WebApps {
       startNetworkTraceSlotOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param slot The name of the slot for this web app.
+   * @param options The options parameters.
+   */
+  async beginStartNetworkTraceSlotAndWait(
+    resourceGroupName: string,
+    name: string,
+    slot: string,
+    options?: WebAppsStartNetworkTraceSlotOptionalParams
+  ): Promise<WebAppsStartNetworkTraceSlotResponse> {
+    const poller = await this.beginStartNetworkTraceSlot(
+      resourceGroupName,
+      name,
+      slot,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -14579,6 +15331,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Swaps two deployment slots of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
+   * @param options The options parameters.
+   */
+  async beginSwapSlotWithProductionAndWait(
+    resourceGroupName: string,
+    name: string,
+    slotSwapEntity: CsmSlotEntity,
+    options?: WebAppsSwapSlotWithProductionOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginSwapSlotWithProduction(
+      resourceGroupName,
+      name,
+      slotSwapEntity,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Returns all Snapshots to the user.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Website Name.
@@ -14686,6 +15460,28 @@ export class WebAppsImpl implements WebApps {
   }
 
   /**
+   * Description for Updates the source control configuration of an app.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the app.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateSourceControlAndWait(
+    resourceGroupName: string,
+    name: string,
+    siteSourceControl: SiteSourceControl,
+    options?: WebAppsCreateOrUpdateSourceControlOptionalParams
+  ): Promise<WebAppsCreateOrUpdateSourceControlResponse> {
+    const poller = await this.beginCreateOrUpdateSourceControl(
+      resourceGroupName,
+      name,
+      siteSourceControl,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Deletes the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
@@ -14790,6 +15586,25 @@ export class WebAppsImpl implements WebApps {
       startNetworkTraceOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Start capturing network packets for the site.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name The name of the web app.
+   * @param options The options parameters.
+   */
+  async beginStartNetworkTraceAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: WebAppsStartNetworkTraceOptionalParams
+  ): Promise<WebAppsStartNetworkTraceResponse> {
+    const poller = await this.beginStartNetworkTrace(
+      resourceGroupName,
+      name,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

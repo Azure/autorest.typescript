@@ -75,6 +75,19 @@ export interface IpGroups {
     >
   >;
   /**
+   * Creates or updates an ipGroups in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipGroupsName The name of the ipGroups.
+   * @param parameters Parameters supplied to the create or update IpGroups operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ipGroupsName: string,
+    parameters: IpGroup,
+    options?: IpGroupsCreateOrUpdateOptionalParams
+  ): Promise<IpGroupsCreateOrUpdateResponse>;
+  /**
    * Updates tags of an IpGroups resource.
    * @param resourceGroupName The name of the resource group.
    * @param ipGroupsName The name of the ipGroups.
@@ -100,4 +113,15 @@ export interface IpGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified ipGroups.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipGroupsName The name of the ipGroups.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    ipGroupsName: string,
+    options?: IpGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

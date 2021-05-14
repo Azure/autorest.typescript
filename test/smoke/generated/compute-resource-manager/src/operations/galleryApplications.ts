@@ -164,6 +164,34 @@ export class GalleryApplicationsImpl implements GalleryApplications {
   }
 
   /**
+   * Create or update a gallery Application Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be created.
+   * @param galleryApplicationName The name of the gallery Application Definition to be created or
+   *                               updated. The allowed characters are alphabets and numbers with dots, dashes, and periods allowed in
+   *                               the middle. The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplication: GalleryApplication,
+    options?: GalleryApplicationsCreateOrUpdateOptionalParams
+  ): Promise<GalleryApplicationsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      galleryApplication,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
@@ -208,6 +236,34 @@ export class GalleryApplicationsImpl implements GalleryApplications {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update a gallery Application Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be updated.
+   * @param galleryApplicationName The name of the gallery Application Definition to be updated. The
+   *                               allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
+   *                               The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the update gallery Application operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplication: GalleryApplicationUpdate,
+    options?: GalleryApplicationsUpdateOptionalParams
+  ): Promise<GalleryApplicationsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      galleryApplication,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -273,6 +329,29 @@ export class GalleryApplicationsImpl implements GalleryApplications {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a gallery Application.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be deleted.
+   * @param galleryApplicationName The name of the gallery Application Definition to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    options?: GalleryApplicationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

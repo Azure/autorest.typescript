@@ -189,6 +189,32 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   }
 
   /**
+   * Creates or updates a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
+   * @param parameters The failover group parameters.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    failoverGroupName: string,
+    parameters: InstanceFailoverGroup,
+    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
+  ): Promise<InstanceFailoverGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      locationName,
+      failoverGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -225,6 +251,29 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    failoverGroupName: string,
+    options?: InstanceFailoverGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      locationName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -293,6 +342,29 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   }
 
   /**
+   * Fails over from the current primary managed instance to this managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginFailoverAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    failoverGroupName: string,
+    options?: InstanceFailoverGroupsFailoverOptionalParams
+  ): Promise<InstanceFailoverGroupsFailoverResponse> {
+    const poller = await this.beginFailover(
+      resourceGroupName,
+      locationName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Fails over from the current primary managed instance to this managed instance. This operation might
    * result in data loss.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -335,6 +407,30 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       forceFailoverAllowDataLossOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Fails over from the current primary managed instance to this managed instance. This operation might
+   * result in data loss.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginForceFailoverAllowDataLossAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    failoverGroupName: string,
+    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
+  ): Promise<InstanceFailoverGroupsForceFailoverAllowDataLossResponse> {
+    const poller = await this.beginForceFailoverAllowDataLoss(
+      resourceGroupName,
+      locationName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

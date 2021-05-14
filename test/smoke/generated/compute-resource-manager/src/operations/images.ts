@@ -186,6 +186,28 @@ export class ImagesImpl implements Images {
   }
 
   /**
+   * Create or update an image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param parameters Parameters supplied to the Create Image operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    parameters: Image,
+    options?: ImagesCreateOrUpdateOptionalParams
+  ): Promise<ImagesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      imageName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update an image.
    * @param resourceGroupName The name of the resource group.
    * @param imageName The name of the image.
@@ -224,6 +246,28 @@ export class ImagesImpl implements Images {
   }
 
   /**
+   * Update an image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param parameters Parameters supplied to the Update Image operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    parameters: ImageUpdate,
+    options?: ImagesUpdateOptionalParams
+  ): Promise<ImagesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      imageName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an Image.
    * @param resourceGroupName The name of the resource group.
    * @param imageName The name of the image.
@@ -256,6 +300,25 @@ export class ImagesImpl implements Images {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an Image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    options?: ImagesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      imageName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

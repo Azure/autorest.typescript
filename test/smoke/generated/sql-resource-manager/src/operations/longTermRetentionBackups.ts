@@ -587,6 +587,35 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
   }
 
   /**
+   * Deletes a long term retention backup.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  async beginDeleteByResourceGroupAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    backupName: string,
+    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteByResourceGroup(
+      resourceGroupName,
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      backupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists all long term retention backups for a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -731,6 +760,31 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a long term retention backup.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    backupName: string,
+    options?: LongTermRetentionBackupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      locationName,
+      longTermRetentionServerName,
+      longTermRetentionDatabaseName,
+      backupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

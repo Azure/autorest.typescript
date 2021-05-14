@@ -580,6 +580,31 @@ export class LongTermRetentionManagedInstanceBackupsImpl
   }
 
   /**
+   * Deletes a long term retention backup.
+   * @param locationName The location of the database.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    backupName: string,
+    options?: LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      locationName,
+      managedInstanceName,
+      databaseName,
+      backupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists all long term retention backups for a managed database.
    * @param locationName The location of the database.
    * @param managedInstanceName The name of the managed instance.
@@ -724,6 +749,35 @@ export class LongTermRetentionManagedInstanceBackupsImpl
       deleteByResourceGroupOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a long term retention backup.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  async beginDeleteByResourceGroupAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    backupName: string,
+    options?: LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteByResourceGroup(
+      resourceGroupName,
+      locationName,
+      managedInstanceName,
+      databaseName,
+      backupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

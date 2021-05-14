@@ -71,6 +71,18 @@ export interface VirtualClusters {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes a virtual cluster.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param virtualClusterName The name of the virtual cluster.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualClusterName: string,
+    options?: VirtualClustersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Updates a virtual cluster.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -89,4 +101,18 @@ export interface VirtualClusters {
       VirtualClustersUpdateResponse
     >
   >;
+  /**
+   * Updates a virtual cluster.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param virtualClusterName The name of the virtual cluster.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    virtualClusterName: string,
+    parameters: VirtualClusterUpdate,
+    options?: VirtualClustersUpdateOptionalParams
+  ): Promise<VirtualClustersUpdateResponse>;
 }

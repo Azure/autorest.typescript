@@ -165,6 +165,31 @@ export class ExpressRouteCircuitConnectionsImpl
   }
 
   /**
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param connectionName The name of the express route circuit connection.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    connectionName: string,
+    options?: ExpressRouteCircuitConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      connectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Express Route Circuit Connection from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
    * @param circuitName The name of the express route circuit.
@@ -239,6 +264,35 @@ export class ExpressRouteCircuitConnectionsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param connectionName The name of the express route circuit connection.
+   * @param expressRouteCircuitConnectionParameters Parameters supplied to the create or update express
+   *                                                route circuit connection operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    connectionName: string,
+    expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection,
+    options?: ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      connectionName,
+      expressRouteCircuitConnectionParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

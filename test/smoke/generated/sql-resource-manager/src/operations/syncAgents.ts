@@ -273,6 +273,32 @@ export class SyncAgentsImpl implements SyncAgents {
   }
 
   /**
+   * Creates or updates a sync agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server on which the sync agent is hosted.
+   * @param syncAgentName The name of the sync agent.
+   * @param parameters The requested sync agent resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    syncAgentName: string,
+    parameters: SyncAgent,
+    options?: SyncAgentsCreateOrUpdateOptionalParams
+  ): Promise<SyncAgentsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a sync agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -309,6 +335,29 @@ export class SyncAgentsImpl implements SyncAgents {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a sync agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server on which the sync agent is hosted.
+   * @param syncAgentName The name of the sync agent.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    syncAgentName: string,
+    options?: SyncAgentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      syncAgentName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

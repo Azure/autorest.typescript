@@ -70,6 +70,22 @@ export interface LoadBalancerBackendAddressPools {
     >
   >;
   /**
+   * Creates or updates a load balancer backend address pool.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendAddressPoolName The name of the backend address pool.
+   * @param parameters Parameters supplied to the create or update load balancer backend address pool
+   *                   operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    backendAddressPoolName: string,
+    parameters: BackendAddressPool,
+    options?: LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
+  ): Promise<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse>;
+  /**
    * Deletes the specified load balancer backend address pool.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
@@ -84,4 +100,17 @@ export interface LoadBalancerBackendAddressPools {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified load balancer backend address pool.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendAddressPoolName The name of the backend address pool.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    backendAddressPoolName: string,
+    options?: LoadBalancerBackendAddressPoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

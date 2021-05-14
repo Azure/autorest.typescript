@@ -173,6 +173,33 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   }
 
   /**
+   * Creates a VirtualHubRouteTableV2 resource if it doesn't exist else updates the existing
+   * VirtualHubRouteTableV2.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the VirtualHubRouteTableV2.
+   * @param virtualHubRouteTableV2Parameters Parameters supplied to create or update
+   *                                         VirtualHubRouteTableV2.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    virtualHubRouteTableV2Parameters: VirtualHubRouteTableV2,
+    options?: VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
+  ): Promise<VirtualHubRouteTableV2SCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      virtualHubRouteTableV2Parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a VirtualHubRouteTableV2.
    * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
    * @param virtualHubName The name of the VirtualHub.
@@ -209,6 +236,28 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a VirtualHubRouteTableV2.
+   * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the VirtualHubRouteTableV2.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    options?: VirtualHubRouteTableV2SDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

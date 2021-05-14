@@ -110,6 +110,22 @@ export interface ElasticPools {
     >
   >;
   /**
+   * Creates or updates an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param parameters The elastic pool parameters.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    parameters: ElasticPool,
+    options?: ElasticPoolsCreateOrUpdateOptionalParams
+  ): Promise<ElasticPoolsCreateOrUpdateResponse>;
+  /**
    * Deletes an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -125,6 +141,20 @@ export interface ElasticPools {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: ElasticPoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -147,6 +177,22 @@ export interface ElasticPools {
     >
   >;
   /**
+   * Updates an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param parameters The elastic pool update parameters.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    parameters: ElasticPoolUpdate,
+    options?: ElasticPoolsUpdateOptionalParams
+  ): Promise<ElasticPoolsUpdateResponse>;
+  /**
    * Failovers an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -162,4 +208,18 @@ export interface ElasticPools {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Failovers an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool to failover.
+   * @param options The options parameters.
+   */
+  beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: ElasticPoolsFailoverOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

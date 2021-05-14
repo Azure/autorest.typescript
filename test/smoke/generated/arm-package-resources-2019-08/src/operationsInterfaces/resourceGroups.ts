@@ -73,6 +73,16 @@ export interface ResourceGroups {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
+   * deletes all of its template deployments and currently stored operations.
+   * @param resourceGroupName The name of the resource group to delete. The name is case insensitive.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    options?: ResourceGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets a resource group.
    * @param resourceGroupName The name of the resource group to get. The name is case insensitive.
    * @param options The options parameters.
@@ -110,4 +120,15 @@ export interface ResourceGroups {
       ResourceGroupsExportTemplateResponse
     >
   >;
+  /**
+   * Captures the specified resource group as a template.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param parameters Parameters for exporting the template.
+   * @param options The options parameters.
+   */
+  beginExportTemplateAndWait(
+    resourceGroupName: string,
+    parameters: ExportTemplateRequest,
+    options?: ResourceGroupsExportTemplateOptionalParams
+  ): Promise<ResourceGroupsExportTemplateResponse>;
 }

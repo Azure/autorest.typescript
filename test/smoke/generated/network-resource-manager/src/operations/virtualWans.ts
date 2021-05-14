@@ -208,6 +208,28 @@ export class VirtualWansImpl implements VirtualWans {
   }
 
   /**
+   * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
+   * @param resourceGroupName The resource group name of the VirtualWan.
+   * @param virtualWANName The name of the VirtualWAN being created or updated.
+   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    wANParameters: VirtualWAN,
+    options?: VirtualWansCreateOrUpdateOptionalParams
+  ): Promise<VirtualWansCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualWANName,
+      wANParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a VirtualWAN tags.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being updated.
@@ -266,6 +288,25 @@ export class VirtualWansImpl implements VirtualWans {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a VirtualWAN.
+   * @param resourceGroupName The resource group name of the VirtualWan.
+   * @param virtualWANName The name of the VirtualWAN being deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualWANName: string,
+    options?: VirtualWansDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualWANName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

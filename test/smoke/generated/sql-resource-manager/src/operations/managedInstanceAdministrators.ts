@@ -203,6 +203,29 @@ export class ManagedInstanceAdministratorsImpl
   }
 
   /**
+   * Creates or updates a managed instance administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested administrator parameters.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstanceAdministrator,
+    options?: ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceAdministratorsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a managed instance administrator.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -236,6 +259,26 @@ export class ManagedInstanceAdministratorsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a managed instance administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstanceAdministratorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

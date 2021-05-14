@@ -317,7 +317,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  public beginListChangeVnet(
+  public beginListChangeVnetAndWait(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -905,7 +905,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public beginListResume(
+  public beginListResumeAndWait(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -1095,7 +1095,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  public beginListSuspend(
+  public beginListSuspendAndWait(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams
@@ -1700,6 +1700,28 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   }
 
   /**
+   * Description for Create or update an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param hostingEnvironmentEnvelope Configuration details of the App Service Environment.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      name,
+      hostingEnvironmentEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Description for Delete an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the App Service Environment.
@@ -1732,6 +1754,21 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Delete an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(resourceGroupName, name, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -2002,6 +2039,28 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       createOrUpdateMultiRolePoolOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Create or update a multi-role pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param multiRolePoolEnvelope Properties of the multi-role pool.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateMultiRolePoolAndWait(
+    resourceGroupName: string,
+    name: string,
+    multiRolePoolEnvelope: WorkerPoolResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse> {
+    const poller = await this.beginCreateOrUpdateMultiRolePool(
+      resourceGroupName,
+      name,
+      multiRolePoolEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -2429,6 +2488,31 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       createOrUpdateWorkerPoolOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Create or update a worker pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param workerPoolEnvelope Properties of the worker pool.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateWorkerPoolAndWait(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    workerPoolEnvelope: WorkerPoolResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse> {
+    const poller = await this.beginCreateOrUpdateWorkerPool(
+      resourceGroupName,
+      name,
+      workerPoolName,
+      workerPoolEnvelope,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -101,6 +101,22 @@ export interface MongoDBResources {
     >
   >;
   /**
+   * Create or updates Azure Cosmos DB MongoDB database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param createUpdateMongoDBDatabaseParameters The parameters to provide for the current MongoDB
+   *                                              database.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateMongoDBDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters,
+    options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
+  ): Promise<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB MongoDB database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -115,6 +131,19 @@ export interface MongoDBResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB MongoDB database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginDeleteMongoDBDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the MongoDB database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -152,6 +181,22 @@ export interface MongoDBResources {
       MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
     >
   >;
+  /**
+   * Update RUs per second of the an Azure Cosmos DB MongoDB database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   MongoDB database.
+   * @param options The options parameters.
+   */
+  beginUpdateMongoDBDatabaseThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
+  ): Promise<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>;
   /**
    * Gets the MongoDB collection under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -191,6 +236,24 @@ export interface MongoDBResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB MongoDB Collection
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param createUpdateMongoDBCollectionParameters The parameters to provide for the current MongoDB
+   *                                                Collection.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateMongoDBCollectionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters,
+    options?: MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
+  ): Promise<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB MongoDB Collection.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -207,6 +270,21 @@ export interface MongoDBResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB MongoDB Collection.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param options The options parameters.
+   */
+  beginDeleteMongoDBCollectionAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the MongoDB collection under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -248,4 +326,22 @@ export interface MongoDBResources {
       MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
     >
   >;
+  /**
+   * Update the RUs per second of an Azure Cosmos DB MongoDB collection
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param collectionName Cosmos DB collection name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   MongoDB collection.
+   * @param options The options parameters.
+   */
+  beginUpdateMongoDBCollectionThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    collectionName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
+  ): Promise<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>;
 }

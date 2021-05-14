@@ -198,6 +198,25 @@ export function writeOperations(
           generateOperationJSDoc(baseMethodParameters, operation.description)
         ]
       });
+      /**
+       * Create a simple method that blocks and waits for the result
+       */
+      if (operation.isLRO && operation.pagination === undefined) {
+        const responseName = getOperationResponseType(
+          operation,
+          importedModels,
+          modelNames
+        );
+        const methodName = calculateMethodName(operation);
+        operationGroupInterface.addMethod({
+          name: `${methodName}AndWait`,
+          parameters: baseMethodParameters,
+          returnType: `Promise<${responseName}>`,
+          docs: [
+            generateOperationJSDoc(baseMethodParameters, operation.description)
+          ]
+        });
+      }
     }
   });
 }

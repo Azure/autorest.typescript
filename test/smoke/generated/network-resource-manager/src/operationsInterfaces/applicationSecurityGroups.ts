@@ -59,6 +59,17 @@ export interface ApplicationSecurityGroups {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified application security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationSecurityGroupName The name of the application security group.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationSecurityGroupName: string,
+    options?: ApplicationSecurityGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets information about the specified application security group.
    * @param resourceGroupName The name of the resource group.
    * @param applicationSecurityGroupName The name of the application security group.
@@ -87,6 +98,19 @@ export interface ApplicationSecurityGroups {
       ApplicationSecurityGroupsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an application security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationSecurityGroupName The name of the application security group.
+   * @param parameters Parameters supplied to the create or update ApplicationSecurityGroup operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationSecurityGroupName: string,
+    parameters: ApplicationSecurityGroup,
+    options?: ApplicationSecurityGroupsCreateOrUpdateOptionalParams
+  ): Promise<ApplicationSecurityGroupsCreateOrUpdateResponse>;
   /**
    * Updates an application security group's tags.
    * @param resourceGroupName The name of the resource group.

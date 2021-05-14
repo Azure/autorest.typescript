@@ -59,6 +59,17 @@ export interface VirtualNetworkTaps {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified virtual network tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    options?: VirtualNetworkTapsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets information about the specified virtual network tap.
    * @param resourceGroupName The name of the resource group.
    * @param tapName The name of virtual network tap.
@@ -87,6 +98,19 @@ export interface VirtualNetworkTaps {
       VirtualNetworkTapsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a Virtual Network Tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param parameters Parameters supplied to the create or update virtual network tap operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    parameters: VirtualNetworkTap,
+    options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkTapsCreateOrUpdateResponse>;
   /**
    * Updates an VirtualNetworkTap tags.
    * @param resourceGroupName The name of the resource group.

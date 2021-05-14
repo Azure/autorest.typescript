@@ -242,7 +242,7 @@ function getPublicMethodName(operation: OperationDetails) {
     initialOperationName = normalizeName(initialOperationName, NameType.Class);
   }
   return operation.isLRO
-    ? `beginList${initialOperationName}`
+    ? `beginList${initialOperationName}AndWait`
     : `list${initialOperationName}`;
 }
 

@@ -177,6 +177,25 @@ export class LoadBalancersImpl implements LoadBalancers {
   }
 
   /**
+   * Deletes the specified load balancer.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: LoadBalancersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      loadBalancerName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified load balancer.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
@@ -238,6 +257,28 @@ export class LoadBalancersImpl implements LoadBalancers {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a load balancer.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param parameters Parameters supplied to the create or update load balancer operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    parameters: LoadBalancer,
+    options?: LoadBalancersCreateOrUpdateOptionalParams
+  ): Promise<LoadBalancersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      loadBalancerName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

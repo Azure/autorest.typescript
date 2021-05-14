@@ -67,6 +67,19 @@ export interface DeploymentScripts {
     >
   >;
   /**
+   * Creates a deployment script.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param scriptName Name of the deployment script.
+   * @param deploymentScript Deployment script supplied to the operation.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    scriptName: string,
+    deploymentScript: DeploymentScriptUnion,
+    options?: DeploymentScriptsCreateOptionalParams
+  ): Promise<DeploymentScriptsCreateResponse>;
+  /**
    * Updates deployment script tags with specified values.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param scriptName Name of the deployment script.

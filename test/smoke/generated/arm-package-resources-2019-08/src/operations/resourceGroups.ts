@@ -167,6 +167,20 @@ export class ResourceGroupsImpl implements ResourceGroups {
   }
 
   /**
+   * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
+   * deletes all of its template deployments and currently stored operations.
+   * @param resourceGroupName The name of the resource group to delete. The name is case insensitive.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    options?: ResourceGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(resourceGroupName, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a resource group.
    * @param resourceGroupName The name of the resource group to get. The name is case insensitive.
    * @param options The options parameters.
@@ -246,6 +260,25 @@ export class ResourceGroupsImpl implements ResourceGroups {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Captures the specified resource group as a template.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param parameters Parameters for exporting the template.
+   * @param options The options parameters.
+   */
+  async beginExportTemplateAndWait(
+    resourceGroupName: string,
+    parameters: ExportTemplateRequest,
+    options?: ResourceGroupsExportTemplateOptionalParams
+  ): Promise<ResourceGroupsExportTemplateResponse> {
+    const poller = await this.beginExportTemplate(
+      resourceGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -203,6 +203,32 @@ export class LoadBalancerBackendAddressPoolsImpl
   }
 
   /**
+   * Creates or updates a load balancer backend address pool.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendAddressPoolName The name of the backend address pool.
+   * @param parameters Parameters supplied to the create or update load balancer backend address pool
+   *                   operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    backendAddressPoolName: string,
+    parameters: BackendAddressPool,
+    options?: LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
+  ): Promise<LoadBalancerBackendAddressPoolsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      loadBalancerName,
+      backendAddressPoolName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the specified load balancer backend address pool.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
@@ -239,6 +265,28 @@ export class LoadBalancerBackendAddressPoolsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified load balancer backend address pool.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param backendAddressPoolName The name of the backend address pool.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    backendAddressPoolName: string,
+    options?: LoadBalancerBackendAddressPoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      loadBalancerName,
+      backendAddressPoolName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

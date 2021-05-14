@@ -63,6 +63,24 @@ export interface GalleryImages {
     >
   >;
   /**
+   * Create or update a gallery Image Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    created.
+   * @param galleryImageName The name of the gallery Image Definition to be created or updated. The
+   *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
+   *                         The maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the create or update gallery image operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImage: GalleryImage,
+    options?: GalleryImagesCreateOrUpdateOptionalParams
+  ): Promise<GalleryImagesCreateOrUpdateResponse>;
+  /**
    * Update a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
@@ -85,6 +103,24 @@ export interface GalleryImages {
       GalleryImagesUpdateResponse
     >
   >;
+  /**
+   * Update a gallery Image Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    updated.
+   * @param galleryImageName The name of the gallery Image Definition to be updated. The allowed
+   *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
+   *                         maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the update gallery image operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImage: GalleryImageUpdate,
+    options?: GalleryImagesUpdateOptionalParams
+  ): Promise<GalleryImagesUpdateResponse>;
   /**
    * Retrieves information about a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
@@ -115,4 +151,18 @@ export interface GalleryImages {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete a gallery image.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
+   *                    deleted.
+   * @param galleryImageName The name of the gallery Image Definition to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    options?: GalleryImagesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

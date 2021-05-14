@@ -140,6 +140,28 @@ export class RoutesImpl implements Routes {
   }
 
   /**
+   * Deletes the specified route from a route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param routeName The name of the route.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    routeName: string,
+    options?: RoutesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      routeTableName,
+      routeName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified route from a route table.
    * @param resourceGroupName The name of the resource group.
    * @param routeTableName The name of the route table.
@@ -207,6 +229,31 @@ export class RoutesImpl implements Routes {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a route in the specified route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param routeName The name of the route.
+   * @param routeParameters Parameters supplied to the create or update route operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    routeName: string,
+    routeParameters: Route,
+    options?: RoutesCreateOrUpdateOptionalParams
+  ): Promise<RoutesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      routeTableName,
+      routeName,
+      routeParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

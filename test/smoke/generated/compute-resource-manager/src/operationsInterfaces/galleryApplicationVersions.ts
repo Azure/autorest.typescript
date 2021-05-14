@@ -70,6 +70,28 @@ export interface GalleryApplicationVersions {
     >
   >;
   /**
+   * Create or update a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version is to be created.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be created.
+   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
+   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
+   *                                  Version operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersion,
+    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
+  ): Promise<GalleryApplicationVersionsCreateOrUpdateResponse>;
+  /**
    * Update a gallery Application Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition
@@ -96,6 +118,28 @@ export interface GalleryApplicationVersions {
       GalleryApplicationVersionsUpdateResponse
     >
   >;
+  /**
+   * Update a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version is to be updated.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be updated.
+   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
+   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
+   *                                  operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersionUpdate,
+    options?: GalleryApplicationVersionsUpdateOptionalParams
+  ): Promise<GalleryApplicationVersionsUpdateResponse>;
   /**
    * Retrieves information about a gallery Application Version.
    * @param resourceGroupName The name of the resource group.
@@ -132,4 +176,21 @@ export interface GalleryApplicationVersions {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version resides.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    options?: GalleryApplicationVersionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

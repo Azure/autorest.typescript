@@ -155,6 +155,29 @@ export class VirtualNetworkGatewayConnectionsImpl
   }
 
   /**
+   * Creates or updates a virtual network gateway connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
+   * @param parameters Parameters supplied to the create or update virtual network gateway connection
+   *                   operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    parameters: VirtualNetworkGatewayConnection,
+    options?: VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified virtual network gateway connection by resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
@@ -213,6 +236,25 @@ export class VirtualNetworkGatewayConnectionsImpl
   }
 
   /**
+   * Deletes the specified virtual network Gateway connection.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a virtual network gateway connection tags.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
@@ -252,6 +294,28 @@ export class VirtualNetworkGatewayConnectionsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Updates a virtual network gateway connection tags.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
+   * @param parameters Parameters supplied to update virtual network gateway connection tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    parameters: TagsObject,
+    options?: VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsUpdateTagsResponse> {
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -297,6 +361,31 @@ export class VirtualNetworkGatewayConnectionsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource group
+   * through Network resource provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The virtual network gateway connection name.
+   * @param parameters Parameters supplied to the Begin Set Virtual Network Gateway connection Shared key
+   *                   operation throughNetwork resource provider.
+   * @param options The options parameters.
+   */
+  async beginSetSharedKeyAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    parameters: ConnectionSharedKey,
+    options?: VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsSetSharedKeyResponse> {
+    const poller = await this.beginSetSharedKey(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -391,6 +480,32 @@ export class VirtualNetworkGatewayConnectionsImpl
   }
 
   /**
+   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource group
+   * through Network resource provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The virtual network gateway connection reset shared key
+   *                                            Name.
+   * @param parameters Parameters supplied to the begin reset virtual network gateway connection shared
+   *                   key operation through network resource provider.
+   * @param options The options parameters.
+   */
+  async beginResetSharedKeyAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    parameters: ConnectionResetSharedKey,
+    options?: VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsResetSharedKeyResponse> {
+    const poller = await this.beginResetSharedKey(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts packet capture on virtual network gateway connection in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
@@ -429,6 +544,25 @@ export class VirtualNetworkGatewayConnectionsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Starts packet capture on virtual network gateway connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
+   * @param options The options parameters.
+   */
+  async beginStartPacketCaptureAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    options?: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsStartPacketCaptureResponse> {
+    const poller = await this.beginStartPacketCapture(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -474,6 +608,29 @@ export class VirtualNetworkGatewayConnectionsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Stops packet capture on virtual network gateway connection in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
+   * @param parameters Virtual network gateway packet capture parameters supplied to stop packet capture
+   *                   on gateway connection.
+   * @param options The options parameters.
+   */
+  async beginStopPacketCaptureAndWait(
+    resourceGroupName: string,
+    virtualNetworkGatewayConnectionName: string,
+    parameters: VpnPacketCaptureStopParameters,
+    options?: VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
+  ): Promise<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse> {
+    const poller = await this.beginStopPacketCapture(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

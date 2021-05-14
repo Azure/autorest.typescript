@@ -59,6 +59,17 @@ export interface ExpressRoutePorts {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    options?: ExpressRoutePortsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Retrieves the requested ExpressRoutePort resource.
    * @param resourceGroupName The name of the resource group.
    * @param expressRoutePortName The name of ExpressRoutePort.
@@ -87,6 +98,19 @@ export interface ExpressRoutePorts {
       ExpressRoutePortsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified ExpressRoutePort resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param parameters Parameters supplied to the create ExpressRoutePort operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    expressRoutePortName: string,
+    parameters: ExpressRoutePort,
+    options?: ExpressRoutePortsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRoutePortsCreateOrUpdateResponse>;
   /**
    * Update ExpressRoutePort tags.
    * @param resourceGroupName The name of the resource group.

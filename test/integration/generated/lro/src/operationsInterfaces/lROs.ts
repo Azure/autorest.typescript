@@ -108,6 +108,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Succeeded’.
+   * @param options The options parameters.
+   */
+  beginPut200SucceededAndWait(
+    options?: LROsPut200SucceededOptionalParams
+  ): Promise<LROsPut200SucceededResponse>;
+  /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Succeeded’.
    * @param options The options parameters.
@@ -120,6 +128,14 @@ export interface LROs {
       LROsPut201SucceededResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Succeeded’.
+   * @param options The options parameters.
+   */
+  beginPut201SucceededAndWait(
+    options?: LROsPut201SucceededOptionalParams
+  ): Promise<LROsPut201SucceededResponse>;
   /**
    * Long running put request, service returns a 202 with empty body to first request, returns a 200 with
    * body [{ 'id': '100', 'name': 'foo' }].
@@ -134,6 +150,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running put request, service returns a 202 with empty body to first request, returns a 200 with
+   * body [{ 'id': '100', 'name': 'foo' }].
+   * @param options The options parameters.
+   */
+  beginPost202ListAndWait(
+    options?: LROsPost202ListOptionalParams
+  ): Promise<LROsPost202ListResponse>;
+  /**
    * Long running put request, service returns a 200 to the initial request, with an entity that does not
    * contain ProvisioningState=’Succeeded’.
    * @param options The options parameters.
@@ -147,6 +171,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that does not
+   * contain ProvisioningState=’Succeeded’.
+   * @param options The options parameters.
+   */
+  beginPut200SucceededNoStateAndWait(
+    options?: LROsPut200SucceededNoStateOptionalParams
+  ): Promise<LROsPut200SucceededNoStateResponse>;
+  /**
    * Long running put request, service returns a 202 to the initial request, with a location header that
    * points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState
    * @param options The options parameters.
@@ -159,6 +191,14 @@ export interface LROs {
       LROsPut202Retry200Response
     >
   >;
+  /**
+   * Long running put request, service returns a 202 to the initial request, with a location header that
+   * points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState
+   * @param options The options parameters.
+   */
+  beginPut202Retry200AndWait(
+    options?: LROsPut202Retry200OptionalParams
+  ): Promise<LROsPut202Retry200Response>;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with
@@ -175,6 +215,15 @@ export interface LROs {
   >;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with
+   * ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
+  beginPut201CreatingSucceeded200AndWait(
+    options?: LROsPut201CreatingSucceeded200OptionalParams
+  ): Promise<LROsPut201CreatingSucceeded200Response>;
+  /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with
    * ProvisioningState=’Succeeded’
    * @param options The options parameters.
@@ -187,6 +236,15 @@ export interface LROs {
       LROsPut200UpdatingSucceeded204Response
     >
   >;
+  /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with
+   * ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
+  beginPut200UpdatingSucceeded204AndWait(
+    options?: LROsPut200UpdatingSucceeded204OptionalParams
+  ): Promise<LROsPut200UpdatingSucceeded204Response>;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with
@@ -203,6 +261,15 @@ export interface LROs {
   >;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with
+   * ProvisioningState=’Failed’
+   * @param options The options parameters.
+   */
+  beginPut201CreatingFailed200AndWait(
+    options?: LROsPut201CreatingFailed200OptionalParams
+  ): Promise<LROsPut201CreatingFailed200Response>;
+  /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with
    * ProvisioningState=’Canceled’
    * @param options The options parameters.
@@ -216,6 +283,15 @@ export interface LROs {
     >
   >;
   /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with
+   * ProvisioningState=’Canceled’
+   * @param options The options parameters.
+   */
+  beginPut200Acceptedcanceled200AndWait(
+    options?: LROsPut200Acceptedcanceled200OptionalParams
+  ): Promise<LROsPut200Acceptedcanceled200Response>;
+  /**
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    * @param options The options parameters.
@@ -228,6 +304,14 @@ export interface LROs {
       LROsPutNoHeaderInRetryResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 202 to the initial request with location header.
+   * Subsequent calls to operation status do not contain location header.
+   * @param options The options parameters.
+   */
+  beginPutNoHeaderInRetryAndWait(
+    options?: LROsPutNoHeaderInRetryOptionalParams
+  ): Promise<LROsPutNoHeaderInRetryResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -248,6 +332,15 @@ export interface LROs {
    * operation status
    * @param options The options parameters.
    */
+  beginPutAsyncRetrySucceededAndWait(
+    options?: LROsPutAsyncRetrySucceededOptionalParams
+  ): Promise<LROsPutAsyncRetrySucceededResponse>;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
   beginPutAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<
@@ -256,6 +349,15 @@ export interface LROs {
       LROsPutAsyncNoRetrySucceededResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
+  beginPutAsyncNoRetrySucceededAndWait(
+    options?: LROsPutAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsPutAsyncNoRetrySucceededResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
    * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -276,6 +378,15 @@ export interface LROs {
    * operation status
    * @param options The options parameters.
    */
+  beginPutAsyncRetryFailedAndWait(
+    options?: LROsPutAsyncRetryFailedOptionalParams
+  ): Promise<LROsPutAsyncRetryFailedResponse>;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
   beginPutAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<
@@ -284,6 +395,15 @@ export interface LROs {
       LROsPutAsyncNoRetrycanceledResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 200 to the initial request, with an entity that contains
+   * ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for
+   * operation status
+   * @param options The options parameters.
+   */
+  beginPutAsyncNoRetrycanceledAndWait(
+    options?: LROsPutAsyncNoRetrycanceledOptionalParams
+  ): Promise<LROsPutAsyncNoRetrycanceledResponse>;
   /**
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
@@ -297,6 +417,14 @@ export interface LROs {
       LROsPutAsyncNoHeaderInRetryResponse
     >
   >;
+  /**
+   * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
+   * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
+   * @param options The options parameters.
+   */
+  beginPutAsyncNoHeaderInRetryAndWait(
+    options?: LROsPutAsyncNoHeaderInRetryOptionalParams
+  ): Promise<LROsPutAsyncNoHeaderInRetryResponse>;
   /**
    * Long running put request with non resource.
    * @param options The options parameters.
@@ -313,6 +441,13 @@ export interface LROs {
    * Long running put request with non resource.
    * @param options The options parameters.
    */
+  beginPutNonResourceAndWait(
+    options?: LROsPutNonResourceOptionalParams
+  ): Promise<LROsPutNonResourceResponse>;
+  /**
+   * Long running put request with non resource.
+   * @param options The options parameters.
+   */
   beginPutAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<
@@ -321,6 +456,13 @@ export interface LROs {
       LROsPutAsyncNonResourceResponse
     >
   >;
+  /**
+   * Long running put request with non resource.
+   * @param options The options parameters.
+   */
+  beginPutAsyncNonResourceAndWait(
+    options?: LROsPutAsyncNonResourceOptionalParams
+  ): Promise<LROsPutAsyncNonResourceResponse>;
   /**
    * Long running put request with sub resource.
    * @param options The options parameters.
@@ -337,6 +479,13 @@ export interface LROs {
    * Long running put request with sub resource.
    * @param options The options parameters.
    */
+  beginPutSubResourceAndWait(
+    options?: LROsPutSubResourceOptionalParams
+  ): Promise<LROsPutSubResourceResponse>;
+  /**
+   * Long running put request with sub resource.
+   * @param options The options parameters.
+   */
   beginPutAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<
@@ -345,6 +494,13 @@ export interface LROs {
       LROsPutAsyncSubResourceResponse
     >
   >;
+  /**
+   * Long running put request with sub resource.
+   * @param options The options parameters.
+   */
+  beginPutAsyncSubResourceAndWait(
+    options?: LROsPutAsyncSubResourceOptionalParams
+  ): Promise<LROsPutAsyncSubResourceResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’
@@ -359,6 +515,15 @@ export interface LROs {
       LROsDeleteProvisioning202Accepted200SucceededResponse
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’
+   * with ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
+  beginDeleteProvisioning202Accepted200SucceededAndWait(
+    options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
+  ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’
@@ -376,6 +541,15 @@ export interface LROs {
   /**
    * Long running delete request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’
+   * with ProvisioningState=’Failed’
+   * @param options The options parameters.
+   */
+  beginDeleteProvisioning202DeletingFailed200AndWait(
+    options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
+  ): Promise<LROsDeleteProvisioning202DeletingFailed200Response>;
+  /**
+   * Long running delete request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’
    * with ProvisioningState=’Canceled’
    * @param options The options parameters.
    */
@@ -388,6 +562,15 @@ export interface LROs {
     >
   >;
   /**
+   * Long running delete request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’
+   * with ProvisioningState=’Canceled’
+   * @param options The options parameters.
+   */
+  beginDeleteProvisioning202Deletingcanceled200AndWait(
+    options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
+  ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response>;
+  /**
    * Long running delete succeeds and returns right away
    * @param options The options parameters.
    */
@@ -396,6 +579,13 @@ export interface LROs {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Long running delete succeeds and returns right away
+   * @param options The options parameters.
+   */
+  beginDelete204SucceededAndWait(
+    options?: LROsDelete204SucceededOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Polls return this value
    * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
@@ -414,6 +604,14 @@ export interface LROs {
    * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
+  beginDelete202Retry200AndWait(
+    options?: LROsDelete202Retry200OptionalParams
+  ): Promise<LROsDelete202Retry200Response>;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Polls return this value
+   * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
   beginDelete202NoRetry204(
     options?: LROsDelete202NoRetry204OptionalParams
   ): Promise<
@@ -422,6 +620,14 @@ export interface LROs {
       LROsDelete202NoRetry204Response
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Polls return this value
+   * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
+  beginDelete202NoRetry204AndWait(
+    options?: LROsDelete202NoRetry204OptionalParams
+  ): Promise<LROsDelete202NoRetry204Response>;
   /**
    * Long running delete request, service returns a location header in the initial request. Subsequent
    * calls to operation status do not contain location header.
@@ -436,6 +642,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running delete request, service returns a location header in the initial request. Subsequent
+   * calls to operation status do not contain location header.
+   * @param options The options parameters.
+   */
+  beginDeleteNoHeaderInRetryAndWait(
+    options?: LROsDeleteNoHeaderInRetryOptionalParams
+  ): Promise<LROsDeleteNoHeaderInRetryResponse>;
+  /**
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial request.
    * Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    * @param options The options parameters.
@@ -448,6 +662,14 @@ export interface LROs {
       LROsDeleteAsyncNoHeaderInRetryResponse
     >
   >;
+  /**
+   * Long running delete request, service returns an Azure-AsyncOperation header in the initial request.
+   * Subsequent calls to operation status do not contain Azure-AsyncOperation header.
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncNoHeaderInRetryAndWait(
+    options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
+  ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -466,6 +688,14 @@ export interface LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
+  beginDeleteAsyncRetrySucceededAndWait(
+    options?: LROsDeleteAsyncRetrySucceededOptionalParams
+  ): Promise<LROsDeleteAsyncRetrySucceededResponse>;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
   beginDeleteAsyncNoRetrySucceeded(
     options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
   ): Promise<
@@ -474,6 +704,14 @@ export interface LROs {
       LROsDeleteAsyncNoRetrySucceededResponse
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncNoRetrySucceededAndWait(
+    options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsDeleteAsyncNoRetrySucceededResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -492,6 +730,14 @@ export interface LROs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
+  beginDeleteAsyncRetryFailedAndWait(
+    options?: LROsDeleteAsyncRetryFailedOptionalParams
+  ): Promise<LROsDeleteAsyncRetryFailedResponse>;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
   beginDeleteAsyncRetrycanceled(
     options?: LROsDeleteAsyncRetrycanceledOptionalParams
   ): Promise<
@@ -500,6 +746,14 @@ export interface LROs {
       LROsDeleteAsyncRetrycanceledResponse
     >
   >;
+  /**
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
+   * @param options The options parameters.
+   */
+  beginDeleteAsyncRetrycanceledAndWait(
+    options?: LROsDeleteAsyncRetrycanceledOptionalParams
+  ): Promise<LROsDeleteAsyncRetrycanceledResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
@@ -514,6 +768,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running post request, service returns a 202 to the initial request, with 'Location' header.
+   * Poll returns a 200 with a response body after success.
+   * @param options The options parameters.
+   */
+  beginPost200WithPayloadAndWait(
+    options?: LROsPost200WithPayloadOptionalParams
+  ): Promise<LROsPost200WithPayloadResponse>;
+  /**
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
@@ -526,6 +788,14 @@ export interface LROs {
       LROsPost202Retry200Response
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with 'Location' and
+   * 'Retry-After' headers, Polls return a 200 with a response body after success
+   * @param options The options parameters.
+   */
+  beginPost202Retry200AndWait(
+    options?: LROsPost202Retry200OptionalParams
+  ): Promise<LROsPost202Retry200Response>;
   /**
    * Long running post request, service returns a 202 to the initial request, with 'Location' header, 204
    * with noresponse body after success
@@ -540,6 +810,14 @@ export interface LROs {
     >
   >;
   /**
+   * Long running post request, service returns a 202 to the initial request, with 'Location' header, 204
+   * with noresponse body after success
+   * @param options The options parameters.
+   */
+  beginPost202NoRetry204AndWait(
+    options?: LROsPost202NoRetry204OptionalParams
+  ): Promise<LROsPost202NoRetry204Response>;
+  /**
    * Long running post request, service returns a 202 to the initial request with both Location and
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object
    * @param options The options parameters.
@@ -552,6 +830,14 @@ export interface LROs {
       LROsPostDoubleHeadersFinalLocationGetResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request with both Location and
+   * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object
+   * @param options The options parameters.
+   */
+  beginPostDoubleHeadersFinalLocationGetAndWait(
+    options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request with both Location and
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
@@ -569,6 +855,15 @@ export interface LROs {
   /**
    * Long running post request, service returns a 202 to the initial request with both Location and
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
+   * object
+   * @param options The options parameters.
+   */
+  beginPostDoubleHeadersFinalAzureHeaderGetAndWait(
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>;
+  /**
+   * Long running post request, service returns a 202 to the initial request with both Location and
+   * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    * @param options The options parameters.
    */
@@ -582,6 +877,15 @@ export interface LROs {
       LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request with both Location and
+   * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
+   * object if you support initial Autorest behavior.
+   * @param options The options parameters.
+   */
+  beginPostDoubleHeadersFinalAzureHeaderGetDefaultAndWait(
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -602,6 +906,15 @@ export interface LROs {
    * header for operation status
    * @param options The options parameters.
    */
+  beginPostAsyncRetrySucceededAndWait(
+    options?: LROsPostAsyncRetrySucceededOptionalParams
+  ): Promise<LROsPostAsyncRetrySucceededResponse>;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
   beginPostAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<
@@ -610,6 +923,15 @@ export interface LROs {
       LROsPostAsyncNoRetrySucceededResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  beginPostAsyncNoRetrySucceededAndWait(
+    options?: LROsPostAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsPostAsyncNoRetrySucceededResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -630,6 +952,15 @@ export interface LROs {
    * header for operation status
    * @param options The options parameters.
    */
+  beginPostAsyncRetryFailedAndWait(
+    options?: LROsPostAsyncRetryFailedOptionalParams
+  ): Promise<LROsPostAsyncRetryFailedResponse>;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
   beginPostAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<
@@ -638,4 +969,13 @@ export interface LROs {
       LROsPostAsyncRetrycanceledResponse
     >
   >;
+  /**
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  beginPostAsyncRetrycanceledAndWait(
+    options?: LROsPostAsyncRetrycanceledOptionalParams
+  ): Promise<LROsPostAsyncRetrycanceledResponse>;
 }

@@ -184,6 +184,29 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
   }
 
   /**
+   * Creates a server dns alias.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server DNS alias.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    options?: ServerDnsAliasesCreateOrUpdateOptionalParams
+  ): Promise<ServerDnsAliasesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      dnsAliasName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the server DNS alias with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -220,6 +243,29 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the server DNS alias with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server DNS alias.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    options?: ServerDnsAliasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      dnsAliasName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -285,6 +331,32 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       acquireOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Acquires server DNS alias from another server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server dns alias.
+   * @param parameters A server DNS alias acquisition request.
+   * @param options The options parameters.
+   */
+  async beginAcquireAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    parameters: ServerDnsAliasAcquisition,
+    options?: ServerDnsAliasesAcquireOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginAcquire(
+      resourceGroupName,
+      serverName,
+      dnsAliasName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

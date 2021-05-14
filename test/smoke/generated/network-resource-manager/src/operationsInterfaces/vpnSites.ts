@@ -75,6 +75,19 @@ export interface VpnSites {
     >
   >;
   /**
+   * Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
+   * @param resourceGroupName The resource group name of the VpnSite.
+   * @param vpnSiteName The name of the VpnSite being created or updated.
+   * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vpnSiteName: string,
+    vpnSiteParameters: VpnSite,
+    options?: VpnSitesCreateOrUpdateOptionalParams
+  ): Promise<VpnSitesCreateOrUpdateResponse>;
+  /**
    * Updates VpnSite tags.
    * @param resourceGroupName The resource group name of the VpnSite.
    * @param vpnSiteName The name of the VpnSite being updated.
@@ -100,4 +113,15 @@ export interface VpnSites {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a VpnSite.
+   * @param resourceGroupName The resource group name of the VpnSite.
+   * @param vpnSiteName The name of the VpnSite being deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vpnSiteName: string,
+    options?: VpnSitesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

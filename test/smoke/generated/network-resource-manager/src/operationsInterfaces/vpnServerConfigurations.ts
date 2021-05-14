@@ -77,6 +77,21 @@ export interface VpnServerConfigurations {
     >
   >;
   /**
+   * Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing
+   * VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being created or updated.
+   * @param vpnServerConfigurationParameters Parameters supplied to create or update
+   *                                         VpnServerConfiguration.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    vpnServerConfigurationParameters: VpnServerConfiguration,
+    options?: VpnServerConfigurationsCreateOrUpdateOptionalParams
+  ): Promise<VpnServerConfigurationsCreateOrUpdateResponse>;
+  /**
    * Updates VpnServerConfiguration tags.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being updated.
@@ -102,4 +117,15 @@ export interface VpnServerConfigurations {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    options?: VpnServerConfigurationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

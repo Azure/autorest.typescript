@@ -211,6 +211,32 @@ export class JobAgentsImpl implements JobAgents {
   }
 
   /**
+   * Creates or updates a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be created or updated.
+   * @param parameters The requested job agent resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    parameters: JobAgent,
+    options?: JobAgentsCreateOrUpdateOptionalParams
+  ): Promise<JobAgentsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a job agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -247,6 +273,29 @@ export class JobAgentsImpl implements JobAgents {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    options?: JobAgentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -292,6 +341,32 @@ export class JobAgentsImpl implements JobAgents {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a job agent.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent to be updated.
+   * @param parameters The update to the job agent.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    parameters: JobAgentUpdate,
+    options?: JobAgentsUpdateOptionalParams
+  ): Promise<JobAgentsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      jobAgentName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

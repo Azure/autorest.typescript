@@ -208,6 +208,28 @@ export class VirtualHubsImpl implements VirtualHubs {
   }
 
   /**
+   * Creates a VirtualHub resource if it doesn't exist else updates the existing VirtualHub.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param virtualHubParameters Parameters supplied to create or update VirtualHub.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    virtualHubParameters: VirtualHub,
+    options?: VirtualHubsCreateOrUpdateOptionalParams
+  ): Promise<VirtualHubsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualHubName,
+      virtualHubParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates VirtualHub tags.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
@@ -266,6 +288,25 @@ export class VirtualHubsImpl implements VirtualHubs {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a VirtualHub.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    options?: VirtualHubsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualHubName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

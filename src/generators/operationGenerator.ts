@@ -422,7 +422,7 @@ function getReturnType(
   operation: OperationDetails,
   importedModels: Set<string>,
   modelNames: Set<string>
-) {
+): string {
   const responseName = getOperationResponseType(
     operation,
     importedModels,
@@ -577,6 +577,68 @@ export function writeOperations(
       responseName,
       isInline
     );
+
+    /**
+     * Create a simple method that blocks and waits for the result
+     */
+    if (operation.isLRO && operation.pagination === undefined) {
+      const responseName = getOperationResponseType(
+        operation,
+        importedModels,
+        modelNames
+      );
+      const methodName = calculateMethodName(operation);
+      const operationMethod = operationGroupClass.addMethod({
+        name: `${methodName}AndWait`,
+        parameters: baseMethodParameters,
+        scope: operation.scope,
+        returnType: `Promise<${responseName}>`,
+        docs: [
+          generateOperationJSDoc(baseMethodParameters, operation.description)
+        ],
+        isAsync: true
+      });
+      if (overloadParameterDeclarations.length > 1) {
+        // Since contentType is always added as a synthetic parameter by modelerfour, it should always
+        // be in the same position for all overloads.
+        let contentTypePosition: number = -1;
+        for (let i = 0; i < overloadParameterDeclarations.length; i++) {
+          const overloadParameters = overloadParameterDeclarations[i];
+
+          contentTypePosition = overloadParameters.findIndex(
+            (param: ParameterWithDescription) => {
+              return param.isContentType;
+            }
+          );
+
+          // Get conditional to handle the current overload
+          const conditional = getContentTypeInfo(operation.requests[i])
+            ?.map(type => `args[${contentTypePosition}] === "${type}"`)
+            .join(" || ");
+
+          const assignments = `const poller = await this.${methodName}(...args);
+          return poller.pollUntilDone();`;
+
+          const elseif = i === 0 ? "if" : "else if";
+
+          // Add conditional statement to handle the current overload
+          operationMethod.addStatements([
+            `${elseif} (${conditional}) {
+        ${assignments}
+       }`
+          ]);
+        }
+        operationMethod.addStatements(`throw new Error("Impossible case");`);
+      } else {
+        operationMethod.addStatements(
+          `const poller = await this.${methodName}(${baseMethodParameters
+            .map(x => x.name)
+            .join(",")});
+            return poller.pollUntilDone();
+            `
+        );
+      }
+    }
   });
 }
 

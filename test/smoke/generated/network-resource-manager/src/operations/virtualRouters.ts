@@ -177,6 +177,25 @@ export class VirtualRoutersImpl implements VirtualRouters {
   }
 
   /**
+   * Deletes the specified Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    options?: VirtualRoutersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualRouterName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified Virtual Router.
    * @param resourceGroupName The name of the resource group.
    * @param virtualRouterName The name of the Virtual Router.
@@ -238,6 +257,28 @@ export class VirtualRoutersImpl implements VirtualRouters {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param parameters Parameters supplied to the create or update Virtual Router.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    parameters: VirtualRouter,
+    options?: VirtualRoutersCreateOrUpdateOptionalParams
+  ): Promise<VirtualRoutersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualRouterName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

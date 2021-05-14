@@ -213,6 +213,28 @@ export class ResourcesImpl implements Resources {
   }
 
   /**
+   * The resources to move must be in the same source resource group. The target resource group may be in
+   * a different subscription. When moving resources, both the source group and the target group are
+   * locked for the duration of the operation. Write and delete operations are blocked on the groups
+   * until the move completes.
+   * @param sourceResourceGroupName The name of the resource group containing the resources to move.
+   * @param parameters Parameters for moving resources.
+   * @param options The options parameters.
+   */
+  async beginMoveResourcesAndWait(
+    sourceResourceGroupName: string,
+    parameters: ResourcesMoveInfo,
+    options?: ResourcesMoveResourcesOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginMoveResources(
+      sourceResourceGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
    * move must be in the same source resource group. The target resource group may be in a different
    * subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation
@@ -250,6 +272,30 @@ export class ResourcesImpl implements Resources {
       validateMoveResourcesOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * This operation checks whether the specified resources can be moved to the target. The resources to
+   * move must be in the same source resource group. The target resource group may be in a different
+   * subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation
+   * fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the
+   * Location header value to check the result of the long-running operation.
+   * @param sourceResourceGroupName The name of the resource group containing the resources to validate
+   *                                for move.
+   * @param parameters Parameters for moving resources.
+   * @param options The options parameters.
+   */
+  async beginValidateMoveResourcesAndWait(
+    sourceResourceGroupName: string,
+    parameters: ResourcesMoveInfo,
+    options?: ResourcesValidateMoveResourcesOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginValidateMoveResources(
+      sourceResourceGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -352,6 +398,38 @@ export class ResourcesImpl implements Resources {
   }
 
   /**
+   * Deletes a resource.
+   * @param resourceGroupName The name of the resource group that contains the resource to delete. The
+   *                          name is case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type.
+   * @param resourceName The name of the resource to delete.
+   * @param apiVersion The API version to use for the operation.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    apiVersion: string,
+    options?: ResourcesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      apiVersion,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Creates a resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
    *                          insensitive.
@@ -406,6 +484,41 @@ export class ResourcesImpl implements Resources {
   }
 
   /**
+   * Creates a resource.
+   * @param resourceGroupName The name of the resource group for the resource. The name is case
+   *                          insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the resource to create.
+   * @param resourceName The name of the resource to create.
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Parameters for creating or updating the resource.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    apiVersion: string,
+    parameters: GenericResource,
+    options?: ResourcesCreateOrUpdateOptionalParams
+  ): Promise<ResourcesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      apiVersion,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
    *                          insensitive.
@@ -457,6 +570,41 @@ export class ResourcesImpl implements Resources {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a resource.
+   * @param resourceGroupName The name of the resource group for the resource. The name is case
+   *                          insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
+   * @param resourceType The resource type of the resource to update.
+   * @param resourceName The name of the resource to update.
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Parameters for updating the resource.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
+    resourceType: string,
+    resourceName: string,
+    apiVersion: string,
+    parameters: GenericResource,
+    options?: ResourcesUpdateOptionalParams
+  ): Promise<ResourcesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      resourceProviderNamespace,
+      parentResourcePath,
+      resourceType,
+      resourceName,
+      apiVersion,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -556,6 +704,23 @@ export class ResourcesImpl implements Resources {
   }
 
   /**
+   * Deletes a resource by ID.
+   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
+   *                   type. Use the format,
+   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
+   * @param options The options parameters.
+   */
+  async beginDeleteByIdAndWait(
+    resourceId: string,
+    apiVersion: string,
+    options?: ResourcesDeleteByIdOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteById(resourceId, apiVersion, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Create a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
@@ -599,6 +764,30 @@ export class ResourcesImpl implements Resources {
   }
 
   /**
+   * Create a resource by ID.
+   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
+   *                   type. Use the format,
+   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Create or update resource parameters.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateByIdAndWait(
+    resourceId: string,
+    apiVersion: string,
+    parameters: GenericResource,
+    options?: ResourcesCreateOrUpdateByIdOptionalParams
+  ): Promise<ResourcesCreateOrUpdateByIdResponse> {
+    const poller = await this.beginCreateOrUpdateById(
+      resourceId,
+      apiVersion,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
@@ -639,6 +828,30 @@ export class ResourcesImpl implements Resources {
       updateByIdOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a resource by ID.
+   * @param resourceId The fully qualified ID of the resource, including the resource name and resource
+   *                   type. Use the format,
+   *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Update resource parameters.
+   * @param options The options parameters.
+   */
+  async beginUpdateByIdAndWait(
+    resourceId: string,
+    apiVersion: string,
+    parameters: GenericResource,
+    options?: ResourcesUpdateByIdOptionalParams
+  ): Promise<ResourcesUpdateByIdResponse> {
+    const poller = await this.beginUpdateById(
+      resourceId,
+      apiVersion,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

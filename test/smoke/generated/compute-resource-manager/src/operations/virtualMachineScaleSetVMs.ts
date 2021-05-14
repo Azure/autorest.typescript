@@ -166,6 +166,28 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * Reimages (upgrade the operating system) a specific virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginReimageAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsReimageOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginReimage(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
    * operation is only supported for managed disks.
    * @param resourceGroupName The name of the resource group.
@@ -202,6 +224,29 @@ export class VirtualMachineScaleSetVMsImpl
       reimageAllOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
+   * operation is only supported for managed disks.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginReimageAllAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginReimageAll(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -242,6 +287,30 @@ export class VirtualMachineScaleSetVMsImpl
       deallocateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
+   * releases the compute resources it uses. You are not billed for the compute resources of this virtual
+   * machine once it is deallocated.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginDeallocateAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeallocate(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -289,6 +358,31 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * Updates a virtual machine of a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set where the extension should be create or updated.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param parameters Parameters supplied to the Update Virtual Machine Scale Sets VM operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    parameters: VirtualMachineScaleSetVM,
+    options?: VirtualMachineScaleSetVMsUpdateOptionalParams
+  ): Promise<VirtualMachineScaleSetVMsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -324,6 +418,28 @@ export class VirtualMachineScaleSetVMsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a virtual machine from a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -439,6 +555,30 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you
+   * are getting charged for the resources. Instead, use deallocate to release resources and avoid
+   * charges.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginPowerOffAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPowerOff(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Restarts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -477,6 +617,28 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * Restarts a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginRestartAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsRestartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRestart(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -512,6 +674,28 @@ export class VirtualMachineScaleSetVMsImpl
       startOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Starts a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginStartAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsStartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStart(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -554,6 +738,29 @@ export class VirtualMachineScaleSetVMsImpl
   }
 
   /**
+   * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
+   * it back on.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginRedeployAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsRedeployOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRedeploy(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Performs maintenance on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
@@ -589,6 +796,28 @@ export class VirtualMachineScaleSetVMsImpl
       performMaintenanceOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Performs maintenance on a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  async beginPerformMaintenanceAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPerformMaintenance(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -660,6 +889,31 @@ export class VirtualMachineScaleSetVMsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Run command on a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param parameters Parameters supplied to the Run command operation.
+   * @param options The options parameters.
+   */
+  async beginRunCommandAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    parameters: RunCommandInput,
+    options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
+  ): Promise<VirtualMachineScaleSetVMsRunCommandResponse> {
+    const poller = await this.beginRunCommand(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

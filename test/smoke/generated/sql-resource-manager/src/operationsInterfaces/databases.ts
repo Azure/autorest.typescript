@@ -127,6 +127,20 @@ export interface Databases {
     >
   >;
   /**
+   * Imports a bacpac into a new database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The required parameters for importing a Bacpac into a database.
+   * @param options The options parameters.
+   */
+  beginImportAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ImportRequest,
+    options?: DatabasesImportOptionalParams
+  ): Promise<DatabasesImportResponse>;
+  /**
    * Creates an import operation that imports a bacpac into an existing database. The existing database
    * must be empty.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -151,6 +165,25 @@ export interface Databases {
     >
   >;
   /**
+   * Creates an import operation that imports a bacpac into an existing database. The existing database
+   * must be empty.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to import into
+   * @param extensionName The name of the operation to perform
+   * @param parameters The required parameters for importing a Bacpac into a database.
+   * @param options The options parameters.
+   */
+  beginCreateImportOperationAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    extensionName: ExtensionName,
+    parameters: ImportExtensionRequest,
+    options?: DatabasesCreateImportOperationOptionalParams
+  ): Promise<DatabasesCreateImportOperationResponse>;
+  /**
    * Exports a database to a bacpac.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -171,6 +204,22 @@ export interface Databases {
       DatabasesExportResponse
     >
   >;
+  /**
+   * Exports a database to a bacpac.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be exported.
+   * @param parameters The required parameters for exporting a database.
+   * @param options The options parameters.
+   */
+  beginExportAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: ExportRequest,
+    options?: DatabasesExportOptionalParams
+  ): Promise<DatabasesExportResponse>;
   /**
    * Gets a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -207,6 +256,22 @@ export interface Databases {
     >
   >;
   /**
+   * Creates a new database or updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: Database,
+    options?: DatabasesCreateOrUpdateOptionalParams
+  ): Promise<DatabasesCreateOrUpdateResponse>;
+  /**
    * Deletes the database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -222,6 +287,20 @@ export interface Databases {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -244,6 +323,22 @@ export interface Databases {
     >
   >;
   /**
+   * Updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    parameters: DatabaseUpdate,
+    options?: DatabasesUpdateOptionalParams
+  ): Promise<DatabasesUpdateResponse>;
+  /**
    * Pauses a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -262,6 +357,20 @@ export interface Databases {
       DatabasesPauseResponse
     >
   >;
+  /**
+   * Pauses a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be paused.
+   * @param options The options parameters.
+   */
+  beginPauseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesPauseOptionalParams
+  ): Promise<DatabasesPauseResponse>;
   /**
    * Resumes a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -282,6 +391,20 @@ export interface Databases {
     >
   >;
   /**
+   * Resumes a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be resumed.
+   * @param options The options parameters.
+   */
+  beginResumeAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesResumeOptionalParams
+  ): Promise<DatabasesResumeResponse>;
+  /**
    * Upgrades a data warehouse.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -297,6 +420,20 @@ export interface Databases {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Upgrades a data warehouse.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to be upgraded.
+   * @param options The options parameters.
+   */
+  beginUpgradeDataWarehouseAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesUpgradeDataWarehouseOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Renames a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -329,4 +466,18 @@ export interface Databases {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Failovers a database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database to failover.
+   * @param options The options parameters.
+   */
+  beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    options?: DatabasesFailoverOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

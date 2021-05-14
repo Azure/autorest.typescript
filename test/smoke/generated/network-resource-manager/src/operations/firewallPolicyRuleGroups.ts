@@ -152,6 +152,28 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
   }
 
   /**
+   * Deletes the specified FirewallPolicyRuleGroup.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    ruleGroupName: string,
+    options?: FirewallPolicyRuleGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleGroupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified FirewallPolicyRuleGroup.
    * @param resourceGroupName The name of the resource group.
    * @param firewallPolicyName The name of the Firewall Policy.
@@ -219,6 +241,31 @@ export class FirewallPolicyRuleGroupsImpl implements FirewallPolicyRuleGroups {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified FirewallPolicyRuleGroup.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param ruleGroupName The name of the FirewallPolicyRuleGroup.
+   * @param parameters Parameters supplied to the create or update FirewallPolicyRuleGroup operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    ruleGroupName: string,
+    parameters: FirewallPolicyRuleGroup,
+    options?: FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
+  ): Promise<FirewallPolicyRuleGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

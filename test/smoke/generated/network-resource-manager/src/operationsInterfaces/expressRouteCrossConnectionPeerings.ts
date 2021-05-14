@@ -51,6 +51,19 @@ export interface ExpressRouteCrossConnectionPeerings {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified peering from the ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    options?: ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified peering for the ExpressRouteCrossConnection.
    * @param resourceGroupName The name of the resource group.
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
@@ -86,4 +99,20 @@ export interface ExpressRouteCrossConnectionPeerings {
       ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a peering in the specified ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param peeringParameters Parameters supplied to the create or update ExpressRouteCrossConnection
+   *                          peering operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    peeringParameters: ExpressRouteCrossConnectionPeering,
+    options?: ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>;
 }

@@ -157,6 +157,25 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   }
 
   /**
+   * Deletes the managed application definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition to delete.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationDefinitionName: string,
+    options?: ApplicationDefinitionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      applicationDefinitionName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Creates a new managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param applicationDefinitionName The name of the managed application definition.
@@ -195,6 +214,28 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates a new managed application definition.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationDefinitionName The name of the managed application definition.
+   * @param parameters Parameters supplied to the create or update an managed application definition.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationDefinitionName: string,
+    parameters: ApplicationDefinition,
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+  ): Promise<ApplicationDefinitionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      applicationDefinitionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -274,6 +315,22 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   }
 
   /**
+   * Deletes the managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param options The options parameters.
+   */
+  async beginDeleteByIdAndWait(
+    applicationDefinitionId: string,
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteById(applicationDefinitionId, options);
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Creates a new managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
    *                                including the managed application name and the managed application definition resource type. Use the
@@ -312,6 +369,28 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       createOrUpdateByIdOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates a new managed application definition.
+   * @param applicationDefinitionId The fully qualified ID of the managed application definition,
+   *                                including the managed application name and the managed application definition resource type. Use the
+   *                                format,
+   *                                /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}
+   * @param parameters Parameters supplied to the create or update a managed application definition.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateByIdAndWait(
+    applicationDefinitionId: string,
+    parameters: ApplicationDefinition,
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+  ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse> {
+    const poller = await this.beginCreateOrUpdateById(
+      applicationDefinitionId,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

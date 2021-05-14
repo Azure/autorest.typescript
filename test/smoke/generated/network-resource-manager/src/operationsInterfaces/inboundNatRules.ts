@@ -51,6 +51,19 @@ export interface InboundNatRules {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified load balancer inbound nat rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    inboundNatRuleName: string,
+    options?: InboundNatRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified load balancer inbound nat rule.
    * @param resourceGroupName The name of the resource group.
    * @param loadBalancerName The name of the load balancer.
@@ -84,4 +97,20 @@ export interface InboundNatRules {
       InboundNatRulesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a load balancer inbound nat rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+   *                                 operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    inboundNatRuleName: string,
+    inboundNatRuleParameters: InboundNatRule,
+    options?: InboundNatRulesCreateOrUpdateOptionalParams
+  ): Promise<InboundNatRulesCreateOrUpdateResponse>;
 }

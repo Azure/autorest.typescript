@@ -72,6 +72,22 @@ export interface VirtualNetworkRules {
     >
   >;
   /**
+   * Creates or updates an existing virtual network rule.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param virtualNetworkRuleName The name of the virtual network rule.
+   * @param parameters The requested virtual Network Rule Resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    virtualNetworkRuleName: string,
+    parameters: VirtualNetworkRule,
+    options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkRulesCreateOrUpdateResponse>;
+  /**
    * Deletes the virtual network rule with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -87,4 +103,18 @@ export interface VirtualNetworkRules {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the virtual network rule with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param virtualNetworkRuleName The name of the virtual network rule.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    virtualNetworkRuleName: string,
+    options?: VirtualNetworkRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

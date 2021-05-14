@@ -101,6 +101,22 @@ export interface GremlinResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB Gremlin database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param createUpdateGremlinDatabaseParameters The parameters to provide for the current Gremlin
+   *                                              database.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateGremlinDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
+    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
+  ): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB Gremlin database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -115,6 +131,19 @@ export interface GremlinResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB Gremlin database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  beginDeleteGremlinDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the Gremlin database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -153,6 +182,22 @@ export interface GremlinResources {
     >
   >;
   /**
+   * Update RUs per second of an Azure Cosmos DB Gremlin database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Gremlin database.
+   * @param options The options parameters.
+   */
+  beginUpdateGremlinDatabaseThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
+  ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>;
+  /**
    * Gets the Gremlin graph under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -190,6 +235,23 @@ export interface GremlinResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB Gremlin graph
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param createUpdateGremlinGraphParameters The parameters to provide for the current Gremlin graph.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateGremlinGraphAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
+    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
+  ): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB Gremlin graph.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -206,6 +268,21 @@ export interface GremlinResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB Gremlin graph.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  beginDeleteGremlinGraphAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesDeleteGremlinGraphOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the Gremlin graph throughput under an existing Azure Cosmos DB database account with the
    * provided name.
@@ -245,4 +322,22 @@ export interface GremlinResources {
       GremlinResourcesUpdateGremlinGraphThroughputResponse
     >
   >;
+  /**
+   * Update RUs per second of an Azure Cosmos DB Gremlin graph
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Gremlin graph.
+   * @param options The options parameters.
+   */
+  beginUpdateGremlinGraphThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
+  ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse>;
 }

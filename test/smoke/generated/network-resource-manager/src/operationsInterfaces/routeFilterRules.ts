@@ -51,6 +51,19 @@ export interface RouteFilterRules {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified rule from a route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param ruleName The name of the rule.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    ruleName: string,
+    options?: RouteFilterRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified rule from a route filter.
    * @param resourceGroupName The name of the resource group.
    * @param routeFilterName The name of the route filter.
@@ -84,4 +97,20 @@ export interface RouteFilterRules {
       RouteFilterRulesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a route in the specified route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param ruleName The name of the route filter rule.
+   * @param routeFilterRuleParameters Parameters supplied to the create or update route filter rule
+   *                                  operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    ruleName: string,
+    routeFilterRuleParameters: RouteFilterRule,
+    options?: RouteFilterRulesCreateOrUpdateOptionalParams
+  ): Promise<RouteFilterRulesCreateOrUpdateResponse>;
 }

@@ -56,6 +56,17 @@ export interface VirtualRouters {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    options?: VirtualRoutersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified Virtual Router.
    * @param resourceGroupName The name of the resource group.
    * @param virtualRouterName The name of the Virtual Router.
@@ -84,4 +95,17 @@ export interface VirtualRouters {
       VirtualRoutersCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param parameters Parameters supplied to the create or update Virtual Router.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    parameters: VirtualRouter,
+    options?: VirtualRoutersCreateOrUpdateOptionalParams
+  ): Promise<VirtualRoutersCreateOrUpdateResponse>;
 }

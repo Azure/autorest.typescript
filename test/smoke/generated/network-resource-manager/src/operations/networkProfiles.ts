@@ -177,6 +177,25 @@ export class NetworkProfilesImpl implements NetworkProfiles {
   }
 
   /**
+   * Deletes the specified network profile.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkProfileName The name of the NetworkProfile.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkProfileName: string,
+    options?: NetworkProfilesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkProfileName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the specified network profile in a specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param networkProfileName The name of the public IP prefix.

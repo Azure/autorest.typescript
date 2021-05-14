@@ -76,6 +76,24 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
       "location"
     );
   }
+
+  /**
+   * Poll with method and client level parameters in endpoint
+   * @param accountName Account Name. Pass in 'local' to pass test.
+   * @param options The options parameters.
+   */
+  async beginPollWithParameterizedEndpointsAndWait(
+    accountName: string,
+    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
+  ): Promise<
+    LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+  > {
+    const poller = await this.beginPollWithParameterizedEndpoints(
+      accountName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
 }
 // Operation Specifications
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);

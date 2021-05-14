@@ -69,4 +69,18 @@ export interface PrivateEndpointConnections {
       PrivateEndpointConnectionsDeleteResponse
     >
   >;
+  /**
+   * Deletes the specified private endpoint connection associated with the key vault.
+   * @param resourceGroupName Name of the resource group that contains the key vault.
+   * @param vaultName The name of the key vault.
+   * @param privateEndpointConnectionName Name of the private endpoint connection associated with the key
+   *                                      vault.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vaultName: string,
+    privateEndpointConnectionName: string,
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
+  ): Promise<PrivateEndpointConnectionsDeleteResponse>;
 }

@@ -59,6 +59,17 @@ export interface ServiceEndpointPolicies {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the specified service endpoint policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    options?: ServiceEndpointPoliciesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Gets the specified service Endpoint Policies in a specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param serviceEndpointPolicyName The name of the service endpoint policy.
@@ -87,6 +98,19 @@ export interface ServiceEndpointPolicies {
       ServiceEndpointPoliciesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a service Endpoint Policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy.
+   * @param parameters Parameters supplied to the create or update service endpoint policy operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    parameters: ServiceEndpointPolicy,
+    options?: ServiceEndpointPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ServiceEndpointPoliciesCreateOrUpdateResponse>;
   /**
    * Updates tags of a service endpoint policy.
    * @param resourceGroupName The name of the resource group.
