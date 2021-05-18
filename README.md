@@ -26,7 +26,7 @@ In addition to the [list of Autorest flags](https://github.com/Azure/autorest/bl
 
 | Flag                            | Description                                                                                                                             |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `--use-core-v2`                 | Uses azure core v2.                                                                                                                     |
+| `--use-core-v2`                 | Uses azure core v2                                                                                                                      |
 | `--hide-client`                 | Hides the client class from docs                                                                                                        |
 | `--ignore-nullable-on-optional` | If an optional property is also marked as nullable, it will be treated as just optional                                                 |
 | `--generate-metadata`           | Generates meta files such as readme, license, package.json, etc. Typically, you need to specify this flag in your first generation only |
