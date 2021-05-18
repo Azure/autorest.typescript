@@ -10,7 +10,7 @@ import {
 } from "./generated/pagingNoIterators/src";
 import { InternalPipelineOptions } from "@azure/core-http";
 
-describe("Integration tests for Paging", () => {
+describe.skip("Integration tests for Paging", () => {
   let client: PagingNoIteratorsClient;
 
   beforeEach(() => {
