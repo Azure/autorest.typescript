@@ -149,7 +149,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param ddosProtectionPlanName The name of the DDoS protection plan.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: DdosProtectionPlansDeleteOptionalParams
@@ -177,6 +177,25 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified DDoS protection plan.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosProtectionPlanName The name of the DDoS protection plan.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    ddosProtectionPlanName: string,
+    options?: DdosProtectionPlansDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      ddosProtectionPlanName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -208,7 +227,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
    * @param parameters Parameters supplied to the create or update operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     parameters: DdosProtectionPlan,
@@ -241,6 +260,28 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a DDoS protection plan.
+   * @param resourceGroupName The name of the resource group.
+   * @param ddosProtectionPlanName The name of the DDoS protection plan.
+   * @param parameters Parameters supplied to the create or update operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ddosProtectionPlanName: string,
+    parameters: DdosProtectionPlan,
+    options?: DdosProtectionPlansCreateOrUpdateOptionalParams
+  ): Promise<DdosProtectionPlansCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      ddosProtectionPlanName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

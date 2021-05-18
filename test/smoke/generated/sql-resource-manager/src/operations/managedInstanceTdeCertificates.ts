@@ -39,7 +39,7 @@ export class ManagedInstanceTdeCertificatesImpl
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: TdeCertificate,
@@ -68,6 +68,29 @@ export class ManagedInstanceTdeCertificatesImpl
       createOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates a TDE certificate for a given server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested TDE certificate to be created or updated.
+   * @param options The options parameters.
+   */
+  async beginCreateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: TdeCertificate,
+    options?: ManagedInstanceTdeCertificatesCreateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCreate(
+      resourceGroupName,
+      managedInstanceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

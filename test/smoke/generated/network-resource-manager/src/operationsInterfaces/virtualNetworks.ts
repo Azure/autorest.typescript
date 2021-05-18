@@ -67,13 +67,24 @@ export interface VirtualNetworks {
    * @param virtualNetworkName The name of the virtual network.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    options?: VirtualNetworksDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified virtual network by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -92,7 +103,7 @@ export interface VirtualNetworks {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,
@@ -103,6 +114,19 @@ export interface VirtualNetworks {
       VirtualNetworksCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a virtual network in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param parameters Parameters supplied to the create or update virtual network operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    parameters: VirtualNetwork,
+    options?: VirtualNetworksCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworksCreateOrUpdateResponse>;
   /**
    * Updates a virtual network tags.
    * @param resourceGroupName The name of the resource group.

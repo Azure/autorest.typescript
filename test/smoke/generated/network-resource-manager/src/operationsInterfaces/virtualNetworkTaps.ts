@@ -51,13 +51,24 @@ export interface VirtualNetworkTaps {
    * @param tapName The name of the virtual network tap.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     tapName: string,
     options?: VirtualNetworkTapsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified virtual network tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    options?: VirtualNetworkTapsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets information about the specified virtual network tap.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface VirtualNetworkTaps {
    * @param parameters Parameters supplied to the create or update virtual network tap operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,
@@ -87,6 +98,19 @@ export interface VirtualNetworkTaps {
       VirtualNetworkTapsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a Virtual Network Tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param parameters Parameters supplied to the create or update virtual network tap operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    parameters: VirtualNetworkTap,
+    options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkTapsCreateOrUpdateResponse>;
   /**
    * Updates an VirtualNetworkTap tags.
    * @param resourceGroupName The name of the resource group.

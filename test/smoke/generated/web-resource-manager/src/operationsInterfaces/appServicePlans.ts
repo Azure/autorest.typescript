@@ -154,7 +154,7 @@ export interface AppServicePlans {
    * @param appServicePlan Details of the App Service plan.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,
@@ -165,6 +165,19 @@ export interface AppServicePlans {
       AppServicePlansCreateOrUpdateResponse
     >
   >;
+  /**
+   * Description for Creates or updates an App Service Plan.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service plan.
+   * @param appServicePlan Details of the App Service plan.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    appServicePlan: AppServicePlan,
+    options?: AppServicePlansCreateOrUpdateOptionalParams
+  ): Promise<AppServicePlansCreateOrUpdateResponse>;
   /**
    * Description for Delete an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

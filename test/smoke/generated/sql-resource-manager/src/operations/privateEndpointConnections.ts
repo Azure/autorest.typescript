@@ -149,7 +149,7 @@ export class PrivateEndpointConnectionsImpl
    * @param parameters A private endpoint connection
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
@@ -186,6 +186,32 @@ export class PrivateEndpointConnectionsImpl
   }
 
   /**
+   * Approve or reject a private endpoint connection with a given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param privateEndpointConnectionName
+   * @param parameters A private endpoint connection
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    privateEndpointConnectionName: string,
+    parameters: PrivateEndpointConnection,
+    options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams
+  ): Promise<PrivateEndpointConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      privateEndpointConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a private endpoint connection with a given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -193,7 +219,7 @@ export class PrivateEndpointConnectionsImpl
    * @param privateEndpointConnectionName
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     privateEndpointConnectionName: string,
@@ -222,6 +248,29 @@ export class PrivateEndpointConnectionsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a private endpoint connection with a given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param privateEndpointConnectionName
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    privateEndpointConnectionName: string,
+    options?: PrivateEndpointConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      privateEndpointConnectionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -116,7 +116,7 @@ export interface Domains {
    * @param domain Domain registration information.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     domainName: string,
     domain: Domain,
@@ -127,6 +127,19 @@ export interface Domains {
       DomainsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Description for Creates or updates a domain.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param domainName Name of the domain.
+   * @param domain Domain registration information.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    domainName: string,
+    domain: Domain,
+    options?: DomainsCreateOrUpdateOptionalParams
+  ): Promise<DomainsCreateOrUpdateResponse>;
   /**
    * Description for Delete a domain.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

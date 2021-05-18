@@ -51,13 +51,24 @@ export interface LoadBalancers {
    * @param loadBalancerName The name of the load balancer.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     options?: LoadBalancersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified load balancer.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    options?: LoadBalancersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified load balancer.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface LoadBalancers {
    * @param parameters Parameters supplied to the create or update load balancer operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,
@@ -87,6 +98,19 @@ export interface LoadBalancers {
       LoadBalancersCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a load balancer.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param parameters Parameters supplied to the create or update load balancer operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    parameters: LoadBalancer,
+    options?: LoadBalancersCreateOrUpdateOptionalParams
+  ): Promise<LoadBalancersCreateOrUpdateResponse>;
   /**
    * Updates a load balancer tags.
    * @param resourceGroupName The name of the resource group.

@@ -122,7 +122,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  async revalidate(
+  async beginRevalidate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -151,6 +151,29 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       revalidateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  async beginRevalidateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRevalidate(
+      resourceGroupName,
+      serverName,
+      encryptionProtectorName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -211,7 +234,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -245,6 +268,32 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param parameters The requested encryption protector resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    parameters: EncryptionProtector,
+    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
+  ): Promise<EncryptionProtectorsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      encryptionProtectorName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

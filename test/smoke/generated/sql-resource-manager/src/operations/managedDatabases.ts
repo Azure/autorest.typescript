@@ -252,7 +252,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -289,6 +289,32 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   }
 
   /**
+   * Creates a new database or updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: ManagedDatabase,
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams
+  ): Promise<ManagedDatabasesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -296,7 +322,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param databaseName The name of the database.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -328,6 +354,29 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   }
 
   /**
+   * Deletes a managed database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    options?: ManagedDatabasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -336,7 +385,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -373,6 +422,32 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   }
 
   /**
+   * Updates an existing database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The requested database resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: ManagedDatabaseUpdate,
+    options?: ManagedDatabasesUpdateOptionalParams
+  ): Promise<ManagedDatabasesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a list of inaccessible managed databases in a managed instance
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -404,7 +479,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
    * @param parameters The definition for completing the restore of this managed database.
    * @param options The options parameters.
    */
-  async completeRestore(
+  async beginCompleteRestore(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -435,6 +510,32 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       completeRestoreOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Completes the restore operation on a managed database.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param parameters The definition for completing the restore of this managed database.
+   * @param options The options parameters.
+   */
+  async beginCompleteRestoreAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    parameters: CompleteDatabaseRestoreDefinition,
+    options?: ManagedDatabasesCompleteRestoreOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCompleteRestore(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

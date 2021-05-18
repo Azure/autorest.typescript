@@ -91,7 +91,7 @@ export interface StorageAccounts {
    * @param parameters The parameters to provide for the created account.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
@@ -102,6 +102,25 @@ export interface StorageAccounts {
       StorageAccountsCreateResponse
     >
   >;
+  /**
+   * Asynchronously creates a new storage account with the specified parameters. If an account is already
+   * created and a subsequent create request is issued with different properties, the account properties
+   * will be updated. If an account is already created and a subsequent create or update request is
+   * issued with the exact same set of properties, the request will succeed.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param parameters The parameters to provide for the created account.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    parameters: StorageAccountCreateParameters,
+    options?: StorageAccountsCreateOptionalParams
+  ): Promise<StorageAccountsCreateResponse>;
   /**
    * Deletes a storage account in Microsoft Azure.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -228,12 +247,49 @@ export interface StorageAccounts {
    *                    only.
    * @param options The options parameters.
    */
-  failover(
+  beginFailover(
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Failover request can be triggered for a storage account in case of availability issues. The failover
+   * occurs from the storage account's primary cluster to secondary cluster for RA-GRS accounts. The
+   * secondary cluster will become primary after failover.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param options The options parameters.
+   */
+  beginFailoverAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    options?: StorageAccountsFailoverOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Restore blobs in the specified blob ranges
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param parameters The parameters to provide for restore blob ranges.
+   * @param options The options parameters.
+   */
+  beginRestoreBlobRanges(
+    resourceGroupName: string,
+    accountName: string,
+    parameters: BlobRestoreParameters,
+    options?: StorageAccountsRestoreBlobRangesOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
+      StorageAccountsRestoreBlobRangesResponse
+    >
   >;
   /**
    * Restore blobs in the specified blob ranges
@@ -245,17 +301,12 @@ export interface StorageAccounts {
    * @param parameters The parameters to provide for restore blob ranges.
    * @param options The options parameters.
    */
-  restoreBlobRanges(
+  beginRestoreBlobRangesAndWait(
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,
     options?: StorageAccountsRestoreBlobRangesOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
-      StorageAccountsRestoreBlobRangesResponse
-    >
-  >;
+  ): Promise<StorageAccountsRestoreBlobRangesResponse>;
   /**
    * Revoke user delegation keys.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is

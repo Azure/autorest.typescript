@@ -153,7 +153,7 @@ export class ServerAzureADAdministratorsImpl
    *                   Administrator.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -190,6 +190,33 @@ export class ServerAzureADAdministratorsImpl
   }
 
   /**
+   * Creates or updates an existing Azure Active Directory administrator.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param administratorName
+   * @param parameters The required parameters for creating or updating an Active Directory
+   *                   Administrator.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    administratorName: AdministratorName,
+    parameters: ServerAzureADAdministrator,
+    options?: ServerAzureADAdministratorsCreateOrUpdateOptionalParams
+  ): Promise<ServerAzureADAdministratorsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      administratorName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes the Azure Active Directory administrator with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -197,7 +224,7 @@ export class ServerAzureADAdministratorsImpl
    * @param administratorName The name of server active directory administrator.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     administratorName: AdministratorName,
@@ -226,6 +253,29 @@ export class ServerAzureADAdministratorsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes the Azure Active Directory administrator with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param administratorName The name of server active directory administrator.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    administratorName: AdministratorName,
+    options?: ServerAzureADAdministratorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      administratorName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -258,7 +308,7 @@ export class ServerAzureADAdministratorsImpl
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  async disableAzureADOnlyAuthentication(
+  async beginDisableAzureADOnlyAuthentication(
     resourceGroupName: string,
     serverName: string,
     options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
@@ -290,6 +340,28 @@ export class ServerAzureADAdministratorsImpl
       disableAzureADOnlyAuthenticationOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Disables Azure Active Directory only authentication on logical Server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  async beginDisableAzureADOnlyAuthenticationAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationOptionalParams
+  ): Promise<
+    ServerAzureADAdministratorsDisableAzureADOnlyAuthenticationResponse
+  > {
+    const poller = await this.beginDisableAzureADOnlyAuthentication(
+      resourceGroupName,
+      serverName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

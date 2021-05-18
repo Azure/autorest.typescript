@@ -151,7 +151,7 @@ export class GalleriesImpl implements Galleries {
    * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     gallery: Gallery,
@@ -186,6 +186,29 @@ export class GalleriesImpl implements Galleries {
   }
 
   /**
+   * Create or update a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
+   *                    numbers with dots and periods allowed in the middle. The maximum length is 80 characters.
+   * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    gallery: Gallery,
+    options?: GalleriesCreateOrUpdateOptionalParams
+  ): Promise<GalleriesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      galleryName,
+      gallery,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
@@ -193,7 +216,7 @@ export class GalleriesImpl implements Galleries {
    * @param gallery Parameters supplied to the update Shared Image Gallery operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     gallery: GalleryUpdate,
@@ -228,6 +251,29 @@ export class GalleriesImpl implements Galleries {
   }
 
   /**
+   * Update a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
+   *                    numbers with dots and periods allowed in the middle. The maximum length is 80 characters.
+   * @param gallery Parameters supplied to the update Shared Image Gallery operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    gallery: GalleryUpdate,
+    options?: GalleriesUpdateOptionalParams
+  ): Promise<GalleriesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      galleryName,
+      gallery,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves information about a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery.
@@ -255,7 +301,7 @@ export class GalleriesImpl implements Galleries {
    * @param galleryName The name of the Shared Image Gallery to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     options?: GalleriesDeleteOptionalParams
@@ -282,6 +328,25 @@ export class GalleriesImpl implements Galleries {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a Shared Image Gallery.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    options?: GalleriesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      galleryName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

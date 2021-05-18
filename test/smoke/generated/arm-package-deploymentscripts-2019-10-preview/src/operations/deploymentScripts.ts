@@ -153,7 +153,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param deploymentScript Deployment script supplied to the operation.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
@@ -185,6 +185,28 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       createOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates a deployment script.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param scriptName Name of the deployment script.
+   * @param deploymentScript Deployment script supplied to the operation.
+   * @param options The options parameters.
+   */
+  async beginCreateAndWait(
+    resourceGroupName: string,
+    scriptName: string,
+    deploymentScript: DeploymentScriptUnion,
+    options?: DeploymentScriptsCreateOptionalParams
+  ): Promise<DeploymentScriptsCreateResponse> {
+    const poller = await this.beginCreate(
+      resourceGroupName,
+      scriptName,
+      deploymentScript,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

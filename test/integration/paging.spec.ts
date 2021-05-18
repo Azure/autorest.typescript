@@ -305,7 +305,9 @@ describe("Integration tests for Paging", () => {
 
   describe("#getMultiplePagesLRO", () => {
     it("succeeds and gets 10 pages", async () => {
-      const iter = client.paging.listMultiplePagesLRO();
+      const iter = client.paging.beginListMultiplePagesLROAndWait({
+        updateIntervalInMs: 0
+      });
       let index = 0;
       let items: Product[] = [];
       for await (const item of iter) {
@@ -314,7 +316,7 @@ describe("Integration tests for Paging", () => {
         items.push(item);
       }
       assert.equal(items.length, 10);
-    }).timeout(5000);
+    });
   });
 
   describe("#getMultiplePagesFragmentNextLink", () => {

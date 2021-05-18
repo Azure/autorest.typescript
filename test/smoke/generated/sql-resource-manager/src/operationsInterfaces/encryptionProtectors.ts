@@ -45,7 +45,7 @@ export interface EncryptionProtectors {
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  revalidate(
+  beginRevalidate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -53,6 +53,20 @@ export interface EncryptionProtectors {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  beginRevalidateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: EncryptionProtectorsRevalidateOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a server encryption protector.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -76,7 +90,7 @@ export interface EncryptionProtectors {
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -88,4 +102,20 @@ export interface EncryptionProtectors {
       EncryptionProtectorsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Updates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param parameters The requested encryption protector resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    parameters: EncryptionProtector,
+    options?: EncryptionProtectorsCreateOrUpdateOptionalParams
+  ): Promise<EncryptionProtectorsCreateOrUpdateResponse>;
 }

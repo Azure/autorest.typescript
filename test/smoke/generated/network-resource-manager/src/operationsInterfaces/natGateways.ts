@@ -51,13 +51,24 @@ export interface NatGateways {
    * @param natGatewayName The name of the nat gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     natGatewayName: string,
     options?: NatGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified nat gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param natGatewayName The name of the nat gateway.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    natGatewayName: string,
+    options?: NatGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified nat gateway in a specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface NatGateways {
    * @param parameters Parameters supplied to the create or update nat gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     natGatewayName: string,
     parameters: NatGateway,
@@ -87,6 +98,19 @@ export interface NatGateways {
       NatGatewaysCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a nat gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param natGatewayName The name of the nat gateway.
+   * @param parameters Parameters supplied to the create or update nat gateway operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    natGatewayName: string,
+    parameters: NatGateway,
+    options?: NatGatewaysCreateOrUpdateOptionalParams
+  ): Promise<NatGatewaysCreateOrUpdateResponse>;
   /**
    * Updates nat gateway tags.
    * @param resourceGroupName The name of the resource group.

@@ -156,7 +156,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: Snapshot,
@@ -191,6 +191,30 @@ export class SnapshotsImpl implements Snapshots {
   }
 
   /**
+   * Creates or updates a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param snapshot Snapshot object supplied in the body of the Put disk operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    snapshot: Snapshot,
+    options?: SnapshotsCreateOrUpdateOptionalParams
+  ): Promise<SnapshotsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      snapshotName,
+      snapshot,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates (patches) a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -199,7 +223,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     snapshotName: string,
     snapshot: SnapshotUpdate,
@@ -234,6 +258,30 @@ export class SnapshotsImpl implements Snapshots {
   }
 
   /**
+   * Updates (patches) a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param snapshot Snapshot object supplied in the body of the Patch snapshot operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    snapshot: SnapshotUpdate,
+    options?: SnapshotsUpdateOptionalParams
+  ): Promise<SnapshotsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      snapshotName,
+      snapshot,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets information about a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -265,7 +313,7 @@ export class SnapshotsImpl implements Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsDeleteOptionalParams
@@ -292,6 +340,27 @@ export class SnapshotsImpl implements Snapshots {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    options?: SnapshotsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      snapshotName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -338,7 +407,7 @@ export class SnapshotsImpl implements Snapshots {
    * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
    * @param options The options parameters.
    */
-  async grantAccess(
+  async beginGrantAccess(
     resourceGroupName: string,
     snapshotName: string,
     grantAccessData: GrantAccessData,
@@ -374,6 +443,30 @@ export class SnapshotsImpl implements Snapshots {
   }
 
   /**
+   * Grants access to a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param grantAccessData Access data object supplied in the body of the get snapshot access operation.
+   * @param options The options parameters.
+   */
+  async beginGrantAccessAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    grantAccessData: GrantAccessData,
+    options?: SnapshotsGrantAccessOptionalParams
+  ): Promise<SnapshotsGrantAccessResponse> {
+    const poller = await this.beginGrantAccess(
+      resourceGroupName,
+      snapshotName,
+      grantAccessData,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
@@ -381,7 +474,7 @@ export class SnapshotsImpl implements Snapshots {
    *                     length is 80 characters.
    * @param options The options parameters.
    */
-  async revokeAccess(
+  async beginRevokeAccess(
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsRevokeAccessOptionalParams
@@ -409,6 +502,27 @@ export class SnapshotsImpl implements Snapshots {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Revokes access to a snapshot.
+   * @param resourceGroupName The name of the resource group.
+   * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
+   *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
+   *                     length is 80 characters.
+   * @param options The options parameters.
+   */
+  async beginRevokeAccessAndWait(
+    resourceGroupName: string,
+    snapshotName: string,
+    options?: SnapshotsRevokeAccessOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRevokeAccess(
+      resourceGroupName,
+      snapshotName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -146,7 +146,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param publicIpPrefixName The name of the PublicIpPrefix.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     publicIpPrefixName: string,
     options?: PublicIPPrefixesDeleteOptionalParams
@@ -174,6 +174,25 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified public IP prefix.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpPrefixName The name of the PublicIpPrefix.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    publicIpPrefixName: string,
+    options?: PublicIPPrefixesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      publicIpPrefixName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -205,7 +224,7 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
    * @param parameters Parameters supplied to the create or update public IP prefix operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,
@@ -238,6 +257,28 @@ export class PublicIPPrefixesImpl implements PublicIPPrefixes {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Creates or updates a static or dynamic public IP prefix.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpPrefixName The name of the public IP prefix.
+   * @param parameters Parameters supplied to the create or update public IP prefix operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    publicIpPrefixName: string,
+    parameters: PublicIPPrefix,
+    options?: PublicIPPrefixesCreateOrUpdateOptionalParams
+  ): Promise<PublicIPPrefixesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      publicIpPrefixName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

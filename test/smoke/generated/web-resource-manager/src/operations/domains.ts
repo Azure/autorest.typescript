@@ -408,7 +408,7 @@ export class DomainsImpl implements Domains {
    * @param domain Domain registration information.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     domainName: string,
     domain: Domain,
@@ -440,6 +440,28 @@ export class DomainsImpl implements Domains {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Creates or updates a domain.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param domainName Name of the domain.
+   * @param domain Domain registration information.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    domainName: string,
+    domain: Domain,
+    options?: DomainsCreateOrUpdateOptionalParams
+  ): Promise<DomainsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      domainName,
+      domain,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

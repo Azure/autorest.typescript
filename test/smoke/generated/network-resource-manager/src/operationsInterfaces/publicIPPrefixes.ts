@@ -51,13 +51,24 @@ export interface PublicIPPrefixes {
    * @param publicIpPrefixName The name of the PublicIpPrefix.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     publicIpPrefixName: string,
     options?: PublicIPPrefixesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified public IP prefix.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpPrefixName The name of the PublicIpPrefix.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    publicIpPrefixName: string,
+    options?: PublicIPPrefixesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified public IP prefix in a specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface PublicIPPrefixes {
    * @param parameters Parameters supplied to the create or update public IP prefix operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpPrefixName: string,
     parameters: PublicIPPrefix,
@@ -87,6 +98,19 @@ export interface PublicIPPrefixes {
       PublicIPPrefixesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a static or dynamic public IP prefix.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpPrefixName The name of the public IP prefix.
+   * @param parameters Parameters supplied to the create or update public IP prefix operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    publicIpPrefixName: string,
+    parameters: PublicIPPrefix,
+    options?: PublicIPPrefixesCreateOrUpdateOptionalParams
+  ): Promise<PublicIPPrefixesCreateOrUpdateResponse>;
   /**
    * Updates public IP prefix tags.
    * @param resourceGroupName The name of the resource group.

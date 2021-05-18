@@ -27,6 +27,7 @@ import {
   preparePageableOperations,
   writeAsyncIterators
 } from "./utils/pagingOperations";
+import { calculateMethodName } from "./utils/operationsUtils";
 import { OptionsBag } from "../utils/optionsBag";
 
 /**
@@ -214,13 +215,33 @@ export function writeOperations(
       )}`;
 
       operationGroupInterface.addMethod({
-        name,
+        name: calculateMethodName(operation),
         parameters: baseMethodParameters,
         returnType,
         docs: [
           generateOperationJSDoc(baseMethodParameters, operation.description)
         ]
       });
+      /**
+       * Create a simple method that blocks and waits for the result
+       */
+      if (operation.isLRO && operation.pagination === undefined) {
+        const responseName = getOperationResponseType(
+          operation,
+          importedModels,
+          modelNames,
+          optionsBag
+        );
+        const methodName = calculateMethodName(operation);
+        operationGroupInterface.addMethod({
+          name: `${methodName}AndWait`,
+          parameters: baseMethodParameters,
+          returnType: `Promise<${responseName}>`,
+          docs: [
+            generateOperationJSDoc(baseMethodParameters, operation.description)
+          ]
+        });
+      }
     }
   });
 }

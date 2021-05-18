@@ -65,7 +65,7 @@ export interface VpnServerConfigurations {
    *                                         VpnServerConfiguration.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     vpnServerConfigurationParameters: VpnServerConfiguration,
@@ -76,6 +76,21 @@ export interface VpnServerConfigurations {
       VpnServerConfigurationsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing
+   * VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being created or updated.
+   * @param vpnServerConfigurationParameters Parameters supplied to create or update
+   *                                         VpnServerConfiguration.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    vpnServerConfigurationParameters: VpnServerConfiguration,
+    options?: VpnServerConfigurationsCreateOrUpdateOptionalParams
+  ): Promise<VpnServerConfigurationsCreateOrUpdateResponse>;
   /**
    * Updates VpnServerConfiguration tags.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
@@ -95,11 +110,22 @@ export interface VpnServerConfigurations {
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: VpnServerConfigurationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a VpnServerConfiguration.
+   * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vpnServerConfigurationName: string,
+    options?: VpnServerConfigurationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -224,7 +224,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param virtualNetworkName The name of the virtual network.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksDeleteOptionalParams
@@ -252,6 +252,25 @@ export class VirtualNetworksImpl implements VirtualNetworks {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    options?: VirtualNetworksDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualNetworkName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -283,7 +302,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     parameters: VirtualNetwork,
@@ -316,6 +335,28 @@ export class VirtualNetworksImpl implements VirtualNetworks {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a virtual network in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param parameters Parameters supplied to the create or update virtual network operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    parameters: VirtualNetwork,
+    options?: VirtualNetworksCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworksCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualNetworkName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

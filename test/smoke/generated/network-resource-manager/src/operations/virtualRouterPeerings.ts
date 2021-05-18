@@ -119,7 +119,7 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -149,6 +149,28 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified peering from a Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    options?: VirtualRouterPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualRouterName,
+      peeringName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -184,7 +206,7 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
    * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -219,6 +241,31 @@ export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Virtual Router Peering.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the Virtual Router Peering.
+   * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    parameters: VirtualRouterPeering,
+    options?: VirtualRouterPeeringsCreateOrUpdateOptionalParams
+  ): Promise<VirtualRouterPeeringsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualRouterName,
+      peeringName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

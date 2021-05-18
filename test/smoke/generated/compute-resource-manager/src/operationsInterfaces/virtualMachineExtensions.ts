@@ -32,7 +32,7 @@ export interface VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -45,6 +45,21 @@ export interface VirtualMachineExtensions {
     >
   >;
   /**
+   * The operation to create or update the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be created or updated.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtension,
+    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
+  ): Promise<VirtualMachineExtensionsCreateOrUpdateResponse>;
+  /**
    * The operation to update the extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the extension should be updated.
@@ -52,7 +67,7 @@ export interface VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -65,13 +80,28 @@ export interface VirtualMachineExtensions {
     >
   >;
   /**
+   * The operation to update the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be updated.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtensionUpdate,
+    options?: VirtualMachineExtensionsUpdateOptionalParams
+  ): Promise<VirtualMachineExtensionsUpdateResponse>;
+  /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the extension should be deleted.
    * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -79,6 +109,19 @@ export interface VirtualMachineExtensions {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * The operation to delete the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be deleted.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    options?: VirtualMachineExtensionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.

@@ -208,7 +208,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param virtualClusterName The name of the virtual cluster.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualClusterName: string,
     options?: VirtualClustersDeleteOptionalParams
@@ -238,6 +238,26 @@ export class VirtualClustersImpl implements VirtualClusters {
   }
 
   /**
+   * Deletes a virtual cluster.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param virtualClusterName The name of the virtual cluster.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualClusterName: string,
+    options?: VirtualClustersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualClusterName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a virtual cluster.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -245,7 +265,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
@@ -277,6 +297,29 @@ export class VirtualClustersImpl implements VirtualClusters {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a virtual cluster.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param virtualClusterName The name of the virtual cluster.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    virtualClusterName: string,
+    parameters: VirtualClusterUpdate,
+    options?: VirtualClustersUpdateOptionalParams
+  ): Promise<VirtualClustersUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      virtualClusterName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

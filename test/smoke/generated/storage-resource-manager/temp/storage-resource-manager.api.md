@@ -1819,10 +1819,14 @@ export interface StorageAccountRegenerateKeyParameters {
 
 // @public
 export interface StorageAccounts {
+    beginCreate(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
+    beginCreateAndWait(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<StorageAccountsCreateResponse>;
+    beginFailover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
+    beginFailoverAndWait(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<coreHttp.RestResponse>;
+    beginRestoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
+    beginRestoreBlobRangesAndWait(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<StorageAccountsRestoreBlobRangesResponse>;
     checkNameAvailability(accountName: StorageAccountCheckNameAvailabilityParameters, options?: StorageAccountsCheckNameAvailabilityOptionalParams): Promise<StorageAccountsCheckNameAvailabilityResponse>;
-    create(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
     delete(resourceGroupName: string, accountName: string, options?: StorageAccountsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    failover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
     getProperties(resourceGroupName: string, accountName: string, options?: StorageAccountsGetPropertiesOptionalParams): Promise<StorageAccountsGetPropertiesResponse>;
     list(options?: StorageAccountsListOptionalParams): PagedAsyncIterableIterator<StorageAccount>;
     listAccountSAS(resourceGroupName: string, accountName: string, parameters: AccountSasParameters, options?: StorageAccountsListAccountSASOptionalParams): Promise<StorageAccountsListAccountSASResponse>;
@@ -1830,7 +1834,6 @@ export interface StorageAccounts {
     listKeys(resourceGroupName: string, accountName: string, options?: StorageAccountsListKeysOptionalParams): Promise<StorageAccountsListKeysResponse>;
     listServiceSAS(resourceGroupName: string, accountName: string, parameters: ServiceSasParameters, options?: StorageAccountsListServiceSASOptionalParams): Promise<StorageAccountsListServiceSASResponse>;
     regenerateKey(resourceGroupName: string, accountName: string, regenerateKey: StorageAccountRegenerateKeyParameters, options?: StorageAccountsRegenerateKeyOptionalParams): Promise<StorageAccountsRegenerateKeyResponse>;
-    restoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
     revokeUserDelegationKeys(resourceGroupName: string, accountName: string, options?: StorageAccountsRevokeUserDelegationKeysOptionalParams): Promise<coreHttp.RestResponse>;
     update(resourceGroupName: string, accountName: string, parameters: StorageAccountUpdateParameters, options?: StorageAccountsUpdateOptionalParams): Promise<StorageAccountsUpdateResponse>;
 }

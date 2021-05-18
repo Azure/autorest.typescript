@@ -66,7 +66,7 @@ export interface BackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -91,7 +91,25 @@ export interface BackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  update(
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    policyName: ShortTermRetentionPolicyName,
+    parameters: BackupShortTermRetentionPolicy,
+    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  ): Promise<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>;
+  /**
+   * Updates a database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -104,4 +122,22 @@ export interface BackupShortTermRetentionPolicies {
       BackupShortTermRetentionPoliciesUpdateResponse
     >
   >;
+  /**
+   * Updates a database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    policyName: ShortTermRetentionPolicyName,
+    parameters: BackupShortTermRetentionPolicy,
+    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
+  ): Promise<BackupShortTermRetentionPoliciesUpdateResponse>;
 }

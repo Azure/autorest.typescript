@@ -7,8 +7,7 @@
  */
 
 import { BaseResult, FinalStateVia, LROResult } from "./models";
-import { terminalStates } from "./constants";
-import { getResponseStatus } from "./requestUtils";
+import { getResponseStatus, isAzureAsyncPollingDone } from "./requestUtils";
 
 export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   pollOnce: (pollingURL: string) => Promise<TResult>,
@@ -38,10 +37,10 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   }
   return async (pollingURL: string): Promise<LROResult<TResult>> => {
     const response = await pollOnce(pollingURL);
-    const status = getResponseStatus(response._response);
+    const status = getResponseStatus(response);
     const result = {
       result: response,
-      done: terminalStates.includes(status)
+      done: isAzureAsyncPollingDone(response)
     };
     if (status === "succeeded" && resourceLocation !== undefined) {
       return sendFinalRequest(result);

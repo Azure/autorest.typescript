@@ -42,7 +42,7 @@ export interface NetworkInterfaceTapConfigurations {
    * @param tapConfigurationName The name of the tap configuration.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -50,6 +50,19 @@ export interface NetworkInterfaceTapConfigurations {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified tap configuration from the NetworkInterface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param tapConfigurationName The name of the tap configuration.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    tapConfigurationName: string,
+    options?: NetworkInterfaceTapConfigurationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get the specified tap configuration on a network interface.
    * @param resourceGroupName The name of the resource group.
@@ -72,7 +85,7 @@ export interface NetworkInterfaceTapConfigurations {
    *                                   operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -86,4 +99,20 @@ export interface NetworkInterfaceTapConfigurations {
       NetworkInterfaceTapConfigurationsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a Tap configuration in the specified NetworkInterface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param tapConfigurationName The name of the tap configuration.
+   * @param tapConfigurationParameters Parameters supplied to the create or update tap configuration
+   *                                   operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    tapConfigurationName: string,
+    tapConfigurationParameters: NetworkInterfaceTapConfiguration,
+    options?: NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
+  ): Promise<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse>;
 }

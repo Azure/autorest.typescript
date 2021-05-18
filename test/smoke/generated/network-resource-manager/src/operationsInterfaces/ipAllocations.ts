@@ -51,13 +51,24 @@ export interface IpAllocations {
    * @param ipAllocationName The name of the IpAllocation.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     ipAllocationName: string,
     options?: IpAllocationsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified IpAllocation.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipAllocationName The name of the IpAllocation.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    ipAllocationName: string,
+    options?: IpAllocationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified IpAllocation by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface IpAllocations {
    * @param parameters Parameters supplied to the create or update virtual network operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     ipAllocationName: string,
     parameters: IpAllocation,
@@ -87,6 +98,19 @@ export interface IpAllocations {
       IpAllocationsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an IpAllocation in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipAllocationName The name of the IpAllocation.
+   * @param parameters Parameters supplied to the create or update virtual network operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ipAllocationName: string,
+    parameters: IpAllocation,
+    options?: IpAllocationsCreateOrUpdateOptionalParams
+  ): Promise<IpAllocationsCreateOrUpdateResponse>;
   /**
    * Updates a IpAllocation tags.
    * @param resourceGroupName The name of the resource group.

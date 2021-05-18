@@ -84,7 +84,7 @@ export interface Vaults {
    * @param parameters Parameters to create or update the vault
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
@@ -95,6 +95,19 @@ export interface Vaults {
       VaultsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Create or update a key vault in the specified subscription.
+   * @param resourceGroupName The name of the Resource Group to which the server belongs.
+   * @param vaultName Name of the vault
+   * @param parameters Parameters to create or update the vault
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vaultName: string,
+    parameters: VaultCreateOrUpdateParameters,
+    options?: VaultsCreateOrUpdateOptionalParams
+  ): Promise<VaultsCreateOrUpdateResponse>;
   /**
    * Update a key vault in the specified subscription.
    * @param resourceGroupName The name of the Resource Group to which the server belongs.
@@ -162,13 +175,24 @@ export interface Vaults {
    * @param location The location of the soft-deleted vault.
    * @param options The options parameters.
    */
-  purgeDeleted(
+  beginPurgeDeleted(
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.
+   * @param vaultName The name of the soft-deleted vault.
+   * @param location The location of the soft-deleted vault.
+   * @param options The options parameters.
+   */
+  beginPurgeDeletedAndWait(
+    vaultName: string,
+    location: string,
+    options?: VaultsPurgeDeletedOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Checks that the vault name is valid and is not already in use.
    * @param vaultName The name of the vault.

@@ -51,13 +51,24 @@ export interface SecurityPartnerProviders {
    * @param securityPartnerProviderName The name of the Security Partner Provider.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     options?: SecurityPartnerProvidersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified Security Partner Provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param securityPartnerProviderName The name of the Security Partner Provider.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    securityPartnerProviderName: string,
+    options?: SecurityPartnerProvidersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified Security Partner Provider.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface SecurityPartnerProviders {
    * @param parameters Parameters supplied to the create or update Security Partner Provider operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     securityPartnerProviderName: string,
     parameters: SecurityPartnerProvider,
@@ -87,6 +98,19 @@ export interface SecurityPartnerProviders {
       SecurityPartnerProvidersCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Security Partner Provider.
+   * @param resourceGroupName The name of the resource group.
+   * @param securityPartnerProviderName The name of the Security Partner Provider.
+   * @param parameters Parameters supplied to the create or update Security Partner Provider operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    securityPartnerProviderName: string,
+    parameters: SecurityPartnerProvider,
+    options?: SecurityPartnerProvidersCreateOrUpdateOptionalParams
+  ): Promise<SecurityPartnerProvidersCreateOrUpdateResponse>;
   /**
    * Updates tags of a Security Partner Provider resource.
    * @param resourceGroupName The name of the resource group.

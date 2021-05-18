@@ -757,12 +757,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#create:member(1)",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreate:member(1)",
               "docComment": "/**\n * Creates a deployment script.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param deploymentScript - Deployment script supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "create(resourceGroupName: "
+                  "text": "beginCreate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -884,7 +884,111 @@
                   }
                 }
               ],
-              "name": "create"
+              "name": "beginCreate"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreateAndWait:member(1)",
+              "docComment": "/**\n * Creates a deployment script.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param deploymentScript - Deployment script supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", scriptName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", deploymentScript: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsCreateOptionalParams",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsCreateResponse",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "scriptName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "deploymentScript",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateAndWait"
             },
             {
               "kind": "MethodSignature",

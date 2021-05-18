@@ -62,7 +62,7 @@ export interface ServerKeys {
    * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     keyName: string,
@@ -75,6 +75,25 @@ export interface ServerKeys {
     >
   >;
   /**
+   * Creates or updates a server key.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param keyName The name of the server key to be operated on (updated or created). The key name is
+   *                required to be in the format of 'vault_key_version'. For example, if the keyId is
+   *                https://YourVaultName.vault.azure.net/keys/YourKeyName/01234567890123456789012345678901, then the
+   *                server key name should be formatted as: YourVaultName_YourKeyName_01234567890123456789012345678901
+   * @param parameters The requested server key resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    keyName: string,
+    parameters: ServerKey,
+    options?: ServerKeysCreateOrUpdateOptionalParams
+  ): Promise<ServerKeysCreateOrUpdateResponse>;
+  /**
    * Deletes the server key with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -82,7 +101,7 @@ export interface ServerKeys {
    * @param keyName The name of the server key to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     keyName: string,
@@ -90,4 +109,18 @@ export interface ServerKeys {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the server key with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param keyName The name of the server key to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    keyName: string,
+    options?: ServerKeysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

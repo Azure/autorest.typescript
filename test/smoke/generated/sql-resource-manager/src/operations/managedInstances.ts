@@ -294,7 +294,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstance,
@@ -329,13 +329,36 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
+   * Creates or updates a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstance,
+    options?: ManagedInstancesCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstancesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstancesDeleteOptionalParams
@@ -365,6 +388,26 @@ export class ManagedInstancesImpl implements ManagedInstances {
   }
 
   /**
+   * Deletes a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      managedInstanceName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -372,7 +415,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
@@ -404,6 +447,29 @@ export class ManagedInstancesImpl implements ManagedInstances {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstanceUpdate,
+    options?: ManagedInstancesUpdateOptionalParams
+  ): Promise<ManagedInstancesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      managedInstanceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -147,7 +147,7 @@ export class ApplicationSecurityGroupsImpl
    * @param applicationSecurityGroupName The name of the application security group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     options?: ApplicationSecurityGroupsDeleteOptionalParams
@@ -175,6 +175,25 @@ export class ApplicationSecurityGroupsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified application security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationSecurityGroupName The name of the application security group.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationSecurityGroupName: string,
+    options?: ApplicationSecurityGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      applicationSecurityGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -206,7 +225,7 @@ export class ApplicationSecurityGroupsImpl
    * @param parameters Parameters supplied to the create or update ApplicationSecurityGroup operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationSecurityGroupName: string,
     parameters: ApplicationSecurityGroup,
@@ -239,6 +258,28 @@ export class ApplicationSecurityGroupsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an application security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationSecurityGroupName The name of the application security group.
+   * @param parameters Parameters supplied to the create or update ApplicationSecurityGroup operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationSecurityGroupName: string,
+    parameters: ApplicationSecurityGroup,
+    options?: ApplicationSecurityGroupsCreateOrUpdateOptionalParams
+  ): Promise<ApplicationSecurityGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      applicationSecurityGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -61,13 +61,24 @@ export interface ExpressRouteCircuits {
    * @param circuitName The name of the express route circuit.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     options?: ExpressRouteCircuitsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    options?: ExpressRouteCircuitsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets information about the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -86,7 +97,7 @@ export interface ExpressRouteCircuits {
    * @param parameters Parameters supplied to the create or update express route circuit operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     parameters: ExpressRouteCircuit,
@@ -97,6 +108,19 @@ export interface ExpressRouteCircuits {
       ExpressRouteCircuitsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the circuit.
+   * @param parameters Parameters supplied to the create or update express route circuit operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    parameters: ExpressRouteCircuit,
+    options?: ExpressRouteCircuitsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitsCreateOrUpdateResponse>;
   /**
    * Updates an express route circuit tags.
    * @param resourceGroupName The name of the resource group.
@@ -119,7 +143,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listArpTable(
+  beginListArpTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -132,6 +156,22 @@ export interface ExpressRouteCircuits {
     >
   >;
   /**
+   * Gets the currently advertised ARP table associated with the express route circuit in a resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListArpTableAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListArpTableOptionalParams
+  ): Promise<ExpressRouteCircuitsListArpTableResponse>;
+  /**
    * Gets the currently advertised routes table associated with the express route circuit in a resource
    * group.
    * @param resourceGroupName The name of the resource group.
@@ -140,7 +180,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTable(
+  beginListRoutesTable(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -153,6 +193,22 @@ export interface ExpressRouteCircuits {
     >
   >;
   /**
+   * Gets the currently advertised routes table associated with the express route circuit in a resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListRoutesTableAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListRoutesTableOptionalParams
+  ): Promise<ExpressRouteCircuitsListRoutesTableResponse>;
+  /**
    * Gets the currently advertised routes table summary associated with the express route circuit in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
@@ -161,7 +217,7 @@ export interface ExpressRouteCircuits {
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  listRoutesTableSummary(
+  beginListRoutesTableSummary(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -173,6 +229,22 @@ export interface ExpressRouteCircuits {
       ExpressRouteCircuitsListRoutesTableSummaryResponse
     >
   >;
+  /**
+   * Gets the currently advertised routes table summary associated with the express route circuit in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  beginListRoutesTableSummaryAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCircuitsListRoutesTableSummaryOptionalParams
+  ): Promise<ExpressRouteCircuitsListRoutesTableSummaryResponse>;
   /**
    * Gets all the stats from an express route circuit in a resource group.
    * @param resourceGroupName The name of the resource group.

@@ -138,7 +138,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    *                            operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -177,6 +177,38 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
+   * Create or update a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   *                         created.
+   * @param galleryImageVersionName The name of the gallery Image Version to be created. Needs to follow
+   *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
+   *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
+   *                            operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersion,
+    options?: GalleryImageVersionsCreateOrUpdateOptionalParams
+  ): Promise<GalleryImageVersionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      galleryImageVersionName,
+      galleryImageVersion,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
@@ -188,7 +220,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -227,6 +259,37 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
   }
 
   /**
+   * Update a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
+   *                         updated.
+   * @param galleryImageVersionName The name of the gallery Image Version to be updated. Needs to follow
+   *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
+   *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersionUpdate,
+    options?: GalleryImageVersionsUpdateOptionalParams
+  ): Promise<GalleryImageVersionsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      galleryImageVersionName,
+      galleryImageVersion,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Retrieves information about a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
@@ -262,7 +325,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
    * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryImageName: string,
@@ -293,6 +356,31 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a gallery Image Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
+   * @param galleryImageName The name of the gallery Image Definition in which the Image Version resides.
+   * @param galleryImageVersionName The name of the gallery Image Version to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryImageName: string,
+    galleryImageVersionName: string,
+    options?: GalleryImageVersionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      galleryName,
+      galleryImageName,
+      galleryImageVersionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

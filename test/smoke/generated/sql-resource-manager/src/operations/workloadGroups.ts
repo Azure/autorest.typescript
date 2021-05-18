@@ -161,7 +161,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
    * @param parameters The requested workload group state.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -200,6 +200,35 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
   }
 
   /**
+   * Creates or updates a workload group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group.
+   * @param parameters The requested workload group state.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    parameters: WorkloadGroup,
+    options?: WorkloadGroupsCreateOrUpdateOptionalParams
+  ): Promise<WorkloadGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a workload group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -208,7 +237,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
    * @param workloadGroupName The name of the workload group to delete.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -239,6 +268,32 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a workload group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group to delete.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    options?: WorkloadGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

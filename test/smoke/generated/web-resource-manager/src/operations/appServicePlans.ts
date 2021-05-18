@@ -536,7 +536,7 @@ export class AppServicePlansImpl implements AppServicePlans {
    * @param appServicePlan Details of the App Service plan.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     appServicePlan: AppServicePlan,
@@ -568,6 +568,28 @@ export class AppServicePlansImpl implements AppServicePlans {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Creates or updates an App Service Plan.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service plan.
+   * @param appServicePlan Details of the App Service plan.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    appServicePlan: AppServicePlan,
+    options?: AppServicePlansCreateOrUpdateOptionalParams
+  ): Promise<AppServicePlansCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      name,
+      appServicePlan,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

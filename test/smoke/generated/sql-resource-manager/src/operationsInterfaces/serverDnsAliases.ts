@@ -60,7 +60,7 @@ export interface ServerDnsAliases {
    * @param dnsAliasName The name of the server DNS alias.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
@@ -72,6 +72,20 @@ export interface ServerDnsAliases {
     >
   >;
   /**
+   * Creates a server dns alias.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server DNS alias.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    options?: ServerDnsAliasesCreateOrUpdateOptionalParams
+  ): Promise<ServerDnsAliasesCreateOrUpdateResponse>;
+  /**
    * Deletes the server DNS alias with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -79,11 +93,43 @@ export interface ServerDnsAliases {
    * @param dnsAliasName The name of the server DNS alias.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
     options?: ServerDnsAliasesDeleteOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Deletes the server DNS alias with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server DNS alias.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    options?: ServerDnsAliasesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Acquires server DNS alias from another server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server that the alias is pointing to.
+   * @param dnsAliasName The name of the server dns alias.
+   * @param parameters A server DNS alias acquisition request.
+   * @param options The options parameters.
+   */
+  beginAcquire(
+    resourceGroupName: string,
+    serverName: string,
+    dnsAliasName: string,
+    parameters: ServerDnsAliasAcquisition,
+    options?: ServerDnsAliasesAcquireOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -96,13 +142,11 @@ export interface ServerDnsAliases {
    * @param parameters A server DNS alias acquisition request.
    * @param options The options parameters.
    */
-  acquire(
+  beginAcquireAndWait(
     resourceGroupName: string,
     serverName: string,
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
 }

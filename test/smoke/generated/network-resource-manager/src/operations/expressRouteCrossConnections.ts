@@ -213,7 +213,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param parameters Parameters supplied to the update express route crossConnection operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     crossConnectionName: string,
     parameters: ExpressRouteCrossConnection,
@@ -246,6 +246,28 @@ export class ExpressRouteCrossConnectionsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Update the specified ExpressRouteCrossConnection.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param parameters Parameters supplied to the update express route crossConnection operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    parameters: ExpressRouteCrossConnection,
+    options?: ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      crossConnectionName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -282,7 +304,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listArpTable(
+  async beginListArpTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -320,6 +342,32 @@ export class ExpressRouteCrossConnectionsImpl
   }
 
   /**
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListArpTableAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListArpTableOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListArpTableResponse> {
+    const poller = await this.beginListArpTable(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the route table summary associated with the express route cross connection in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
@@ -327,7 +375,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTableSummary(
+  async beginListRoutesTableSummary(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -367,6 +415,31 @@ export class ExpressRouteCrossConnectionsImpl
   }
 
   /**
+   * Gets the route table summary associated with the express route cross connection in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListRoutesTableSummaryAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse> {
+    const poller = await this.beginListRoutesTableSummary(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the currently advertised routes table associated with the express route cross connection in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
@@ -375,7 +448,7 @@ export class ExpressRouteCrossConnectionsImpl
    * @param devicePath The path of the device.
    * @param options The options parameters.
    */
-  async listRoutesTable(
+  async beginListRoutesTable(
     resourceGroupName: string,
     crossConnectionName: string,
     peeringName: string,
@@ -410,6 +483,32 @@ export class ExpressRouteCrossConnectionsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Gets the currently advertised routes table associated with the express route cross connection in a
+   * resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param peeringName The name of the peering.
+   * @param devicePath The path of the device.
+   * @param options The options parameters.
+   */
+  async beginListRoutesTableAndWait(
+    resourceGroupName: string,
+    crossConnectionName: string,
+    peeringName: string,
+    devicePath: string,
+    options?: ExpressRouteCrossConnectionsListRoutesTableOptionalParams
+  ): Promise<ExpressRouteCrossConnectionsListRoutesTableResponse> {
+    const poller = await this.beginListRoutesTable(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      devicePath,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

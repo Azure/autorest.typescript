@@ -81,7 +81,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    *                                         operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
@@ -117,6 +117,29 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
   }
 
   /**
+   * Creates or updates a ExpressRoute gateway in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param putExpressRouteGatewayParameters Parameters required in an ExpressRoute gateway PUT
+   *                                         operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    putExpressRouteGatewayParameters: ExpressRouteGateway,
+    options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      expressRouteGatewayName,
+      putExpressRouteGatewayParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Fetches the details of a ExpressRoute gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
@@ -145,7 +168,7 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams
@@ -173,6 +196,26 @@ export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified ExpressRoute gateway in a resource group. An ExpressRoute gateway resource can
+   * only be deleted when there are no connection subresources.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    options?: ExpressRouteGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      expressRouteGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

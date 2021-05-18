@@ -243,7 +243,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                              database.
    * @param options The options parameters.
    */
-  async createUpdateGremlinDatabase(
+  async beginCreateUpdateGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -280,13 +280,39 @@ export class GremlinResourcesImpl implements GremlinResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB Gremlin database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param createUpdateGremlinDatabaseParameters The parameters to provide for the current Gremlin
+   *                                              database.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateGremlinDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
+    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
+  ): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse> {
+    const poller = await this.beginCreateUpdateGremlinDatabase(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      createUpdateGremlinDatabaseParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB Gremlin database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
    * @param databaseName Cosmos DB database name.
    * @param options The options parameters.
    */
-  async deleteGremlinDatabase(
+  async beginDeleteGremlinDatabase(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -315,6 +341,28 @@ export class GremlinResourcesImpl implements GremlinResources {
       deleteGremlinDatabaseOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB Gremlin database.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param options The options parameters.
+   */
+  async beginDeleteGremlinDatabaseAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteGremlinDatabase(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -352,7 +400,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                   Gremlin database.
    * @param options The options parameters.
    */
-  async updateGremlinDatabaseThroughput(
+  async beginUpdateGremlinDatabaseThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -388,6 +436,32 @@ export class GremlinResourcesImpl implements GremlinResources {
       updateGremlinDatabaseThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of an Azure Cosmos DB Gremlin database
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Gremlin database.
+   * @param options The options parameters.
+   */
+  async beginUpdateGremlinDatabaseThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
+  ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse> {
+    const poller = await this.beginUpdateGremlinDatabaseThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -452,7 +526,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    * @param createUpdateGremlinGraphParameters The parameters to provide for the current Gremlin graph.
    * @param options The options parameters.
    */
-  async createUpdateGremlinGraph(
+  async beginCreateUpdateGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -491,6 +565,34 @@ export class GremlinResourcesImpl implements GremlinResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB Gremlin graph
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param createUpdateGremlinGraphParameters The parameters to provide for the current Gremlin graph.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateGremlinGraphAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
+    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
+  ): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse> {
+    const poller = await this.beginCreateUpdateGremlinGraph(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      createUpdateGremlinGraphParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB Gremlin graph.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -498,7 +600,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    * @param graphName Cosmos DB graph name.
    * @param options The options parameters.
    */
-  async deleteGremlinGraph(
+  async beginDeleteGremlinGraph(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -529,6 +631,31 @@ export class GremlinResourcesImpl implements GremlinResources {
       deleteGremlinGraphOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB Gremlin graph.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param options The options parameters.
+   */
+  async beginDeleteGremlinGraphAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    options?: GremlinResourcesDeleteGremlinGraphOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteGremlinGraph(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -570,7 +697,7 @@ export class GremlinResourcesImpl implements GremlinResources {
    *                                   Gremlin graph.
    * @param options The options parameters.
    */
-  async updateGremlinGraphThroughput(
+  async beginUpdateGremlinGraphThroughput(
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
@@ -606,6 +733,35 @@ export class GremlinResourcesImpl implements GremlinResources {
       updateGremlinGraphThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of an Azure Cosmos DB Gremlin graph
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param databaseName Cosmos DB database name.
+   * @param graphName Cosmos DB graph name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Gremlin graph.
+   * @param options The options parameters.
+   */
+  async beginUpdateGremlinGraphThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    databaseName: string,
+    graphName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
+  ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse> {
+    const poller = await this.beginUpdateGremlinGraphThroughput(
+      resourceGroupName,
+      accountName,
+      databaseName,
+      graphName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

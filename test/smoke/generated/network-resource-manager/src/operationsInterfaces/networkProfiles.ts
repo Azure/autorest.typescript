@@ -51,13 +51,24 @@ export interface NetworkProfiles {
    * @param networkProfileName The name of the NetworkProfile.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkProfileName: string,
     options?: NetworkProfilesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified network profile.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkProfileName The name of the NetworkProfile.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkProfileName: string,
+    options?: NetworkProfilesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified network profile in a specified resource group.
    * @param resourceGroupName The name of the resource group.

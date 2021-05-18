@@ -137,7 +137,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
    * @param inboundNatRuleName The name of the inbound nat rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
@@ -167,6 +167,28 @@ export class InboundNatRulesImpl implements InboundNatRules {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified load balancer inbound nat rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    inboundNatRuleName: string,
+    options?: InboundNatRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      loadBalancerName,
+      inboundNatRuleName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -203,7 +225,7 @@ export class InboundNatRulesImpl implements InboundNatRules {
    *                                 operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     loadBalancerName: string,
     inboundNatRuleName: string,
@@ -238,6 +260,32 @@ export class InboundNatRulesImpl implements InboundNatRules {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a load balancer inbound nat rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param loadBalancerName The name of the load balancer.
+   * @param inboundNatRuleName The name of the inbound nat rule.
+   * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+   *                                 operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    loadBalancerName: string,
+    inboundNatRuleName: string,
+    inboundNatRuleParameters: InboundNatRule,
+    options?: InboundNatRulesCreateOrUpdateOptionalParams
+  ): Promise<InboundNatRulesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      loadBalancerName,
+      inboundNatRuleName,
+      inboundNatRuleParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

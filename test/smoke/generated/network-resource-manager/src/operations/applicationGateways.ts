@@ -217,7 +217,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
@@ -245,6 +245,25 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      applicationGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -276,7 +295,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param parameters Parameters supplied to the create or update application gateway operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: ApplicationGateway,
@@ -309,6 +328,28 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param parameters Parameters supplied to the create or update application gateway operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    parameters: ApplicationGateway,
+    options?: ApplicationGatewaysCreateOrUpdateOptionalParams
+  ): Promise<ApplicationGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      applicationGatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -377,7 +418,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
@@ -408,12 +449,31 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   }
 
   /**
+   * Starts the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  async beginStartAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysStartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStart(
+      resourceGroupName,
+      applicationGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Stops the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
@@ -444,12 +504,31 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   }
 
   /**
+   * Stops the specified application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  async beginStopAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysStopOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStop(
+      resourceGroupName,
+      applicationGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the backend health of the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  async backendHealth(
+  async beginBackendHealth(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
@@ -483,6 +562,25 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   }
 
   /**
+   * Gets the backend health of the specified application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  async beginBackendHealthAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysBackendHealthOptionalParams
+  ): Promise<ApplicationGatewaysBackendHealthResponse> {
+    const poller = await this.beginBackendHealth(
+      resourceGroupName,
+      applicationGatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the backend health for given combination of backend pool and http setting of the specified
    * application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -490,7 +588,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
    * @param probeRequest Request body for on-demand test probe operation.
    * @param options The options parameters.
    */
-  async backendHealthOnDemand(
+  async beginBackendHealthOnDemand(
     resourceGroupName: string,
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,
@@ -523,6 +621,29 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Gets the backend health for given combination of backend pool and http setting of the specified
+   * application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param probeRequest Request body for on-demand test probe operation.
+   * @param options The options parameters.
+   */
+  async beginBackendHealthOnDemandAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    probeRequest: ApplicationGatewayOnDemandProbe,
+    options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams
+  ): Promise<ApplicationGatewaysBackendHealthOnDemandResponse> {
+    const poller = await this.beginBackendHealthOnDemand(
+      resourceGroupName,
+      applicationGatewayName,
+      probeRequest,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

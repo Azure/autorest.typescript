@@ -45,7 +45,7 @@ export interface ManagedInstanceEncryptionProtectors {
    * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
-  revalidate(
+  beginRevalidate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -53,6 +53,20 @@ export interface ManagedInstanceEncryptionProtectors {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Revalidates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param options The options parameters.
+   */
+  beginRevalidateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a managed instance encryption protector.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -76,7 +90,7 @@ export interface ManagedInstanceEncryptionProtectors {
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
@@ -90,4 +104,20 @@ export interface ManagedInstanceEncryptionProtectors {
       ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Updates an existing encryption protector.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
+   * @param parameters The requested encryption protector resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
+    parameters: ManagedInstanceEncryptionProtector,
+    options?: ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse>;
 }

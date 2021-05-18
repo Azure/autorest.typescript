@@ -43,7 +43,7 @@ export interface LocalNetworkGateways {
    * @param parameters Parameters supplied to the create or update local network gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     parameters: LocalNetworkGateway,
@@ -54,6 +54,19 @@ export interface LocalNetworkGateways {
       LocalNetworkGatewaysCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a local network gateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param localNetworkGatewayName The name of the local network gateway.
+   * @param parameters Parameters supplied to the create or update local network gateway operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    localNetworkGatewayName: string,
+    parameters: LocalNetworkGateway,
+    options?: LocalNetworkGatewaysCreateOrUpdateOptionalParams
+  ): Promise<LocalNetworkGatewaysCreateOrUpdateResponse>;
   /**
    * Gets the specified local network gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -71,13 +84,24 @@ export interface LocalNetworkGateways {
    * @param localNetworkGatewayName The name of the local network gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     localNetworkGatewayName: string,
     options?: LocalNetworkGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified local network gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param localNetworkGatewayName The name of the local network gateway.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    localNetworkGatewayName: string,
+    options?: LocalNetworkGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a local network gateway tags.
    * @param resourceGroupName The name of the resource group.

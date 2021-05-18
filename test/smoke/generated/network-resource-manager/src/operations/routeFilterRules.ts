@@ -119,7 +119,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
    * @param ruleName The name of the rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
@@ -149,6 +149,28 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified rule from a route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param ruleName The name of the rule.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    ruleName: string,
+    options?: RouteFilterRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      routeFilterName,
+      ruleName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -185,7 +207,7 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
    *                                  operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     ruleName: string,
@@ -220,6 +242,32 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a route in the specified route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param ruleName The name of the route filter rule.
+   * @param routeFilterRuleParameters Parameters supplied to the create or update route filter rule
+   *                                  operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    ruleName: string,
+    routeFilterRuleParameters: RouteFilterRule,
+    options?: RouteFilterRulesCreateOrUpdateOptionalParams
+  ): Promise<RouteFilterRulesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      routeFilterName,
+      ruleName,
+      routeFilterRuleParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

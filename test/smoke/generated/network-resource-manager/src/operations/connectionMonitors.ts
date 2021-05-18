@@ -115,7 +115,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param parameters Parameters that define the operation to create a connection monitor.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -153,6 +153,31 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   }
 
   /**
+   * Create or update a connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param parameters Parameters that define the operation to create a connection monitor.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    parameters: ConnectionMonitor,
+    options?: ConnectionMonitorsCreateOrUpdateOptionalParams
+  ): Promise<ConnectionMonitorsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a connection monitor by name.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
    * @param networkWatcherName The name of the Network Watcher resource.
@@ -184,7 +209,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -214,6 +239,28 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -251,7 +298,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -284,13 +331,35 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   }
 
   /**
+   * Stops the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  async beginStopAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsStopOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStop(
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  async start(
+  async beginStart(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -323,13 +392,35 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
   }
 
   /**
+   * Starts the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  async beginStartAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsStartOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStart(
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Query a snapshot of the most recent connection states.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name given to the connection monitor.
    * @param options The options parameters.
    */
-  async query(
+  async beginQuery(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -362,6 +453,28 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Query a snapshot of the most recent connection states.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name given to the connection monitor.
+   * @param options The options parameters.
+   */
+  async beginQueryAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsQueryOptionalParams
+  ): Promise<ConnectionMonitorsQueryResponse> {
+    const poller = await this.beginQuery(
+      resourceGroupName,
+      networkWatcherName,
+      connectionMonitorName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

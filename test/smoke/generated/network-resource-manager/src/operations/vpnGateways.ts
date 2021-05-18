@@ -174,7 +174,7 @@ export class VpnGatewaysImpl implements VpnGateways {
    * @param vpnGatewayParameters Parameters supplied to create or Update a virtual wan vpn gateway.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     vpnGatewayParameters: VpnGateway,
@@ -210,6 +210,28 @@ export class VpnGatewaysImpl implements VpnGateways {
   }
 
   /**
+   * Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param vpnGatewayParameters Parameters supplied to create or Update a virtual wan vpn gateway.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    vpnGatewayParameters: VpnGateway,
+    options?: VpnGatewaysCreateOrUpdateOptionalParams
+  ): Promise<VpnGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      gatewayName,
+      vpnGatewayParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates virtual wan vpn gateway tags.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
@@ -240,7 +262,7 @@ export class VpnGatewaysImpl implements VpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysDeleteOptionalParams
@@ -271,12 +293,31 @@ export class VpnGatewaysImpl implements VpnGateways {
   }
 
   /**
+   * Deletes a virtual wan vpn gateway.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Resets the primary of the vpn gateway in the specified resource group.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async reset(
+  async beginReset(
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysResetOptionalParams
@@ -307,6 +348,25 @@ export class VpnGatewaysImpl implements VpnGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Resets the primary of the vpn gateway in the specified resource group.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  async beginResetAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: VpnGatewaysResetOptionalParams
+  ): Promise<VpnGatewaysResetResponse> {
+    const poller = await this.beginReset(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

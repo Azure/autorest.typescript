@@ -141,7 +141,7 @@ export class GalleryApplicationVersionsImpl
    *                                  Version operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -180,6 +180,39 @@ export class GalleryApplicationVersionsImpl
   }
 
   /**
+   * Create or update a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version is to be created.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be created.
+   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
+   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
+   *                                  Version operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersion,
+    options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams
+  ): Promise<GalleryApplicationVersionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      galleryApplicationVersionName,
+      galleryApplicationVersion,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update a gallery Application Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition
@@ -193,7 +226,7 @@ export class GalleryApplicationVersionsImpl
    *                                  operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -229,6 +262,39 @@ export class GalleryApplicationVersionsImpl
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version is to be updated.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be updated.
+   *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
+   *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
+   *                                  operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersionUpdate,
+    options?: GalleryApplicationVersionsUpdateOptionalParams
+  ): Promise<GalleryApplicationVersionsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      galleryApplicationVersionName,
+      galleryApplicationVersion,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -271,7 +337,7 @@ export class GalleryApplicationVersionsImpl
    * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -302,6 +368,33 @@ export class GalleryApplicationVersionsImpl
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a gallery Application Version.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition
+   *                    resides.
+   * @param galleryApplicationName The name of the gallery Application Definition in which the
+   *                               Application Version resides.
+   * @param galleryApplicationVersionName The name of the gallery Application Version to be deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplicationVersionName: string,
+    options?: GalleryApplicationVersionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      galleryName,
+      galleryApplicationName,
+      galleryApplicationVersionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

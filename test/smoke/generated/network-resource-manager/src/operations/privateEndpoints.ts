@@ -143,7 +143,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param privateEndpointName The name of the private endpoint.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     options?: PrivateEndpointsDeleteOptionalParams
@@ -171,6 +171,25 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified private endpoint.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    options?: PrivateEndpointsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      privateEndpointName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -202,7 +221,7 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
    * @param parameters Parameters supplied to the create or update private endpoint operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     parameters: PrivateEndpoint,
@@ -235,6 +254,28 @@ export class PrivateEndpointsImpl implements PrivateEndpoints {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates an private endpoint in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param parameters Parameters supplied to the create or update private endpoint operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    parameters: PrivateEndpoint,
+    options?: PrivateEndpointsCreateOrUpdateOptionalParams
+  ): Promise<PrivateEndpointsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      privateEndpointName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

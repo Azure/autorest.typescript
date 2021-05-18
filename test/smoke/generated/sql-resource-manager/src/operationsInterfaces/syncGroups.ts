@@ -109,7 +109,7 @@ export interface SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  refreshHubSchema(
+  beginRefreshHubSchema(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -118,6 +118,22 @@ export interface SyncGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Refreshes a hub database schema.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param options The options parameters.
+   */
+  beginRefreshHubSchemaAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: SyncGroupsRefreshHubSchemaOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Cancels a sync group synchronization.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -176,7 +192,7 @@ export interface SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -190,6 +206,24 @@ export interface SyncGroups {
     >
   >;
   /**
+   * Creates or updates a sync group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param parameters The requested sync group resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    parameters: SyncGroup,
+    options?: SyncGroupsCreateOrUpdateOptionalParams
+  ): Promise<SyncGroupsCreateOrUpdateResponse>;
+  /**
    * Deletes a sync group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -198,7 +232,7 @@ export interface SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -207,6 +241,22 @@ export interface SyncGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a sync group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    options?: SyncGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a sync group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -217,7 +267,7 @@ export interface SyncGroups {
    * @param parameters The requested sync group resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -230,4 +280,22 @@ export interface SyncGroups {
       SyncGroupsUpdateResponse
     >
   >;
+  /**
+   * Updates a sync group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database on which the sync group is hosted.
+   * @param syncGroupName The name of the sync group.
+   * @param parameters The requested sync group resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    syncGroupName: string,
+    parameters: SyncGroup,
+    options?: SyncGroupsUpdateOptionalParams
+  ): Promise<SyncGroupsUpdateResponse>;
 }

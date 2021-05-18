@@ -47,7 +47,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -84,6 +84,31 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
   }
 
   /**
+   * The operation to create or update the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be created or updated.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtension,
+    options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams
+  ): Promise<VirtualMachineExtensionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vmName,
+      vmExtensionName,
+      extensionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to update the extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the extension should be updated.
@@ -91,7 +116,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -128,13 +153,38 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
   }
 
   /**
+   * The operation to update the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be updated.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtensionUpdate,
+    options?: VirtualMachineExtensionsUpdateOptionalParams
+  ): Promise<VirtualMachineExtensionsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      vmName,
+      vmExtensionName,
+      extensionParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
    * @param vmName The name of the virtual machine where the extension should be deleted.
    * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vmName: string,
     vmExtensionName: string,
@@ -163,6 +213,28 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * The operation to delete the extension.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be deleted.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vmName: string,
+    vmExtensionName: string,
+    options?: VirtualMachineExtensionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      vmName,
+      vmExtensionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

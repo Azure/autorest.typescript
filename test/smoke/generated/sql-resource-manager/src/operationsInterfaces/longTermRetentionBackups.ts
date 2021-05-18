@@ -138,7 +138,7 @@ export interface LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  deleteByResourceGroup(
+  beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     longTermRetentionServerName: string,
@@ -148,6 +148,24 @@ export interface LongTermRetentionBackups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a long term retention backup.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  beginDeleteByResourceGroupAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    backupName: string,
+    options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a long term retention backup.
    * @param locationName The location of the database.
@@ -171,7 +189,7 @@ export interface LongTermRetentionBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
@@ -180,4 +198,19 @@ export interface LongTermRetentionBackups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a long term retention backup.
+   * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param longTermRetentionDatabaseName The name of the database
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    locationName: string,
+    longTermRetentionServerName: string,
+    longTermRetentionDatabaseName: string,
+    backupName: string,
+    options?: LongTermRetentionBackupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

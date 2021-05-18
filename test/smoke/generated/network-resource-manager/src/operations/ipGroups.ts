@@ -172,7 +172,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param parameters Parameters supplied to the create or update IpGroups operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     ipGroupsName: string,
     parameters: IpGroup,
@@ -208,6 +208,28 @@ export class IpGroupsImpl implements IpGroups {
   }
 
   /**
+   * Creates or updates an ipGroups in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipGroupsName The name of the ipGroups.
+   * @param parameters Parameters supplied to the create or update IpGroups operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    ipGroupsName: string,
+    parameters: IpGroup,
+    options?: IpGroupsCreateOrUpdateOptionalParams
+  ): Promise<IpGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      ipGroupsName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates tags of an IpGroups resource.
    * @param resourceGroupName The name of the resource group.
    * @param ipGroupsName The name of the ipGroups.
@@ -238,7 +260,7 @@ export class IpGroupsImpl implements IpGroups {
    * @param ipGroupsName The name of the ipGroups.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     ipGroupsName: string,
     options?: IpGroupsDeleteOptionalParams
@@ -266,6 +288,25 @@ export class IpGroupsImpl implements IpGroups {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified ipGroups.
+   * @param resourceGroupName The name of the resource group.
+   * @param ipGroupsName The name of the ipGroups.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    ipGroupsName: string,
+    options?: IpGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      ipGroupsName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

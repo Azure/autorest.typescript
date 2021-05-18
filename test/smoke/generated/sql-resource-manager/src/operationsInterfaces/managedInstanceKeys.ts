@@ -59,7 +59,7 @@ export interface ManagedInstanceKeys {
    * @param parameters The requested managed instance key resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
@@ -72,6 +72,22 @@ export interface ManagedInstanceKeys {
     >
   >;
   /**
+   * Creates or updates a managed instance key.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param keyName The name of the managed instance key to be operated on (updated or created).
+   * @param parameters The requested managed instance key resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    keyName: string,
+    parameters: ManagedInstanceKey,
+    options?: ManagedInstanceKeysCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstanceKeysCreateOrUpdateResponse>;
+  /**
    * Deletes the managed instance key with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -79,7 +95,7 @@ export interface ManagedInstanceKeys {
    * @param keyName The name of the managed instance key to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     keyName: string,
@@ -87,4 +103,18 @@ export interface ManagedInstanceKeys {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the managed instance key with the given name.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param keyName The name of the managed instance key to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    keyName: string,
+    options?: ManagedInstanceKeysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

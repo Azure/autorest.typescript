@@ -66,7 +66,7 @@ export interface ManagedBackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -91,7 +91,25 @@ export interface ManagedBackupShortTermRetentionPolicies {
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  update(
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    policyName: ManagedShortTermRetentionPolicyName,
+    parameters: ManagedBackupShortTermRetentionPolicy,
+    options?: ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse>;
+  /**
+   * Updates a managed database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -104,4 +122,22 @@ export interface ManagedBackupShortTermRetentionPolicies {
       ManagedBackupShortTermRetentionPoliciesUpdateResponse
     >
   >;
+  /**
+   * Updates a managed database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    policyName: ManagedShortTermRetentionPolicyName,
+    parameters: ManagedBackupShortTermRetentionPolicy,
+    options?: ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
+  ): Promise<ManagedBackupShortTermRetentionPoliciesUpdateResponse>;
 }

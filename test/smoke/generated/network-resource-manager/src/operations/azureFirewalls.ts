@@ -146,7 +146,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param azureFirewallName The name of the Azure Firewall.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
@@ -174,6 +174,25 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified Azure Firewall.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    options?: AzureFirewallsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      azureFirewallName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -205,7 +224,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
    * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
@@ -241,13 +260,35 @@ export class AzureFirewallsImpl implements AzureFirewalls {
   }
 
   /**
+   * Creates or updates the specified Azure Firewall.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param parameters Parameters supplied to the create or update Azure Firewall operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    parameters: AzureFirewall,
+    options?: AzureFirewallsCreateOrUpdateOptionalParams
+  ): Promise<AzureFirewallsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      azureFirewallName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates tags of an Azure Firewall resource.
    * @param resourceGroupName The name of the resource group.
    * @param azureFirewallName The name of the Azure Firewall.
    * @param parameters Parameters supplied to update azure firewall tags.
    * @param options The options parameters.
    */
-  async updateTags(
+  async beginUpdateTags(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
@@ -280,6 +321,28 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Updates tags of an Azure Firewall resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param parameters Parameters supplied to update azure firewall tags.
+   * @param options The options parameters.
+   */
+  async beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    parameters: TagsObject,
+    options?: AzureFirewallsUpdateTagsOptionalParams
+  ): Promise<AzureFirewallsUpdateTagsResponse> {
+    const poller = await this.beginUpdateTags(
+      resourceGroupName,
+      azureFirewallName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

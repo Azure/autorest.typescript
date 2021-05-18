@@ -119,7 +119,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
    * @param privateDnsZoneGroupName The name of the private dns zone group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -149,6 +149,28 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified private dns zone group.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param privateDnsZoneGroupName The name of the private dns zone group.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    privateDnsZoneGroupName: string,
+    options?: PrivateDnsZoneGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      privateEndpointName,
+      privateDnsZoneGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -184,7 +206,7 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
    * @param parameters Parameters supplied to the create or update private dns zone group operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -219,6 +241,31 @@ export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a private dns zone group in the specified private endpoint.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param privateDnsZoneGroupName The name of the private dns zone group.
+   * @param parameters Parameters supplied to the create or update private dns zone group operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    privateDnsZoneGroupName: string,
+    parameters: PrivateDnsZoneGroup,
+    options?: PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
+  ): Promise<PrivateDnsZoneGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      privateEndpointName,
+      privateDnsZoneGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

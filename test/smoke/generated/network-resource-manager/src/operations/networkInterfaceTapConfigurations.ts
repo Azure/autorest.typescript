@@ -120,7 +120,7 @@ export class NetworkInterfaceTapConfigurationsImpl
    * @param tapConfigurationName The name of the tap configuration.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -150,6 +150,28 @@ export class NetworkInterfaceTapConfigurationsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified tap configuration from the NetworkInterface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param tapConfigurationName The name of the tap configuration.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    tapConfigurationName: string,
+    options?: NetworkInterfaceTapConfigurationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkInterfaceName,
+      tapConfigurationName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -186,7 +208,7 @@ export class NetworkInterfaceTapConfigurationsImpl
    *                                   operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     tapConfigurationName: string,
@@ -223,6 +245,32 @@ export class NetworkInterfaceTapConfigurationsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a Tap configuration in the specified NetworkInterface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param tapConfigurationName The name of the tap configuration.
+   * @param tapConfigurationParameters Parameters supplied to the create or update tap configuration
+   *                                   operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    tapConfigurationName: string,
+    tapConfigurationParameters: NetworkInterfaceTapConfiguration,
+    options?: NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
+  ): Promise<NetworkInterfaceTapConfigurationsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkInterfaceName,
+      tapConfigurationName,
+      tapConfigurationParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

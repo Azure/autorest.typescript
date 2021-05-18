@@ -61,7 +61,7 @@ export interface TableResources {
    * @param createUpdateTableParameters The parameters to provide for the current Table.
    * @param options The options parameters.
    */
-  createUpdateTable(
+  beginCreateUpdateTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -74,13 +74,28 @@ export interface TableResources {
     >
   >;
   /**
+   * Create or update an Azure Cosmos DB Table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param createUpdateTableParameters The parameters to provide for the current Table.
+   * @param options The options parameters.
+   */
+  beginCreateUpdateTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    createUpdateTableParameters: TableCreateUpdateParameters,
+    options?: TableResourcesCreateUpdateTableOptionalParams
+  ): Promise<TableResourcesCreateUpdateTableResponse>;
+  /**
    * Deletes an existing Azure Cosmos DB Table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  deleteTable(
+  beginDeleteTable(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -88,6 +103,19 @@ export interface TableResources {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an existing Azure Cosmos DB Table.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  beginDeleteTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    options?: TableResourcesDeleteTableOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the RUs per second of the Table under an existing Azure Cosmos DB database account with the
    * provided name.
@@ -111,7 +139,7 @@ export interface TableResources {
    *                                   Table.
    * @param options The options parameters.
    */
-  updateTableThroughput(
+  beginUpdateTableThroughput(
     resourceGroupName: string,
     accountName: string,
     tableName: string,
@@ -123,4 +151,20 @@ export interface TableResources {
       TableResourcesUpdateTableThroughputResponse
     >
   >;
+  /**
+   * Update RUs per second of an Azure Cosmos DB Table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param tableName Cosmos DB table name.
+   * @param updateThroughputParameters The parameters to provide for the RUs per second of the current
+   *                                   Table.
+   * @param options The options parameters.
+   */
+  beginUpdateTableThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    tableName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: TableResourcesUpdateTableThroughputOptionalParams
+  ): Promise<TableResourcesUpdateTableThroughputResponse>;
 }

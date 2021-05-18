@@ -51,13 +51,24 @@ export interface RouteFilters {
    * @param routeFilterName The name of the route filter.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeFilterName: string,
     options?: RouteFiltersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified route filter.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    options?: RouteFiltersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified route filter.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface RouteFilters {
    * @param routeFilterParameters Parameters supplied to the create or update route filter operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
     routeFilterParameters: RouteFilter,
@@ -87,6 +98,19 @@ export interface RouteFilters {
       RouteFiltersCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a route filter in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeFilterName The name of the route filter.
+   * @param routeFilterParameters Parameters supplied to the create or update route filter operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeFilterName: string,
+    routeFilterParameters: RouteFilter,
+    options?: RouteFiltersCreateOrUpdateOptionalParams
+  ): Promise<RouteFiltersCreateOrUpdateResponse>;
   /**
    * Updates tags of a route filter.
    * @param resourceGroupName The name of the resource group.

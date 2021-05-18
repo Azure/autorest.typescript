@@ -183,7 +183,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    *                                gateway.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
@@ -219,6 +219,29 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   /**
+   * Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param p2SVpnGatewayParameters Parameters supplied to create or Update a virtual wan p2s vpn
+   *                                gateway.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    p2SVpnGatewayParameters: P2SVpnGateway,
+    options?: P2SVpnGatewaysCreateOrUpdateOptionalParams
+  ): Promise<P2SVpnGatewaysCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      gatewayName,
+      p2SVpnGatewayParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates virtual wan p2s vpn gateway tags.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
    * @param gatewayName The name of the gateway.
@@ -249,7 +272,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
@@ -277,6 +300,25 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a virtual wan p2s vpn gateway.
+   * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -321,7 +363,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
    * @param options The options parameters.
    */
-  async generateVpnProfile(
+  async beginGenerateVpnProfile(
     resourceGroupName: string,
     gatewayName: string,
     parameters: P2SVpnProfileParameters,
@@ -357,13 +399,35 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   /**
+   * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the P2SVpnGateway.
+   * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
+   * @param options The options parameters.
+   */
+  async beginGenerateVpnProfileAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    parameters: P2SVpnProfileParameters,
+    options?: P2SVpnGatewaysGenerateVpnProfileOptionalParams
+  ): Promise<P2SVpnGatewaysGenerateVpnProfileResponse> {
+    const poller = await this.beginGenerateVpnProfile(
+      resourceGroupName,
+      gatewayName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource
    * group.
    * @param resourceGroupName The name of the resource group.
    * @param gatewayName The name of the P2SVpnGateway.
    * @param options The options parameters.
    */
-  async getP2SVpnConnectionHealth(
+  async beginGetP2SVpnConnectionHealth(
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
@@ -397,6 +461,26 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   /**
+   * Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource
+   * group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the P2SVpnGateway.
+   * @param options The options parameters.
+   */
+  async beginGetP2SVpnConnectionHealthAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
+  ): Promise<P2SVpnGatewaysGetP2SVpnConnectionHealthResponse> {
+    const poller = await this.beginGetP2SVpnConnectionHealth(
+      resourceGroupName,
+      gatewayName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets the sas url to get the connection health detail of P2S clients of the virtual wan P2SVpnGateway
    * in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -404,7 +488,7 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
    * @param request Request parameters supplied to get p2s vpn connections detailed health.
    * @param options The options parameters.
    */
-  async getP2SVpnConnectionHealthDetailed(
+  async beginGetP2SVpnConnectionHealthDetailed(
     resourceGroupName: string,
     gatewayName: string,
     request: P2SVpnConnectionHealthRequest,
@@ -442,13 +526,36 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   }
 
   /**
+   * Gets the sas url to get the connection health detail of P2S clients of the virtual wan P2SVpnGateway
+   * in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param gatewayName The name of the P2SVpnGateway.
+   * @param request Request parameters supplied to get p2s vpn connections detailed health.
+   * @param options The options parameters.
+   */
+  async beginGetP2SVpnConnectionHealthDetailedAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    request: P2SVpnConnectionHealthRequest,
+    options?: P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams
+  ): Promise<P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse> {
+    const poller = await this.beginGetP2SVpnConnectionHealthDetailed(
+      resourceGroupName,
+      gatewayName,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
    * @param p2SVpnGatewayName The name of the P2S Vpn Gateway.
    * @param request The parameters are supplied to disconnect p2s vpn connections.
    * @param options The options parameters.
    */
-  async disconnectP2SVpnConnections(
+  async beginDisconnectP2SVpnConnections(
     resourceGroupName: string,
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
@@ -478,6 +585,28 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param p2SVpnGatewayName The name of the P2S Vpn Gateway.
+   * @param request The parameters are supplied to disconnect p2s vpn connections.
+   * @param options The options parameters.
+   */
+  async beginDisconnectP2SVpnConnectionsAndWait(
+    resourceGroupName: string,
+    p2SVpnGatewayName: string,
+    request: P2SVpnConnectionRequest,
+    options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDisconnectP2SVpnConnections(
+      resourceGroupName,
+      p2SVpnGatewayName,
+      request,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

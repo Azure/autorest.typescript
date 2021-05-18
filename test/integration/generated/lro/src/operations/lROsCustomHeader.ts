@@ -43,7 +43,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * header for operation status
    * @param options The options parameters.
    */
-  async putAsyncRetrySucceeded(
+  async beginPutAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -73,12 +73,26 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
 
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 200 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  async beginPutAsyncRetrySucceededAndWait(
+    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+  ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse> {
+    const poller = await this.beginPutAsyncRetrySucceeded(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running put request, service returns a 201 to the initial request, with an entity
    * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  async put201CreatingSucceeded200(
+  async beginPut201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
@@ -108,11 +122,25 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
 
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 201 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+   * ‘200’ with ProvisioningState=’Succeeded’
+   * @param options The options parameters.
+   */
+  async beginPut201CreatingSucceeded200AndWait(
+    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+  ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response> {
+    const poller = await this.beginPut201CreatingSucceeded200(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with 'Location'
    * and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
    */
-  async post202Retry200(
+  async beginPost202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
@@ -142,12 +170,25 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
 
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with 'Location'
+   * and 'Retry-After' headers, Polls return a 200 with a response body after success
+   * @param options The options parameters.
+   */
+  async beginPost202Retry200AndWait(
+    options?: LROsCustomHeaderPost202Retry200OptionalParams
+  ): Promise<LROsCustomHeaderPost202Retry200Response> {
+    const poller = await this.beginPost202Retry200(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with an entity
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param options The options parameters.
    */
-  async postAsyncRetrySucceeded(
+  async beginPostAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
@@ -173,6 +214,20 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       postAsyncRetrySucceededOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
+   * @param options The options parameters.
+   */
+  async beginPostAsyncRetrySucceededAndWait(
+    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+  ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse> {
+    const poller = await this.beginPostAsyncRetrySucceeded(options);
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

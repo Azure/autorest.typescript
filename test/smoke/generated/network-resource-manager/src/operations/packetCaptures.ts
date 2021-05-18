@@ -111,7 +111,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param parameters Parameters that define the create packet capture operation.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -149,6 +149,31 @@ export class PacketCapturesImpl implements PacketCaptures {
   }
 
   /**
+   * Create and start a packet capture on the specified VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param parameters Parameters that define the create packet capture operation.
+   * @param options The options parameters.
+   */
+  async beginCreateAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    parameters: PacketCapture,
+    options?: PacketCapturesCreateOptionalParams
+  ): Promise<PacketCapturesCreateResponse> {
+    const poller = await this.beginCreate(
+      resourceGroupName,
+      networkWatcherName,
+      packetCaptureName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets a packet capture session by name.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
@@ -180,7 +205,7 @@ export class PacketCapturesImpl implements PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -213,13 +238,35 @@ export class PacketCapturesImpl implements PacketCaptures {
   }
 
   /**
+   * Deletes the specified packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkWatcherName,
+      packetCaptureName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Stops a specified packet capture session.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  async stop(
+  async beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -252,13 +299,35 @@ export class PacketCapturesImpl implements PacketCaptures {
   }
 
   /**
+   * Stops a specified packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param options The options parameters.
+   */
+  async beginStopAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesStopOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStop(
+      resourceGroupName,
+      networkWatcherName,
+      packetCaptureName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Query the status of a running packet capture session.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the Network Watcher resource.
    * @param packetCaptureName The name given to the packet capture session.
    * @param options The options parameters.
    */
-  async getStatus(
+  async beginGetStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -291,6 +360,28 @@ export class PacketCapturesImpl implements PacketCaptures {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Query the status of a running packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param packetCaptureName The name given to the packet capture session.
+   * @param options The options parameters.
+   */
+  async beginGetStatusAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesGetStatusOptionalParams
+  ): Promise<PacketCapturesGetStatusResponse> {
+    const poller = await this.beginGetStatus(
+      resourceGroupName,
+      networkWatcherName,
+      packetCaptureName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

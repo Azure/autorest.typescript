@@ -42,7 +42,7 @@ export interface ExpressRouteCircuitPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -50,6 +50,19 @@ export interface ExpressRouteCircuitPeerings {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified peering from the specified express route circuit.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    options?: ExpressRouteCircuitPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified peering for the express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -72,7 +85,7 @@ export interface ExpressRouteCircuitPeerings {
    *                          operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     circuitName: string,
     peeringName: string,
@@ -84,4 +97,20 @@ export interface ExpressRouteCircuitPeerings {
       ExpressRouteCircuitPeeringsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a peering in the specified express route circuits.
+   * @param resourceGroupName The name of the resource group.
+   * @param circuitName The name of the express route circuit.
+   * @param peeringName The name of the peering.
+   * @param peeringParameters Parameters supplied to the create or update express route circuit peering
+   *                          operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    circuitName: string,
+    peeringName: string,
+    peeringParameters: ExpressRouteCircuitPeering,
+    options?: ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteCircuitPeeringsCreateOrUpdateResponse>;
 }

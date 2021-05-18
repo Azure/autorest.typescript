@@ -149,7 +149,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    * @param networkVirtualApplianceName The name of Network Virtual Appliance.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     options?: NetworkVirtualAppliancesDeleteOptionalParams
@@ -177,6 +177,25 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    options?: NetworkVirtualAppliancesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkVirtualApplianceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -233,7 +252,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
    * @param parameters Parameters supplied to the create or update Network Virtual Appliance.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     parameters: NetworkVirtualAppliance,
@@ -266,6 +285,28 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates the specified Network Virtual Appliance.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkVirtualApplianceName The name of Network Virtual Appliance.
+   * @param parameters Parameters supplied to the create or update Network Virtual Appliance.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkVirtualApplianceName: string,
+    parameters: NetworkVirtualAppliance,
+    options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
+  ): Promise<NetworkVirtualAppliancesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkVirtualApplianceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

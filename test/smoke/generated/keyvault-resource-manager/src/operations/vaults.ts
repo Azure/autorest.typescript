@@ -256,7 +256,7 @@ export class VaultsImpl implements Vaults {
    * @param parameters Parameters to create or update the vault
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vaultName: string,
     parameters: VaultCreateOrUpdateParameters,
@@ -288,6 +288,28 @@ export class VaultsImpl implements Vaults {
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Create or update a key vault in the specified subscription.
+   * @param resourceGroupName The name of the Resource Group to which the server belongs.
+   * @param vaultName Name of the vault
+   * @param parameters Parameters to create or update the vault
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vaultName: string,
+    parameters: VaultCreateOrUpdateParameters,
+    options?: VaultsCreateOrUpdateOptionalParams
+  ): Promise<VaultsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vaultName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -467,7 +489,7 @@ export class VaultsImpl implements Vaults {
    * @param location The location of the soft-deleted vault.
    * @param options The options parameters.
    */
-  async purgeDeleted(
+  async beginPurgeDeleted(
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams
@@ -494,6 +516,21 @@ export class VaultsImpl implements Vaults {
       purgeDeletedOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.
+   * @param vaultName The name of the soft-deleted vault.
+   * @param location The location of the soft-deleted vault.
+   * @param options The options parameters.
+   */
+  async beginPurgeDeletedAndWait(
+    vaultName: string,
+    location: string,
+    options?: VaultsPurgeDeletedOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPurgeDeleted(vaultName, location, options);
+    return poller.pollUntilDone();
   }
 
   /**

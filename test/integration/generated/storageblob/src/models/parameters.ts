@@ -53,14 +53,60 @@ export const url: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const blobType: OperationParameter = {
-  parameterPath: "blobType",
+export const comp: OperationQueryParameter = {
+  parameterPath: "comp",
   mapper: {
-    defaultValue: "BlockBlob",
+    defaultValue: "page",
     isConstant: true,
-    serializedName: "x-ms-blob-type",
+    serializedName: "comp",
     type: {
       name: "String"
+    }
+  }
+};
+
+export const pageWrite: OperationParameter = {
+  parameterPath: "pageWrite",
+  mapper: {
+    defaultValue: "update",
+    isConstant: true,
+    serializedName: "x-ms-page-write",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const contentLength: OperationParameter = {
+  parameterPath: "contentLength",
+  mapper: {
+    serializedName: "Content-Length",
+    required: true,
+    xmlName: "Content-Length",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const transactionalContentMD5: OperationParameter = {
+  parameterPath: ["options", "transactionalContentMD5"],
+  mapper: {
+    serializedName: "Content-MD5",
+    xmlName: "Content-MD5",
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+
+export const transactionalContentCrc64: OperationParameter = {
+  parameterPath: ["options", "transactionalContentCrc64"],
+  mapper: {
+    serializedName: "x-ms-content-crc64",
+    xmlName: "x-ms-content-crc64",
+    type: {
+      name: "ByteArray"
     }
   }
 };
@@ -79,92 +125,13 @@ export const timeout: OperationQueryParameter = {
   }
 };
 
-export const transactionalContentMD5: OperationParameter = {
-  parameterPath: ["options", "transactionalContentMD5"],
+export const range: OperationParameter = {
+  parameterPath: ["options", "range"],
   mapper: {
-    serializedName: "Content-MD5",
-    xmlName: "Content-MD5",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-
-export const contentLength: OperationParameter = {
-  parameterPath: "contentLength",
-  mapper: {
-    serializedName: "Content-Length",
-    required: true,
-    xmlName: "Content-Length",
-    type: {
-      name: "Number"
-    }
-  }
-};
-
-export const blobContentType: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentType"],
-  mapper: {
-    serializedName: "x-ms-blob-content-type",
-    xmlName: "x-ms-blob-content-type",
+    serializedName: "x-ms-range",
+    xmlName: "x-ms-range",
     type: {
       name: "String"
-    }
-  }
-};
-
-export const blobContentEncoding: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentEncoding"],
-  mapper: {
-    serializedName: "x-ms-blob-content-encoding",
-    xmlName: "x-ms-blob-content-encoding",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const blobContentLanguage: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentLanguage"],
-  mapper: {
-    serializedName: "x-ms-blob-content-language",
-    xmlName: "x-ms-blob-content-language",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const blobContentMD5: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentMD5"],
-  mapper: {
-    serializedName: "x-ms-blob-content-md5",
-    xmlName: "x-ms-blob-content-md5",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-
-export const blobCacheControl: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobCacheControl"],
-  mapper: {
-    serializedName: "x-ms-blob-cache-control",
-    xmlName: "x-ms-blob-cache-control",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const metadata: OperationParameter = {
-  parameterPath: ["options", "metadata"],
-  mapper: {
-    serializedName: "x-ms-meta",
-    xmlName: "x-ms-meta",
-    type: {
-      name: "Dictionary",
-      value: { type: { name: "String" } }
     }
   }
 };
@@ -174,17 +141,6 @@ export const leaseId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-lease-id",
     xmlName: "x-ms-lease-id",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const blobContentDisposition: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentDisposition"],
-  mapper: {
-    serializedName: "x-ms-blob-content-disposition",
-    xmlName: "x-ms-blob-content-disposition",
     type: {
       name: "String"
     }
@@ -236,13 +192,47 @@ export const encryptionScope: OperationParameter = {
   }
 };
 
-export const tier: OperationParameter = {
-  parameterPath: ["options", "tier"],
+export const ifSequenceNumberLessThanOrEqualTo: OperationParameter = {
+  parameterPath: [
+    "options",
+    "sequenceNumberAccessConditions",
+    "ifSequenceNumberLessThanOrEqualTo"
+  ],
   mapper: {
-    serializedName: "x-ms-access-tier",
-    xmlName: "x-ms-access-tier",
+    serializedName: "x-ms-if-sequence-number-le",
+    xmlName: "x-ms-if-sequence-number-le",
     type: {
-      name: "String"
+      name: "Number"
+    }
+  }
+};
+
+export const ifSequenceNumberLessThan: OperationParameter = {
+  parameterPath: [
+    "options",
+    "sequenceNumberAccessConditions",
+    "ifSequenceNumberLessThan"
+  ],
+  mapper: {
+    serializedName: "x-ms-if-sequence-number-lt",
+    xmlName: "x-ms-if-sequence-number-lt",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const ifSequenceNumberEqualTo: OperationParameter = {
+  parameterPath: [
+    "options",
+    "sequenceNumberAccessConditions",
+    "ifSequenceNumberEqualTo"
+  ],
+  mapper: {
+    serializedName: "x-ms-if-sequence-number-eq",
+    xmlName: "x-ms-if-sequence-number-eq",
+    type: {
+      name: "Number"
     }
   }
 };
@@ -319,6 +309,131 @@ export const requestId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-client-request-id",
     xmlName: "x-ms-client-request-id",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const comp1: OperationQueryParameter = {
+  parameterPath: "comp",
+  mapper: {
+    defaultValue: "block",
+    isConstant: true,
+    serializedName: "comp",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blockId: OperationQueryParameter = {
+  parameterPath: "blockId",
+  mapper: {
+    serializedName: "blockid",
+    required: true,
+    xmlName: "blockid",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blobType: OperationParameter = {
+  parameterPath: "blobType",
+  mapper: {
+    defaultValue: "BlockBlob",
+    isConstant: true,
+    serializedName: "x-ms-blob-type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blobContentType: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentType"],
+  mapper: {
+    serializedName: "x-ms-blob-content-type",
+    xmlName: "x-ms-blob-content-type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blobContentEncoding: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentEncoding"],
+  mapper: {
+    serializedName: "x-ms-blob-content-encoding",
+    xmlName: "x-ms-blob-content-encoding",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blobContentLanguage: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentLanguage"],
+  mapper: {
+    serializedName: "x-ms-blob-content-language",
+    xmlName: "x-ms-blob-content-language",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const blobContentMD5: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentMD5"],
+  mapper: {
+    serializedName: "x-ms-blob-content-md5",
+    xmlName: "x-ms-blob-content-md5",
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+
+export const blobCacheControl: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobCacheControl"],
+  mapper: {
+    serializedName: "x-ms-blob-cache-control",
+    xmlName: "x-ms-blob-cache-control",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const metadata: OperationParameter = {
+  parameterPath: ["options", "metadata"],
+  mapper: {
+    serializedName: "x-ms-meta",
+    xmlName: "x-ms-meta",
+    type: {
+      name: "Dictionary",
+      value: { type: { name: "String" } }
+    }
+  }
+};
+
+export const blobContentDisposition: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentDisposition"],
+  mapper: {
+    serializedName: "x-ms-blob-content-disposition",
+    xmlName: "x-ms-blob-content-disposition",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const tier: OperationParameter = {
+  parameterPath: ["options", "tier"],
+  mapper: {
+    serializedName: "x-ms-access-tier",
+    xmlName: "x-ms-access-tier",
     type: {
       name: "String"
     }
@@ -445,6 +560,44 @@ export const copySourceBlobProperties: OperationParameter = {
     xmlName: "x-ms-copy-source-blob-properties",
     type: {
       name: "Boolean"
+    }
+  }
+};
+
+export const comp2: OperationQueryParameter = {
+  parameterPath: "comp",
+  mapper: {
+    defaultValue: "appendblock",
+    isConstant: true,
+    serializedName: "comp",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const maxSize: OperationParameter = {
+  parameterPath: ["options", "appendPositionAccessConditions", "maxSize"],
+  mapper: {
+    serializedName: "x-ms-blob-condition-maxsize",
+    xmlName: "x-ms-blob-condition-maxsize",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const appendPosition: OperationParameter = {
+  parameterPath: [
+    "options",
+    "appendPositionAccessConditions",
+    "appendPosition"
+  ],
+  mapper: {
+    serializedName: "x-ms-blob-condition-appendpos",
+    xmlName: "x-ms-blob-condition-appendpos",
+    type: {
+      name: "Number"
     }
   }
 };

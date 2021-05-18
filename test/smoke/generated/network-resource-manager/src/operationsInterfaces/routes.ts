@@ -42,7 +42,7 @@ export interface Routes {
    * @param routeName The name of the route.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
@@ -50,6 +50,19 @@ export interface Routes {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified route from a route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param routeName The name of the route.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    routeName: string,
+    options?: RoutesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified route from a route table.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +84,7 @@ export interface Routes {
    * @param routeParameters Parameters supplied to the create or update route operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     routeName: string,
@@ -83,4 +96,19 @@ export interface Routes {
       RoutesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a route in the specified route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param routeName The name of the route.
+   * @param routeParameters Parameters supplied to the create or update route operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    routeName: string,
+    routeParameters: Route,
+    options?: RoutesCreateOrUpdateOptionalParams
+  ): Promise<RoutesCreateOrUpdateResponse>;
 }

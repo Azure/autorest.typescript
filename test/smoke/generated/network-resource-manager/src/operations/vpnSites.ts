@@ -172,7 +172,7 @@ export class VpnSitesImpl implements VpnSites {
    * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     vpnSiteName: string,
     vpnSiteParameters: VpnSite,
@@ -208,6 +208,28 @@ export class VpnSitesImpl implements VpnSites {
   }
 
   /**
+   * Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
+   * @param resourceGroupName The resource group name of the VpnSite.
+   * @param vpnSiteName The name of the VpnSite being created or updated.
+   * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    vpnSiteName: string,
+    vpnSiteParameters: VpnSite,
+    options?: VpnSitesCreateOrUpdateOptionalParams
+  ): Promise<VpnSitesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      vpnSiteName,
+      vpnSiteParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates VpnSite tags.
    * @param resourceGroupName The resource group name of the VpnSite.
    * @param vpnSiteName The name of the VpnSite being updated.
@@ -238,7 +260,7 @@ export class VpnSitesImpl implements VpnSites {
    * @param vpnSiteName The name of the VpnSite being deleted.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     vpnSiteName: string,
     options?: VpnSitesDeleteOptionalParams
@@ -266,6 +288,25 @@ export class VpnSitesImpl implements VpnSites {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes a VpnSite.
+   * @param resourceGroupName The resource group name of the VpnSite.
+   * @param vpnSiteName The name of the VpnSite being deleted.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    vpnSiteName: string,
+    options?: VpnSitesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      vpnSiteName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

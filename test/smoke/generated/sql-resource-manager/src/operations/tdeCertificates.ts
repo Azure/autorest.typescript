@@ -35,7 +35,7 @@ export class TdeCertificatesImpl implements TdeCertificates {
    * @param parameters The requested TDE certificate to be created or updated.
    * @param options The options parameters.
    */
-  async create(
+  async beginCreate(
     resourceGroupName: string,
     serverName: string,
     parameters: TdeCertificate,
@@ -64,6 +64,29 @@ export class TdeCertificatesImpl implements TdeCertificates {
       createOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates a TDE certificate for a given server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The requested TDE certificate to be created or updated.
+   * @param options The options parameters.
+   */
+  async beginCreateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: TdeCertificate,
+    options?: TdeCertificatesCreateOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCreate(
+      resourceGroupName,
+      serverName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

@@ -327,7 +327,7 @@ export class AppServiceCertificateOrdersImpl
    * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
@@ -359,6 +359,28 @@ export class AppServiceCertificateOrdersImpl
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Create or update a certificate purchase order.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param certificateOrderName Name of the certificate order.
+   * @param certificateDistinguishedName Distinguished name to use for the certificate order.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    certificateOrderName: string,
+    certificateDistinguishedName: AppServiceCertificateOrder,
+    options?: AppServiceCertificateOrdersCreateOrUpdateOptionalParams
+  ): Promise<AppServiceCertificateOrdersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      certificateOrderName,
+      certificateDistinguishedName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -463,7 +485,7 @@ export class AppServiceCertificateOrdersImpl
    * @param keyVaultCertificate Key vault certificate resource Id.
    * @param options The options parameters.
    */
-  async createOrUpdateCertificate(
+  async beginCreateOrUpdateCertificate(
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,
@@ -499,6 +521,31 @@ export class AppServiceCertificateOrdersImpl
       createOrUpdateCertificateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Description for Creates or updates a certificate and associates with key vault secret.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param certificateOrderName Name of the certificate order.
+   * @param name Name of the certificate.
+   * @param keyVaultCertificate Key vault certificate resource Id.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateCertificateAndWait(
+    resourceGroupName: string,
+    certificateOrderName: string,
+    name: string,
+    keyVaultCertificate: AppServiceCertificateResource,
+    options?: AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams
+  ): Promise<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse> {
+    const poller = await this.beginCreateOrUpdateCertificate(
+      resourceGroupName,
+      certificateOrderName,
+      name,
+      keyVaultCertificate,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

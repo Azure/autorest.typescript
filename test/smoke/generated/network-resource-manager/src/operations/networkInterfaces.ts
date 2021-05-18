@@ -407,7 +407,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesDeleteOptionalParams
@@ -435,6 +435,25 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkInterfaceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -466,7 +485,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param parameters Parameters supplied to the create or update network interface operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkInterfaceName: string,
     parameters: NetworkInterface,
@@ -499,6 +518,28 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param parameters Parameters supplied to the create or update network interface operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    parameters: NetworkInterface,
+    options?: NetworkInterfacesCreateOrUpdateOptionalParams
+  ): Promise<NetworkInterfacesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkInterfaceName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -567,7 +608,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async getEffectiveRouteTable(
+  async beginGetEffectiveRouteTable(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
@@ -601,12 +642,31 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   }
 
   /**
+   * Gets all route tables applied to a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  async beginGetEffectiveRouteTableAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
+  ): Promise<NetworkInterfacesGetEffectiveRouteTableResponse> {
+    const poller = await this.beginGetEffectiveRouteTable(
+      resourceGroupName,
+      networkInterfaceName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Gets all network security groups applied to a network interface.
    * @param resourceGroupName The name of the resource group.
    * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
-  async listEffectiveNetworkSecurityGroups(
+  async beginListEffectiveNetworkSecurityGroups(
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
@@ -639,6 +699,25 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Gets all network security groups applied to a network interface.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkInterfaceName The name of the network interface.
+   * @param options The options parameters.
+   */
+  async beginListEffectiveNetworkSecurityGroupsAndWait(
+    resourceGroupName: string,
+    networkInterfaceName: string,
+    options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
+  ): Promise<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse> {
+    const poller = await this.beginListEffectiveNetworkSecurityGroups(
+      resourceGroupName,
+      networkInterfaceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

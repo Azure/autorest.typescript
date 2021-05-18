@@ -67,7 +67,7 @@ export interface Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
@@ -79,18 +79,60 @@ export interface Servers {
     >
   >;
   /**
+   * Creates or updates a server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The requested server resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: Server,
+    options?: ServersCreateOrUpdateOptionalParams
+  ): Promise<ServersCreateOrUpdateResponse>;
+  /**
    * Deletes a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     options?: ServersDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Deletes a server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    options?: ServersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Updates a server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters The requested server resource state.
+   * @param options The options parameters.
+   */
+  beginUpdate(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ServerUpdate,
+    options?: ServersUpdateOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
   >;
   /**
    * Updates a server.
@@ -100,14 +142,12 @@ export interface Servers {
    * @param parameters The requested server resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdateAndWait(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,
     options?: ServersUpdateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
-  >;
+  ): Promise<ServersUpdateResponse>;
   /**
    * Determines whether a resource can be created with the specified name.
    * @param parameters The name availability request parameters.

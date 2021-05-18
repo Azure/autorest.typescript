@@ -119,7 +119,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
    * @param virtualNetworkPeeringName The name of the virtual network peering.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
@@ -149,6 +149,28 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified virtual network peering.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param virtualNetworkPeeringName The name of the virtual network peering.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    virtualNetworkPeeringName: string,
+    options?: VirtualNetworkPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualNetworkName,
+      virtualNetworkPeeringName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -185,7 +207,7 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
    *                                        peering operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
@@ -220,6 +242,32 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a peering in the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param virtualNetworkPeeringName The name of the peering.
+   * @param virtualNetworkPeeringParameters Parameters supplied to the create or update virtual network
+   *                                        peering operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    virtualNetworkPeeringName: string,
+    virtualNetworkPeeringParameters: VirtualNetworkPeering,
+    options?: VirtualNetworkPeeringsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkPeeringsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualNetworkName,
+      virtualNetworkPeeringName,
+      virtualNetworkPeeringParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

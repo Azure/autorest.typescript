@@ -124,7 +124,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
    * @param parameters Parameters supplied to the Create Dedicated Host.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -161,6 +161,31 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   }
 
   /**
+   * Create or update a dedicated host .
+   * @param resourceGroupName The name of the resource group.
+   * @param hostGroupName The name of the dedicated host group.
+   * @param hostName The name of the dedicated host .
+   * @param parameters Parameters supplied to the Create Dedicated Host.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    hostGroupName: string,
+    hostName: string,
+    parameters: DedicatedHost,
+    options?: DedicatedHostsCreateOrUpdateOptionalParams
+  ): Promise<DedicatedHostsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      hostGroupName,
+      hostName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Update an dedicated host .
    * @param resourceGroupName The name of the resource group.
    * @param hostGroupName The name of the dedicated host group.
@@ -168,7 +193,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
    * @param parameters Parameters supplied to the Update Dedicated Host operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -205,13 +230,38 @@ export class DedicatedHostsImpl implements DedicatedHosts {
   }
 
   /**
+   * Update an dedicated host .
+   * @param resourceGroupName The name of the resource group.
+   * @param hostGroupName The name of the dedicated host group.
+   * @param hostName The name of the dedicated host .
+   * @param parameters Parameters supplied to the Update Dedicated Host operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    hostGroupName: string,
+    hostName: string,
+    parameters: DedicatedHostUpdate,
+    options?: DedicatedHostsUpdateOptionalParams
+  ): Promise<DedicatedHostsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      hostGroupName,
+      hostName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Delete a dedicated host.
    * @param resourceGroupName The name of the resource group.
    * @param hostGroupName The name of the dedicated host group.
    * @param hostName The name of the dedicated host.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
@@ -240,6 +290,28 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Delete a dedicated host.
+   * @param resourceGroupName The name of the resource group.
+   * @param hostGroupName The name of the dedicated host group.
+   * @param hostName The name of the dedicated host.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    hostGroupName: string,
+    hostName: string,
+    options?: DedicatedHostsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      hostGroupName,
+      hostName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

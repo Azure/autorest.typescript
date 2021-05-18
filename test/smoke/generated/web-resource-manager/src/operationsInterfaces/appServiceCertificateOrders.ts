@@ -110,7 +110,7 @@ export interface AppServiceCertificateOrders {
    * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     certificateOrderName: string,
     certificateDistinguishedName: AppServiceCertificateOrder,
@@ -121,6 +121,19 @@ export interface AppServiceCertificateOrders {
       AppServiceCertificateOrdersCreateOrUpdateResponse
     >
   >;
+  /**
+   * Description for Create or update a certificate purchase order.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param certificateOrderName Name of the certificate order.
+   * @param certificateDistinguishedName Distinguished name to use for the certificate order.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    certificateOrderName: string,
+    certificateDistinguishedName: AppServiceCertificateOrder,
+    options?: AppServiceCertificateOrdersCreateOrUpdateOptionalParams
+  ): Promise<AppServiceCertificateOrdersCreateOrUpdateResponse>;
   /**
    * Description for Delete an existing certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -166,7 +179,7 @@ export interface AppServiceCertificateOrders {
    * @param keyVaultCertificate Key vault certificate resource Id.
    * @param options The options parameters.
    */
-  createOrUpdateCertificate(
+  beginCreateOrUpdateCertificate(
     resourceGroupName: string,
     certificateOrderName: string,
     name: string,
@@ -180,6 +193,21 @@ export interface AppServiceCertificateOrders {
       AppServiceCertificateOrdersCreateOrUpdateCertificateResponse
     >
   >;
+  /**
+   * Description for Creates or updates a certificate and associates with key vault secret.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param certificateOrderName Name of the certificate order.
+   * @param name Name of the certificate.
+   * @param keyVaultCertificate Key vault certificate resource Id.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateCertificateAndWait(
+    resourceGroupName: string,
+    certificateOrderName: string,
+    name: string,
+    keyVaultCertificate: AppServiceCertificateResource,
+    options?: AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams
+  ): Promise<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>;
   /**
    * Description for Delete the certificate associated with a certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

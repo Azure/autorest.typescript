@@ -149,7 +149,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param tapName The name of the virtual network tap.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     tapName: string,
     options?: VirtualNetworkTapsDeleteOptionalParams
@@ -177,6 +177,21 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified virtual network tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    options?: VirtualNetworkTapsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(resourceGroupName, tapName, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -208,7 +223,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
    * @param parameters Parameters supplied to the create or update virtual network tap operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     tapName: string,
     parameters: VirtualNetworkTap,
@@ -241,6 +256,28 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a Virtual Network Tap.
+   * @param resourceGroupName The name of the resource group.
+   * @param tapName The name of the virtual network tap.
+   * @param parameters Parameters supplied to the create or update virtual network tap operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    tapName: string,
+    parameters: VirtualNetworkTap,
+    options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkTapsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      tapName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

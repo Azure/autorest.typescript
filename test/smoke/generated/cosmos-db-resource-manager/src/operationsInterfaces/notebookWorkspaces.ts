@@ -62,7 +62,7 @@ export interface NotebookWorkspaces {
    *                                       account.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -75,13 +75,29 @@ export interface NotebookWorkspaces {
     >
   >;
   /**
+   * Creates the notebook workspace for a Cosmos DB account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param notebookCreateUpdateParameters The notebook workspace to create for the current database
+   *                                       account.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters,
+    options?: NotebookWorkspacesCreateOrUpdateOptionalParams
+  ): Promise<NotebookWorkspacesCreateOrUpdateResponse>;
+  /**
    * Deletes the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
@@ -89,6 +105,19 @@ export interface NotebookWorkspaces {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the notebook workspace for a Cosmos DB account.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Retrieves the connection info for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -109,11 +138,39 @@ export interface NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  regenerateAuthToken(
+  beginRegenerateAuthToken(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Regenerates the auth token for the notebook workspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  beginRegenerateAuthTokenAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Starts the notebook workspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
+   * @param options The options parameters.
+   */
+  beginStart(
+    resourceGroupName: string,
+    accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
+    options?: NotebookWorkspacesStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -124,12 +181,10 @@ export interface NotebookWorkspaces {
    * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
-  start(
+  beginStartAndWait(
     resourceGroupName: string,
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
 }

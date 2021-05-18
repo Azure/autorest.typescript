@@ -51,13 +51,24 @@ export interface NetworkSecurityGroups {
    * @param networkSecurityGroupName The name of the network security group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     options?: NetworkSecurityGroupsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified network security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    options?: NetworkSecurityGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified network security group.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface NetworkSecurityGroups {
    * @param parameters Parameters supplied to the create or update network security group operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     parameters: NetworkSecurityGroup,
@@ -87,6 +98,19 @@ export interface NetworkSecurityGroups {
       NetworkSecurityGroupsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a network security group in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param parameters Parameters supplied to the create or update network security group operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    parameters: NetworkSecurityGroup,
+    options?: NetworkSecurityGroupsCreateOrUpdateOptionalParams
+  ): Promise<NetworkSecurityGroupsCreateOrUpdateResponse>;
   /**
    * Updates a network security group tags.
    * @param resourceGroupName The name of the resource group.

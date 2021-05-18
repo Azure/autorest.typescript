@@ -120,7 +120,7 @@ export class ServiceEndpointPolicyDefinitionsImpl
    * @param serviceEndpointPolicyDefinitionName The name of the service endpoint policy definition.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
@@ -150,6 +150,28 @@ export class ServiceEndpointPolicyDefinitionsImpl
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified ServiceEndpoint policy definitions.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the Service Endpoint Policy.
+   * @param serviceEndpointPolicyDefinitionName The name of the service endpoint policy definition.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    serviceEndpointPolicyDefinitionName: string,
+    options?: ServiceEndpointPolicyDefinitionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      serviceEndpointPolicyDefinitionName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -186,7 +208,7 @@ export class ServiceEndpointPolicyDefinitionsImpl
    *                                         policy operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serviceEndpointPolicyName: string,
     serviceEndpointPolicyDefinitionName: string,
@@ -223,6 +245,32 @@ export class ServiceEndpointPolicyDefinitionsImpl
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a service endpoint policy definition in the specified service endpoint policy.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceEndpointPolicyName The name of the service endpoint policy.
+   * @param serviceEndpointPolicyDefinitionName The name of the service endpoint policy definition name.
+   * @param serviceEndpointPolicyDefinitions Parameters supplied to the create or update service endpoint
+   *                                         policy operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serviceEndpointPolicyName: string,
+    serviceEndpointPolicyDefinitionName: string,
+    serviceEndpointPolicyDefinitions: ServiceEndpointPolicyDefinition,
+    options?: ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams
+  ): Promise<ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      serviceEndpointPolicyDefinitionName,
+      serviceEndpointPolicyDefinitions,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

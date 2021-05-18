@@ -146,7 +146,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param routeTableName The name of the route table.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     routeTableName: string,
     options?: RouteTablesDeleteOptionalParams
@@ -174,6 +174,25 @@ export class RouteTablesImpl implements RouteTables {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified route table.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    options?: RouteTablesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      routeTableName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -205,7 +224,7 @@ export class RouteTablesImpl implements RouteTables {
    * @param parameters Parameters supplied to the create or update route table operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     routeTableName: string,
     parameters: RouteTable,
@@ -238,6 +257,28 @@ export class RouteTablesImpl implements RouteTables {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Create or updates a route table in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param routeTableName The name of the route table.
+   * @param parameters Parameters supplied to the create or update route table operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    routeTableName: string,
+    parameters: RouteTable,
+    options?: RouteTablesCreateOrUpdateOptionalParams
+  ): Promise<RouteTablesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      routeTableName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

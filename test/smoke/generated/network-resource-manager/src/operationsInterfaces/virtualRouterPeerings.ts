@@ -42,7 +42,7 @@ export interface VirtualRouterPeerings {
    * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -50,6 +50,19 @@ export interface VirtualRouterPeerings {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified peering from a Virtual Router.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the peering.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    options?: VirtualRouterPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified Virtual Router Peering.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +84,7 @@ export interface VirtualRouterPeerings {
    * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualRouterName: string,
     peeringName: string,
@@ -83,4 +96,19 @@ export interface VirtualRouterPeerings {
       VirtualRouterPeeringsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified Virtual Router Peering.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the Virtual Router Peering.
+   * @param parameters Parameters supplied to the create or update Virtual Router Peering operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualRouterName: string,
+    peeringName: string,
+    parameters: VirtualRouterPeering,
+    options?: VirtualRouterPeeringsCreateOrUpdateOptionalParams
+  ): Promise<VirtualRouterPeeringsCreateOrUpdateResponse>;
 }

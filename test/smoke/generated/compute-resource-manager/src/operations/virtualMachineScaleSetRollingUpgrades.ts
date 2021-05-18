@@ -40,7 +40,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async cancel(
+  async beginCancel(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
@@ -70,6 +70,25 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   }
 
   /**
+   * Cancels the current virtual machine scale set rolling upgrade.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param options The options parameters.
+   */
+  async beginCancelAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginCancel(
+      resourceGroupName,
+      vmScaleSetName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
    * Platform Image OS version. Instances which are already running the latest available OS version are
    * not affected.
@@ -77,7 +96,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async startOSUpgrade(
+  async beginStartOSUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
@@ -107,6 +126,27 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
   }
 
   /**
+   * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
+   * Platform Image OS version. Instances which are already running the latest available OS version are
+   * not affected.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param options The options parameters.
+   */
+  async beginStartOSUpgradeAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStartOSUpgrade(
+      resourceGroupName,
+      vmScaleSetName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
    * latest available extension version. Instances which are already running the latest extension
    * versions are not affected.
@@ -114,7 +154,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
    * @param vmScaleSetName The name of the VM scale set.
    * @param options The options parameters.
    */
-  async startExtensionUpgrade(
+  async beginStartExtensionUpgrade(
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
@@ -141,6 +181,27 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       startExtensionUpgradeOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
+   * latest available extension version. Instances which are already running the latest extension
+   * versions are not affected.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param options The options parameters.
+   */
+  async beginStartExtensionUpgradeAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginStartExtensionUpgrade(
+      resourceGroupName,
+      vmScaleSetName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

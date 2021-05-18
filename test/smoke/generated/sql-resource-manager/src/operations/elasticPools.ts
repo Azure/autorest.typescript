@@ -382,7 +382,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param parameters The elastic pool parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -419,6 +419,32 @@ export class ElasticPoolsImpl implements ElasticPools {
   }
 
   /**
+   * Creates or updates an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param parameters The elastic pool parameters.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    parameters: ElasticPool,
+    options?: ElasticPoolsCreateOrUpdateOptionalParams
+  ): Promise<ElasticPoolsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -426,7 +452,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param elasticPoolName The name of the elastic pool.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -458,6 +484,29 @@ export class ElasticPoolsImpl implements ElasticPools {
   }
 
   /**
+   * Deletes an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: ElasticPoolsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -466,7 +515,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param parameters The elastic pool update parameters.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -503,6 +552,32 @@ export class ElasticPoolsImpl implements ElasticPools {
   }
 
   /**
+   * Updates an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool.
+   * @param parameters The elastic pool update parameters.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    parameters: ElasticPoolUpdate,
+    options?: ElasticPoolsUpdateOptionalParams
+  ): Promise<ElasticPoolsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Failovers an elastic pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -510,7 +585,7 @@ export class ElasticPoolsImpl implements ElasticPools {
    * @param elasticPoolName The name of the elastic pool to failover.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
@@ -539,6 +614,29 @@ export class ElasticPoolsImpl implements ElasticPools {
       failoverOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Failovers an elastic pool.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param elasticPoolName The name of the elastic pool to failover.
+   * @param options The options parameters.
+   */
+  async beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    elasticPoolName: string,
+    options?: ElasticPoolsFailoverOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginFailover(
+      resourceGroupName,
+      serverName,
+      elasticPoolName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

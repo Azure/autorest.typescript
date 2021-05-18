@@ -43,7 +43,7 @@ export interface HubRouteTables {
    * @param routeTableParameters Parameters supplied to create or update RouteTable.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -55,6 +55,21 @@ export interface HubRouteTables {
       HubRouteTablesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
+   * @param resourceGroupName The resource group name of the VirtualHub.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the RouteTable.
+   * @param routeTableParameters Parameters supplied to create or update RouteTable.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    routeTableParameters: HubRouteTable,
+    options?: HubRouteTablesCreateOrUpdateOptionalParams
+  ): Promise<HubRouteTablesCreateOrUpdateResponse>;
   /**
    * Retrieves the details of a RouteTable.
    * @param resourceGroupName The resource group name of the VirtualHub.
@@ -75,7 +90,7 @@ export interface HubRouteTables {
    * @param routeTableName The name of the RouteTable.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
@@ -83,4 +98,17 @@ export interface HubRouteTables {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a RouteTable.
+   * @param resourceGroupName The resource group name of the RouteTable.
+   * @param virtualHubName The name of the VirtualHub.
+   * @param routeTableName The name of the RouteTable.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualHubName: string,
+    routeTableName: string,
+    options?: HubRouteTablesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

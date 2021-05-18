@@ -50,7 +50,7 @@ export interface GalleryApplications {
    * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -60,6 +60,47 @@ export interface GalleryApplications {
     PollerLike<
       PollOperationState<GalleryApplicationsCreateOrUpdateResponse>,
       GalleryApplicationsCreateOrUpdateResponse
+    >
+  >;
+  /**
+   * Create or update a gallery Application Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be created.
+   * @param galleryApplicationName The name of the gallery Application Definition to be created or
+   *                               updated. The allowed characters are alphabets and numbers with dots, dashes, and periods allowed in
+   *                               the middle. The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplication: GalleryApplication,
+    options?: GalleryApplicationsCreateOrUpdateOptionalParams
+  ): Promise<GalleryApplicationsCreateOrUpdateResponse>;
+  /**
+   * Update a gallery Application Definition.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be updated.
+   * @param galleryApplicationName The name of the gallery Application Definition to be updated. The
+   *                               allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
+   *                               The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the update gallery Application operation.
+   * @param options The options parameters.
+   */
+  beginUpdate(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    galleryApplication: GalleryApplicationUpdate,
+    options?: GalleryApplicationsUpdateOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<GalleryApplicationsUpdateResponse>,
+      GalleryApplicationsUpdateResponse
     >
   >;
   /**
@@ -73,18 +114,13 @@ export interface GalleryApplications {
    * @param galleryApplication Parameters supplied to the update gallery Application operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdateAndWait(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
     galleryApplication: GalleryApplicationUpdate,
     options?: GalleryApplicationsUpdateOptionalParams
-  ): Promise<
-    PollerLike<
-      PollOperationState<GalleryApplicationsUpdateResponse>,
-      GalleryApplicationsUpdateResponse
-    >
-  >;
+  ): Promise<GalleryApplicationsUpdateResponse>;
   /**
    * Retrieves information about a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
@@ -107,7 +143,7 @@ export interface GalleryApplications {
    * @param galleryApplicationName The name of the gallery Application Definition to be deleted.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     galleryName: string,
     galleryApplicationName: string,
@@ -115,4 +151,18 @@ export interface GalleryApplications {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete a gallery Application.
+   * @param resourceGroupName The name of the resource group.
+   * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
+   *                    to be deleted.
+   * @param galleryApplicationName The name of the gallery Application Definition to be deleted.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    galleryName: string,
+    galleryApplicationName: string,
+    options?: GalleryApplicationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

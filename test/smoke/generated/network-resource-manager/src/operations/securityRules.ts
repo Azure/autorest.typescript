@@ -119,7 +119,7 @@ export class SecurityRulesImpl implements SecurityRules {
    * @param securityRuleName The name of the security rule.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
@@ -149,6 +149,28 @@ export class SecurityRulesImpl implements SecurityRules {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified network security rule.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param securityRuleName The name of the security rule.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    securityRuleName: string,
+    options?: SecurityRulesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkSecurityGroupName,
+      securityRuleName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -185,7 +207,7 @@ export class SecurityRulesImpl implements SecurityRules {
    *                               operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     networkSecurityGroupName: string,
     securityRuleName: string,
@@ -220,6 +242,32 @@ export class SecurityRulesImpl implements SecurityRules {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a security rule in the specified network security group.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkSecurityGroupName The name of the network security group.
+   * @param securityRuleName The name of the security rule.
+   * @param securityRuleParameters Parameters supplied to the create or update network security rule
+   *                               operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkSecurityGroupName: string,
+    securityRuleName: string,
+    securityRuleParameters: SecurityRule,
+    options?: SecurityRulesCreateOrUpdateOptionalParams
+  ): Promise<SecurityRulesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      networkSecurityGroupName,
+      securityRuleName,
+      securityRuleParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

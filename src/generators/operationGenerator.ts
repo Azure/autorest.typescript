@@ -48,6 +48,7 @@ import {
   preparePageableOperations,
   writeAsyncIterators
 } from "./utils/pagingOperations";
+import { calculateMethodName } from "./utils/operationsUtils";
 import { OptionsBag } from "../utils/optionsBag";
 
 /**
@@ -179,11 +180,27 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
   const formDataParams = buildParameters(spec, "formDataParameters");
-  const contentType = buildContentType(spec);
   const mediaType = buildMediaType(spec);
 
+  // The targetMediaType should be used to determine if we want to
+  // build content type. Else, we will end up with mediaType json
+  // and content type xml.
+  let targetMediaType: string | undefined = undefined;
+  if (Array.isArray(spec.requestBody)) {
+    targetMediaType = spec.requestBody[0]?.targetMediaType;
+  } else {
+    targetMediaType = spec.requestBody?.targetMediaType;
+  }
+
+  const contentType =
+    targetMediaType !== KnownMediaType.Json
+      ? buildContentType(spec)
+      : undefined;
+
   const serializerName = spec.isXML
-    ? "serializer: xmlSerializer"
+    ? targetMediaType !== KnownMediaType.Json
+      ? "serializer: xmlSerializer"
+      : "serializer"
     : "serializer";
 
   writer.block(() => {
@@ -234,7 +251,7 @@ function writeSpec(spec: OperationSpecDetails, writer: CodeBlockWriter): void {
       writer.write(", ");
     }
 
-    if (spec.isXML) {
+    if (spec.isXML && targetMediaType != KnownMediaType.Json) {
       writer.write("isXML: true");
       writer.write(", ");
     }
@@ -435,7 +452,7 @@ function getReturnType(
   importedModels: Set<string>,
   modelNames: Set<string>,
   optionsBag: OptionsBag
-) {
+): string {
   const responseName = getOperationResponseType(
     operation,
     importedModels,
@@ -575,13 +592,9 @@ export function writeOperations(
       modelNames,
       optionsBag
     );
-    const name = `${operation.namePrefix || ""}${normalizeName(
-      operation.name,
-      NameType.Property
-    )}`;
-
+    
     const operationMethod = operationGroupClass.addMethod({
-      name,
+      name: calculateMethodName(operation),
       parameters: baseMethodParameters,
       scope: operation.scope,
       returnType,
@@ -607,6 +620,69 @@ export function writeOperations(
       isInline,
       optionsBag
     );
+
+    /**
+     * Create a simple method that blocks and waits for the result
+     */
+    if (operation.isLRO && operation.pagination === undefined) {
+      const responseName = getOperationResponseType(
+        operation,
+        importedModels,
+        modelNames,
+        optionsBag
+      );
+      const methodName = calculateMethodName(operation);
+      const operationMethod = operationGroupClass.addMethod({
+        name: `${methodName}AndWait`,
+        parameters: baseMethodParameters,
+        scope: operation.scope,
+        returnType: `Promise<${responseName}>`,
+        docs: [
+          generateOperationJSDoc(baseMethodParameters, operation.description)
+        ],
+        isAsync: true
+      });
+      if (overloadParameterDeclarations.length > 1) {
+        // Since contentType is always added as a synthetic parameter by modelerfour, it should always
+        // be in the same position for all overloads.
+        let contentTypePosition: number = -1;
+        for (let i = 0; i < overloadParameterDeclarations.length; i++) {
+          const overloadParameters = overloadParameterDeclarations[i];
+
+          contentTypePosition = overloadParameters.findIndex(
+            (param: ParameterWithDescription) => {
+              return param.isContentType;
+            }
+          );
+
+          // Get conditional to handle the current overload
+          const conditional = getContentTypeInfo(operation.requests[i])
+            ?.map(type => `args[${contentTypePosition}] === "${type}"`)
+            .join(" || ");
+
+          const assignments = `const poller = await this.${methodName}(...args);
+          return poller.pollUntilDone();`;
+
+          const elseif = i === 0 ? "if" : "else if";
+
+          // Add conditional statement to handle the current overload
+          operationMethod.addStatements([
+            `${elseif} (${conditional}) {
+        ${assignments}
+       }`
+          ]);
+        }
+        operationMethod.addStatements(`throw new Error("Impossible case");`);
+      } else {
+        operationMethod.addStatements(
+          `const poller = await this.${methodName}(${baseMethodParameters
+            .map(x => x.name)
+            .join(",")});
+            return poller.pollUntilDone();
+            `
+        );
+      }
+    }
   });
 }
 
@@ -1109,11 +1185,7 @@ function hasMediaType(
   operationDetails: OperationDetails,
   mediaType: KnownMediaType
 ) {
-  if (!operationDetails.requests.some(r => !!r.mediaType)) {
-    return operationDetails.mediaTypes.has(mediaType);
-  }
-
-  return operationDetails.requests.some(r => r.mediaType === mediaType);
+  return operationDetails.mediaTypes.has(mediaType);
 }
 
 /**
@@ -1135,7 +1207,6 @@ export function addOperationSpecs(
     operation =>
       hasMediaType(operation, KnownMediaType.Json) ||
       hasMediaType(operation, KnownMediaType.Form) ||
-      hasMediaType(operation, KnownMediaType.Binary) ||
       hasMediaType(operation, KnownMediaType.Multipart) ||
       hasMediaType(operation, KnownMediaType.Text) ||
       hasMediaType(operation, KnownMediaType.Unknown)

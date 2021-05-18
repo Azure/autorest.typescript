@@ -57,7 +57,7 @@ export interface VpnConnections {
    * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
@@ -70,13 +70,29 @@ export interface VpnConnections {
     >
   >;
   /**
+   * Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing
+   * connection.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the connection.
+   * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    vpnConnectionParameters: VpnConnection,
+    options?: VpnConnectionsCreateOrUpdateOptionalParams
+  ): Promise<VpnConnectionsCreateOrUpdateResponse>;
+  /**
    * Deletes a vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
    * @param connectionName The name of the connection.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     gatewayName: string,
     connectionName: string,
@@ -84,4 +100,17 @@ export interface VpnConnections {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a vpn connection.
+   * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the connection.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    gatewayName: string,
+    connectionName: string,
+    options?: VpnConnectionsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

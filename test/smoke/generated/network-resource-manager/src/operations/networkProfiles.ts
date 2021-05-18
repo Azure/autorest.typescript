@@ -146,7 +146,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
    * @param networkProfileName The name of the NetworkProfile.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     networkProfileName: string,
     options?: NetworkProfilesDeleteOptionalParams
@@ -174,6 +174,25 @@ export class NetworkProfilesImpl implements NetworkProfiles {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified network profile.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkProfileName The name of the NetworkProfile.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    networkProfileName: string,
+    options?: NetworkProfilesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      networkProfileName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

@@ -51,7 +51,7 @@ export interface Images {
    * @param parameters Parameters supplied to the Create Image operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: Image,
@@ -63,13 +63,26 @@ export interface Images {
     >
   >;
   /**
+   * Create or update an image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param parameters Parameters supplied to the Create Image operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    parameters: Image,
+    options?: ImagesCreateOrUpdateOptionalParams
+  ): Promise<ImagesCreateOrUpdateResponse>;
+  /**
    * Update an image.
    * @param resourceGroupName The name of the resource group.
    * @param imageName The name of the image.
    * @param parameters Parameters supplied to the Update Image operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     imageName: string,
     parameters: ImageUpdate,
@@ -78,18 +91,42 @@ export interface Images {
     PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
   >;
   /**
+   * Update an image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param parameters Parameters supplied to the Update Image operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    parameters: ImageUpdate,
+    options?: ImagesUpdateOptionalParams
+  ): Promise<ImagesUpdateResponse>;
+  /**
    * Deletes an Image.
    * @param resourceGroupName The name of the resource group.
    * @param imageName The name of the image.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes an Image.
+   * @param resourceGroupName The name of the resource group.
+   * @param imageName The name of the image.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    imageName: string,
+    options?: ImagesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets an image.
    * @param resourceGroupName The name of the resource group.

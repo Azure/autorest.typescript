@@ -326,7 +326,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param publicIpAddressName The name of the subnet.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
@@ -354,6 +354,25 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified public IP address.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpAddressName The name of the subnet.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    publicIpAddressName: string,
+    options?: PublicIPAddressesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      publicIpAddressName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -385,7 +404,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
    * @param parameters Parameters supplied to the create or update public IP address operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     publicIpAddressName: string,
     parameters: PublicIPAddress,
@@ -418,6 +437,28 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       sendOperation,
       "azure-async-operation"
     );
+  }
+
+  /**
+   * Creates or updates a static or dynamic public IP address.
+   * @param resourceGroupName The name of the resource group.
+   * @param publicIpAddressName The name of the public IP address.
+   * @param parameters Parameters supplied to the create or update public IP address operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    publicIpAddressName: string,
+    parameters: PublicIPAddress,
+    options?: PublicIPAddressesCreateOrUpdateOptionalParams
+  ): Promise<PublicIPAddressesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      publicIpAddressName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

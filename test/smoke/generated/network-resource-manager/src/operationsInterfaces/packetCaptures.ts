@@ -46,7 +46,7 @@ export interface PacketCaptures {
    * @param parameters Parameters that define the create packet capture operation.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -58,6 +58,21 @@ export interface PacketCaptures {
       PacketCapturesCreateResponse
     >
   >;
+  /**
+   * Create and start a packet capture on the specified VM.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param parameters Parameters that define the create packet capture operation.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    parameters: PacketCapture,
+    options?: PacketCapturesCreateOptionalParams
+  ): Promise<PacketCapturesCreateResponse>;
   /**
    * Gets a packet capture session by name.
    * @param resourceGroupName The name of the resource group.
@@ -78,11 +93,39 @@ export interface PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
     options?: PacketCapturesDeleteOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Deletes the specified packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Stops a specified packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the network watcher.
+   * @param packetCaptureName The name of the packet capture session.
+   * @param options The options parameters.
+   */
+  beginStop(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -93,14 +136,12 @@ export interface PacketCaptures {
    * @param packetCaptureName The name of the packet capture session.
    * @param options The options parameters.
    */
-  stop(
+  beginStopAndWait(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
     options?: PacketCapturesStopOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Query the status of a running packet capture session.
    * @param resourceGroupName The name of the resource group.
@@ -108,7 +149,7 @@ export interface PacketCaptures {
    * @param packetCaptureName The name given to the packet capture session.
    * @param options The options parameters.
    */
-  getStatus(
+  beginGetStatus(
     resourceGroupName: string,
     networkWatcherName: string,
     packetCaptureName: string,
@@ -119,4 +160,17 @@ export interface PacketCaptures {
       PacketCapturesGetStatusResponse
     >
   >;
+  /**
+   * Query the status of a running packet capture session.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param packetCaptureName The name given to the packet capture session.
+   * @param options The options parameters.
+   */
+  beginGetStatusAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    packetCaptureName: string,
+    options?: PacketCapturesGetStatusOptionalParams
+  ): Promise<PacketCapturesGetStatusResponse>;
 }

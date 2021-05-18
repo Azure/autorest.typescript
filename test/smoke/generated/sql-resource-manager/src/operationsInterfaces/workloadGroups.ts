@@ -64,7 +64,7 @@ export interface WorkloadGroups {
    * @param parameters The requested workload group state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -78,6 +78,24 @@ export interface WorkloadGroups {
     >
   >;
   /**
+   * Creates or updates a workload group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group.
+   * @param parameters The requested workload group state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    parameters: WorkloadGroup,
+    options?: WorkloadGroupsCreateOrUpdateOptionalParams
+  ): Promise<WorkloadGroupsCreateOrUpdateResponse>;
+  /**
    * Deletes a workload group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -86,7 +104,7 @@ export interface WorkloadGroups {
    * @param workloadGroupName The name of the workload group to delete.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -95,4 +113,20 @@ export interface WorkloadGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a workload group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group to delete.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    options?: WorkloadGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

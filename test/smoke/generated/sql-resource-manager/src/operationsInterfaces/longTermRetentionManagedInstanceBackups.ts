@@ -133,7 +133,7 @@ export interface LongTermRetentionManagedInstanceBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
@@ -142,6 +142,21 @@ export interface LongTermRetentionManagedInstanceBackups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a long term retention backup.
+   * @param locationName The location of the database.
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    backupName: string,
+    options?: LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a long term retention backup for a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -170,7 +185,7 @@ export interface LongTermRetentionManagedInstanceBackups {
    * @param backupName The backup name.
    * @param options The options parameters.
    */
-  deleteByResourceGroup(
+  beginDeleteByResourceGroup(
     resourceGroupName: string,
     locationName: string,
     managedInstanceName: string,
@@ -180,4 +195,22 @@ export interface LongTermRetentionManagedInstanceBackups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a long term retention backup.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
+   * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
+   * @param options The options parameters.
+   */
+  beginDeleteByResourceGroupAndWait(
+    resourceGroupName: string,
+    locationName: string,
+    managedInstanceName: string,
+    databaseName: string,
+    backupName: string,
+    options?: LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -99,13 +99,24 @@ export interface PrivateLinkServices {
    * @param serviceName The name of the private link service.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified private link service.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    options?: PrivateLinkServicesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified private link service by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -124,7 +135,7 @@ export interface PrivateLinkServices {
    * @param parameters Parameters supplied to the create or update private link service operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serviceName: string,
     parameters: PrivateLinkService,
@@ -135,6 +146,19 @@ export interface PrivateLinkServices {
       PrivateLinkServicesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates an private link service in the specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param parameters Parameters supplied to the create or update private link service operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    parameters: PrivateLinkService,
+    options?: PrivateLinkServicesCreateOrUpdateOptionalParams
+  ): Promise<PrivateLinkServicesCreateOrUpdateResponse>;
   /**
    * Get the specific private end point connection by specific private link service in the resource
    * group.
@@ -171,7 +195,7 @@ export interface PrivateLinkServices {
    * @param peConnectionName The name of the private end point connection.
    * @param options The options parameters.
    */
-  deletePrivateEndpointConnection(
+  beginDeletePrivateEndpointConnection(
     resourceGroupName: string,
     serviceName: string,
     peConnectionName: string,
@@ -179,6 +203,19 @@ export interface PrivateLinkServices {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Delete private end point connection for a private link service in a subscription.
+   * @param resourceGroupName The name of the resource group.
+   * @param serviceName The name of the private link service.
+   * @param peConnectionName The name of the private end point connection.
+   * @param options The options parameters.
+   */
+  beginDeletePrivateEndpointConnectionAndWait(
+    resourceGroupName: string,
+    serviceName: string,
+    peConnectionName: string,
+    options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Checks whether the subscription is visible to private link service.
    * @param location The location of the domain name.

@@ -50,7 +50,7 @@ export interface ConnectionMonitors {
    * @param parameters Parameters that define the operation to create a connection monitor.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -62,6 +62,21 @@ export interface ConnectionMonitors {
       ConnectionMonitorsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Create or update a connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param parameters Parameters that define the operation to create a connection monitor.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    parameters: ConnectionMonitor,
+    options?: ConnectionMonitorsCreateOrUpdateOptionalParams
+  ): Promise<ConnectionMonitorsCreateOrUpdateResponse>;
   /**
    * Gets a connection monitor by name.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -82,7 +97,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -90,6 +105,19 @@ export interface ConnectionMonitors {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Update tags of the specified connection monitor.
    * @param resourceGroupName The name of the resource group.
@@ -112,11 +140,39 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  stop(
+  beginStop(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStopOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Stops the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  beginStopAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsStopOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Starts the specified connection monitor.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name of the connection monitor.
+   * @param options The options parameters.
+   */
+  beginStart(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -127,14 +183,12 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
-  start(
+  beginStartAndWait(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Query a snapshot of the most recent connection states.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -142,7 +196,7 @@ export interface ConnectionMonitors {
    * @param connectionMonitorName The name given to the connection monitor.
    * @param options The options parameters.
    */
-  query(
+  beginQuery(
     resourceGroupName: string,
     networkWatcherName: string,
     connectionMonitorName: string,
@@ -153,4 +207,17 @@ export interface ConnectionMonitors {
       ConnectionMonitorsQueryResponse
     >
   >;
+  /**
+   * Query a snapshot of the most recent connection states.
+   * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param connectionMonitorName The name given to the connection monitor.
+   * @param options The options parameters.
+   */
+  beginQueryAndWait(
+    resourceGroupName: string,
+    networkWatcherName: string,
+    connectionMonitorName: string,
+    options?: ConnectionMonitorsQueryOptionalParams
+  ): Promise<ConnectionMonitorsQueryResponse>;
 }

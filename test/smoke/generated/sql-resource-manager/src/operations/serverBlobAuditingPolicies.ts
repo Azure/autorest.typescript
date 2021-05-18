@@ -144,7 +144,7 @@ export class ServerBlobAuditingPoliciesImpl
    * @param parameters Properties of blob auditing policy
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
@@ -176,6 +176,29 @@ export class ServerBlobAuditingPoliciesImpl
       createOrUpdateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Creates or updates a server's blob auditing policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters Properties of blob auditing policy
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ServerBlobAuditingPolicy,
+    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ServerBlobAuditingPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

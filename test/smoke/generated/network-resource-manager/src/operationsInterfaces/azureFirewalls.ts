@@ -51,13 +51,24 @@ export interface AzureFirewalls {
    * @param azureFirewallName The name of the Azure Firewall.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified Azure Firewall.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    options?: AzureFirewallsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified Azure Firewall.
    * @param resourceGroupName The name of the resource group.
@@ -76,7 +87,7 @@ export interface AzureFirewalls {
    * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
@@ -88,13 +99,26 @@ export interface AzureFirewalls {
     >
   >;
   /**
+   * Creates or updates the specified Azure Firewall.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param parameters Parameters supplied to the create or update Azure Firewall operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    parameters: AzureFirewall,
+    options?: AzureFirewallsCreateOrUpdateOptionalParams
+  ): Promise<AzureFirewallsCreateOrUpdateResponse>;
+  /**
    * Updates tags of an Azure Firewall resource.
    * @param resourceGroupName The name of the resource group.
    * @param azureFirewallName The name of the Azure Firewall.
    * @param parameters Parameters supplied to update azure firewall tags.
    * @param options The options parameters.
    */
-  updateTags(
+  beginUpdateTags(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
@@ -105,4 +129,17 @@ export interface AzureFirewalls {
       AzureFirewallsUpdateTagsResponse
     >
   >;
+  /**
+   * Updates tags of an Azure Firewall resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param azureFirewallName The name of the Azure Firewall.
+   * @param parameters Parameters supplied to update azure firewall tags.
+   * @param options The options parameters.
+   */
+  beginUpdateTagsAndWait(
+    resourceGroupName: string,
+    azureFirewallName: string,
+    parameters: TagsObject,
+    options?: AzureFirewallsUpdateTagsOptionalParams
+  ): Promise<AzureFirewallsUpdateTagsResponse>;
 }

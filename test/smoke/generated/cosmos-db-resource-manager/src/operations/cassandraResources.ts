@@ -243,7 +243,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                                keyspace.
    * @param options The options parameters.
    */
-  async createUpdateCassandraKeyspace(
+  async beginCreateUpdateCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -282,13 +282,39 @@ export class CassandraResourcesImpl implements CassandraResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB Cassandra keyspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param createUpdateCassandraKeyspaceParameters The parameters to provide for the current Cassandra
+   *                                                keyspace.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateCassandraKeyspaceAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters,
+    options?: CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams
+  ): Promise<CassandraResourcesCreateUpdateCassandraKeyspaceResponse> {
+    const poller = await this.beginCreateUpdateCassandraKeyspace(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      createUpdateCassandraKeyspaceParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB Cassandra keyspace.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
    * @param keyspaceName Cosmos DB keyspace name.
    * @param options The options parameters.
    */
-  async deleteCassandraKeyspace(
+  async beginDeleteCassandraKeyspace(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -317,6 +343,28 @@ export class CassandraResourcesImpl implements CassandraResources {
       deleteCassandraKeyspaceOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB Cassandra keyspace.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param options The options parameters.
+   */
+  async beginDeleteCassandraKeyspaceAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteCassandraKeyspace(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -354,7 +402,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                   Cassandra Keyspace.
    * @param options The options parameters.
    */
-  async updateCassandraKeyspaceThroughput(
+  async beginUpdateCassandraKeyspaceThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -390,6 +438,32 @@ export class CassandraResourcesImpl implements CassandraResources {
       updateCassandraKeyspaceThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of an Azure Cosmos DB Cassandra Keyspace
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Cassandra Keyspace.
+   * @param options The options parameters.
+   */
+  async beginUpdateCassandraKeyspaceThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams
+  ): Promise<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse> {
+    const poller = await this.beginUpdateCassandraKeyspaceThroughput(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -455,7 +529,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                             Table.
    * @param options The options parameters.
    */
-  async createUpdateCassandraTable(
+  async beginCreateUpdateCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -494,6 +568,35 @@ export class CassandraResourcesImpl implements CassandraResources {
   }
 
   /**
+   * Create or update an Azure Cosmos DB Cassandra Table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param createUpdateCassandraTableParameters The parameters to provide for the current Cassandra
+   *                                             Table.
+   * @param options The options parameters.
+   */
+  async beginCreateUpdateCassandraTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
+    options?: CassandraResourcesCreateUpdateCassandraTableOptionalParams
+  ): Promise<CassandraResourcesCreateUpdateCassandraTableResponse> {
+    const poller = await this.beginCreateUpdateCassandraTable(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      tableName,
+      createUpdateCassandraTableParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes an existing Azure Cosmos DB Cassandra table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
@@ -501,7 +604,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
-  async deleteCassandraTable(
+  async beginDeleteCassandraTable(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -532,6 +635,31 @@ export class CassandraResourcesImpl implements CassandraResources {
       deleteCassandraTableOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes an existing Azure Cosmos DB Cassandra table.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param options The options parameters.
+   */
+  async beginDeleteCassandraTableAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    options?: CassandraResourcesDeleteCassandraTableOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDeleteCassandraTable(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      tableName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -573,7 +701,7 @@ export class CassandraResourcesImpl implements CassandraResources {
    *                                   Cassandra table.
    * @param options The options parameters.
    */
-  async updateCassandraTableThroughput(
+  async beginUpdateCassandraTableThroughput(
     resourceGroupName: string,
     accountName: string,
     keyspaceName: string,
@@ -611,6 +739,35 @@ export class CassandraResourcesImpl implements CassandraResources {
       updateCassandraTableThroughputOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Update RUs per second of an Azure Cosmos DB Cassandra table
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param accountName Cosmos DB database account name.
+   * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
+   * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
+   *                                   Cassandra table.
+   * @param options The options parameters.
+   */
+  async beginUpdateCassandraTableThroughputAndWait(
+    resourceGroupName: string,
+    accountName: string,
+    keyspaceName: string,
+    tableName: string,
+    updateThroughputParameters: ThroughputSettingsUpdateParameters,
+    options?: CassandraResourcesUpdateCassandraTableThroughputOptionalParams
+  ): Promise<CassandraResourcesUpdateCassandraTableThroughputResponse> {
+    const poller = await this.beginUpdateCassandraTableThroughput(
+      resourceGroupName,
+      accountName,
+      keyspaceName,
+      tableName,
+      updateThroughputParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

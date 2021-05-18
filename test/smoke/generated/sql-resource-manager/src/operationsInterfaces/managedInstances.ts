@@ -80,7 +80,7 @@ export interface ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstance,
@@ -92,19 +92,45 @@ export interface ManagedInstances {
     >
   >;
   /**
+   * Creates or updates a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstance,
+    options?: ManagedInstancesCreateOrUpdateOptionalParams
+  ): Promise<ManagedInstancesCreateOrUpdateResponse>;
+  /**
    * Deletes a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstancesDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    options?: ManagedInstancesDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -113,7 +139,7 @@ export interface ManagedInstances {
    * @param parameters The requested managed instance resource state.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
     parameters: ManagedInstanceUpdate,
@@ -124,4 +150,18 @@ export interface ManagedInstances {
       ManagedInstancesUpdateResponse
     >
   >;
+  /**
+   * Updates a managed instance.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
+   * @param parameters The requested managed instance resource state.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    managedInstanceName: string,
+    parameters: ManagedInstanceUpdate,
+    options?: ManagedInstancesUpdateOptionalParams
+  ): Promise<ManagedInstancesUpdateResponse>;
 }

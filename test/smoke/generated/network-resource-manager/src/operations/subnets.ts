@@ -123,7 +123,7 @@ export class SubnetsImpl implements Subnets {
    * @param subnetName The name of the subnet.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -153,6 +153,28 @@ export class SubnetsImpl implements Subnets {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Deletes the specified subnet.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    options?: SubnetsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      virtualNetworkName,
+      subnetName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -188,7 +210,7 @@ export class SubnetsImpl implements Subnets {
    * @param subnetParameters Parameters supplied to the create or update subnet operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -226,6 +248,31 @@ export class SubnetsImpl implements Subnets {
   }
 
   /**
+   * Creates or updates a subnet in the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param subnetParameters Parameters supplied to the create or update subnet operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    subnetParameters: Subnet,
+    options?: SubnetsCreateOrUpdateOptionalParams
+  ): Promise<SubnetsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      virtualNetworkName,
+      subnetName,
+      subnetParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Prepares a subnet by applying network intent policies.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
@@ -234,7 +281,7 @@ export class SubnetsImpl implements Subnets {
    *                                                network intent policies.
    * @param options The options parameters.
    */
-  async prepareNetworkPolicies(
+  async beginPrepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -269,6 +316,32 @@ export class SubnetsImpl implements Subnets {
   }
 
   /**
+   * Prepares a subnet by applying network intent policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param prepareNetworkPoliciesRequestParameters Parameters supplied to prepare subnet by applying
+   *                                                network intent policies.
+   * @param options The options parameters.
+   */
+  async beginPrepareNetworkPoliciesAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
+    options?: SubnetsPrepareNetworkPoliciesOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginPrepareNetworkPolicies(
+      resourceGroupName,
+      virtualNetworkName,
+      subnetName,
+      prepareNetworkPoliciesRequestParameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Unprepares a subnet by removing network intent policies.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
@@ -277,7 +350,7 @@ export class SubnetsImpl implements Subnets {
    *                                                  network intent policies.
    * @param options The options parameters.
    */
-  async unprepareNetworkPolicies(
+  async beginUnprepareNetworkPolicies(
     resourceGroupName: string,
     virtualNetworkName: string,
     subnetName: string,
@@ -309,6 +382,32 @@ export class SubnetsImpl implements Subnets {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Unprepares a subnet by removing network intent policies.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param subnetName The name of the subnet.
+   * @param unprepareNetworkPoliciesRequestParameters Parameters supplied to unprepare subnet to remove
+   *                                                  network intent policies.
+   * @param options The options parameters.
+   */
+  async beginUnprepareNetworkPoliciesAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    subnetName: string,
+    unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
+    options?: SubnetsUnprepareNetworkPoliciesOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginUnprepareNetworkPolicies(
+      resourceGroupName,
+      virtualNetworkName,
+      subnetName,
+      unprepareNetworkPoliciesRequestParameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

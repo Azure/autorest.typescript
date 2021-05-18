@@ -42,7 +42,7 @@ export interface PrivateDnsZoneGroups {
    * @param privateDnsZoneGroupName The name of the private dns zone group.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -50,6 +50,19 @@ export interface PrivateDnsZoneGroups {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified private dns zone group.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param privateDnsZoneGroupName The name of the private dns zone group.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    privateDnsZoneGroupName: string,
+    options?: PrivateDnsZoneGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the private dns zone group resource by specified private dns zone group name.
    * @param resourceGroupName The name of the resource group.
@@ -71,7 +84,7 @@ export interface PrivateDnsZoneGroups {
    * @param parameters Parameters supplied to the create or update private dns zone group operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     privateEndpointName: string,
     privateDnsZoneGroupName: string,
@@ -83,4 +96,19 @@ export interface PrivateDnsZoneGroups {
       PrivateDnsZoneGroupsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a private dns zone group in the specified private endpoint.
+   * @param resourceGroupName The name of the resource group.
+   * @param privateEndpointName The name of the private endpoint.
+   * @param privateDnsZoneGroupName The name of the private dns zone group.
+   * @param parameters Parameters supplied to the create or update private dns zone group operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    privateEndpointName: string,
+    privateDnsZoneGroupName: string,
+    parameters: PrivateDnsZoneGroup,
+    options?: PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
+  ): Promise<PrivateDnsZoneGroupsCreateOrUpdateResponse>;
 }

@@ -56,11 +56,40 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  reimage(
+  beginReimage(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Reimages (upgrade the operating system) a specific virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginReimageAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsReimageOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
+   * operation is only supported for managed disks.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginReimageAll(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -72,11 +101,26 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  reimageAll(
+  beginReimageAllAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
+   * releases the compute resources it uses. You are not billed for the compute resources of this virtual
+   * machine once it is deallocated.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginDeallocate(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -89,14 +133,12 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  deallocate(
+  beginDeallocateAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Updates a virtual machine of a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -105,7 +147,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param parameters Parameters supplied to the Update Virtual Machine Scale Sets VM operation.
    * @param options The options parameters.
    */
-  update(
+  beginUpdate(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -118,13 +160,28 @@ export interface VirtualMachineScaleSetVMs {
     >
   >;
   /**
+   * Updates a virtual machine of a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set where the extension should be create or updated.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param parameters Parameters supplied to the Update Virtual Machine Scale Sets VM operation.
+   * @param options The options parameters.
+   */
+  beginUpdateAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    parameters: VirtualMachineScaleSetVM,
+    options?: VirtualMachineScaleSetVMsUpdateOptionalParams
+  ): Promise<VirtualMachineScaleSetVMsUpdateResponse>;
+  /**
    * Deletes a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -132,6 +189,19 @@ export interface VirtualMachineScaleSetVMs {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes a virtual machine from a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -167,11 +237,41 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  powerOff(
+  beginPowerOff(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you
+   * are getting charged for the resources. Instead, use deallocate to release resources and avoid
+   * charges.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginPowerOffAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Restarts a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginRestart(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsRestartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -182,11 +282,24 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  restart(
+  beginRestartAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRestartOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Starts a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginStart(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsStartOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -197,11 +310,25 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  start(
+  beginStartAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsStartOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
+   * it back on.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginRedeploy(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsRedeployOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -213,11 +340,24 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  redeploy(
+  beginRedeployAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRedeployOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Performs maintenance on a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param options The options parameters.
+   */
+  beginPerformMaintenance(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -228,14 +368,12 @@ export interface VirtualMachineScaleSetVMs {
    * @param instanceId The instance ID of the virtual machine.
    * @param options The options parameters.
    */
-  performMaintenance(
+  beginPerformMaintenanceAndWait(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will
    * occur within 30 minutes of calling the API
@@ -258,7 +396,7 @@ export interface VirtualMachineScaleSetVMs {
    * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
-  runCommand(
+  beginRunCommand(
     resourceGroupName: string,
     vmScaleSetName: string,
     instanceId: string,
@@ -270,4 +408,19 @@ export interface VirtualMachineScaleSetVMs {
       VirtualMachineScaleSetVMsRunCommandResponse
     >
   >;
+  /**
+   * Run command on a virtual machine in a VM scale set.
+   * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set.
+   * @param instanceId The instance ID of the virtual machine.
+   * @param parameters Parameters supplied to the Run command operation.
+   * @param options The options parameters.
+   */
+  beginRunCommandAndWait(
+    resourceGroupName: string,
+    vmScaleSetName: string,
+    instanceId: string,
+    parameters: RunCommandInput,
+    options?: VirtualMachineScaleSetVMsRunCommandOptionalParams
+  ): Promise<VirtualMachineScaleSetVMsRunCommandResponse>;
 }

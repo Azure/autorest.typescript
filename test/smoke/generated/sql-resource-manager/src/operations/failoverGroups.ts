@@ -155,7 +155,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -192,6 +192,32 @@ export class FailoverGroupsImpl implements FailoverGroups {
   }
 
   /**
+   * Creates or updates a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param parameters The failover group parameters.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    parameters: FailoverGroup,
+    options?: FailoverGroupsCreateOrUpdateOptionalParams
+  ): Promise<FailoverGroupsCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      failoverGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -199,7 +225,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -231,6 +257,29 @@ export class FailoverGroupsImpl implements FailoverGroups {
   }
 
   /**
+   * Deletes a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -239,7 +288,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -276,6 +325,32 @@ export class FailoverGroupsImpl implements FailoverGroups {
   }
 
   /**
+   * Updates a failover group.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param parameters The failover group parameters.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    parameters: FailoverGroupUpdate,
+    options?: FailoverGroupsUpdateOptionalParams
+  ): Promise<FailoverGroupsUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      failoverGroupName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Lists the failover groups in a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -306,7 +381,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async failover(
+  async beginFailover(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -341,6 +416,29 @@ export class FailoverGroupsImpl implements FailoverGroups {
   }
 
   /**
+   * Fails over from the current primary server to this server.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginFailoverAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsFailoverOptionalParams
+  ): Promise<FailoverGroupsFailoverResponse> {
+    const poller = await this.beginFailover(
+      resourceGroupName,
+      serverName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Fails over from the current primary server to this server. This operation might result in data loss.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -348,7 +446,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
    * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
-  async forceFailoverAllowDataLoss(
+  async beginForceFailoverAllowDataLoss(
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
@@ -380,6 +478,29 @@ export class FailoverGroupsImpl implements FailoverGroups {
       forceFailoverAllowDataLossOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Fails over from the current primary server to this server. This operation might result in data loss.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server containing the failover group.
+   * @param failoverGroupName The name of the failover group.
+   * @param options The options parameters.
+   */
+  async beginForceFailoverAllowDataLossAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    failoverGroupName: string,
+    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
+  ): Promise<FailoverGroupsForceFailoverAllowDataLossResponse> {
+    const poller = await this.beginForceFailoverAllowDataLoss(
+      resourceGroupName,
+      serverName,
+      failoverGroupName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

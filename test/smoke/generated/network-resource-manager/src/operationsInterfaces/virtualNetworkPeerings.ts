@@ -42,7 +42,7 @@ export interface VirtualNetworkPeerings {
    * @param virtualNetworkPeeringName The name of the virtual network peering.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
@@ -50,6 +50,19 @@ export interface VirtualNetworkPeerings {
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified virtual network peering.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param virtualNetworkPeeringName The name of the virtual network peering.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    virtualNetworkPeeringName: string,
+    options?: VirtualNetworkPeeringsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified virtual network peering.
    * @param resourceGroupName The name of the resource group.
@@ -72,7 +85,7 @@ export interface VirtualNetworkPeerings {
    *                                        peering operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
     virtualNetworkPeeringName: string,
@@ -84,4 +97,20 @@ export interface VirtualNetworkPeerings {
       VirtualNetworkPeeringsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a peering in the specified virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param virtualNetworkPeeringName The name of the peering.
+   * @param virtualNetworkPeeringParameters Parameters supplied to the create or update virtual network
+   *                                        peering operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    virtualNetworkPeeringName: string,
+    virtualNetworkPeeringParameters: VirtualNetworkPeering,
+    options?: VirtualNetworkPeeringsCreateOrUpdateOptionalParams
+  ): Promise<VirtualNetworkPeeringsCreateOrUpdateResponse>;
 }

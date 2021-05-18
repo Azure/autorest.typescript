@@ -208,7 +208,7 @@ export function writeAsyncIterators(
             }
           : undefined,
         publicMethod: {
-          name: getPublicMethodName(initialOperationName),
+          name: getPublicMethodName(operation),
           parameters: initialMethodParameters
         },
         allMethod: {
@@ -236,17 +236,18 @@ export function writeAsyncIterators(
  * This method enforces Azure SDK Typescript guideline that paging methods should be named list*
  * https://azure.github.io/azure-sdk/typescript_design.html#ts-pagination-provide-list
  */
-function getPublicMethodName(initialOperationName: string) {
+function getPublicMethodName(operation: OperationDetails) {
+  let initialOperationName = normalizeName(operation.name, NameType.Operation);
   if (initialOperationName.indexOf("list") === 0) {
-    return initialOperationName;
+    initialOperationName = initialOperationName.replace("list", "");
+  } else if (initialOperationName.indexOf("get") === 0) {
+    initialOperationName = initialOperationName.replace("get", "");
+  } else {
+    initialOperationName = normalizeName(initialOperationName, NameType.Class);
   }
-
-  if (initialOperationName.indexOf("get") === 0) {
-    return initialOperationName.replace("get", "list");
-  }
-
-  const initialName = normalizeName(initialOperationName, NameType.Class);
-  return `list${initialName}`;
+  return operation.isLRO
+    ? `beginList${initialOperationName}AndWait`
+    : `list${initialOperationName}`;
 }
 
 /**

@@ -85,7 +85,7 @@ export interface JobExecutions {
    * @param jobName The name of the job to get.
    * @param options The options parameters.
    */
-  create(
+  beginCreate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -97,6 +97,22 @@ export interface JobExecutions {
       JobExecutionsCreateResponse
     >
   >;
+  /**
+   * Starts an elastic job execution.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param options The options parameters.
+   */
+  beginCreateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    options?: JobExecutionsCreateOptionalParams
+  ): Promise<JobExecutionsCreateResponse>;
   /**
    * Gets a job execution.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -125,7 +141,7 @@ export interface JobExecutions {
    * @param jobExecutionId The job execution id to create the job execution under.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     jobAgentName: string,
@@ -138,4 +154,22 @@ export interface JobExecutions {
       JobExecutionsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a job execution.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param jobAgentName The name of the job agent.
+   * @param jobName The name of the job to get.
+   * @param jobExecutionId The job execution id to create the job execution under.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    jobAgentName: string,
+    jobName: string,
+    jobExecutionId: string,
+    options?: JobExecutionsCreateOrUpdateOptionalParams
+  ): Promise<JobExecutionsCreateOrUpdateResponse>;
 }

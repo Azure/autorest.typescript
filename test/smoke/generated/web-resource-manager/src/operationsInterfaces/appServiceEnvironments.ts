@@ -133,7 +133,7 @@ export interface AppServiceEnvironments {
    * @param vnetInfo Details for the new virtual network.
    * @param options The options parameters.
    */
-  listChangeVnet(
+  beginListChangeVnetAndWait(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
@@ -226,7 +226,7 @@ export interface AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listResume(
+  beginListResumeAndWait(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsResumeOptionalParams
@@ -259,7 +259,7 @@ export interface AppServiceEnvironments {
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  listSuspend(
+  beginListSuspendAndWait(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsSuspendOptionalParams
@@ -359,7 +359,7 @@ export interface AppServiceEnvironments {
    * @param hostingEnvironmentEnvelope Configuration details of the App Service Environment.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
@@ -371,18 +371,42 @@ export interface AppServiceEnvironments {
     >
   >;
   /**
+   * Description for Create or update an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param hostingEnvironmentEnvelope Configuration details of the App Service Environment.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    name: string,
+    hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateResponse>;
+  /**
    * Description for Delete an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the App Service Environment.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Description for Delete an App Service Environment.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    name: string,
+    options?: AppServiceEnvironmentsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Description for Create or update an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -449,7 +473,7 @@ export interface AppServiceEnvironments {
    * @param multiRolePoolEnvelope Properties of the multi-role pool.
    * @param options The options parameters.
    */
-  createOrUpdateMultiRolePool(
+  beginCreateOrUpdateMultiRolePool(
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
@@ -462,6 +486,19 @@ export interface AppServiceEnvironments {
       AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
     >
   >;
+  /**
+   * Description for Create or update a multi-role pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param multiRolePoolEnvelope Properties of the multi-role pool.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateMultiRolePoolAndWait(
+    resourceGroupName: string,
+    name: string,
+    multiRolePoolEnvelope: WorkerPoolResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>;
   /**
    * Description for Create or update a multi-role pool.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -518,7 +555,7 @@ export interface AppServiceEnvironments {
    * @param workerPoolEnvelope Properties of the worker pool.
    * @param options The options parameters.
    */
-  createOrUpdateWorkerPool(
+  beginCreateOrUpdateWorkerPool(
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
@@ -532,6 +569,21 @@ export interface AppServiceEnvironments {
       AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
     >
   >;
+  /**
+   * Description for Create or update a worker pool.
+   * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param name Name of the App Service Environment.
+   * @param workerPoolName Name of the worker pool.
+   * @param workerPoolEnvelope Properties of the worker pool.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateWorkerPoolAndWait(
+    resourceGroupName: string,
+    name: string,
+    workerPoolName: string,
+    workerPoolEnvelope: WorkerPoolResource,
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
+  ): Promise<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>;
   /**
    * Description for Create or update a worker pool.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

@@ -776,12 +776,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#createOrUpdate:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update an managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdate(resourceGroupName: "
+                  "text": "beginCreateOrUpdate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -903,16 +903,120 @@
                   }
                 }
               ],
-              "name": "createOrUpdate"
+              "name": "beginCreateOrUpdate"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#createOrUpdateById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateAndWait:member(1)",
+              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update an managed application definition.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "applicationDefinitionName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdateById(applicationDefinitionId: "
+                  "text": "beginCreateOrUpdateById(applicationDefinitionId: "
                 },
                 {
                   "kind": "Content",
@@ -1019,16 +1123,105 @@
                   }
                 }
               ],
-              "name": "createOrUpdateById"
+              "name": "beginCreateOrUpdateById"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#delete:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateByIdAndWait:member(1)",
+              "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateByIdAndWait(applicationDefinitionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinition",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsCreateOrUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "applicationDefinitionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateByIdAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delete(resourceGroupName: "
+                  "text": "beginDelete(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -1134,16 +1327,104 @@
                   }
                 }
               ],
-              "name": "delete"
+              "name": "beginDelete"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#deleteById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition to delete.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationDefinitionName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "applicationDefinitionName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "deleteById(applicationDefinitionId: "
+                  "text": "beginDeleteById(applicationDefinitionId: "
                 },
                 {
                   "kind": "Content",
@@ -1234,7 +1515,80 @@
                   }
                 }
               ],
-              "name": "deleteById"
+              "name": "beginDeleteById"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteByIdAndWait:member(1)",
+              "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteByIdAndWait(applicationDefinitionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationDefinitionsDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "applicationDefinitionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "beginDeleteByIdAndWait"
             },
             {
               "kind": "MethodSignature",
@@ -2454,12 +2808,12 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#createOrUpdate:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdate(resourceGroupName: "
+                  "text": "beginCreateOrUpdate(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -2581,16 +2935,120 @@
                   }
                 }
               ],
-              "name": "createOrUpdate"
+              "name": "beginCreateOrUpdate"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#createOrUpdateById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateAndWait:member(1)",
+              "docComment": "/**\n * Creates a new managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsCreateOrUpdateOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsCreateOrUpdateResponse",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "applicationName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdateById(applicationId: "
+                  "text": "beginCreateOrUpdateById(applicationId: "
                 },
                 {
                   "kind": "Content",
@@ -2697,16 +3155,105 @@
                   }
                 }
               ],
-              "name": "createOrUpdateById"
+              "name": "beginCreateOrUpdateById"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#delete:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateByIdAndWait:member(1)",
+              "docComment": "/**\n * Creates a new managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginCreateOrUpdateByIdAndWait(applicationId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", parameters: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Application",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsCreateOrUpdateByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsCreateOrUpdateByIdResponse",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "applicationId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "parameters",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginCreateOrUpdateByIdAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "delete(resourceGroupName: "
+                  "text": "beginDelete(resourceGroupName: "
                 },
                 {
                   "kind": "Content",
@@ -2812,16 +3359,104 @@
                   }
                 }
               ],
-              "name": "delete"
+              "name": "beginDelete"
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#deleteById:member(1)",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteAndWait:member(1)",
+              "docComment": "/**\n * Deletes the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteAndWait(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", applicationName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsDeleteOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "applicationName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "beginDeleteAndWait"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "deleteById(applicationId: "
+                  "text": "beginDeleteById(applicationId: "
                 },
                 {
                   "kind": "Content",
@@ -2912,7 +3547,80 @@
                   }
                 }
               ],
-              "name": "deleteById"
+              "name": "beginDeleteById"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteByIdAndWait:member(1)",
+              "docComment": "/**\n * Deletes the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "beginDeleteByIdAndWait(applicationId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApplicationsDeleteByIdOptionalParams",
+                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RestResponse",
+                  "canonicalReference": "@azure/core-http!RestResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "applicationId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "beginDeleteByIdAndWait"
             },
             {
               "kind": "MethodSignature",

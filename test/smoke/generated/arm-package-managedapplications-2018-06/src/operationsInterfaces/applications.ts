@@ -68,7 +68,7 @@ export interface Applications {
    * @param applicationName The name of the managed application.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
@@ -76,13 +76,24 @@ export interface Applications {
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
   /**
+   * Deletes the managed application.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationName The name of the managed application.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationName: string,
+    options?: ApplicationsDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
    * Creates a new managed application.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param applicationName The name of the managed application.
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationName: string,
     parameters: Application,
@@ -93,6 +104,19 @@ export interface Applications {
       ApplicationsCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates a new managed application.
+   * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param applicationName The name of the managed application.
+   * @param parameters Parameters supplied to the create or update a managed application.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationName: string,
+    parameters: Application,
+    options?: ApplicationsCreateOrUpdateOptionalParams
+  ): Promise<ApplicationsCreateOrUpdateResponse>;
   /**
    * Updates an existing managed application. The only value that can be updated via PATCH currently is
    * the tags.
@@ -123,12 +147,23 @@ export interface Applications {
    *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
    * @param options The options parameters.
    */
-  deleteById(
+  beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the managed application.
+   * @param applicationId The fully qualified ID of the managed application, including the managed
+   *                      application name and the managed application resource type. Use the format,
+   *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
+   * @param options The options parameters.
+   */
+  beginDeleteByIdAndWait(
+    applicationId: string,
+    options?: ApplicationsDeleteByIdOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Creates a new managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed
@@ -137,7 +172,7 @@ export interface Applications {
    * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
-  createOrUpdateById(
+  beginCreateOrUpdateById(
     applicationId: string,
     parameters: Application,
     options?: ApplicationsCreateOrUpdateByIdOptionalParams
@@ -147,6 +182,19 @@ export interface Applications {
       ApplicationsCreateOrUpdateByIdResponse
     >
   >;
+  /**
+   * Creates a new managed application.
+   * @param applicationId The fully qualified ID of the managed application, including the managed
+   *                      application name and the managed application resource type. Use the format,
+   *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
+   * @param parameters Parameters supplied to the create or update a managed application.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateByIdAndWait(
+    applicationId: string,
+    parameters: Application,
+    options?: ApplicationsCreateOrUpdateByIdOptionalParams
+  ): Promise<ApplicationsCreateOrUpdateByIdResponse>;
   /**
    * Updates an existing managed application. The only value that can be updated via PATCH currently is
    * the tags.

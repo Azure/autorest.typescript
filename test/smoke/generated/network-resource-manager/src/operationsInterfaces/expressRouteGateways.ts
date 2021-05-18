@@ -47,7 +47,7 @@ export interface ExpressRouteGateways {
    *                                         operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     putExpressRouteGatewayParameters: ExpressRouteGateway,
@@ -58,6 +58,20 @@ export interface ExpressRouteGateways {
       ExpressRouteGatewaysCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a ExpressRoute gateway in a specified resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param putExpressRouteGatewayParameters Parameters required in an ExpressRoute gateway PUT
+   *                                         operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    putExpressRouteGatewayParameters: ExpressRouteGateway,
+    options?: ExpressRouteGatewaysCreateOrUpdateOptionalParams
+  ): Promise<ExpressRouteGatewaysCreateOrUpdateResponse>;
   /**
    * Fetches the details of a ExpressRoute gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -76,11 +90,23 @@ export interface ExpressRouteGateways {
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified ExpressRoute gateway in a resource group. An ExpressRoute gateway resource can
+   * only be deleted when there are no connection subresources.
+   * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    expressRouteGatewayName: string,
+    options?: ExpressRouteGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

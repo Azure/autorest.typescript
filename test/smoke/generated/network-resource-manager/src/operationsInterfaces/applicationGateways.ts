@@ -80,13 +80,24 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  delete(
+  beginDelete(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
+  /**
+   * Deletes the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  beginDeleteAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the specified application gateway.
    * @param resourceGroupName The name of the resource group.
@@ -105,7 +116,7 @@ export interface ApplicationGateways {
    * @param parameters Parameters supplied to the create or update application gateway operation.
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     applicationGatewayName: string,
     parameters: ApplicationGateway,
@@ -116,6 +127,19 @@ export interface ApplicationGateways {
       ApplicationGatewaysCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param parameters Parameters supplied to the create or update application gateway operation.
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    parameters: ApplicationGateway,
+    options?: ApplicationGatewaysCreateOrUpdateOptionalParams
+  ): Promise<ApplicationGatewaysCreateOrUpdateResponse>;
   /**
    * Updates the specified application gateway tags.
    * @param resourceGroupName The name of the resource group.
@@ -135,10 +159,34 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  start(
+  beginStart(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
+  /**
+   * Starts the specified application gateway.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  beginStartAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysStartOptionalParams
+  ): Promise<coreHttp.RestResponse>;
+  /**
+   * Stops the specified application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  beginStop(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysStopOptionalParams
   ): Promise<
     PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
   >;
@@ -148,20 +196,18 @@ export interface ApplicationGateways {
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  stop(
+  beginStopAndWait(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets the backend health of the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param applicationGatewayName The name of the application gateway.
    * @param options The options parameters.
    */
-  backendHealth(
+  beginBackendHealth(
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysBackendHealthOptionalParams
@@ -172,6 +218,17 @@ export interface ApplicationGateways {
     >
   >;
   /**
+   * Gets the backend health of the specified application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param options The options parameters.
+   */
+  beginBackendHealthAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    options?: ApplicationGatewaysBackendHealthOptionalParams
+  ): Promise<ApplicationGatewaysBackendHealthResponse>;
+  /**
    * Gets the backend health for given combination of backend pool and http setting of the specified
    * application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -179,7 +236,7 @@ export interface ApplicationGateways {
    * @param probeRequest Request body for on-demand test probe operation.
    * @param options The options parameters.
    */
-  backendHealthOnDemand(
+  beginBackendHealthOnDemand(
     resourceGroupName: string,
     applicationGatewayName: string,
     probeRequest: ApplicationGatewayOnDemandProbe,
@@ -190,6 +247,20 @@ export interface ApplicationGateways {
       ApplicationGatewaysBackendHealthOnDemandResponse
     >
   >;
+  /**
+   * Gets the backend health for given combination of backend pool and http setting of the specified
+   * application gateway in a resource group.
+   * @param resourceGroupName The name of the resource group.
+   * @param applicationGatewayName The name of the application gateway.
+   * @param probeRequest Request body for on-demand test probe operation.
+   * @param options The options parameters.
+   */
+  beginBackendHealthOnDemandAndWait(
+    resourceGroupName: string,
+    applicationGatewayName: string,
+    probeRequest: ApplicationGatewayOnDemandProbe,
+    options?: ApplicationGatewaysBackendHealthOnDemandOptionalParams
+  ): Promise<ApplicationGatewaysBackendHealthOnDemandResponse>;
   /**
    * Lists all available server variables.
    * @param options The options parameters.

@@ -55,7 +55,7 @@ export interface ServerBlobAuditingPolicies {
    * @param parameters Properties of blob auditing policy
    * @param options The options parameters.
    */
-  createOrUpdate(
+  beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     parameters: ServerBlobAuditingPolicy,
@@ -66,4 +66,18 @@ export interface ServerBlobAuditingPolicies {
       ServerBlobAuditingPoliciesCreateOrUpdateResponse
     >
   >;
+  /**
+   * Creates or updates a server's blob auditing policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param parameters Properties of blob auditing policy
+   * @param options The options parameters.
+   */
+  beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    parameters: ServerBlobAuditingPolicy,
+    options?: ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
+  ): Promise<ServerBlobAuditingPoliciesCreateOrUpdateResponse>;
 }

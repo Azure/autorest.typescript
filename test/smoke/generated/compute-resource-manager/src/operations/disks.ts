@@ -156,7 +156,7 @@ export class DisksImpl implements Disks {
    * @param disk Disk object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     diskName: string,
     disk: Disk,
@@ -191,6 +191,30 @@ export class DisksImpl implements Disks {
   }
 
   /**
+   * Creates or updates a disk.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskName The name of the managed disk that is being created. The name can't be changed after
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 length is 80 characters.
+   * @param disk Disk object supplied in the body of the Put disk operation.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    diskName: string,
+    disk: Disk,
+    options?: DisksCreateOrUpdateOptionalParams
+  ): Promise<DisksCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      diskName,
+      disk,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Updates (patches) a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
@@ -199,7 +223,7 @@ export class DisksImpl implements Disks {
    * @param disk Disk object supplied in the body of the Patch disk operation.
    * @param options The options parameters.
    */
-  async update(
+  async beginUpdate(
     resourceGroupName: string,
     diskName: string,
     disk: DiskUpdate,
@@ -228,6 +252,30 @@ export class DisksImpl implements Disks {
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates (patches) a disk.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskName The name of the managed disk that is being created. The name can't be changed after
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 length is 80 characters.
+   * @param disk Disk object supplied in the body of the Patch disk operation.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    diskName: string,
+    disk: DiskUpdate,
+    options?: DisksUpdateOptionalParams
+  ): Promise<DisksUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      diskName,
+      disk,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
@@ -262,7 +310,7 @@ export class DisksImpl implements Disks {
    *                 length is 80 characters.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     diskName: string,
     options?: DisksDeleteOptionalParams
@@ -289,6 +337,23 @@ export class DisksImpl implements Disks {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a disk.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskName The name of the managed disk that is being created. The name can't be changed after
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 length is 80 characters.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    diskName: string,
+    options?: DisksDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(resourceGroupName, diskName, options);
+    return poller.pollUntilDone();
   }
 
   /**
@@ -333,7 +398,7 @@ export class DisksImpl implements Disks {
    * @param grantAccessData Access data object supplied in the body of the get disk access operation.
    * @param options The options parameters.
    */
-  async grantAccess(
+  async beginGrantAccess(
     resourceGroupName: string,
     diskName: string,
     grantAccessData: GrantAccessData,
@@ -369,6 +434,30 @@ export class DisksImpl implements Disks {
   }
 
   /**
+   * Grants access to a disk.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskName The name of the managed disk that is being created. The name can't be changed after
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 length is 80 characters.
+   * @param grantAccessData Access data object supplied in the body of the get disk access operation.
+   * @param options The options parameters.
+   */
+  async beginGrantAccessAndWait(
+    resourceGroupName: string,
+    diskName: string,
+    grantAccessData: GrantAccessData,
+    options?: DisksGrantAccessOptionalParams
+  ): Promise<DisksGrantAccessResponse> {
+    const poller = await this.beginGrantAccess(
+      resourceGroupName,
+      diskName,
+      grantAccessData,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Revokes access to a disk.
    * @param resourceGroupName The name of the resource group.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
@@ -376,7 +465,7 @@ export class DisksImpl implements Disks {
    *                 length is 80 characters.
    * @param options The options parameters.
    */
-  async revokeAccess(
+  async beginRevokeAccess(
     resourceGroupName: string,
     diskName: string,
     options?: DisksRevokeAccessOptionalParams
@@ -404,6 +493,27 @@ export class DisksImpl implements Disks {
       sendOperation,
       "location"
     );
+  }
+
+  /**
+   * Revokes access to a disk.
+   * @param resourceGroupName The name of the resource group.
+   * @param diskName The name of the managed disk that is being created. The name can't be changed after
+   *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
+   *                 length is 80 characters.
+   * @param options The options parameters.
+   */
+  async beginRevokeAccessAndWait(
+    resourceGroupName: string,
+    diskName: string,
+    options?: DisksRevokeAccessOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginRevokeAccess(
+      resourceGroupName,
+      diskName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

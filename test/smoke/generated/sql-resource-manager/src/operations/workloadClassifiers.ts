@@ -174,7 +174,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
    * @param parameters The properties of the workload classifier.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -215,6 +215,38 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
   }
 
   /**
+   * Creates or updates a workload classifier.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group from which to receive the classifier from.
+   * @param workloadClassifierName The name of the workload classifier to create/update.
+   * @param parameters The properties of the workload classifier.
+   * @param options The options parameters.
+   */
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    workloadClassifierName: string,
+    parameters: WorkloadClassifier,
+    options?: WorkloadClassifiersCreateOrUpdateOptionalParams
+  ): Promise<WorkloadClassifiersCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      workloadClassifierName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
    * Deletes a workload classifier.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
@@ -224,7 +256,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
    * @param workloadClassifierName The name of the workload classifier to delete.
    * @param options The options parameters.
    */
-  async delete(
+  async beginDelete(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -257,6 +289,35 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       deleteOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Deletes a workload classifier.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param workloadGroupName The name of the workload group from which to receive the classifier from.
+   * @param workloadClassifierName The name of the workload classifier to delete.
+   * @param options The options parameters.
+   */
+  async beginDeleteAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    workloadGroupName: string,
+    workloadClassifierName: string,
+    options?: WorkloadClassifiersDeleteOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const poller = await this.beginDelete(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      workloadGroupName,
+      workloadClassifierName,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**

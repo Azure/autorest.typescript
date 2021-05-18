@@ -164,7 +164,7 @@ export class BackupShortTermRetentionPoliciesImpl
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  async createOrUpdate(
+  async beginCreateOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -214,7 +214,36 @@ export class BackupShortTermRetentionPoliciesImpl
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
-  async update(
+  async beginCreateOrUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    policyName: ShortTermRetentionPolicyName,
+    parameters: BackupShortTermRetentionPolicy,
+    options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
+  ): Promise<BackupShortTermRetentionPoliciesCreateOrUpdateResponse> {
+    const poller = await this.beginCreateOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      policyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Updates a database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  async beginUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
@@ -250,6 +279,35 @@ export class BackupShortTermRetentionPoliciesImpl
       updateOperationSpec,
       sendOperation
     );
+  }
+
+  /**
+   * Updates a database's short term retention policy.
+   * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+   *                          this value from the Azure Resource Manager API or the portal.
+   * @param serverName The name of the server.
+   * @param databaseName The name of the database.
+   * @param policyName The policy name. Should always be "default".
+   * @param parameters The short term retention policy info.
+   * @param options The options parameters.
+   */
+  async beginUpdateAndWait(
+    resourceGroupName: string,
+    serverName: string,
+    databaseName: string,
+    policyName: ShortTermRetentionPolicyName,
+    parameters: BackupShortTermRetentionPolicy,
+    options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
+  ): Promise<BackupShortTermRetentionPoliciesUpdateResponse> {
+    const poller = await this.beginUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      policyName,
+      parameters,
+      options
+    );
+    return poller.pollUntilDone();
   }
 
   /**
