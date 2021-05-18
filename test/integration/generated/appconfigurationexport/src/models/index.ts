@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** The result of a list request. */
 export interface KeyListResult {
@@ -362,7 +362,7 @@ export type Enum5 = string;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetKeysOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -373,22 +373,11 @@ export interface AppConfigurationClientGetKeysOptionalParams
 
 /** Contains response data for the getKeys operation. */
 export type AppConfigurationClientGetKeysResponse = AppConfigurationClientGetKeysHeaders &
-  KeyListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetKeysHeaders;
-    };
-  };
+  KeyListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientCheckKeysOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -398,17 +387,11 @@ export interface AppConfigurationClientCheckKeysOptionalParams
 }
 
 /** Contains response data for the checkKeys operation. */
-export type AppConfigurationClientCheckKeysResponse = AppConfigurationClientCheckKeysHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: AppConfigurationClientCheckKeysHeaders;
-  };
-};
+export type AppConfigurationClientCheckKeysResponse = AppConfigurationClientCheckKeysHeaders;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetKeyValuesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -423,22 +406,11 @@ export interface AppConfigurationClientGetKeyValuesOptionalParams
 
 /** Contains response data for the getKeyValues operation. */
 export type AppConfigurationClientGetKeyValuesResponse = AppConfigurationClientGetKeyValuesHeaders &
-  KeyValueListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValueListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetKeyValuesHeaders;
-    };
-  };
+  KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientCheckKeyValuesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -452,17 +424,11 @@ export interface AppConfigurationClientCheckKeyValuesOptionalParams
 }
 
 /** Contains response data for the checkKeyValues operation. */
-export type AppConfigurationClientCheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: AppConfigurationClientCheckKeyValuesHeaders;
-  };
-};
+export type AppConfigurationClientCheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetKeyValueOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
   /** The label of the key-value to retrieve. */
@@ -477,22 +443,11 @@ export interface AppConfigurationClientGetKeyValueOptionalParams
 
 /** Contains response data for the getKeyValue operation. */
 export type AppConfigurationClientGetKeyValueResponse = AppConfigurationClientGetKeyValueHeaders &
-  KeyValue & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValue;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetKeyValueHeaders;
-    };
-  };
+  KeyValue;
 
 /** Optional parameters. */
 export interface AppConfigurationClientPutKeyValueOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The label of the key-value to create. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -505,22 +460,11 @@ export interface AppConfigurationClientPutKeyValueOptionalParams
 
 /** Contains response data for the putKeyValue operation. */
 export type AppConfigurationClientPutKeyValueResponse = AppConfigurationClientPutKeyValueHeaders &
-  KeyValue & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValue;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientPutKeyValueHeaders;
-    };
-  };
+  KeyValue;
 
 /** Optional parameters. */
 export interface AppConfigurationClientDeleteKeyValueOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The label of the key-value to delete. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -529,22 +473,11 @@ export interface AppConfigurationClientDeleteKeyValueOptionalParams
 
 /** Contains response data for the deleteKeyValue operation. */
 export type AppConfigurationClientDeleteKeyValueResponse = AppConfigurationClientDeleteKeyValueHeaders &
-  KeyValue & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValue;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientDeleteKeyValueHeaders;
-    };
-  };
+  KeyValue;
 
 /** Optional parameters. */
 export interface AppConfigurationClientCheckKeyValueOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
   /** The label of the key-value to retrieve. */
@@ -558,17 +491,11 @@ export interface AppConfigurationClientCheckKeyValueOptionalParams
 }
 
 /** Contains response data for the checkKeyValue operation. */
-export type AppConfigurationClientCheckKeyValueResponse = AppConfigurationClientCheckKeyValueHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: AppConfigurationClientCheckKeyValueHeaders;
-  };
-};
+export type AppConfigurationClientCheckKeyValueResponse = AppConfigurationClientCheckKeyValueHeaders;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetLabelsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -581,22 +508,11 @@ export interface AppConfigurationClientGetLabelsOptionalParams
 
 /** Contains response data for the getLabels operation. */
 export type AppConfigurationClientGetLabelsResponse = AppConfigurationClientGetLabelsHeaders &
-  LabelListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: LabelListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetLabelsHeaders;
-    };
-  };
+  LabelListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientCheckLabelsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -608,17 +524,11 @@ export interface AppConfigurationClientCheckLabelsOptionalParams
 }
 
 /** Contains response data for the checkLabels operation. */
-export type AppConfigurationClientCheckLabelsResponse = AppConfigurationClientCheckLabelsHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: AppConfigurationClientCheckLabelsHeaders;
-  };
-};
+export type AppConfigurationClientCheckLabelsResponse = AppConfigurationClientCheckLabelsHeaders;
 
 /** Optional parameters. */
 export interface AppConfigurationClientPutLockOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The label, if any, of the key-value to lock. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -629,22 +539,11 @@ export interface AppConfigurationClientPutLockOptionalParams
 
 /** Contains response data for the putLock operation. */
 export type AppConfigurationClientPutLockResponse = AppConfigurationClientPutLockHeaders &
-  KeyValue & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValue;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientPutLockHeaders;
-    };
-  };
+  KeyValue;
 
 /** Optional parameters. */
 export interface AppConfigurationClientDeleteLockOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The label, if any, of the key-value to unlock. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -655,22 +554,11 @@ export interface AppConfigurationClientDeleteLockOptionalParams
 
 /** Contains response data for the deleteLock operation. */
 export type AppConfigurationClientDeleteLockResponse = AppConfigurationClientDeleteLockHeaders &
-  KeyValue & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValue;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientDeleteLockHeaders;
-    };
-  };
+  KeyValue;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetRevisionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -685,22 +573,11 @@ export interface AppConfigurationClientGetRevisionsOptionalParams
 
 /** Contains response data for the getRevisions operation. */
 export type AppConfigurationClientGetRevisionsResponse = AppConfigurationClientGetRevisionsHeaders &
-  KeyValueListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValueListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetRevisionsHeaders;
-    };
-  };
+  KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientCheckRevisionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -714,17 +591,11 @@ export interface AppConfigurationClientCheckRevisionsOptionalParams
 }
 
 /** Contains response data for the checkRevisions operation. */
-export type AppConfigurationClientCheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: AppConfigurationClientCheckRevisionsHeaders;
-  };
-};
+export type AppConfigurationClientCheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetKeysNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -735,22 +606,11 @@ export interface AppConfigurationClientGetKeysNextOptionalParams
 
 /** Contains response data for the getKeysNext operation. */
 export type AppConfigurationClientGetKeysNextResponse = AppConfigurationClientGetKeysNextHeaders &
-  KeyListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetKeysNextHeaders;
-    };
-  };
+  KeyListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetKeyValuesNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -765,22 +625,11 @@ export interface AppConfigurationClientGetKeyValuesNextOptionalParams
 
 /** Contains response data for the getKeyValuesNext operation. */
 export type AppConfigurationClientGetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHeaders &
-  KeyValueListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValueListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetKeyValuesNextHeaders;
-    };
-  };
+  KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetLabelsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -793,22 +642,11 @@ export interface AppConfigurationClientGetLabelsNextOptionalParams
 
 /** Contains response data for the getLabelsNext operation. */
 export type AppConfigurationClientGetLabelsNextResponse = AppConfigurationClientGetLabelsNextHeaders &
-  LabelListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: LabelListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetLabelsNextHeaders;
-    };
-  };
+  LabelListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientGetRevisionsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
@@ -823,22 +661,11 @@ export interface AppConfigurationClientGetRevisionsNextOptionalParams
 
 /** Contains response data for the getRevisionsNext operation. */
 export type AppConfigurationClientGetRevisionsNextResponse = AppConfigurationClientGetRevisionsNextHeaders &
-  KeyValueListResult & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: KeyValueListResult;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: AppConfigurationClientGetRevisionsNextHeaders;
-    };
-  };
+  KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** Used to guarantee real-time consistency between requests. */
   syncToken?: string;
   /** Api Version */

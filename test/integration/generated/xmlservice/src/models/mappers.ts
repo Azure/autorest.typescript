@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const RootWithRefAndNoMeta: coreHttp.CompositeMapper = {
+export const RootWithRefAndNoMeta: coreClient.CompositeMapper = {
   serializedName: "RootWithRefAndNoMeta",
   type: {
     name: "Composite",
@@ -33,7 +33,7 @@ export const RootWithRefAndNoMeta: coreHttp.CompositeMapper = {
   }
 };
 
-export const ComplexTypeNoMeta: coreHttp.CompositeMapper = {
+export const ComplexTypeNoMeta: coreClient.CompositeMapper = {
   serializedName: "ComplexTypeNoMeta",
   type: {
     name: "Composite",
@@ -50,7 +50,7 @@ export const ComplexTypeNoMeta: coreHttp.CompositeMapper = {
   }
 };
 
-export const RootWithRefAndMeta: coreHttp.CompositeMapper = {
+export const RootWithRefAndMeta: coreClient.CompositeMapper = {
   serializedName: "RootWithRefAndMeta",
   type: {
     name: "Composite",
@@ -75,7 +75,7 @@ export const RootWithRefAndMeta: coreHttp.CompositeMapper = {
   }
 };
 
-export const ComplexTypeWithMeta: coreHttp.CompositeMapper = {
+export const ComplexTypeWithMeta: coreClient.CompositeMapper = {
   serializedName: "ComplexTypeWithMeta",
   xmlName: "XMLComplexTypeWithMeta",
   type: {
@@ -93,7 +93,7 @@ export const ComplexTypeWithMeta: coreHttp.CompositeMapper = {
   }
 };
 
-export const Slideshow: coreHttp.CompositeMapper = {
+export const Slideshow: coreClient.CompositeMapper = {
   serializedName: "Slideshow",
   xmlName: "slideshow",
   type: {
@@ -142,7 +142,7 @@ export const Slideshow: coreHttp.CompositeMapper = {
   }
 };
 
-export const Slide: coreHttp.CompositeMapper = {
+export const Slide: coreClient.CompositeMapper = {
   serializedName: "Slide",
   xmlName: "slide",
   type: {
@@ -181,7 +181,7 @@ export const Slide: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -205,7 +205,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppleBarrel: coreHttp.CompositeMapper = {
+export const AppleBarrel: coreClient.CompositeMapper = {
   serializedName: "AppleBarrel",
   type: {
     name: "Composite",
@@ -243,7 +243,7 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
   }
 };
 
-export const Banana: coreHttp.CompositeMapper = {
+export const Banana: coreClient.CompositeMapper = {
   serializedName: "Banana",
   xmlName: "banana",
   type: {
@@ -275,7 +275,7 @@ export const Banana: coreHttp.CompositeMapper = {
   }
 };
 
-export const ListContainersResponse: coreHttp.CompositeMapper = {
+export const ListContainersResponse: coreClient.CompositeMapper = {
   serializedName: "ListContainersResponse",
   xmlName: "EnumerationResults",
   type: {
@@ -341,7 +341,7 @@ export const ListContainersResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const Container: coreHttp.CompositeMapper = {
+export const Container: coreClient.CompositeMapper = {
   serializedName: "Container",
   type: {
     name: "Composite",
@@ -375,7 +375,7 @@ export const Container: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerProperties: coreHttp.CompositeMapper = {
+export const ContainerProperties: coreClient.CompositeMapper = {
   serializedName: "ContainerProperties",
   type: {
     name: "Composite",
@@ -438,7 +438,7 @@ export const ContainerProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageServiceProperties: coreHttp.CompositeMapper = {
+export const StorageServiceProperties: coreClient.CompositeMapper = {
   serializedName: "StorageServiceProperties",
   type: {
     name: "Composite",
@@ -502,7 +502,7 @@ export const StorageServiceProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const Logging: coreHttp.CompositeMapper = {
+export const Logging: coreClient.CompositeMapper = {
   serializedName: "Logging",
   type: {
     name: "Composite",
@@ -552,7 +552,7 @@ export const Logging: coreHttp.CompositeMapper = {
   }
 };
 
-export const RetentionPolicy: coreHttp.CompositeMapper = {
+export const RetentionPolicy: coreClient.CompositeMapper = {
   serializedName: "RetentionPolicy",
   type: {
     name: "Composite",
@@ -580,7 +580,7 @@ export const RetentionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const Metrics: coreHttp.CompositeMapper = {
+export const Metrics: coreClient.CompositeMapper = {
   serializedName: "Metrics",
   type: {
     name: "Composite",
@@ -620,7 +620,7 @@ export const Metrics: coreHttp.CompositeMapper = {
   }
 };
 
-export const CorsRule: coreHttp.CompositeMapper = {
+export const CorsRule: coreClient.CompositeMapper = {
   serializedName: "CorsRule",
   xmlName: "CorsRule",
   type: {
@@ -674,7 +674,7 @@ export const CorsRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const SignedIdentifier: coreHttp.CompositeMapper = {
+export const SignedIdentifier: coreClient.CompositeMapper = {
   serializedName: "SignedIdentifier",
   xmlName: "SignedIdentifier",
   type: {
@@ -701,7 +701,7 @@ export const SignedIdentifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const AccessPolicy: coreHttp.CompositeMapper = {
+export const AccessPolicy: coreClient.CompositeMapper = {
   serializedName: "AccessPolicy",
   type: {
     name: "Composite",
@@ -735,7 +735,7 @@ export const AccessPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ListBlobsResponse: coreHttp.CompositeMapper = {
+export const ListBlobsResponse: coreClient.CompositeMapper = {
   serializedName: "ListBlobsResponse",
   xmlName: "EnumerationResults",
   type: {
@@ -811,7 +811,7 @@ export const ListBlobsResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const Blobs: coreHttp.CompositeMapper = {
+export const Blobs: coreClient.CompositeMapper = {
   serializedName: "Blobs",
   type: {
     name: "Composite",
@@ -849,7 +849,7 @@ export const Blobs: coreHttp.CompositeMapper = {
   }
 };
 
-export const BlobPrefix: coreHttp.CompositeMapper = {
+export const BlobPrefix: coreClient.CompositeMapper = {
   serializedName: "BlobPrefix",
   type: {
     name: "Composite",
@@ -867,7 +867,7 @@ export const BlobPrefix: coreHttp.CompositeMapper = {
   }
 };
 
-export const Blob: coreHttp.CompositeMapper = {
+export const Blob: coreClient.CompositeMapper = {
   serializedName: "Blob",
   xmlName: "Blob",
   type: {
@@ -918,7 +918,7 @@ export const Blob: coreHttp.CompositeMapper = {
   }
 };
 
-export const BlobProperties: coreHttp.CompositeMapper = {
+export const BlobProperties: coreClient.CompositeMapper = {
   serializedName: "BlobProperties",
   type: {
     name: "Composite",
@@ -1137,7 +1137,7 @@ export const BlobProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const JsonInput: coreHttp.CompositeMapper = {
+export const JsonInput: coreClient.CompositeMapper = {
   serializedName: "JsonInput",
   type: {
     name: "Composite",
@@ -1154,7 +1154,7 @@ export const JsonInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const JsonOutput: coreHttp.CompositeMapper = {
+export const JsonOutput: coreClient.CompositeMapper = {
   serializedName: "JsonOutput",
   type: {
     name: "Composite",
@@ -1171,7 +1171,7 @@ export const JsonOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const ObjectWithXMsTextProperty: coreHttp.CompositeMapper = {
+export const ObjectWithXMsTextProperty: coreClient.CompositeMapper = {
   serializedName: "ObjectWithXMsTextProperty",
   xmlName: "Data",
   type: {
@@ -1197,7 +1197,7 @@ export const ObjectWithXMsTextProperty: coreHttp.CompositeMapper = {
   }
 };
 
-export const ModelWithByteProperty: coreHttp.CompositeMapper = {
+export const ModelWithByteProperty: coreClient.CompositeMapper = {
   serializedName: "ModelWithByteProperty",
   type: {
     name: "Composite",
@@ -1214,7 +1214,7 @@ export const ModelWithByteProperty: coreHttp.CompositeMapper = {
   }
 };
 
-export const ModelWithUrlProperty: coreHttp.CompositeMapper = {
+export const ModelWithUrlProperty: coreClient.CompositeMapper = {
   serializedName: "ModelWithUrlProperty",
   type: {
     name: "Composite",
@@ -1231,7 +1231,7 @@ export const ModelWithUrlProperty: coreHttp.CompositeMapper = {
   }
 };
 
-export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
+export const XmlGetHeadersHeaders: coreClient.CompositeMapper = {
   serializedName: "Xml_getHeadersHeaders",
   type: {
     name: "Composite",

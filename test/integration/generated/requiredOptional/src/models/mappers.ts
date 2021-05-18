@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -29,7 +29,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const IntWrapper: coreHttp.CompositeMapper = {
+export const IntWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IntWrapper",
@@ -45,7 +45,7 @@ export const IntWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const IntOptionalWrapper: coreHttp.CompositeMapper = {
+export const IntOptionalWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IntOptionalWrapper",
@@ -60,7 +60,7 @@ export const IntOptionalWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const StringWrapper: coreHttp.CompositeMapper = {
+export const StringWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StringWrapper",
@@ -76,7 +76,7 @@ export const StringWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const StringOptionalWrapper: coreHttp.CompositeMapper = {
+export const StringOptionalWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StringOptionalWrapper",
@@ -91,7 +91,7 @@ export const StringOptionalWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const Product: coreHttp.CompositeMapper = {
+export const Product: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Product",
@@ -113,7 +113,7 @@ export const Product: coreHttp.CompositeMapper = {
   }
 };
 
-export const ClassWrapper: coreHttp.CompositeMapper = {
+export const ClassWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ClassWrapper",
@@ -129,7 +129,7 @@ export const ClassWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const ClassOptionalWrapper: coreHttp.CompositeMapper = {
+export const ClassOptionalWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ClassOptionalWrapper",
@@ -145,7 +145,7 @@ export const ClassOptionalWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const ArrayWrapper: coreHttp.CompositeMapper = {
+export const ArrayWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ArrayWrapper",
@@ -166,7 +166,7 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const ArrayOptionalWrapper: coreHttp.CompositeMapper = {
+export const ArrayOptionalWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ArrayOptionalWrapper",

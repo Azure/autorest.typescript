@@ -7,7 +7,7 @@
  */
 
 import { Primitive } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
@@ -77,13 +77,7 @@ export class PrimitiveImpl implements Primitive {
   getInt(
     options?: PrimitiveGetIntOptionalParams
   ): Promise<PrimitiveGetIntResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getIntOperationSpec
-    ) as Promise<PrimitiveGetIntResponse>;
+    return this.client.sendOperationRequest({ options }, getIntOperationSpec);
   }
 
   /**
@@ -94,15 +88,11 @@ export class PrimitiveImpl implements Primitive {
   putInt(
     complexBody: IntWrapper,
     options?: PrimitivePutIntOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putIntOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -112,13 +102,7 @@ export class PrimitiveImpl implements Primitive {
   getLong(
     options?: PrimitiveGetLongOptionalParams
   ): Promise<PrimitiveGetLongResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getLongOperationSpec
-    ) as Promise<PrimitiveGetLongResponse>;
+    return this.client.sendOperationRequest({ options }, getLongOperationSpec);
   }
 
   /**
@@ -129,15 +113,11 @@ export class PrimitiveImpl implements Primitive {
   putLong(
     complexBody: LongWrapper,
     options?: PrimitivePutLongOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putLongOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -147,13 +127,7 @@ export class PrimitiveImpl implements Primitive {
   getFloat(
     options?: PrimitiveGetFloatOptionalParams
   ): Promise<PrimitiveGetFloatResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getFloatOperationSpec
-    ) as Promise<PrimitiveGetFloatResponse>;
+    return this.client.sendOperationRequest({ options }, getFloatOperationSpec);
   }
 
   /**
@@ -164,15 +138,11 @@ export class PrimitiveImpl implements Primitive {
   putFloat(
     complexBody: FloatWrapper,
     options?: PrimitivePutFloatOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putFloatOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -182,13 +152,10 @@ export class PrimitiveImpl implements Primitive {
   getDouble(
     options?: PrimitiveGetDoubleOptionalParams
   ): Promise<PrimitiveGetDoubleResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getDoubleOperationSpec
-    ) as Promise<PrimitiveGetDoubleResponse>;
+    );
   }
 
   /**
@@ -200,15 +167,11 @@ export class PrimitiveImpl implements Primitive {
   putDouble(
     complexBody: DoubleWrapper,
     options?: PrimitivePutDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putDoubleOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -218,13 +181,7 @@ export class PrimitiveImpl implements Primitive {
   getBool(
     options?: PrimitiveGetBoolOptionalParams
   ): Promise<PrimitiveGetBoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getBoolOperationSpec
-    ) as Promise<PrimitiveGetBoolResponse>;
+    return this.client.sendOperationRequest({ options }, getBoolOperationSpec);
   }
 
   /**
@@ -235,15 +192,11 @@ export class PrimitiveImpl implements Primitive {
   putBool(
     complexBody: BooleanWrapper,
     options?: PrimitivePutBoolOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putBoolOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -253,13 +206,10 @@ export class PrimitiveImpl implements Primitive {
   getString(
     options?: PrimitiveGetStringOptionalParams
   ): Promise<PrimitiveGetStringResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getStringOperationSpec
-    ) as Promise<PrimitiveGetStringResponse>;
+    );
   }
 
   /**
@@ -270,15 +220,11 @@ export class PrimitiveImpl implements Primitive {
   putString(
     complexBody: StringWrapper,
     options?: PrimitivePutStringOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putStringOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -288,13 +234,7 @@ export class PrimitiveImpl implements Primitive {
   getDate(
     options?: PrimitiveGetDateOptionalParams
   ): Promise<PrimitiveGetDateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getDateOperationSpec
-    ) as Promise<PrimitiveGetDateResponse>;
+    return this.client.sendOperationRequest({ options }, getDateOperationSpec);
   }
 
   /**
@@ -305,15 +245,11 @@ export class PrimitiveImpl implements Primitive {
   putDate(
     complexBody: DateWrapper,
     options?: PrimitivePutDateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putDateOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -323,13 +259,10 @@ export class PrimitiveImpl implements Primitive {
   getDateTime(
     options?: PrimitiveGetDateTimeOptionalParams
   ): Promise<PrimitiveGetDateTimeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getDateTimeOperationSpec
-    ) as Promise<PrimitiveGetDateTimeResponse>;
+    );
   }
 
   /**
@@ -340,15 +273,11 @@ export class PrimitiveImpl implements Primitive {
   putDateTime(
     complexBody: DatetimeWrapper,
     options?: PrimitivePutDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putDateTimeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -358,13 +287,10 @@ export class PrimitiveImpl implements Primitive {
   getDateTimeRfc1123(
     options?: PrimitiveGetDateTimeRfc1123OptionalParams
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getDateTimeRfc1123OperationSpec
-    ) as Promise<PrimitiveGetDateTimeRfc1123Response>;
+    );
   }
 
   /**
@@ -375,15 +301,11 @@ export class PrimitiveImpl implements Primitive {
   putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
     options?: PrimitivePutDateTimeRfc1123OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putDateTimeRfc1123OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -393,13 +315,10 @@ export class PrimitiveImpl implements Primitive {
   getDuration(
     options?: PrimitiveGetDurationOptionalParams
   ): Promise<PrimitiveGetDurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getDurationOperationSpec
-    ) as Promise<PrimitiveGetDurationResponse>;
+    );
   }
 
   /**
@@ -410,15 +329,11 @@ export class PrimitiveImpl implements Primitive {
   putDuration(
     complexBody: DurationWrapper,
     options?: PrimitivePutDurationOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putDurationOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -428,13 +343,7 @@ export class PrimitiveImpl implements Primitive {
   getByte(
     options?: PrimitiveGetByteOptionalParams
   ): Promise<PrimitiveGetByteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getByteOperationSpec
-    ) as Promise<PrimitiveGetByteResponse>;
+    return this.client.sendOperationRequest({ options }, getByteOperationSpec);
   }
 
   /**
@@ -445,21 +354,17 @@ export class PrimitiveImpl implements Primitive {
   putByte(
     complexBody: ByteWrapper,
     options?: PrimitivePutByteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { complexBody, options },
       putByteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getIntOperationSpec: coreHttp.OperationSpec = {
+const getIntOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/integer",
   httpMethod: "GET",
   responses: {
@@ -474,7 +379,7 @@ const getIntOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putIntOperationSpec: coreHttp.OperationSpec = {
+const putIntOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/integer",
   httpMethod: "PUT",
   responses: {
@@ -489,7 +394,7 @@ const putIntOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getLongOperationSpec: coreHttp.OperationSpec = {
+const getLongOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/long",
   httpMethod: "GET",
   responses: {
@@ -504,7 +409,7 @@ const getLongOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putLongOperationSpec: coreHttp.OperationSpec = {
+const putLongOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/long",
   httpMethod: "PUT",
   responses: {
@@ -519,7 +424,7 @@ const putLongOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getFloatOperationSpec: coreHttp.OperationSpec = {
+const getFloatOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/float",
   httpMethod: "GET",
   responses: {
@@ -534,7 +439,7 @@ const getFloatOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putFloatOperationSpec: coreHttp.OperationSpec = {
+const putFloatOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/float",
   httpMethod: "PUT",
   responses: {
@@ -549,7 +454,7 @@ const putFloatOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDoubleOperationSpec: coreHttp.OperationSpec = {
+const getDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/double",
   httpMethod: "GET",
   responses: {
@@ -564,7 +469,7 @@ const getDoubleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDoubleOperationSpec: coreHttp.OperationSpec = {
+const putDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/double",
   httpMethod: "PUT",
   responses: {
@@ -579,7 +484,7 @@ const putDoubleOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBoolOperationSpec: coreHttp.OperationSpec = {
+const getBoolOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/bool",
   httpMethod: "GET",
   responses: {
@@ -594,7 +499,7 @@ const getBoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBoolOperationSpec: coreHttp.OperationSpec = {
+const putBoolOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/bool",
   httpMethod: "PUT",
   responses: {
@@ -609,7 +514,7 @@ const putBoolOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getStringOperationSpec: coreHttp.OperationSpec = {
+const getStringOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/string",
   httpMethod: "GET",
   responses: {
@@ -624,7 +529,7 @@ const getStringOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putStringOperationSpec: coreHttp.OperationSpec = {
+const putStringOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/string",
   httpMethod: "PUT",
   responses: {
@@ -639,7 +544,7 @@ const putStringOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDateOperationSpec: coreHttp.OperationSpec = {
+const getDateOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/date",
   httpMethod: "GET",
   responses: {
@@ -654,7 +559,7 @@ const getDateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateOperationSpec: coreHttp.OperationSpec = {
+const putDateOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/date",
   httpMethod: "PUT",
   responses: {
@@ -669,7 +574,7 @@ const putDateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDateTimeOperationSpec: coreHttp.OperationSpec = {
+const getDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetime",
   httpMethod: "GET",
   responses: {
@@ -684,7 +589,7 @@ const getDateTimeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateTimeOperationSpec: coreHttp.OperationSpec = {
+const putDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetime",
   httpMethod: "PUT",
   responses: {
@@ -699,7 +604,7 @@ const putDateTimeOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
+const getDateTimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetimerfc1123",
   httpMethod: "GET",
   responses: {
@@ -714,7 +619,7 @@ const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
+const putDateTimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetimerfc1123",
   httpMethod: "PUT",
   responses: {
@@ -729,7 +634,7 @@ const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDurationOperationSpec: coreHttp.OperationSpec = {
+const getDurationOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/duration",
   httpMethod: "GET",
   responses: {
@@ -744,7 +649,7 @@ const getDurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDurationOperationSpec: coreHttp.OperationSpec = {
+const putDurationOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/duration",
   httpMethod: "PUT",
   responses: {
@@ -759,7 +664,7 @@ const putDurationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getByteOperationSpec: coreHttp.OperationSpec = {
+const getByteOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/byte",
   httpMethod: "GET",
   responses: {
@@ -774,7 +679,7 @@ const getByteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putByteOperationSpec: coreHttp.OperationSpec = {
+const putByteOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/byte",
   httpMethod: "PUT",
   responses: {

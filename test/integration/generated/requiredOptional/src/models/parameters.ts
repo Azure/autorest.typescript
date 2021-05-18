@@ -10,7 +10,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-http";
+} from "@azure/core-client";
 import {
   IntWrapper as IntWrapperMapper,
   IntOptionalWrapper as IntOptionalWrapperMapper,
@@ -167,9 +167,10 @@ export const optionalGlobalQuery: OperationQueryParameter = {
 };
 
 export const bodyParameter2: OperationParameter = {
-  parameterPath: ["options", "bodyParameter"],
+  parameterPath: "bodyParameter",
   mapper: {
     serializedName: "bodyParameter",
+    required: true,
     type: {
       name: "Stream"
     }
@@ -182,23 +183,12 @@ export const bodyParameter3: OperationParameter = {
     serializedName: "bodyParameter",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
-};
-
-export const bodyParameter4: OperationParameter = {
-  parameterPath: "bodyParameter",
-  mapper: {
-    serializedName: "bodyParameter",
-    required: true,
-    type: {
       name: "Number"
     }
   }
 };
 
-export const bodyParameter5: OperationParameter = {
+export const bodyParameter4: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: {
     serializedName: "bodyParameter",
@@ -208,12 +198,12 @@ export const bodyParameter5: OperationParameter = {
   }
 };
 
-export const bodyParameter6: OperationParameter = {
+export const bodyParameter5: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: IntWrapperMapper
 };
 
-export const bodyParameter7: OperationParameter = {
+export const bodyParameter6: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: IntOptionalWrapperMapper
 };
@@ -239,7 +229,7 @@ export const headerParameter1: OperationParameter = {
   }
 };
 
-export const bodyParameter8: OperationParameter = {
+export const bodyParameter7: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: {
     serializedName: "bodyParameter",
@@ -250,12 +240,12 @@ export const bodyParameter8: OperationParameter = {
   }
 };
 
-export const bodyParameter9: OperationParameter = {
+export const bodyParameter8: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: StringWrapperMapper
 };
 
-export const bodyParameter10: OperationParameter = {
+export const bodyParameter9: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: StringOptionalWrapperMapper
 };
@@ -271,7 +261,7 @@ export const headerParameter2: OperationParameter = {
   }
 };
 
-export const bodyParameter11: OperationParameter = {
+export const bodyParameter10: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: {
     serializedName: "bodyParameter",
@@ -281,27 +271,27 @@ export const bodyParameter11: OperationParameter = {
   }
 };
 
-export const bodyParameter12: OperationParameter = {
+export const bodyParameter11: OperationParameter = {
   parameterPath: "bodyParameter",
+  mapper: ProductMapper
+};
+
+export const bodyParameter12: OperationParameter = {
+  parameterPath: ["options", "bodyParameter"],
   mapper: ProductMapper
 };
 
 export const bodyParameter13: OperationParameter = {
-  parameterPath: ["options", "bodyParameter"],
-  mapper: ProductMapper
-};
-
-export const bodyParameter14: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: ClassWrapperMapper
 };
 
-export const bodyParameter15: OperationParameter = {
+export const bodyParameter14: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: ClassOptionalWrapperMapper
 };
 
-export const bodyParameter16: OperationParameter = {
+export const bodyParameter15: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: {
     serializedName: "bodyParameter",
@@ -317,7 +307,7 @@ export const bodyParameter16: OperationParameter = {
   }
 };
 
-export const bodyParameter17: OperationParameter = {
+export const bodyParameter16: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: {
     serializedName: "bodyParameter",
@@ -332,12 +322,12 @@ export const bodyParameter17: OperationParameter = {
   }
 };
 
-export const bodyParameter18: OperationParameter = {
+export const bodyParameter17: OperationParameter = {
   parameterPath: "bodyParameter",
   mapper: ArrayWrapperMapper
 };
 
-export const bodyParameter19: OperationParameter = {
+export const bodyParameter18: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
   mapper: ArrayOptionalWrapperMapper
 };

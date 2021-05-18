@@ -13,15 +13,13 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 /** @type {rollup.RollupFileOptions} */
 const config = {
   input: "./esm/bodyNumberClient.js",
-  external: ["@azure/core-http"],
+
   output: {
     file: "./dist/body-number.js",
     format: "umd",
     name: "BodyNumber",
     sourcemap: true,
-    globals: {
-      "@azure/core-http": "coreHttp"
-    },
+
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.

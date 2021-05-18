@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Captions are the most representative passages from the document relatively to the search query. They are often used as document summary. Captions are only returned for queries of type 'semantic'.. */
 export interface CaptionResult {
@@ -40,7 +40,7 @@ export type Enum0 = string;
 
 /** Optional parameters. */
 export interface DocumentsSearchGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Parameter group */
   searchOptions?: SearchOptions;
   /** A full-text search query expression; Use "*" or omit this parameter to match all documents. */
@@ -49,7 +49,7 @@ export interface DocumentsSearchGetOptionalParams
 
 /** Optional parameters. */
 export interface OptionalNullClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
-const packageName = "azure-special-properties";
-const packageVersion = "1.0.0-preview1";
-
-export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient {
+export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
@@ -25,7 +23,7 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {
@@ -40,25 +38,15 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
     if (!options) {
       options = {};
     }
-
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    if (!options.credentialScopes) {
-      options.credentialScopes = [
-        "https://microsoft.com/.default",
-        "http://microsoft.com/.default"
-      ];
-    }
-
-    super(credentials, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-
-    this.baseUri = options.endpoint || "http://localhost:3000";
-
+    const defaults: AzureSpecialPropertiesClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

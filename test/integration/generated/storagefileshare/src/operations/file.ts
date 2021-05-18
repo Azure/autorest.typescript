@@ -1,5 +1,5 @@
 import { File } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageFileShareClientContext } from "../storageFileShareClientContext";
@@ -39,22 +39,16 @@ export class FileImpl implements File {
     contentLength: number,
     options?: FileUploadRangeFromURLOptionalParams
   ): Promise<FileUploadRangeFromURLResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      range,
-      copySource,
-      contentLength,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { range, copySource, contentLength, options },
       uploadRangeFromURLOperationSpec
-    ) as Promise<FileUploadRangeFromURLResponse>;
+    );
   }
 }
 // Operation Specifications
-const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
 
-const uploadRangeFromURLOperationSpec: coreHttp.OperationSpec = {
+const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
   path: "/{shareName}/{directory}/{fileName}",
   httpMethod: "PUT",
   responses: {

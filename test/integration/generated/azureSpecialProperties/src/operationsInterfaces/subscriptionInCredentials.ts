@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
@@ -24,7 +23,7 @@ export interface SubscriptionInCredentials {
    */
   postMethodGlobalValid(
     options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to null,
    * and client-side validation should prevent you from making this call
@@ -32,7 +31,7 @@ export interface SubscriptionInCredentials {
    */
   postMethodGlobalNull(
     options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
@@ -40,7 +39,7 @@ export interface SubscriptionInCredentials {
    */
   postMethodGlobalNotProvidedValid(
     options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
@@ -48,7 +47,7 @@ export interface SubscriptionInCredentials {
    */
   postPathGlobalValid(
     options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
@@ -56,5 +55,5 @@ export interface SubscriptionInCredentials {
    */
   postSwaggerGlobalValid(
     options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

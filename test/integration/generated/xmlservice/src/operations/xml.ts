@@ -7,7 +7,7 @@
  */
 
 import { Xml } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmlServiceClientContext } from "../xmlServiceClientContext";
@@ -96,13 +96,10 @@ export class XmlImpl implements Xml {
   getComplexTypeRefNoMeta(
     options?: XmlGetComplexTypeRefNoMetaOptionalParams
   ): Promise<XmlGetComplexTypeRefNoMetaResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getComplexTypeRefNoMetaOperationSpec
-    ) as Promise<XmlGetComplexTypeRefNoMetaResponse>;
+    );
   }
 
   /**
@@ -113,15 +110,11 @@ export class XmlImpl implements Xml {
   putComplexTypeRefNoMeta(
     model: RootWithRefAndNoMeta,
     options?: XmlPutComplexTypeRefNoMetaOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      model,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { model, options },
       putComplexTypeRefNoMetaOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -131,13 +124,10 @@ export class XmlImpl implements Xml {
   getComplexTypeRefWithMeta(
     options?: XmlGetComplexTypeRefWithMetaOptionalParams
   ): Promise<XmlGetComplexTypeRefWithMetaResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getComplexTypeRefWithMetaOperationSpec
-    ) as Promise<XmlGetComplexTypeRefWithMetaResponse>;
+    );
   }
 
   /**
@@ -148,15 +138,11 @@ export class XmlImpl implements Xml {
   putComplexTypeRefWithMeta(
     model: RootWithRefAndMeta,
     options?: XmlPutComplexTypeRefWithMetaOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      model,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { model, options },
       putComplexTypeRefWithMetaOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -166,13 +152,10 @@ export class XmlImpl implements Xml {
   getSimple(
     options?: XmlGetSimpleOptionalParams
   ): Promise<XmlGetSimpleResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getSimpleOperationSpec
-    ) as Promise<XmlGetSimpleResponse>;
+    );
   }
 
   /**
@@ -183,15 +166,11 @@ export class XmlImpl implements Xml {
   putSimple(
     slideshow: Slideshow,
     options?: XmlPutSimpleOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      slideshow,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { slideshow, options },
       putSimpleOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -201,13 +180,10 @@ export class XmlImpl implements Xml {
   getWrappedLists(
     options?: XmlGetWrappedListsOptionalParams
   ): Promise<XmlGetWrappedListsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getWrappedListsOperationSpec
-    ) as Promise<XmlGetWrappedListsResponse>;
+    );
   }
 
   /**
@@ -218,15 +194,11 @@ export class XmlImpl implements Xml {
   putWrappedLists(
     wrappedLists: AppleBarrel,
     options?: XmlPutWrappedListsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      wrappedLists,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { wrappedLists, options },
       putWrappedListsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -236,13 +208,10 @@ export class XmlImpl implements Xml {
   getHeaders(
     options?: XmlGetHeadersOptionalParams
   ): Promise<XmlGetHeadersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getHeadersOperationSpec
-    ) as Promise<XmlGetHeadersResponse>;
+    );
   }
 
   /**
@@ -252,13 +221,10 @@ export class XmlImpl implements Xml {
   getEmptyList(
     options?: XmlGetEmptyListOptionalParams
   ): Promise<XmlGetEmptyListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getEmptyListOperationSpec
-    ) as Promise<XmlGetEmptyListResponse>;
+    );
   }
 
   /**
@@ -269,15 +235,11 @@ export class XmlImpl implements Xml {
   putEmptyList(
     slideshow: Slideshow,
     options?: XmlPutEmptyListOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      slideshow,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { slideshow, options },
       putEmptyListOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -287,13 +249,10 @@ export class XmlImpl implements Xml {
   getEmptyWrappedLists(
     options?: XmlGetEmptyWrappedListsOptionalParams
   ): Promise<XmlGetEmptyWrappedListsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getEmptyWrappedListsOperationSpec
-    ) as Promise<XmlGetEmptyWrappedListsResponse>;
+    );
   }
 
   /**
@@ -304,15 +263,11 @@ export class XmlImpl implements Xml {
   putEmptyWrappedLists(
     appleBarrel: AppleBarrel,
     options?: XmlPutEmptyWrappedListsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      appleBarrel,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { appleBarrel, options },
       putEmptyWrappedListsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -322,13 +277,10 @@ export class XmlImpl implements Xml {
   getRootList(
     options?: XmlGetRootListOptionalParams
   ): Promise<XmlGetRootListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getRootListOperationSpec
-    ) as Promise<XmlGetRootListResponse>;
+    );
   }
 
   /**
@@ -339,15 +291,11 @@ export class XmlImpl implements Xml {
   putRootList(
     bananas: Banana[],
     options?: XmlPutRootListOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      bananas,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { bananas, options },
       putRootListOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -357,13 +305,10 @@ export class XmlImpl implements Xml {
   getRootListSingleItem(
     options?: XmlGetRootListSingleItemOptionalParams
   ): Promise<XmlGetRootListSingleItemResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getRootListSingleItemOperationSpec
-    ) as Promise<XmlGetRootListSingleItemResponse>;
+    );
   }
 
   /**
@@ -374,15 +319,11 @@ export class XmlImpl implements Xml {
   putRootListSingleItem(
     bananas: Banana[],
     options?: XmlPutRootListSingleItemOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      bananas,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { bananas, options },
       putRootListSingleItemOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -392,13 +333,10 @@ export class XmlImpl implements Xml {
   getEmptyRootList(
     options?: XmlGetEmptyRootListOptionalParams
   ): Promise<XmlGetEmptyRootListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getEmptyRootListOperationSpec
-    ) as Promise<XmlGetEmptyRootListResponse>;
+    );
   }
 
   /**
@@ -409,15 +347,11 @@ export class XmlImpl implements Xml {
   putEmptyRootList(
     bananas: Banana[],
     options?: XmlPutEmptyRootListOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      bananas,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { bananas, options },
       putEmptyRootListOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -427,13 +361,10 @@ export class XmlImpl implements Xml {
   getEmptyChildElement(
     options?: XmlGetEmptyChildElementOptionalParams
   ): Promise<XmlGetEmptyChildElementResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getEmptyChildElementOperationSpec
-    ) as Promise<XmlGetEmptyChildElementResponse>;
+    );
   }
 
   /**
@@ -444,15 +375,11 @@ export class XmlImpl implements Xml {
   putEmptyChildElement(
     banana: Banana,
     options?: XmlPutEmptyChildElementOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      banana,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { banana, options },
       putEmptyChildElementOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -462,13 +389,10 @@ export class XmlImpl implements Xml {
   listContainers(
     options?: XmlListContainersOptionalParams
   ): Promise<XmlListContainersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listContainersOperationSpec
-    ) as Promise<XmlListContainersResponse>;
+    );
   }
 
   /**
@@ -478,13 +402,10 @@ export class XmlImpl implements Xml {
   getServiceProperties(
     options?: XmlGetServicePropertiesOptionalParams
   ): Promise<XmlGetServicePropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getServicePropertiesOperationSpec
-    ) as Promise<XmlGetServicePropertiesResponse>;
+    );
   }
 
   /**
@@ -495,15 +416,11 @@ export class XmlImpl implements Xml {
   putServiceProperties(
     properties: StorageServiceProperties,
     options?: XmlPutServicePropertiesOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      properties,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { properties, options },
       putServicePropertiesOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -511,13 +428,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getAcls(options?: XmlGetAclsOptionalParams): Promise<XmlGetAclsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getAclsOperationSpec
-    ) as Promise<XmlGetAclsResponse>;
+    return this.client.sendOperationRequest({ options }, getAclsOperationSpec);
   }
 
   /**
@@ -528,15 +439,11 @@ export class XmlImpl implements Xml {
   putAcls(
     properties: SignedIdentifier[],
     options?: XmlPutAclsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      properties,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { properties, options },
       putAclsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -546,13 +453,10 @@ export class XmlImpl implements Xml {
   listBlobs(
     options?: XmlListBlobsOptionalParams
   ): Promise<XmlListBlobsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBlobsOperationSpec
-    ) as Promise<XmlListBlobsResponse>;
+    );
   }
 
   /**
@@ -564,15 +468,11 @@ export class XmlImpl implements Xml {
   jsonInput(
     properties: JsonInput,
     options?: XmlJsonInputOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      properties,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { properties, options },
       jsonInputOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -582,13 +482,10 @@ export class XmlImpl implements Xml {
   jsonOutput(
     options?: XmlJsonOutputOptionalParams
   ): Promise<XmlJsonOutputResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       jsonOutputOperationSpec
-    ) as Promise<XmlJsonOutputResponse>;
+    );
   }
 
   /**
@@ -599,13 +496,10 @@ export class XmlImpl implements Xml {
   getXMsText(
     options?: XmlGetXMsTextOptionalParams
   ): Promise<XmlGetXMsTextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getXMsTextOperationSpec
-    ) as Promise<XmlGetXMsTextResponse>;
+    );
   }
 
   /**
@@ -613,13 +507,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getBytes(options?: XmlGetBytesOptionalParams): Promise<XmlGetBytesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getBytesOperationSpec
-    ) as Promise<XmlGetBytesResponse>;
+    return this.client.sendOperationRequest({ options }, getBytesOperationSpec);
   }
 
   /**
@@ -630,15 +518,11 @@ export class XmlImpl implements Xml {
   putBinary(
     slideshow: ModelWithByteProperty,
     options?: XmlPutBinaryOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      slideshow,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { slideshow, options },
       putBinaryOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -646,13 +530,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   getUri(options?: XmlGetUriOptionalParams): Promise<XmlGetUriResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getUriOperationSpec
-    ) as Promise<XmlGetUriResponse>;
+    return this.client.sendOperationRequest({ options }, getUriOperationSpec);
   }
 
   /**
@@ -663,23 +541,19 @@ export class XmlImpl implements Xml {
   putUri(
     model: ModelWithUrlProperty,
     options?: XmlPutUriOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      model,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { model, options },
       putUriOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
 
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
+const getComplexTypeRefNoMetaOperationSpec: coreClient.OperationSpec = {
   path: "/xml/complex-type-ref-no-meta",
   httpMethod: "GET",
   responses: {
@@ -692,7 +566,7 @@ const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
+const putComplexTypeRefNoMetaOperationSpec: coreClient.OperationSpec = {
   path: "/xml/complex-type-ref-no-meta",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -704,7 +578,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
+const getComplexTypeRefWithMetaOperationSpec: coreClient.OperationSpec = {
   path: "/xml/complex-type-ref-with-meta",
   httpMethod: "GET",
   responses: {
@@ -717,7 +591,7 @@ const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
+const putComplexTypeRefWithMetaOperationSpec: coreClient.OperationSpec = {
   path: "/xml/complex-type-ref-with-meta",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -729,7 +603,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getSimpleOperationSpec: coreHttp.OperationSpec = {
+const getSimpleOperationSpec: coreClient.OperationSpec = {
   path: "/xml/simple",
   httpMethod: "GET",
   responses: {
@@ -745,7 +619,7 @@ const getSimpleOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putSimpleOperationSpec: coreHttp.OperationSpec = {
+const putSimpleOperationSpec: coreClient.OperationSpec = {
   path: "/xml/simple",
   httpMethod: "PUT",
   responses: {
@@ -762,7 +636,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
+const getWrappedListsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/wrapped-lists",
   httpMethod: "GET",
   responses: {
@@ -775,7 +649,7 @@ const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
+const putWrappedListsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/wrapped-lists",
   httpMethod: "PUT",
   responses: {
@@ -792,7 +666,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getHeadersOperationSpec: coreHttp.OperationSpec = {
+const getHeadersOperationSpec: coreClient.OperationSpec = {
   path: "/xml/headers",
   httpMethod: "GET",
   responses: {
@@ -803,7 +677,7 @@ const getHeadersOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getEmptyListOperationSpec: coreHttp.OperationSpec = {
+const getEmptyListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-list",
   httpMethod: "GET",
   responses: {
@@ -816,7 +690,7 @@ const getEmptyListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putEmptyListOperationSpec: coreHttp.OperationSpec = {
+const putEmptyListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-list",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -828,7 +702,7 @@ const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
+const getEmptyWrappedListsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-wrapped-lists",
   httpMethod: "GET",
   responses: {
@@ -841,7 +715,7 @@ const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
+const putEmptyWrappedListsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-wrapped-lists",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -853,7 +727,7 @@ const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getRootListOperationSpec: coreHttp.OperationSpec = {
+const getRootListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/root-list",
   httpMethod: "GET",
   responses: {
@@ -874,7 +748,7 @@ const getRootListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putRootListOperationSpec: coreHttp.OperationSpec = {
+const putRootListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/root-list",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -886,7 +760,7 @@ const putRootListOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
+const getRootListSingleItemOperationSpec: coreClient.OperationSpec = {
   path: "/xml/root-list-single-item",
   httpMethod: "GET",
   responses: {
@@ -907,7 +781,7 @@ const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
+const putRootListSingleItemOperationSpec: coreClient.OperationSpec = {
   path: "/xml/root-list-single-item",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -919,7 +793,7 @@ const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
+const getEmptyRootListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-root-list",
   httpMethod: "GET",
   responses: {
@@ -940,7 +814,7 @@ const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
+const putEmptyRootListOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-root-list",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -952,7 +826,7 @@ const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
+const getEmptyChildElementOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-child-element",
   httpMethod: "GET",
   responses: {
@@ -965,7 +839,7 @@ const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
+const putEmptyChildElementOperationSpec: coreClient.OperationSpec = {
   path: "/xml/empty-child-element",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -977,7 +851,7 @@ const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const listContainersOperationSpec: coreHttp.OperationSpec = {
+const listContainersOperationSpec: coreClient.OperationSpec = {
   path: "/xml/",
   httpMethod: "GET",
   responses: {
@@ -991,7 +865,7 @@ const listContainersOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const getServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path: "/xml/",
   httpMethod: "GET",
   responses: {
@@ -1005,7 +879,7 @@ const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const putServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path: "/xml/",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -1018,7 +892,7 @@ const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getAclsOperationSpec: coreHttp.OperationSpec = {
+const getAclsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/mycontainer",
   httpMethod: "GET",
   responses: {
@@ -1043,7 +917,7 @@ const getAclsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putAclsOperationSpec: coreHttp.OperationSpec = {
+const putAclsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/mycontainer",
   httpMethod: "PUT",
   responses: { 201: {} },
@@ -1056,7 +930,7 @@ const putAclsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const listBlobsOperationSpec: coreHttp.OperationSpec = {
+const listBlobsOperationSpec: coreClient.OperationSpec = {
   path: "/xml/mycontainer",
   httpMethod: "GET",
   responses: {
@@ -1070,7 +944,7 @@ const listBlobsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const jsonInputOperationSpec: coreHttp.OperationSpec = {
+const jsonInputOperationSpec: coreClient.OperationSpec = {
   path: "/xml/jsoninput",
   httpMethod: "PUT",
   responses: { 200: {} },
@@ -1080,7 +954,7 @@ const jsonInputOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const jsonOutputOperationSpec: coreHttp.OperationSpec = {
+const jsonOutputOperationSpec: coreClient.OperationSpec = {
   path: "/xml/jsonoutput",
   httpMethod: "GET",
   responses: {
@@ -1092,7 +966,7 @@ const jsonOutputOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept2],
   serializer
 };
-const getXMsTextOperationSpec: coreHttp.OperationSpec = {
+const getXMsTextOperationSpec: coreClient.OperationSpec = {
   path: "/xml/x-ms-text",
   httpMethod: "GET",
   responses: {
@@ -1105,7 +979,7 @@ const getXMsTextOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const getBytesOperationSpec: coreHttp.OperationSpec = {
+const getBytesOperationSpec: coreClient.OperationSpec = {
   path: "/xml/bytes",
   httpMethod: "GET",
   responses: {
@@ -1121,7 +995,7 @@ const getBytesOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putBinaryOperationSpec: coreHttp.OperationSpec = {
+const putBinaryOperationSpec: coreClient.OperationSpec = {
   path: "/xml/bytes",
   httpMethod: "PUT",
   responses: {
@@ -1138,7 +1012,7 @@ const putBinaryOperationSpec: coreHttp.OperationSpec = {
   mediaType: "xml",
   serializer: xmlSerializer
 };
-const getUriOperationSpec: coreHttp.OperationSpec = {
+const getUriOperationSpec: coreClient.OperationSpec = {
   path: "/xml/url",
   httpMethod: "GET",
   responses: {
@@ -1154,7 +1028,7 @@ const getUriOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const putUriOperationSpec: coreHttp.OperationSpec = {
+const putUriOperationSpec: coreClient.OperationSpec = {
   path: "/xml/url",
   httpMethod: "PUT",
   responses: {

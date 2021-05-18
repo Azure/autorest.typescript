@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -102,258 +102,174 @@ export type GreyscaleColors = "White" | "black" | "GREY";
 
 /** Optional parameters. */
 export interface HeaderParamExistingKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseExistingKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseExistingKey operation. */
-export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseExistingKeyHeaders;
-  };
-};
+export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamProtectedKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseProtectedKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseProtectedKey operation. */
-export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseProtectedKeyHeaders;
-  };
-};
+export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamIntegerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseIntegerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseInteger operation. */
-export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseIntegerHeaders;
-  };
-};
+export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamLongOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseLongOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseLong operation. */
-export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseLongHeaders;
-  };
-};
+export type HeaderResponseLongResponse = HeaderResponseLongHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamFloatOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseFloatOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseFloat operation. */
-export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseFloatHeaders;
-  };
-};
+export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamDoubleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseDoubleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDouble operation. */
-export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseDoubleHeaders;
-  };
-};
+export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamBoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseBoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseBool operation. */
-export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseBoolHeaders;
-  };
-};
+export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamStringOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   value?: string;
 }
 
 /** Optional parameters. */
 export interface HeaderResponseStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseString operation. */
-export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseStringHeaders;
-  };
-};
+export type HeaderResponseStringResponse = HeaderResponseStringHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamDateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseDateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDate operation. */
-export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseDateHeaders;
-  };
-};
+export type HeaderResponseDateResponse = HeaderResponseDateHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamDatetimeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseDatetimeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDatetime operation. */
-export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseDatetimeHeaders;
-  };
-};
+export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamDatetimeRfc1123OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   value?: Date;
 }
 
 /** Optional parameters. */
 export interface HeaderResponseDatetimeRfc1123OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDatetimeRfc1123 operation. */
-export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
-  };
-};
+export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers;
 
 /** Optional parameters. */
 export interface HeaderParamDurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseDurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDuration operation. */
-export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseDurationHeaders;
-  };
-};
+export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamByteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderResponseByteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseByte operation. */
-export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseByteHeaders;
-  };
-};
+export type HeaderResponseByteResponse = HeaderResponseByteHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamEnumOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Send a post request with header values 'GREY' */
   value?: GreyscaleColors;
 }
 
 /** Optional parameters. */
 export interface HeaderResponseEnumOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseEnum operation. */
-export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: HeaderResponseEnumHeaders;
-  };
-};
+export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders;
 
 /** Optional parameters. */
 export interface HeaderCustomRequestIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface HeaderClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

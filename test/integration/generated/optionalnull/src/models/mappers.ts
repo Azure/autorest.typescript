@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const CaptionResult: coreHttp.CompositeMapper = {
+export const CaptionResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CaptionResult",

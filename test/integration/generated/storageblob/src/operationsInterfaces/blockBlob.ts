@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
@@ -22,7 +22,7 @@ export interface BlockBlob {
   stageBlock(
     blockId: string,
     contentLength: number,
-    body: coreHttp.HttpRequestBody,
+    body: coreRestPipeline.RequestBodyType,
     options?: BlockBlobStageBlockOptionalParams
   ): Promise<BlockBlobStageBlockResponse>;
   /**
@@ -36,7 +36,7 @@ export interface BlockBlob {
    */
   upload(
     contentLength: number,
-    body: coreHttp.HttpRequestBody,
+    body: coreRestPipeline.RequestBodyType,
     options?: BlockBlobUploadOptionalParams
   ): Promise<BlockBlobUploadResponse>;
   /**

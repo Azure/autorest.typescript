@@ -1,10 +1,7 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { OptionalNullClientOptionalParams } from "./models";
 
-const packageName = "optionalnull";
-const packageVersion = "1.0.0-preview1";
-
-export class OptionalNullClientContext extends coreHttp.ServiceClient {
+export class OptionalNullClientContext extends coreClient.ServiceClient {
   $host: string;
 
   /**
@@ -21,18 +18,15 @@ export class OptionalNullClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
-
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-
-    this.baseUri = options.endpoint || "{$host}";
-
+    const defaults: OptionalNullClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "{$host}"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.$host = $host;
   }

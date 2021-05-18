@@ -7,7 +7,7 @@
  */
 
 import { Header } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HeaderClientContext } from "../headerClientContext";
@@ -77,15 +77,11 @@ export class HeaderImpl implements Header {
   paramExistingKey(
     userAgent: string,
     options?: HeaderParamExistingKeyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      userAgent,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { userAgent, options },
       paramExistingKeyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -95,13 +91,10 @@ export class HeaderImpl implements Header {
   responseExistingKey(
     options?: HeaderResponseExistingKeyOptionalParams
   ): Promise<HeaderResponseExistingKeyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       responseExistingKeyOperationSpec
-    ) as Promise<HeaderResponseExistingKeyResponse>;
+    );
   }
 
   /**
@@ -112,15 +105,11 @@ export class HeaderImpl implements Header {
   paramProtectedKey(
     contentType: string,
     options?: HeaderParamProtectedKeyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      contentType,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { contentType, options },
       paramProtectedKeyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -130,13 +119,10 @@ export class HeaderImpl implements Header {
   responseProtectedKey(
     options?: HeaderResponseProtectedKeyOptionalParams
   ): Promise<HeaderResponseProtectedKeyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       responseProtectedKeyOperationSpec
-    ) as Promise<HeaderResponseProtectedKeyResponse>;
+    );
   }
 
   /**
@@ -150,16 +136,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: number,
     options?: HeaderParamIntegerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramIntegerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -171,14 +152,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseIntegerOptionalParams
   ): Promise<HeaderResponseIntegerResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseIntegerOperationSpec
-    ) as Promise<HeaderResponseIntegerResponse>;
+    );
   }
 
   /**
@@ -192,16 +169,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: number,
     options?: HeaderParamLongOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramLongOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -213,14 +185,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseLongOptionalParams
   ): Promise<HeaderResponseLongResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseLongOperationSpec
-    ) as Promise<HeaderResponseLongResponse>;
+    );
   }
 
   /**
@@ -234,16 +202,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: number,
     options?: HeaderParamFloatOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramFloatOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -255,14 +218,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseFloatOptionalParams
   ): Promise<HeaderResponseFloatResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseFloatOperationSpec
-    ) as Promise<HeaderResponseFloatResponse>;
+    );
   }
 
   /**
@@ -276,16 +235,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: number,
     options?: HeaderParamDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramDoubleOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -297,14 +251,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseDoubleOptionalParams
   ): Promise<HeaderResponseDoubleResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseDoubleOperationSpec
-    ) as Promise<HeaderResponseDoubleResponse>;
+    );
   }
 
   /**
@@ -318,16 +268,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: boolean,
     options?: HeaderParamBoolOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramBoolOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -339,14 +284,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseBoolOptionalParams
   ): Promise<HeaderResponseBoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseBoolOperationSpec
-    ) as Promise<HeaderResponseBoolResponse>;
+    );
   }
 
   /**
@@ -358,15 +299,11 @@ export class HeaderImpl implements Header {
   paramString(
     scenario: string,
     options?: HeaderParamStringOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       paramStringOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -378,14 +315,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseStringOptionalParams
   ): Promise<HeaderResponseStringResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseStringOperationSpec
-    ) as Promise<HeaderResponseStringResponse>;
+    );
   }
 
   /**
@@ -399,16 +332,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: Date,
     options?: HeaderParamDateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramDateOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -420,14 +348,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseDateOptionalParams
   ): Promise<HeaderResponseDateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseDateOperationSpec
-    ) as Promise<HeaderResponseDateResponse>;
+    );
   }
 
   /**
@@ -441,16 +365,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: Date,
     options?: HeaderParamDatetimeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramDatetimeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -462,14 +381,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseDatetimeOptionalParams
   ): Promise<HeaderResponseDatetimeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseDatetimeOperationSpec
-    ) as Promise<HeaderResponseDatetimeResponse>;
+    );
   }
 
   /**
@@ -481,15 +396,11 @@ export class HeaderImpl implements Header {
   paramDatetimeRfc1123(
     scenario: string,
     options?: HeaderParamDatetimeRfc1123OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       paramDatetimeRfc1123OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -501,14 +412,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseDatetimeRfc1123OptionalParams
   ): Promise<HeaderResponseDatetimeRfc1123Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseDatetimeRfc1123OperationSpec
-    ) as Promise<HeaderResponseDatetimeRfc1123Response>;
+    );
   }
 
   /**
@@ -521,16 +428,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: string,
     options?: HeaderParamDurationOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramDurationOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -542,14 +444,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseDurationOptionalParams
   ): Promise<HeaderResponseDurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseDurationOperationSpec
-    ) as Promise<HeaderResponseDurationResponse>;
+    );
   }
 
   /**
@@ -562,16 +460,11 @@ export class HeaderImpl implements Header {
     scenario: string,
     value: Uint8Array,
     options?: HeaderParamByteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      value,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, value, options },
       paramByteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -583,14 +476,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseByteOptionalParams
   ): Promise<HeaderResponseByteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseByteOperationSpec
-    ) as Promise<HeaderResponseByteResponse>;
+    );
   }
 
   /**
@@ -602,15 +491,11 @@ export class HeaderImpl implements Header {
   paramEnum(
     scenario: string,
     options?: HeaderParamEnumOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       paramEnumOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -622,14 +507,10 @@ export class HeaderImpl implements Header {
     scenario: string,
     options?: HeaderResponseEnumOptionalParams
   ): Promise<HeaderResponseEnumResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scenario,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scenario, options },
       responseEnumOperationSpec
-    ) as Promise<HeaderResponseEnumResponse>;
+    );
   }
 
   /**
@@ -638,20 +519,17 @@ export class HeaderImpl implements Header {
    */
   customRequestId(
     options?: HeaderCustomRequestIdOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       customRequestIdOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
+const paramExistingKeyOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/existingkey",
   httpMethod: "POST",
   responses: {
@@ -664,7 +542,7 @@ const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.userAgent],
   serializer
 };
-const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
+const responseExistingKeyOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/existingkey",
   httpMethod: "POST",
   responses: {
@@ -679,7 +557,7 @@ const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
+const paramProtectedKeyOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/protectedkey",
   httpMethod: "POST",
   responses: {
@@ -692,7 +570,7 @@ const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.contentType],
   serializer
 };
-const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
+const responseProtectedKeyOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/protectedkey",
   httpMethod: "POST",
   responses: {
@@ -707,7 +585,7 @@ const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const paramIntegerOperationSpec: coreHttp.OperationSpec = {
+const paramIntegerOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/integer",
   httpMethod: "POST",
   responses: {
@@ -720,7 +598,7 @@ const paramIntegerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value],
   serializer
 };
-const responseIntegerOperationSpec: coreHttp.OperationSpec = {
+const responseIntegerOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/integer",
   httpMethod: "POST",
   responses: {
@@ -735,7 +613,7 @@ const responseIntegerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramLongOperationSpec: coreHttp.OperationSpec = {
+const paramLongOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/long",
   httpMethod: "POST",
   responses: {
@@ -748,7 +626,7 @@ const paramLongOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value],
   serializer
 };
-const responseLongOperationSpec: coreHttp.OperationSpec = {
+const responseLongOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/long",
   httpMethod: "POST",
   responses: {
@@ -763,7 +641,7 @@ const responseLongOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramFloatOperationSpec: coreHttp.OperationSpec = {
+const paramFloatOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/float",
   httpMethod: "POST",
   responses: {
@@ -776,7 +654,7 @@ const paramFloatOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value1],
   serializer
 };
-const responseFloatOperationSpec: coreHttp.OperationSpec = {
+const responseFloatOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/float",
   httpMethod: "POST",
   responses: {
@@ -791,7 +669,7 @@ const responseFloatOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramDoubleOperationSpec: coreHttp.OperationSpec = {
+const paramDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/double",
   httpMethod: "POST",
   responses: {
@@ -804,7 +682,7 @@ const paramDoubleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value1],
   serializer
 };
-const responseDoubleOperationSpec: coreHttp.OperationSpec = {
+const responseDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/double",
   httpMethod: "POST",
   responses: {
@@ -819,7 +697,7 @@ const responseDoubleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramBoolOperationSpec: coreHttp.OperationSpec = {
+const paramBoolOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/bool",
   httpMethod: "POST",
   responses: {
@@ -832,7 +710,7 @@ const paramBoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value2],
   serializer
 };
-const responseBoolOperationSpec: coreHttp.OperationSpec = {
+const responseBoolOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/bool",
   httpMethod: "POST",
   responses: {
@@ -847,7 +725,7 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramStringOperationSpec: coreHttp.OperationSpec = {
+const paramStringOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/string",
   httpMethod: "POST",
   responses: {
@@ -860,7 +738,7 @@ const paramStringOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value3],
   serializer
 };
-const responseStringOperationSpec: coreHttp.OperationSpec = {
+const responseStringOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/string",
   httpMethod: "POST",
   responses: {
@@ -875,7 +753,7 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramDateOperationSpec: coreHttp.OperationSpec = {
+const paramDateOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/date",
   httpMethod: "POST",
   responses: {
@@ -888,7 +766,7 @@ const paramDateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value4],
   serializer
 };
-const responseDateOperationSpec: coreHttp.OperationSpec = {
+const responseDateOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/date",
   httpMethod: "POST",
   responses: {
@@ -903,7 +781,7 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
+const paramDatetimeOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/datetime",
   httpMethod: "POST",
   responses: {
@@ -916,7 +794,7 @@ const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value5],
   serializer
 };
-const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
+const responseDatetimeOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/datetime",
   httpMethod: "POST",
   responses: {
@@ -931,7 +809,7 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
+const paramDatetimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/datetimerfc1123",
   httpMethod: "POST",
   responses: {
@@ -944,7 +822,7 @@ const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value6],
   serializer
 };
-const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
+const responseDatetimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/datetimerfc1123",
   httpMethod: "POST",
   responses: {
@@ -959,7 +837,7 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramDurationOperationSpec: coreHttp.OperationSpec = {
+const paramDurationOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/duration",
   httpMethod: "POST",
   responses: {
@@ -972,7 +850,7 @@ const paramDurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value7],
   serializer
 };
-const responseDurationOperationSpec: coreHttp.OperationSpec = {
+const responseDurationOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/duration",
   httpMethod: "POST",
   responses: {
@@ -987,7 +865,7 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramByteOperationSpec: coreHttp.OperationSpec = {
+const paramByteOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/byte",
   httpMethod: "POST",
   responses: {
@@ -1000,7 +878,7 @@ const paramByteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value8],
   serializer
 };
-const responseByteOperationSpec: coreHttp.OperationSpec = {
+const responseByteOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/byte",
   httpMethod: "POST",
   responses: {
@@ -1015,7 +893,7 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const paramEnumOperationSpec: coreHttp.OperationSpec = {
+const paramEnumOperationSpec: coreClient.OperationSpec = {
   path: "/header/param/prim/enum",
   httpMethod: "POST",
   responses: {
@@ -1028,7 +906,7 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario, Parameters.value9],
   serializer
 };
-const responseEnumOperationSpec: coreHttp.OperationSpec = {
+const responseEnumOperationSpec: coreClient.OperationSpec = {
   path: "/header/response/prim/enum",
   httpMethod: "POST",
   responses: {
@@ -1043,7 +921,7 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.scenario],
   serializer
 };
-const customRequestIdOperationSpec: coreHttp.OperationSpec = {
+const customRequestIdOperationSpec: coreClient.OperationSpec = {
   path:
     "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
   httpMethod: "POST",

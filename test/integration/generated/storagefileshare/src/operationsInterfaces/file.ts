@@ -1,4 +1,3 @@
-import * as coreHttp from "@azure/core-http";
 import {
   FileUploadRangeFromURLOptionalParams,
   FileUploadRangeFromURLResponse

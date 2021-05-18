@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
@@ -162,7 +161,7 @@ export interface Array {
   putEmpty(
     arrayBody: string[],
     options?: ArrayPutEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get boolean array value [true, false, false, true]
    * @param options The options parameters.
@@ -178,7 +177,7 @@ export interface Array {
   putBooleanTfft(
     arrayBody: boolean[],
     options?: ArrayPutBooleanTfftOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get boolean array value [true, null, false]
    * @param options The options parameters.
@@ -208,7 +207,7 @@ export interface Array {
   putIntegerValid(
     arrayBody: number[],
     options?: ArrayPutIntegerValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get integer array value [1, null, 0]
    * @param options The options parameters.
@@ -238,7 +237,7 @@ export interface Array {
   putLongValid(
     arrayBody: number[],
     options?: ArrayPutLongValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get long array value [1, null, 0]
    * @param options The options parameters.
@@ -268,7 +267,7 @@ export interface Array {
   putFloatValid(
     arrayBody: number[],
     options?: ArrayPutFloatValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
@@ -298,7 +297,7 @@ export interface Array {
   putDoubleValid(
     arrayBody: number[],
     options?: ArrayPutDoubleValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
@@ -328,7 +327,7 @@ export interface Array {
   putStringValid(
     arrayBody: string[],
     options?: ArrayPutStringValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
@@ -344,7 +343,7 @@ export interface Array {
   putEnumValid(
     arrayBody: FooEnum[],
     options?: ArrayPutEnumValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
@@ -360,7 +359,7 @@ export interface Array {
   putStringEnumValid(
     arrayBody: Enum1[],
     options?: ArrayPutStringEnumValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get string array value ['foo', null, 'foo2']
    * @param options The options parameters.
@@ -393,7 +392,7 @@ export interface Array {
   putUuidValid(
     arrayBody: string[],
     options?: ArrayPutUuidValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
    * @param options The options parameters.
@@ -416,7 +415,7 @@ export interface Array {
   putDateValid(
     arrayBody: Date[],
     options?: ArrayPutDateValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get date array value ['2012-01-01', null, '1776-07-04']
    * @param options The options parameters.
@@ -448,7 +447,7 @@ export interface Array {
   putDateTimeValid(
     arrayBody: Date[],
     options?: ArrayPutDateTimeValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get date array value ['2000-12-01t00:00:01z', null]
    * @param options The options parameters.
@@ -481,7 +480,7 @@ export interface Array {
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
     options?: ArrayPutDateTimeRfc1123ValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    * @param options The options parameters.
@@ -497,7 +496,7 @@ export interface Array {
   putDurationValid(
     arrayBody: string[],
     options?: ArrayPutDurationValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in
    * base64
@@ -516,7 +515,7 @@ export interface Array {
   putByteValid(
     arrayBody: Uint8Array[],
     options?: ArrayPutByteValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
    * @param options The options parameters.
@@ -580,7 +579,7 @@ export interface Array {
   putComplexValid(
     arrayBody: Product[],
     options?: ArrayPutComplexValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a null array
    * @param options The options parameters.
@@ -624,7 +623,7 @@ export interface Array {
   putArrayValid(
     arrayBody: string[][],
     options?: ArrayPutArrayValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get an array of Dictionaries with value null
    * @param options The options parameters.
@@ -674,5 +673,5 @@ export interface Array {
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
     options?: ArrayPutDictionaryValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

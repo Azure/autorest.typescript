@@ -6,13 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { BodyStringClientOptionalParams } from "./models";
 
-const packageName = "body-string";
-const packageVersion = "1.0.0-preview1";
-
-export class BodyStringClientContext extends coreHttp.ServiceClient {
+export class BodyStringClientContext extends coreClient.ServiceClient {
   $host: string;
 
   /**
@@ -24,17 +21,15 @@ export class BodyStringClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
-
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-
-    this.baseUri = options.endpoint || "http://localhost:3000";
+    const defaults: BodyStringClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import { NoMappersClientContext } from "./noMappersClientContext";
 import {
@@ -35,19 +35,13 @@ export class NoMappersClient extends NoMappersClientContext {
   apiV1ValueGet(
     options?: NoMappersClientApiV1ValueGetOptionalParams
   ): Promise<NoMappersClientApiV1ValueGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      apiV1ValueGetOperationSpec
-    ) as Promise<NoMappersClientApiV1ValueGetResponse>;
+    return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer({}, /* isXml */ false);
+const serializer = coreClient.createSerializer({}, /* isXml */ false);
 
-const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
+const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "GET",
   responses: {

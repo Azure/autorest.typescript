@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
@@ -25,7 +24,7 @@ export interface SubscriptionInMethod {
   postMethodLocalValid(
     subscriptionId: string,
     options?: SubscriptionInMethodPostMethodLocalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side
    * validation should prevent you from making this call
@@ -36,7 +35,7 @@ export interface SubscriptionInMethod {
   postMethodLocalNull(
     subscriptionId: string,
     options?: SubscriptionInMethodPostMethodLocalNullOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
    * '1234-5678-9012-3456' to succeed
@@ -46,7 +45,7 @@ export interface SubscriptionInMethod {
   postPathLocalValid(
     subscriptionId: string,
     options?: SubscriptionInMethodPostPathLocalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
    * '1234-5678-9012-3456' to succeed
@@ -57,5 +56,5 @@ export interface SubscriptionInMethod {
   postSwaggerLocalValid(
     subscriptionId: string,
     options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

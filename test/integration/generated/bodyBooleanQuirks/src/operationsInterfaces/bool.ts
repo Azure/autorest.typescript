@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   BoolGetTrueOptionalParams,
   BoolGetTrueResponse,
@@ -35,7 +34,7 @@ export interface Bool {
   putTrue(
     boolBody: boolean,
     options?: BoolPutTrueOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get false Boolean value
    * @param options The options parameters.
@@ -49,7 +48,7 @@ export interface Bool {
   putFalse(
     boolBody: boolean,
     options?: BoolPutFalseOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get null Boolean value
    * @param options The options parameters.

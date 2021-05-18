@@ -7,7 +7,7 @@
  */
 
 import { Queries } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
@@ -65,16 +65,11 @@ export class QueriesImpl implements Queries {
    * Get true Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanTrue(
-    options?: QueriesGetBooleanTrueOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getBooleanTrue(options?: QueriesGetBooleanTrueOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBooleanTrueOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -83,30 +78,22 @@ export class QueriesImpl implements Queries {
    */
   getBooleanFalse(
     options?: QueriesGetBooleanFalseOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBooleanFalseOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null Boolean value on query (query string should be absent)
    * @param options The options parameters.
    */
-  getBooleanNull(
-    options?: QueriesGetBooleanNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getBooleanNull(options?: QueriesGetBooleanNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBooleanNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -115,14 +102,11 @@ export class QueriesImpl implements Queries {
    */
   getIntOneMillion(
     options?: QueriesGetIntOneMillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getIntOneMillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -131,46 +115,33 @@ export class QueriesImpl implements Queries {
    */
   getIntNegativeOneMillion(
     options?: QueriesGetIntNegativeOneMillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getIntNegativeOneMillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null integer value (no query parameter)
    * @param options The options parameters.
    */
-  getIntNull(
-    options?: QueriesGetIntNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getIntNull(options?: QueriesGetIntNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getIntNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getTenBillion(
-    options?: QueriesGetTenBillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getTenBillion(options?: QueriesGetTenBillionOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getTenBillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -179,30 +150,22 @@ export class QueriesImpl implements Queries {
    */
   getNegativeTenBillion(
     options?: QueriesGetNegativeTenBillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getNegativeTenBillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get 'null 64 bit integer value (no query param in uri)
    * @param options The options parameters.
    */
-  getLongNull(
-    options?: QueriesGetLongNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getLongNull(options?: QueriesGetLongNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getLongNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -211,14 +174,11 @@ export class QueriesImpl implements Queries {
    */
   floatScientificPositive(
     options?: QueriesFloatScientificPositiveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       floatScientificPositiveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -227,30 +187,22 @@ export class QueriesImpl implements Queries {
    */
   floatScientificNegative(
     options?: QueriesFloatScientificNegativeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       floatScientificNegativeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  floatNull(
-    options?: QueriesFloatNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  floatNull(options?: QueriesFloatNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       floatNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -259,14 +211,11 @@ export class QueriesImpl implements Queries {
    */
   doubleDecimalPositive(
     options?: QueriesDoubleDecimalPositiveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       doubleDecimalPositiveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -275,46 +224,33 @@ export class QueriesImpl implements Queries {
    */
   doubleDecimalNegative(
     options?: QueriesDoubleDecimalNegativeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       doubleDecimalNegativeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  doubleNull(
-    options?: QueriesDoubleNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  doubleNull(options?: QueriesDoubleNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       doubleNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param options The options parameters.
    */
-  stringUnicode(
-    options?: QueriesStringUnicodeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  stringUnicode(options?: QueriesStringUnicodeOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringUnicodeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -323,190 +259,123 @@ export class QueriesImpl implements Queries {
    */
   stringUrlEncoded(
     options?: QueriesStringUrlEncodedOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringUrlEncodedOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get ''
    * @param options The options parameters.
    */
-  stringEmpty(
-    options?: QueriesStringEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  stringEmpty(options?: QueriesStringEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  stringNull(
-    options?: QueriesStringNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  stringNull(options?: QueriesStringNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get using uri with query parameter 'green color'
    * @param options The options parameters.
    */
-  enumValid(
-    options?: QueriesEnumValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  enumValid(options?: QueriesEnumValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       enumValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  enumNull(
-    options?: QueriesEnumNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      enumNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  enumNull(options?: QueriesEnumNullOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, enumNullOperationSpec);
   }
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param options The options parameters.
    */
-  byteMultiByte(
-    options?: QueriesByteMultiByteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  byteMultiByte(options?: QueriesByteMultiByteOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       byteMultiByteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '' as byte array
    * @param options The options parameters.
    */
-  byteEmpty(
-    options?: QueriesByteEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  byteEmpty(options?: QueriesByteEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       byteEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null as byte array (no query parameters in uri)
    * @param options The options parameters.
    */
-  byteNull(
-    options?: QueriesByteNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      byteNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  byteNull(options?: QueriesByteNullOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, byteNullOperationSpec);
   }
 
   /**
    * Get '2012-01-01' as date
    * @param options The options parameters.
    */
-  dateValid(
-    options?: QueriesDateValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  dateValid(options?: QueriesDateValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       dateValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null as date - this should result in no query parameters in uri
    * @param options The options parameters.
    */
-  dateNull(
-    options?: QueriesDateNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      dateNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  dateNull(options?: QueriesDateNullOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, dateNullOperationSpec);
   }
 
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param options The options parameters.
    */
-  dateTimeValid(
-    options?: QueriesDateTimeValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  dateTimeValid(options?: QueriesDateTimeValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       dateTimeValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get null as date-time, should result in no query parameters in uri
    * @param options The options parameters.
    */
-  dateTimeNull(
-    options?: QueriesDateTimeNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  dateTimeNull(options?: QueriesDateTimeNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       dateTimeNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -516,14 +385,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringCsvValid(
     options?: QueriesArrayStringCsvValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringCsvValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -532,14 +398,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringCsvNull(
     options?: QueriesArrayStringCsvNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringCsvNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -548,14 +411,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringCsvEmpty(
     options?: QueriesArrayStringCsvEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringCsvEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -565,14 +425,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringNoCollectionFormatEmpty(
     options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringNoCollectionFormatEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -582,14 +439,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringSsvValid(
     options?: QueriesArrayStringSsvValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringSsvValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -599,14 +453,11 @@ export class QueriesImpl implements Queries {
    */
   arrayStringTsvValid(
     options?: QueriesArrayStringTsvValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringTsvValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -616,20 +467,17 @@ export class QueriesImpl implements Queries {
    */
   arrayStringPipesValid(
     options?: QueriesArrayStringPipesValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       arrayStringPipesValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
+const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
   path: "/queries/bool/true",
   httpMethod: "GET",
   responses: {
@@ -643,7 +491,7 @@ const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
+const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   path: "/queries/bool/false",
   httpMethod: "GET",
   responses: {
@@ -657,7 +505,7 @@ const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBooleanNullOperationSpec: coreHttp.OperationSpec = {
+const getBooleanNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/bool/null",
   httpMethod: "GET",
   responses: {
@@ -671,7 +519,7 @@ const getBooleanNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
+const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/1000000",
   httpMethod: "GET",
   responses: {
@@ -685,7 +533,7 @@ const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
+const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/-1000000",
   httpMethod: "GET",
   responses: {
@@ -699,7 +547,7 @@ const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntNullOperationSpec: coreHttp.OperationSpec = {
+const getIntNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/null",
   httpMethod: "GET",
   responses: {
@@ -713,7 +561,7 @@ const getIntNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTenBillionOperationSpec: coreHttp.OperationSpec = {
+const getTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/10000000000",
   httpMethod: "GET",
   responses: {
@@ -727,7 +575,7 @@ const getTenBillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
+const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/-10000000000",
   httpMethod: "GET",
   responses: {
@@ -741,7 +589,7 @@ const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLongNullOperationSpec: coreHttp.OperationSpec = {
+const getLongNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/null",
   httpMethod: "GET",
   responses: {
@@ -755,7 +603,7 @@ const getLongNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
+const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/1.034E+20",
   httpMethod: "GET",
   responses: {
@@ -769,7 +617,7 @@ const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
+const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/-1.034E-20",
   httpMethod: "GET",
   responses: {
@@ -783,7 +631,7 @@ const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const floatNullOperationSpec: coreHttp.OperationSpec = {
+const floatNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/null",
   httpMethod: "GET",
   responses: {
@@ -797,7 +645,7 @@ const floatNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
+const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/9999999.999",
   httpMethod: "GET",
   responses: {
@@ -811,7 +659,7 @@ const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
+const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/-9999999.999",
   httpMethod: "GET",
   responses: {
@@ -825,7 +673,7 @@ const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doubleNullOperationSpec: coreHttp.OperationSpec = {
+const doubleNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/null",
   httpMethod: "GET",
   responses: {
@@ -839,7 +687,7 @@ const doubleNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
+const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/unicode/",
   httpMethod: "GET",
   responses: {
@@ -853,7 +701,7 @@ const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
+const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
   path:
     "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
   httpMethod: "GET",
@@ -868,7 +716,7 @@ const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringEmptyOperationSpec: coreHttp.OperationSpec = {
+const stringEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/empty",
   httpMethod: "GET",
   responses: {
@@ -882,7 +730,7 @@ const stringEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringNullOperationSpec: coreHttp.OperationSpec = {
+const stringNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/null",
   httpMethod: "GET",
   responses: {
@@ -896,7 +744,7 @@ const stringNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const enumValidOperationSpec: coreHttp.OperationSpec = {
+const enumValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/enum/green%20color",
   httpMethod: "GET",
   responses: {
@@ -910,7 +758,7 @@ const enumValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const enumNullOperationSpec: coreHttp.OperationSpec = {
+const enumNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/enum/null",
   httpMethod: "GET",
   responses: {
@@ -924,7 +772,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
+const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/multibyte",
   httpMethod: "GET",
   responses: {
@@ -938,7 +786,7 @@ const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteEmptyOperationSpec: coreHttp.OperationSpec = {
+const byteEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/empty",
   httpMethod: "GET",
   responses: {
@@ -952,7 +800,7 @@ const byteEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteNullOperationSpec: coreHttp.OperationSpec = {
+const byteNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/null",
   httpMethod: "GET",
   responses: {
@@ -966,7 +814,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateValidOperationSpec: coreHttp.OperationSpec = {
+const dateValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/date/2012-01-01",
   httpMethod: "GET",
   responses: {
@@ -980,7 +828,7 @@ const dateValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateNullOperationSpec: coreHttp.OperationSpec = {
+const dateNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/date/null",
   httpMethod: "GET",
   responses: {
@@ -994,7 +842,7 @@ const dateNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
+const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
   httpMethod: "GET",
   responses: {
@@ -1008,7 +856,7 @@ const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
+const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/datetime/null",
   httpMethod: "GET",
   responses: {
@@ -1022,7 +870,7 @@ const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringCsvValidOperationSpec: coreHttp.OperationSpec = {
+const arrayStringCsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/valid",
   httpMethod: "GET",
   responses: {
@@ -1036,7 +884,7 @@ const arrayStringCsvValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringCsvNullOperationSpec: coreHttp.OperationSpec = {
+const arrayStringCsvNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/null",
   httpMethod: "GET",
   responses: {
@@ -1050,7 +898,7 @@ const arrayStringCsvNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
+const arrayStringCsvEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/empty",
   httpMethod: "GET",
   responses: {
@@ -1064,7 +912,7 @@ const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringNoCollectionFormatEmptyOperationSpec: coreHttp.OperationSpec = {
+const arrayStringNoCollectionFormatEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/none/string/empty",
   httpMethod: "GET",
   responses: {
@@ -1078,7 +926,7 @@ const arrayStringNoCollectionFormatEmptyOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
+const arrayStringSsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/ssv/string/valid",
   httpMethod: "GET",
   responses: {
@@ -1092,7 +940,7 @@ const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
+const arrayStringTsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/tsv/string/valid",
   httpMethod: "GET",
   responses: {
@@ -1106,7 +954,7 @@ const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
+const arrayStringPipesValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/pipes/string/valid",
   httpMethod: "GET",
   responses: {

@@ -6,28 +6,20 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface GetUrlOptionalParams extends coreHttp.OperationOptions {}
+export interface GetUrlOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the url operation. */
 export type GetUrlResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
-export interface UrlClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface UrlClientOptionalParams
+  extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

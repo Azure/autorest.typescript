@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -20,965 +20,503 @@ export interface Widget {
 
 /** Optional parameters. */
 export interface DictionaryGetNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
-export type DictionaryGetNullResponse = { [propertyName: string]: number } & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
-};
+export type DictionaryGetNullResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
 export interface DictionaryGetEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
-export type DictionaryGetEmptyResponse = { [propertyName: string]: number } & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
-};
+export type DictionaryGetEmptyResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
 export interface DictionaryPutEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetNullValueOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNullValue operation. */
-export type DictionaryGetNullValueResponse = {
-  [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
-};
+export type DictionaryGetNullValueResponse = { [propertyName: string]: string };
 
 /** Optional parameters. */
 export interface DictionaryGetNullKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNullKey operation. */
-export type DictionaryGetNullKeyResponse = {
-  [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
-};
+export type DictionaryGetNullKeyResponse = { [propertyName: string]: string };
 
 /** Optional parameters. */
 export interface DictionaryGetEmptyStringKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEmptyStringKey operation. */
 export type DictionaryGetEmptyStringKeyResponse = {
   [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetInvalidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
-export type DictionaryGetInvalidResponse = {
-  [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
-};
+export type DictionaryGetInvalidResponse = { [propertyName: string]: string };
 
 /** Optional parameters. */
 export interface DictionaryGetBooleanTfftOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBooleanTfft operation. */
 export type DictionaryGetBooleanTfftResponse = {
   [propertyName: string]: boolean;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: boolean };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutBooleanTfftOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetBooleanInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidNull operation. */
 export type DictionaryGetBooleanInvalidNullResponse = {
   [propertyName: string]: boolean;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: boolean };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetBooleanInvalidStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidString operation. */
 export type DictionaryGetBooleanInvalidStringResponse = {
   [propertyName: string]: boolean;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: boolean };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetIntegerValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getIntegerValid operation. */
 export type DictionaryGetIntegerValidResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutIntegerValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetIntInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getIntInvalidNull operation. */
 export type DictionaryGetIntInvalidNullResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetIntInvalidStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getIntInvalidString operation. */
 export type DictionaryGetIntInvalidStringResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetLongValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getLongValid operation. */
-export type DictionaryGetLongValidResponse = {
-  [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
-};
+export type DictionaryGetLongValidResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
 export interface DictionaryPutLongValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetLongInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getLongInvalidNull operation. */
 export type DictionaryGetLongInvalidNullResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetLongInvalidStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getLongInvalidString operation. */
 export type DictionaryGetLongInvalidStringResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetFloatValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFloatValid operation. */
 export type DictionaryGetFloatValidResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutFloatValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetFloatInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidNull operation. */
 export type DictionaryGetFloatInvalidNullResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetFloatInvalidStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidString operation. */
 export type DictionaryGetFloatInvalidStringResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDoubleValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDoubleValid operation. */
 export type DictionaryGetDoubleValidResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutDoubleValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetDoubleInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidNull operation. */
 export type DictionaryGetDoubleInvalidNullResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDoubleInvalidStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidString operation. */
 export type DictionaryGetDoubleInvalidStringResponse = {
   [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetStringValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStringValid operation. */
 export type DictionaryGetStringValidResponse = {
   [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutStringValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetStringWithNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStringWithNull operation. */
 export type DictionaryGetStringWithNullResponse = {
   [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetStringWithInvalidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStringWithInvalid operation. */
 export type DictionaryGetStringWithInvalidResponse = {
   [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDateValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateValid operation. */
-export type DictionaryGetDateValidResponse = {
-  [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
-};
+export type DictionaryGetDateValidResponse = { [propertyName: string]: Date };
 
 /** Optional parameters. */
 export interface DictionaryPutDateValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetDateInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateInvalidNull operation. */
 export type DictionaryGetDateInvalidNullResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDateInvalidCharsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateInvalidChars operation. */
 export type DictionaryGetDateInvalidCharsResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDateTimeValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTimeValid operation. */
 export type DictionaryGetDateTimeValidResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutDateTimeValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetDateTimeInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidNull operation. */
 export type DictionaryGetDateTimeInvalidNullResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDateTimeInvalidCharsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidChars operation. */
 export type DictionaryGetDateTimeInvalidCharsResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDateTimeRfc1123ValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123Valid operation. */
 export type DictionaryGetDateTimeRfc1123ValidResponse = {
   [propertyName: string]: Date;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Date };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutDateTimeRfc1123ValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetDurationValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDurationValid operation. */
 export type DictionaryGetDurationValidResponse = {
   [propertyName: string]: string;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutDurationValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetByteValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByteValid operation. */
 export type DictionaryGetByteValidResponse = {
   [propertyName: string]: Uint8Array;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Uint8Array };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutByteValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetByteInvalidNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByteInvalidNull operation. */
 export type DictionaryGetByteInvalidNullResponse = {
   [propertyName: string]: Uint8Array;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Uint8Array };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetBase64UrlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBase64Url operation. */
 export type DictionaryGetBase64UrlResponse = {
   [propertyName: string]: Uint8Array;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Uint8Array };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetComplexNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplexNull operation. */
 export type DictionaryGetComplexNullResponse = {
   [propertyName: string]: Widget;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Widget };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetComplexEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplexEmpty operation. */
 export type DictionaryGetComplexEmptyResponse = {
   [propertyName: string]: Widget;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Widget };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetComplexItemNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplexItemNull operation. */
 export type DictionaryGetComplexItemNullResponse = {
   [propertyName: string]: Widget | null;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Widget | null };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetComplexItemEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplexItemEmpty operation. */
 export type DictionaryGetComplexItemEmptyResponse = {
   [propertyName: string]: Widget;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Widget };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetComplexValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplexValid operation. */
 export type DictionaryGetComplexValidResponse = {
   [propertyName: string]: Widget;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: Widget };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutComplexValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetArrayNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArrayNull operation. */
 export type DictionaryGetArrayNullResponse = {
   [propertyName: string]: string[];
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string[] };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetArrayEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArrayEmpty operation. */
 export type DictionaryGetArrayEmptyResponse = {
   [propertyName: string]: string[];
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string[] };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetArrayItemNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArrayItemNull operation. */
 export type DictionaryGetArrayItemNullResponse = {
   [propertyName: string]: string[] | null;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string[] | null };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetArrayItemEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArrayItemEmpty operation. */
 export type DictionaryGetArrayItemEmptyResponse = {
   [propertyName: string]: string[];
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string[] };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetArrayValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArrayValid operation. */
 export type DictionaryGetArrayValidResponse = {
   [propertyName: string]: string[];
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: string[] };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutArrayValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetDictionaryNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionaryNull operation. */
 export type DictionaryGetDictionaryNullResponse = {
   [propertyName: string]: { [propertyName: string]: string };
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDictionaryEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionaryEmpty operation. */
 export type DictionaryGetDictionaryEmptyResponse = {
   [propertyName: string]: { [propertyName: string]: string };
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDictionaryItemNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemNull operation. */
 export type DictionaryGetDictionaryItemNullResponse = {
   [propertyName: string]: { [propertyName: string]: string } | null;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: {
-      [propertyName: string]: { [propertyName: string]: string } | null;
-    };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDictionaryItemEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemEmpty operation. */
 export type DictionaryGetDictionaryItemEmptyResponse = {
   [propertyName: string]: { [propertyName: string]: string };
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryGetDictionaryValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionaryValid operation. */
 export type DictionaryGetDictionaryValidResponse = {
   [propertyName: string]: { [propertyName: string]: string };
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: { [propertyName: string]: string } };
-  };
 };
 
 /** Optional parameters. */
 export interface DictionaryPutDictionaryValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface BodyDictionaryClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

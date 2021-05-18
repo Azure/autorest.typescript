@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Pet: coreHttp.CompositeMapper = {
+export const Pet: coreClient.CompositeMapper = {
   serializedName: "Pet",
   xmlName: "Pet",
   type: {
@@ -71,7 +71,7 @@ export const Pet: coreHttp.CompositeMapper = {
   }
 };
 
-export const Category: coreHttp.CompositeMapper = {
+export const Category: coreClient.CompositeMapper = {
   serializedName: "Category",
   xmlName: "Category",
   type: {
@@ -96,7 +96,7 @@ export const Category: coreHttp.CompositeMapper = {
   }
 };
 
-export const Tag: coreHttp.CompositeMapper = {
+export const Tag: coreClient.CompositeMapper = {
   serializedName: "Tag",
   xmlName: "Tag",
   type: {
@@ -121,7 +121,7 @@ export const Tag: coreHttp.CompositeMapper = {
   }
 };
 
-export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreHttp.CompositeMapper = {
+export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
   serializedName:
     "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
   type: {
@@ -147,7 +147,7 @@ export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlenco
   }
 };
 
-export const Order: coreHttp.CompositeMapper = {
+export const Order: coreClient.CompositeMapper = {
   serializedName: "Order",
   xmlName: "Order",
   type: {
@@ -201,7 +201,7 @@ export const Order: coreHttp.CompositeMapper = {
   }
 };
 
-export const User: coreHttp.CompositeMapper = {
+export const User: coreClient.CompositeMapper = {
   serializedName: "User",
   xmlName: "User",
   type: {
@@ -268,7 +268,7 @@ export const User: coreHttp.CompositeMapper = {
   }
 };
 
-export const PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema: coreHttp.CompositeMapper = {
+export const PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
   serializedName:
     "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
   type: {

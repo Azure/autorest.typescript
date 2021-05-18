@@ -6,48 +6,30 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CanonicalCode } from "@opentelemetry/api";
-import { createSpan } from "../tracing";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Product,
-  PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesOptionalParams,
-  PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesOptionalParams,
-  PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyOptionalParams,
-  PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesOptionalParams,
-  PagingNextOperationWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
-  PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetMultiplePagesWithOffsetOptions,
-  PagingGetMultiplePagesWithOffsetNextOptionalParams,
   PagingGetMultiplePagesWithOffsetOptionalParams,
-  PagingGetMultiplePagesRetryFirstNextOptionalParams,
   PagingGetMultiplePagesRetryFirstOptionalParams,
-  PagingGetMultiplePagesRetrySecondNextOptionalParams,
   PagingGetMultiplePagesRetrySecondOptionalParams,
-  PagingGetSinglePagesFailureNextOptionalParams,
   PagingGetSinglePagesFailureOptionalParams,
-  PagingGetMultiplePagesFailureNextOptionalParams,
   PagingGetMultiplePagesFailureOptionalParams,
-  PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriOptionalParams,
   PagingNextFragmentOptionalParams,
   PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   CustomParameterGroup,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
-  PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLROOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
 } from "../models";
 

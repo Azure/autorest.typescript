@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -37,7 +37,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const OdataFilter: coreHttp.CompositeMapper = {
+export const OdataFilter: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OdataFilter",
@@ -58,7 +58,7 @@ export const OdataFilter: coreHttp.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
+export const HeaderCustomNamedRequestIdHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdHeaders",
@@ -73,7 +73,7 @@ export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeMapper = {
+export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
@@ -88,7 +88,7 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeM
   }
 };
 
-export const HeaderCustomNamedRequestIdHeadHeaders: coreHttp.CompositeMapper = {
+export const HeaderCustomNamedRequestIdHeadHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdHeadHeaders",

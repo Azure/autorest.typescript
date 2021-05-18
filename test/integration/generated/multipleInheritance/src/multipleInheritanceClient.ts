@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";
@@ -55,13 +55,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   getHorse(
     options?: MultipleInheritanceClientGetHorseOptionalParams
   ): Promise<MultipleInheritanceClientGetHorseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getHorseOperationSpec
-    ) as Promise<MultipleInheritanceClientGetHorseResponse>;
+    return this.sendOperationRequest({ options }, getHorseOperationSpec);
   }
 
   /**
@@ -73,14 +67,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
     horse: Horse,
     options?: MultipleInheritanceClientPutHorseOptionalParams
   ): Promise<MultipleInheritanceClientPutHorseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      horse,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      putHorseOperationSpec
-    ) as Promise<MultipleInheritanceClientPutHorseResponse>;
+    return this.sendOperationRequest({ horse, options }, putHorseOperationSpec);
   }
 
   /**
@@ -90,13 +77,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   getPet(
     options?: MultipleInheritanceClientGetPetOptionalParams
   ): Promise<MultipleInheritanceClientGetPetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getPetOperationSpec
-    ) as Promise<MultipleInheritanceClientGetPetResponse>;
+    return this.sendOperationRequest({ options }, getPetOperationSpec);
   }
 
   /**
@@ -108,14 +89,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
     pet: Pet,
     options?: MultipleInheritanceClientPutPetOptionalParams
   ): Promise<MultipleInheritanceClientPutPetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      pet,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      putPetOperationSpec
-    ) as Promise<MultipleInheritanceClientPutPetResponse>;
+    return this.sendOperationRequest({ pet, options }, putPetOperationSpec);
   }
 
   /**
@@ -125,13 +99,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   getFeline(
     options?: MultipleInheritanceClientGetFelineOptionalParams
   ): Promise<MultipleInheritanceClientGetFelineResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getFelineOperationSpec
-    ) as Promise<MultipleInheritanceClientGetFelineResponse>;
+    return this.sendOperationRequest({ options }, getFelineOperationSpec);
   }
 
   /**
@@ -143,14 +111,10 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
     feline: Feline,
     options?: MultipleInheritanceClientPutFelineOptionalParams
   ): Promise<MultipleInheritanceClientPutFelineResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      feline,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { feline, options },
       putFelineOperationSpec
-    ) as Promise<MultipleInheritanceClientPutFelineResponse>;
+    );
   }
 
   /**
@@ -160,13 +124,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   getCat(
     options?: MultipleInheritanceClientGetCatOptionalParams
   ): Promise<MultipleInheritanceClientGetCatResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getCatOperationSpec
-    ) as Promise<MultipleInheritanceClientGetCatResponse>;
+    return this.sendOperationRequest({ options }, getCatOperationSpec);
   }
 
   /**
@@ -178,14 +136,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
     cat: Cat,
     options?: MultipleInheritanceClientPutCatOptionalParams
   ): Promise<MultipleInheritanceClientPutCatResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      cat,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      putCatOperationSpec
-    ) as Promise<MultipleInheritanceClientPutCatResponse>;
+    return this.sendOperationRequest({ cat, options }, putCatOperationSpec);
   }
 
   /**
@@ -196,13 +147,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
   getKitten(
     options?: MultipleInheritanceClientGetKittenOptionalParams
   ): Promise<MultipleInheritanceClientGetKittenResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getKittenOperationSpec
-    ) as Promise<MultipleInheritanceClientGetKittenResponse>;
+    return this.sendOperationRequest({ options }, getKittenOperationSpec);
   }
 
   /**
@@ -215,20 +160,16 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
     kitten: Kitten,
     options?: MultipleInheritanceClientPutKittenOptionalParams
   ): Promise<MultipleInheritanceClientPutKittenResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      kitten,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { kitten, options },
       putKittenOperationSpec
-    ) as Promise<MultipleInheritanceClientPutKittenResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getHorseOperationSpec: coreHttp.OperationSpec = {
+const getHorseOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/horse",
   httpMethod: "GET",
   responses: {
@@ -243,7 +184,7 @@ const getHorseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putHorseOperationSpec: coreHttp.OperationSpec = {
+const putHorseOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/horse",
   httpMethod: "PUT",
   responses: {
@@ -257,7 +198,7 @@ const putHorseOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPetOperationSpec: coreHttp.OperationSpec = {
+const getPetOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/pet",
   httpMethod: "GET",
   responses: {
@@ -272,7 +213,7 @@ const getPetOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putPetOperationSpec: coreHttp.OperationSpec = {
+const putPetOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/pet",
   httpMethod: "PUT",
   responses: {
@@ -286,7 +227,7 @@ const putPetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getFelineOperationSpec: coreHttp.OperationSpec = {
+const getFelineOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/feline",
   httpMethod: "GET",
   responses: {
@@ -301,7 +242,7 @@ const getFelineOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putFelineOperationSpec: coreHttp.OperationSpec = {
+const putFelineOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/feline",
   httpMethod: "PUT",
   responses: {
@@ -315,7 +256,7 @@ const putFelineOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getCatOperationSpec: coreHttp.OperationSpec = {
+const getCatOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/cat",
   httpMethod: "GET",
   responses: {
@@ -330,7 +271,7 @@ const getCatOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putCatOperationSpec: coreHttp.OperationSpec = {
+const putCatOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/cat",
   httpMethod: "PUT",
   responses: {
@@ -344,7 +285,7 @@ const putCatOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getKittenOperationSpec: coreHttp.OperationSpec = {
+const getKittenOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/kitten",
   httpMethod: "GET",
   responses: {
@@ -359,7 +300,7 @@ const getKittenOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putKittenOperationSpec: coreHttp.OperationSpec = {
+const putKittenOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/kitten",
   httpMethod: "PUT",
   responses: {

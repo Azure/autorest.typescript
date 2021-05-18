@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { PetStoreContext } from "./petStoreContext";
@@ -52,46 +52,27 @@ export class PetStore extends PetStoreContext {
    */
   addPetUsingByteArray(
     options?: PetStoreAddPetUsingByteArrayOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       addPetUsingByteArrayOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Adds a new pet to the store. You may receive an HTTP invalid input if your pet is invalid.
    * @param options The options parameters.
    */
-  addPet(
-    options?: PetStoreAddPetOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      addPetOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  addPet(options?: PetStoreAddPetOptionalParams): Promise<void> {
+    return this.sendOperationRequest({ options }, addPetOperationSpec);
   }
 
   /**
    * Update an existing pet
    * @param options The options parameters.
    */
-  updatePet(
-    options?: PetStoreUpdatePetOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      updatePetOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  updatePet(options?: PetStoreUpdatePetOptionalParams): Promise<void> {
+    return this.sendOperationRequest({ options }, updatePetOperationSpec);
   }
 
   /**
@@ -101,13 +82,10 @@ export class PetStore extends PetStoreContext {
   findPetsByStatus(
     options?: PetStoreFindPetsByStatusOptionalParams
   ): Promise<PetStoreFindPetsByStatusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       findPetsByStatusOperationSpec
-    ) as Promise<PetStoreFindPetsByStatusResponse>;
+    );
   }
 
   /**
@@ -117,13 +95,7 @@ export class PetStore extends PetStoreContext {
   findPetsByTags(
     options?: PetStoreFindPetsByTagsOptionalParams
   ): Promise<PetStoreFindPetsByTagsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      findPetsByTagsOperationSpec
-    ) as Promise<PetStoreFindPetsByTagsResponse>;
+    return this.sendOperationRequest({ options }, findPetsByTagsOperationSpec);
   }
 
   /**
@@ -135,14 +107,10 @@ export class PetStore extends PetStoreContext {
     petId: number,
     options?: PetStoreFindPetsWithByteArrayOptionalParams
   ): Promise<PetStoreFindPetsWithByteArrayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      petId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { petId, options },
       findPetsWithByteArrayOperationSpec
-    ) as Promise<PetStoreFindPetsWithByteArrayResponse>;
+    );
   }
 
   /**
@@ -154,14 +122,10 @@ export class PetStore extends PetStoreContext {
     petId: number,
     options?: PetStoreGetPetByIdOptionalParams
   ): Promise<PetStoreGetPetByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      petId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { petId, options },
       getPetByIdOperationSpec
-    ) as Promise<PetStoreGetPetByIdResponse>;
+    );
   }
 
   /**
@@ -172,15 +136,11 @@ export class PetStore extends PetStoreContext {
   updatePetWithForm(
     petId: string,
     options?: PetStoreUpdatePetWithFormOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      petId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { petId, options },
       updatePetWithFormOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -191,15 +151,11 @@ export class PetStore extends PetStoreContext {
   deletePet(
     petId: number,
     options?: PetStoreDeletePetOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      petId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { petId, options },
       deletePetOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -210,15 +166,11 @@ export class PetStore extends PetStoreContext {
   uploadFile(
     petId: number,
     options?: PetStoreUploadFileOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      petId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { petId, options },
       uploadFileOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -228,13 +180,7 @@ export class PetStore extends PetStoreContext {
   getInventory(
     options?: PetStoreGetInventoryOptionalParams
   ): Promise<PetStoreGetInventoryResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getInventoryOperationSpec
-    ) as Promise<PetStoreGetInventoryResponse>;
+    return this.sendOperationRequest({ options }, getInventoryOperationSpec);
   }
 
   /**
@@ -244,13 +190,7 @@ export class PetStore extends PetStoreContext {
   placeOrder(
     options?: PetStorePlaceOrderOptionalParams
   ): Promise<PetStorePlaceOrderResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      placeOrderOperationSpec
-    ) as Promise<PetStorePlaceOrderResponse>;
+    return this.sendOperationRequest({ options }, placeOrderOperationSpec);
   }
 
   /**
@@ -262,14 +202,10 @@ export class PetStore extends PetStoreContext {
     orderId: string,
     options?: PetStoreGetOrderByIdOptionalParams
   ): Promise<PetStoreGetOrderByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      orderId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { orderId, options },
       getOrderByIdOperationSpec
-    ) as Promise<PetStoreGetOrderByIdResponse>;
+    );
   }
 
   /**
@@ -281,31 +217,19 @@ export class PetStore extends PetStoreContext {
   deleteOrder(
     orderId: string,
     options?: PetStoreDeleteOrderOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      orderId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { orderId, options },
       deleteOrderOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * This can only be done by the logged in user.
    * @param options The options parameters.
    */
-  createUser(
-    options?: PetStoreCreateUserOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      createUserOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  createUser(options?: PetStoreCreateUserOptionalParams): Promise<void> {
+    return this.sendOperationRequest({ options }, createUserOperationSpec);
   }
 
   /**
@@ -314,14 +238,11 @@ export class PetStore extends PetStoreContext {
    */
   createUsersWithArrayInput(
     options?: PetStoreCreateUsersWithArrayInputOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       createUsersWithArrayInputOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -330,14 +251,11 @@ export class PetStore extends PetStoreContext {
    */
   createUsersWithListInput(
     options?: PetStoreCreateUsersWithListInputOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       createUsersWithListInputOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -347,29 +265,15 @@ export class PetStore extends PetStoreContext {
   loginUser(
     options?: PetStoreLoginUserOptionalParams
   ): Promise<PetStoreLoginUserResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      loginUserOperationSpec
-    ) as Promise<PetStoreLoginUserResponse>;
+    return this.sendOperationRequest({ options }, loginUserOperationSpec);
   }
 
   /**
    * Logs out current logged in user session
    * @param options The options parameters.
    */
-  logoutUser(
-    options?: PetStoreLogoutUserOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      logoutUserOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  logoutUser(options?: PetStoreLogoutUserOptionalParams): Promise<void> {
+    return this.sendOperationRequest({ options }, logoutUserOperationSpec);
   }
 
   /**
@@ -381,14 +285,10 @@ export class PetStore extends PetStoreContext {
     username: string,
     options?: PetStoreGetUserByNameOptionalParams
   ): Promise<PetStoreGetUserByNameResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      username,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { username, options },
       getUserByNameOperationSpec
-    ) as Promise<PetStoreGetUserByNameResponse>;
+    );
   }
 
   /**
@@ -399,15 +299,11 @@ export class PetStore extends PetStoreContext {
   updateUser(
     username: string,
     options?: PetStoreUpdateUserOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      username,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { username, options },
       updateUserOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -418,23 +314,19 @@ export class PetStore extends PetStoreContext {
   deleteUser(
     username: string,
     options?: PetStoreDeleteUserOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      username,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { username, options },
       deleteUserOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
 
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const addPetUsingByteArrayOperationSpec: coreHttp.OperationSpec = {
+const addPetUsingByteArrayOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
   httpMethod: "POST",
   responses: { 405: {} },
@@ -444,7 +336,7 @@ const addPetUsingByteArrayOperationSpec: coreHttp.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const addPetOperationSpec: coreHttp.OperationSpec = {
+const addPetOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
   httpMethod: "POST",
   responses: { 405: {} },
@@ -454,7 +346,7 @@ const addPetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updatePetOperationSpec: coreHttp.OperationSpec = {
+const updatePetOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
   httpMethod: "PUT",
   responses: { 400: {}, 404: {}, 405: {} },
@@ -464,7 +356,7 @@ const updatePetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const findPetsByStatusOperationSpec: coreHttp.OperationSpec = {
+const findPetsByStatusOperationSpec: coreClient.OperationSpec = {
   path: "/pet/findByStatus",
   httpMethod: "GET",
   responses: {
@@ -486,7 +378,7 @@ const findPetsByStatusOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const findPetsByTagsOperationSpec: coreHttp.OperationSpec = {
+const findPetsByTagsOperationSpec: coreClient.OperationSpec = {
   path: "/pet/findByTags",
   httpMethod: "GET",
   responses: {
@@ -508,7 +400,7 @@ const findPetsByTagsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const findPetsWithByteArrayOperationSpec: coreHttp.OperationSpec = {
+const findPetsWithByteArrayOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "GET",
   responses: {
@@ -522,7 +414,7 @@ const findPetsWithByteArrayOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPetByIdOperationSpec: coreHttp.OperationSpec = {
+const getPetByIdOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "GET",
   responses: {
@@ -537,7 +429,7 @@ const getPetByIdOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const updatePetWithFormOperationSpec: coreHttp.OperationSpec = {
+const updatePetWithFormOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "POST",
   responses: { 405: {} },
@@ -546,7 +438,7 @@ const updatePetWithFormOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType2],
   serializer
 };
-const deletePetOperationSpec: coreHttp.OperationSpec = {
+const deletePetOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "DELETE",
   responses: { 400: {} },
@@ -554,7 +446,7 @@ const deletePetOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.apiKey],
   serializer
 };
-const uploadFileOperationSpec: coreHttp.OperationSpec = {
+const uploadFileOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}/uploadImage",
   httpMethod: "POST",
   responses: { default: {} },
@@ -563,7 +455,7 @@ const uploadFileOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType3],
   serializer
 };
-const getInventoryOperationSpec: coreHttp.OperationSpec = {
+const getInventoryOperationSpec: coreClient.OperationSpec = {
   path: "/store/inventory",
   httpMethod: "GET",
   responses: {
@@ -579,7 +471,7 @@ const getInventoryOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const placeOrderOperationSpec: coreHttp.OperationSpec = {
+const placeOrderOperationSpec: coreClient.OperationSpec = {
   path: "/store/order",
   httpMethod: "POST",
   responses: {
@@ -594,7 +486,7 @@ const placeOrderOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOrderByIdOperationSpec: coreHttp.OperationSpec = {
+const getOrderByIdOperationSpec: coreClient.OperationSpec = {
   path: "/store/order/{orderId}",
   httpMethod: "GET",
   responses: {
@@ -609,14 +501,14 @@ const getOrderByIdOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const deleteOrderOperationSpec: coreHttp.OperationSpec = {
+const deleteOrderOperationSpec: coreClient.OperationSpec = {
   path: "/store/order/{orderId}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },
   urlParameters: [Parameters.$host, Parameters.orderId],
   serializer
 };
-const createUserOperationSpec: coreHttp.OperationSpec = {
+const createUserOperationSpec: coreClient.OperationSpec = {
   path: "/user",
   httpMethod: "POST",
   responses: { default: {} },
@@ -626,7 +518,7 @@ const createUserOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createUsersWithArrayInputOperationSpec: coreHttp.OperationSpec = {
+const createUsersWithArrayInputOperationSpec: coreClient.OperationSpec = {
   path: "/user/createWithArray",
   httpMethod: "POST",
   responses: { default: {} },
@@ -636,7 +528,7 @@ const createUsersWithArrayInputOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createUsersWithListInputOperationSpec: coreHttp.OperationSpec = {
+const createUsersWithListInputOperationSpec: coreClient.OperationSpec = {
   path: "/user/createWithList",
   httpMethod: "POST",
   responses: { default: {} },
@@ -646,7 +538,7 @@ const createUsersWithListInputOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const loginUserOperationSpec: coreHttp.OperationSpec = {
+const loginUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/login",
   httpMethod: "GET",
   responses: {
@@ -661,14 +553,14 @@ const loginUserOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const logoutUserOperationSpec: coreHttp.OperationSpec = {
+const logoutUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/logout",
   httpMethod: "GET",
   responses: { default: {} },
   urlParameters: [Parameters.$host],
   serializer
 };
-const getUserByNameOperationSpec: coreHttp.OperationSpec = {
+const getUserByNameOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "GET",
   responses: {
@@ -683,7 +575,7 @@ const getUserByNameOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   serializer: xmlSerializer
 };
-const updateUserOperationSpec: coreHttp.OperationSpec = {
+const updateUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "PUT",
   responses: { 400: {}, 404: {} },
@@ -693,7 +585,7 @@ const updateUserOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteUserOperationSpec: coreHttp.OperationSpec = {
+const deleteUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },

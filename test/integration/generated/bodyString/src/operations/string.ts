@@ -7,7 +7,7 @@
  */
 
 import { StringOperations } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClientContext } from "../bodyStringClientContext";
@@ -54,29 +54,15 @@ export class StringOperationsImpl implements StringOperations {
   getNull(
     options?: StringGetNullOptionalParams
   ): Promise<StringGetNullResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNullOperationSpec
-    ) as Promise<StringGetNullResponse>;
+    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
 
   /**
    * Set string value null
    * @param options The options parameters.
    */
-  putNull(
-    options?: StringPutNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      putNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  putNull(options?: StringPutNullOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, putNullOperationSpec);
   }
 
   /**
@@ -86,29 +72,15 @@ export class StringOperationsImpl implements StringOperations {
   getEmpty(
     options?: StringGetEmptyOptionalParams
   ): Promise<StringGetEmptyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getEmptyOperationSpec
-    ) as Promise<StringGetEmptyResponse>;
+    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
 
   /**
    * Set string value empty ''
    * @param options The options parameters.
    */
-  putEmpty(
-    options?: StringPutEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      putEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  putEmpty(options?: StringPutEmptyOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, putEmptyOperationSpec);
   }
 
   /**
@@ -118,29 +90,15 @@ export class StringOperationsImpl implements StringOperations {
   getMbcs(
     options?: StringGetMbcsOptionalParams
   ): Promise<StringGetMbcsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getMbcsOperationSpec
-    ) as Promise<StringGetMbcsResponse>;
+    return this.client.sendOperationRequest({ options }, getMbcsOperationSpec);
   }
 
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(
-    options?: StringPutMbcsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      putMbcsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  putMbcs(options?: StringPutMbcsOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, putMbcsOperationSpec);
   }
 
   /**
@@ -151,13 +109,10 @@ export class StringOperationsImpl implements StringOperations {
   getWhitespace(
     options?: StringGetWhitespaceOptionalParams
   ): Promise<StringGetWhitespaceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getWhitespaceOperationSpec
-    ) as Promise<StringGetWhitespaceResponse>;
+    );
   }
 
   /**
@@ -165,16 +120,11 @@ export class StringOperationsImpl implements StringOperations {
    * good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
-  putWhitespace(
-    options?: StringPutWhitespaceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  putWhitespace(options?: StringPutWhitespaceOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       putWhitespaceOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -184,13 +134,10 @@ export class StringOperationsImpl implements StringOperations {
   getNotProvided(
     options?: StringGetNotProvidedOptionalParams
   ): Promise<StringGetNotProvidedResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getNotProvidedOperationSpec
-    ) as Promise<StringGetNotProvidedResponse>;
+    );
   }
 
   /**
@@ -200,13 +147,10 @@ export class StringOperationsImpl implements StringOperations {
   getBase64Encoded(
     options?: StringGetBase64EncodedOptionalParams
   ): Promise<StringGetBase64EncodedResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBase64EncodedOperationSpec
-    ) as Promise<StringGetBase64EncodedResponse>;
+    );
   }
 
   /**
@@ -216,13 +160,10 @@ export class StringOperationsImpl implements StringOperations {
   getBase64UrlEncoded(
     options?: StringGetBase64UrlEncodedOptionalParams
   ): Promise<StringGetBase64UrlEncodedResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBase64UrlEncodedOperationSpec
-    ) as Promise<StringGetBase64UrlEncodedResponse>;
+    );
   }
 
   /**
@@ -233,15 +174,11 @@ export class StringOperationsImpl implements StringOperations {
   putBase64UrlEncoded(
     stringBody: Uint8Array,
     options?: StringPutBase64UrlEncodedOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      stringBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { stringBody, options },
       putBase64UrlEncodedOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -251,19 +188,16 @@ export class StringOperationsImpl implements StringOperations {
   getNullBase64UrlEncoded(
     options?: StringGetNullBase64UrlEncodedOptionalParams
   ): Promise<StringGetNullBase64UrlEncodedResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getNullBase64UrlEncodedOperationSpec
-    ) as Promise<StringGetNullBase64UrlEncodedResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreHttp.OperationSpec = {
+const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/string/null",
   httpMethod: "GET",
   responses: {
@@ -278,7 +212,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putNullOperationSpec: coreHttp.OperationSpec = {
+const putNullOperationSpec: coreClient.OperationSpec = {
   path: "/string/null",
   httpMethod: "PUT",
   responses: {
@@ -293,7 +227,7 @@ const putNullOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getEmptyOperationSpec: coreHttp.OperationSpec = {
+const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/string/empty",
   httpMethod: "GET",
   responses: {
@@ -308,7 +242,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putEmptyOperationSpec: coreHttp.OperationSpec = {
+const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/string/empty",
   httpMethod: "PUT",
   responses: {
@@ -323,7 +257,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getMbcsOperationSpec: coreHttp.OperationSpec = {
+const getMbcsOperationSpec: coreClient.OperationSpec = {
   path: "/string/mbcs",
   httpMethod: "GET",
   responses: {
@@ -338,7 +272,7 @@ const getMbcsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putMbcsOperationSpec: coreHttp.OperationSpec = {
+const putMbcsOperationSpec: coreClient.OperationSpec = {
   path: "/string/mbcs",
   httpMethod: "PUT",
   responses: {
@@ -353,7 +287,7 @@ const putMbcsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
+const getWhitespaceOperationSpec: coreClient.OperationSpec = {
   path: "/string/whitespace",
   httpMethod: "GET",
   responses: {
@@ -368,7 +302,7 @@ const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
+const putWhitespaceOperationSpec: coreClient.OperationSpec = {
   path: "/string/whitespace",
   httpMethod: "PUT",
   responses: {
@@ -383,7 +317,7 @@ const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
+const getNotProvidedOperationSpec: coreClient.OperationSpec = {
   path: "/string/notProvided",
   httpMethod: "GET",
   responses: {
@@ -398,7 +332,7 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
+const getBase64EncodedOperationSpec: coreClient.OperationSpec = {
   path: "/string/base64Encoding",
   httpMethod: "GET",
   responses: {
@@ -413,7 +347,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
+const getBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
   path: "/string/base64UrlEncoding",
   httpMethod: "GET",
   responses: {
@@ -428,7 +362,7 @@ const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
+const putBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
   path: "/string/base64UrlEncoding",
   httpMethod: "PUT",
   responses: {
@@ -443,7 +377,7 @@ const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
+const getNullBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
   path: "/string/nullBase64UrlEncoding",
   httpMethod: "GET",
   responses: {

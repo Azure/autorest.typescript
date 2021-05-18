@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Resource",
@@ -51,7 +51,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -79,7 +79,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const WrappedProduct: coreHttp.CompositeMapper = {
+export const WrappedProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WrappedProduct",
@@ -94,7 +94,7 @@ export const WrappedProduct: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductWrapper: coreHttp.CompositeMapper = {
+export const ProductWrapper: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductWrapper",
@@ -109,7 +109,7 @@ export const ProductWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceCollection: coreHttp.CompositeMapper = {
+export const ResourceCollection: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceCollection",
@@ -144,7 +144,7 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const GenericUrl: coreHttp.CompositeMapper = {
+export const GenericUrl: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GenericUrl",
@@ -159,7 +159,7 @@ export const GenericUrl: coreHttp.CompositeMapper = {
   }
 };
 
-export const BaseProduct: coreHttp.CompositeMapper = {
+export const BaseProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BaseProduct",
@@ -181,7 +181,7 @@ export const BaseProduct: coreHttp.CompositeMapper = {
   }
 };
 
-export const FlattenedProduct: coreHttp.CompositeMapper = {
+export const FlattenedProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FlattenedProduct",
@@ -216,7 +216,7 @@ export const FlattenedProduct: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductUrl: coreHttp.CompositeMapper = {
+export const ProductUrl: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductUrl",
@@ -232,7 +232,7 @@ export const ProductUrl: coreHttp.CompositeMapper = {
   }
 };
 
-export const SimpleProduct: coreHttp.CompositeMapper = {
+export const SimpleProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SimpleProduct",

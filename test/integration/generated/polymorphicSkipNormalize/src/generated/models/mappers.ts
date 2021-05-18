@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const MethodRequest: coreHttp.CompositeMapper = {
+export const MethodRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MethodRequest",
@@ -30,7 +30,7 @@ export const MethodRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopology: coreHttp.CompositeMapper = {
+export const MediaGraphTopology: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphTopology",
@@ -60,7 +60,7 @@ export const MediaGraphTopology: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphSystemData: coreHttp.CompositeMapper = {
+export const MediaGraphSystemData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphSystemData",
@@ -81,7 +81,7 @@ export const MediaGraphSystemData: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologyProperties: coreHttp.CompositeMapper = {
+export const MediaGraphTopologyProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphTopologyProperties",
@@ -144,7 +144,7 @@ export const MediaGraphTopologyProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphParameterDeclaration: coreHttp.CompositeMapper = {
+export const MediaGraphParameterDeclaration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphParameterDeclaration",
@@ -182,7 +182,7 @@ export const MediaGraphParameterDeclaration: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphSource: coreHttp.CompositeMapper = {
+export const MediaGraphSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphSource",
@@ -210,7 +210,7 @@ export const MediaGraphSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphProcessor: coreHttp.CompositeMapper = {
+export const MediaGraphProcessor: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphProcessor",
@@ -251,7 +251,7 @@ export const MediaGraphProcessor: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphNodeInput: coreHttp.CompositeMapper = {
+export const MediaGraphNodeInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphNodeInput",
@@ -279,7 +279,7 @@ export const MediaGraphNodeInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphOutputSelector: coreHttp.CompositeMapper = {
+export const MediaGraphOutputSelector: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphOutputSelector",
@@ -306,7 +306,7 @@ export const MediaGraphOutputSelector: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphSink: coreHttp.CompositeMapper = {
+export const MediaGraphSink: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphSink",
@@ -347,7 +347,7 @@ export const MediaGraphSink: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstance: coreHttp.CompositeMapper = {
+export const MediaGraphInstance: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstance",
@@ -377,7 +377,7 @@ export const MediaGraphInstance: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceProperties: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphInstanceProperties",
@@ -416,7 +416,7 @@ export const MediaGraphInstanceProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphParameterDefinition: coreHttp.CompositeMapper = {
+export const MediaGraphParameterDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphParameterDefinition",
@@ -439,7 +439,7 @@ export const MediaGraphParameterDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphEndpoint: coreHttp.CompositeMapper = {
+export const MediaGraphEndpoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphEndpoint",
@@ -474,7 +474,7 @@ export const MediaGraphEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphCredentials: coreHttp.CompositeMapper = {
+export const MediaGraphCredentials: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphCredentials",
@@ -495,7 +495,7 @@ export const MediaGraphCredentials: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphCertificateSource: coreHttp.CompositeMapper = {
+export const MediaGraphCertificateSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphCertificateSource",
@@ -516,7 +516,7 @@ export const MediaGraphCertificateSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTlsValidationOptions: coreHttp.CompositeMapper = {
+export const MediaGraphTlsValidationOptions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphTlsValidationOptions",
@@ -537,7 +537,7 @@ export const MediaGraphTlsValidationOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImage: coreHttp.CompositeMapper = {
+export const MediaGraphImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphImage",
@@ -560,7 +560,7 @@ export const MediaGraphImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageScale: coreHttp.CompositeMapper = {
+export const MediaGraphImageScale: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphImageScale",
@@ -587,7 +587,7 @@ export const MediaGraphImageScale: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageFormat: coreHttp.CompositeMapper = {
+export const MediaGraphImageFormat: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphImageFormat",
   type: {
     name: "Composite",
@@ -609,7 +609,7 @@ export const MediaGraphImageFormat: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphSamplingOptions: coreHttp.CompositeMapper = {
+export const MediaGraphSamplingOptions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MediaGraphSamplingOptions",
@@ -630,7 +630,7 @@ export const MediaGraphSamplingOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphGrpcExtensionDataTransfer: coreHttp.CompositeMapper = {
+export const MediaGraphGrpcExtensionDataTransfer: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphGrpcExtensionDataTransfer",
   type: {
     name: "Composite",
@@ -653,7 +653,7 @@ export const MediaGraphGrpcExtensionDataTransfer: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologySetRequest: coreHttp.CompositeMapper = {
+export const MediaGraphTopologySetRequest: coreClient.CompositeMapper = {
   serializedName: "GraphTopologySet",
   type: {
     name: "Composite",
@@ -673,7 +673,7 @@ export const MediaGraphTopologySetRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologySetRequestBody: coreHttp.CompositeMapper = {
+export const MediaGraphTopologySetRequestBody: coreClient.CompositeMapper = {
   serializedName: "MediaGraphTopologySetRequestBody",
   type: {
     name: "Composite",
@@ -687,7 +687,7 @@ export const MediaGraphTopologySetRequestBody: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceSetRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceSetRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceSet",
   type: {
     name: "Composite",
@@ -707,7 +707,7 @@ export const MediaGraphInstanceSetRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceSetRequestBody: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceSetRequestBody: coreClient.CompositeMapper = {
   serializedName: "MediaGraphInstanceSetRequestBody",
   type: {
     name: "Composite",
@@ -721,7 +721,7 @@ export const MediaGraphInstanceSetRequestBody: coreHttp.CompositeMapper = {
   }
 };
 
-export const ItemNonSetRequestBase: coreHttp.CompositeMapper = {
+export const ItemNonSetRequestBase: coreClient.CompositeMapper = {
   serializedName: "ItemNonSetRequestBase",
   type: {
     name: "Composite",
@@ -744,7 +744,7 @@ export const ItemNonSetRequestBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologyListRequest: coreHttp.CompositeMapper = {
+export const MediaGraphTopologyListRequest: coreClient.CompositeMapper = {
   serializedName: "GraphTopologyList",
   type: {
     name: "Composite",
@@ -757,7 +757,7 @@ export const MediaGraphTopologyListRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceListRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceListRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceList",
   type: {
     name: "Composite",
@@ -770,7 +770,7 @@ export const MediaGraphInstanceListRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphRtspSource: coreHttp.CompositeMapper = {
+export const MediaGraphRtspSource: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphRtspSource",
   type: {
     name: "Composite",
@@ -796,7 +796,7 @@ export const MediaGraphRtspSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphIoTHubMessageSource: coreHttp.CompositeMapper = {
+export const MediaGraphIoTHubMessageSource: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphIoTHubMessageSource",
   type: {
     name: "Composite",
@@ -815,7 +815,7 @@ export const MediaGraphIoTHubMessageSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphMotionDetectionProcessor: coreHttp.CompositeMapper = {
+export const MediaGraphMotionDetectionProcessor: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphMotionDetectionProcessor",
   type: {
     name: "Composite",
@@ -846,7 +846,7 @@ export const MediaGraphMotionDetectionProcessor: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphExtensionProcessorBase: coreHttp.CompositeMapper = {
+export const MediaGraphExtensionProcessorBase: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphExtensionProcessorBase",
   type: {
     name: "Composite",
@@ -883,7 +883,7 @@ export const MediaGraphExtensionProcessorBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphSignalGateProcessor: coreHttp.CompositeMapper = {
+export const MediaGraphSignalGateProcessor: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphSignalGateProcessor",
   type: {
     name: "Composite",
@@ -920,7 +920,7 @@ export const MediaGraphSignalGateProcessor: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphIoTHubMessageSink: coreHttp.CompositeMapper = {
+export const MediaGraphIoTHubMessageSink: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphIoTHubMessageSink",
   type: {
     name: "Composite",
@@ -940,7 +940,7 @@ export const MediaGraphIoTHubMessageSink: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphFileSink: coreHttp.CompositeMapper = {
+export const MediaGraphFileSink: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphFileSink",
   type: {
     name: "Composite",
@@ -974,7 +974,7 @@ export const MediaGraphFileSink: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphAssetSink: coreHttp.CompositeMapper = {
+export const MediaGraphAssetSink: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphAssetSink",
   type: {
     name: "Composite",
@@ -1014,7 +1014,7 @@ export const MediaGraphAssetSink: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphUnsecuredEndpoint: coreHttp.CompositeMapper = {
+export const MediaGraphUnsecuredEndpoint: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphUnsecuredEndpoint",
   type: {
     name: "Composite",
@@ -1027,7 +1027,7 @@ export const MediaGraphUnsecuredEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTlsEndpoint: coreHttp.CompositeMapper = {
+export const MediaGraphTlsEndpoint: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphTlsEndpoint",
   type: {
     name: "Composite",
@@ -1054,7 +1054,7 @@ export const MediaGraphTlsEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphUsernamePasswordCredentials: coreHttp.CompositeMapper = {
+export const MediaGraphUsernamePasswordCredentials: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphUsernamePasswordCredentials",
   type: {
     name: "Composite",
@@ -1082,7 +1082,7 @@ export const MediaGraphUsernamePasswordCredentials: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphHttpHeaderCredentials: coreHttp.CompositeMapper = {
+export const MediaGraphHttpHeaderCredentials: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphHttpHeaderCredentials",
   type: {
     name: "Composite",
@@ -1110,7 +1110,7 @@ export const MediaGraphHttpHeaderCredentials: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphPemCertificateList: coreHttp.CompositeMapper = {
+export const MediaGraphPemCertificateList: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphPemCertificateList",
   type: {
     name: "Composite",
@@ -1136,7 +1136,7 @@ export const MediaGraphPemCertificateList: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageFormatRaw: coreHttp.CompositeMapper = {
+export const MediaGraphImageFormatRaw: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphImageFormatRaw",
   type: {
     name: "Composite",
@@ -1157,7 +1157,7 @@ export const MediaGraphImageFormatRaw: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageFormatJpeg: coreHttp.CompositeMapper = {
+export const MediaGraphImageFormatJpeg: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphImageFormatJpeg",
   type: {
     name: "Composite",
@@ -1177,7 +1177,7 @@ export const MediaGraphImageFormatJpeg: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageFormatBmp: coreHttp.CompositeMapper = {
+export const MediaGraphImageFormatBmp: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphImageFormatBmp",
   type: {
     name: "Composite",
@@ -1191,7 +1191,7 @@ export const MediaGraphImageFormatBmp: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphImageFormatPng: coreHttp.CompositeMapper = {
+export const MediaGraphImageFormatPng: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphImageFormatPng",
   type: {
     name: "Composite",
@@ -1205,7 +1205,7 @@ export const MediaGraphImageFormatPng: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologyGetRequest: coreHttp.CompositeMapper = {
+export const MediaGraphTopologyGetRequest: coreClient.CompositeMapper = {
   serializedName: "GraphTopologyGet",
   type: {
     name: "Composite",
@@ -1218,7 +1218,7 @@ export const MediaGraphTopologyGetRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphTopologyDeleteRequest: coreHttp.CompositeMapper = {
+export const MediaGraphTopologyDeleteRequest: coreClient.CompositeMapper = {
   serializedName: "GraphTopologyDelete",
   type: {
     name: "Composite",
@@ -1231,7 +1231,7 @@ export const MediaGraphTopologyDeleteRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceGetRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceGetRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceGet",
   type: {
     name: "Composite",
@@ -1244,7 +1244,7 @@ export const MediaGraphInstanceGetRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceActivateRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceActivateRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceActivate",
   type: {
     name: "Composite",
@@ -1257,7 +1257,7 @@ export const MediaGraphInstanceActivateRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceDeActivateRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceDeActivateRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceDeactivate",
   type: {
     name: "Composite",
@@ -1270,7 +1270,7 @@ export const MediaGraphInstanceDeActivateRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphInstanceDeleteRequest: coreHttp.CompositeMapper = {
+export const MediaGraphInstanceDeleteRequest: coreClient.CompositeMapper = {
   serializedName: "GraphInstanceDelete",
   type: {
     name: "Composite",
@@ -1283,7 +1283,7 @@ export const MediaGraphInstanceDeleteRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphCognitiveServicesVisionExtension: coreHttp.CompositeMapper = {
+export const MediaGraphCognitiveServicesVisionExtension: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension",
   type: {
     name: "Composite",
@@ -1296,7 +1296,7 @@ export const MediaGraphCognitiveServicesVisionExtension: coreHttp.CompositeMappe
   }
 };
 
-export const MediaGraphGrpcExtension: coreHttp.CompositeMapper = {
+export const MediaGraphGrpcExtension: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphGrpcExtension",
   type: {
     name: "Composite",
@@ -1322,7 +1322,7 @@ export const MediaGraphGrpcExtension: coreHttp.CompositeMapper = {
   }
 };
 
-export const MediaGraphHttpExtension: coreHttp.CompositeMapper = {
+export const MediaGraphHttpExtension: coreClient.CompositeMapper = {
   serializedName: "#Microsoft.Media.MediaGraphHttpExtension",
   type: {
     name: "Composite",
