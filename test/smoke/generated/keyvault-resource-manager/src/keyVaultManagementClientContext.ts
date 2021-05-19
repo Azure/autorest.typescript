@@ -49,9 +49,7 @@ export class KeyVaultManagementClientContext extends coreHttp.ServiceClient {
     super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "https://management.azure.com";
-
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

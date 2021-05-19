@@ -41,7 +41,6 @@ export class MonitorClientContext extends coreHttp.ServiceClient {
     super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "https://monitoring.azure.com";
 
     // Assigning values to Constant parameters

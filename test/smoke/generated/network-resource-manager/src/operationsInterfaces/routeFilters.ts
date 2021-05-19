@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   RouteFilter,
-  RouteFiltersListByResourceGroupNextOptionalParams,
   RouteFiltersListByResourceGroupOptionalParams,
-  RouteFiltersListNextOptionalParams,
   RouteFiltersListOptionalParams,
   RouteFiltersDeleteOptionalParams,
   RouteFiltersGetOptionalParams,

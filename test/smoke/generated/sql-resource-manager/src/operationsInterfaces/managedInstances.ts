@@ -12,11 +12,8 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedInstance,
-  ManagedInstancesListByInstancePoolNextOptionalParams,
   ManagedInstancesListByInstancePoolOptionalParams,
-  ManagedInstancesListByResourceGroupNextOptionalParams,
   ManagedInstancesListByResourceGroupOptionalParams,
-  ManagedInstancesListNextOptionalParams,
   ManagedInstancesListOptionalParams,
   ManagedInstancesGetOptionalParams,
   ManagedInstancesGetResponse,

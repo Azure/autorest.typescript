@@ -12,17 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionBackup,
-  LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupLocationOptionalParams,
-  LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams,
   LongTermRetentionBackupsListByResourceGroupServerOptionalParams,
-  LongTermRetentionBackupsListByDatabaseNextOptionalParams,
   LongTermRetentionBackupsListByDatabaseOptionalParams,
-  LongTermRetentionBackupsListByLocationNextOptionalParams,
   LongTermRetentionBackupsListByLocationOptionalParams,
-  LongTermRetentionBackupsListByServerNextOptionalParams,
   LongTermRetentionBackupsListByServerOptionalParams,
   LongTermRetentionBackupsGetByResourceGroupOptionalParams,
   LongTermRetentionBackupsGetByResourceGroupResponse,

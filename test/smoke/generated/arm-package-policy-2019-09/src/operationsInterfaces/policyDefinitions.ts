@@ -11,11 +11,8 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   PolicyDefinition,
-  PolicyDefinitionsListNextOptionalParams,
   PolicyDefinitionsListOptionalParams,
-  PolicyDefinitionsListBuiltInNextOptionalParams,
   PolicyDefinitionsListBuiltInOptionalParams,
-  PolicyDefinitionsListByManagementGroupNextOptionalParams,
   PolicyDefinitionsListByManagementGroupOptionalParams,
   PolicyDefinitionsCreateOrUpdateOptionalParams,
   PolicyDefinitionsCreateOrUpdateResponse,

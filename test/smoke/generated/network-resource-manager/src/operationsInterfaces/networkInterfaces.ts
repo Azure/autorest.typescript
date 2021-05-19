@@ -12,16 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkInterface,
-  NetworkInterfacesListAllNextOptionalParams,
   NetworkInterfacesListAllOptionalParams,
-  NetworkInterfacesListNextOptionalParams,
   NetworkInterfacesListOptionalParams,
-  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
-  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
   NetworkInterfaceIPConfiguration,
-  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
   NetworkInterfacesDeleteOptionalParams,
   NetworkInterfacesGetOptionalParams,

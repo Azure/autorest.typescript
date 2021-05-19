@@ -12,16 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Domain,
-  DomainsListNextOptionalParams,
   DomainsListOptionalParams,
   NameIdentifier,
   DomainRecommendationSearchParameters,
-  DomainsListRecommendationsNextOptionalParams,
   DomainsListRecommendationsOptionalParams,
-  DomainsListByResourceGroupNextOptionalParams,
   DomainsListByResourceGroupOptionalParams,
   DomainOwnershipIdentifier,
-  DomainsListOwnershipIdentifiersNextOptionalParams,
   DomainsListOwnershipIdentifiersOptionalParams,
   DomainsCheckAvailabilityOptionalParams,
   DomainsCheckAvailabilityResponse,

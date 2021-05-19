@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   BastionHost,
-  BastionHostsListNextOptionalParams,
   BastionHostsListOptionalParams,
-  BastionHostsListByResourceGroupNextOptionalParams,
   BastionHostsListByResourceGroupOptionalParams,
   BastionHostsDeleteOptionalParams,
   BastionHostsGetOptionalParams,

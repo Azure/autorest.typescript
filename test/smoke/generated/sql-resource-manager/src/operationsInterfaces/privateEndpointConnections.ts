@@ -12,7 +12,6 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpointConnection,
-  PrivateEndpointConnectionsListByServerNextOptionalParams,
   PrivateEndpointConnectionsListByServerOptionalParams,
   PrivateEndpointConnectionsGetOptionalParams,
   PrivateEndpointConnectionsGetResponse,

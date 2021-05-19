@@ -12,17 +12,12 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateLinkService,
-  PrivateLinkServicesListNextOptionalParams,
   PrivateLinkServicesListOptionalParams,
-  PrivateLinkServicesListBySubscriptionNextOptionalParams,
   PrivateLinkServicesListBySubscriptionOptionalParams,
   PrivateEndpointConnection,
-  PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams,
   PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams,
   AutoApprovedPrivateLinkService,
-  PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams,
-  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams,
   PrivateLinkServicesDeleteOptionalParams,
   PrivateLinkServicesGetOptionalParams,

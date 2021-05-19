@@ -48,9 +48,7 @@ export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
     super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "https://graph.windows.net";
-
     // Parameter assignments
     this.tenantID = tenantID;
 

@@ -16,7 +16,6 @@ import {
   MetricDefinition,
   ElasticPoolsListMetricDefinitionsOptionalParams,
   ElasticPool,
-  ElasticPoolsListByServerNextOptionalParams,
   ElasticPoolsListByServerOptionalParams,
   ElasticPoolsGetOptionalParams,
   ElasticPoolsGetResponse,

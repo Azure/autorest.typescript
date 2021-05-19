@@ -8,12 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
-import {
-  Usage,
-  UsagesListByInstancePoolNextOptionalParams,
-  UsagesListByInstancePoolOptionalParams
-} from "../models";
+import { Usage, UsagesListByInstancePoolOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Usages. */

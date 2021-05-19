@@ -8,11 +8,9 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ManagedBackupShortTermRetentionPolicy,
-  ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
   ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams,
   ManagedShortTermRetentionPolicyName,
   ManagedBackupShortTermRetentionPoliciesGetOptionalParams,

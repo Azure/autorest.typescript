@@ -11,9 +11,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   ProximityPlacementGroup,
-  ProximityPlacementGroupsListBySubscriptionNextOptionalParams,
   ProximityPlacementGroupsListBySubscriptionOptionalParams,
-  ProximityPlacementGroupsListByResourceGroupNextOptionalParams,
   ProximityPlacementGroupsListByResourceGroupOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateResponse,

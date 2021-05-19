@@ -18,7 +18,6 @@ import {
   GroupsGetGroupMembersOptionalParams,
   GroupGetMemberGroupsParameters,
   GroupsGetMemberGroupsOptionalParams,
-  GroupsListOwnersNextOptionalParams,
   GroupsListOwnersOptionalParams,
   CheckGroupMembershipParameters,
   GroupsIsMemberOfOptionalParams,

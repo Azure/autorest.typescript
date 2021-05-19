@@ -12,17 +12,13 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
-  SyncGroupsListSyncDatabaseIdsNextOptionalParams,
   SyncGroupsListSyncDatabaseIdsOptionalParams,
   SyncFullSchemaProperties,
-  SyncGroupsListHubSchemasNextOptionalParams,
   SyncGroupsListHubSchemasOptionalParams,
   SyncGroupLogProperties,
   Enum21,
-  SyncGroupsListLogsNextOptionalParams,
   SyncGroupsListLogsOptionalParams,
   SyncGroup,
-  SyncGroupsListByDatabaseNextOptionalParams,
   SyncGroupsListByDatabaseOptionalParams,
   SyncGroupsRefreshHubSchemaOptionalParams,
   SyncGroupsCancelSyncOptionalParams,

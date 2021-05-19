@@ -14,7 +14,6 @@ import {
   ApplicationsListNextOptionalParams,
   ApplicationsListOptionalParams,
   DirectoryObjectUnion,
-  ApplicationsListOwnersNextOptionalParams,
   ApplicationsListOwnersOptionalParams,
   KeyCredential,
   ApplicationsListKeyCredentialsOptionalParams,

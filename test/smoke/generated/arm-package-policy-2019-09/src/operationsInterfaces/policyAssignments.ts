@@ -8,16 +8,11 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   PolicyAssignment,
-  PolicyAssignmentsListForResourceGroupNextOptionalParams,
   PolicyAssignmentsListForResourceGroupOptionalParams,
-  PolicyAssignmentsListForResourceNextOptionalParams,
   PolicyAssignmentsListForResourceOptionalParams,
-  PolicyAssignmentsListForManagementGroupNextOptionalParams,
   PolicyAssignmentsListForManagementGroupOptionalParams,
-  PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
   PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,

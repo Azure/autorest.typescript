@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   P2SVpnGateway,
-  P2SVpnGatewaysListByResourceGroupNextOptionalParams,
   P2SVpnGatewaysListByResourceGroupOptionalParams,
-  P2SVpnGatewaysListNextOptionalParams,
   P2SVpnGatewaysListOptionalParams,
   P2SVpnGatewaysGetOptionalParams,
   P2SVpnGatewaysGetResponse,

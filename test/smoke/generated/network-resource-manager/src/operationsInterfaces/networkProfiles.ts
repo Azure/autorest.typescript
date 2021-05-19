@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkProfile,
-  NetworkProfilesListAllNextOptionalParams,
   NetworkProfilesListAllOptionalParams,
-  NetworkProfilesListNextOptionalParams,
   NetworkProfilesListOptionalParams,
   NetworkProfilesDeleteOptionalParams,
   NetworkProfilesGetOptionalParams,

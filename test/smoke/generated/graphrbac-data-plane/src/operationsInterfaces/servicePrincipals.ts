@@ -14,7 +14,6 @@ import {
   ServicePrincipalsListNextOptionalParams,
   ServicePrincipalsListOptionalParams,
   DirectoryObjectUnion,
-  ServicePrincipalsListOwnersNextOptionalParams,
   ServicePrincipalsListOwnersOptionalParams,
   KeyCredential,
   ServicePrincipalsListKeyCredentialsOptionalParams,

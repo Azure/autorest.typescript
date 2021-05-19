@@ -8,16 +8,11 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ResourceHealthMetadataDef,
-  ResourceHealthMetadataListNextOptionalParams,
   ResourceHealthMetadataListOptionalParams,
-  ResourceHealthMetadataListByResourceGroupNextOptionalParams,
   ResourceHealthMetadataListByResourceGroupOptionalParams,
-  ResourceHealthMetadataListBySiteNextOptionalParams,
   ResourceHealthMetadataListBySiteOptionalParams,
-  ResourceHealthMetadataListBySiteSlotNextOptionalParams,
   ResourceHealthMetadataListBySiteSlotOptionalParams,
   ResourceHealthMetadataGetBySiteOptionalParams,
   ResourceHealthMetadataGetBySiteResponse,

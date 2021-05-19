@@ -11,15 +11,10 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as coreHttp from "@azure/core-http";
 import {
   Recommendation,
-  RecommendationsListNextOptionalParams,
   RecommendationsListOptionalParams,
-  RecommendationsListHistoryForHostingEnvironmentNextOptionalParams,
   RecommendationsListHistoryForHostingEnvironmentOptionalParams,
-  RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams,
   RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams,
-  RecommendationsListHistoryForWebAppNextOptionalParams,
   RecommendationsListHistoryForWebAppOptionalParams,
-  RecommendationsListRecommendedRulesForWebAppNextOptionalParams,
   RecommendationsListRecommendedRulesForWebAppOptionalParams,
   RecommendationsResetAllFiltersOptionalParams,
   RecommendationsDisableRecommendationForSubscriptionOptionalParams,
