@@ -12,6 +12,7 @@ import {
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
 import { ParameterDetails } from "../../../src/models/parameterDetails";
 import { ClientOptions } from "../../../src/models/clientDetails";
+import { OptionsBag } from "../../../src/utils/optionsBag";
 describe("parameterTransforms", () => {
   const getCodeModelWithOneParam = (paramOptions?: {
     location?: ParameterLocation;
@@ -56,15 +57,25 @@ describe("parameterTransforms", () => {
   };
   describe("transformParameters", () => {
     let clientOptions: ClientOptions;
+    let optionsBag: OptionsBag;
+
     beforeEach(() => {
       clientOptions = { mediaTypes: new Set() };
+      optionsBag = {
+        shouldGenerateLicense: false,
+        hideClients: true,
+        armLibrary: false,
+        ignoreNullableOnOptional: false,
+        useCoreV2: true,
+        allowInsecureConnection: true
+      };
     });
 
     it("should set the correct parameter location", () => {
       const codeModel = getCodeModelWithOneParam({
         location: ParameterLocation.Path
       });
-      const params = transformParameters(codeModel, clientOptions);
+      const params = transformParameters(codeModel, clientOptions, optionsBag);
       assert.equal(params[0] && params[0].location, ParameterLocation.Path);
     });
 
@@ -72,19 +83,23 @@ describe("parameterTransforms", () => {
       const codeModel = getCodeModelWithOneParam({
         extensions: { "x-ms-priority": 0 }
       });
-      const params = transformParameters(codeModel, clientOptions);
+      const params = transformParameters(codeModel, clientOptions, optionsBag);
       assert.equal(params[0] && params[0].isGlobal, true);
     });
 
     it("shouldn ot mark as global parameter when x-ms-priority does not exist", () => {
       const codeModel = getCodeModelWithOneParam();
-      const params = transformParameters(codeModel, clientOptions);
+      const params = transformParameters(codeModel, clientOptions, optionsBag);
       assert.equal(params[0] && params[0].isGlobal, false);
     });
 
     it("should return an empty set of global an operation parameters", () => {
       const codeModel = new CodeModel("testCodeModel");
-      const parameters = transformParameters(codeModel, clientOptions);
+      const parameters = transformParameters(
+        codeModel,
+        clientOptions,
+        optionsBag
+      );
 
       assert.deepEqual(parameters[0].name, "endpoint");
     });
@@ -155,7 +170,11 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(codeModel, clientOptions);
+      const parameters = transformParameters(
+        codeModel,
+        clientOptions,
+        optionsBag
+      );
 
       assert.equal(parameters.length, 3);
       assert.deepEqual(
@@ -237,7 +256,11 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(codeModel, clientOptions);
+      const parameters = transformParameters(
+        codeModel,
+        clientOptions,
+        optionsBag
+      );
 
       assert.equal(parameters.length, 2);
       assert.deepEqual(
@@ -310,7 +333,11 @@ describe("parameterTransforms", () => {
           ]
         })
       ];
-      const parameters = transformParameters(codeModel, clientOptions);
+      const parameters = transformParameters(
+        codeModel,
+        clientOptions,
+        optionsBag
+      );
 
       assert.equal(parameters.length, 3);
       assert.deepEqual(

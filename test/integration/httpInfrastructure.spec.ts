@@ -4,12 +4,7 @@ import {
   PipelinePolicy,
   redirectPolicy,
   exponentialRetryPolicy,
-  RestError,
-  PipelineRequest,
-  SendRequest,
-  PipelineResponse,
-  proxyPolicy,
-  proxyPolicyName
+  RestError
 } from "@azure/core-rest-pipeline";
 import { isNode } from "@azure/core-util";
 
@@ -54,6 +49,8 @@ describe("Http infrastructure Client", () => {
         retryDelayInMs: 0
       })
     );
+    client.pipeline.removePolicy(redirectPolicy());
+    client.pipeline.addPolicy(redirectPolicy());
     // client.pipeline.removePolicy({ name: proxyPolicyName });
     // client.pipeline.addPolicy(
     //   proxyPolicy({ host: "http://127.0.0.1", port: 8888 })
