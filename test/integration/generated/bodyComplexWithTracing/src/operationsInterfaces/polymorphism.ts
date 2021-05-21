@@ -6,9 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CanonicalCode } from "@opentelemetry/api";
-import { createSpan } from "../tracing";
-import * as coreHttp from "@azure/core-http";
 import {
   PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
@@ -78,7 +75,7 @@ export interface Polymorphism {
   putValid(
     complexBody: FishUnion,
     options?: PolymorphismPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
@@ -121,7 +118,7 @@ export interface Polymorphism {
   putComplicated(
     complexBody: SalmonUnion,
     options?: PolymorphismPutComplicatedOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    * @param complexBody
@@ -166,5 +163,5 @@ export interface Polymorphism {
   putValidMissingRequired(
     complexBody: FishUnion,
     options?: PolymorphismPutValidMissingRequiredOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

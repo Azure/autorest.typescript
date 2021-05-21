@@ -57,21 +57,34 @@ export function generateModels(
     { overwrite: true }
   );
 
-  modelsIndexFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
+  if (!optionsBag.useCoreV2) {
+    modelsIndexFile.addImportDeclaration({
+      namespaceImport: "coreHttp",
+      moduleSpecifier: "@azure/core-http"
+    });
+  } else {
+    modelsIndexFile.addImportDeclaration({
+      namespaceImport: "coreClient",
+      moduleSpecifier: "@azure/core-client"
+    });
+    modelsIndexFile.addImportDeclaration({
+      namespaceImport: "coreRestPipeline",
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
+  }
 
   writeUniontypes(clientDetails, modelsIndexFile);
   writeObjects(clientDetails, modelsIndexFile, optionsBag);
   writeChoices(clientDetails, modelsIndexFile);
-  writeOperationModels(clientDetails, modelsIndexFile);
-  writeClientModels(clientDetails, modelsIndexFile);
+  writeOperationModels(clientDetails, modelsIndexFile, optionsBag);
+  writeClientModels(clientDetails, modelsIndexFile, optionsBag);
+  modelsIndexFile.fixUnusedIdentifiers();
 }
 
 const writeClientModels = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile
+  modelsIndexFile: SourceFile,
+  optionsBag: OptionsBag
 ) => {
   let clientOptionalParams = clientDetails.parameters.filter(
     p =>
@@ -84,13 +97,19 @@ const writeClientModels = (
     "",
     clientOptionalParams,
     modelsIndexFile,
-    { baseClass: "coreHttp.ServiceClientOptions" }
+    {
+      baseClass: !optionsBag.useCoreV2
+        ? "coreHttp.ServiceClientOptions"
+        : "coreClient.ServiceClientOptions"
+    },
+    optionsBag
   );
 };
 
 const writeOperationModels = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile
+  modelsIndexFile: SourceFile,
+  optionsBag: OptionsBag
 ) => {
   const modelsNames = getAllModelsNames(clientDetails);
   return clientDetails.operationGroups.forEach(operationGroup => {
@@ -99,9 +118,10 @@ const writeOperationModels = (
         clientDetails,
         operationGroup,
         operation,
-        modelsIndexFile
+        modelsIndexFile,
+        optionsBag
       );
-      writeResponseTypes(operation, modelsIndexFile, modelsNames);
+      writeResponseTypes(operation, modelsIndexFile, modelsNames, optionsBag);
     });
   });
 };
@@ -113,7 +133,8 @@ function writeOptionsParameter(
   clientDetails: ClientDetails,
   operationGroup: OperationGroupDetails,
   operation: OperationDetails,
-  sourceFile: SourceFile
+  sourceFile: SourceFile,
+  optionsBag: OptionsBag
 ) {
   const operationParameters = filterOperationParameters(
     clientDetails.parameters,
@@ -144,7 +165,8 @@ function writeOptionsParameter(
       mediaTypes: operationRequestMediaTypes,
       operationFullName: operation.fullName,
       operationIsLro: operation.isLRO
-    }
+    },
+    optionsBag
   );
 }
 
@@ -155,7 +177,8 @@ function writeOptionsParameter(
 function writeResponseTypes(
   { responses, name, typeDetails: operationType, isLRO }: OperationDetails,
   modelsIndexFile: SourceFile,
-  allModelsNames: Set<string>
+  allModelsNames: Set<string>,
+  optionsBag: OptionsBag
 ) {
   const responseName = getResponseTypeName(
     operationType.typeName,
@@ -181,7 +204,7 @@ function writeResponseTypes(
           name: responseName,
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
-          type: buildResponseType(operation, isLRO),
+          type: buildResponseType(operation, isLRO, optionsBag),
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
@@ -322,8 +345,9 @@ type IntersectionTypeParameters = [
  */
 function buildResponseType(
   operationResponse: OperationResponseDetails,
-  isLro: boolean = false
-): WriterFunction {
+  isLro: boolean = false,
+  optionsBag: OptionsBag
+): WriterFunction | string {
   // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
@@ -332,26 +356,40 @@ function buildResponseType(
     ...(bodyProperties?.internalResponseProperties || []),
     ...(headersProperties?.internalResponseProperties || [])
   ];
-  const innerTypeWriter = Writers.objectType({
-    properties: [
-      ...(bodyProperties?.mainProperties || []),
-      {
-        name: "_response",
-        docs: ["The underlying HTTP response."],
-        type: innerResponseProperties.length
-          ? Writers.intersectionType(
-              "coreHttp.HttpResponse",
-              Writers.objectType({
-                properties: innerResponseProperties
-              })
-            )
-          : "coreHttp.HttpResponse",
-        leadingTrivia: writer => writer.blankLine()
-      }
-    ]
-  });
 
-  let intersectionTypes: WriterFunctionOrValue[] = [innerTypeWriter];
+  let intersectionTypes: WriterFunctionOrValue[] = [];
+  let innerTypeWriter: WriterFunctionOrValue = Writers.objectType({});
+
+  if (optionsBag.useCoreV2) {
+    if (bodyProperties?.mainProperties?.length) {
+      innerTypeWriter = Writers.objectType({
+        properties: bodyProperties?.mainProperties
+      });
+      intersectionTypes.push(innerTypeWriter);
+    }
+  } else {
+    innerTypeWriter = Writers.objectType({
+      properties: [
+        ...(bodyProperties?.mainProperties || []),
+        {
+          name: "_response",
+          docs: ["The underlying HTTP response."],
+          type: innerResponseProperties.length
+            ? Writers.intersectionType(
+                "coreHttp.HttpResponse",
+                Writers.objectType({
+                  properties: innerResponseProperties
+                })
+              )
+            : "coreHttp.HttpResponse",
+          leadingTrivia: writer => writer.blankLine()
+        }
+      ]
+    });
+
+    intersectionTypes = [innerTypeWriter];
+  }
+
   bodyProperties?.intersectionType &&
     intersectionTypes.unshift(bodyProperties.intersectionType);
   headersProperties?.intersectionType &&
@@ -378,16 +416,30 @@ function buildResponseType(
    *      }
    *    }
    */
-  return intersectionTypes.length > 1
-    ? // Using apply instead of calling the method directly to be able to conditionally pass
-      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-      // we just return innerType
-      Writers.intersectionType.apply(
+
+  if (!optionsBag.useCoreV2) {
+    return intersectionTypes.length > 1
+      ? // Using apply instead of calling the method directly to be able to conditionally pass
+        // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+        // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+        // we just return innerType
+        Writers.intersectionType.apply(
+          Writers,
+          intersectionTypes as IntersectionTypeParameters
+        )
+      : (innerTypeWriter as WriterFunction);
+  } else {
+    if (intersectionTypes.length > 1) {
+      return Writers.intersectionType.apply(
         Writers,
         intersectionTypes as IntersectionTypeParameters
-      )
-    : innerTypeWriter;
+      );
+    } else if (intersectionTypes.length == 1) {
+      return intersectionTypes[0] as WriterFunction | string;
+    } else {
+      return "OperationResponse";
+    }
+  }
 }
 
 const writeChoices = (
@@ -619,7 +671,8 @@ function writeOptionalParameters(
     mediaTypes,
     operationFullName,
     operationIsLro
-  }: WriteOptionalParametersOptions
+  }: WriteOptionalParametersOptions,
+  optionsBag: OptionsBag
 ) {
   const optionalGroupDeclarations = getOptionalGroups(optionalParams);
   function buildParamDetails(p: ParameterDetails): PropertySignatureStructure {
@@ -641,7 +694,12 @@ function writeOptionalParameters(
       name: name,
       docs: ["Optional parameters."],
       isExported: true,
-      extends: [baseClass || "coreHttp.OperationOptions"],
+      extends: [
+        baseClass ||
+          (!optionsBag.useCoreV2
+            ? "coreHttp.OperationOptions"
+            : "coreClient.OperationOptions")
+      ],
       properties: properties
     };
   }

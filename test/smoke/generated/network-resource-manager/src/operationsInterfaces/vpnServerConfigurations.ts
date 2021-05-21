@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnServerConfiguration,
-  VpnServerConfigurationsListByResourceGroupNextOptionalParams,
   VpnServerConfigurationsListByResourceGroupOptionalParams,
-  VpnServerConfigurationsListNextOptionalParams,
   VpnServerConfigurationsListOptionalParams,
   VpnServerConfigurationsGetOptionalParams,
   VpnServerConfigurationsGetResponse,

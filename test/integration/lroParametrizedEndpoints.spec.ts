@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { LroParametrizedEndpointsClient } from "./generated/lroParametrizedEndpoints/src";
 
-describe("lroParametrizedEndpoints", () => {
+describe.skip("lroParametrizedEndpoints", () => {
   let client: LroParametrizedEndpointsClient;
 
   beforeEach(() => {

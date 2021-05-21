@@ -19,6 +19,7 @@ import {
   transformProperty,
   transformObject
 } from "../../../src/transforms/objectTransforms";
+import { OptionsBag } from "../../../src/utils/optionsBag";
 
 const appleSchema = new ObjectSchema("Apple", "An apple.", {
   properties: [
@@ -57,13 +58,23 @@ const fakeCodeModel: CodeModel = new CodeModel("FakeModel", false, {
 describe("Transforms", () => {
   describe("Property to PropertyDetails", () => {
     it("retains basic details", () => {
+      const optionsBag: OptionsBag = {
+        shouldGenerateLicense: false,
+        hideClients: true,
+        armLibrary: false,
+        ignoreNullableOnOptional: false,
+        useCoreV2: true,
+        allowInsecureConnection: true
+      };
+
       const property = transformProperty(
         new Property(
           "color",
           "The color",
           new StringSchema("Color", "A color."),
           { required: true, readOnly: false }
-        )
+        ),
+        optionsBag
       );
 
       assert.strictEqual(property.name, "color");
@@ -76,7 +87,16 @@ describe("Transforms", () => {
 
   describe("ObjectSchema to ModelDetails", () => {
     it("retains basic details and contains properties", () => {
-      const model = transformObject(appleSchema, []);
+      const optionsBag: OptionsBag = {
+        shouldGenerateLicense: false,
+        hideClients: true,
+        armLibrary: false,
+        ignoreNullableOnOptional: false,
+        useCoreV2: true,
+        allowInsecureConnection: true
+      };
+
+      const model = transformObject(appleSchema, [], optionsBag);
       assert.strictEqual(model.name, "Apple");
       assert.strictEqual(model.properties.length, 3);
       assert.strictEqual(model.properties[0].name, "color");

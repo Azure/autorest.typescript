@@ -46,6 +46,7 @@ const generateFromReadme = async ({
       `--output-folder=${output}`,
       `--license-header=true`,
       `--use=.`,
+      `--use-core-v2=false`,
       ...(params || [])
     ],
     {

@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -29,7 +29,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const MyException: coreHttp.CompositeMapper = {
+export const MyException: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MyException",
@@ -44,7 +44,7 @@ export const MyException: coreHttp.CompositeMapper = {
   }
 };
 
-export const C: coreHttp.CompositeMapper = {
+export const C: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "C",
@@ -59,7 +59,7 @@ export const C: coreHttp.CompositeMapper = {
   }
 };
 
-export const D: coreHttp.CompositeMapper = {
+export const D: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "D",
@@ -74,7 +74,7 @@ export const D: coreHttp.CompositeMapper = {
   }
 };
 
-export const B: coreHttp.CompositeMapper = {
+export const B: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "B",
@@ -90,7 +90,7 @@ export const B: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead300Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsHead300Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsHead300Headers",
@@ -107,7 +107,7 @@ export const HttpRedirectsHead300Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet300Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsGet300Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsGet300Headers",
@@ -124,7 +124,7 @@ export const HttpRedirectsGet300Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead301Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsHead301Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsHead301Headers",
@@ -141,7 +141,7 @@ export const HttpRedirectsHead301Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet301Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsGet301Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsGet301Headers",
@@ -158,7 +158,7 @@ export const HttpRedirectsGet301Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPut301Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPut301Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPut301Headers",
@@ -175,7 +175,7 @@ export const HttpRedirectsPut301Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead302Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsHead302Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsHead302Headers",
@@ -192,7 +192,7 @@ export const HttpRedirectsHead302Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet302Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsGet302Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsGet302Headers",
@@ -209,7 +209,7 @@ export const HttpRedirectsGet302Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPatch302Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPatch302Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPatch302Headers",
@@ -226,7 +226,7 @@ export const HttpRedirectsPatch302Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPost303Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPost303Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPost303Headers",
@@ -243,7 +243,7 @@ export const HttpRedirectsPost303Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsHead307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsHead307Headers",
@@ -260,7 +260,7 @@ export const HttpRedirectsHead307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsGet307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsGet307Headers",
@@ -277,7 +277,7 @@ export const HttpRedirectsGet307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsOptions307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsOptions307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsOptions307Headers",
@@ -294,7 +294,7 @@ export const HttpRedirectsOptions307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPut307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPut307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPut307Headers",
@@ -311,7 +311,7 @@ export const HttpRedirectsPut307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPatch307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPatch307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPatch307Headers",
@@ -328,7 +328,7 @@ export const HttpRedirectsPatch307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPost307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsPost307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsPost307Headers",
@@ -345,7 +345,7 @@ export const HttpRedirectsPost307Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsDelete307Headers: coreHttp.CompositeMapper = {
+export const HttpRedirectsDelete307Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HttpRedirectsDelete307Headers",

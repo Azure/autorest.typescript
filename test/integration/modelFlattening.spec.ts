@@ -1,5 +1,4 @@
 import { assert } from "chai";
-import { response } from "express";
 import { ModelFlatteningClient } from "./generated/modelFlattening/src";
 import {
   FlattenedProduct,
@@ -7,12 +6,13 @@ import {
   ResourceCollection,
   SimpleProduct
 } from "./generated/modelFlattening/src/models";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("ModelFlatteningClient", () => {
   let client: ModelFlatteningClient;
 
   beforeEach(() => {
-    client = new ModelFlatteningClient();
+    client = new ModelFlatteningClient({ allowInsecureConnection: true });
   });
 
   it("should get array", async () => {
@@ -64,8 +64,10 @@ describe("ModelFlatteningClient", () => {
       }
     ];
 
-    const result = await client.putArray({ resourceArray });
-    assert.equal(result._response.status, 200);
+    await client.putArray({
+      ...responseStatusChecker,
+      resourceArray
+    });
   });
 
   it("should get dictionary", async () => {
@@ -115,9 +117,10 @@ describe("ModelFlatteningClient", () => {
       }
     };
 
-    const result = await client.putDictionary({ resourceDictionary });
-
-    assert.equal(result._response.status, 200);
+    await client.putDictionary({
+      ...responseStatusChecker,
+      resourceDictionary
+    });
   });
 
   it("should get complex type", async () => {
@@ -225,11 +228,10 @@ describe("ModelFlatteningClient", () => {
       }
     };
 
-    const result = await client.putResourceCollection({
+    await client.putResourceCollection({
+      ...responseStatusChecker,
       resourceComplexObject
     });
-
-    assert.equal(result._response.status, 200);
   });
 
   it("should put a simple product", async () => {
@@ -269,9 +271,7 @@ describe("ModelFlatteningClient", () => {
       odataValue: "http://foo",
       name: "groupproduct"
     };
-    const { _response, ...result } = await client.putSimpleProductWithGrouping(
-      paramGroup
-    );
+    const result = await client.putSimpleProductWithGrouping(paramGroup);
 
     assert.deepEqual(result, {
       capacity: "Large",

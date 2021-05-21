@@ -15,10 +15,12 @@ import { isString } from "util";
 import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
+import { OptionsBag } from "../utils/optionsBag";
 
 export function generateParameters(
   clientDetails: ClientDetails,
-  project: Project
+  project: Project,
+  optionsBag: OptionsBag
 ): void {
   if (!shouldImportParameters(clientDetails)) {
     logger.verbose(
@@ -33,11 +35,13 @@ export function generateParameters(
     { overwrite: true }
   );
 
-  const importedCoreHttp = getCoreHttpImports(clientDetails);
+  const importedCoreHttp = getCoreHttpImports(clientDetails, optionsBag);
   if (importedCoreHttp.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedCoreHttp,
-      moduleSpecifier: "@azure/core-http"
+      moduleSpecifier: !optionsBag.useCoreV2
+        ? "@azure/core-http"
+        : "@azure/core-client"
     });
   }
 
@@ -56,15 +60,18 @@ export function generateParameters(
     .forEach(param => {
       parametersFile.addVariableStatement({
         isExported: true,
-        declarations: [buildParameterInitializer(param)],
+        declarations: [buildParameterInitializer(param, optionsBag)],
         declarationKind: VariableDeclarationKind.Const,
         leadingTrivia: writer => writer.blankLine()
       });
     });
+
+  parametersFile.fixUnusedIdentifiers();
 }
 
 function buildParameterInitializer(
-  parameter: ParameterDetails
+  parameter: ParameterDetails,
+  optionsBag: OptionsBag
 ): VariableDeclarationStructure {
   const { nameRef, location } = parameter;
   const type = getParameterType(location);
@@ -75,7 +82,7 @@ function buildParameterInitializer(
       writer.block(() => {
         writeParameterPath(writer, parameter);
         writeParameterMapper(writer, parameter);
-        writeParameterCollectionFormat(writer, parameter);
+        writeParameterCollectionFormat(writer, parameter, optionsBag);
         writeParameterSkipEncoding(writer, parameter);
       });
     },
@@ -85,8 +92,34 @@ function buildParameterInitializer(
 
 function writeParameterCollectionFormat(
   writer: CodeBlockWriter,
-  { collectionFormat }: ParameterDetails
+  { collectionFormat }: ParameterDetails,
+  optionsBag: OptionsBag
 ) {
+  if (optionsBag.useCoreV2) {
+    switch (collectionFormat) {
+      case "Csv":
+        collectionFormat = '"CSV"';
+        break;
+      case "Ssv":
+        collectionFormat = '"SSV"';
+        break;
+      case "Tsv":
+        collectionFormat = '"TSV"';
+        break;
+      case "Pipes":
+        collectionFormat = '"Pipes"';
+        break;
+      case "Multi":
+        collectionFormat = '"Multi"';
+        break;
+    }
+
+    return writer.conditionalWrite(
+      !!collectionFormat,
+      () => `collectionFormat: ${collectionFormat},`
+    );
+  }
+
   return writer.conditionalWrite(
     !!collectionFormat,
     () => `collectionFormat: QueryCollectionFormat.${collectionFormat},`
@@ -134,7 +167,10 @@ function getParameterType(location: ParameterLocation) {
   }
 }
 
-function getCoreHttpImports(clientDetails: ClientDetails) {
+function getCoreHttpImports(
+  clientDetails: ClientDetails,
+  optionsBag: OptionsBag
+) {
   const parameterTypes: string[] = clientDetails.parameters
     .filter(p => !p.isSynthetic)
     .map(p => getParameterType(p.location));
@@ -142,7 +178,8 @@ function getCoreHttpImports(clientDetails: ClientDetails) {
   if (
     clientDetails.parameters
       .filter(p => !p.isSynthetic)
-      .some(p => p.collectionFormat)
+      .some(p => p.collectionFormat) &&
+    !optionsBag.useCoreV2
   ) {
     parameterTypes.push("QueryCollectionFormat");
   }

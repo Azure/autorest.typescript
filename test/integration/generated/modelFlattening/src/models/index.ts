@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface Resource {
   /**
@@ -151,120 +151,75 @@ export type FlattenedProductPropertiesProvisioningStateValues = string;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutArrayOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** External Resource as an Array to put */
   resourceArray?: Resource[];
 }
 
 /** Optional parameters. */
 export interface ModelFlatteningClientGetArrayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArray operation. */
-export type ModelFlatteningClientGetArrayResponse = FlattenedProduct[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlattenedProduct[];
-  };
-};
+export type ModelFlatteningClientGetArrayResponse = FlattenedProduct[];
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutWrappedArrayOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** External Resource as an Array to put */
   resourceArray?: WrappedProduct[];
 }
 
 /** Optional parameters. */
 export interface ModelFlatteningClientGetWrappedArrayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWrappedArray operation. */
-export type ModelFlatteningClientGetWrappedArrayResponse = ProductWrapper[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProductWrapper[];
-  };
-};
+export type ModelFlatteningClientGetWrappedArrayResponse = ProductWrapper[];
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutDictionaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** External Resource as a Dictionary to put */
   resourceDictionary?: { [propertyName: string]: FlattenedProduct };
 }
 
 /** Optional parameters. */
 export interface ModelFlatteningClientGetDictionaryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionary operation. */
 export type ModelFlatteningClientGetDictionaryResponse = {
   [propertyName: string]: FlattenedProduct;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: FlattenedProduct };
-  };
 };
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutResourceCollectionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** External Resource as a ResourceCollection to put */
   resourceComplexObject?: ResourceCollection;
 }
 
 /** Optional parameters. */
 export interface ModelFlatteningClientGetResourceCollectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getResourceCollection operation. */
-export type ModelFlatteningClientGetResourceCollectionResponse = ResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceCollection;
-  };
-};
+export type ModelFlatteningClientGetResourceCollectionResponse = ResourceCollection;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutSimpleProductOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Simple body product to put */
   simpleBodyProduct?: SimpleProduct;
 }
 
 /** Contains response data for the putSimpleProduct operation. */
-export type ModelFlatteningClientPutSimpleProductResponse = SimpleProduct & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SimpleProduct;
-  };
-};
+export type ModelFlatteningClientPutSimpleProductResponse = SimpleProduct;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Description of product. */
   description?: string;
   /** Display name of product. */
@@ -276,20 +231,11 @@ export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
 }
 
 /** Contains response data for the postFlattenedSimpleProduct operation. */
-export type ModelFlatteningClientPostFlattenedSimpleProductResponse = SimpleProduct & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SimpleProduct;
-  };
-};
+export type ModelFlatteningClientPostFlattenedSimpleProductResponse = SimpleProduct;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Description of product. */
   description?: string;
   /** Display name of product. */
@@ -301,20 +247,11 @@ export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
 }
 
 /** Contains response data for the putSimpleProductWithGrouping operation. */
-export type ModelFlatteningClientPutSimpleProductWithGroupingResponse = SimpleProduct & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SimpleProduct;
-  };
-};
+export type ModelFlatteningClientPutSimpleProductWithGroupingResponse = SimpleProduct;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

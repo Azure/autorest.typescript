@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export type FishUnion = Fish | SalmonUnion | SharkUnion;
 export type DotFishUnion = DotFish | DotSalmon;
@@ -262,622 +262,326 @@ export type GoblinSharkColor = string;
 
 /** Optional parameters. */
 export interface BasicGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type BasicGetValidResponse = BasicDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BasicDef;
-  };
-};
+export type BasicGetValidResponse = BasicDef;
 
 /** Optional parameters. */
 export interface BasicPutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface BasicGetInvalidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
-export type BasicGetInvalidResponse = BasicDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BasicDef;
-  };
-};
+export type BasicGetInvalidResponse = BasicDef;
 
 /** Optional parameters. */
 export interface BasicGetEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
-export type BasicGetEmptyResponse = BasicDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BasicDef;
-  };
-};
+export type BasicGetEmptyResponse = BasicDef;
 
 /** Optional parameters. */
-export interface BasicGetNullOptionalParams extends coreHttp.OperationOptions {}
+export interface BasicGetNullOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
-export type BasicGetNullResponse = BasicDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BasicDef;
-  };
-};
+export type BasicGetNullResponse = BasicDef;
 
 /** Optional parameters. */
 export interface BasicGetNotProvidedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNotProvided operation. */
-export type BasicGetNotProvidedResponse = BasicDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BasicDef;
-  };
-};
+export type BasicGetNotProvidedResponse = BasicDef;
 
 /** Optional parameters. */
 export interface PrimitiveGetIntOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInt operation. */
-export type PrimitiveGetIntResponse = IntWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IntWrapper;
-  };
-};
+export type PrimitiveGetIntResponse = IntWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutIntOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetLongOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getLong operation. */
-export type PrimitiveGetLongResponse = LongWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LongWrapper;
-  };
-};
+export type PrimitiveGetLongResponse = LongWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutLongOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetFloatOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFloat operation. */
-export type PrimitiveGetFloatResponse = FloatWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FloatWrapper;
-  };
-};
+export type PrimitiveGetFloatResponse = FloatWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutFloatOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetDoubleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDouble operation. */
-export type PrimitiveGetDoubleResponse = DoubleWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DoubleWrapper;
-  };
-};
+export type PrimitiveGetDoubleResponse = DoubleWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutDoubleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetBoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBool operation. */
-export type PrimitiveGetBoolResponse = BooleanWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BooleanWrapper;
-  };
-};
+export type PrimitiveGetBoolResponse = BooleanWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutBoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getString operation. */
-export type PrimitiveGetStringResponse = StringWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringWrapper;
-  };
-};
+export type PrimitiveGetStringResponse = StringWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutStringOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetDateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDate operation. */
-export type PrimitiveGetDateResponse = DateWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DateWrapper;
-  };
-};
+export type PrimitiveGetDateResponse = DateWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutDateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetDateTimeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTime operation. */
-export type PrimitiveGetDateTimeResponse = DatetimeWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DatetimeWrapper;
-  };
-};
+export type PrimitiveGetDateTimeResponse = DatetimeWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutDateTimeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetDateTimeRfc1123OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123 operation. */
-export type PrimitiveGetDateTimeRfc1123Response = Datetimerfc1123Wrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Datetimerfc1123Wrapper;
-  };
-};
+export type PrimitiveGetDateTimeRfc1123Response = Datetimerfc1123Wrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutDateTimeRfc1123OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetDurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDuration operation. */
-export type PrimitiveGetDurationResponse = DurationWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DurationWrapper;
-  };
-};
+export type PrimitiveGetDurationResponse = DurationWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutDurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrimitiveGetByteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByte operation. */
-export type PrimitiveGetByteResponse = ByteWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ByteWrapper;
-  };
-};
+export type PrimitiveGetByteResponse = ByteWrapper;
 
 /** Optional parameters. */
 export interface PrimitivePutByteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type ArrayGetValidResponse = ArrayWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ArrayWrapper;
-  };
-};
+export type ArrayGetValidResponse = ArrayWrapper;
 
 /** Optional parameters. */
 export interface ArrayPutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
-export type ArrayGetEmptyResponse = ArrayWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ArrayWrapper;
-  };
-};
+export type ArrayGetEmptyResponse = ArrayWrapper;
 
 /** Optional parameters. */
 export interface ArrayPutEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetNotProvidedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNotProvided operation. */
-export type ArrayGetNotProvidedResponse = ArrayWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ArrayWrapper;
-  };
-};
+export type ArrayGetNotProvidedResponse = ArrayWrapper;
 
 /** Optional parameters. */
 export interface DictionaryGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type DictionaryGetValidResponse = DictionaryWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DictionaryWrapper;
-  };
-};
+export type DictionaryGetValidResponse = DictionaryWrapper;
 
 /** Optional parameters. */
 export interface DictionaryPutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
-export type DictionaryGetEmptyResponse = DictionaryWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DictionaryWrapper;
-  };
-};
+export type DictionaryGetEmptyResponse = DictionaryWrapper;
 
 /** Optional parameters. */
 export interface DictionaryPutEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DictionaryGetNullOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
-export type DictionaryGetNullResponse = DictionaryWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DictionaryWrapper;
-  };
-};
+export type DictionaryGetNullResponse = DictionaryWrapper;
 
 /** Optional parameters. */
 export interface DictionaryGetNotProvidedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNotProvided operation. */
-export type DictionaryGetNotProvidedResponse = DictionaryWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DictionaryWrapper;
-  };
-};
+export type DictionaryGetNotProvidedResponse = DictionaryWrapper;
 
 /** Optional parameters. */
 export interface InheritanceGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type InheritanceGetValidResponse = Siamese & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Siamese;
-  };
-};
+export type InheritanceGetValidResponse = Siamese;
 
 /** Optional parameters. */
 export interface InheritancePutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolymorphismGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type PolymorphismGetValidResponse = FishUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FishUnion;
-  };
-};
+export type PolymorphismGetValidResponse = FishUnion;
 
 /** Optional parameters. */
 export interface PolymorphismPutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolymorphismGetDotSyntaxOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDotSyntax operation. */
-export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DotFishUnion;
-  };
-};
+export type PolymorphismGetDotSyntaxResponse = DotFishUnion;
 
 /** Optional parameters. */
 export interface PolymorphismGetComposedWithDiscriminatorOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComposedWithDiscriminator operation. */
-export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DotFishMarket;
-  };
-};
+export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket;
 
 /** Optional parameters. */
 export interface PolymorphismGetComposedWithoutDiscriminatorOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComposedWithoutDiscriminator operation. */
-export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DotFishMarket;
-  };
-};
+export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket;
 
 /** Optional parameters. */
 export interface PolymorphismGetComplicatedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getComplicated operation. */
-export type PolymorphismGetComplicatedResponse = SalmonUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SalmonUnion;
-  };
-};
+export type PolymorphismGetComplicatedResponse = SalmonUnion;
 
 /** Optional parameters. */
 export interface PolymorphismPutComplicatedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolymorphismPutMissingDiscriminatorOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the putMissingDiscriminator operation. */
-export type PolymorphismPutMissingDiscriminatorResponse = SalmonUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SalmonUnion;
-  };
-};
+export type PolymorphismPutMissingDiscriminatorResponse = SalmonUnion;
 
 /** Optional parameters. */
 export interface PolymorphismPutValidMissingRequiredOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolymorphicrecursiveGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type PolymorphicrecursiveGetValidResponse = FishUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FishUnion;
-  };
-};
+export type PolymorphicrecursiveGetValidResponse = FishUnion;
 
 /** Optional parameters. */
 export interface PolymorphicrecursivePutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ReadonlypropertyGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type ReadonlypropertyGetValidResponse = ReadonlyObj & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ReadonlyObj;
-  };
-};
+export type ReadonlypropertyGetValidResponse = ReadonlyObj;
 
 /** Optional parameters. */
 export interface ReadonlypropertyPutValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface FlattencomplexGetValidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getValid operation. */
-export type FlattencomplexGetValidResponse = MyBaseTypeUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MyBaseTypeUnion;
-  };
-};
+export type FlattencomplexGetValidResponse = MyBaseTypeUnion;
 
 /** Optional parameters. */
 export interface BodyComplexWithTracingOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

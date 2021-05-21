@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const PetDef: coreHttp.CompositeMapper = {
+export const PetDef: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetDef",

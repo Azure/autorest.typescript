@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 
 /** Uri or local path to source data. */
 export interface SourcePath {
@@ -23,14 +24,14 @@ export type ContentType =
 
 /** Optional parameters. */
 export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Input parameter. */
-  input?: coreHttp.HttpRequestBody;
+  input?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
 export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: SourcePath;
 }
@@ -39,20 +40,11 @@ export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
 export type MediaTypesClientAnalyzeBodyResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesClientContentTypeWithEncodingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: string;
 }
@@ -61,20 +53,11 @@ export interface MediaTypesClientContentTypeWithEncodingOptionalParams
 export type MediaTypesClientContentTypeWithEncodingResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

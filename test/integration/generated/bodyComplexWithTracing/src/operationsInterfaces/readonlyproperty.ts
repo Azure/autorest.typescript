@@ -6,9 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CanonicalCode } from "@opentelemetry/api";
-import { createSpan } from "../tracing";
-import * as coreHttp from "@azure/core-http";
 import {
   ReadonlypropertyGetValidOptionalParams,
   ReadonlypropertyGetValidResponse,
@@ -33,5 +30,5 @@ export interface Readonlyproperty {
   putValid(
     complexBody: ReadonlyObj,
     options?: ReadonlypropertyPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

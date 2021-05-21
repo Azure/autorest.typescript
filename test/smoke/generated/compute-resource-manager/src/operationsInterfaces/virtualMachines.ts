@@ -12,11 +12,8 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachine,
-  VirtualMachinesListByLocationNextOptionalParams,
   VirtualMachinesListByLocationOptionalParams,
-  VirtualMachinesListNextOptionalParams,
   VirtualMachinesListOptionalParams,
-  VirtualMachinesListAllNextOptionalParams,
   VirtualMachinesListAllOptionalParams,
   VirtualMachineSize,
   VirtualMachinesListAvailableSizesOptionalParams,

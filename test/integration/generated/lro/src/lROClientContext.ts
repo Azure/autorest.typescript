@@ -33,7 +33,6 @@ export class LROClientContext extends coreHttp.ServiceClient {
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "http://localhost:3000";
 
     // Assigning values to Constant parameters

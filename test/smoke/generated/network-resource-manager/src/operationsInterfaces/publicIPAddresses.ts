@@ -12,13 +12,9 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PublicIPAddress,
-  PublicIPAddressesListAllNextOptionalParams,
   PublicIPAddressesListAllOptionalParams,
-  PublicIPAddressesListNextOptionalParams,
   PublicIPAddressesListOptionalParams,
-  PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams,
-  PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams,
   PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams,
   PublicIPAddressesDeleteOptionalParams,
   PublicIPAddressesGetOptionalParams,

@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import { CanonicalCode } from "@opentelemetry/api";
+import * as coreClient from "@azure/core-client";
+import * as coreTracing from "@azure/core-tracing";
 import { createSpan } from "./tracing";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
@@ -64,8 +64,8 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
           MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams?
         ]
   ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse> {
-    let operationSpec: coreHttp.OperationSpec;
-    let operationArguments: coreHttp.OperationArguments;
+    let operationSpec: coreClient.OperationSpec;
+    let operationArguments: coreClient.OperationArguments;
     let options;
     if (
       args[0] === "application/pdf" ||
@@ -85,13 +85,11 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    const { span, updatedOptions } = createSpan(
+    const { span } = createSpan(
       "MediaTypesWithTracingClient-analyzeBody",
       options
     );
-    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      updatedOptions || {}
-    );
+    operationArguments.options = options || {};
     try {
       const result = await this.sendOperationRequest(
         operationArguments,
@@ -100,7 +98,7 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
       return result as MediaTypesWithTracingClientAnalyzeBodyResponse;
     } catch (error) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: coreTracing.SpanStatusCode.UNSET,
         message: error.message
       });
       throw error;
@@ -116,24 +114,19 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   async contentTypeWithEncoding(
     options?: MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
   ): Promise<MediaTypesWithTracingClientContentTypeWithEncodingResponse> {
-    const { span, updatedOptions } = createSpan(
+    const { span } = createSpan(
       "MediaTypesWithTracingClient-contentTypeWithEncoding",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(
-        updatedOptions || {}
-      )
-    };
     try {
       const result = await this.sendOperationRequest(
-        operationArguments,
+        { options },
         contentTypeWithEncodingOperationSpec
       );
       return result as MediaTypesWithTracingClientContentTypeWithEncodingResponse;
     } catch (error) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: coreTracing.SpanStatusCode.UNSET,
         message: error.message
       });
       throw error;
@@ -143,9 +136,9 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
+const analyzeBody$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
@@ -159,7 +152,7 @@ const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
+const analyzeBody$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
@@ -173,7 +166,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
+const contentTypeWithEncodingOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/contentTypeWithEncoding",
   httpMethod: "POST",
   responses: {

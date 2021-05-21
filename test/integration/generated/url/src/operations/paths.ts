@@ -7,7 +7,7 @@
  */
 
 import { Paths } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
@@ -58,32 +58,22 @@ export class PathsImpl implements Paths {
    * Get true Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanTrue(
-    options?: PathsGetBooleanTrueOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getBooleanTrue(options?: PathsGetBooleanTrueOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBooleanTrueOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get false Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanFalse(
-    options?: PathsGetBooleanFalseOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getBooleanFalse(options?: PathsGetBooleanFalseOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getBooleanFalseOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -92,14 +82,11 @@ export class PathsImpl implements Paths {
    */
   getIntOneMillion(
     options?: PathsGetIntOneMillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getIntOneMillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -108,30 +95,22 @@ export class PathsImpl implements Paths {
    */
   getIntNegativeOneMillion(
     options?: PathsGetIntNegativeOneMillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getIntNegativeOneMillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getTenBillion(
-    options?: PathsGetTenBillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  getTenBillion(options?: PathsGetTenBillionOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getTenBillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -140,14 +119,11 @@ export class PathsImpl implements Paths {
    */
   getNegativeTenBillion(
     options?: PathsGetNegativeTenBillionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getNegativeTenBillionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -156,14 +132,11 @@ export class PathsImpl implements Paths {
    */
   floatScientificPositive(
     options?: PathsFloatScientificPositiveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       floatScientificPositiveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -172,14 +145,11 @@ export class PathsImpl implements Paths {
    */
   floatScientificNegative(
     options?: PathsFloatScientificNegativeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       floatScientificNegativeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -188,14 +158,11 @@ export class PathsImpl implements Paths {
    */
   doubleDecimalPositive(
     options?: PathsDoubleDecimalPositiveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       doubleDecimalPositiveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -204,30 +171,22 @@ export class PathsImpl implements Paths {
    */
   doubleDecimalNegative(
     options?: PathsDoubleDecimalNegativeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       doubleDecimalNegativeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param options The options parameters.
    */
-  stringUnicode(
-    options?: PathsStringUnicodeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  stringUnicode(options?: PathsStringUnicodeOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringUnicodeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -236,14 +195,11 @@ export class PathsImpl implements Paths {
    */
   stringUrlEncoded(
     options?: PathsStringUrlEncodedOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringUrlEncodedOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -252,30 +208,22 @@ export class PathsImpl implements Paths {
    */
   stringUrlNonEncoded(
     options?: PathsStringUrlNonEncodedOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringUrlNonEncodedOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get ''
    * @param options The options parameters.
    */
-  stringEmpty(
-    options?: PathsStringEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  stringEmpty(options?: PathsStringEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       stringEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -286,15 +234,11 @@ export class PathsImpl implements Paths {
   stringNull(
     stringPath: string,
     options?: PathsStringNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      stringPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { stringPath, options },
       stringNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -305,15 +249,11 @@ export class PathsImpl implements Paths {
   enumValid(
     enumPath: UriColor,
     options?: PathsEnumValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      enumPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { enumPath, options },
       enumValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -324,15 +264,11 @@ export class PathsImpl implements Paths {
   enumNull(
     enumPath: UriColor,
     options?: PathsEnumNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      enumPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { enumPath, options },
       enumNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -343,31 +279,22 @@ export class PathsImpl implements Paths {
   byteMultiByte(
     bytePath: Uint8Array,
     options?: PathsByteMultiByteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      bytePath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { bytePath, options },
       byteMultiByteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '' as byte array
    * @param options The options parameters.
    */
-  byteEmpty(
-    options?: PathsByteEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  byteEmpty(options?: PathsByteEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       byteEmptyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -378,31 +305,22 @@ export class PathsImpl implements Paths {
   byteNull(
     bytePath: Uint8Array,
     options?: PathsByteNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      bytePath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { bytePath, options },
       byteNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '2012-01-01' as date
    * @param options The options parameters.
    */
-  dateValid(
-    options?: PathsDateValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  dateValid(options?: PathsDateValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       dateValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -414,31 +332,22 @@ export class PathsImpl implements Paths {
   dateNull(
     datePath: Date,
     options?: PathsDateNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      datePath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { datePath, options },
       dateNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param options The options parameters.
    */
-  dateTimeValid(
-    options?: PathsDateTimeValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  dateTimeValid(options?: PathsDateTimeValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       dateTimeValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -449,15 +358,11 @@ export class PathsImpl implements Paths {
   dateTimeNull(
     dateTimePath: Date,
     options?: PathsDateTimeNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      dateTimePath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { dateTimePath, options },
       dateTimeNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -468,15 +373,11 @@ export class PathsImpl implements Paths {
   base64Url(
     base64UrlPath: Uint8Array,
     options?: PathsBase64UrlOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      base64UrlPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { base64UrlPath, options },
       base64UrlOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -489,15 +390,11 @@ export class PathsImpl implements Paths {
   arrayCsvInPath(
     arrayPath: string[],
     options?: PathsArrayCsvInPathOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      arrayPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { arrayPath, options },
       arrayCsvInPathOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -508,21 +405,17 @@ export class PathsImpl implements Paths {
   unixTimeUrl(
     unixTimeUrlPath: Date,
     options?: PathsUnixTimeUrlOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      unixTimeUrlPath,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { unixTimeUrlPath, options },
       unixTimeUrlOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
+const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
   path: "/paths/bool/true/{boolPath}",
   httpMethod: "GET",
   responses: {
@@ -535,7 +428,7 @@ const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
+const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   path: "/paths/bool/false/{boolPath}",
   httpMethod: "GET",
   responses: {
@@ -548,7 +441,7 @@ const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
+const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/1000000/{intPath}",
   httpMethod: "GET",
   responses: {
@@ -561,7 +454,7 @@ const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
+const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/-1000000/{intPath}",
   httpMethod: "GET",
   responses: {
@@ -574,7 +467,7 @@ const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTenBillionOperationSpec: coreHttp.OperationSpec = {
+const getTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/long/10000000000/{longPath}",
   httpMethod: "GET",
   responses: {
@@ -587,7 +480,7 @@ const getTenBillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
+const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/long/-10000000000/{longPath}",
   httpMethod: "GET",
   responses: {
@@ -600,7 +493,7 @@ const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
+const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/paths/float/1.034E+20/{floatPath}",
   httpMethod: "GET",
   responses: {
@@ -613,7 +506,7 @@ const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
+const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/float/-1.034E-20/{floatPath}",
   httpMethod: "GET",
   responses: {
@@ -626,7 +519,7 @@ const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
+const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/paths/double/9999999.999/{doublePath}",
   httpMethod: "GET",
   responses: {
@@ -639,7 +532,7 @@ const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
+const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/double/-9999999.999/{doublePath}",
   httpMethod: "GET",
   responses: {
@@ -652,7 +545,7 @@ const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
+const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/unicode/{stringPath}",
   httpMethod: "GET",
   responses: {
@@ -665,7 +558,7 @@ const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
+const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
   path:
     "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   httpMethod: "GET",
@@ -679,7 +572,7 @@ const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringUrlNonEncodedOperationSpec: coreHttp.OperationSpec = {
+const stringUrlNonEncodedOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/begin!*'();:@&=+$,end/{stringPath}",
   httpMethod: "GET",
   responses: {
@@ -692,7 +585,7 @@ const stringUrlNonEncodedOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringEmptyOperationSpec: coreHttp.OperationSpec = {
+const stringEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/empty/{stringPath}",
   httpMethod: "GET",
   responses: {
@@ -705,7 +598,7 @@ const stringEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stringNullOperationSpec: coreHttp.OperationSpec = {
+const stringNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/null/{stringPath}",
   httpMethod: "GET",
   responses: {
@@ -718,7 +611,7 @@ const stringNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const enumValidOperationSpec: coreHttp.OperationSpec = {
+const enumValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/enum/green%20color/{enumPath}",
   httpMethod: "GET",
   responses: {
@@ -731,7 +624,7 @@ const enumValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const enumNullOperationSpec: coreHttp.OperationSpec = {
+const enumNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/null/{enumPath}",
   httpMethod: "GET",
   responses: {
@@ -744,7 +637,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
+const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/multibyte/{bytePath}",
   httpMethod: "GET",
   responses: {
@@ -757,7 +650,7 @@ const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteEmptyOperationSpec: coreHttp.OperationSpec = {
+const byteEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/empty/{bytePath}",
   httpMethod: "GET",
   responses: {
@@ -770,7 +663,7 @@ const byteEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const byteNullOperationSpec: coreHttp.OperationSpec = {
+const byteNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/null/{bytePath}",
   httpMethod: "GET",
   responses: {
@@ -783,7 +676,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateValidOperationSpec: coreHttp.OperationSpec = {
+const dateValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/date/2012-01-01/{datePath}",
   httpMethod: "GET",
   responses: {
@@ -796,7 +689,7 @@ const dateValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateNullOperationSpec: coreHttp.OperationSpec = {
+const dateNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/date/null/{datePath}",
   httpMethod: "GET",
   responses: {
@@ -809,7 +702,7 @@ const dateNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
+const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
   httpMethod: "GET",
   responses: {
@@ -822,7 +715,7 @@ const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
+const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/datetime/null/{dateTimePath}",
   httpMethod: "GET",
   responses: {
@@ -835,7 +728,7 @@ const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const base64UrlOperationSpec: coreHttp.OperationSpec = {
+const base64UrlOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/bG9yZW0/{base64UrlPath}",
   httpMethod: "GET",
   responses: {
@@ -848,7 +741,7 @@ const base64UrlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const arrayCsvInPathOperationSpec: coreHttp.OperationSpec = {
+const arrayCsvInPathOperationSpec: coreClient.OperationSpec = {
   path:
     "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   httpMethod: "GET",
@@ -862,7 +755,7 @@ const arrayCsvInPathOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const unixTimeUrlOperationSpec: coreHttp.OperationSpec = {
+const unixTimeUrlOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/1460505600/{unixTimeUrlPath}",
   httpMethod: "GET",
   responses: {

@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
@@ -33,5 +32,5 @@ export interface Inheritance {
   putValid(
     complexBody: Siamese,
     options?: InheritancePutValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

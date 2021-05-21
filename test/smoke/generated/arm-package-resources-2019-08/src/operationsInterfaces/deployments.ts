@@ -12,15 +12,10 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentExtended,
-  DeploymentsListAtScopeNextOptionalParams,
   DeploymentsListAtScopeOptionalParams,
-  DeploymentsListAtTenantScopeNextOptionalParams,
   DeploymentsListAtTenantScopeOptionalParams,
-  DeploymentsListAtManagementGroupScopeNextOptionalParams,
   DeploymentsListAtManagementGroupScopeOptionalParams,
-  DeploymentsListAtSubscriptionScopeNextOptionalParams,
   DeploymentsListAtSubscriptionScopeOptionalParams,
-  DeploymentsListByResourceGroupNextOptionalParams,
   DeploymentsListByResourceGroupOptionalParams,
   DeploymentsDeleteAtScopeOptionalParams,
   DeploymentsCheckExistenceAtScopeOptionalParams,

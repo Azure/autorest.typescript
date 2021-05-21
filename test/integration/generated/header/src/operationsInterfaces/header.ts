@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   HeaderParamExistingKeyOptionalParams,
   HeaderResponseExistingKeyOptionalParams,
@@ -63,7 +62,7 @@ export interface Header {
   paramExistingKey(
     userAgent: string,
     options?: HeaderParamExistingKeyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "User-Agent": "overwrite"
    * @param options The options parameters.
@@ -79,7 +78,7 @@ export interface Header {
   paramProtectedKey(
     contentType: string,
     options?: HeaderParamProtectedKeyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "Content-Type": "text/html"
    * @param options The options parameters.
@@ -98,7 +97,7 @@ export interface Header {
     scenario: string,
     value: number,
     options?: HeaderParamIntegerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "value": 1 or -2
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
@@ -119,7 +118,7 @@ export interface Header {
     scenario: string,
     value: number,
     options?: HeaderParamLongOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "value": 105 or -2
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
@@ -140,7 +139,7 @@ export interface Header {
     scenario: string,
     value: number,
     options?: HeaderParamFloatOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "value": 0.07 or -3.0
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
@@ -161,7 +160,7 @@ export interface Header {
     scenario: string,
     value: number,
     options?: HeaderParamDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "value": 7e120 or -3.0
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
@@ -182,7 +181,7 @@ export interface Header {
     scenario: string,
     value: boolean,
     options?: HeaderParamBoolOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header value "value": true or false
    * @param scenario Send a post request with header values "scenario": "true" or "false"
@@ -201,7 +200,7 @@ export interface Header {
   paramString(
     scenario: string,
     options?: HeaderParamStringOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
@@ -222,7 +221,7 @@ export interface Header {
     scenario: string,
     value: Date,
     options?: HeaderParamDateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
@@ -243,7 +242,7 @@ export interface Header {
     scenario: string,
     value: Date,
     options?: HeaderParamDatetimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
@@ -262,7 +261,7 @@ export interface Header {
   paramDatetimeRfc1123(
     scenario: string,
     options?: HeaderParamDatetimeRfc1123OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
@@ -282,7 +281,7 @@ export interface Header {
     scenario: string,
     value: string,
     options?: HeaderParamDurationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "P123DT22H14M12.011S"
    * @param scenario Send a post request with header values "scenario": "valid"
@@ -302,7 +301,7 @@ export interface Header {
     scenario: string,
     value: Uint8Array,
     options?: HeaderParamByteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param scenario Send a post request with header values "scenario": "valid"
@@ -321,7 +320,7 @@ export interface Header {
   paramEnum(
     scenario: string,
     options?: HeaderParamEnumOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a response with header values "GREY" or null
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
@@ -335,7 +334,5 @@ export interface Header {
    * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    * @param options The options parameters.
    */
-  customRequestId(
-    options?: HeaderCustomRequestIdOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  customRequestId(options?: HeaderCustomRequestIdOptionalParams): Promise<void>;
 }

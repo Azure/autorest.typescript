@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -15,28 +15,28 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface QueriesArrayStringMultiNullOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** a null array of string using the multi-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringMultiEmptyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** an empty array [] of string using the multi-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringMultiValidOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format */
   arrayQuery?: (string | null)[];
 }
 
 /** Optional parameters. */
 export interface UrlMultiClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

@@ -8,29 +8,19 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   DetectorResponse,
-  DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams,
   DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams,
-  DiagnosticsListSiteDetectorResponsesNextOptionalParams,
   DiagnosticsListSiteDetectorResponsesOptionalParams,
   DiagnosticCategory,
-  DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams,
   DiagnosticsListSiteDiagnosticCategoriesOptionalParams,
   AnalysisDefinition,
-  DiagnosticsListSiteAnalysesNextOptionalParams,
   DiagnosticsListSiteAnalysesOptionalParams,
   DetectorDefinition,
-  DiagnosticsListSiteDetectorsNextOptionalParams,
   DiagnosticsListSiteDetectorsOptionalParams,
-  DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams,
   DiagnosticsListSiteDetectorResponsesSlotOptionalParams,
-  DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams,
   DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams,
-  DiagnosticsListSiteAnalysesSlotNextOptionalParams,
   DiagnosticsListSiteAnalysesSlotOptionalParams,
-  DiagnosticsListSiteDetectorsSlotNextOptionalParams,
   DiagnosticsListSiteDetectorsSlotOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseResponse,

@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { PagingClient, Product } from "./generated/paging/src";
 import { InternalPipelineOptions } from "@azure/core-http";
 
-describe("Integration tests for Paging", () => {
+describe.skip("Integration tests for Paging", () => {
   let client: PagingClient;
 
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe("Integration tests for Paging", () => {
         retryDelayInMs: 0
       }
     };
-    client = new PagingClient(pipelineOptions);
+    client = new PagingClient();
   });
 
   describe("getMultiplePagesRetrySecond", () => {

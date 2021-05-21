@@ -34,6 +34,7 @@ import { getStringForValue } from "../utils/valueHelpers";
 import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { OptionsBag } from "../utils/optionsBag";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -45,7 +46,9 @@ interface OperationParameterDetails {
   targetMediaType?: KnownMediaType;
 }
 
-const buildCredentialsParameter = (): ParameterDetails => ({
+const buildCredentialsParameter = (
+  optionsBag: OptionsBag
+): ParameterDetails => ({
   nameRef: "credentials",
   description:
     "Subscription credentials which uniquely identify client subscription.",
@@ -60,7 +63,9 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   parameter: {} as Parameter,
   implementationLocation: ImplementationLocation.Client,
   typeDetails: {
-    typeName: "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials",
+    typeName: !optionsBag.useCoreV2
+      ? "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials"
+      : "coreAuth.TokenCredential",
     kind: PropertyKind.Primitive,
     usedModels: []
   },
@@ -94,7 +99,8 @@ const buildEndpointParameter = (): ParameterDetails => ({
 
 export function transformParameters(
   codeModel: CodeModel,
-  options: ClientOptions
+  options: ClientOptions,
+  optionsBag: OptionsBag
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
 
@@ -105,6 +111,7 @@ export function transformParameters(
       parameters,
       p.operationName,
       hasXmlMetadata,
+      optionsBag,
       p.targetMediaType
     )
   );
@@ -112,7 +119,7 @@ export function transformParameters(
   // Adding credentials parameter as a Synthetic parameter, this is to treat this as any another parameter
   // during generation and remove the need of special handling it.
   if (options.addCredentials) {
-    const creds = buildCredentialsParameter();
+    const creds = buildCredentialsParameter(optionsBag);
     parameters.unshift(creds);
   }
 
@@ -194,6 +201,7 @@ export function populateOperationParameters(
   operationParameters: ParameterDetails[],
   operationName: string,
   hasXmlMetadata: boolean,
+  optionsBag: OptionsBag,
   targetMediaType?: KnownMediaType
 ): void {
   const parameterName = getParameterName(parameter);
@@ -232,7 +240,11 @@ export function populateOperationParameters(
   const isNullable = !!parameter.nullable;
 
   const collectionFormat = getCollectionFormat(parameter);
-  const typeDetails = getTypeForSchema(parameter.schema);
+  const typeDetails = getTypeForSchema(
+    parameter.schema,
+    false,
+    optionsBag.useCoreV2
+  );
   const paramDetails: ParameterDetails = {
     nameRef: name,
     description:

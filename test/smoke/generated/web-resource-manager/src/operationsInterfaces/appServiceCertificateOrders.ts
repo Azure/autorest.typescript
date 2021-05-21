@@ -12,12 +12,9 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
-  AppServiceCertificateOrdersListNextOptionalParams,
   AppServiceCertificateOrdersListOptionalParams,
-  AppServiceCertificateOrdersListByResourceGroupNextOptionalParams,
   AppServiceCertificateOrdersListByResourceGroupOptionalParams,
   AppServiceCertificateResource,
-  AppServiceCertificateOrdersListCertificatesNextOptionalParams,
   AppServiceCertificateOrdersListCertificatesOptionalParams,
   AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams,
   AppServiceCertificateOrdersGetOptionalParams,

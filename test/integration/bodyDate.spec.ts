@@ -1,10 +1,12 @@
 import { BodyDateClient } from "./generated/bodyDate/src";
 import { expect } from "chai";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+
 describe("BodyDateClient", function() {
   let testClient: BodyDateClient;
 
   beforeEach(() => {
-    testClient = new BodyDateClient();
+    testClient = new BodyDateClient({ allowInsecureConnection: true });
   });
 
   it("should get min date", async () => {
@@ -51,13 +53,11 @@ describe("BodyDateClient", function() {
 
   it("should put max date", async () => {
     const maxDate = new Date("9999-12-31");
-    const result = await testClient.date.putMaxDate(maxDate);
-    expect(result._response.status).to.equal(200);
+    await testClient.date.putMaxDate(maxDate, responseStatusChecker);
   });
 
   it("should put min date", async () => {
     const minDate = new Date("0001-01-01");
-    const result = await testClient.date.putMinDate(minDate);
-    expect(result._response.status).to.equal(200);
+    await testClient.date.putMinDate(minDate, responseStatusChecker);
   });
 });

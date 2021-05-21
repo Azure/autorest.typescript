@@ -4,11 +4,13 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
+import { OptionsBag } from "../../utils/optionsBag";
 
 export function generatePackageJson(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
-  project: Project
+  project: Project,
+  optionsBag: OptionsBag
 ) {
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
@@ -27,9 +29,13 @@ export function generatePackageJson(
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
-      "@azure/core-http": "^1.1.4",
+      ...(!optionsBag.useCoreV2 && { "@azure/core-http": "^1.2.4" }),
+      ...(optionsBag.useCoreV2 && { "@azure/core-client": "^1.1.2" }),
+      ...(optionsBag.useCoreV2 && {
+        "@azure/core-rest-pipeline": "1.0.0-beta.2"
+      }),
       ...(clientDetails.tracing && {
-        "@azure/core-tracing": "1.0.0-preview.10",
+        "@azure/core-tracing": "1.0.0-preview.11",
         "@opentelemetry/api": "^0.10.2"
       }),
 

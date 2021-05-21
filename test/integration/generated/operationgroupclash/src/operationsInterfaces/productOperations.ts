@@ -1,4 +1,3 @@
-import * as coreHttp from "@azure/core-http";
 import {
   ProductOperationsApiV1ValueGetOptionalParams,
   ProductOperationsApiV1ValueGetResponse

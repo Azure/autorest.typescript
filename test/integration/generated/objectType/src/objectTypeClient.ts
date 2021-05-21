@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import { ObjectTypeClientContext } from "./objectTypeClientContext";
 import {
@@ -33,13 +33,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   get(
     options?: ObjectTypeClientGetOptionalParams
   ): Promise<ObjectTypeClientGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      getOperationSpec
-    ) as Promise<ObjectTypeClientGetResponse>;
+    return this.sendOperationRequest({ options }, getOperationSpec);
   }
 
   /**
@@ -51,21 +45,14 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   put(
     putObject: any,
     options?: ObjectTypeClientPutOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      putObject,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      putOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  ): Promise<void> {
+    return this.sendOperationRequest({ putObject, options }, putOperationSpec);
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer({}, /* isXml */ false);
+const serializer = coreClient.createSerializer({}, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/objectType/get",
   httpMethod: "GET",
   responses: {
@@ -80,7 +67,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putOperationSpec: coreHttp.OperationSpec = {
+const putOperationSpec: coreClient.OperationSpec = {
   path: "/objectType/put",
   httpMethod: "PUT",
   responses: {

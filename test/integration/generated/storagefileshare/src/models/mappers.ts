@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const StorageError: coreHttp.CompositeMapper = {
+export const StorageError: coreClient.CompositeMapper = {
   serializedName: "StorageError",
   type: {
     name: "Composite",
@@ -17,7 +17,7 @@ export const StorageError: coreHttp.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromURLHeaders: coreHttp.CompositeMapper = {
+export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
   serializedName: "File_uploadRangeFromURLHeaders",
   type: {
     name: "Composite",
@@ -76,7 +76,7 @@ export const FileUploadRangeFromURLHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromURLExceptionHeaders: coreHttp.CompositeMapper = {
+export const FileUploadRangeFromURLExceptionHeaders: coreClient.CompositeMapper = {
   serializedName: "File_uploadRangeFromURLExceptionHeaders",
   type: {
     name: "Composite",

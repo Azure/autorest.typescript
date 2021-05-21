@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   NumberGetNullOptionalParams,
   NumberGetNullResponse,
@@ -86,7 +85,7 @@ export interface NumberOperations {
   putBigFloat(
     numberBody: number,
     options?: NumberPutBigFloatOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big float value 3.402823e+20
    * @param options The options parameters.
@@ -102,7 +101,7 @@ export interface NumberOperations {
   putBigDouble(
     numberBody: number,
     options?: NumberPutBigDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big double value 2.5976931e+101
    * @param options The options parameters.
@@ -116,7 +115,7 @@ export interface NumberOperations {
    */
   putBigDoublePositiveDecimal(
     options?: NumberPutBigDoublePositiveDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big double value 99999999.99
    * @param options The options parameters.
@@ -130,7 +129,7 @@ export interface NumberOperations {
    */
   putBigDoubleNegativeDecimal(
     options?: NumberPutBigDoubleNegativeDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big double value -99999999.99
    * @param options The options parameters.
@@ -146,7 +145,7 @@ export interface NumberOperations {
   putBigDecimal(
     numberBody: number,
     options?: NumberPutBigDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big decimal value 2.5976931e+101
    * @param options The options parameters.
@@ -160,7 +159,7 @@ export interface NumberOperations {
    */
   putBigDecimalPositiveDecimal(
     options?: NumberPutBigDecimalPositiveDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big decimal value 99999999.99
    * @param options The options parameters.
@@ -174,7 +173,7 @@ export interface NumberOperations {
    */
   putBigDecimalNegativeDecimal(
     options?: NumberPutBigDecimalNegativeDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big decimal value -99999999.99
    * @param options The options parameters.
@@ -190,7 +189,7 @@ export interface NumberOperations {
   putSmallFloat(
     numberBody: number,
     options?: NumberPutSmallFloatOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big double value 3.402823e-20
    * @param options The options parameters.
@@ -206,7 +205,7 @@ export interface NumberOperations {
   putSmallDouble(
     numberBody: number,
     options?: NumberPutSmallDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get big double value 2.5976931e-101
    * @param options The options parameters.
@@ -222,7 +221,7 @@ export interface NumberOperations {
   putSmallDecimal(
     numberBody: number,
     options?: NumberPutSmallDecimalOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get small decimal value 2.5976931e-101
    * @param options The options parameters.

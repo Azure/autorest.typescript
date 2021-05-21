@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CanonicalCode } from "@opentelemetry/api";
 import { createSpan } from "../tracing";
 import { Readonlyproperty } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
@@ -39,24 +39,19 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
   async getValid(
     options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse> {
-    const { span, updatedOptions } = createSpan(
+    const { span } = createSpan(
       "BodyComplexWithTracing-getValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(
-        updatedOptions || {}
-      )
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getValidOperationSpec
       );
       return result as ReadonlypropertyGetValidResponse;
     } catch (error) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: coreTracing.SpanStatusCode.UNSET,
         message: error.message
       });
       throw error;
@@ -73,26 +68,20 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
   async putValid(
     complexBody: ReadonlyObj,
     options?: ReadonlypropertyPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const { span, updatedOptions } = createSpan(
+  ): Promise<void> {
+    const { span } = createSpan(
       "BodyComplexWithTracing-putValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(
-        updatedOptions || {}
-      )
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { complexBody, options },
         putValidOperationSpec
       );
-      return result as coreHttp.RestResponse;
+      return result as void;
     } catch (error) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: coreTracing.SpanStatusCode.UNSET,
         message: error.message
       });
       throw error;
@@ -102,9 +91,9 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreHttp.OperationSpec = {
+const getValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/readonlyproperty/valid",
   httpMethod: "GET",
   responses: {
@@ -119,7 +108,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreHttp.OperationSpec = {
+const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/readonlyproperty/valid",
   httpMethod: "PUT",
   responses: {

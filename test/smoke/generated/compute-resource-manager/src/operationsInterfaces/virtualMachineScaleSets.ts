@@ -12,15 +12,11 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSet,
-  VirtualMachineScaleSetsListNextOptionalParams,
   VirtualMachineScaleSetsListOptionalParams,
-  VirtualMachineScaleSetsListAllNextOptionalParams,
   VirtualMachineScaleSetsListAllOptionalParams,
   VirtualMachineScaleSetSku,
-  VirtualMachineScaleSetsListSkusNextOptionalParams,
   VirtualMachineScaleSetsListSkusOptionalParams,
   UpgradeOperationHistoricalStatusInfo,
-  VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams,
   VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams,
   VirtualMachineScaleSetsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetsCreateOrUpdateResponse,

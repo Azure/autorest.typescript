@@ -1,29 +1,28 @@
 import { assert } from "chai";
 import { UrlMultiClient } from "./generated/urlMulti/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("URLMultiCollectionFormat", () => {
   let client: UrlMultiClient;
 
   beforeEach(() => {
-    client = new UrlMultiClient();
+    client = new UrlMultiClient({ allowInsecureConnection: true });
   });
 
   it("should handle arrayStringMultiEmpty", async () => {
-    const result = await client.queries.arrayStringMultiEmpty({
+    await client.queries.arrayStringMultiEmpty({
+      ...responseStatusChecker,
       arrayQuery: []
     });
-
-    assert.strictEqual(result._response.status, 200);
   });
 
   it("should handle arrayStringMultiNull", async () => {
-    const result = await client.queries.arrayStringMultiNull();
-
-    assert.strictEqual(result._response.status, 200);
+    await client.queries.arrayStringMultiNull(responseStatusChecker);
   });
 
   it("should handle arrayStringMultiValid", async () => {
-    const result = await client.queries.arrayStringMultiValid({
+    await client.queries.arrayStringMultiValid({
+      ...responseStatusChecker,
       arrayQuery: [
         "ArrayQuery1",
         "begin!*'();:@ &=+$,/?#[]end",
@@ -31,7 +30,5 @@ describe("URLMultiCollectionFormat", () => {
         ""
       ]
     });
-
-    assert.strictEqual(result._response.status, 200);
   });
 });

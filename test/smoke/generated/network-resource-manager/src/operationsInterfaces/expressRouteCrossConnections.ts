@@ -8,13 +8,10 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCrossConnection,
-  ExpressRouteCrossConnectionsListNextOptionalParams,
   ExpressRouteCrossConnectionsListOptionalParams,
-  ExpressRouteCrossConnectionsListByResourceGroupNextOptionalParams,
   ExpressRouteCrossConnectionsListByResourceGroupOptionalParams,
   ExpressRouteCrossConnectionsGetOptionalParams,
   ExpressRouteCrossConnectionsGetResponse,

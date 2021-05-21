@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import { UrlClient, UriColor } from "./generated/url/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("Integration tests for Url", () => {
   let client: UrlClient;
@@ -7,7 +8,8 @@ describe("Integration tests for Url", () => {
   beforeEach(() => {
     const clientOptions = {
       noRetryPolicy: true,
-      endpoint: "http://localhost:3000"
+      endpoint: "http://localhost:3000",
+      allowInsecureConnection: true
     };
     client = new UrlClient("globalStringPath", clientOptions);
   });
@@ -37,18 +39,15 @@ describe("Integration tests for Url", () => {
     });
 
     it("should work when path has string unicode", async () => {
-      const result = await client.paths.stringUnicode();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.stringUnicode(responseStatusChecker);
     });
 
     it("should work when path has string URL Encoded", async () => {
-      const result = await client.paths.stringUrlEncoded();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.stringUrlEncoded(responseStatusChecker);
     });
 
     it("should work when path has string URL NOT Encoded", async () => {
-      const result = await client.paths.stringUrlNonEncoded();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.stringUrlNonEncoded(responseStatusChecker);
     });
 
     it("should work when path has base64url encoded string", async () => {
@@ -189,22 +188,23 @@ describe("Integration tests for Url", () => {
   });
   describe("queries", () => {
     it("should work when query has bool", async function() {
-      const result = await client.queries.arrayStringNoCollectionFormatEmpty({
+      await client.queries.arrayStringNoCollectionFormatEmpty({
+        ...responseStatusChecker,
         arrayQuery: ["hello", "nihao", "bonjour"]
       });
-      assert.equal(result._response.status, 200);
     });
 
     it("should work when query has double values", async function() {
-      const resultNegative = await client.queries.doubleDecimalNegative();
-      const resultPositive = await client.queries.doubleDecimalPositive();
-      assert.deepStrictEqual(resultNegative._response.status, 200);
-      assert.deepStrictEqual(resultPositive._response.status, 200);
+      const resultNegative = await client.queries.doubleDecimalNegative(
+        responseStatusChecker
+      );
+      const resultPositive = await client.queries.doubleDecimalPositive(
+        responseStatusChecker
+      );
     });
 
     it("should work when query has date values", async function() {
-      const result = await client.queries.dateValid();
-      assert.deepStrictEqual(result._response.status, 200);
+      await client.queries.dateValid(responseStatusChecker);
     });
 
     it("should work when query has bool", async function() {
@@ -259,8 +259,7 @@ describe("Integration tests for Url", () => {
     });
 
     it("should work when query has stringUnicode", async function() {
-      const result = await client.queries.stringUnicode();
-      assert.strictEqual(result._response.status, 200);
+      await client.queries.stringUnicode(responseStatusChecker);
     });
 
     it("should work when query has string array values", async function() {
@@ -289,18 +288,15 @@ describe("Integration tests for Url", () => {
     });
 
     it("should work when path has valid date", async function() {
-      const result = await client.paths.dateValid();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.dateValid(responseStatusChecker);
     });
 
     it("should work when path has doubleDecimalPositive", async function() {
-      const result = await client.paths.doubleDecimalPositive();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.doubleDecimalPositive(responseStatusChecker);
     });
 
     it("should work when path has doubleDecimalNegative", async function() {
-      const result = await client.paths.doubleDecimalNegative();
-      assert.strictEqual(result._response.status, 200);
+      await client.paths.doubleDecimalNegative(responseStatusChecker);
     });
 
     it("should work when use null values in url query", async function() {

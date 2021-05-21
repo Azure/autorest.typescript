@@ -12,12 +12,9 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationGateway,
-  ApplicationGatewaysListNextOptionalParams,
   ApplicationGatewaysListOptionalParams,
-  ApplicationGatewaysListAllNextOptionalParams,
   ApplicationGatewaysListAllOptionalParams,
   ApplicationGatewaySslPredefinedPolicy,
-  ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOptionalParams,
   ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams,
   ApplicationGatewaysDeleteOptionalParams,
   ApplicationGatewaysGetOptionalParams,

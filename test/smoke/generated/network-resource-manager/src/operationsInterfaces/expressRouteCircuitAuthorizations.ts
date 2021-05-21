@@ -12,7 +12,6 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitAuthorization,
-  ExpressRouteCircuitAuthorizationsListNextOptionalParams,
   ExpressRouteCircuitAuthorizationsListOptionalParams,
   ExpressRouteCircuitAuthorizationsDeleteOptionalParams,
   ExpressRouteCircuitAuthorizationsGetOptionalParams,

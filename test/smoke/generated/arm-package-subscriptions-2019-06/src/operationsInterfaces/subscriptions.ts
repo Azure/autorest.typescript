@@ -8,12 +8,10 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Location,
   SubscriptionsListLocationsOptionalParams,
   Subscription,
-  SubscriptionsListNextOptionalParams,
   SubscriptionsListOptionalParams,
   SubscriptionsGetOptionalParams,
   SubscriptionsGetResponse

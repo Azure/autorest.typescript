@@ -12,9 +12,7 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WebApplicationFirewallPolicy,
-  WebApplicationFirewallPoliciesListNextOptionalParams,
   WebApplicationFirewallPoliciesListOptionalParams,
-  WebApplicationFirewallPoliciesListAllNextOptionalParams,
   WebApplicationFirewallPoliciesListAllOptionalParams,
   WebApplicationFirewallPoliciesGetOptionalParams,
   WebApplicationFirewallPoliciesGetResponse,

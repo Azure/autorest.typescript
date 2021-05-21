@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { BodyTimeClient, TimeGetResponse } from "./generated/bodyTime/src";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 /**
  * Returns an interface that omits the _response field.
@@ -12,14 +13,13 @@ describe("BodyTimeClient", () => {
   let client: BodyTimeClient;
 
   beforeEach(() => {
-    client = new BodyTimeClient();
+    client = new BodyTimeClient({ allowInsecureConnection: true });
   });
 
   describe("#get", () => {
     it("returns time as a string", async () => {
-      const result = await client.time.get();
+      const result = await client.time.get(responseStatusChecker);
 
-      assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<TimeGetResponse>, {
         body: "11:34:56"
       });
@@ -28,9 +28,7 @@ describe("BodyTimeClient", () => {
 
   describe("#put", () => {
     it("puts time as a string", async () => {
-      const result = await client.time.put("08:07:56");
-
-      assert.equal(result._response.status, 200, "Unexpected status code.");
+      await client.time.put("08:07:56", responseStatusChecker);
     });
   });
 });

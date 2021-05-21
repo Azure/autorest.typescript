@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 
 export interface ErrorModel {
   status?: number;
@@ -52,169 +53,169 @@ export interface ArrayOptionalWrapper {
 
 /** Optional parameters. */
 export interface ImplicitGetRequiredPathOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ImplicitPutOptionalQueryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   queryParameter?: string;
 }
 
 /** Optional parameters. */
 export interface ImplicitPutOptionalHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   queryParameter?: string;
 }
 
 /** Optional parameters. */
 export interface ImplicitPutOptionalBodyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: string;
 }
 
 /** Optional parameters. */
 export interface ImplicitPutOptionalBinaryBodyOptionalParams
-  extends coreHttp.OperationOptions {
-  bodyParameter?: coreHttp.HttpRequestBody;
+  extends coreClient.OperationOptions {
+  bodyParameter?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
 export interface ImplicitGetRequiredGlobalPathOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ImplicitGetRequiredGlobalQueryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ImplicitGetOptionalGlobalQueryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPutOptionalBinaryBodyOptionalParams
-  extends coreHttp.OperationOptions {
-  bodyParameter?: coreHttp.HttpRequestBody;
+  extends coreClient.OperationOptions {
+  bodyParameter?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
 export interface ExplicitPutRequiredBinaryBodyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredIntegerParameterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalIntegerParameterOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: number;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredIntegerPropertyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalIntegerPropertyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: IntOptionalWrapper;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredIntegerHeaderOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalIntegerHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   headerParameter?: number;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredStringParameterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalStringParameterOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: string;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredStringPropertyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalStringPropertyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: StringOptionalWrapper;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredStringHeaderOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalStringHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: string;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredClassParameterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalClassParameterOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: Product;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredClassPropertyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalClassPropertyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: ClassOptionalWrapper;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredArrayParameterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalArrayParameterOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Array of String */
   bodyParameter?: string[];
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredArrayPropertyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalArrayPropertyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   bodyParameter?: ArrayOptionalWrapper;
 }
 
 /** Optional parameters. */
 export interface ExplicitPostRequiredArrayHeaderOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ExplicitPostOptionalArrayHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Array of String */
   headerParameter?: string[];
 }
 
 /** Optional parameters. */
 export interface RequiredOptionalClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** number of items to skip */

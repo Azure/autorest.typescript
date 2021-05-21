@@ -8,12 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
-import {
-  ResourceSku,
-  ResourceSkusListNextOptionalParams,
-  ResourceSkusListOptionalParams
-} from "../models";
+import { ResourceSku, ResourceSkusListOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ResourceSkus. */

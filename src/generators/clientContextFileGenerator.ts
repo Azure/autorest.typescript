@@ -47,15 +47,19 @@ export function generateClientContext(
     }
   );
 
-  writePackageInfo(sourceFile, packageDetails);
+  !optionsBag.useCoreV2 && writePackageInfo(sourceFile, packageDetails);
 
-  const contextClass = buildClass(sourceFile, clientContextClassName);
+  const contextClass = buildClass(
+    sourceFile,
+    clientContextClassName,
+    optionsBag
+  );
 
   if (optionsBag.hideClients) {
     contextClass.addJsDoc({
       tags: [
         {
-          tagName: "hidden"
+          tagName: "internal"
         }
       ]
     });
@@ -76,10 +80,13 @@ export function generateClientContext(
       clientParams,
       clientDetails
     },
-    hasLRO
+    hasLRO,
+    optionsBag
   );
 
-  writeImports(sourceFile, hasLRO, importedModels);
+  const hasCredentials = !!clientDetails.options.addCredentials;
+  writeImports(sourceFile, hasLRO, importedModels, hasCredentials, optionsBag);
+  sourceFile.fixUnusedIdentifiers();
 }
 
 interface WriteConstructorBodyParameters {
@@ -90,12 +97,27 @@ interface WriteConstructorBodyParameters {
 function writeImports(
   sourceFile: SourceFile,
   hasLRO: boolean,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  hasCredentials: boolean,
+  optionsBag: OptionsBag
 ) {
-  sourceFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
+  if (!optionsBag.useCoreV2) {
+    sourceFile.addImportDeclaration({
+      namespaceImport: "coreHttp",
+      moduleSpecifier: "@azure/core-http"
+    });
+  } else {
+    sourceFile.addImportDeclaration({
+      namespaceImport: "coreClient",
+      moduleSpecifier: "@azure/core-client"
+    });
+    if (hasCredentials) {
+      sourceFile.addImportDeclaration({
+        namespaceImport: "coreAuth",
+        moduleSpecifier: "@azure/core-auth"
+      });
+    }
+  }
 
   if (importedModels.size) {
     sourceFile.addImportDeclaration({
@@ -139,7 +161,8 @@ function writeClassProperties(
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
   { clientParams, clientDetails }: WriteConstructorBodyParameters,
-  hasLRO: boolean
+  hasLRO: boolean,
+  optionsBag: OptionsBag
 ) {
   const requiredParams = getRequiredParameters(clientParams);
   const addBlankLine = true;
@@ -151,10 +174,18 @@ function writeConstructorBody(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
         hasLRO,
-        clientDetails
+        clientDetails,
+        optionsBag
       )
-    ),
-    writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
+    )
+  ]);
+
+  !optionsBag.useCoreV2 &&
+    classConstructor.addStatements([
+      writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine)
+    ]);
+
+  classConstructor.addStatements([
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredParams), addBlankLine),
     constantParameters.length
@@ -193,7 +224,8 @@ function getCredentialScopesValue(credentialScopes?: string | string[]) {
 function writeDefaultOptions(
   hasCredentials: boolean,
   hasLRO: boolean,
-  clientDetails: ClientDetails
+  clientDetails: ClientDetails,
+  optionsBag: OptionsBag
 ) {
   const credentialScopes = getCredentialScopesValue(
     clientDetails.options.credentialScopes
@@ -204,7 +236,8 @@ function writeDefaultOptions(
   }`
     : "";
 
-  return `// Initializing default values for options
+  return !optionsBag.useCoreV2
+    ? `// Initializing default values for options
   if (!options) {
      options = {};
    }
@@ -220,13 +253,33 @@ function writeDefaultOptions(
   
   this.requestContentType = "application/json; charset=utf-8";
   
+  `
+    : `// Initializing default values for options
+  if (!options) {
+    options = {};
+  }
+  const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8"
+  };
+  const optionsWithDefaults = {
+    ...defaults,
+    ...options,
+    baseUri: ${getEndpoint(clientDetails.endpoint, optionsBag)}
+  };
+  super(optionsWithDefaults);
   `;
 }
 
-function buildClass(sourceFile: SourceFile, clientContextClassName: string) {
+function buildClass(
+  sourceFile: SourceFile,
+  clientContextClassName: string,
+  optionsBag: OptionsBag
+) {
   return sourceFile.addClass({
     name: clientContextClassName,
-    extends: "coreHttp.ServiceClient",
+    extends: !optionsBag.useCoreV2
+      ? "coreHttp.ServiceClient"
+      : "coreClient.ServiceClient",
     isExported: true
   });
 }
@@ -325,4 +378,8 @@ function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
   return requiredParameters
     .filter(({ name }) => !disallowedClientParameters.includes(name))
     .map(({ name }) => `this.${name} = ${name};`);
+}
+
+function getEndpoint({ endpoint }: EndpointDetails, optionsBag: OptionsBag) {
+  return `options.endpoint ${endpoint ? ` || "${endpoint}"` : ""}`;
 }

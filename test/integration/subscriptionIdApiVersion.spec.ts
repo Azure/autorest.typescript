@@ -9,7 +9,9 @@ describe("Integration tests for SubscriptionId-ApiVersion", () => {
 
   it("should handle a string subscriptionid without failure", async () => {
     const subscriptionId: string = "sampleSubscriptionId";
-    client = new SubscriptionIdApiVersionClient(subscriptionId);
+    client = new SubscriptionIdApiVersionClient(subscriptionId, {
+      allowInsecureConnection: true
+    });
     const result: GroupGetSampleResourceGroupResponse = await client.group.getSampleResourceGroup(
       "testgroup101"
     );

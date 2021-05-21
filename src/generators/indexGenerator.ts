@@ -46,4 +46,6 @@ export function generateIndexFile(
       }
     ]);
   }
+
+  indexFile.fixUnusedIdentifiers();
 }

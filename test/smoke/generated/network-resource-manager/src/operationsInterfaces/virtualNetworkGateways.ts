@@ -12,10 +12,8 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetworkGateway,
-  VirtualNetworkGatewaysListNextOptionalParams,
   VirtualNetworkGatewaysListOptionalParams,
   VirtualNetworkGatewayConnectionListEntity,
-  VirtualNetworkGatewaysListConnectionsNextOptionalParams,
   VirtualNetworkGatewaysListConnectionsOptionalParams,
   VirtualNetworkGatewaysCreateOrUpdateOptionalParams,
   VirtualNetworkGatewaysCreateOrUpdateResponse,

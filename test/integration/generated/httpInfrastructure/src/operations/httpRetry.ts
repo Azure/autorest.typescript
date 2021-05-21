@@ -7,7 +7,7 @@
  */
 
 import { HttpRetry } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
@@ -40,64 +40,32 @@ export class HttpRetryImpl implements HttpRetry {
    * Return 408 status code, then 200 after retry
    * @param options The options parameters.
    */
-  head408(
-    options?: HttpRetryHead408OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      head408OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  head408(options?: HttpRetryHead408OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, head408OperationSpec);
   }
 
   /**
    * Return 500 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put500(
-    options?: HttpRetryPut500OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      put500OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  put500(options?: HttpRetryPut500OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, put500OperationSpec);
   }
 
   /**
    * Return 500 status code, then 200 after retry
    * @param options The options parameters.
    */
-  patch500(
-    options?: HttpRetryPatch500OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      patch500OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  patch500(options?: HttpRetryPatch500OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, patch500OperationSpec);
   }
 
   /**
    * Return 502 status code, then 200 after retry
    * @param options The options parameters.
    */
-  get502(
-    options?: HttpRetryGet502OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      get502OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  get502(options?: HttpRetryGet502OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, get502OperationSpec);
   }
 
   /**
@@ -107,83 +75,51 @@ export class HttpRetryImpl implements HttpRetry {
   options502(
     options?: HttpRetryOptions502OptionalParams
   ): Promise<HttpRetryOptions502Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       options502OperationSpec
-    ) as Promise<HttpRetryOptions502Response>;
+    );
   }
 
   /**
    * Return 503 status code, then 200 after retry
    * @param options The options parameters.
    */
-  post503(
-    options?: HttpRetryPost503OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      post503OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  post503(options?: HttpRetryPost503OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, post503OperationSpec);
   }
 
   /**
    * Return 503 status code, then 200 after retry
    * @param options The options parameters.
    */
-  delete503(
-    options?: HttpRetryDelete503OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  delete503(options?: HttpRetryDelete503OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       delete503OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
    * Return 504 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put504(
-    options?: HttpRetryPut504OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      put504OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  put504(options?: HttpRetryPut504OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, put504OperationSpec);
   }
 
   /**
    * Return 504 status code, then 200 after retry
    * @param options The options parameters.
    */
-  patch504(
-    options?: HttpRetryPatch504OptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      patch504OperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  patch504(options?: HttpRetryPatch504OptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, patch504OperationSpec);
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const head408OperationSpec: coreHttp.OperationSpec = {
+const head408OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/408",
   httpMethod: "HEAD",
   responses: {
@@ -196,7 +132,7 @@ const head408OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const put500OperationSpec: coreHttp.OperationSpec = {
+const put500OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/500",
   httpMethod: "PUT",
   responses: {
@@ -211,7 +147,7 @@ const put500OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const patch500OperationSpec: coreHttp.OperationSpec = {
+const patch500OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/500",
   httpMethod: "PATCH",
   responses: {
@@ -226,7 +162,7 @@ const patch500OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const get502OperationSpec: coreHttp.OperationSpec = {
+const get502OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/502",
   httpMethod: "GET",
   responses: {
@@ -239,7 +175,7 @@ const get502OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const options502OperationSpec: coreHttp.OperationSpec = {
+const options502OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/502",
   httpMethod: "OPTIONS",
   responses: {
@@ -254,7 +190,7 @@ const options502OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const post503OperationSpec: coreHttp.OperationSpec = {
+const post503OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/503",
   httpMethod: "POST",
   responses: {
@@ -269,7 +205,7 @@ const post503OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const delete503OperationSpec: coreHttp.OperationSpec = {
+const delete503OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/503",
   httpMethod: "DELETE",
   responses: {
@@ -284,7 +220,7 @@ const delete503OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put504OperationSpec: coreHttp.OperationSpec = {
+const put504OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/504",
   httpMethod: "PUT",
   responses: {
@@ -299,7 +235,7 @@ const put504OperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const patch504OperationSpec: coreHttp.OperationSpec = {
+const patch504OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/504",
   httpMethod: "PATCH",
   responses: {

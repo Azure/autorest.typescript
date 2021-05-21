@@ -6,13 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { RequiredOptionalClientOptionalParams } from "./models";
 
-const packageName = "required-optional";
-const packageVersion = "1.0.0-preview1";
-
-export class RequiredOptionalClientContext extends coreHttp.ServiceClient {
+export class RequiredOptionalClientContext extends coreClient.ServiceClient {
   $host: string;
   requiredGlobalPath: string;
   requiredGlobalQuery: string;
@@ -40,18 +37,15 @@ export class RequiredOptionalClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
-
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-
-    this.baseUri = options.endpoint || "http://localhost:3000";
-
+    const defaults: RequiredOptionalClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.requiredGlobalPath = requiredGlobalPath;
     this.requiredGlobalQuery = requiredGlobalQuery;

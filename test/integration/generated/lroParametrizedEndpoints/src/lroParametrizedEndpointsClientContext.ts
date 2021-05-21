@@ -33,7 +33,6 @@ export class LroParametrizedEndpointsClientContext extends coreHttp.ServiceClien
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "http://{accountName}{host}";
 
     // Assigning values to Constant parameters

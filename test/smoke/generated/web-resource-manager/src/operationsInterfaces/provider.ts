@@ -8,15 +8,11 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ApplicationStackResource,
-  ProviderGetAvailableStacksNextOptionalParams,
   ProviderGetAvailableStacksOptionalParams,
   CsmOperationDescription,
-  ProviderListOperationsNextOptionalParams,
   ProviderListOperationsOptionalParams,
-  ProviderGetAvailableStacksOnPremNextOptionalParams,
   ProviderGetAvailableStacksOnPremOptionalParams
 } from "../models";
 

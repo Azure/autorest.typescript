@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import {
   PageBlobUploadPagesOptionalParams,
   PageBlobUploadPagesResponse
@@ -14,7 +14,7 @@ export interface PageBlob {
    */
   uploadPages(
     contentLength: number,
-    body: coreHttp.HttpRequestBody,
+    body: coreRestPipeline.RequestBodyType,
     options?: PageBlobUploadPagesOptionalParams
   ): Promise<PageBlobUploadPagesResponse>;
 }

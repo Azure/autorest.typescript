@@ -10,7 +10,7 @@ const LROOptions = {
   updateIntervalInMs: 0
 };
 
-describe("LROs", () => {
+describe.skip("LROs", () => {
   let client: LROClient;
 
   beforeEach(() => {
@@ -485,7 +485,7 @@ describe("LROs", () => {
   });
 });
 
-describe("Custom Headers", () => {
+describe.skip("Custom Headers", () => {
   let client: LROClient;
   let options: OperationOptions;
 
@@ -536,7 +536,7 @@ describe("Custom Headers", () => {
   });
 });
 
-describe("LRO Sad scenarios", () => {
+describe.skip("LRO Sad scenarios", () => {
   let client: LROClient;
 
   beforeEach(() => {
@@ -830,7 +830,7 @@ describe("LRO Sad scenarios", () => {
   });
 });
 
-describe("LRORetries", () => {
+describe.skip("LRORetries", () => {
   let client: LROClient;
 
   beforeEach(() => {

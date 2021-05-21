@@ -1,10 +1,12 @@
 import { BodyBooleanClient } from "./generated/bodyBoolean/src";
 import { expect } from "chai";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+
 describe("Bool Client", function() {
   let testClient: BodyBooleanClient;
 
   beforeEach(() => {
-    testClient = new BodyBooleanClient();
+    testClient = new BodyBooleanClient({ allowInsecureConnection: true });
   });
 
   it("should get true value", async () => {
@@ -18,13 +20,11 @@ describe("Bool Client", function() {
   });
 
   it("should put true value", async () => {
-    const result = await testClient.bool.putTrue();
-    expect(result._response.status).to.equal(200);
+    await testClient.bool.putTrue(responseStatusChecker);
   });
 
   it("should put false value", async () => {
-    const result = await testClient.bool.putFalse();
-    expect(result._response.status).to.equal(200);
+    await testClient.bool.putFalse(responseStatusChecker);
   });
 
   it("should get null boolean value", async () => {

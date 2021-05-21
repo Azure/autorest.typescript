@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const SecretSetParameters: coreHttp.CompositeMapper = {
+export const SecretSetParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretSetParameters",
@@ -36,7 +36,7 @@ export const SecretSetParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const Attributes: coreHttp.CompositeMapper = {
+export const Attributes: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Attributes",
@@ -77,7 +77,7 @@ export const Attributes: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretBundle: coreHttp.CompositeMapper = {
+export const SecretBundle: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretBundle",
@@ -132,7 +132,7 @@ export const SecretBundle: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultError: coreHttp.CompositeMapper = {
+export const KeyVaultError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyVaultError",
@@ -148,7 +148,7 @@ export const KeyVaultError: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -178,7 +178,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretUpdateParameters: coreHttp.CompositeMapper = {
+export const SecretUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretUpdateParameters",
@@ -207,7 +207,7 @@ export const SecretUpdateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretListResult: coreHttp.CompositeMapper = {
+export const SecretListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretListResult",
@@ -236,7 +236,7 @@ export const SecretListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretItem: coreHttp.CompositeMapper = {
+export const SecretItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretItem",
@@ -278,7 +278,7 @@ export const SecretItem: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedSecretListResult: coreHttp.CompositeMapper = {
+export const DeletedSecretListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeletedSecretListResult",
@@ -307,7 +307,7 @@ export const DeletedSecretListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupSecretResult: coreHttp.CompositeMapper = {
+export const BackupSecretResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BackupSecretResult",
@@ -323,7 +323,7 @@ export const BackupSecretResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretRestoreParameters: coreHttp.CompositeMapper = {
+export const SecretRestoreParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretRestoreParameters",
@@ -339,7 +339,7 @@ export const SecretRestoreParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretProperties: coreHttp.CompositeMapper = {
+export const SecretProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretProperties",
@@ -354,7 +354,7 @@ export const SecretProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SecretAttributes: coreHttp.CompositeMapper = {
+export const SecretAttributes: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SecretAttributes",
@@ -378,7 +378,7 @@ export const SecretAttributes: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedSecretBundle: coreHttp.CompositeMapper = {
+export const DeletedSecretBundle: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeletedSecretBundle",
@@ -408,7 +408,7 @@ export const DeletedSecretBundle: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedSecretItem: coreHttp.CompositeMapper = {
+export const DeletedSecretItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeletedSecretItem",

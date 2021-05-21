@@ -23,7 +23,7 @@ describe("BodyFile Client", () => {
   let client: BodyFileClient;
 
   beforeEach("create client", () => {
-    client = new BodyFileClient();
+    client = new BodyFileClient({ allowInsecureConnection: true });
   });
 
   if (isNode) {

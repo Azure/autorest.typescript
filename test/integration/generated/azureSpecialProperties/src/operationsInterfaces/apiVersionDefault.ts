@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
@@ -22,26 +21,26 @@ export interface ApiVersionDefault {
    */
   getMethodGlobalValid(
     options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getMethodGlobalNotProvidedValid(
     options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getPathGlobalValid(
     options?: ApiVersionDefaultGetPathGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getSwaggerGlobalValid(
     options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

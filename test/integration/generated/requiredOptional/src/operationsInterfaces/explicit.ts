@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
@@ -47,16 +47,16 @@ export interface Explicit {
    */
   putOptionalBinaryBody(
     options?: ExplicitPutOptionalBinaryBodyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required body parameter
    * @param bodyParameter
    * @param options The options parameters.
    */
   putRequiredBinaryBody(
-    bodyParameter: coreHttp.HttpRequestBody,
+    bodyParameter: coreRestPipeline.RequestBodyType,
     options?: ExplicitPutRequiredBinaryBodyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required integer. Please put null and the client library should throw before the
    * request is sent.
@@ -66,14 +66,14 @@ export interface Explicit {
   postRequiredIntegerParameter(
     bodyParameter: number,
     options?: ExplicitPostRequiredIntegerParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put null.
    * @param options The options parameters.
    */
   postOptionalIntegerParameter(
     options?: ExplicitPostOptionalIntegerParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client
    * library should throw before the request is sent.
@@ -83,14 +83,14 @@ export interface Explicit {
   postRequiredIntegerProperty(
     bodyParameter: IntWrapper,
     options?: ExplicitPostRequiredIntegerPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalIntegerProperty(
     options?: ExplicitPostOptionalIntegerPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
@@ -100,14 +100,14 @@ export interface Explicit {
   postRequiredIntegerHeader(
     headerParameter: number,
     options?: ExplicitPostRequiredIntegerHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalIntegerHeader(
     options?: ExplicitPostOptionalIntegerHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required string. Please put null and the client library should throw before the
    * request is sent.
@@ -117,14 +117,14 @@ export interface Explicit {
   postRequiredStringParameter(
     bodyParameter: string,
     options?: ExplicitPostRequiredStringParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional string. Please put null.
    * @param options The options parameters.
    */
   postOptionalStringParameter(
     options?: ExplicitPostOptionalStringParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
    * client library should throw before the request is sent.
@@ -134,14 +134,14 @@ export interface Explicit {
   postRequiredStringProperty(
     bodyParameter: StringWrapper,
     options?: ExplicitPostRequiredStringPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalStringProperty(
     options?: ExplicitPostOptionalStringPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required string. Please put a header 'headerParameter' => null and the client
    * library should throw before the request is sent.
@@ -151,14 +151,14 @@ export interface Explicit {
   postRequiredStringHeader(
     headerParameter: string,
     options?: ExplicitPostRequiredStringHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional string. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalStringHeader(
     options?: ExplicitPostOptionalStringHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required complex object. Please put null and the client library should throw before
    * the request is sent.
@@ -168,14 +168,14 @@ export interface Explicit {
   postRequiredClassParameter(
     bodyParameter: Product,
     options?: ExplicitPostRequiredClassParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional complex object. Please put null.
    * @param options The options parameters.
    */
   postOptionalClassParameter(
     options?: ExplicitPostOptionalClassParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and
    * the client library should throw before the request is sent.
@@ -185,14 +185,14 @@ export interface Explicit {
   postRequiredClassProperty(
     bodyParameter: ClassWrapper,
     options?: ExplicitPostRequiredClassPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalClassProperty(
     options?: ExplicitPostOptionalClassPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required array. Please put null and the client library should throw before the
    * request is sent.
@@ -202,14 +202,14 @@ export interface Explicit {
   postRequiredArrayParameter(
     bodyParameter: string[],
     options?: ExplicitPostRequiredArrayParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional array. Please put null.
    * @param options The options parameters.
    */
   postOptionalArrayParameter(
     options?: ExplicitPostOptionalArrayParameterOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client
    * library should throw before the request is sent.
@@ -219,14 +219,14 @@ export interface Explicit {
   postRequiredArrayProperty(
     bodyParameter: ArrayWrapper,
     options?: ExplicitPostRequiredArrayPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalArrayProperty(
     options?: ExplicitPostOptionalArrayPropertyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly required array. Please put a header 'headerParameter' => null and the client library
    * should throw before the request is sent.
@@ -236,12 +236,12 @@ export interface Explicit {
   postRequiredArrayHeader(
     headerParameter: string[],
     options?: ExplicitPostRequiredArrayHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalArrayHeader(
     options?: ExplicitPostOptionalArrayHeaderOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

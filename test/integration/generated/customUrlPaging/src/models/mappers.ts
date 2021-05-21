@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ProductResult: coreHttp.CompositeMapper = {
+export const ProductResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductResult",
@@ -35,7 +35,7 @@ export const ProductResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Product: coreHttp.CompositeMapper = {
+export const Product: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Product",
@@ -51,7 +51,7 @@ export const Product: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductProperties: coreHttp.CompositeMapper = {
+export const ProductProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductProperties",
@@ -72,7 +72,7 @@ export const ProductProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",

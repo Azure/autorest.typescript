@@ -12,12 +12,9 @@ import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualNetwork,
-  VirtualNetworksListAllNextOptionalParams,
   VirtualNetworksListAllOptionalParams,
-  VirtualNetworksListNextOptionalParams,
   VirtualNetworksListOptionalParams,
   VirtualNetworkUsage,
-  VirtualNetworksListUsageNextOptionalParams,
   VirtualNetworksListUsageOptionalParams,
   VirtualNetworksDeleteOptionalParams,
   VirtualNetworksGetOptionalParams,

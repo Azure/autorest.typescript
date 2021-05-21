@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
@@ -38,7 +37,7 @@ export interface Enum {
   putNotExpandable(
     stringBody: Colors,
     options?: EnumPutNotExpandableOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    * @param options The options parameters.
@@ -54,7 +53,7 @@ export interface Enum {
   putReferenced(
     enumStringBody: Colors,
     options?: EnumPutReferencedOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get value 'green-color' from the constant.
    * @param options The options parameters.
@@ -70,5 +69,5 @@ export interface Enum {
   putReferencedConstant(
     enumStringBody: RefColorConstant,
     options?: EnumPutReferencedConstantOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

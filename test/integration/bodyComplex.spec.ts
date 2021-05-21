@@ -13,11 +13,12 @@ import {
   GoblinSharkColor,
   DotSalmon
 } from "./generated/bodyComplex/src";
-import { nameof } from "@azure-tools/codegen";
-import { RequestPolicyFactory } from "@azure/core-http";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
+import { PipelinePolicy } from "@azure/core-rest-pipeline";
 
 const clientOptions = {
-  endpoint: "http://localhost:3000"
+  endpoint: "http://localhost:3000",
+  allowInsecureConnection: true
 };
 
 [BodyComplexWithTracing, BodyComplexClient].forEach(Client => {
@@ -34,13 +35,14 @@ const clientOptions = {
           assert.strictEqual(result.name, "abc");
           assert.strictEqual(result.color, "YELLOW");
 
-          const putResult = await testClient.basic.putValid({
-            id: 2,
-            name: "abc",
-            color: "Magenta"
-          });
-
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.basic.putValid(
+            {
+              id: 2,
+              name: "abc",
+              color: "Magenta"
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get null basic type properties", async function() {
@@ -74,11 +76,13 @@ const clientOptions = {
         });
 
         it("should handle getComplexPolymorphismDotSyntax", async () => {
-          const result = await testClient.primitive.putDouble({
-            field1: 3e-100,
-            field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: -5e-57
-          });
-          assert.strictEqual(result._response.status, 200);
+          await testClient.primitive.putDouble(
+            {
+              field1: 3e-100,
+              field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: -5e-57
+            },
+            responseStatusChecker
+          );
         });
 
         it("should handle getComplexPolymorphismDotSyntax", async () => {
@@ -95,11 +99,13 @@ const clientOptions = {
           assert.strictEqual(result.field1, -1);
           assert.strictEqual(result.field2, 2);
 
-          const putResult = await testClient.primitive.putInt({
-            field1: -1,
-            field2: 2
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putInt(
+            {
+              field1: -1,
+              field2: 2
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid long properties", async () => {
@@ -107,11 +113,13 @@ const clientOptions = {
           assert.strictEqual(result.field1, 1099511627775);
           assert.strictEqual(result.field2, -999511627788);
 
-          const putResult = await testClient.primitive.putLong({
-            field1: 1099511627775,
-            field2: -999511627788
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putLong(
+            {
+              field1: 1099511627775,
+              field2: -999511627788
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid float properties", async () => {
@@ -119,11 +127,13 @@ const clientOptions = {
           assert.strictEqual(result.field1, 1.05);
           assert.strictEqual(result.field2, -0.003);
 
-          const putResult = await testClient.primitive.putFloat({
-            field1: 1.05,
-            field2: -0.003
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putFloat(
+            {
+              field1: 1.05,
+              field2: -0.003
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid bool properties", async () => {
@@ -131,11 +141,13 @@ const clientOptions = {
           assert.strictEqual(result.fieldTrue, true);
           assert.strictEqual(result.fieldFalse, false);
 
-          const putResult = await testClient.primitive.putBool({
-            fieldTrue: true,
-            fieldFalse: false
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putBool(
+            {
+              fieldTrue: true,
+              fieldFalse: false
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid string properties", async () => {
@@ -144,11 +156,13 @@ const clientOptions = {
           assert.strictEqual(result.empty, "");
           assert.strictEqual((result as any)["nullProperty"], undefined);
 
-          const putResult = await testClient.primitive.putString({
-            field: "goodrequest",
-            empty: ""
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putString(
+            {
+              field: "goodrequest",
+              empty: ""
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid date properties", async () => {
@@ -161,8 +175,10 @@ const clientOptions = {
             leap: new Date("2016-02-29")
           };
 
-          const putResult = await testClient.primitive.putDate(complexBody);
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putDate(
+            complexBody,
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid date-time properties", async () => {
@@ -170,11 +186,13 @@ const clientOptions = {
           assert.deepEqual(result.field, new Date("0001-01-01T00:00:00Z"));
           assert.deepEqual(result.now, new Date("2015-05-18T18:38:00Z"));
 
-          const putResult = await testClient.primitive.putDateTime({
-            field: new Date("0001-01-01T00:00:00Z"),
-            now: new Date("2015-05-18T18:38:00Z")
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putDateTime(
+            {
+              field: new Date("0001-01-01T00:00:00Z"),
+              now: new Date("2015-05-18T18:38:00Z")
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid date-time-rfc1123 properties", async () => {
@@ -187,12 +205,13 @@ const clientOptions = {
 
           const dateFormat = "ddd, DD MMM YYYY HH:mm:ss";
           const fieldDate = moment.utc(timeStringOne, dateFormat).toDate();
-          const putResult = await testClient.primitive.putDateTimeRfc1123({
-            field: fieldDate,
-            now: new Date(timeStringTwo)
-          });
-
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putDateTimeRfc1123(
+            {
+              field: fieldDate,
+              now: new Date(timeStringTwo)
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid duration properties", async function() {
@@ -200,10 +219,12 @@ const clientOptions = {
           const result = await testClient.primitive.getDuration();
           assert.strictEqual(result.field, durationString);
 
-          const putResult = await testClient.primitive.putDuration({
-            field: durationString
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putDuration(
+            {
+              field: durationString
+            },
+            responseStatusChecker
+          );
         });
 
         it("should get and put valid byte properties", async () => {
@@ -225,10 +246,12 @@ const clientOptions = {
             [].slice.apply(byteBuffer)
           );
 
-          const putResult = await testClient.primitive.putByte({
-            field: byteBuffer
-          });
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.primitive.putByte(
+            {
+              field: byteBuffer
+            },
+            responseStatusChecker
+          );
         });
       });
 
@@ -249,8 +272,7 @@ const clientOptions = {
           const result = await testClient.array.getValid();
           assert.deepEqual(result.array, testArray);
 
-          const putResult = await testClient.array.putValid(wrapper);
-          assert.strictEqual(putResult._response.status, 200);
+          await testClient.array.putValid(wrapper, responseStatusChecker);
         });
 
         it("should get and put empty array type properties", async () => {
@@ -326,10 +348,7 @@ const clientOptions = {
         });
 
         it("should get valid basic type properties", async () => {
-          const {
-            _response,
-            ...result
-          } = await testClient.inheritance.getValid();
+          const result = await testClient.inheritance.getValid();
           assert.deepEqual(result, siamese);
           await testClient.inheritance.putValid(siamese);
           assert.ok("putValid succeeded");
@@ -485,10 +504,7 @@ const clientOptions = {
         });
 
         it("should get valid polymorphic properties", async function() {
-          const {
-            _response,
-            ...getResult
-          } = await testClient.polymorphism.getValid();
+          const getResult = await testClient.polymorphism.getValid();
           const actualBytes = (getResult.siblings![1] as Sawshark)!.picture;
           assert.strictEqual(!!actualBytes, true);
           assert.strictEqual(actualBytes!.length, 5);
@@ -736,67 +752,37 @@ const clientOptions = {
 });
 
 describe("Validate pipelines", () => {
-  let customPolicy: RequestPolicyFactory;
+  let customPolicy: PipelinePolicy;
   let calledCustomPolicy: boolean;
 
   beforeEach(() => {
     calledCustomPolicy = false;
     customPolicy = {
-      create: next => ({
-        sendRequest: req => {
-          calledCustomPolicy = true;
-          return next.sendRequest(req);
-        }
-      })
+      sendRequest: (req, next) => {
+        calledCustomPolicy = true;
+        return next(req);
+      },
+      name: "test"
     };
   });
 
   it("should execute custom pipeline when passed in a factory array", async () => {
-    const client = new BodyComplexClient({
-      endpoint: "http://localhost:3000",
-      requestPolicyFactories: [customPolicy]
+    const client = new BodyComplexClient({ allowInsecureConnection: true });
+    client.pipeline.addPolicy(customPolicy);
+    const result = await client.basic.getValid({
+      onResponse: rawResponse => {
+        // Verify that a default policy was executed
+        assert.isTrue(
+          rawResponse.request.headers.has("x-ms-client-request-id")
+        );
+      }
     });
-    const result = await client.basic.getValid();
 
-    // Valiedate Operation
-    // Verify that the operation works as expected
-    // since the custom pipeline was passed as an array
-    // and deserialize was not included in the array the result
-    // will be in _response.parsedBody
-    assert.deepStrictEqual(JSON.parse(result._response.bodyAsText), {
-      id: 2,
-      name: "abc",
-      color: "YELLOW"
-    });
+    assert.deepEqual(result.id, 2);
+    assert.deepEqual(result.name, "abc");
+    assert.deepEqual(result.color, "YELLOW");
 
     // Verify that a custom policy was executed
     assert.isTrue(calledCustomPolicy);
-
-    // Verify that a default policy was executed
-    assert.isDefined(
-      result._response.request.headers.contains("x-ms-client-request-id")
-    );
-  });
-
-  it("should execute custom pipeline when passed in a factory function", async () => {
-    const client = new BodyComplexClient({
-      endpoint: "http://localhost:3000",
-      requestPolicyFactories: defaultPolicies => [
-        customPolicy,
-        ...defaultPolicies
-      ]
-    });
-    const { _response, ...result } = await client.basic.getValid();
-
-    // Valiedate Operation
-    assert.deepStrictEqual(result, { id: 2, name: "abc", color: "YELLOW" });
-
-    // Verify that a custom policy was executed
-    assert.isTrue(calledCustomPolicy);
-
-    // Verify that a default policy was executed
-    assert.isDefined(
-      _response.request.headers.contains("x-ms-client-request-id")
-    );
   });
 });

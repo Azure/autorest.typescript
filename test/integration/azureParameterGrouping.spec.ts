@@ -1,5 +1,5 @@
 import { AzureParameterGroupingClient } from "./generated/azureParameterGrouping/src";
-import { assert } from "chai";
+import { responseStatusChecker } from "../utils/responseStatusChecker";
 
 describe("AzureParameterGrouping", () => {
   let client: AzureParameterGroupingClient;
@@ -9,41 +9,46 @@ describe("AzureParameterGrouping", () => {
   const path = "path";
 
   beforeEach(() => {
-    client = new AzureParameterGroupingClient();
+    client = new AzureParameterGroupingClient({
+      allowInsecureConnection: true
+    });
   });
 
   it("should post optional", async () => {
     const options = {
+      ...responseStatusChecker,
       parameterGroupingPostOptionalParameters: {
         query: query,
         customHeader: header
       }
     };
-    const result = await client.parameterGrouping.postOptional(options);
-    assert.equal(result._response.status, 200);
+    await client.parameterGrouping.postOptional(options);
   });
 
   it("should accept empty optional parameters", async () => {
-    const result = await client.parameterGrouping.postOptional();
-    assert.equal(result._response.status, 200);
+    await client.parameterGrouping.postOptional(responseStatusChecker);
   });
 
   it("should post required", async () => {
-    const result = await client.parameterGrouping.postRequired({
-      body: body,
-      customHeader: header,
-      query: query,
-      path: path
-    });
-    assert.equal(result._response.status, 200);
+    await client.parameterGrouping.postRequired(
+      {
+        body: body,
+        customHeader: header,
+        query: query,
+        path: path
+      },
+      responseStatusChecker
+    );
   });
 
   it("should post required with only required parameters", async () => {
-    const result = await client.parameterGrouping.postRequired({
-      body: body,
-      path: path
-    });
-    assert.equal(result._response.status, 200);
+    await client.parameterGrouping.postRequired(
+      {
+        body: body,
+        path: path
+      },
+      responseStatusChecker
+    );
   });
 
   it("should allow multiple parameter groups", async () => {
@@ -53,12 +58,11 @@ describe("AzureParameterGrouping", () => {
       queryTwo: 42
     };
 
-    const result = await client.parameterGrouping.postMultiParamGroups({
+    await client.parameterGrouping.postMultiParamGroups({
+      ...responseStatusChecker,
       firstParameterGroup,
       parameterGroupingPostMultiParamGroupsSecondParamGroup
     });
-
-    assert.equal(result._response.status, 200);
   });
 
   it("should allow multiple parameter groups with some defaults omitted", async () => {
@@ -67,18 +71,17 @@ describe("AzureParameterGrouping", () => {
       queryTwo: 42
     };
 
-    const result = await client.parameterGrouping.postMultiParamGroups({
+    await client.parameterGrouping.postMultiParamGroups({
+      ...responseStatusChecker,
       firstParameterGroup,
       parameterGroupingPostMultiParamGroupsSecondParamGroup
     });
-
-    assert.equal(result._response.status, 200);
   });
 
   it("should allow parameter group objects to be shared between operations", async function() {
-    const result = await client.parameterGrouping.postSharedParameterGroupObject(
-      { firstParameterGroup: { headerOne: header, queryOne: 42 } }
-    );
-    assert.equal(result._response.status, 200);
+    await client.parameterGrouping.postSharedParameterGroupObject({
+      ...responseStatusChecker,
+      firstParameterGroup: { headerOne: header, queryOne: 42 }
+    });
   });
 });

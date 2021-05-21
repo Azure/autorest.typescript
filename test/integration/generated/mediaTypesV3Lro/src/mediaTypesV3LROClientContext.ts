@@ -38,9 +38,7 @@ export class MediaTypesV3LROClientContext extends coreHttp.ServiceClient {
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-
     this.baseUri = options.endpoint || "{$host}";
-
     // Parameter assignments
     this.$host = $host;
   }

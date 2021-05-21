@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -15,28 +15,17 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface ReportClientGetReportOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports. */
   qualifier?: string;
 }
 
 /** Contains response data for the getReport operation. */
-export type ReportClientGetReportResponse = {
-  [propertyName: string]: number;
-} & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: { [propertyName: string]: number };
-  };
-};
+export type ReportClientGetReportResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
 export interface ReportClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

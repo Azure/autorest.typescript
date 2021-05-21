@@ -28,6 +28,7 @@ import {
   writeAsyncIterators
 } from "./utils/pagingOperations";
 import { calculateMethodName } from "./utils/operationsUtils";
+import { OptionsBag } from "../utils/optionsBag";
 
 /**
  * Function that writes the code for all the operations.
@@ -40,7 +41,8 @@ import { calculateMethodName } from "./utils/operationsUtils";
  */
 export function generateOperationsInterfaces(
   clientDetails: ClientDetails,
-  project: Project
+  project: Project,
+  optionsBag: OptionsBag
 ): void {
   let fileNames: string[] = [];
 
@@ -51,7 +53,7 @@ export function generateOperationsInterfaces(
 
   operationGroups.forEach(operationDetails => {
     fileNames.push(normalizeName(operationDetails.name, NameType.File));
-    generateOperation(operationDetails, clientDetails, project);
+    generateOperation(operationDetails, clientDetails, project, optionsBag);
   });
 
   if (operationGroups.length) {
@@ -77,7 +79,8 @@ export function generateOperationsInterfaces(
 function generateOperation(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
-  project: Project
+  project: Project,
+  optionsBag: OptionsBag
 ): void {
   const name = normalizeName(operationGroupDetails.name, NameType.File);
   const operationInterfaceGroupFile = project.createSourceFile(
@@ -86,23 +89,34 @@ function generateOperation(
     { overwrite: true }
   );
 
-  addImports(operationGroupDetails, operationInterfaceGroupFile, clientDetails);
+  addImports(
+    operationGroupDetails,
+    operationInterfaceGroupFile,
+    clientDetails,
+    optionsBag
+  );
+
   addInterface(
     operationInterfaceGroupFile,
     operationGroupDetails,
-    clientDetails
+    clientDetails,
+    optionsBag
   );
+
+  operationInterfaceGroupFile.fixUnusedIdentifiers();
 }
 
 function getReturnType(
   operation: OperationDetails,
   importedModels: Set<string>,
-  modelNames: Set<string>
+  modelNames: Set<string>,
+  optionsBag: OptionsBag
 ) {
   const responseName = getOperationResponseType(
     operation,
     importedModels,
-    modelNames
+    modelNames,
+    optionsBag
   );
 
   return operation.isLRO
@@ -116,7 +130,8 @@ function getReturnType(
 function addInterface(
   operationGroupFile: SourceFile,
   operationGroupDetails: OperationGroupDetails,
-  clientDetails: ClientDetails
+  clientDetails: ClientDetails,
+  optionsBag: OptionsBag
 ) {
   let importedModels = new Set<string>();
 
@@ -139,7 +154,8 @@ function addInterface(
     operationGroupClass,
     importedModels,
     allModelsNames,
-    clientDetails
+    clientDetails,
+    optionsBag
   );
 
   // Use named import from Models
@@ -167,14 +183,16 @@ export function writeOperations(
   operationGroupInterface: InterfaceDeclaration,
   importedModels: Set<string>,
   modelNames: Set<string>,
-  clientDetails: ClientDetails
+  clientDetails: ClientDetails,
+  optionsBag: OptionsBag
 ) {
   preparePageableOperations(operationGroupDetails, clientDetails);
   writeAsyncIterators(
     operationGroupDetails,
     clientDetails,
     operationGroupInterface,
-    importedModels
+    importedModels,
+    optionsBag
   );
   operationGroupDetails.operations.forEach(operation => {
     if (operation.scope !== Scope.Private) {
@@ -182,9 +200,15 @@ export function writeOperations(
         operation,
         clientDetails.parameters,
         importedModels,
-        operationGroupInterface
+        operationGroupInterface,
+        optionsBag
       );
-      const returnType = getReturnType(operation, importedModels, modelNames);
+      const returnType = getReturnType(
+        operation,
+        importedModels,
+        modelNames,
+        optionsBag
+      );
       const name = `${operation.namePrefix || ""}${normalizeName(
         operation.name,
         NameType.Property
@@ -205,7 +229,8 @@ export function writeOperations(
         const responseName = getOperationResponseType(
           operation,
           importedModels,
-          modelNames
+          modelNames,
+          optionsBag
         );
         const methodName = calculateMethodName(operation);
         operationGroupInterface.addMethod({
@@ -227,7 +252,8 @@ export function writeOperations(
 function addImports(
   operationGroupDetails: OperationGroupDetails,
   operationGroupFile: SourceFile,
-  clientDetails: ClientDetails
+  clientDetails: ClientDetails,
+  optionsBag: OptionsBag
 ) {
   addPagingEsNextRef(
     operationGroupDetails.operations,
@@ -241,10 +267,21 @@ function addImports(
     operationGroupFile
   );
 
-  operationGroupFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
+  if (!optionsBag.useCoreV2) {
+    operationGroupFile.addImportDeclaration({
+      namespaceImport: "coreHttp",
+      moduleSpecifier: "@azure/core-http"
+    });
+  } else {
+    operationGroupFile.addImportDeclaration({
+      namespaceImport: "coreClient",
+      moduleSpecifier: "@azure/core-client"
+    });
+    operationGroupFile.addImportDeclaration({
+      namespaceImport: "coreRestPipeline",
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
+  }
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({

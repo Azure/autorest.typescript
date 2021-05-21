@@ -6,8 +6,10 @@ describe("Integration tests for Report", () => {
   let azureReportClient: AzureReportClient;
 
   beforeEach(() => {
-    reportClient = new ReportClient();
-    azureReportClient = new AzureReportClient();
+    reportClient = new ReportClient({ allowInsecureConnection: true });
+    azureReportClient = new AzureReportClient({
+      allowInsecureConnection: true
+    });
   });
 
   describe("#Test Coverage", () => {

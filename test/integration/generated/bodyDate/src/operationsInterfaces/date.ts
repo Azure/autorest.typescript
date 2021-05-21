@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   DateGetNullOptionalParams,
   DateGetNullResponse,
@@ -60,7 +59,7 @@ export interface DateOperations {
   putMaxDate(
     dateBody: Date,
     options?: DatePutMaxDateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get max date value 9999-12-31
    * @param options The options parameters.
@@ -76,7 +75,7 @@ export interface DateOperations {
   putMinDate(
     dateBody: Date,
     options?: DatePutMinDateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get min date value 0000-01-01
    * @param options The options parameters.

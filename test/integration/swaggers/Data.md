@@ -6,7 +6,7 @@
 
 ```yaml
 package-name: "@azure/search-documents"
-generate-metadata: false
+generate-metadata: true
 license-header: MICROSOFT_MIT_NO_VERSION
 input-file: ./searchindex.json
 add-credentials: false

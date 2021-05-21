@@ -25,6 +25,7 @@ import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
 import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
+import { OptionsBag } from "../utils/optionsBag";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -78,7 +79,8 @@ export function transformChoice(
 
 export async function transformCodeModel(
   codeModel: CodeModel,
-  host: Host
+  host: Host,
+  optionsBag: OptionsBag
 ): Promise<ClientDetails> {
   const { name: clientName } = getLanguageMetadata(codeModel.language);
   const className = normalizeName(
@@ -91,7 +93,7 @@ export async function transformCodeModel(
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([
-    getUberParents(codeModel),
+    getUberParents(codeModel, optionsBag),
 
     transformOperationGroups(codeModel)
   ]);
@@ -106,12 +108,12 @@ export async function transformCodeModel(
     parameters,
     baseUrl
   ] = await Promise.all([
-    transformObjects(codeModel, uberParents),
-    transformGroups(codeModel),
+    transformObjects(codeModel, uberParents, optionsBag),
+    transformGroups(codeModel, optionsBag),
     transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel),
-    transformParameters(codeModel, options),
-    transformBaseUrl(codeModel)
+    transformParameters(codeModel, options, optionsBag),
+    transformBaseUrl(codeModel, optionsBag)
   ]);
 
   return {
@@ -134,7 +136,10 @@ export async function transformCodeModel(
  * An UberParent is an object schema that has no parents but is extended
  * @param codeModel CodeModel
  */
-async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
+async function getUberParents(
+  codeModel: CodeModel,
+  optionsBag: OptionsBag
+): Promise<ObjectDetails[]> {
   if (!codeModel.schemas.objects) {
     return [];
   }
@@ -148,7 +153,7 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
     const hasParents = getSchemaParents(object).length > 0;
 
     if (hasChildren && !hasParents && !isPresent) {
-      const baseObject = transformObject(object, uberParents);
+      const baseObject = transformObject(object, uberParents, optionsBag);
       uberParents.push(baseObject);
     }
   });

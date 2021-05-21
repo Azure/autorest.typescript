@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Paging } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CustomUrlPagingClientContext } from "../customUrlPagingClientContext";
@@ -226,14 +226,10 @@ export class PagingImpl implements Paging {
     accountName: string,
     options?: PagingGetPagesPartialUrlOptionalParams
   ): Promise<PagingGetPagesPartialUrlResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { accountName, options },
       getPagesPartialUrlOperationSpec
-    ) as Promise<PagingGetPagesPartialUrlResponse>;
+    );
   }
 
   /**
@@ -245,14 +241,10 @@ export class PagingImpl implements Paging {
     accountName: string,
     options?: PagingGetPagesPartialUrlOperationOptionalParams
   ): Promise<PagingGetPagesPartialUrlOperationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { accountName, options },
       getPagesPartialUrlOperationOperationSpec
-    ) as Promise<PagingGetPagesPartialUrlOperationResponse>;
+    );
   }
 
   /**
@@ -266,15 +258,10 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetPagesPartialUrlOperationNextOptionalParams
   ): Promise<PagingGetPagesPartialUrlOperationNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      accountName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { accountName, nextLink, options },
       getPagesPartialUrlOperationNextOperationSpec
-    ) as Promise<PagingGetPagesPartialUrlOperationNextResponse>;
+    );
   }
 
   /**
@@ -288,21 +275,16 @@ export class PagingImpl implements Paging {
     nextLink: string,
     options?: PagingGetPagesPartialUrlNextOptionalParams
   ): Promise<PagingGetPagesPartialUrlNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      accountName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { accountName, nextLink, options },
       getPagesPartialUrlNextOperationSpec
-    ) as Promise<PagingGetPagesPartialUrlNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getPagesPartialUrlOperationSpec: coreHttp.OperationSpec = {
+const getPagesPartialUrlOperationSpec: coreClient.OperationSpec = {
   path: "/paging/customurl/partialnextlink",
   httpMethod: "GET",
   responses: {
@@ -315,7 +297,7 @@ const getPagesPartialUrlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPagesPartialUrlOperationOperationSpec: coreHttp.OperationSpec = {
+const getPagesPartialUrlOperationOperationSpec: coreClient.OperationSpec = {
   path: "/paging/customurl/partialnextlinkop",
   httpMethod: "GET",
   responses: {
@@ -328,7 +310,7 @@ const getPagesPartialUrlOperationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPagesPartialUrlOperationNextOperationSpec: coreHttp.OperationSpec = {
+const getPagesPartialUrlOperationNextOperationSpec: coreClient.OperationSpec = {
   path: "/paging/customurl/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -341,7 +323,7 @@ const getPagesPartialUrlOperationNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPagesPartialUrlNextOperationSpec: coreHttp.OperationSpec = {
+const getPagesPartialUrlNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

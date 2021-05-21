@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 import { RefColorConstant as RefColorConstantMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {

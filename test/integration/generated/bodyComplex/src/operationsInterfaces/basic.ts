@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   BasicGetValidOptionalParams,
   BasicGetValidResponse,
@@ -39,7 +38,7 @@ export interface Basic {
   putValid(
     complexBody: BasicDef,
     options?: BasicPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a basic complex type that is invalid for the local strong type
    * @param options The options parameters.

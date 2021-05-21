@@ -16,6 +16,7 @@ import {
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
+import { OptionsBag } from "./optionsBag";
 
 /**
  * Extracts parents from an ObjectSchema
@@ -63,7 +64,8 @@ export function getAdditionalProperties(
  */
 export function getTypeForSchema(
   schema: Schema,
-  isNullable: boolean = false
+  isNullable: boolean = false,
+  useCoreV2: boolean = false
 ): TypeDetails {
   let typeName: string = "";
   let usedModels: string[] = [];
@@ -77,7 +79,8 @@ export function getTypeForSchema(
       const arraySchema = schema as ArraySchema;
       const itemsType = getTypeForSchema(
         arraySchema.elementType,
-        arraySchema.nullableItems
+        arraySchema.nullableItems,
+        useCoreV2
       );
       const itemsName = itemsType.typeName;
       kind = itemsType.kind;
@@ -96,7 +99,9 @@ export function getTypeForSchema(
       typeName = "boolean";
       break;
     case SchemaType.Binary:
-      typeName = "coreHttp.HttpRequestBody";
+      typeName = !useCoreV2
+        ? "coreHttp.HttpRequestBody"
+        : "coreRestPipeline.RequestBodyType";
       break;
     case SchemaType.ByteArray:
       typeName = "Uint8Array";
@@ -110,7 +115,7 @@ export function getTypeForSchema(
       break;
     case SchemaType.Constant:
       const constantSchema = schema as ConstantSchema;
-      const constantType = getTypeForSchema(constantSchema.valueType);
+      const constantType = getTypeForSchema(constantSchema.valueType, false);
       kind = constantType.kind;
       if (isModelNeeded(constantType)) {
         usedModels.push(typeName);

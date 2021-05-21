@@ -5,7 +5,7 @@
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-lro": "^1.0.5",
-    "@azure/core-http": "^1.1.4",
+    "@azure/core-http": "^1.2.4",
     "tslib": "^1.9.3"
   },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
