@@ -241,13 +241,15 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "lro.json",
     clientName: "LROClient",
     packageName: "lro",
-    licenseHeader: true
+    licenseHeader: true,
+    useCoreV2: false
   },
   lroParametrizedEndpoints: {
     swaggerOrConfig: "lro-parameterized-endpoints.json",
     clientName: "LroParametrizedEndpointsClient",
     packageName: "lro-parameterized-endpoints",
-    licenseHeader: true
+    licenseHeader: true,
+    useCoreV2: false
   },
   mediaTypes: {
     swaggerOrConfig: "media_types.json",
@@ -281,7 +283,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3-lro.json",
     clientName: "MediaTypesV3LROClient",
     packageName: "media-types-v3-lro-client",
-    licenseHeader: true
+    licenseHeader: true,
+    useCoreV2: false
   },
   modelFlattening: {
     swaggerOrConfig: "model-flattening.json",
@@ -339,14 +342,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     tracing: {
       namespace: "Microsoft.Media.Types",
       packagePrefix: "Azure.Media.Types"
-    }
+    },
+    useCoreV2: false
   },
   pagingNoIterators: {
     swaggerOrConfig: "paging.json",
     clientName: "PagingNoIteratorsClient",
     packageName: "paging-no-iterators",
     licenseHeader: true,
-    disableAsyncIterators: true
+    disableAsyncIterators: true,
+    useCoreV2: false
   },
   requiredOptional: {
     swaggerOrConfig: "required-optional.json",

@@ -4,9 +4,9 @@
   "description": "Test Infrastructure for AutoRest",
   "version": "1.0.0-preview1",
   "dependencies": {
-    "@azure/core-client": "1.0.0-beta.1",
-    "@azure/core-rest-pipeline": "1.0.0-beta.1",
-    "@azure/core-tracing": "1.0.0-preview.10",
+    "@azure/core-client": "^1.1.2",
+    "@azure/core-rest-pipeline": "1.0.0-beta.2",
+    "@azure/core-tracing": "1.0.0-preview.11",
     "@opentelemetry/api": "^0.10.2",
     "tslib": "^1.9.3"
   },

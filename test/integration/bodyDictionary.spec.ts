@@ -213,8 +213,8 @@ describe("BodyDictionary", () => {
   });
 
   it("should get null dictionary", async () => {
-    await client.dictionary.getNull();
-    // assert.deepEqual(result._response.parsedBody, undefined);
+    const response = await client.dictionary.getNull();
+    assert.deepEqual(response, {});
   });
 
   it("should get an invalid dictionary", async () => {

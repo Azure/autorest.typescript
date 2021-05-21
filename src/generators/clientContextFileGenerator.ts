@@ -264,7 +264,7 @@ function writeDefaultOptions(
   const optionsWithDefaults = {
     ...defaults,
     ...options,
-    baseUri: ${getEndpointV2(clientDetails.endpoint, optionsBag)}
+    baseUri: ${getEndpoint(clientDetails.endpoint, optionsBag)}
   };
   super(optionsWithDefaults);
   `;
@@ -380,11 +380,6 @@ function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
     .map(({ name }) => `this.${name} = ${name};`);
 }
 
-function getEndpointV2({ endpoint }: EndpointDetails, optionsBag: OptionsBag) {
-  const updatedEndpoint = optionsBag.allowInsecureConnection
-    ? endpoint?.replace("https://", "http://")
-    : endpoint?.replace("http://", "https://");
-  return `options.endpoint ${
-    updatedEndpoint ? ` || "${updatedEndpoint}"` : ""
-  }`;
+function getEndpoint({ endpoint }: EndpointDetails, optionsBag: OptionsBag) {
+  return `options.endpoint ${endpoint ? ` || "${endpoint}"` : ""}`;
 }

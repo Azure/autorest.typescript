@@ -11,12 +11,9 @@ import { OptionsBag } from "../utils/optionsBag";
 
 export function transformGroups(codeModel: CodeModel, optionsBag: OptionsBag) {
   codeModel.schemas.groups = codeModel.schemas.groups || [];
-  const objectDetails = [];
-  for (const grp of codeModel.schemas.groups) {
-    objectDetails.push(transformGroup(grp, optionsBag));
-  }
-  return objectDetails;
-  // return (codeModel.schemas.groups || []).map(transformGroup);
+  return (codeModel.schemas.groups ?? []).map(group =>
+    transformGroup(group, optionsBag)
+  );
 }
 
 function transformGroup(
@@ -24,12 +21,9 @@ function transformGroup(
   optionsBag: OptionsBag
 ): ObjectDetails {
   const { name, description } = getLanguageMetadata(language);
-  properties = properties || [];
-  const groupProperties = [];
-  for (const prop of properties) {
-    groupProperties.push(transformProperty(prop, optionsBag));
-  }
-  // const groupProperties = (properties || []).map(transformProperty);
+  const groupProperties = (properties || []).map(prop =>
+    transformProperty(prop, optionsBag)
+  );
 
   return {
     children: [],

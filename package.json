@@ -36,7 +36,6 @@
         "@azure-tools/codegen": "^2.4.267",
         "@azure/core-client": "^1.1.2",
         "@azure/core-http": "^1.2.1-alpha.20201203.2",
-        "@azure/core-https": "^1.0.0-beta.1",
         "@azure/core-lro": "^1.0.5",
         "@azure/core-paging": "^1.1.3",
         "@azure/core-rest-pipeline": "^1.1.0-beta.2",

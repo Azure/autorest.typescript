@@ -1,5 +1,6 @@
 import { CodeModel } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { OptionsBag } from "../utils/optionsBag";
 
 export interface EndpointDetails {
   isCustom: boolean;
@@ -7,7 +8,8 @@ export interface EndpointDetails {
 }
 
 export async function transformBaseUrl(
-  codeModel: CodeModel
+  codeModel: CodeModel,
+  optionsBag: OptionsBag
 ): Promise<EndpointDetails> {
   let endpoint: string | undefined = "";
   let isCustom = false;
@@ -29,7 +31,7 @@ export async function transformBaseUrl(
   }
 
   return {
-    endpoint: endpoint?.replace("http://", "https://"),
+    endpoint,
     isCustom
   };
 }

@@ -83,6 +83,8 @@ export function transformProperty(
   optionsBag: OptionsBag
 ): PropertyDetails {
   const metadata = getLanguageMetadata(language);
+  // In the next call, the second parameter 'false' stands for isNullable
+  // which helps to determine whether | null should be added to the type.
   const typeDetails = getTypeForSchema(schema, false, optionsBag.useCoreV2);
   const { typeName, isConstant, defaultValue } = typeDetails;
 

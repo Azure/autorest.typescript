@@ -54,13 +54,11 @@ describe("Integration tests for BodyFormData", () => {
           uploadNotified = true;
           console.log(ev);
           assert.ok(typeof ev.loadedBytes === "number");
-          //ev.loadedBytes.should.be.a("Number");
         },
         onDownloadProgress: ev => {
           downloadNotified = true;
           console.log(ev);
           assert.ok(typeof ev.loadedBytes === "number");
-          // ev.loadedBytes.should.be.a("Number");
         }
       }
     });

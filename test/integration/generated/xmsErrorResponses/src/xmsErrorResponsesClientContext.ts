@@ -33,7 +33,7 @@ export class XmsErrorResponsesClientContext extends coreHttp.ServiceClient {
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://localhost";
+    this.baseUri = options.endpoint || "http://localhost";
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost";

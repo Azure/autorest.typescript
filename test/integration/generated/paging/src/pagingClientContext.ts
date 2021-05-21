@@ -33,7 +33,7 @@ export class PagingClientContext extends coreHttp.ServiceClient {
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://localhost:3000";
+    this.baseUri = options.endpoint || "http://localhost:3000";
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";

@@ -73,7 +73,7 @@ export async function generateTypeScriptLibrary(
     : armLibrary;
   const useCoreV2: boolean = (await host.GetValue("use-core-v2")) || false;
   const allowInsecureConnection: boolean =
-    (await host.GetValue("allow-insecure-connection")) || false;
+    (await host.GetValue("allow-insecure-connection")) || true;
 
   const optionsBag: OptionsBag = {
     shouldGenerateLicense,

@@ -236,15 +236,20 @@ describe("AzureSpecialProperties", () => {
     });
 
     it("should overwrite x-ms-client-request-id, get", async function() {
+      let _response: FullOperationResponse;
       const options: OperationOptions = {
         requestOptions: {
           customHeaders: {
             "x-ms-client-request-id": validClientId
           }
         },
-        ...responseStatusChecker
+        ...responseStatusChecker,
+        onResponse: r => {
+          _response = r;
+        }
       };
       await client.xMsClientRequestId.get(options);
+      assert.equal(_response!.headers.get("x-ms-request-id"), "123");
     });
 
     it("should not overwrite x-ms-client-request-id", async () => {

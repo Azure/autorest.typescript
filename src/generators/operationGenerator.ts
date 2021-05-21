@@ -592,7 +592,7 @@ export function writeOperations(
       modelNames,
       optionsBag
     );
-    
+
     const operationMethod = operationGroupClass.addMethod({
       name: calculateMethodName(operation),
       parameters: baseMethodParameters,
@@ -1012,17 +1012,11 @@ function writeMultiMediaTypeOperationBody(
   isInline = false,
   optionsBag: OptionsBag
 ): void {
-  if (!optionsBag.useCoreV2) {
-    operationMethod.addStatements([
-      "let operationSpec: coreHttp.OperationSpec;",
-      "let operationArguments: coreHttp.OperationArguments;"
-    ]);
-  } else {
-    operationMethod.addStatements([
-      "let operationSpec: coreClient.OperationSpec;",
-      "let operationArguments: coreClient.OperationArguments;"
-    ]);
-  }
+  const coreImport = !optionsBag.useCoreV2 ? "coreHttp" : "coreClient";
+  operationMethod.addStatements([
+    `let operationSpec: ${coreImport}.OperationSpec;`,
+    `let operationArguments: ${coreImport}.OperationArguments;`
+  ]);
 
   // We need to use the contentType parameter to determine which spec to use.
   const requests = operation.requests;

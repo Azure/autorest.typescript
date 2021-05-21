@@ -361,10 +361,7 @@ function buildResponseType(
   let innerTypeWriter: WriterFunctionOrValue = Writers.objectType({});
 
   if (optionsBag.useCoreV2) {
-    if (
-      bodyProperties?.mainProperties &&
-      bodyProperties?.mainProperties.length
-    ) {
+    if (bodyProperties?.mainProperties?.length) {
       innerTypeWriter = Writers.objectType({
         properties: bodyProperties?.mainProperties
       });

@@ -113,7 +113,7 @@ export async function transformCodeModel(
     transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel),
     transformParameters(codeModel, options, optionsBag),
-    transformBaseUrl(codeModel)
+    transformBaseUrl(codeModel, optionsBag)
   ]);
 
   return {
