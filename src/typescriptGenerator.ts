@@ -71,7 +71,9 @@ export async function generateTypeScriptLibrary(
   ))
     ? true
     : armLibrary;
-  const useCoreV2: boolean = (await host.GetValue("use-core-v2")) || true;
+  const useCoreV2Option: boolean = await host.GetValue("use-core-v2");
+  const useCoreV2: boolean =
+    useCoreV2Option === undefined ? true : Boolean(useCoreV2Option);
   const allowInsecureConnection: boolean =
     (await host.GetValue("allow-insecure-connection")) || false;
 
