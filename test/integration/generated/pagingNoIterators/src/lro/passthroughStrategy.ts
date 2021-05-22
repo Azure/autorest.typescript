@@ -6,16 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResult, LROResult } from "./models";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-export function createPassthroughStrategy<TResult extends BaseResult>(
-  pollOnce: (pollingURL: string) => Promise<TResult>
-): (pollingURL: string) => Promise<LROResult<TResult>> {
-  return async (pollingURL: string): Promise<LROResult<TResult>> => {
-    const result = await pollOnce(pollingURL);
-    return {
-      result,
-      done: true
-    };
+import { FullOperationResponse } from "@azure/core-client";
+import { LROState } from "./stateMachine";
+
+export function processPassthroughOperationResult<TResult>(
+  rawResponse: FullOperationResponse,
+  flatResponse: TResult
+): LROState<TResult> {
+  return {
+    rawResponse,
+    flatResponse,
+    done: true
   };
 }

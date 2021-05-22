@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
   /** Delay to wait until next poll, in milliseconds. */
@@ -21,7 +21,7 @@ export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
   /** Delay to wait until next poll, in milliseconds. */
@@ -32,14 +32,14 @@ export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientSend$binaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientSend$textOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
@@ -48,20 +48,11 @@ export interface MediaTypesV3LROClientSend$textOptionalParams
 export type MediaTypesV3LROClientSendResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesV3LROClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

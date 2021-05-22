@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface Resource {
   /**
@@ -648,7 +648,7 @@ export type OperationResultStatus = string;
 
 /** Optional parameters. */
 export interface LROsPut200SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -658,20 +658,11 @@ export interface LROsPut200SucceededOptionalParams
 }
 
 /** Contains response data for the put200Succeeded operation. */
-export type LROsPut200SucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut200SucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPut201SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -681,20 +672,11 @@ export interface LROsPut201SucceededOptionalParams
 }
 
 /** Contains response data for the put201Succeeded operation. */
-export type LROsPut201SucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut201SucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPost202ListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -702,20 +684,11 @@ export interface LROsPost202ListOptionalParams
 }
 
 /** Contains response data for the post202List operation. */
-export type LROsPost202ListResponse = Product[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product[];
-  };
-};
+export type LROsPost202ListResponse = Product[];
 
 /** Optional parameters. */
 export interface LROsPut200SucceededNoStateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -725,20 +698,11 @@ export interface LROsPut200SucceededNoStateOptionalParams
 }
 
 /** Contains response data for the put200SucceededNoState operation. */
-export type LROsPut200SucceededNoStateResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut200SucceededNoStateResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPut202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -748,20 +712,11 @@ export interface LROsPut202Retry200OptionalParams
 }
 
 /** Contains response data for the put202Retry200 operation. */
-export type LROsPut202Retry200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut202Retry200Response = Product;
 
 /** Optional parameters. */
 export interface LROsPut201CreatingSucceeded200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -771,20 +726,11 @@ export interface LROsPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LROsPut201CreatingSucceeded200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
 export interface LROsPut200UpdatingSucceeded204OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -794,20 +740,11 @@ export interface LROsPut200UpdatingSucceeded204OptionalParams
 }
 
 /** Contains response data for the put200UpdatingSucceeded204 operation. */
-export type LROsPut200UpdatingSucceeded204Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut200UpdatingSucceeded204Response = Product;
 
 /** Optional parameters. */
 export interface LROsPut201CreatingFailed200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -817,20 +754,11 @@ export interface LROsPut201CreatingFailed200OptionalParams
 }
 
 /** Contains response data for the put201CreatingFailed200 operation. */
-export type LROsPut201CreatingFailed200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut201CreatingFailed200Response = Product;
 
 /** Optional parameters. */
 export interface LROsPut200Acceptedcanceled200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -840,20 +768,11 @@ export interface LROsPut200Acceptedcanceled200OptionalParams
 }
 
 /** Contains response data for the put200Acceptedcanceled200 operation. */
-export type LROsPut200Acceptedcanceled200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPut200Acceptedcanceled200Response = Product;
 
 /** Optional parameters. */
 export interface LROsPutNoHeaderInRetryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -864,22 +783,11 @@ export interface LROsPutNoHeaderInRetryOptionalParams
 
 /** Contains response data for the putNoHeaderInRetry operation. */
 export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutNoHeaderInRetryHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutAsyncRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -890,22 +798,11 @@ export interface LROsPutAsyncRetrySucceededOptionalParams
 
 /** Contains response data for the putAsyncRetrySucceeded operation. */
 export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutAsyncNoRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -916,22 +813,11 @@ export interface LROsPutAsyncNoRetrySucceededOptionalParams
 
 /** Contains response data for the putAsyncNoRetrySucceeded operation. */
 export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutAsyncRetryFailedOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -942,22 +828,11 @@ export interface LROsPutAsyncRetryFailedOptionalParams
 
 /** Contains response data for the putAsyncRetryFailed operation. */
 export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutAsyncRetryFailedHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutAsyncNoRetrycanceledOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -968,22 +843,11 @@ export interface LROsPutAsyncNoRetrycanceledOptionalParams
 
 /** Contains response data for the putAsyncNoRetrycanceled operation. */
 export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutAsyncNoHeaderInRetryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -994,22 +858,11 @@ export interface LROsPutAsyncNoHeaderInRetryOptionalParams
 
 /** Contains response data for the putAsyncNoHeaderInRetry operation. */
 export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPutNonResourceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** sku to put */
   sku?: Sku;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1019,20 +872,11 @@ export interface LROsPutNonResourceOptionalParams
 }
 
 /** Contains response data for the putNonResource operation. */
-export type LROsPutNonResourceResponse = Sku & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Sku;
-  };
-};
+export type LROsPutNonResourceResponse = Sku;
 
 /** Optional parameters. */
 export interface LROsPutAsyncNonResourceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Sku to put */
   sku?: Sku;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1042,20 +886,11 @@ export interface LROsPutAsyncNonResourceOptionalParams
 }
 
 /** Contains response data for the putAsyncNonResource operation. */
-export type LROsPutAsyncNonResourceResponse = Sku & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Sku;
-  };
-};
+export type LROsPutAsyncNonResourceResponse = Sku;
 
 /** Optional parameters. */
 export interface LROsPutSubResourceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Sub Product to put */
   product?: SubProduct;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1065,20 +900,11 @@ export interface LROsPutSubResourceOptionalParams
 }
 
 /** Contains response data for the putSubResource operation. */
-export type LROsPutSubResourceResponse = SubProduct & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SubProduct;
-  };
-};
+export type LROsPutSubResourceResponse = SubProduct;
 
 /** Optional parameters. */
 export interface LROsPutAsyncSubResourceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Sub Product to put */
   product?: SubProduct;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1088,20 +914,11 @@ export interface LROsPutAsyncSubResourceOptionalParams
 }
 
 /** Contains response data for the putAsyncSubResource operation. */
-export type LROsPutAsyncSubResourceResponse = SubProduct & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SubProduct;
-  };
-};
+export type LROsPutAsyncSubResourceResponse = SubProduct;
 
 /** Optional parameters. */
 export interface LROsDeleteProvisioning202Accepted200SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1109,20 +926,11 @@ export interface LROsDeleteProvisioning202Accepted200SucceededOptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
-export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LROsDeleteProvisioning202DeletingFailed200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1130,20 +938,11 @@ export interface LROsDeleteProvisioning202DeletingFailed200OptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202DeletingFailed200 operation. */
-export type LROsDeleteProvisioning202DeletingFailed200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsDeleteProvisioning202DeletingFailed200Response = Product;
 
 /** Optional parameters. */
 export interface LROsDeleteProvisioning202Deletingcanceled200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1151,20 +950,11 @@ export interface LROsDeleteProvisioning202Deletingcanceled200OptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202Deletingcanceled200 operation. */
-export type LROsDeleteProvisioning202Deletingcanceled200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsDeleteProvisioning202Deletingcanceled200Response = Product;
 
 /** Optional parameters. */
 export interface LROsDelete204SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1173,7 +963,7 @@ export interface LROsDelete204SucceededOptionalParams
 
 /** Optional parameters. */
 export interface LROsDelete202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1181,20 +971,11 @@ export interface LROsDelete202Retry200OptionalParams
 }
 
 /** Contains response data for the delete202Retry200 operation. */
-export type LROsDelete202Retry200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsDelete202Retry200Response = Product;
 
 /** Optional parameters. */
 export interface LROsDelete202NoRetry204OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1202,20 +983,11 @@ export interface LROsDelete202NoRetry204OptionalParams
 }
 
 /** Contains response data for the delete202NoRetry204 operation. */
-export type LROsDelete202NoRetry204Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsDelete202NoRetry204Response = Product;
 
 /** Optional parameters. */
 export interface LROsDeleteNoHeaderInRetryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1223,17 +995,11 @@ export interface LROsDeleteNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the deleteNoHeaderInRetry operation. */
-export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
-  };
-};
+export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders;
 
 /** Optional parameters. */
 export interface LROsDeleteAsyncNoHeaderInRetryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1241,17 +1007,11 @@ export interface LROsDeleteAsyncNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the deleteAsyncNoHeaderInRetry operation. */
-export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
-  };
-};
+export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders;
 
 /** Optional parameters. */
 export interface LROsDeleteAsyncRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1259,17 +1019,11 @@ export interface LROsDeleteAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetrySucceeded operation. */
-export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
-  };
-};
+export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders;
 
 /** Optional parameters. */
 export interface LROsDeleteAsyncNoRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1277,17 +1031,11 @@ export interface LROsDeleteAsyncNoRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncNoRetrySucceeded operation. */
-export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
-  };
-};
+export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders;
 
 /** Optional parameters. */
 export interface LROsDeleteAsyncRetryFailedOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1295,17 +1043,11 @@ export interface LROsDeleteAsyncRetryFailedOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetryFailed operation. */
-export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
-  };
-};
+export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders;
 
 /** Optional parameters. */
 export interface LROsDeleteAsyncRetrycanceledOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1313,17 +1055,11 @@ export interface LROsDeleteAsyncRetrycanceledOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetrycanceled operation. */
-export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
-  };
-};
+export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders;
 
 /** Optional parameters. */
 export interface LROsPost200WithPayloadOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1331,20 +1067,11 @@ export interface LROsPost200WithPayloadOptionalParams
 }
 
 /** Contains response data for the post200WithPayload operation. */
-export type LROsPost200WithPayloadResponse = Sku & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Sku;
-  };
-};
+export type LROsPost200WithPayloadResponse = Sku;
 
 /** Optional parameters. */
 export interface LROsPost202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1354,17 +1081,11 @@ export interface LROsPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsPost202Retry200Headers;
-  };
-};
+export type LROsPost202Retry200Response = LROsPost202Retry200Headers;
 
 /** Optional parameters. */
 export interface LROsPost202NoRetry204OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1375,22 +1096,11 @@ export interface LROsPost202NoRetry204OptionalParams
 
 /** Contains response data for the post202NoRetry204 operation. */
 export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsPost202NoRetry204Headers;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsPostDoubleHeadersFinalLocationGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1398,20 +1108,11 @@ export interface LROsPostDoubleHeadersFinalLocationGetOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalLocationGet operation. */
-export type LROsPostDoubleHeadersFinalLocationGetResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPostDoubleHeadersFinalLocationGetResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1419,20 +1120,11 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalAzureHeaderGet operation. */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1440,20 +1132,11 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault operation. */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPostAsyncRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1463,20 +1146,11 @@ export interface LROsPostAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrySucceeded operation. */
-export type LROsPostAsyncRetrySucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPostAsyncRetrySucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPostAsyncNoRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1486,20 +1160,11 @@ export interface LROsPostAsyncNoRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncNoRetrySucceeded operation. */
-export type LROsPostAsyncNoRetrySucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsPostAsyncNoRetrySucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LROsPostAsyncRetryFailedOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1509,17 +1174,11 @@ export interface LROsPostAsyncRetryFailedOptionalParams
 }
 
 /** Contains response data for the postAsyncRetryFailed operation. */
-export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsPostAsyncRetryFailedHeaders;
-  };
-};
+export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders;
 
 /** Optional parameters. */
 export interface LROsPostAsyncRetrycanceledOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1529,17 +1188,11 @@ export interface LROsPostAsyncRetrycanceledOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrycanceled operation. */
-export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
-  };
-};
+export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders;
 
 /** Optional parameters. */
 export interface LRORetrysPut201CreatingSucceeded200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1549,20 +1202,11 @@ export interface LRORetrysPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LRORetrysPut201CreatingSucceeded200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LRORetrysPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
 export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1573,22 +1217,11 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
 
 /** Contains response data for the putAsyncRelativeRetrySucceeded operation. */
 export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncRelativeRetrySucceededHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1596,20 +1229,11 @@ export interface LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParam
 }
 
 /** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
-export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product;
 
 /** Optional parameters. */
 export interface LRORetrysDelete202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1617,17 +1241,11 @@ export interface LRORetrysDelete202Retry200OptionalParams
 }
 
 /** Contains response data for the delete202Retry200 operation. */
-export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LRORetrysDelete202Retry200Headers;
-  };
-};
+export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers;
 
 /** Optional parameters. */
 export interface LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1635,17 +1253,11 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetrySucceeded operation. */
-export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
-  };
-};
+export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
 
 /** Optional parameters. */
 export interface LRORetrysPost202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1655,17 +1267,11 @@ export interface LRORetrysPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LRORetrysPost202Retry200Headers;
-  };
-};
+export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers;
 
 /** Optional parameters. */
 export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1675,17 +1281,11 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetrySucceeded operation. */
-export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
-  };
-};
+export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPutNonRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1695,20 +1295,11 @@ export interface LrosaDsPutNonRetry400OptionalParams
 }
 
 /** Contains response data for the putNonRetry400 operation. */
-export type LrosaDsPutNonRetry400Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LrosaDsPutNonRetry400Response = Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutNonRetry201Creating400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1718,20 +1309,11 @@ export interface LrosaDsPutNonRetry201Creating400OptionalParams
 }
 
 /** Contains response data for the putNonRetry201Creating400 operation. */
-export type LrosaDsPutNonRetry201Creating400Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LrosaDsPutNonRetry201Creating400Response = Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1741,20 +1323,11 @@ export interface LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
 }
 
 /** Contains response data for the putNonRetry201Creating400InvalidJson operation. */
-export type LrosaDsPutNonRetry201Creating400InvalidJsonResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LrosaDsPutNonRetry201Creating400InvalidJsonResponse = Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1765,22 +1338,11 @@ export interface LrosaDsPutAsyncRelativeRetry400OptionalParams
 
 /** Contains response data for the putAsyncRelativeRetry400 operation. */
 export type LrosaDsPutAsyncRelativeRetry400Response = LrosaDsPutAsyncRelativeRetry400Headers &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetry400Headers;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LrosaDsDeleteNonRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1788,17 +1350,11 @@ export interface LrosaDsDeleteNonRetry400OptionalParams
 }
 
 /** Contains response data for the deleteNonRetry400 operation. */
-export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDeleteNonRetry400Headers;
-  };
-};
+export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsDelete202NonRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1806,17 +1362,11 @@ export interface LrosaDsDelete202NonRetry400OptionalParams
 }
 
 /** Contains response data for the delete202NonRetry400 operation. */
-export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDelete202NonRetry400Headers;
-  };
-};
+export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsDeleteAsyncRelativeRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1824,17 +1374,11 @@ export interface LrosaDsDeleteAsyncRelativeRetry400OptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetry400 operation. */
-export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelativeRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetry400Headers;
-  };
-};
+export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelativeRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsPostNonRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1844,17 +1388,11 @@ export interface LrosaDsPostNonRetry400OptionalParams
 }
 
 /** Contains response data for the postNonRetry400 operation. */
-export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPostNonRetry400Headers;
-  };
-};
+export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsPost202NonRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1864,17 +1402,11 @@ export interface LrosaDsPost202NonRetry400OptionalParams
 }
 
 /** Contains response data for the post202NonRetry400 operation. */
-export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPost202NonRetry400Headers;
-  };
-};
+export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetry400OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1884,17 +1416,11 @@ export interface LrosaDsPostAsyncRelativeRetry400OptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetry400 operation. */
-export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeRetry400Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetry400Headers;
-  };
-};
+export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeRetry400Headers;
 
 /** Optional parameters. */
 export interface LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1904,20 +1430,11 @@ export interface LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
 }
 
 /** Contains response data for the putError201NoProvisioningStatePayload operation. */
-export type LrosaDsPutError201NoProvisioningStatePayloadResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LrosaDsPutError201NoProvisioningStatePayloadResponse = Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1928,22 +1445,11 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
 
 /** Contains response data for the putAsyncRelativeRetryNoStatus operation. */
 export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosaDsPutAsyncRelativeRetryNoStatusHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -1954,22 +1460,11 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
 
 /** Contains response data for the putAsyncRelativeRetryNoStatusPayload operation. */
 export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LrosaDsDelete204SucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1978,7 +1473,7 @@ export interface LrosaDsDelete204SucceededOptionalParams
 
 /** Optional parameters. */
 export interface LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1986,17 +1481,11 @@ export interface LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetryNoStatus operation. */
-export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders;
-  };
-};
+export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPost202NoLocationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2006,17 +1495,11 @@ export interface LrosaDsPost202NoLocationOptionalParams
 }
 
 /** Contains response data for the post202NoLocation operation. */
-export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPost202NoLocationHeaders;
-  };
-};
+export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2026,17 +1509,11 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetryNoPayload operation. */
-export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRelativeRetryNoPayloadHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryNoPayloadHeaders;
-  };
-};
+export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRelativeRetryNoPayloadHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPut200InvalidJsonOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2046,20 +1523,11 @@ export interface LrosaDsPut200InvalidJsonOptionalParams
 }
 
 /** Contains response data for the put200InvalidJson operation. */
-export type LrosaDsPut200InvalidJsonResponse = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LrosaDsPut200InvalidJsonResponse = Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2070,22 +1538,11 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
 
 /** Contains response data for the putAsyncRelativeRetryInvalidHeader operation. */
 export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2096,22 +1553,11 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
 
 /** Contains response data for the putAsyncRelativeRetryInvalidJsonPolling operation. */
 export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LrosaDsDelete202RetryInvalidHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2119,17 +1565,11 @@ export interface LrosaDsDelete202RetryInvalidHeaderOptionalParams
 }
 
 /** Contains response data for the delete202RetryInvalidHeader operation. */
-export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryInvalidHeaderHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDelete202RetryInvalidHeaderHeaders;
-  };
-};
+export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryInvalidHeaderHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2137,17 +1577,11 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetryInvalidHeader operation. */
-export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
-  };
-};
+export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2155,17 +1589,11 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling operation. */
-export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
-  };
-};
+export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPost202RetryInvalidHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2175,17 +1603,11 @@ export interface LrosaDsPost202RetryInvalidHeaderOptionalParams
 }
 
 /** Contains response data for the post202RetryInvalidHeader operation. */
-export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvalidHeaderHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPost202RetryInvalidHeaderHeaders;
-  };
-};
+export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvalidHeaderHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2195,17 +1617,11 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetryInvalidHeader operation. */
-export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders;
-  };
-};
+export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2215,17 +1631,11 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetryInvalidJsonPolling operation. */
-export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
-  };
-};
+export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
 
 /** Optional parameters. */
 export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2236,22 +1646,11 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
 
 /** Contains response data for the putAsyncRetrySucceeded operation. */
 export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPutAsyncRetrySucceededHeaders &
-  Product & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: Product;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
-    };
-  };
+  Product;
 
 /** Optional parameters. */
 export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2261,20 +1660,11 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Product;
-  };
-};
+export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
 export interface LROsCustomHeaderPost202Retry200OptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2284,17 +1674,11 @@ export interface LROsCustomHeaderPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
-  };
-};
+export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers;
 
 /** Optional parameters. */
 export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
   /** Delay to wait until next poll, in milliseconds. */
@@ -2304,16 +1688,11 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrySucceeded operation. */
-export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The parsed HTTP response headers. */
-    parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
-  };
-};
+export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders;
 
 /** Optional parameters. */
-export interface LROClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface LROClientOptionalParams
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

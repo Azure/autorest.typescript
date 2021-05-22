@@ -10,7 +10,7 @@ import { createSpan } from "../tracing";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Paging } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -1096,12 +1096,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getNoItemNamePages",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getNoItemNamePagesOperationSpec
       );
       return result as PagingGetNoItemNamePagesResponse;
@@ -1127,12 +1124,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getNullNextLinkNamePages",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getNullNextLinkNamePagesOperationSpec
       );
       return result as PagingGetNullNextLinkNamePagesResponse;
@@ -1155,12 +1149,9 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse> {
     const { span } = createSpan("PagingClient-_getSinglePages", options || {});
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getSinglePagesOperationSpec
       );
       return result as PagingGetSinglePagesResponse;
@@ -1187,12 +1178,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_firstResponseEmpty",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         firstResponseEmptyOperationSpec
       );
       return result as PagingFirstResponseEmptyResponse;
@@ -1218,12 +1206,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePages",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getMultiplePagesOperationSpec
       );
       return result as PagingGetMultiplePagesResponse;
@@ -1252,13 +1237,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getWithQueryParams",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      requiredQueryParameter,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { requiredQueryParameter, options },
         getWithQueryParamsOperationSpec
       );
       return result as PagingGetWithQueryParamsResponse;
@@ -1284,12 +1265,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_nextOperationWithQueryParams",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         nextOperationWithQueryParamsOperationSpec
       );
       return result as PagingNextOperationWithQueryParamsResponse;
@@ -1315,12 +1293,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getOdataMultiplePages",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getOdataMultiplePagesOperationSpec
       );
       return result as PagingGetOdataMultiplePagesResponse;
@@ -1348,13 +1323,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesWithOffset",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      pagingGetMultiplePagesWithOffsetOptions,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { pagingGetMultiplePagesWithOffsetOptions, options },
         getMultiplePagesWithOffsetOperationSpec
       );
       return result as PagingGetMultiplePagesWithOffsetResponse;
@@ -1381,12 +1352,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesRetryFirst",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getMultiplePagesRetryFirstOperationSpec
       );
       return result as PagingGetMultiplePagesRetryFirstResponse;
@@ -1413,12 +1381,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesRetrySecond",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getMultiplePagesRetrySecondOperationSpec
       );
       return result as PagingGetMultiplePagesRetrySecondResponse;
@@ -1444,12 +1409,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getSinglePagesFailure",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getSinglePagesFailureOperationSpec
       );
       return result as PagingGetSinglePagesFailureResponse;
@@ -1475,12 +1437,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFailure",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getMultiplePagesFailureOperationSpec
       );
       return result as PagingGetMultiplePagesFailureResponse;
@@ -1506,12 +1465,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFailureUri",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getMultiplePagesFailureUriOperationSpec
       );
       return result as PagingGetMultiplePagesFailureUriResponse;
@@ -1541,14 +1497,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFragmentNextLink",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      apiVersion,
-      tenant,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { apiVersion, tenant, options },
         getMultiplePagesFragmentNextLinkOperationSpec
       );
       return result as PagingGetMultiplePagesFragmentNextLinkResponse;
@@ -1576,13 +1527,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFragmentWithGroupingNextLink",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      customParameterGroup,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { customParameterGroup, options },
         getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
       );
       return result as PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse;
@@ -1609,17 +1556,14 @@ export class PagingImpl implements Paging {
       PagingGetMultiplePagesLROResponse
     >
   > {
-    const { span, updatedOptions } = createSpan(
+    const { span } = createSpan(
       "PagingClient-_getMultiplePagesLRO",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: this.getOperationOptions(updatedOptions, "undefined")
-    };
-    const sendOperation = async (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) => {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PagingGetMultiplePagesLROResponse> => {
       try {
         const result = await this.client.sendOperationRequest(args, spec);
         return result as PagingGetMultiplePagesLROResponse;
@@ -1633,10 +1577,35 @@ export class PagingImpl implements Paging {
         span.end();
       }
     };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
+    };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { options },
       getMultiplePagesLROOperationSpec,
       sendOperation
     );
@@ -1656,15 +1625,9 @@ export class PagingImpl implements Paging {
     options?: PagingNextFragmentOptionalParams
   ): Promise<PagingNextFragmentResponse> {
     const { span } = createSpan("PagingClient-_nextFragment", options || {});
-    const operationArguments: coreHttp.OperationArguments = {
-      apiVersion,
-      tenant,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { apiVersion, tenant, nextLink, options },
         nextFragmentOperationSpec
       );
       return result as PagingNextFragmentResponse;
@@ -1694,14 +1657,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_nextFragmentWithGrouping",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      customParameterGroup,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, customParameterGroup, options },
         nextFragmentWithGroupingOperationSpec
       );
       return result as PagingNextFragmentWithGroupingResponse;
@@ -1728,12 +1686,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getPagingModelWithItemNameWithXMSClientName",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getPagingModelWithItemNameWithXMSClientNameOperationSpec
       );
       return result as PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
@@ -1761,13 +1716,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getNoItemNamePagesNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getNoItemNamePagesNextOperationSpec
       );
       return result as PagingGetNoItemNamePagesNextResponse;
@@ -1795,13 +1746,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getSinglePagesNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getSinglePagesNextOperationSpec
       );
       return result as PagingGetSinglePagesNextResponse;
@@ -1829,13 +1776,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_firstResponseEmptyNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         firstResponseEmptyNextOperationSpec
       );
       return result as PagingFirstResponseEmptyNextResponse;
@@ -1863,13 +1806,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesNextOperationSpec
       );
       return result as PagingGetMultiplePagesNextResponse;
@@ -1897,13 +1836,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getOdataMultiplePagesNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getOdataMultiplePagesNextOperationSpec
       );
       return result as PagingGetOdataMultiplePagesNextResponse;
@@ -1934,14 +1869,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesWithOffsetNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      pagingGetMultiplePagesWithOffsetOptions,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
         getMultiplePagesWithOffsetNextOperationSpec
       );
       return result as PagingGetMultiplePagesWithOffsetNextResponse;
@@ -1970,13 +1900,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesRetryFirstNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesRetryFirstNextOperationSpec
       );
       return result as PagingGetMultiplePagesRetryFirstNextResponse;
@@ -2005,13 +1931,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesRetrySecondNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesRetrySecondNextOperationSpec
       );
       return result as PagingGetMultiplePagesRetrySecondNextResponse;
@@ -2039,13 +1961,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getSinglePagesFailureNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getSinglePagesFailureNextOperationSpec
       );
       return result as PagingGetSinglePagesFailureNextResponse;
@@ -2074,13 +1992,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFailureNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesFailureNextOperationSpec
       );
       return result as PagingGetMultiplePagesFailureNextResponse;
@@ -2109,13 +2023,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesFailureUriNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesFailureUriNextOperationSpec
       );
       return result as PagingGetMultiplePagesFailureUriNextResponse;
@@ -2143,13 +2053,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getMultiplePagesLRONext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getMultiplePagesLRONextOperationSpec
       );
       return result as PagingGetMultiplePagesLRONextResponse;
@@ -2178,13 +2084,9 @@ export class PagingImpl implements Paging {
       "PagingClient-_getPagingModelWithItemNameWithXMSClientNameNext",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { nextLink, options },
         getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
       );
       return result as PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse;
@@ -2198,23 +2100,11 @@ export class PagingImpl implements Paging {
       span.end();
     }
   }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
-  }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
+const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/noitemname",
   httpMethod: "GET",
   responses: {
@@ -2227,7 +2117,7 @@ const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
+const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
   responses: {
@@ -2240,7 +2130,7 @@ const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
+const getSinglePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single",
   httpMethod: "GET",
   responses: {
@@ -2253,7 +2143,7 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const firstResponseEmptyOperationSpec: coreHttp.OperationSpec = {
+const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paging/firstResponseEmpty/1",
   httpMethod: "GET",
   responses: {
@@ -2266,7 +2156,7 @@ const firstResponseEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple",
   httpMethod: "GET",
   responses: {
@@ -2284,7 +2174,7 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
+const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/getWithQueryParams",
   httpMethod: "GET",
   responses: {
@@ -2301,7 +2191,7 @@ const getWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
+const nextOperationWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/nextOperationWithQueryParams",
   httpMethod: "GET",
   responses: {
@@ -2315,7 +2205,7 @@ const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
+const getOdataMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/odata",
   httpMethod: "GET",
   responses: {
@@ -2333,7 +2223,7 @@ const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesWithOffsetOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/withpath/{offset}",
   httpMethod: "GET",
   responses: {
@@ -2351,7 +2241,7 @@ const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMultiplePagesRetryFirstOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesRetryFirstOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retryfirst",
   httpMethod: "GET",
   responses: {
@@ -2364,7 +2254,7 @@ const getMultiplePagesRetryFirstOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesRetrySecondOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retrysecond",
   httpMethod: "GET",
   responses: {
@@ -2377,7 +2267,7 @@ const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
+const getSinglePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single/failure",
   httpMethod: "GET",
   responses: {
@@ -2390,7 +2280,7 @@ const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failure",
   httpMethod: "GET",
   responses: {
@@ -2403,7 +2293,7 @@ const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFailureUriOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failureuri",
   httpMethod: "GET",
   responses: {
@@ -2416,7 +2306,7 @@ const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragment/{tenant}",
   httpMethod: "GET",
   responses: {
@@ -2430,7 +2320,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragmentwithgrouping/{tenant}",
   httpMethod: "GET",
   responses: {
@@ -2444,7 +2334,7 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.Operat
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/lro",
   httpMethod: "POST",
   responses: {
@@ -2471,7 +2361,7 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const nextFragmentOperationSpec: coreHttp.OperationSpec = {
+const nextFragmentOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragment/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2485,7 +2375,7 @@ const nextFragmentOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
+const nextFragmentWithGroupingOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2499,7 +2389,7 @@ const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.OperationSpec = {
+const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec = {
   path: "/paging/itemNameWithXMSClientName",
   httpMethod: "GET",
   responses: {
@@ -2512,7 +2402,7 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
+const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2525,7 +2415,7 @@ const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
+const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2538,7 +2428,7 @@ const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const firstResponseEmptyNextOperationSpec: coreHttp.OperationSpec = {
+const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2551,7 +2441,7 @@ const firstResponseEmptyNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2569,7 +2459,7 @@ const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
+const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2587,7 +2477,7 @@ const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesWithOffsetNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2605,7 +2495,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMultiplePagesRetryFirstNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesRetryFirstNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2618,7 +2508,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesRetrySecondNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2631,7 +2521,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
+const getSinglePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2644,7 +2534,7 @@ const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2657,7 +2547,7 @@ const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesFailureUriNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2670,7 +2560,7 @@ const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
+const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2691,7 +2581,7 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreHttp.OperationSpec = {
+const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
