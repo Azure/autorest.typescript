@@ -73,8 +73,7 @@ describe("Transforms", () => {
           "The color",
           new StringSchema("Color", "A color."),
           { required: true, readOnly: false }
-        ),
-        optionsBag
+        )
       );
 
       assert.strictEqual(property.name, "color");
@@ -96,7 +95,7 @@ describe("Transforms", () => {
         allowInsecureConnection: true
       };
 
-      const model = transformObject(appleSchema, [], optionsBag);
+      const model = transformObject(appleSchema, []);
       assert.strictEqual(model.name, "Apple");
       assert.strictEqual(model.properties.length, 3);
       assert.strictEqual(model.properties[0].name, "color");

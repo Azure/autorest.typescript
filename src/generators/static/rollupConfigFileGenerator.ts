@@ -3,16 +3,19 @@
 
 import { Project, VariableDeclarationKind } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
-import { PackageDetails } from "../../models/packageDetails";
 import { normalizeName, NameType } from "../../utils/nameUtils";
-import { OptionsBag } from "../../utils/optionsBag";
+import { getAutorestOptions } from "../../autorestSession";
 
 export function generateRollupConfig(
   clientDetails: ClientDetails,
-  packageDetails: PackageDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ) {
+  const { packageDetails, useCoreV2, generateMetadata } = getAutorestOptions();
+
+  if (!generateMetadata) {
+    return;
+  }
+
   const rollupFile = project.createSourceFile("rollup.config.js", undefined, {
     overwrite: true
   });
@@ -38,7 +41,7 @@ export function generateRollupConfig(
   const rollupConfig = `{
     input: "./esm/${clientDetails.sourceFileName}.js",
     ${
-      !optionsBag.useCoreV2
+      !useCoreV2
         ? `external: [
       "@azure/core-http"
     ],`
@@ -50,7 +53,7 @@ export function generateRollupConfig(
       name: "${browserNameSpace}",
       sourcemap: true,
       ${
-        !optionsBag.useCoreV2
+        !useCoreV2
           ? `globals: {
           "@azure/core-http": "coreHttp"
         },`

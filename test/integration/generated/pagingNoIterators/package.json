@@ -1,7 +1,7 @@
 {
   "name": "paging-no-iterators",
   "author": "Microsoft Corporation",
-  "description": "Long-running Operation for AutoRest",
+  "description": "A generated SDK for PagingNoIteratorsClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-lro": "^1.0.5",

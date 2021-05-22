@@ -44,20 +44,17 @@ import {
 } from "./utils/responseTypeUtils";
 import { getParameterDescription } from "../utils/getParameterDescription";
 import { UnionDetails } from "../models/unionDetails";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
-export function generateModels(
-  clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
-) {
+export function generateModels(clientDetails: ClientDetails, project: Project) {
+  const { useCoreV2, srcPath } = getAutorestOptions();
   const modelsIndexFile = project.createSourceFile(
-    `${clientDetails.srcPath}/models/index.ts`,
+    `${srcPath}/models/index.ts`,
     undefined,
     { overwrite: true }
   );
 
-  if (!optionsBag.useCoreV2) {
+  if (!useCoreV2) {
     modelsIndexFile.addImportDeclaration({
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
@@ -74,18 +71,18 @@ export function generateModels(
   }
 
   writeUniontypes(clientDetails, modelsIndexFile);
-  writeObjects(clientDetails, modelsIndexFile, optionsBag);
+  writeObjects(clientDetails, modelsIndexFile);
   writeChoices(clientDetails, modelsIndexFile);
-  writeOperationModels(clientDetails, modelsIndexFile, optionsBag);
-  writeClientModels(clientDetails, modelsIndexFile, optionsBag);
+  writeOperationModels(clientDetails, modelsIndexFile);
+  writeClientModels(clientDetails, modelsIndexFile);
   modelsIndexFile.fixUnusedIdentifiers();
 }
 
 const writeClientModels = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile,
-  optionsBag: OptionsBag
+  modelsIndexFile: SourceFile
 ) => {
+  const { useCoreV2 } = getAutorestOptions();
   let clientOptionalParams = clientDetails.parameters.filter(
     p =>
       (!p.required || p.defaultValue) &&
@@ -98,19 +95,18 @@ const writeClientModels = (
     clientOptionalParams,
     modelsIndexFile,
     {
-      baseClass: !optionsBag.useCoreV2
+      baseClass: !useCoreV2
         ? "coreHttp.ServiceClientOptions"
         : "coreClient.ServiceClientOptions"
-    },
-    optionsBag
+    }
   );
 };
 
 const writeOperationModels = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile,
-  optionsBag: OptionsBag
+  modelsIndexFile: SourceFile
 ) => {
+  const { useCoreV2 } = getAutorestOptions();
   const modelsNames = getAllModelsNames(clientDetails);
   return clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
@@ -118,10 +114,9 @@ const writeOperationModels = (
         clientDetails,
         operationGroup,
         operation,
-        modelsIndexFile,
-        optionsBag
+        modelsIndexFile
       );
-      writeResponseTypes(operation, modelsIndexFile, modelsNames, optionsBag);
+      writeResponseTypes(operation, modelsIndexFile, modelsNames);
     });
   });
 };
@@ -133,8 +128,7 @@ function writeOptionsParameter(
   clientDetails: ClientDetails,
   operationGroup: OperationGroupDetails,
   operation: OperationDetails,
-  sourceFile: SourceFile,
-  optionsBag: OptionsBag
+  sourceFile: SourceFile
 ) {
   const operationParameters = filterOperationParameters(
     clientDetails.parameters,
@@ -165,8 +159,7 @@ function writeOptionsParameter(
       mediaTypes: operationRequestMediaTypes,
       operationFullName: operation.fullName,
       operationIsLro: operation.isLRO
-    },
-    optionsBag
+    }
   );
 }
 
@@ -177,8 +170,7 @@ function writeOptionsParameter(
 function writeResponseTypes(
   { responses, name, typeDetails: operationType, isLRO }: OperationDetails,
   modelsIndexFile: SourceFile,
-  allModelsNames: Set<string>,
-  optionsBag: OptionsBag
+  allModelsNames: Set<string>
 ) {
   const responseName = getResponseTypeName(
     operationType.typeName,
@@ -204,7 +196,7 @@ function writeResponseTypes(
           name: responseName,
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
-          type: buildResponseType(operation, isLRO, optionsBag),
+          type: buildResponseType(operation, isLRO),
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
@@ -345,9 +337,9 @@ type IntersectionTypeParameters = [
  */
 function buildResponseType(
   operationResponse: OperationResponseDetails,
-  isLro: boolean = false,
-  optionsBag: OptionsBag
+  isLro: boolean = false
 ): WriterFunction | string {
+  const { useCoreV2 } = getAutorestOptions();
   // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
@@ -360,7 +352,7 @@ function buildResponseType(
   let intersectionTypes: WriterFunctionOrValue[] = [];
   let innerTypeWriter: WriterFunctionOrValue = Writers.objectType({});
 
-  if (optionsBag.useCoreV2) {
+  if (useCoreV2) {
     if (bodyProperties?.mainProperties?.length) {
       innerTypeWriter = Writers.objectType({
         properties: bodyProperties?.mainProperties
@@ -417,7 +409,7 @@ function buildResponseType(
    *    }
    */
 
-  if (!optionsBag.useCoreV2) {
+  if (!useCoreV2) {
     return intersectionTypes.length > 1
       ? // Using apply instead of calling the method directly to be able to conditionally pass
         // parameters, this way we don't have to have a nested if/else tree to decide which parameters
@@ -536,18 +528,13 @@ const writeSealedChoice = (
 
 const writeObjects = (
   clientDetails: ClientDetails,
-  modelsIndexFile: SourceFile,
-  optionsBag: OptionsBag
-) =>
-  clientDetails.objects.forEach(
-    writeObjectSignature(modelsIndexFile, optionsBag)
-  );
+  modelsIndexFile: SourceFile
+) => clientDetails.objects.forEach(writeObjectSignature(modelsIndexFile));
 
-const writeObjectSignature = (
-  modelsIndexFile: SourceFile,
-  optionsBag: OptionsBag
-) => (model: ObjectDetails) => {
-  const properties = getPropertiesSignatures(model, optionsBag);
+const writeObjectSignature = (modelsIndexFile: SourceFile) => (
+  model: ObjectDetails
+) => {
+  const properties = getPropertiesSignatures(model);
   const parents = model.parents.map(p => p.name).join(" & ");
 
   if (parents) {
@@ -671,9 +658,9 @@ function writeOptionalParameters(
     mediaTypes,
     operationFullName,
     operationIsLro
-  }: WriteOptionalParametersOptions,
-  optionsBag: OptionsBag
+  }: WriteOptionalParametersOptions
 ) {
+  const { useCoreV2 } = getAutorestOptions();
   const optionalGroupDeclarations = getOptionalGroups(optionalParams);
   function buildParamDetails(p: ParameterDetails): PropertySignatureStructure {
     const description = getParameterDescription(p, operationFullName);
@@ -696,7 +683,7 @@ function writeOptionalParameters(
       isExported: true,
       extends: [
         baseClass ||
-          (!optionsBag.useCoreV2
+          (!useCoreV2
             ? "coreHttp.OperationOptions"
             : "coreClient.OperationOptions")
       ],
@@ -764,9 +751,9 @@ function writeOptionalParameters(
  * @param objectDetails Object description
  */
 function getProperties(
-  objectDetails: ObjectDetails,
-  optionsBag: OptionsBag
+  objectDetails: ObjectDetails
 ): PropertySignatureStructure[] {
+  const { ignoreNullableOnOptional } = getAutorestOptions();
   const { properties } = objectDetails;
   const getTypename = (property: PropertyDetails) => {
     if (property.isConstant) {
@@ -782,7 +769,7 @@ function getProperties(
         ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
         : property.type;
 
-    if (optionsBag.ignoreNullableOnOptional) {
+    if (ignoreNullableOnOptional) {
       return property.nullable && property.required
         ? `${typeName} | null`
         : typeName;
@@ -881,14 +868,8 @@ function withAdditionalProperties(
  * Gets an enhanced list of Properties to construct an Object signature
  * @param objectDetails Object description
  */
-const getPropertiesSignatures = (
-  objectDetails: ObjectDetails,
-  optionsBag: OptionsBag
-) =>
+const getPropertiesSignatures = (objectDetails: ObjectDetails) =>
   withDiscriminator(
     objectDetails,
-    withAdditionalProperties(
-      objectDetails,
-      getProperties(objectDetails, optionsBag)
-    )
+    withAdditionalProperties(objectDetails, getProperties(objectDetails))
   );

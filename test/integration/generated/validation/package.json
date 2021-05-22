@@ -1,7 +1,7 @@
 {
   "name": "validation",
   "author": "Microsoft Corporation",
-  "description": "Test Infrastructure for AutoRest. No server backend exists for these tests.",
+  "description": "A generated SDK for ValidationClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

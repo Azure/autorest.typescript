@@ -1,7 +1,7 @@
 {
   "name": "body-integer",
   "author": "Microsoft Corporation",
-  "description": "Test Infrastructure for AutoRest",
+  "description": "A generated SDK for BodyIntegerClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

@@ -1,7 +1,7 @@
 {
   "name": "odata-discriminator",
   "author": "Microsoft Corporation",
-  "description": "Client that can be used to manage and query indexes and documents, as well as manage other resources, on a search service.",
+  "description": "A generated SDK for ODataDiscriminatorClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

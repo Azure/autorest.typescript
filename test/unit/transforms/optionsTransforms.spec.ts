@@ -1,6 +1,6 @@
 import { Channel, Host, Message } from "@autorest/extension-base";
 import { assert } from "chai";
-import { getCredentialScopes } from "../../../src/transforms/optionsTransforms";
+import { getCredentialScopes } from "../../../src/utils/autorestOptions";
 
 describe("transformOptions", () => {
   describe("getCredentialScopes", () => {

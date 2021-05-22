@@ -1,7 +1,7 @@
 {
   "name": "multiple-inheritance",
   "author": "Microsoft Corporation",
-  "description": "Service client for multiinheritance client testing",
+  "description": "A generated SDK for MultipleInheritanceClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

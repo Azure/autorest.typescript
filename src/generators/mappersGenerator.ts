@@ -23,27 +23,27 @@ import { keys, isEmpty, isString, isNil, isEqual } from "lodash";
 import { getStringForValue, MapperTypes } from "../utils/valueHelpers";
 import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
 import { logger } from "../utils/logger";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 export function generateMappers(
   clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ) {
+  const { useCoreV2, srcPath } = getAutorestOptions();
   if (!clientDetails.mappers.length) {
     logger.info("No mappers in code model, skipping mapper file generation");
     return;
   }
   const mappersFile = project.createSourceFile(
-    `${clientDetails.srcPath}/models/mappers.ts`,
+    `${srcPath}/models/mappers.ts`,
     undefined,
     { overwrite: true }
   );
 
-  writeMappers(mappersFile, clientDetails, optionsBag);
+  writeMappers(mappersFile, clientDetails);
   writeDiscriminatorsMapping(mappersFile, clientDetails);
 
-  if (!optionsBag.useCoreV2) {
+  if (!useCoreV2) {
     mappersFile.addImportDeclaration({
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
@@ -60,11 +60,8 @@ export function generateMappers(
 /**
  * This function writes to the mappers.ts file all the mappers to be used by @azure/core-http for serialization
  */
-function writeMappers(
-  sourceFile: SourceFile,
-  { mappers }: ClientDetails,
-  optionsBag: OptionsBag
-) {
+function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
+  const { useCoreV2 } = getAutorestOptions();
   const generatedMappers: Map<string, Mapper> = new Map<string, Mapper>();
 
   mappers.forEach(mapper => {
@@ -96,7 +93,7 @@ function writeMappers(
             (mapper as CompositeMapper).type.className || "MISSING_MAPPER",
             NameType.Class
           ),
-          type: !optionsBag.useCoreV2
+          type: !useCoreV2
             ? "coreHttp.CompositeMapper"
             : "coreClient.CompositeMapper",
           initializer: writer => writeMapper(writer, mapper)

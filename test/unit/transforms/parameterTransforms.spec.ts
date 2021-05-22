@@ -75,7 +75,7 @@ describe("parameterTransforms", () => {
       const codeModel = getCodeModelWithOneParam({
         location: ParameterLocation.Path
       });
-      const params = transformParameters(codeModel, clientOptions, optionsBag);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].location, ParameterLocation.Path);
     });
 
@@ -83,23 +83,19 @@ describe("parameterTransforms", () => {
       const codeModel = getCodeModelWithOneParam({
         extensions: { "x-ms-priority": 0 }
       });
-      const params = transformParameters(codeModel, clientOptions, optionsBag);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].isGlobal, true);
     });
 
     it("shouldn ot mark as global parameter when x-ms-priority does not exist", () => {
       const codeModel = getCodeModelWithOneParam();
-      const params = transformParameters(codeModel, clientOptions, optionsBag);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].isGlobal, false);
     });
 
     it("should return an empty set of global an operation parameters", () => {
       const codeModel = new CodeModel("testCodeModel");
-      const parameters = transformParameters(
-        codeModel,
-        clientOptions,
-        optionsBag
-      );
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.deepEqual(parameters[0].name, "endpoint");
     });
@@ -170,11 +166,7 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(
-        codeModel,
-        clientOptions,
-        optionsBag
-      );
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 3);
       assert.deepEqual(
@@ -256,11 +248,7 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(
-        codeModel,
-        clientOptions,
-        optionsBag
-      );
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 2);
       assert.deepEqual(
@@ -333,11 +321,7 @@ describe("parameterTransforms", () => {
           ]
         })
       ];
-      const parameters = transformParameters(
-        codeModel,
-        clientOptions,
-        optionsBag
-      );
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 3);
       assert.deepEqual(

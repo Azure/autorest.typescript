@@ -1,23 +1,17 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
-import { hasLROOperation } from "../generators/operationGenerator";
+import { getAutorestOptions } from "../autorestSession";
 
 export function generateIndexFile(
   clientDetails: ClientDetails,
   project: Project
 ) {
-  const indexFile = project.createSourceFile(
-    `${clientDetails.srcPath}/index.ts`,
-    undefined,
-    {
-      overwrite: true
-    }
-  );
+  const { srcPath, disablePagingAsyncIterators } = getAutorestOptions();
+  const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
+    overwrite: true
+  });
 
-  if (
-    clientDetails.options.hasPaging &&
-    !clientDetails.options.disablePagingAsyncIterators
-  ) {
+  if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     indexFile.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
   }
 

@@ -2,25 +2,19 @@
 // Licensed under the MIT License.
 
 import { Project, SourceFile, VariableDeclarationKind } from "ts-morph";
-import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "../utils/nameUtils";
+import { getAutorestOptions } from "../autorestSession";
 
-export function generateTracingFile(
-  clientDetails: ClientDetails,
-  project: Project
-) {
-  if (clientDetails.tracing === undefined) {
+export function generateTracingFile(project: Project) {
+  const { tracingInfo, srcPath } = getAutorestOptions();
+  if (tracingInfo === undefined) {
     return;
   }
 
-  const file = project.createSourceFile(
-    `${clientDetails.srcPath}/tracing.ts`,
-    undefined,
-    {
-      overwrite: true
-    }
-  );
+  const file = project.createSourceFile(`${srcPath}/tracing.ts`, undefined, {
+    overwrite: true
+  });
 
   file.addImportDeclarations([
     {
@@ -29,17 +23,17 @@ export function generateTracingFile(
     }
   ]);
 
-  writeCreateSpanFunction(file, clientDetails.tracing);
+  writeCreateSpanFunction(file);
   file.fixUnusedIdentifiers();
 }
 
-function writeCreateSpanFunction(
-  file: SourceFile,
-  tracing: {
-    namespace: string;
-    packagePrefix: string;
+function writeCreateSpanFunction(file: SourceFile) {
+  const { tracingInfo } = getAutorestOptions();
+
+  if (!tracingInfo) {
+    return;
   }
-) {
+
   file.addVariableStatement({
     isExported: true,
     declarationKind: VariableDeclarationKind.Const,
@@ -47,8 +41,8 @@ function writeCreateSpanFunction(
       {
         name: "createSpan",
         initializer: `createSpanFunction({
-        namespace: "${tracing.namespace}",
-        packagePrefix: "${tracing.packagePrefix}"
+        namespace: "${tracingInfo.namespace}",
+        packagePrefix: "${tracingInfo.packagePrefix}"
       });`
       }
     ]
