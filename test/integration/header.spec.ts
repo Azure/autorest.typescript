@@ -84,7 +84,7 @@ describe("typescript", function() {
         response2.value!.should.be.deep.equal(false);
       });
 
-      it("should send and receive string type headers", async function() {
+      it.skip("should send and receive string type headers", async function() {
         await testClient.header.paramString("valid", {
           value: "The quick brown fox jumps over the lazy dog"
         });
@@ -106,7 +106,7 @@ describe("typescript", function() {
         assert.equal(response3.value, undefined);
       });
 
-      it("should send and receive enum type headers", async function() {
+      it.skip("should send and receive enum type headers", async function() {
         await testClient.header.paramEnum("valid", { value: "GREY" });
         await testClient.header.paramEnum("null", { value: null as any });
 
