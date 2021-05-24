@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { WebSiteManagementClientOptionalParams } from "./models";
 
 const packageName = "web-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class WebSiteManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

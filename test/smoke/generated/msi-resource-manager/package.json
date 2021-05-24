@@ -1,8 +1,8 @@
 {
   "name": "msi-resource-manager",
   "author": "Microsoft Corporation",
-  "description": "The Managed Service Identity Client.",
-  "version": "1.0.0",
+  "description": "A generated SDK for ManagedServiceIdentityClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-paging": "^1.1.1",
     "@azure/core-http": "^1.2.4",

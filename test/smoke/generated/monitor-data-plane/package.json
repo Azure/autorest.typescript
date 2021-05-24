@@ -1,8 +1,8 @@
 {
   "name": "monitor-data-plane",
   "author": "Microsoft Corporation",
-  "description": "Monitor Management Client",
-  "version": "1.0.0",
+  "description": "A generated SDK for MonitorClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-http": "^1.2.4",
     "tslib": "^1.9.3"

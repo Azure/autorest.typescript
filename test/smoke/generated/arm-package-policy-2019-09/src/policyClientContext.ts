@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { PolicyClientOptionalParams } from "./models";
 
 const packageName = "arm-package-policy-2019-09";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class PolicyClientContext extends coreHttp.ServiceClient {
   $host: string;

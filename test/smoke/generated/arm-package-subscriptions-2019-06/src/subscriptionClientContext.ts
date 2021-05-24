@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { SubscriptionClientOptionalParams } from "./models";
 
 const packageName = "arm-package-subscriptions-2019-06";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class SubscriptionClientContext extends coreHttp.ServiceClient {
   $host: string;

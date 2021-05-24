@@ -1,8 +1,8 @@
 {
   "name": "storage-resource-manager",
   "author": "Microsoft Corporation",
-  "description": "The Azure Storage Management API.",
-  "version": "1.0.0",
+  "description": "A generated SDK for StorageManagementClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-lro": "^1.0.5",
     "@azure/core-paging": "^1.1.1",

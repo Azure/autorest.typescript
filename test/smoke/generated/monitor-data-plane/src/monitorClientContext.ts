@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { MonitorClientOptionalParams } from "./models";
 
 const packageName = "monitor-data-plane";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class MonitorClientContext extends coreHttp.ServiceClient {
   $host: string;

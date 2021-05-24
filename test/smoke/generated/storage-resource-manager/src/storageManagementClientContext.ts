@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { StorageManagementClientOptionalParams } from "./models";
 
 const packageName = "storage-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class StorageManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

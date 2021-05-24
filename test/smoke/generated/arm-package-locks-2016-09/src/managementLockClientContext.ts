@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { ManagementLockClientOptionalParams } from "./models";
 
 const packageName = "arm-package-locks-2016-09";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class ManagementLockClientContext extends coreHttp.ServiceClient {
   $host: string;

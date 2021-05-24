@@ -1,8 +1,8 @@
 {
   "name": "arm-package-subscriptions-2019-06",
   "author": "Microsoft Corporation",
-  "description": "All resource groups and resources exist within subscriptions. These operation enable you get information about your subscriptions and tenants. A tenant is a dedicated instance of Azure Active Directory (Azure AD) for your organization.",
-  "version": "1.0.0",
+  "description": "A generated SDK for SubscriptionClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-paging": "^1.1.1",
     "@azure/core-http": "^1.2.4",
