@@ -24,6 +24,7 @@ export class BodyDurationClientContext extends coreClient.ServiceClient {
     const defaults: BodyDurationClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

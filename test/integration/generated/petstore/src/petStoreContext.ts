@@ -16,6 +16,7 @@ export class PetStoreContext extends coreClient.ServiceClient {
     const defaults: PetStoreOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

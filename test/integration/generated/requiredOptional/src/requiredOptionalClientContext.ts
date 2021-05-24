@@ -40,6 +40,7 @@ export class RequiredOptionalClientContext extends coreClient.ServiceClient {
     const defaults: RequiredOptionalClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

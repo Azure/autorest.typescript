@@ -25,6 +25,7 @@ export class BodyComplexWithTracingContext extends coreClient.ServiceClient {
     const defaults: BodyComplexWithTracingOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

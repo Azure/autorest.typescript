@@ -30,6 +30,7 @@ export class OperationGroupClashClientContext extends coreClient.ServiceClient {
     const defaults: OperationGroupClashClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -24,6 +24,7 @@ export class ExtensibleEnumsClientContext extends coreClient.ServiceClient {
     const defaults: ExtensibleEnumsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -29,6 +29,7 @@ export class RegexConstraintContext extends coreClient.ServiceClient {
     const defaults: RegexConstraintOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

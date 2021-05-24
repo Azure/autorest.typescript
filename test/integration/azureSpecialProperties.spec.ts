@@ -5,7 +5,7 @@ import {
 import { assert } from "chai";
 import { responseStatusChecker } from "../utils/responseStatusChecker";
 
-import { RestError, BasicAuthenticationCredentials } from "@azure/core-http";
+import { RestError } from "@azure/core-http";
 import { TokenCredential } from "@azure/core-auth";
 import { FullOperationResponse, OperationOptions } from "@azure/core-client";
 import {
@@ -34,9 +34,7 @@ describe("auth validation", () => {
       mockCredential,
       "1234-5678-9012-3456",
       {
-        allowInsecureConnection: true,
-        credential: mockCredential,
-        credentialScopes: expectedScopes
+        allowInsecureConnection: true
       }
     );
 
@@ -60,9 +58,18 @@ describe("AzureSpecialProperties", () => {
   let client: AzureSpecialPropertiesClient;
   let dummySubscriptionId: string;
   let clientOptions: AzureSpecialPropertiesClientOptionalParams;
-  let dummyCredentials: TokenCredential;
+  let mockCredential: TokenCredential;
 
   beforeEach(() => {
+    mockCredential = {
+      getToken: async () => {
+        return {
+          token: "test-token",
+          expiresOnTimestamp: 111111
+        };
+      }
+    };
+
     dummySubscriptionId = "1234-5678-9012-3456";
 
     clientOptions = {
@@ -70,13 +77,8 @@ describe("AzureSpecialProperties", () => {
       allowInsecureConnection: true
     };
 
-    dummyCredentials = (new BasicAuthenticationCredentials(
-      "",
-      ""
-    ) as unknown) as TokenCredential;
-
     client = new AzureSpecialPropertiesClient(
-      dummyCredentials,
+      mockCredential,
       dummySubscriptionId,
       clientOptions
     );
@@ -264,7 +266,7 @@ describe("AzureSpecialProperties", () => {
 
     it("should not overwrite x-ms-client-request-id", async () => {
       client = new AzureSpecialPropertiesClient(
-        dummyCredentials,
+        mockCredential,
         dummySubscriptionId,
         {
           ...clientOptions
@@ -307,7 +309,7 @@ describe("AzureSpecialProperties", () => {
   describe("headers", () => {
     it("should allow custom-named request-id headers to be used", async () => {
       client = new AzureSpecialPropertiesClient(
-        dummyCredentials,
+        mockCredential,
         dummySubscriptionId,
         {
           ...clientOptions
@@ -335,7 +337,7 @@ describe("AzureSpecialProperties", () => {
 
     it("should allow custom-named request-id headers to be used with parameter grouping", async () => {
       const testClient = new AzureSpecialPropertiesClient(
-        dummyCredentials,
+        mockCredential,
         dummySubscriptionId,
         {
           ...clientOptions
@@ -385,7 +387,7 @@ describe("AzureSpecialProperties", () => {
     it("should be overridden by a user-specified base URL", async () => {
       let _response: FullOperationResponse;
       const client = new AzureSpecialPropertiesClient(
-        dummyCredentials,
+        mockCredential,
         dummySubscriptionId,
         {
           httpClient: {

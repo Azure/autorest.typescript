@@ -24,6 +24,7 @@ export class CustomUrlPagingClientContext extends coreClient.ServiceClient {
     const defaults: CustomUrlPagingClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

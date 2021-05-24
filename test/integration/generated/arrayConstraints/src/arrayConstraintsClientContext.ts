@@ -38,6 +38,7 @@ export class ArrayConstraintsClientContext extends coreClient.ServiceClient {
     const defaults: ArrayConstraintsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

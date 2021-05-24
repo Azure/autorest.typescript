@@ -34,6 +34,7 @@ export class SubscriptionIdApiVersionClientContext extends coreClient.ServiceCli
     const defaults: SubscriptionIdApiVersionClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,
