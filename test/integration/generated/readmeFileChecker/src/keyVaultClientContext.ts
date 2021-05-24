@@ -24,6 +24,7 @@ export class KeyVaultClientContext extends coreClient.ServiceClient {
     const defaults: KeyVaultClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

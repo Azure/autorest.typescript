@@ -24,6 +24,7 @@ export class ObjectTypeClientContext extends coreClient.ServiceClient {
     const defaults: ObjectTypeClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

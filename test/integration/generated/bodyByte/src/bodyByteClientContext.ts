@@ -24,6 +24,7 @@ export class BodyByteClientContext extends coreClient.ServiceClient {
     const defaults: BodyByteClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

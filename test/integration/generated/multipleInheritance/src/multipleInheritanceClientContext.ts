@@ -24,6 +24,7 @@ export class MultipleInheritanceClientContext extends coreClient.ServiceClient {
     const defaults: MultipleInheritanceClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

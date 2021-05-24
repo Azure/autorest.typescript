@@ -29,6 +29,7 @@ export class MapperRequiredClientContext extends coreClient.ServiceClient {
     const defaults: MapperRequiredClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

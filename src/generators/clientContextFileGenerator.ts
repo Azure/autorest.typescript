@@ -237,6 +237,15 @@ function writeDefaultOptions(
   }`
     : "";
 
+  const defaults = !hasCredentials
+    ? `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8"
+  };`
+    : `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8",
+    credential: credentials
+  };`;
+
   return !useCoreV2
     ? `// Initializing default values for options
   if (!options) {
@@ -259,9 +268,8 @@ function writeDefaultOptions(
   if (!options) {
     options = {};
   }
-  const defaults: ${clientDetails.className}OptionalParams = {
-    requestContentType: "application/json; charset=utf-8"
-  };
+  ${defaults}
+  ${addScopes}
   const optionsWithDefaults = {
     ...defaults,
     ...options,

@@ -33,6 +33,7 @@ export class CustomUrlMoreOptionsClientContext extends coreClient.ServiceClient 
     const defaults: CustomUrlMoreOptionsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

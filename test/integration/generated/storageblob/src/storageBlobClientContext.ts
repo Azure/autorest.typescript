@@ -23,6 +23,7 @@ export class StorageBlobClientContext extends coreClient.ServiceClient {
     const defaults: StorageBlobClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,
