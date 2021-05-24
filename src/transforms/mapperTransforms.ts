@@ -62,6 +62,7 @@ const pipe = (
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
+  skipEnumValidation?: boolean;
   serializedName?: string;
   required?: boolean;
   readOnly?: boolean;
@@ -78,7 +79,7 @@ export interface MapperInput {
 export async function transformMappers(
   codeModel: CodeModel,
   uberParents: ObjectDetails[],
-  { mediaTypes }: ClientOptions
+  { mediaTypes, skipEnumValidation }: ClientOptions
 ): Promise<Mapper[]> {
   const clientName = getLanguageMetadata(codeModel.language).name;
 
@@ -94,7 +95,11 @@ export async function transformMappers(
   ].map(objectSchema =>
     transformMapper({
       schema: objectSchema,
-      options: { hasXmlMetadata, uberParents: uberParentsNames }
+      options: {
+        hasXmlMetadata,
+        uberParents: uberParentsNames,
+        skipEnumValidation
+      }
     })
   );
 }
@@ -484,10 +489,16 @@ function transformChoiceMapper(pipelineValue: PipelineValue) {
       };
     }
   } else {
-    type = {
-      name: MapperType.Enum,
-      allowedValues: choiceSchema.choices.map(choice => choice.value)
-    };
+    if (options?.skipEnumValidation) {
+      type = {
+        name: MapperType.String
+      };
+    } else {
+      type = {
+        name: MapperType.Enum,
+        allowedValues: choiceSchema.choices.map(choice => choice.value)
+      };
+    }
   }
 
   const mapper = buildMapper(schema, type, options);

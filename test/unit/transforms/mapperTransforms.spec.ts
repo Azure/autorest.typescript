@@ -382,6 +382,30 @@ describe("transformChoiceMapper", () => {
       }
     } as EnumMapper);
   });
+
+  it("Gets a mapper for a SealedChoice schema, as a string mapper if skipEnumValidation is true", () => {
+    const choiceSchemaName = "mockSealedChoice";
+    const choices = [
+      new ChoiceValue("", "", 1),
+      new ChoiceValue("", "", 2),
+      new ChoiceValue("", "", 3),
+      new ChoiceValue("", "", 4)
+    ];
+    const schema = getSealedChoiceSchema(choiceSchemaName, {
+      choiceType: SchemaType.String,
+      choices
+    });
+    const mapper = transformMapper({
+      schema,
+      options: { skipEnumValidation: true }
+    });
+
+    assert.deepEqual(mapper, {
+      type: {
+        name: MapperType.String
+      }
+    } as BaseMapper);
+  });
 });
 
 describe("transformDateMapper", () => {

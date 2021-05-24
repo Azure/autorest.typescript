@@ -15,6 +15,7 @@ export interface ClientOptions {
   disablePagingAsyncIterators?: boolean;
   mediaTypes?: Set<KnownMediaType>;
   hasPaging?: boolean;
+  skipEnumValidation?: boolean;
   credentialScopes?: string[];
 }
 
