@@ -4,32 +4,56 @@
 import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
+const highLevelTsConfig = {
+  compilerOptions: {
+    module: "es6",
+    moduleResolution: "node",
+    strict: true,
+    target: "es5",
+    sourceMap: true,
+    declarationMap: true,
+    esModuleInterop: true,
+    allowSyntheticDefaultImports: true,
+    forceConsistentCasingInFileNames: true,
+    preserveConstEnums: true,
+    lib: ["es6", "dom"],
+    declaration: true,
+    outDir: "./esm",
+    importHelpers: true
+  },
+  include: ["./src/**/*.ts"],
+  exclude: ["node_modules"]
+};
+
+const restLevelTsConfig = {
+  compilerOptions: {
+    module: "commonjs",
+    target: "es2015",
+    declaration: true,
+    declarationMap: true,
+    outDir: "./esm"
+  },
+  exclude: [
+    "node_modules",
+    "types",
+    "temp",
+    "browser",
+    "dist",
+    "dist-esm",
+    "./samples/**/*.ts"
+  ]
+};
+
 export function generateTsConfig(project: Project) {
-  const { generateMetadata } = getAutorestOptions();
+  const { generateMetadata, restLevelClient } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
-  const tsConfigContents = {
-    compilerOptions: {
-      module: "es6",
-      moduleResolution: "node",
-      strict: true,
-      target: "es5",
-      sourceMap: true,
-      declarationMap: true,
-      esModuleInterop: true,
-      allowSyntheticDefaultImports: true,
-      forceConsistentCasingInFileNames: true,
-      preserveConstEnums: true,
-      lib: ["es6", "dom"],
-      declaration: true,
-      outDir: "./esm",
-      importHelpers: true
-    },
-    include: ["./src/**/*.ts"],
-    exclude: ["node_modules"]
-  };
+
+  const tsConfigContents = restLevelClient
+    ? restLevelTsConfig
+    : highLevelTsConfig;
 
   project.createSourceFile("tsconfig.json", JSON.stringify(tsConfigContents), {
     overwrite: true
