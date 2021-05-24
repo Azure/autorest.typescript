@@ -33,16 +33,26 @@ describe("auth validation", () => {
     const client = new AzureSpecialPropertiesClient(
       mockCredential,
       "1234-5678-9012-3456",
-      { allowInsecureConnection: true }
+      {
+        allowInsecureConnection: true,
+        credential: mockCredential,
+        credentialScopes: expectedScopes
+      }
     );
 
-    await client.apiVersionDefault.getMethodGlobalValid(responseStatusChecker);
+    let _response: FullOperationResponse;
+    await client.apiVersionDefault.getMethodGlobalValid({
+      ...responseStatusChecker,
+      onResponse: r => {
+        _response = r;
+      }
+    });
 
     // Validate auth header
-    // assert.equal(
-    //   result._response.request.headers.get("authorization"),
-    //   "Bearer test-token"
-    // );
+    assert.equal(
+      _response!.request.headers.get("authorization"),
+      "Bearer test-token"
+    );
   });
 });
 
