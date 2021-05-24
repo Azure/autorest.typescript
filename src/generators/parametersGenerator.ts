@@ -15,13 +15,13 @@ import { isString } from "util";
 import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 export function generateParameters(
   clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ): void {
+  const { useCoreV2, srcPath } = getAutorestOptions();
   if (!shouldImportParameters(clientDetails)) {
     logger.verbose(
       "There are no parameters to generate, skipping parameters file generation"
@@ -30,18 +30,16 @@ export function generateParameters(
   }
 
   const parametersFile = project.createSourceFile(
-    `${clientDetails.srcPath}/models/parameters.ts`,
+    `${srcPath}/models/parameters.ts`,
     undefined,
     { overwrite: true }
   );
 
-  const importedCoreHttp = getCoreHttpImports(clientDetails, optionsBag);
+  const importedCoreHttp = getCoreHttpImports(clientDetails);
   if (importedCoreHttp.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedCoreHttp,
-      moduleSpecifier: !optionsBag.useCoreV2
-        ? "@azure/core-http"
-        : "@azure/core-client"
+      moduleSpecifier: !useCoreV2 ? "@azure/core-http" : "@azure/core-client"
     });
   }
 
@@ -60,7 +58,7 @@ export function generateParameters(
     .forEach(param => {
       parametersFile.addVariableStatement({
         isExported: true,
-        declarations: [buildParameterInitializer(param, optionsBag)],
+        declarations: [buildParameterInitializer(param)],
         declarationKind: VariableDeclarationKind.Const,
         leadingTrivia: writer => writer.blankLine()
       });
@@ -70,8 +68,7 @@ export function generateParameters(
 }
 
 function buildParameterInitializer(
-  parameter: ParameterDetails,
-  optionsBag: OptionsBag
+  parameter: ParameterDetails
 ): VariableDeclarationStructure {
   const { nameRef, location } = parameter;
   const type = getParameterType(location);
@@ -82,7 +79,7 @@ function buildParameterInitializer(
       writer.block(() => {
         writeParameterPath(writer, parameter);
         writeParameterMapper(writer, parameter);
-        writeParameterCollectionFormat(writer, parameter, optionsBag);
+        writeParameterCollectionFormat(writer, parameter);
         writeParameterSkipEncoding(writer, parameter);
       });
     },
@@ -92,10 +89,10 @@ function buildParameterInitializer(
 
 function writeParameterCollectionFormat(
   writer: CodeBlockWriter,
-  { collectionFormat }: ParameterDetails,
-  optionsBag: OptionsBag
+  { collectionFormat }: ParameterDetails
 ) {
-  if (optionsBag.useCoreV2) {
+  const { useCoreV2 } = getAutorestOptions();
+  if (useCoreV2) {
     switch (collectionFormat) {
       case "Csv":
         collectionFormat = '"CSV"';
@@ -167,10 +164,8 @@ function getParameterType(location: ParameterLocation) {
   }
 }
 
-function getCoreHttpImports(
-  clientDetails: ClientDetails,
-  optionsBag: OptionsBag
-) {
+function getCoreHttpImports(clientDetails: ClientDetails) {
+  const { useCoreV2 } = getAutorestOptions();
   const parameterTypes: string[] = clientDetails.parameters
     .filter(p => !p.isSynthetic)
     .map(p => getParameterType(p.location));
@@ -179,7 +174,7 @@ function getCoreHttpImports(
     clientDetails.parameters
       .filter(p => !p.isSynthetic)
       .some(p => p.collectionFormat) &&
-    !optionsBag.useCoreV2
+    !useCoreV2
   ) {
     parameterTypes.push("QueryCollectionFormat");
   }

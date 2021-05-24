@@ -16,14 +16,20 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@autorest/codemodel";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { formatJsDocParam } from "./utils/parameterUtils";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ) {
+  const {
+    useCoreV2,
+    hideClients,
+    addCredentials,
+    srcPath
+  } = getAutorestOptions();
+
   const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
@@ -40,22 +46,18 @@ export function generateClientContext(
   );
 
   const sourceFile = project.createSourceFile(
-    `${clientDetails.srcPath}/${clientContextFileName}.ts`,
+    `${srcPath}/${clientContextFileName}.ts`,
     undefined,
     {
       overwrite: true
     }
   );
 
-  !optionsBag.useCoreV2 && writePackageInfo(sourceFile, packageDetails);
+  !useCoreV2 && writePackageInfo(sourceFile, packageDetails);
 
-  const contextClass = buildClass(
-    sourceFile,
-    clientContextClassName,
-    optionsBag
-  );
+  const contextClass = buildClass(sourceFile, clientContextClassName);
 
-  if (optionsBag.hideClients) {
+  if (hideClients) {
     contextClass.addJsDoc({
       tags: [
         {
@@ -80,12 +82,11 @@ export function generateClientContext(
       clientParams,
       clientDetails
     },
-    hasLRO,
-    optionsBag
+    hasLRO
   );
 
-  const hasCredentials = !!clientDetails.options.addCredentials;
-  writeImports(sourceFile, hasLRO, importedModels, hasCredentials, optionsBag);
+  const hasCredentials = !!addCredentials;
+  writeImports(sourceFile, hasLRO, importedModels, hasCredentials);
   sourceFile.fixUnusedIdentifiers();
 }
 
@@ -98,10 +99,11 @@ function writeImports(
   sourceFile: SourceFile,
   hasLRO: boolean,
   importedModels: Set<string>,
-  hasCredentials: boolean,
-  optionsBag: OptionsBag
+  hasCredentials: boolean
 ) {
-  if (!optionsBag.useCoreV2) {
+  const { useCoreV2 } = getAutorestOptions();
+
+  if (!useCoreV2) {
     sourceFile.addImportDeclaration({
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
@@ -161,9 +163,10 @@ function writeClassProperties(
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
   { clientParams, clientDetails }: WriteConstructorBodyParameters,
-  hasLRO: boolean,
-  optionsBag: OptionsBag
+  hasLRO: boolean
 ) {
+  const { useCoreV2 } = getAutorestOptions();
+
   const requiredParams = getRequiredParameters(clientParams);
   const addBlankLine = true;
   const requiredParameters = getRequiredParamAssignments(requiredParams);
@@ -174,13 +177,12 @@ function writeConstructorBody(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
         hasLRO,
-        clientDetails,
-        optionsBag
+        clientDetails
       )
     )
   ]);
 
-  !optionsBag.useCoreV2 &&
+  !useCoreV2 &&
     classConstructor.addStatements([
       writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine)
     ]);
@@ -224,19 +226,18 @@ function getCredentialScopesValue(credentialScopes?: string | string[]) {
 function writeDefaultOptions(
   hasCredentials: boolean,
   hasLRO: boolean,
-  clientDetails: ClientDetails,
-  optionsBag: OptionsBag
+  clientDetails: ClientDetails
 ) {
-  const credentialScopes = getCredentialScopesValue(
-    clientDetails.options.credentialScopes
-  );
+  const { useCoreV2, credentialScopes } = getAutorestOptions();
+
+  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
   const addScopes = credentialScopes
     ? `if(!options.credentialScopes) {
-    options.credentialScopes = ${credentialScopes}
+    options.credentialScopes = ${credentialScopesValues}
   }`
     : "";
 
-  return !optionsBag.useCoreV2
+  return !useCoreV2
     ? `// Initializing default values for options
   if (!options) {
      options = {};
@@ -264,22 +265,18 @@ function writeDefaultOptions(
   const optionsWithDefaults = {
     ...defaults,
     ...options,
-    baseUri: ${getEndpoint(clientDetails.endpoint, optionsBag)}
+    baseUri: ${getEndpoint(clientDetails.endpoint)}
   };
   super(optionsWithDefaults);
   `;
 }
 
-function buildClass(
-  sourceFile: SourceFile,
-  clientContextClassName: string,
-  optionsBag: OptionsBag
-) {
+function buildClass(sourceFile: SourceFile, clientContextClassName: string) {
+  const { useCoreV2 } = getAutorestOptions();
+
   return sourceFile.addClass({
     name: clientContextClassName,
-    extends: !optionsBag.useCoreV2
-      ? "coreHttp.ServiceClient"
-      : "coreClient.ServiceClient",
+    extends: !useCoreV2 ? "coreHttp.ServiceClient" : "coreClient.ServiceClient",
     isExported: true
   });
 }
@@ -380,6 +377,6 @@ function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
     .map(({ name }) => `this.${name} = ${name};`);
 }
 
-function getEndpoint({ endpoint }: EndpointDetails, optionsBag: OptionsBag) {
+function getEndpoint({ endpoint }: EndpointDetails) {
   return `options.endpoint ${endpoint ? ` || "${endpoint}"` : ""}`;
 }

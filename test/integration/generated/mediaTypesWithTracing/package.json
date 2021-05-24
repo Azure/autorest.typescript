@@ -1,7 +1,7 @@
 {
   "name": "media-types-service-tracing",
   "author": "Microsoft Corporation",
-  "description": "Play with produces/consumes and media-types in general.",
+  "description": "A generated SDK for MediaTypesWithTracingClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

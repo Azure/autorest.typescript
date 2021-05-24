@@ -36,6 +36,7 @@ import {
 } from "../utils/schemaHelpers";
 import { ObjectDetails } from "../models/modelDetails";
 import { MapperTypes } from "../utils/valueHelpers";
+import { getAutorestOptions } from "../autorestSession";
 
 interface PipelineValue {
   schema: Schema;
@@ -79,8 +80,9 @@ export interface MapperInput {
 export async function transformMappers(
   codeModel: CodeModel,
   uberParents: ObjectDetails[],
-  { mediaTypes, skipEnumValidation }: ClientOptions
+  { mediaTypes }: ClientOptions
 ): Promise<Mapper[]> {
+  const { skipEnumValidation } = getAutorestOptions();
   const clientName = getLanguageMetadata(codeModel.language).name;
 
   if (!codeModel.schemas.objects) {

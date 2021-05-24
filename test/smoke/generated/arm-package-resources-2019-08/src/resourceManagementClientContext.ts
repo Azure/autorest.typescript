@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { ResourceManagementClientOptionalParams } from "./models";
 
 const packageName = "arm-package-resources-2019-08";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class ResourceManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

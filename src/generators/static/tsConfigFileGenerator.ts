@@ -2,8 +2,14 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
+import { getAutorestOptions } from "../../autorestSession";
 
 export function generateTsConfig(project: Project) {
+  const { generateMetadata } = getAutorestOptions();
+
+  if (!generateMetadata) {
+    return;
+  }
   const tsConfigContents = {
     compilerOptions: {
       module: "es6",

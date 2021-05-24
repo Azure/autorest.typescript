@@ -4,22 +4,72 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
-import { OptionsBag } from "../../utils/optionsBag";
+import { getAutorestOptions } from "../../autorestSession";
 
 export function generatePackageJson(
-  clientDetails: ClientDetails,
-  packageDetails: PackageDetails,
   project: Project,
-  optionsBag: OptionsBag
+  clientDetails?: ClientDetails
 ) {
+  const {
+    restLevelClient,
+    generateMetadata,
+    packageDetails
+  } = getAutorestOptions();
+  let packageJsonContents;
+
+  if (!generateMetadata) {
+    return;
+  }
+
+  if (!restLevelClient) {
+    if (!clientDetails) {
+      throw new Error(
+        `Expected ClientDetails and PackageDetails to generate package.json`
+      );
+    }
+    packageJsonContents = regularAutorestPackage(clientDetails, packageDetails);
+  } else {
+    packageJsonContents = restLevelPackage(packageDetails);
+  }
+
+  project.createSourceFile(
+    "package.json",
+    JSON.stringify(packageJsonContents),
+    {
+      overwrite: true
+    }
+  );
+}
+
+/**
+ * This function defines the REST Level client package.json file
+ * or High Level Client
+ */
+function restLevelPackage(packageDetails: PackageDetails) {
+  throw Error("Rest Level Client - Not yet implemented");
+}
+
+/**
+ * This function defines the Regular Autorest package.json file
+ * or High Level Client
+ */
+function regularAutorestPackage(
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails
+) {
+  const {
+    srcPath,
+    useCoreV2,
+    tracingInfo,
+    disablePagingAsyncIterators
+  } = getAutorestOptions();
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
   );
   const hasAsyncIterators =
-    !clientDetails.options.disablePagingAsyncIterators &&
-    clientDetails.options.hasPaging;
+    !disablePagingAsyncIterators && clientDetails.options.hasPaging;
 
-  const packageJsonContents = {
+  return {
     name: packageDetails.name,
     author: "Microsoft Corporation",
     description:
@@ -29,12 +79,12 @@ export function generatePackageJson(
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
-      ...(!optionsBag.useCoreV2 && { "@azure/core-http": "^1.2.4" }),
-      ...(optionsBag.useCoreV2 && { "@azure/core-client": "^1.1.2" }),
-      ...(optionsBag.useCoreV2 && {
+      ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
+      ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "1.0.0-beta.2"
       }),
-      ...(clientDetails.tracing && {
+      ...(tracingInfo && {
         "@azure/core-tracing": "1.0.0-preview.11",
         "@opentelemetry/api": "^0.10.2"
       }),
@@ -73,7 +123,7 @@ export function generatePackageJson(
       "esm/**/*.js.map",
       "esm/**/*.d.ts",
       "esm/**/*.d.ts.map",
-      `${clientDetails.srcPath}/**/*.ts`,
+      `${srcPath}/**/*.ts`,
       "README.md",
       "rollup.config.js",
       "tsconfig.json"
@@ -88,12 +138,4 @@ export function generatePackageJson(
     sideEffects: false,
     autoPublish: true
   };
-
-  project.createSourceFile(
-    "package.json",
-    JSON.stringify(packageJsonContents),
-    {
-      overwrite: true
-    }
-  );
 }

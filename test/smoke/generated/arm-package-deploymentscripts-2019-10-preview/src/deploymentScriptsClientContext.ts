@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { DeploymentScriptsClientOptionalParams } from "./models";
 
 const packageName = "arm-package-deploymentscripts-2019-10-preview";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class DeploymentScriptsClientContext extends coreHttp.ServiceClient {
   $host: string;

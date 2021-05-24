@@ -1,7 +1,7 @@
 {
   "name": "@azure/search-documents",
   "author": "Microsoft Corporation",
-  "description": "Client that can be used to query an index and upload, merge, or delete documents.",
+  "description": "A generated SDK for SearchClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

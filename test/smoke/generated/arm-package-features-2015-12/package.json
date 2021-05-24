@@ -1,8 +1,8 @@
 {
   "name": "arm-package-features-2015-12",
   "author": "Microsoft Corporation",
-  "description": "Azure Feature Exposure Control (AFEC) provides a mechanism for the resource providers to control feature exposure to users. Resource providers typically use this mechanism to provide public/private preview for new features prior to making them generally available. Users need to explicitly register for AFEC features to get access to such functionality.",
-  "version": "1.0.0",
+  "description": "A generated SDK for FeatureClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-paging": "^1.1.1",
     "@azure/core-http": "^1.2.4",

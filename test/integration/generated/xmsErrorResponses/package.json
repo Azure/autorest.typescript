@@ -1,9 +1,13 @@
 {
   "name": "xms-error-responses",
   "author": "Microsoft Corporation",
-  "description": "XMS Error Response Extensions",
+  "description": "A generated SDK for XmsErrorResponsesClient.",
   "version": "1.0.0-preview1",
-  "dependencies": { "@azure/core-http": "^1.2.4", "tslib": "^1.9.3" },
+  "dependencies": {
+    "@azure/core-client": "^1.1.2",
+    "@azure/core-rest-pipeline": "1.0.0-beta.2",
+    "tslib": "^1.9.3"
+  },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/xms-error-responses.js",

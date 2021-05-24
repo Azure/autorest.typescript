@@ -1,8 +1,8 @@
 {
   "name": "arm-package-policy-2019-09",
   "author": "Microsoft Corporation",
-  "description": "To manage and control access to your resources, you can define customized policies and assign them at a scope.",
-  "version": "1.0.0",
+  "description": "A generated SDK for PolicyClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-paging": "^1.1.1",
     "@azure/core-http": "^1.2.4",
