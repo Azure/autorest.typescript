@@ -24,7 +24,6 @@ import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
 import { addPagingEsNextRef, addPagingImports } from "./utils/pagingOperations";
-import { OptionsBag } from "../utils/optionsBag";
 import { getAutorestOptions } from "../autorestSession";
 
 type OperationDeclarationDetails = { name: string; typeName: string };

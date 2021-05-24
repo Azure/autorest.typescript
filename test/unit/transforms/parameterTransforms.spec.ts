@@ -12,7 +12,9 @@ import {
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
 import { ParameterDetails } from "../../../src/models/parameterDetails";
 import { ClientOptions } from "../../../src/models/clientDetails";
-import { OptionsBag } from "../../../src/utils/optionsBag";
+import * as autorestSession from "../../../src/autorestSession";
+import * as sinon from "sinon";
+
 describe("parameterTransforms", () => {
   const getCodeModelWithOneParam = (paramOptions?: {
     location?: ParameterLocation;
@@ -57,18 +59,32 @@ describe("parameterTransforms", () => {
   };
   describe("transformParameters", () => {
     let clientOptions: ClientOptions;
-    let optionsBag: OptionsBag;
+    let optionsSpy: sinon.SinonSpy<[], autorestSession.AutorestOptions>;
+    let optionsBag: autorestSession.AutorestOptions;
+    // Backup the original getAutorestOptions before mocking;
+    const originalOptions = autorestSession.getAutorestOptions;
 
     beforeEach(() => {
-      clientOptions = { mediaTypes: new Set() };
-      optionsBag = {
-        shouldGenerateLicense: false,
+      sinon.replace(autorestSession, "getAutorestOptions", () => ({
+        srcPath: ".",
+        packageDetails: {
+          name: "test",
+          nameWithoutScope: "test",
+          version: "1.0.0"
+        },
+        licenseHeader: false,
         hideClients: true,
-        armLibrary: false,
+        azureArm: false,
         ignoreNullableOnOptional: false,
         useCoreV2: true,
         allowInsecureConnection: true
-      };
+      }));
+      clientOptions = { mediaTypes: new Set() };
+    });
+
+    afterEach(() => {
+      sinon.restore();
+      // optionsSpy.restore();
     });
 
     it("should set the correct parameter location", () => {

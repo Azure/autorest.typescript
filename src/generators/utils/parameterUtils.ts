@@ -22,7 +22,6 @@ import {
 } from "../../utils/nameUtils";
 import { getParameterDescription } from "../../utils/getParameterDescription";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
-import { OptionsBag } from "../../utils/optionsBag";
 import { getAutorestOptions } from "../../autorestSession";
 
 interface ParameterFilterOptions {

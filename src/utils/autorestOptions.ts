@@ -90,8 +90,15 @@ async function getKeyCredentialHeaderName(
 }
 
 async function getAddCredentials(host: Host): Promise<boolean> {
-  const azureArm = await getIsAzureArm(host);
-  return !((await host.GetValue("add-credentials")) === false) || azureArm;
+  const addCredentials = await host.GetValue("add-credentials");
+
+  // Only set addCredentials to false if explicitly set to false
+  // otherwise default to true
+  if (addCredentials === false) {
+    return false;
+  } else {
+    return true;
+  }
 }
 async function getIsAzureArm(host: Host): Promise<boolean> {
   const flag = (await host.GetValue("azure-arm")) === true;
