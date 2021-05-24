@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { NetworkManagementClientOptionalParams } from "./models";
 
 const packageName = "network-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class NetworkManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

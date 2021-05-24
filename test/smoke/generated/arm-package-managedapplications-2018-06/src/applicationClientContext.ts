@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { ApplicationClientOptionalParams } from "./models";
 
 const packageName = "arm-package-managedapplications-2018-06";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class ApplicationClientContext extends coreHttp.ServiceClient {
   $host: string;

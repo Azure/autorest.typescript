@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { CosmosDBManagementClientOptionalParams } from "./models";
 
 const packageName = "cosmos-db-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class CosmosDBManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

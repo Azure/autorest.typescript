@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { KeyVaultManagementClientOptionalParams } from "./models";
 
 const packageName = "keyvault-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class KeyVaultManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

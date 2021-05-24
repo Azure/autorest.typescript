@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { SqlManagementClientOptionalParams } from "./models";
 
 const packageName = "sql-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class SqlManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

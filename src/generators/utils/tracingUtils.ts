@@ -1,5 +1,5 @@
 import { SourceFile } from "ts-morph";
-import { ClientDetails } from "../../models/clientDetails";
+import { getAutorestOptions } from "../../autorestSession";
 
 /**
  * Adds the required imports to have operations tracing
@@ -7,11 +7,11 @@ import { ClientDetails } from "../../models/clientDetails";
  * @param sourceFile File to add imports to
  */
 export function addTracingOperationImports(
-  { tracing }: ClientDetails,
   sourceFile: SourceFile,
   traverseToRoot = ".."
 ) {
-  if (tracing) {
+  const { tracingInfo } = getAutorestOptions();
+  if (tracingInfo) {
     sourceFile.addImportDeclarations([
       {
         namedImports: ["CanonicalCode"],

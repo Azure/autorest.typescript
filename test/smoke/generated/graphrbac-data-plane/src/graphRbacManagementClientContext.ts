@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
 const packageName = "graphrbac-data-plane";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
   $host: string;

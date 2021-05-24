@@ -3,11 +3,13 @@ import { Project } from "ts-morph";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { promises } from "fs";
 import { join as joinPath } from "path";
+import { getAutorestOptions } from "../autorestSession";
 
 export async function generateLROFiles(
   clientDetails: ClientDetails,
   project: Project
 ) {
+  const { srcPath } = getAutorestOptions();
   if (!hasAnyLRO(clientDetails.operationGroups)) {
     return;
   }
@@ -21,7 +23,7 @@ export async function generateLROFiles(
     const fileContent = await promises.readFile(filePath, "utf-8");
 
     project.createSourceFile(
-      joinPath(clientDetails.srcPath || "", "lro", file),
+      joinPath(srcPath || "", "lro", file),
       fileContent,
       { overwrite: true }
     );

@@ -1,7 +1,7 @@
 {
   "name": "body-file",
   "author": "Microsoft Corporation",
-  "description": "Test Infrastructure for AutoRest Swagger BAT",
+  "description": "A generated SDK for BodyFileClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

@@ -16,7 +16,7 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getOperationParameterSignatures } from "./parameterUtils";
 import { generateOperationJSDoc } from "./docsUtils";
 import { getPagingResponseBodyType } from "./responseTypeUtils";
-import { OptionsBag } from "../../utils/optionsBag";
+import { getAutorestOptions } from "../../autorestSession";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -47,13 +47,10 @@ interface PagingMethodSettings {
  */
 export function addPagingImports(
   operations: OperationDetails[],
-  { options }: ClientDetails,
   sourceFile: SourceFile
 ) {
-  if (
-    !options.disablePagingAsyncIterators &&
-    hasAsyncIteratorOperations(operations)
-  ) {
+  const { disablePagingAsyncIterators } = getAutorestOptions();
+  if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
     sourceFile.addImportDeclarations([
       { moduleSpecifier: "@azure/core-paging" },
       {
@@ -66,13 +63,11 @@ export function addPagingImports(
 
 export function addPagingEsNextRef(
   operations: OperationDetails[],
-  { options }: ClientDetails,
   sourceFile: SourceFile
 ) {
-  if (
-    !options.disablePagingAsyncIterators &&
-    hasAsyncIteratorOperations(operations)
-  ) {
+  const { disablePagingAsyncIterators } = getAutorestOptions();
+
+  if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
     sourceFile.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
   }
 }
@@ -91,10 +86,11 @@ export function hasAsyncIteratorOperations(operations: OperationDetails[]) {
 
  */
 export function preparePageableOperations(
-  operationGroupDetails: OperationGroupDetails,
-  clientDetails: ClientDetails
+  operationGroupDetails: OperationGroupDetails
 ) {
-  if (clientDetails.options.disablePagingAsyncIterators) {
+  const { disablePagingAsyncIterators } = getAutorestOptions();
+
+  if (disablePagingAsyncIterators) {
     return;
   }
 
@@ -116,10 +112,11 @@ export function writeAsyncIterators(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
   operationGroupClass: ClassDeclaration | InterfaceDeclaration,
-  importedModels: Set<string>,
-  optionsBag: OptionsBag
+  importedModels: Set<string>
 ) {
-  if (clientDetails.options.disablePagingAsyncIterators) {
+  const { disablePagingAsyncIterators } = getAutorestOptions();
+
+  if (disablePagingAsyncIterators) {
     return;
   }
 
@@ -172,8 +169,7 @@ export function writeAsyncIterators(
           nextOperation,
           clientDetails.parameters,
           importedModels,
-          operationGroupClass,
-          optionsBag
+          operationGroupClass
         ).baseMethodParameters.map(parameter => {
           if (parameter.name === "nextLink") {
             return { ...parameter, hasQuestionToken: true };
@@ -189,8 +185,7 @@ export function writeAsyncIterators(
         operation,
         clientDetails.parameters,
         importedModels,
-        operationGroupClass,
-        optionsBag
+        operationGroupClass
       );
 
       // Build an object with all the information about the paging methods

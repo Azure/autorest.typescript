@@ -10,12 +10,8 @@ import { EndpointDetails } from "../transforms/urlTransforms";
 import { KnownMediaType } from "@azure-tools/codegen";
 
 export interface ClientOptions {
-  azureArm?: boolean;
-  addCredentials?: boolean;
-  disablePagingAsyncIterators?: boolean;
   mediaTypes?: Set<KnownMediaType>;
   hasPaging?: boolean;
-  credentialScopes?: string[];
 }
 
 export interface TracingInfo {
@@ -35,6 +31,4 @@ export interface ClientDetails {
   parameters: ParameterDetails[];
   options: ClientOptions;
   endpoint: EndpointDetails;
-  srcPath?: string;
-  tracing?: TracingInfo;
 }

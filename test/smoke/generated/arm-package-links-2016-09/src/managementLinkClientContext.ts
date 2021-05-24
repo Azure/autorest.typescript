@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { ManagementLinkClientOptionalParams } from "./models";
 
 const packageName = "arm-package-links-2016-09";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class ManagementLinkClientContext extends coreHttp.ServiceClient {
   $host: string;

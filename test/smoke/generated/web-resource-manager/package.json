@@ -1,8 +1,8 @@
 {
   "name": "web-resource-manager",
   "author": "Microsoft Corporation",
-  "description": "WebSite Management Client",
-  "version": "1.0.0",
+  "description": "A generated SDK for WebSiteManagementClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-lro": "^1.0.5",
     "@azure/core-paging": "^1.1.1",

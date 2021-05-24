@@ -1,7 +1,7 @@
 {
   "name": "@azure/keyvault-secrets",
   "author": "Microsoft Corporation",
-  "description": "The key vault client performs cryptographic key operations and vault operations against the Key Vault service.",
+  "description": "A generated SDK for KeyVaultClient.",
   "version": "1.0.0-preview1",
   "dependencies": {
     "@azure/core-client": "^1.1.2",

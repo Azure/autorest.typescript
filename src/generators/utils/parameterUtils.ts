@@ -22,7 +22,7 @@ import {
 } from "../../utils/nameUtils";
 import { getParameterDescription } from "../../utils/getParameterDescription";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
-import { OptionsBag } from "../../utils/optionsBag";
+import { getAutorestOptions } from "../../autorestSession";
 
 interface ParameterFilterOptions {
   includeOptional?: boolean;
@@ -110,8 +110,7 @@ export function getOperationParameterSignatures(
   operation: OperationDetails,
   parameters: ParameterDetails[],
   importedModels: Set<string>,
-  operationGroupClass: ClassDeclaration | InterfaceDeclaration,
-  optionsBag: OptionsBag
+  operationGroupClass: ClassDeclaration | InterfaceDeclaration
 ) {
   const operationParameters = filterOperationParameters(parameters, operation, {
     includeContentType: true
@@ -194,8 +193,7 @@ export function getOperationParameterSignatures(
       importedModels,
       {
         mediaType: hasMultipleOverloads ? requestMediaType : undefined
-      },
-      optionsBag
+      }
     );
     orderedParameterDeclarations.push(optionalParameter);
 
@@ -354,10 +352,11 @@ function getOptionsParameter(
   {
     isOptional = true,
     mediaType
-  }: { isOptional?: boolean; mediaType?: string } = {},
-  optionsBag: OptionsBag
+  }: { isOptional?: boolean; mediaType?: string } = {}
 ): ParameterWithDescription {
-  let type: string = !optionsBag.useCoreV2
+  const { useCoreV2 } = getAutorestOptions();
+
+  let type: string = !useCoreV2
     ? "coreHttp.OperationOptions"
     : "coreClient.OperationOptions";
 

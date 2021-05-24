@@ -1,8 +1,8 @@
 {
   "name": "keyvault-resource-manager",
   "author": "Microsoft Corporation",
-  "description": "The Azure management API provides a RESTful set of web services that interact with Azure Key Vault.",
-  "version": "1.0.0",
+  "description": "A generated SDK for KeyVaultManagementClient.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-lro": "^1.0.5",
     "@azure/core-paging": "^1.1.1",
