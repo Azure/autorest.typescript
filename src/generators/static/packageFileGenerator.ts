@@ -97,13 +97,17 @@ function regularAutorestPackage(
     module: `./esm/index.js`,
     types: `./esm/index.d.ts`,
     devDependencies: {
-      typescript: "^3.1.1",
-      rollup: "^0.66.2",
-      "rollup-plugin-node-resolve": "^3.4.0",
-      "rollup-plugin-sourcemaps": "^0.4.2",
-      "uglify-js": "^3.4.9",
       "@microsoft/api-extractor": "7.9.10",
-      mkdirp: "^1.0.4"
+      "@rollup/plugin-commonjs": "11.0.2",
+      "@rollup/plugin-json": "^4.0.0",
+      "@rollup/plugin-multi-entry": "^3.0.0",
+      "@rollup/plugin-node-resolve": "^8.0.0",
+      mkdirp: "^1.0.4",
+      rollup: "^1.16.3",
+      "rollup-plugin-sourcemaps": "^0.4.2",
+      "rollup-plugin-node-resolve": "^3.4.0",
+      typescript: "^3.1.1",
+      "uglify-js": "^3.4.9"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js`,
@@ -131,7 +135,7 @@ function regularAutorestPackage(
     scripts: {
       build:
         "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
-      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/index.js`,
       prepack: "npm install && npm run build",
       "extract-api": "api-extractor run --local"
     },
