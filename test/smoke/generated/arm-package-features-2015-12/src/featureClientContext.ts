@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { FeatureClientOptionalParams } from "./models";
 
 const packageName = "arm-package-features-2015-12";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class FeatureClientContext extends coreHttp.ServiceClient {
   $host: string;

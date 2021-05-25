@@ -24,6 +24,7 @@ export class CustomUrlClientContext extends coreClient.ServiceClient {
     const defaults: CustomUrlClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -24,15 +24,17 @@ import { shouldImportParameters } from "./utils/importUtils";
 import { getAllModelsNames } from "./utils/responseTypeUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
 import { addPagingEsNextRef, addPagingImports } from "./utils/pagingOperations";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
-export function generateClient(
-  clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
-) {
+export function generateClient(clientDetails: ClientDetails, project: Project) {
+  const {
+    useCoreV2,
+    hideClients,
+    srcPath,
+    addCredentials
+  } = getAutorestOptions();
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
@@ -56,14 +58,14 @@ export function generateClient(
     checkForNameCollisions(importedOperations, inlineOperations);
   }
 
-  const hasCredentials = !!clientDetails.options.addCredentials;
+  const hasCredentials = !!addCredentials;
   const hasClientOptionalParams = clientDetails.parameters.some(
     p =>
       !p.required && p.implementationLocation === ImplementationLocation.Client
   );
 
   const clientFile = project.createSourceFile(
-    `${clientDetails.srcPath}/${clientDetails.sourceFileName}.ts`,
+    `${srcPath}/${clientDetails.sourceFileName}.ts`,
     undefined,
     {
       overwrite: true
@@ -76,7 +78,7 @@ export function generateClient(
   );
 
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
-    if (!optionsBag.useCoreV2) {
+    if (!useCoreV2) {
       clientFile.addImportDeclaration({
         namespaceImport: "coreHttp",
         moduleSpecifier: "@azure/core-http"
@@ -103,8 +105,8 @@ export function generateClient(
     }
   }
 
-  addPagingEsNextRef(flattenedInlineOperations, clientDetails, clientFile);
-  addPagingImports(flattenedInlineOperations, clientDetails, clientFile);
+  addPagingEsNextRef(flattenedInlineOperations, clientFile);
+  addPagingImports(flattenedInlineOperations, clientFile);
 
   const hasLRO = inlineOperations.some(og => og.operations.some(o => o.isLRO));
 
@@ -146,7 +148,7 @@ export function generateClient(
   }
 
   if (hasInlineOperations && shouldImportParameters(clientDetails)) {
-    addTracingOperationImports(clientDetails, clientFile, ".");
+    addTracingOperationImports(clientFile, ".");
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
       moduleSpecifier: "./models/parameters"
@@ -172,7 +174,7 @@ export function generateClient(
     isExported: true
   });
 
-  if (optionsBag.hideClients) {
+  if (hideClients) {
     clientClass.addJsDoc({
       tags: [
         {
@@ -190,8 +192,7 @@ export function generateClient(
     clientClass,
     clientDetails,
     hasLRO,
-    importedModels,
-    optionsBag
+    importedModels
   );
 
   // Use named import from Models
@@ -319,8 +320,7 @@ function writeClientOperations(
   classDeclaration: ClassDeclaration,
   clientDetails: ClientDetails,
   hasLRO: boolean,
-  importedModels: Set<string>,
-  optionsBag: OptionsBag
+  importedModels: Set<string>
 ) {
   const allModelsNames = getAllModelsNames(clientDetails);
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
@@ -328,7 +328,7 @@ function writeClientOperations(
   // Add top level operation groups as client properties
   if (!!topLevelGroup) {
     if (hasLRO) {
-      writeGetOperationOptions(classDeclaration, optionsBag);
+      writeGetOperationOptions(classDeclaration);
     }
     writeOperations(
       topLevelGroup,
@@ -336,16 +336,14 @@ function writeClientOperations(
       importedModels,
       allModelsNames,
       clientDetails,
-      true, // isInline,
-      optionsBag
+      true // isInline
     );
 
     addOperationSpecs(
       topLevelGroup,
       file,
       clientDetails.parameters,
-      hasMappers,
-      optionsBag
+      hasMappers
     );
   }
 

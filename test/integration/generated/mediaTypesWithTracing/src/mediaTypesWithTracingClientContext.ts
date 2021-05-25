@@ -24,6 +24,7 @@ export class MediaTypesWithTracingClientContext extends coreClient.ServiceClient
     const defaults: MediaTypesWithTracingClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

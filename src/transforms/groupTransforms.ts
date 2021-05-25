@@ -1,28 +1,17 @@
-import {
-  CodeModel,
-  GroupSchema,
-  GroupProperty,
-  ObjectSchema
-} from "@autorest/codemodel";
+import { CodeModel, GroupSchema, ObjectSchema } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { ObjectDetails, ObjectKind } from "../models/modelDetails";
 import { transformProperty } from "./objectTransforms";
-import { OptionsBag } from "../utils/optionsBag";
 
-export function transformGroups(codeModel: CodeModel, optionsBag: OptionsBag) {
+export function transformGroups(codeModel: CodeModel) {
   codeModel.schemas.groups = codeModel.schemas.groups || [];
-  return (codeModel.schemas.groups ?? []).map(group =>
-    transformGroup(group, optionsBag)
-  );
+  return (codeModel.schemas.groups ?? []).map(group => transformGroup(group));
 }
 
-function transformGroup(
-  { language, properties }: GroupSchema,
-  optionsBag: OptionsBag
-): ObjectDetails {
+function transformGroup({ language, properties }: GroupSchema): ObjectDetails {
   const { name, description } = getLanguageMetadata(language);
   const groupProperties = (properties || []).map(prop =>
-    transformProperty(prop, optionsBag)
+    transformProperty(prop)
   );
 
   return {

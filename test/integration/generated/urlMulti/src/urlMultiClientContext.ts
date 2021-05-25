@@ -24,6 +24,7 @@ export class UrlMultiClientContext extends coreClient.ServiceClient {
     const defaults: UrlMultiClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

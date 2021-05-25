@@ -34,6 +34,7 @@ export class AppConfigurationClientContext extends coreClient.ServiceClient {
     const defaults: AppConfigurationClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

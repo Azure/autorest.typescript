@@ -29,6 +29,7 @@ export class UuidClientContext extends coreClient.ServiceClient {
     const defaults: UuidClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

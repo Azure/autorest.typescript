@@ -24,6 +24,7 @@ export class HttpInfrastructureClientContext extends coreClient.ServiceClient {
     const defaults: HttpInfrastructureClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

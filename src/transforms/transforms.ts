@@ -25,7 +25,6 @@ import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
 import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
-import { OptionsBag } from "../utils/optionsBag";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -79,8 +78,7 @@ export function transformChoice(
 
 export async function transformCodeModel(
   codeModel: CodeModel,
-  host: Host,
-  optionsBag: OptionsBag
+  host: Host
 ): Promise<ClientDetails> {
   const { name: clientName } = getLanguageMetadata(codeModel.language);
   const className = normalizeName(
@@ -93,12 +91,12 @@ export async function transformCodeModel(
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([
-    getUberParents(codeModel, optionsBag),
+    getUberParents(codeModel),
 
     transformOperationGroups(codeModel)
   ]);
 
-  const options = await transformOptions(host, operationGroups);
+  const options = await transformOptions(operationGroups);
 
   const [
     objects,
@@ -108,12 +106,12 @@ export async function transformCodeModel(
     parameters,
     baseUrl
   ] = await Promise.all([
-    transformObjects(codeModel, uberParents, optionsBag),
-    transformGroups(codeModel, optionsBag),
+    transformObjects(codeModel, uberParents),
+    transformGroups(codeModel),
     transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel),
-    transformParameters(codeModel, options, optionsBag),
-    transformBaseUrl(codeModel, optionsBag)
+    transformParameters(codeModel, options),
+    transformBaseUrl(codeModel)
   ]);
 
   return {
@@ -136,10 +134,7 @@ export async function transformCodeModel(
  * An UberParent is an object schema that has no parents but is extended
  * @param codeModel CodeModel
  */
-async function getUberParents(
-  codeModel: CodeModel,
-  optionsBag: OptionsBag
-): Promise<ObjectDetails[]> {
+async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
   if (!codeModel.schemas.objects) {
     return [];
   }
@@ -153,7 +148,7 @@ async function getUberParents(
     const hasParents = getSchemaParents(object).length > 0;
 
     if (hasChildren && !hasParents && !isPresent) {
-      const baseObject = transformObject(object, uberParents, optionsBag);
+      const baseObject = transformObject(object, uberParents);
       uberParents.push(baseObject);
     }
   });

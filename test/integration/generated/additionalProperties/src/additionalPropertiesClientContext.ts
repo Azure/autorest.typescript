@@ -24,6 +24,7 @@ export class AdditionalPropertiesClientContext extends coreClient.ServiceClient 
     const defaults: AdditionalPropertiesClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

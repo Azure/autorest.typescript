@@ -30,6 +30,7 @@ export class NoLicenseHeaderClientContext extends coreClient.ServiceClient {
     const defaults: NoLicenseHeaderClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

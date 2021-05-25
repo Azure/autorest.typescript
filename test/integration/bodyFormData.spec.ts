@@ -52,12 +52,10 @@ describe("Integration tests for BodyFormData", () => {
       requestOptions: {
         onUploadProgress: ev => {
           uploadNotified = true;
-          console.log(ev);
           assert.ok(typeof ev.loadedBytes === "number");
         },
         onDownloadProgress: ev => {
           downloadNotified = true;
-          console.log(ev);
           assert.ok(typeof ev.loadedBytes === "number");
         }
       }
@@ -85,19 +83,15 @@ const readStreamToBuffer = async function(
   return new Promise<Buffer>((resolve, reject) => {
     const bufs: Buffer[] = [];
     strm.on("data", function(d: Buffer) {
-      console.log(`on data ${d.length}`);
       bufs.push(d);
     });
     strm.on("close", function() {
-      console.log(`on close`);
       resolve(Buffer.concat(bufs));
     });
     strm.on("end", function() {
       resolve(Buffer.concat(bufs));
     });
     strm.on("error", e => {
-      console.log(`on error`);
-      console.log(e);
       reject(e);
     });
   });

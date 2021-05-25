@@ -49,7 +49,7 @@ import {
   writeAsyncIterators
 } from "./utils/pagingOperations";
 import { calculateMethodName } from "./utils/operationsUtils";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 /**
  * Function that writes the code for all the operations.
@@ -62,9 +62,9 @@ import { OptionsBag } from "../utils/optionsBag";
  */
 export function generateOperations(
   clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ): void {
+  const { srcPath } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -74,12 +74,12 @@ export function generateOperations(
 
   operationGroups.forEach(operationDetails => {
     fileNames.push(normalizeName(operationDetails.name, NameType.File));
-    generateOperation(operationDetails, clientDetails, project, optionsBag);
+    generateOperation(operationDetails, clientDetails, project);
   });
 
   if (operationGroups.length) {
     const operationIndexFile = project.createSourceFile(
-      `${clientDetails.srcPath}/operations/index.ts`,
+      `${srcPath}/operations/index.ts`,
       undefined,
       { overwrite: true }
     );
@@ -100,57 +100,46 @@ export function generateOperations(
 function generateOperation(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
-  project: Project,
-  optionsBag: OptionsBag
+  project: Project
 ): void {
+  const { srcPath } = getAutorestOptions();
   const name = normalizeName(operationGroupDetails.name, NameType.File);
   const hasMappers = !!clientDetails.mappers.length;
   const operationGroupFile = project.createSourceFile(
-    `${clientDetails.srcPath}/operations/${name}.ts`,
+    `${srcPath}/operations/${name}.ts`,
     undefined,
     { overwrite: true }
   );
 
-  addImports(
-    operationGroupDetails,
-    operationGroupFile,
-    clientDetails,
-    optionsBag
-  );
-  addClass(
-    operationGroupFile,
-    operationGroupDetails,
-    clientDetails,
-    optionsBag
-  );
+  addImports(operationGroupDetails, operationGroupFile, clientDetails);
+  addClass(operationGroupFile, operationGroupDetails, clientDetails);
   addOperationSpecs(
     operationGroupDetails,
     operationGroupFile,
     clientDetails.parameters,
-    hasMappers,
-    optionsBag
+    hasMappers
   );
 
   operationGroupFile.fixUnusedIdentifiers();
 }
 
 export function writeGetOperationOptions(
-  operationGroupClass: ClassDeclaration,
-  optionsBag: OptionsBag
+  operationGroupClass: ClassDeclaration
 ) {
+  const { useCoreV2 } = getAutorestOptions();
   operationGroupClass.addMethod({
     scope: Scope.Private,
-    name: !optionsBag.useCoreV2
+    name: !useCoreV2
       ? "getOperationOptions<TOptions extends coreHttp.OperationOptions>"
       : "getOperationOptions<TOptions extends coreClient.OperationOptions>",
     parameters: [
       { name: "options", type: "TOptions | undefined" },
       { name: "finalStateVia", type: "string", hasQuestionToken: true }
     ],
-    returnType: !optionsBag.useCoreV2
+    returnType: !useCoreV2
       ? `coreHttp.RequestOptionsBase`
       : `coreClient.OperationOptions`,
-    statements: !optionsBag.useCoreV2
+    statements: !useCoreV2
       ? `
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
@@ -450,14 +439,12 @@ function buildMapper(
 function getReturnType(
   operation: OperationDetails,
   importedModels: Set<string>,
-  modelNames: Set<string>,
-  optionsBag: OptionsBag
+  modelNames: Set<string>
 ): string {
   const responseName = getOperationResponseType(
     operation,
     importedModels,
-    modelNames,
-    optionsBag
+    modelNames
   );
 
   return operation.isLRO
@@ -471,8 +458,7 @@ function getReturnType(
 function addClass(
   operationGroupFile: SourceFile,
   operationGroupDetails: OperationGroupDetails,
-  clientDetails: ClientDetails,
-  optionsBag: OptionsBag
+  clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
 
@@ -517,12 +503,11 @@ function addClass(
     importedModels,
     allModelsNames,
     clientDetails,
-    false /** isInline */,
-    optionsBag
+    false /** isInline */
   );
 
   if (hasLROOperation(operationGroupDetails)) {
-    writeGetOperationOptions(operationGroupClass, optionsBag);
+    writeGetOperationOptions(operationGroupClass);
   }
 
   // Use named import from Models
@@ -558,16 +543,16 @@ export function writeOperations(
   importedModels: Set<string>,
   modelNames: Set<string>,
   clientDetails: ClientDetails,
-  isInline = false,
-  optionsBag: OptionsBag
+  isInline = false
 ) {
-  preparePageableOperations(operationGroupDetails, clientDetails);
+  const { tracingInfo } = getAutorestOptions();
+
+  preparePageableOperations(operationGroupDetails);
   writeAsyncIterators(
     operationGroupDetails,
     clientDetails,
     operationGroupClass,
-    importedModels,
-    optionsBag
+    importedModels
   );
   operationGroupDetails.operations.forEach(operation => {
     const {
@@ -577,21 +562,14 @@ export function writeOperations(
       operation,
       clientDetails.parameters,
       importedModels,
-      operationGroupClass,
-      optionsBag
+      operationGroupClass
     );
     const responseName = getOperationResponseType(
       operation,
       importedModels,
-      modelNames,
-      optionsBag
+      modelNames
     );
-    const returnType = getReturnType(
-      operation,
-      importedModels,
-      modelNames,
-      optionsBag
-    );
+    const returnType = getReturnType(operation, importedModels, modelNames);
 
     const operationMethod = operationGroupClass.addMethod({
       name: calculateMethodName(operation),
@@ -601,7 +579,7 @@ export function writeOperations(
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
       ],
-      isAsync: operation.isLRO || Boolean(clientDetails.tracing)
+      isAsync: operation.isLRO || Boolean(tracingInfo)
     });
 
     addOperationOverloads(
@@ -617,8 +595,7 @@ export function writeOperations(
       overloadParameterDeclarations,
       clientDetails,
       responseName,
-      isInline,
-      optionsBag
+      isInline
     );
 
     /**
@@ -628,8 +605,7 @@ export function writeOperations(
       const responseName = getOperationResponseType(
         operation,
         importedModels,
-        modelNames,
-        optionsBag
+        modelNames
       );
       const methodName = calculateMethodName(operation);
       const operationMethod = operationGroupClass.addMethod({
@@ -695,8 +671,7 @@ function writeOperationBody(
   overloadDeclarations: OverloadDeclarations,
   clientDetails: ClientDetails,
   responseName: string,
-  isInline: boolean,
-  optionsBag: OptionsBag
+  isInline: boolean
 ): void {
   if (overloadDeclarations.length === 1) {
     // No overloads
@@ -706,8 +681,7 @@ function writeOperationBody(
       generatedOperation,
       overloadDeclarations[0],
       clientDetails,
-      isInline,
-      optionsBag
+      isInline
     );
   } else {
     // This condition implies that the user can specify a contentType,
@@ -718,8 +692,7 @@ function writeOperationBody(
       overloadDeclarations,
       responseName,
       clientDetails,
-      isInline,
-      optionsBag
+      isInline
     );
   }
 }
@@ -766,14 +739,14 @@ function addOperationOverloads(
 function compileOperationOptionsToRequestOptionsBase(
   options: string,
   isLRO: boolean,
-  finalStateVia: string,
-  optionsBag: OptionsBag
+  finalStateVia: string
 ): string {
+  const { useCoreV2 } = getAutorestOptions();
   // In LRO we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
   return isLRO
     ? `this.getOperationOptions(${options}, "${finalStateVia}")`
-    : !optionsBag.useCoreV2
+    : !useCoreV2
     ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
     : `options || {}`;
 }
@@ -784,9 +757,9 @@ function writeNoOverloadsOperationBody(
   operationMethod: MethodDeclaration,
   parameterDeclarations: ParameterWithDescription[],
   clientDetails: ClientDetails,
-  isInline: boolean,
-  optionsBag: OptionsBag
+  isInline: boolean
 ): void {
+  const { useCoreV2, tracingInfo } = getAutorestOptions();
   const finalStateVia =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
@@ -795,7 +768,7 @@ function writeNoOverloadsOperationBody(
   const vanillaOptionsName = "options";
   let options = vanillaOptionsName;
 
-  if (clientDetails.tracing) {
+  if (tracingInfo) {
     const operationName = operationMethod.getName();
     const {
       outputOptionsVarName: updatedOptionsName,
@@ -810,22 +783,20 @@ function writeNoOverloadsOperationBody(
     options = compileOperationOptionsToRequestOptionsBase(
       updatedOptionsName,
       operation.isLRO,
-      finalStateVia,
-      optionsBag
+      finalStateVia
     );
   } else {
     options = compileOperationOptionsToRequestOptionsBase(
       vanillaOptionsName,
       operation.isLRO,
-      finalStateVia,
-      optionsBag
+      finalStateVia
     );
   }
 
   const sendParams = parameterDeclarations
     .map(p =>
       p.name === "options"
-        ? !optionsBag.useCoreV2
+        ? !useCoreV2
           ? `options: ${options}`
           : `options`
         : p.name
@@ -833,23 +804,22 @@ function writeNoOverloadsOperationBody(
     .join(",");
 
   // Create an object to hold all the arguments for send request
-  if (!optionsBag.useCoreV2) {
+  if (!useCoreV2) {
     operationMethod.addStatements(
       `const operationArguments: coreHttp.OperationArguments = {${sendParams}}`
     );
   }
 
   if (operation.isLRO) {
-    if (!optionsBag.useCoreV2) {
+    if (!useCoreV2) {
       writeLROOperationBody(
         "operationArguments",
         responseName,
         operationSpecName,
         operationMethod,
-        optionsBag,
         finalStateVia,
         isInline,
-        !!clientDetails.tracing
+        !!tracingInfo
       );
     } else {
       writeLROOperationBody(
@@ -857,10 +827,9 @@ function writeNoOverloadsOperationBody(
         responseName,
         operationSpecName,
         operationMethod,
-        optionsBag,
         finalStateVia,
         isInline,
-        !!clientDetails.tracing
+        !!tracingInfo
       );
     }
   } else {
@@ -870,8 +839,7 @@ function writeNoOverloadsOperationBody(
       operationSpecName,
       clientDetails,
       isInline,
-      `{${sendParams}}`,
-      optionsBag
+      `{${sendParams}}`
     );
   }
 }
@@ -900,11 +868,11 @@ function writeSendOperationRequest(
   operationSpecName: string,
   clientDetails: ClientDetails,
   isInline = false,
-  sendParams: string,
-  optionsBag: OptionsBag
+  sendParams: string
 ) {
+  const { useCoreV2, tracingInfo } = getAutorestOptions();
   const client = isInline ? "" : ".client";
-  const sendRequestStatement = !optionsBag.useCoreV2
+  const sendRequestStatement = !useCoreV2
     ? `this${client}.sendOperationRequest(operationArguments, ${operationSpecName})`
     : `this${client}.sendOperationRequest(${sendParams}, ${operationSpecName})`;
 
@@ -914,29 +882,28 @@ function writeSendOperationRequest(
     getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
-      !!clientDetails.tracing,
-      optionsBag
+      !!tracingInfo
     )
   );
 }
 
-function getSpanStatusCode(optionsBag: OptionsBag) {
+function getSpanStatusCode() {
   return "coreTracing.SpanStatusCode.UNSET";
 }
 
 function getTracingTryCatchStatement(
   sendRequestStatement: string,
   responseName: string,
-  isTracingEnabled: boolean,
-  optionsBag: OptionsBag
+  isTracingEnabled: boolean
 ) {
+  const { useCoreV2 } = getAutorestOptions();
   if (isTracingEnabled) {
     return `try {
       const result = await ${sendRequestStatement}
       return result as ${responseName};
     } catch(error) {
     span.setStatus({
-      code: ${getSpanStatusCode(optionsBag)},
+      code: ${getSpanStatusCode()},
       message: error.message
     });
       throw error;
@@ -944,7 +911,7 @@ function getTracingTryCatchStatement(
       span.end();
     }`;
   } else {
-    return !optionsBag.useCoreV2
+    return !useCoreV2
       ? `return ${sendRequestStatement} as Promise<${responseName}>`
       : `return ${sendRequestStatement}`;
   }
@@ -955,30 +922,28 @@ function writeLROOperationBody(
   responseName: string,
   operationSpecName: string,
   methodDeclaration: MethodDeclaration,
-  optionsBag: OptionsBag,
   finalStateVia?: string,
   isInline?: boolean,
   isTracingEnabled = false
 ) {
+  const { useCoreV2 } = getAutorestOptions();
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
 
   const finalStateStr = finalStateVia ? `"${finalStateVia.toLowerCase()}"` : "";
-  let sendOperationStatement = !optionsBag.useCoreV2
+  let sendOperationStatement = !useCoreV2
     ? `const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
     ${getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
-      isTracingEnabled,
-      optionsBag
+      isTracingEnabled
     )}
   }`
     : `const directSendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec): Promise<${responseName}> => {
     ${getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
-      isTracingEnabled,
-      optionsBag
+      isTracingEnabled
     )}
     };
     const sendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
@@ -1027,10 +992,10 @@ function writeMultiMediaTypeOperationBody(
   overloadParameterDeclarations: ParameterWithDescription[][],
   responseName: string,
   clientDetails: ClientDetails,
-  isInline = false,
-  optionsBag: OptionsBag
+  isInline = false
 ): void {
-  const coreImport = !optionsBag.useCoreV2 ? "coreHttp" : "coreClient";
+  const { useCoreV2, tracingInfo } = getAutorestOptions();
+  const coreImport = !useCoreV2 ? "coreHttp" : "coreClient";
   operationMethod.addStatements([
     `let operationSpec: ${coreImport}.OperationSpec;`,
     `let operationArguments: ${coreImport}.OperationArguments;`
@@ -1112,7 +1077,7 @@ function writeMultiMediaTypeOperationBody(
   const finalStateVia =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
-  if (clientDetails.tracing) {
+  if (tracingInfo) {
     const operationName = operationMethod.getName();
     const {
       outputOptionsVarName,
@@ -1123,8 +1088,7 @@ function writeMultiMediaTypeOperationBody(
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         outputOptionsVarName,
         operation.isLRO,
-        finalStateVia,
-        optionsBag
+        finalStateVia
       )};`
     ]);
   } else {
@@ -1132,8 +1096,7 @@ function writeMultiMediaTypeOperationBody(
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         optionsVarName,
         operation.isLRO,
-        finalStateVia,
-        optionsBag
+        finalStateVia
       )};`
     ]);
   }
@@ -1145,8 +1108,7 @@ function writeMultiMediaTypeOperationBody(
       "operationSpec",
       clientDetails,
       isInline,
-      "operationArguments",
-      optionsBag
+      "operationArguments"
     );
   } else {
     writeLROOperationBody(
@@ -1154,10 +1116,9 @@ function writeMultiMediaTypeOperationBody(
       responseName,
       "operationSpec",
       operationMethod,
-      optionsBag,
       finalStateVia,
       isInline,
-      !!clientDetails.tracing
+      !!tracingInfo
     );
   }
 }
@@ -1208,9 +1169,9 @@ export function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
   file: SourceFile,
   parameters: ParameterDetails[],
-  hasMappers: boolean,
-  optionsBag: OptionsBag
+  hasMappers: boolean
 ): void {
+  const { useCoreV2 } = getAutorestOptions();
   const hasXml = operationGroupDetails.operations.some(operation =>
     hasMediaType(operation, KnownMediaType.Xml)
   );
@@ -1229,11 +1190,11 @@ export function addOperationSpecs(
   file.addStatements("// Operation Specifications");
 
   if (hasXml) {
-    writeSerializer(hasMappers, file, SerializerKind.Xml, optionsBag);
+    writeSerializer(hasMappers, file, SerializerKind.Xml);
   }
 
   if (hasNonXml || needsDefault) {
-    writeSerializer(hasMappers, file, SerializerKind.Json, optionsBag);
+    writeSerializer(hasMappers, file, SerializerKind.Json);
   }
 
   operationGroupDetails.operations.forEach(operation => {
@@ -1245,7 +1206,7 @@ export function addOperationSpecs(
         declarations: [
           {
             name: operationSpec.name,
-            type: !optionsBag.useCoreV2
+            type: !useCoreV2
               ? "coreHttp.OperationSpec"
               : "coreClient.OperationSpec",
             initializer: writer => writeSpec(operationSpec, writer)
@@ -1264,9 +1225,10 @@ enum SerializerKind {
 function writeSerializer(
   hasMappers: boolean,
   file: SourceFile,
-  kind: SerializerKind = SerializerKind.Json,
-  optionsBag: OptionsBag
+  kind: SerializerKind = SerializerKind.Json
 ) {
+  const { useCoreV2 } = getAutorestOptions();
+
   const isXml = kind === SerializerKind.Xml;
   const mappers = hasMappers ? "Mappers" : "{}";
   const name = isXml ? "xmlSerializer" : "serializer";
@@ -1275,7 +1237,7 @@ function writeSerializer(
     declarations: [
       {
         name,
-        initializer: !optionsBag.useCoreV2
+        initializer: !useCoreV2
           ? `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
           : `coreClient.createSerializer(${mappers}, /* isXml */ ${isXml});`
       }
@@ -1289,21 +1251,14 @@ function writeSerializer(
 function addImports(
   operationGroupDetails: OperationGroupDetails,
   operationGroupFile: SourceFile,
-  clientDetails: ClientDetails,
-  optionsBag: OptionsBag
+  clientDetails: ClientDetails
 ) {
+  const { useCoreV2 } = getAutorestOptions();
+
   const { className, mappers } = clientDetails;
-  addPagingEsNextRef(
-    operationGroupDetails.operations,
-    clientDetails,
-    operationGroupFile
-  );
-  addTracingOperationImports(clientDetails, operationGroupFile);
-  addPagingImports(
-    operationGroupDetails.operations,
-    clientDetails,
-    operationGroupFile
-  );
+  addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
+  addTracingOperationImports(operationGroupFile);
+  addPagingImports(operationGroupDetails.operations, operationGroupFile);
 
   const operationGroupInterfaceName = normalizeName(
     operationGroupDetails.name,
@@ -1316,7 +1271,7 @@ function addImports(
     moduleSpecifier: "../operationsInterfaces"
   });
 
-  if (!optionsBag.useCoreV2) {
+  if (!useCoreV2) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"

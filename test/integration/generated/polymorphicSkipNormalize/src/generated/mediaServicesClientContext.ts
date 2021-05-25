@@ -14,6 +14,7 @@ export class MediaServicesClientContext extends coreClient.ServiceClient {
     const defaults: MediaServicesClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

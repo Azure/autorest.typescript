@@ -29,6 +29,7 @@ export class MediaTypesV3ClientContext extends coreClient.ServiceClient {
     const defaults: MediaTypesV3ClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

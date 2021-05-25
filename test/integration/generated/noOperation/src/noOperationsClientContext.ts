@@ -22,6 +22,7 @@ export class NoOperationsClientContext extends coreClient.ServiceClient {
     const defaults: NoOperationsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

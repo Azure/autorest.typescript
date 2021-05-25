@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import { ComputeManagementClientOptionalParams } from "./models";
 
 const packageName = "compute-resource-manager";
-const packageVersion = "1.0.0";
+const packageVersion = "1.0.0-beta.1";
 
 export class ComputeManagementClientContext extends coreHttp.ServiceClient {
   $host: string;
