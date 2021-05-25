@@ -29,7 +29,7 @@ export function generatePackageJson(
     }
     packageJsonContents = regularAutorestPackage(clientDetails, packageDetails);
   } else {
-    packageJsonContents = restLevelPackage(packageDetails);
+    packageJsonContents = restLevelPackage();
   }
 
   project.createSourceFile(
@@ -45,7 +45,7 @@ export function generatePackageJson(
  * This function defines the REST Level client package.json file
  * or High Level Client
  */
-function restLevelPackage(packageDetails: PackageDetails) {
+function restLevelPackage() {
   throw Error("Rest Level Client - Not yet implemented");
 }
 
@@ -93,7 +93,7 @@ function regularAutorestPackage(
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
-    main: `./dist/${packageDetails.nameWithoutScope}.js`,
+    main: `./dist/index.js`,
     module: `./esm/index.js`,
     types: `./esm/index.d.ts`,
     devDependencies: {
@@ -135,7 +135,7 @@ function regularAutorestPackage(
     scripts: {
       build:
         "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
-      minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/index.js`,
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm install && npm run build",
       "extract-api": "api-extractor run --local"
     },
