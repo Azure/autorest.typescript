@@ -6,14 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { GeneratedClientOptionalParams } from "./models";
 
-const packageName = "textanalytics";
-const packageVersion = "1.0.0-preview1";
-
 /** @internal */
-export class GeneratedClientContext extends coreHttp.ServiceClient {
+export class GeneratedClientContext extends coreClient.ServiceClient {
   endpoint: string;
 
   /**
@@ -31,17 +28,16 @@ export class GeneratedClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: GeneratedClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri =
-      options.endpoint || "{Endpoint}/text/analytics/v3.1-preview.4";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "{Endpoint}/text/analytics/v3.1-preview.4"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.endpoint = endpoint;
   }

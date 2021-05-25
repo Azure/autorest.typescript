@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   XMsClientRequestIdGetOptionalParams,
   XMsClientRequestIdParamGetOptionalParams
@@ -19,9 +18,7 @@ export interface XMsClientRequestId {
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(
-    options?: XMsClientRequestIdGetOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  get(options?: XMsClientRequestIdGetOptionalParams): Promise<void>;
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -32,5 +29,5 @@ export interface XMsClientRequestId {
   paramGet(
     xMsClientRequestId: string,
     options?: XMsClientRequestIdParamGetOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

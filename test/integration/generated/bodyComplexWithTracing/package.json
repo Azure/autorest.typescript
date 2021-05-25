@@ -4,7 +4,8 @@
   "description": "A generated SDK for BodyComplexWithTracing.",
   "version": "1.0.0-preview1",
   "dependencies": {
-    "@azure/core-http": "^1.2.4",
+    "@azure/core-client": "^1.1.2",
+    "@azure/core-rest-pipeline": "1.0.0-beta.2",
     "@azure/core-tracing": "1.0.0-preview.11",
     "@opentelemetry/api": "^0.10.2",
     "tslib": "^1.9.3"

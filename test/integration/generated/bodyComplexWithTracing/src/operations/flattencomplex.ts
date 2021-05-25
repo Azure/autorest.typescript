@@ -8,7 +8,7 @@
 
 import { createSpan } from "../tracing";
 import { Flattencomplex } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -38,12 +38,9 @@ export class FlattencomplexImpl implements Flattencomplex {
       "BodyComplexWithTracing-getValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getValidOperationSpec
       );
       return result as FlattencomplexGetValidResponse;
@@ -59,9 +56,9 @@ export class FlattencomplexImpl implements Flattencomplex {
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreHttp.OperationSpec = {
+const getValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/flatten/valid",
   httpMethod: "GET",
   responses: {

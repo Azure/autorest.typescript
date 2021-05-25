@@ -7,7 +7,7 @@
  */
 
 import { Byte } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyByteClientContext } from "../bodyByteClientContext";
@@ -40,13 +40,7 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getNull(options?: ByteGetNullOptionalParams): Promise<ByteGetNullResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNullOperationSpec
-    ) as Promise<ByteGetNullResponse>;
+    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
 
   /**
@@ -56,13 +50,7 @@ export class ByteImpl implements Byte {
   getEmpty(
     options?: ByteGetEmptyOptionalParams
   ): Promise<ByteGetEmptyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getEmptyOperationSpec
-    ) as Promise<ByteGetEmptyResponse>;
+    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
 
   /**
@@ -72,13 +60,10 @@ export class ByteImpl implements Byte {
   getNonAscii(
     options?: ByteGetNonAsciiOptionalParams
   ): Promise<ByteGetNonAsciiResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getNonAsciiOperationSpec
-    ) as Promise<ByteGetNonAsciiResponse>;
+    );
   }
 
   /**
@@ -89,15 +74,11 @@ export class ByteImpl implements Byte {
   putNonAscii(
     byteBody: Uint8Array,
     options?: BytePutNonAsciiOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      byteBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { byteBody, options },
       putNonAsciiOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -107,19 +88,16 @@ export class ByteImpl implements Byte {
   getInvalid(
     options?: ByteGetInvalidOptionalParams
   ): Promise<ByteGetInvalidResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getInvalidOperationSpec
-    ) as Promise<ByteGetInvalidResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreHttp.OperationSpec = {
+const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/byte/null",
   httpMethod: "GET",
   responses: {
@@ -134,7 +112,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getEmptyOperationSpec: coreHttp.OperationSpec = {
+const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/byte/empty",
   httpMethod: "GET",
   responses: {
@@ -149,7 +127,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
+const getNonAsciiOperationSpec: coreClient.OperationSpec = {
   path: "/byte/nonAscii",
   httpMethod: "GET",
   responses: {
@@ -164,7 +142,7 @@ const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
+const putNonAsciiOperationSpec: coreClient.OperationSpec = {
   path: "/byte/nonAscii",
   httpMethod: "PUT",
   responses: {
@@ -179,7 +157,7 @@ const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getInvalidOperationSpec: coreHttp.OperationSpec = {
+const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/byte/invalid",
   httpMethod: "GET",
   responses: {

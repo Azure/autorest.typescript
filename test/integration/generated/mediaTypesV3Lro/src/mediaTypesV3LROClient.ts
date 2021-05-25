@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import * as Parameters from "./models/parameters";
@@ -30,16 +31,16 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     super($host, options);
   }
 
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+  private getOperationOptions<TOptions extends coreClient.OperationOptions>(
     options: TOptions | undefined,
     finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
+  ): coreClient.OperationOptions {
+    const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
       shouldDeserialize: shouldDeserializeLRO(finalStateVia)
     };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    return operationOptions;
   }
 
   /**
@@ -50,11 +51,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
    */
   beginSendOnDefault(
     contentType: "application/octet-stream",
-    data: coreHttp.HttpRequestBody,
+    data: coreRestPipeline.RequestBodyType,
     options?: MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Send payload to Foo service.
    * @param contentType Upload file type
@@ -65,9 +64,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     contentType: "text/plain",
     data: string,
     options?: MediaTypesV3LROClientSendOnDefault$textOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Send payload to Foo service.
    * @param args Includes all the parameters for this operation.
@@ -76,7 +73,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     ...args:
       | [
           "application/octet-stream",
-          coreHttp.HttpRequestBody,
+          coreRestPipeline.RequestBodyType,
           MediaTypesV3LROClientSendOnDefault$binaryOptionalParams?
         ]
       | [
@@ -84,11 +81,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           string,
           MediaTypesV3LROClientSendOnDefault$textOptionalParams?
         ]
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    let operationSpec: coreHttp.OperationSpec;
-    let operationArguments: coreHttp.OperationArguments;
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    let operationSpec: coreClient.OperationSpec;
+    let operationArguments: coreClient.OperationArguments;
     let options;
     if (args[0] === "application/octet-stream") {
       operationSpec = sendOnDefault$binaryOperationSpec;
@@ -112,13 +107,36 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       );
     }
     operationArguments.options = this.getOperationOptions(options, "undefined");
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.sendOperationRequest(args, spec);
+    };
     const sendOperation = async (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
@@ -137,7 +155,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     ...args:
       | [
           "application/octet-stream",
-          coreHttp.HttpRequestBody,
+          coreRestPipeline.RequestBodyType,
           MediaTypesV3LROClientSendOnDefault$binaryOptionalParams?
         ]
       | [
@@ -145,7 +163,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           string,
           MediaTypesV3LROClientSendOnDefault$textOptionalParams?
         ]
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     if (args[0] === "application/octet-stream") {
       const poller = await this.beginSendOnDefault(...args);
       return poller.pollUntilDone();
@@ -166,7 +184,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   send(
     thing: string,
     contentType: "application/octet-stream",
-    data: coreHttp.HttpRequestBody,
+    data: coreRestPipeline.RequestBodyType,
     options?: MediaTypesV3LROClientSend$binaryOptionalParams
   ): Promise<MediaTypesV3LROClientSendResponse>;
   /**
@@ -191,7 +209,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       | [
           string,
           "application/octet-stream",
-          coreHttp.HttpRequestBody,
+          coreRestPipeline.RequestBodyType,
           MediaTypesV3LROClientSend$binaryOptionalParams?
         ]
       | [
@@ -201,8 +219,8 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           MediaTypesV3LROClientSend$textOptionalParams?
         ]
   ): Promise<MediaTypesV3LROClientSendResponse> {
-    let operationSpec: coreHttp.OperationSpec;
-    let operationArguments: coreHttp.OperationArguments;
+    let operationSpec: coreClient.OperationSpec;
+    let operationArguments: coreClient.OperationArguments;
     let options;
     if (args[1] === "application/octet-stream") {
       operationSpec = send$binaryOperationSpec;
@@ -227,19 +245,14 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
-    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
-    return this.sendOperationRequest(
-      operationArguments,
-      operationSpec
-    ) as Promise<MediaTypesV3LROClientSendResponse>;
+    operationArguments.options = options || {};
+    return this.sendOperationRequest(operationArguments, operationSpec);
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer({}, /* isXml */ false);
+const serializer = coreClient.createSerializer({}, /* isXml */ false);
 
-const sendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {
+const sendOnDefault$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
@@ -250,7 +263,7 @@ const sendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const sendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
+const sendOnDefault$textOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
@@ -261,7 +274,7 @@ const sendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
   mediaType: "text",
   serializer
 };
-const send$binaryOperationSpec: coreHttp.OperationSpec = {
+const send$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
   responses: {
@@ -277,7 +290,7 @@ const send$binaryOperationSpec: coreHttp.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const send$textOperationSpec: coreHttp.OperationSpec = {
+const send$textOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
   responses: {

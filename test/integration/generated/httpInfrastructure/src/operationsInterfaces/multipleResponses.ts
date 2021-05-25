@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
@@ -173,49 +172,49 @@ export interface MultipleResponses {
    */
   get202None204NoneDefaultError202None(
     options?: MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 204 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultError204None(
     options?: MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultError400Valid(
     options?: MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 202 response with an unexpected payload {'property': 'value'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone202Invalid(
     options?: MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 204 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone204None(
     options?: MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400None(
     options?: MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with an unexpected payload {'property': 'value'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400Invalid(
     options?: MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    * @param options The options parameters.
@@ -236,42 +235,42 @@ export interface MultipleResponses {
    */
   getDefaultModelA400Valid(
     options?: MultipleResponsesGetDefaultModelA400ValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   getDefaultModelA400None(
     options?: MultipleResponsesGetDefaultModelA400NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 200 response with invalid payload: {'statusCode': '200'}
    * @param options The options parameters.
    */
   getDefaultNone200Invalid(
     options?: MultipleResponsesGetDefaultNone200InvalidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 200 response with no payload
    * @param options The options parameters.
    */
   getDefaultNone200None(
     options?: MultipleResponsesGetDefaultNone200NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    * @param options The options parameters.
    */
   getDefaultNone400Invalid(
     options?: MultipleResponsesGetDefaultNone400InvalidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   getDefaultNone400None(
     options?: MultipleResponsesGetDefaultNone400NoneOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Send a 200 response with no payload, when a payload is expected - client should return a null object
    * of thde type for model A

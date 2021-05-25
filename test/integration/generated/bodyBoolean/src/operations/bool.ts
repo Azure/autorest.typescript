@@ -7,7 +7,7 @@
  */
 
 import { Bool } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyBooleanClientContext } from "../bodyBooleanClientContext";
@@ -41,27 +41,15 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   getTrue(options?: BoolGetTrueOptionalParams): Promise<BoolGetTrueResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getTrueOperationSpec
-    ) as Promise<BoolGetTrueResponse>;
+    return this.client.sendOperationRequest({ options }, getTrueOperationSpec);
   }
 
   /**
    * Set Boolean value true
    * @param options The options parameters.
    */
-  putTrue(options?: BoolPutTrueOptionalParams): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      putTrueOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  putTrue(options?: BoolPutTrueOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, putTrueOperationSpec);
   }
 
   /**
@@ -71,29 +59,15 @@ export class BoolImpl implements Bool {
   getFalse(
     options?: BoolGetFalseOptionalParams
   ): Promise<BoolGetFalseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getFalseOperationSpec
-    ) as Promise<BoolGetFalseResponse>;
+    return this.client.sendOperationRequest({ options }, getFalseOperationSpec);
   }
 
   /**
    * Set Boolean value false
    * @param options The options parameters.
    */
-  putFalse(
-    options?: BoolPutFalseOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      putFalseOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+  putFalse(options?: BoolPutFalseOptionalParams): Promise<void> {
+    return this.client.sendOperationRequest({ options }, putFalseOperationSpec);
   }
 
   /**
@@ -101,13 +75,7 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   getNull(options?: BoolGetNullOptionalParams): Promise<BoolGetNullResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getNullOperationSpec
-    ) as Promise<BoolGetNullResponse>;
+    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
 
   /**
@@ -117,19 +85,16 @@ export class BoolImpl implements Bool {
   getInvalid(
     options?: BoolGetInvalidOptionalParams
   ): Promise<BoolGetInvalidResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getInvalidOperationSpec
-    ) as Promise<BoolGetInvalidResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getTrueOperationSpec: coreHttp.OperationSpec = {
+const getTrueOperationSpec: coreClient.OperationSpec = {
   path: "/bool/true",
   httpMethod: "GET",
   responses: {
@@ -144,7 +109,7 @@ const getTrueOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putTrueOperationSpec: coreHttp.OperationSpec = {
+const putTrueOperationSpec: coreClient.OperationSpec = {
   path: "/bool/true",
   httpMethod: "PUT",
   responses: {
@@ -159,7 +124,7 @@ const putTrueOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getFalseOperationSpec: coreHttp.OperationSpec = {
+const getFalseOperationSpec: coreClient.OperationSpec = {
   path: "/bool/false",
   httpMethod: "GET",
   responses: {
@@ -174,7 +139,7 @@ const getFalseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putFalseOperationSpec: coreHttp.OperationSpec = {
+const putFalseOperationSpec: coreClient.OperationSpec = {
   path: "/bool/false",
   httpMethod: "PUT",
   responses: {
@@ -189,7 +154,7 @@ const putFalseOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getNullOperationSpec: coreHttp.OperationSpec = {
+const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/bool/null",
   httpMethod: "GET",
   responses: {
@@ -204,7 +169,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidOperationSpec: coreHttp.OperationSpec = {
+const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/bool/invalid",
   httpMethod: "GET",
   responses: {

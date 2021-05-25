@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const PetAPTrue: coreHttp.CompositeMapper = {
+export const PetAPTrue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAPTrue",
@@ -38,7 +38,7 @@ export const PetAPTrue: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -59,7 +59,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetAPObject: coreHttp.CompositeMapper = {
+export const PetAPObject: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAPObject",
@@ -89,7 +89,7 @@ export const PetAPObject: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetAPString: coreHttp.CompositeMapper = {
+export const PetAPString: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAPString",
@@ -119,7 +119,7 @@ export const PetAPString: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetAPInProperties: coreHttp.CompositeMapper = {
+export const PetAPInProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAPInProperties",
@@ -155,7 +155,7 @@ export const PetAPInProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
+export const PetAPInPropertiesWithAPString: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAPInPropertiesWithAPString",
@@ -199,7 +199,7 @@ export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
   }
 };
 
-export const CatAPTrue: coreHttp.CompositeMapper = {
+export const CatAPTrue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CatAPTrue",

@@ -1,10 +1,7 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { MediaServicesClientOptionalParams } from "./models";
 
-const packageName = "@azure/media-services";
-const packageVersion = "1.0.0-preview1";
-
-export class MediaServicesClientContext extends coreHttp.ServiceClient {
+export class MediaServicesClientContext extends coreClient.ServiceClient {
   /**
    * Initializes a new instance of the MediaServicesClientContext class.
    * @param options The parameter options
@@ -14,15 +11,15 @@ export class MediaServicesClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: MediaServicesClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint;
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint
+    };
+    super(optionsWithDefaults);
   }
 }

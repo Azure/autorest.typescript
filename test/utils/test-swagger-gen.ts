@@ -637,7 +637,7 @@ const generateSwaggers = async (
       `--package-version=${package_version}`,
       `--hide-clients=${!!hideClients}`,
       `--ignore-nullable-on-optional=${!!ignoreNullableOnOptional}`,
-      `--use-core-v2=${!!useCoreV2}`,
+      `--use-core-v2=${useCoreV2 ?? true}`,
       `--allow-insecure-connection=${!!allowInsecureConnection}`
     );
     if (isDebugging) {

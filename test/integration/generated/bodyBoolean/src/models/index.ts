@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -14,87 +14,56 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface BoolGetTrueOptionalParams extends coreHttp.OperationOptions {}
+export interface BoolGetTrueOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTrue operation. */
 export type BoolGetTrueResponse = {
   /** The parsed response body. */
   body: boolean;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: boolean;
-  };
 };
 
 /** Optional parameters. */
-export interface BoolPutTrueOptionalParams extends coreHttp.OperationOptions {}
+export interface BoolPutTrueOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface BoolGetFalseOptionalParams extends coreHttp.OperationOptions {}
+export interface BoolGetFalseOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFalse operation. */
 export type BoolGetFalseResponse = {
   /** The parsed response body. */
   body: boolean;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: boolean;
-  };
 };
 
 /** Optional parameters. */
-export interface BoolPutFalseOptionalParams extends coreHttp.OperationOptions {}
+export interface BoolPutFalseOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface BoolGetNullOptionalParams extends coreHttp.OperationOptions {}
+export interface BoolGetNullOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type BoolGetNullResponse = {
   /** The parsed response body. */
   body: boolean;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: boolean;
-  };
 };
 
 /** Optional parameters. */
 export interface BoolGetInvalidOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type BoolGetInvalidResponse = {
   /** The parsed response body. */
   body: boolean;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: boolean;
-  };
 };
 
 /** Optional parameters. */
 export interface BodyBooleanClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

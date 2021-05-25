@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Known values of {@link Enum0} that the service accepts. */
 export const enum KnownEnum0 {
@@ -18,26 +18,17 @@ export type Enum0 = string;
 
 /** Optional parameters. */
 export interface NoLicenseHeaderClientApiV1ValueGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the apiV1ValueGet operation. */
 export type NoLicenseHeaderClientApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface NoLicenseHeaderClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

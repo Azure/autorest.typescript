@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
@@ -64,7 +63,7 @@ export interface Datetimerfc1123 {
   putUtcMaxDateTime(
     datetimeBody: Date,
     options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get max datetime value fri, 31 dec 9999 23:59:59 gmt
    * @param options The options parameters.
@@ -87,7 +86,7 @@ export interface Datetimerfc1123 {
   putUtcMinDateTime(
     datetimeBody: Date,
     options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    * @param options The options parameters.

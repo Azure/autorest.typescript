@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   DatetimeGetNullOptionalParams,
   DatetimeGetNullResponse,
@@ -85,7 +84,7 @@ export interface Datetime {
   putUtcMaxDateTime(
     datetimeBody: Date,
     options?: DatetimePutUtcMaxDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * This is against the recommendation that asks for 3 digits, but allow to test what happens in that
    * scenario
@@ -95,7 +94,7 @@ export interface Datetime {
   putUtcMaxDateTime7Digits(
     datetimeBody: Date,
     options?: DatetimePutUtcMaxDateTime7DigitsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get max datetime value 9999-12-31t23:59:59.999z
    * @param options The options parameters.
@@ -126,7 +125,7 @@ export interface Datetime {
   putLocalPositiveOffsetMaxDateTime(
     datetimeBody: Date,
     options?: DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00
    * @param options The options parameters.
@@ -149,7 +148,7 @@ export interface Datetime {
   putLocalNegativeOffsetMaxDateTime(
     datetimeBody: Date,
     options?: DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00
    * @param options The options parameters.
@@ -172,7 +171,7 @@ export interface Datetime {
   putUtcMinDateTime(
     datetimeBody: Date,
     options?: DatetimePutUtcMinDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00Z
    * @param options The options parameters.
@@ -188,7 +187,7 @@ export interface Datetime {
   putLocalPositiveOffsetMinDateTime(
     datetimeBody: Date,
     options?: DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00+14:00
    * @param options The options parameters.
@@ -204,7 +203,7 @@ export interface Datetime {
   putLocalNegativeOffsetMinDateTime(
     datetimeBody: Date,
     options?: DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00-14:00
    * @param options The options parameters.

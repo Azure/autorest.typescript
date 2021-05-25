@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const MultiLanguageBatchInput: coreHttp.CompositeMapper = {
+export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MultiLanguageBatchInput",
@@ -30,7 +30,7 @@ export const MultiLanguageBatchInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const TextDocumentInput: coreHttp.CompositeMapper = {
+export const TextDocumentInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TextDocumentInput",
@@ -59,7 +59,7 @@ export const TextDocumentInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobDescriptor: coreHttp.CompositeMapper = {
+export const JobDescriptor: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobDescriptor",
@@ -74,7 +74,7 @@ export const JobDescriptor: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobManifest: coreHttp.CompositeMapper = {
+export const JobManifest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobManifest",
@@ -90,7 +90,7 @@ export const JobManifest: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobManifestTasks: coreHttp.CompositeMapper = {
+export const JobManifestTasks: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobManifestTasks",
@@ -147,7 +147,7 @@ export const JobManifestTasks: coreHttp.CompositeMapper = {
   }
 };
 
-export const EntitiesTask: coreHttp.CompositeMapper = {
+export const EntitiesTask: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntitiesTask",
@@ -163,7 +163,7 @@ export const EntitiesTask: coreHttp.CompositeMapper = {
   }
 };
 
-export const EntitiesTaskParameters: coreHttp.CompositeMapper = {
+export const EntitiesTaskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntitiesTaskParameters",
@@ -185,7 +185,7 @@ export const EntitiesTaskParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const PiiTask: coreHttp.CompositeMapper = {
+export const PiiTask: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PiiTask",
@@ -201,7 +201,7 @@ export const PiiTask: coreHttp.CompositeMapper = {
   }
 };
 
-export const PiiTaskParameters: coreHttp.CompositeMapper = {
+export const PiiTaskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PiiTaskParameters",
@@ -244,7 +244,7 @@ export const PiiTaskParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyPhrasesTask: coreHttp.CompositeMapper = {
+export const KeyPhrasesTask: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyPhrasesTask",
@@ -260,7 +260,7 @@ export const KeyPhrasesTask: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyPhrasesTaskParameters: coreHttp.CompositeMapper = {
+export const KeyPhrasesTaskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyPhrasesTaskParameters",
@@ -276,7 +276,7 @@ export const KeyPhrasesTaskParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const EntityLinkingTask: coreHttp.CompositeMapper = {
+export const EntityLinkingTask: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntityLinkingTask",
@@ -292,7 +292,7 @@ export const EntityLinkingTask: coreHttp.CompositeMapper = {
   }
 };
 
-export const EntityLinkingTaskParameters: coreHttp.CompositeMapper = {
+export const EntityLinkingTaskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntityLinkingTaskParameters",
@@ -314,7 +314,7 @@ export const EntityLinkingTaskParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorResponse: coreHttp.CompositeMapper = {
+export const ErrorResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorResponse",
@@ -330,7 +330,7 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const TextAnalyticsError: coreHttp.CompositeMapper = {
+export const TextAnalyticsError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TextAnalyticsError",
@@ -385,7 +385,7 @@ export const TextAnalyticsError: coreHttp.CompositeMapper = {
   }
 };
 
-export const InnerError: coreHttp.CompositeMapper = {
+export const InnerError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InnerError",
@@ -428,7 +428,7 @@ export const InnerError: coreHttp.CompositeMapper = {
   }
 };
 
-export const TextDocumentBatchStatistics: coreHttp.CompositeMapper = {
+export const TextDocumentBatchStatistics: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TextDocumentBatchStatistics",
@@ -465,7 +465,7 @@ export const TextDocumentBatchStatistics: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobMetadata: coreHttp.CompositeMapper = {
+export const JobMetadata: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobMetadata",
@@ -518,7 +518,7 @@ export const JobMetadata: coreHttp.CompositeMapper = {
   }
 };
 
-export const TasksState: coreHttp.CompositeMapper = {
+export const TasksState: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksState",
@@ -534,7 +534,7 @@ export const TasksState: coreHttp.CompositeMapper = {
   }
 };
 
-export const TasksStateTasks: coreHttp.CompositeMapper = {
+export const TasksStateTasks: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasks",
@@ -626,7 +626,7 @@ export const TasksStateTasks: coreHttp.CompositeMapper = {
   }
 };
 
-export const TaskState: coreHttp.CompositeMapper = {
+export const TaskState: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TaskState",
@@ -665,7 +665,7 @@ export const TaskState: coreHttp.CompositeMapper = {
   }
 };
 
-export const Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1: coreHttp.CompositeMapper = {
+export const Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -682,7 +682,7 @@ export const Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityre
   }
 };
 
-export const EntitiesResult: coreHttp.CompositeMapper = {
+export const EntitiesResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntitiesResult",
@@ -731,7 +731,7 @@ export const EntitiesResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentEntities: coreHttp.CompositeMapper = {
+export const DocumentEntities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentEntities",
@@ -780,7 +780,7 @@ export const DocumentEntities: coreHttp.CompositeMapper = {
   }
 };
 
-export const Entity: coreHttp.CompositeMapper = {
+export const Entity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Entity",
@@ -830,7 +830,7 @@ export const Entity: coreHttp.CompositeMapper = {
   }
 };
 
-export const TextAnalyticsWarning: coreHttp.CompositeMapper = {
+export const TextAnalyticsWarning: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TextAnalyticsWarning",
@@ -853,7 +853,7 @@ export const TextAnalyticsWarning: coreHttp.CompositeMapper = {
   }
 };
 
-export const TextDocumentStatistics: coreHttp.CompositeMapper = {
+export const TextDocumentStatistics: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TextDocumentStatistics",
@@ -876,7 +876,7 @@ export const TextDocumentStatistics: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentError: coreHttp.CompositeMapper = {
+export const DocumentError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentError",
@@ -899,7 +899,7 @@ export const DocumentError: coreHttp.CompositeMapper = {
   }
 };
 
-export const Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1: coreHttp.CompositeMapper = {
+export const Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -916,7 +916,7 @@ export const Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityre
   }
 };
 
-export const PiiResult: coreHttp.CompositeMapper = {
+export const PiiResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PiiResult",
@@ -965,7 +965,7 @@ export const PiiResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PiiDocumentEntities: coreHttp.CompositeMapper = {
+export const PiiDocumentEntities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PiiDocumentEntities",
@@ -1021,7 +1021,7 @@ export const PiiDocumentEntities: coreHttp.CompositeMapper = {
   }
 };
 
-export const Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1: coreHttp.CompositeMapper = {
+export const Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -1038,7 +1038,7 @@ export const Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphras
   }
 };
 
-export const KeyPhraseResult: coreHttp.CompositeMapper = {
+export const KeyPhraseResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyPhraseResult",
@@ -1087,7 +1087,7 @@ export const KeyPhraseResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentKeyPhrases: coreHttp.CompositeMapper = {
+export const DocumentKeyPhrases: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentKeyPhrases",
@@ -1135,7 +1135,7 @@ export const DocumentKeyPhrases: coreHttp.CompositeMapper = {
   }
 };
 
-export const ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1: coreHttp.CompositeMapper = {
+export const ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -1152,7 +1152,7 @@ export const ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylin
   }
 };
 
-export const EntityLinkingResult: coreHttp.CompositeMapper = {
+export const EntityLinkingResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EntityLinkingResult",
@@ -1201,7 +1201,7 @@ export const EntityLinkingResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentLinkedEntities: coreHttp.CompositeMapper = {
+export const DocumentLinkedEntities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentLinkedEntities",
@@ -1250,7 +1250,7 @@ export const DocumentLinkedEntities: coreHttp.CompositeMapper = {
   }
 };
 
-export const LinkedEntity: coreHttp.CompositeMapper = {
+export const LinkedEntity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LinkedEntity",
@@ -1312,7 +1312,7 @@ export const LinkedEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Match: coreHttp.CompositeMapper = {
+export const Match: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Match",
@@ -1349,7 +1349,7 @@ export const Match: coreHttp.CompositeMapper = {
   }
 };
 
-export const Pagination: coreHttp.CompositeMapper = {
+export const Pagination: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Pagination",
@@ -1364,7 +1364,7 @@ export const Pagination: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareResult: coreHttp.CompositeMapper = {
+export const HealthcareResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareResult",
@@ -1413,7 +1413,7 @@ export const HealthcareResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentHealthcareEntities: coreHttp.CompositeMapper = {
+export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentHealthcareEntities",
@@ -1475,7 +1475,7 @@ export const DocumentHealthcareEntities: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareAssertion: coreHttp.CompositeMapper = {
+export const HealthcareAssertion: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareAssertion",
@@ -1511,7 +1511,7 @@ export const HealthcareAssertion: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareEntityLink: coreHttp.CompositeMapper = {
+export const HealthcareEntityLink: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareEntityLink",
@@ -1534,7 +1534,7 @@ export const HealthcareEntityLink: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareRelation: coreHttp.CompositeMapper = {
+export const HealthcareRelation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareRelation",
@@ -1563,7 +1563,7 @@ export const HealthcareRelation: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareRelationEntity: coreHttp.CompositeMapper = {
+export const HealthcareRelationEntity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareRelationEntity",
@@ -1586,7 +1586,7 @@ export const HealthcareRelationEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const LanguageBatchInput: coreHttp.CompositeMapper = {
+export const LanguageBatchInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LanguageBatchInput",
@@ -1608,7 +1608,7 @@ export const LanguageBatchInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectLanguageInput: coreHttp.CompositeMapper = {
+export const DetectLanguageInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DetectLanguageInput",
@@ -1637,7 +1637,7 @@ export const DetectLanguageInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const LanguageResult: coreHttp.CompositeMapper = {
+export const LanguageResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LanguageResult",
@@ -1686,7 +1686,7 @@ export const LanguageResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentLanguage: coreHttp.CompositeMapper = {
+export const DocumentLanguage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentLanguage",
@@ -1729,7 +1729,7 @@ export const DocumentLanguage: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectedLanguage: coreHttp.CompositeMapper = {
+export const DetectedLanguage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DetectedLanguage",
@@ -1759,7 +1759,7 @@ export const DetectedLanguage: coreHttp.CompositeMapper = {
   }
 };
 
-export const SentimentResponse: coreHttp.CompositeMapper = {
+export const SentimentResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SentimentResponse",
@@ -1808,7 +1808,7 @@ export const SentimentResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const DocumentSentiment: coreHttp.CompositeMapper = {
+export const DocumentSentiment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DocumentSentiment",
@@ -1872,7 +1872,7 @@ export const DocumentSentiment: coreHttp.CompositeMapper = {
   }
 };
 
-export const SentimentConfidenceScores: coreHttp.CompositeMapper = {
+export const SentimentConfidenceScores: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SentimentConfidenceScores",
@@ -1902,7 +1902,7 @@ export const SentimentConfidenceScores: coreHttp.CompositeMapper = {
   }
 };
 
-export const SentenceSentiment: coreHttp.CompositeMapper = {
+export const SentenceSentiment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SentenceSentiment",
@@ -1971,7 +1971,7 @@ export const SentenceSentiment: coreHttp.CompositeMapper = {
   }
 };
 
-export const SentenceTarget: coreHttp.CompositeMapper = {
+export const SentenceTarget: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SentenceTarget",
@@ -2029,7 +2029,7 @@ export const SentenceTarget: coreHttp.CompositeMapper = {
   }
 };
 
-export const TargetConfidenceScoreLabel: coreHttp.CompositeMapper = {
+export const TargetConfidenceScoreLabel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TargetConfidenceScoreLabel",
@@ -2052,7 +2052,7 @@ export const TargetConfidenceScoreLabel: coreHttp.CompositeMapper = {
   }
 };
 
-export const TargetRelation: coreHttp.CompositeMapper = {
+export const TargetRelation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TargetRelation",
@@ -2076,7 +2076,7 @@ export const TargetRelation: coreHttp.CompositeMapper = {
   }
 };
 
-export const SentenceAssessment: coreHttp.CompositeMapper = {
+export const SentenceAssessment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SentenceAssessment",
@@ -2128,7 +2128,7 @@ export const SentenceAssessment: coreHttp.CompositeMapper = {
   }
 };
 
-export const AnalyzeBatchInput: coreHttp.CompositeMapper = {
+export const AnalyzeBatchInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AnalyzeBatchInput",
@@ -2146,7 +2146,7 @@ export const AnalyzeBatchInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const AnalyzeJobMetadata: coreHttp.CompositeMapper = {
+export const AnalyzeJobMetadata: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AnalyzeJobMetadata",
@@ -2162,7 +2162,7 @@ export const AnalyzeJobMetadata: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareJobState: coreHttp.CompositeMapper = {
+export const HealthcareJobState: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareJobState",
@@ -2192,7 +2192,7 @@ export const HealthcareJobState: coreHttp.CompositeMapper = {
   }
 };
 
-export const AnalyzeJobState: coreHttp.CompositeMapper = {
+export const AnalyzeJobState: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AnalyzeJobState",
@@ -2223,7 +2223,7 @@ export const AnalyzeJobState: coreHttp.CompositeMapper = {
   }
 };
 
-export const TasksStateTasksDetails: coreHttp.CompositeMapper = {
+export const TasksStateTasksDetails: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasksDetails",
@@ -2233,7 +2233,7 @@ export const TasksStateTasksDetails: coreHttp.CompositeMapper = {
   }
 };
 
-export const TasksStateTasksEntityRecognitionTasksItem: coreHttp.CompositeMapper = {
+export const TasksStateTasksEntityRecognitionTasksItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasksEntityRecognitionTasksItem",
@@ -2245,7 +2245,7 @@ export const TasksStateTasksEntityRecognitionTasksItem: coreHttp.CompositeMapper
   }
 };
 
-export const TasksStateTasksEntityRecognitionPiiTasksItem: coreHttp.CompositeMapper = {
+export const TasksStateTasksEntityRecognitionPiiTasksItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasksEntityRecognitionPiiTasksItem",
@@ -2257,7 +2257,7 @@ export const TasksStateTasksEntityRecognitionPiiTasksItem: coreHttp.CompositeMap
   }
 };
 
-export const TasksStateTasksKeyPhraseExtractionTasksItem: coreHttp.CompositeMapper = {
+export const TasksStateTasksKeyPhraseExtractionTasksItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasksKeyPhraseExtractionTasksItem",
@@ -2269,7 +2269,7 @@ export const TasksStateTasksKeyPhraseExtractionTasksItem: coreHttp.CompositeMapp
   }
 };
 
-export const TasksStateTasksEntityLinkingTasksItem: coreHttp.CompositeMapper = {
+export const TasksStateTasksEntityLinkingTasksItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TasksStateTasksEntityLinkingTasksItem",
@@ -2281,7 +2281,7 @@ export const TasksStateTasksEntityLinkingTasksItem: coreHttp.CompositeMapper = {
   }
 };
 
-export const HealthcareEntity: coreHttp.CompositeMapper = {
+export const HealthcareEntity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HealthcareEntity",
@@ -2316,7 +2316,7 @@ export const HealthcareEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeneratedClientAnalyzeHeaders: coreHttp.CompositeMapper = {
+export const GeneratedClientAnalyzeHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GeneratedClientAnalyzeHeaders",
@@ -2331,7 +2331,7 @@ export const GeneratedClientAnalyzeHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeneratedClientCancelHealthJobHeaders: coreHttp.CompositeMapper = {
+export const GeneratedClientCancelHealthJobHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GeneratedClientCancelHealthJobHeaders",
@@ -2346,7 +2346,7 @@ export const GeneratedClientCancelHealthJobHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeneratedClientHealthHeaders: coreHttp.CompositeMapper = {
+export const GeneratedClientHealthHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GeneratedClientHealthHeaders",

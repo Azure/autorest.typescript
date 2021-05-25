@@ -2,7 +2,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-http";
+} from "@azure/core-client";
 import {
   SecretSetParameters as SecretSetParametersMapper,
   SecretUpdateParameters as SecretUpdateParametersMapper,

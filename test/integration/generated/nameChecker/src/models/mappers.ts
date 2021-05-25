@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const SearchError: coreHttp.CompositeMapper = {
+export const SearchError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SearchError",
@@ -37,7 +37,7 @@ export const SearchError: coreHttp.CompositeMapper = {
   }
 };
 
-export const SearchDocumentsResult: coreHttp.CompositeMapper = {
+export const SearchDocumentsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SearchDocumentsResult",
@@ -101,7 +101,7 @@ export const SearchDocumentsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const FacetResult: coreHttp.CompositeMapper = {
+export const FacetResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FacetResult",
@@ -118,7 +118,7 @@ export const FacetResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SearchRequest: coreHttp.CompositeMapper = {
+export const SearchRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SearchRequest",
@@ -254,7 +254,7 @@ export const SearchRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const SearchResult: coreHttp.CompositeMapper = {
+export const SearchResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SearchResult",
@@ -282,7 +282,7 @@ export const SearchResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SuggestDocumentsResult: coreHttp.CompositeMapper = {
+export const SuggestDocumentsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SuggestDocumentsResult",
@@ -312,7 +312,7 @@ export const SuggestDocumentsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SuggestResult: coreHttp.CompositeMapper = {
+export const SuggestResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SuggestResult",
@@ -330,7 +330,7 @@ export const SuggestResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SuggestRequest: coreHttp.CompositeMapper = {
+export const SuggestRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SuggestRequest",
@@ -407,7 +407,7 @@ export const SuggestRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const IndexBatch: coreHttp.CompositeMapper = {
+export const IndexBatch: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IndexBatch",
@@ -429,7 +429,7 @@ export const IndexBatch: coreHttp.CompositeMapper = {
   }
 };
 
-export const IndexAction: coreHttp.CompositeMapper = {
+export const IndexAction: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IndexAction",
@@ -447,7 +447,7 @@ export const IndexAction: coreHttp.CompositeMapper = {
   }
 };
 
-export const IndexDocumentsResult: coreHttp.CompositeMapper = {
+export const IndexDocumentsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IndexDocumentsResult",
@@ -470,7 +470,7 @@ export const IndexDocumentsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const IndexingResult: coreHttp.CompositeMapper = {
+export const IndexingResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IndexingResult",
@@ -510,7 +510,7 @@ export const IndexingResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutocompleteResult: coreHttp.CompositeMapper = {
+export const AutocompleteResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutocompleteResult",
@@ -540,7 +540,7 @@ export const AutocompleteResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutocompleteItem: coreHttp.CompositeMapper = {
+export const AutocompleteItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutocompleteItem",
@@ -565,7 +565,7 @@ export const AutocompleteItem: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutocompleteRequest: coreHttp.CompositeMapper = {
+export const AutocompleteRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutocompleteRequest",

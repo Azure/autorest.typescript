@@ -8,7 +8,7 @@
 
 import { createSpan } from "../tracing";
 import { Dictionary } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -50,12 +50,9 @@ export class DictionaryImpl implements Dictionary {
       "BodyComplexWithTracing-getValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getValidOperationSpec
       );
       return result as DictionaryGetValidResponse;
@@ -79,21 +76,17 @@ export class DictionaryImpl implements Dictionary {
   async putValid(
     complexBody: DictionaryWrapper,
     options?: DictionaryPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const { span } = createSpan(
       "BodyComplexWithTracing-putValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { complexBody, options },
         putValidOperationSpec
       );
-      return result as coreHttp.RestResponse;
+      return result as void;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -116,12 +109,9 @@ export class DictionaryImpl implements Dictionary {
       "BodyComplexWithTracing-getEmpty",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getEmptyOperationSpec
       );
       return result as DictionaryGetEmptyResponse;
@@ -144,21 +134,17 @@ export class DictionaryImpl implements Dictionary {
   async putEmpty(
     complexBody: DictionaryWrapper,
     options?: DictionaryPutEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const { span } = createSpan(
       "BodyComplexWithTracing-putEmpty",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { complexBody, options },
         putEmptyOperationSpec
       );
-      return result as coreHttp.RestResponse;
+      return result as void;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -181,12 +167,9 @@ export class DictionaryImpl implements Dictionary {
       "BodyComplexWithTracing-getNull",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getNullOperationSpec
       );
       return result as DictionaryGetNullResponse;
@@ -212,12 +195,9 @@ export class DictionaryImpl implements Dictionary {
       "BodyComplexWithTracing-getNotProvided",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getNotProvidedOperationSpec
       );
       return result as DictionaryGetNotProvidedResponse;
@@ -233,9 +213,9 @@ export class DictionaryImpl implements Dictionary {
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreHttp.OperationSpec = {
+const getValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/valid",
   httpMethod: "GET",
   responses: {
@@ -250,7 +230,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreHttp.OperationSpec = {
+const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/valid",
   httpMethod: "PUT",
   responses: {
@@ -265,7 +245,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getEmptyOperationSpec: coreHttp.OperationSpec = {
+const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/empty",
   httpMethod: "GET",
   responses: {
@@ -280,7 +260,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putEmptyOperationSpec: coreHttp.OperationSpec = {
+const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/empty",
   httpMethod: "PUT",
   responses: {
@@ -295,7 +275,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getNullOperationSpec: coreHttp.OperationSpec = {
+const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/null",
   httpMethod: "GET",
   responses: {
@@ -310,7 +290,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
+const getNotProvidedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/notprovided",
   httpMethod: "GET",
   responses: {

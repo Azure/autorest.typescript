@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
@@ -56,8 +56,8 @@ export class MediaTypesClient extends MediaTypesClientContext {
       | [ContentType, MediaTypesClientAnalyzeBody$binaryOptionalParams?]
       | ["application/json", MediaTypesClientAnalyzeBody$jsonOptionalParams?]
   ): Promise<MediaTypesClientAnalyzeBodyResponse> {
-    let operationSpec: coreHttp.OperationSpec;
-    let operationArguments: coreHttp.OperationArguments;
+    let operationSpec: coreClient.OperationSpec;
+    let operationArguments: coreClient.OperationArguments;
     let options;
     if (
       args[0] === "application/pdf" ||
@@ -77,13 +77,8 @@ export class MediaTypesClient extends MediaTypesClientContext {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
-    );
-    return this.sendOperationRequest(
-      operationArguments,
-      operationSpec
-    ) as Promise<MediaTypesClientAnalyzeBodyResponse>;
+    operationArguments.options = options || {};
+    return this.sendOperationRequest(operationArguments, operationSpec);
   }
 
   /**
@@ -93,19 +88,16 @@ export class MediaTypesClient extends MediaTypesClientContext {
   contentTypeWithEncoding(
     options?: MediaTypesClientContentTypeWithEncodingOptionalParams
   ): Promise<MediaTypesClientContentTypeWithEncodingResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       contentTypeWithEncodingOperationSpec
-    ) as Promise<MediaTypesClientContentTypeWithEncodingResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
+const analyzeBody$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
@@ -119,7 +111,7 @@ const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
+const analyzeBody$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
@@ -133,7 +125,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
+const contentTypeWithEncodingOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/contentTypeWithEncoding",
   httpMethod: "POST",
   responses: {

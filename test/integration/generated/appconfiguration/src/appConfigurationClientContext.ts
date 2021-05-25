@@ -6,13 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { AppConfigurationClientOptionalParams } from "./models";
 
-const packageName = "appconfiguration";
-const packageVersion = "1.0.0-preview1";
-
-export class AppConfigurationClientContext extends coreHttp.ServiceClient {
+export class AppConfigurationClientContext extends coreClient.ServiceClient {
   endpoint: string;
   syncToken?: string;
   apiVersion: string;
@@ -34,16 +31,16 @@ export class AppConfigurationClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: AppConfigurationClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "{endpoint}";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "{endpoint}"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.endpoint = endpoint;
 

@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
@@ -71,7 +70,7 @@ export interface Primitive {
   putInt(
     complexBody: IntWrapper,
     options?: PrimitivePutIntOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with long properties
    * @param options The options parameters.
@@ -87,7 +86,7 @@ export interface Primitive {
   putLong(
     complexBody: LongWrapper,
     options?: PrimitivePutLongOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with float properties
    * @param options The options parameters.
@@ -103,7 +102,7 @@ export interface Primitive {
   putFloat(
     complexBody: FloatWrapper,
     options?: PrimitivePutFloatOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with double properties
    * @param options The options parameters.
@@ -120,7 +119,7 @@ export interface Primitive {
   putDouble(
     complexBody: DoubleWrapper,
     options?: PrimitivePutDoubleOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with bool properties
    * @param options The options parameters.
@@ -136,7 +135,7 @@ export interface Primitive {
   putBool(
     complexBody: BooleanWrapper,
     options?: PrimitivePutBoolOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with string properties
    * @param options The options parameters.
@@ -152,7 +151,7 @@ export interface Primitive {
   putString(
     complexBody: StringWrapper,
     options?: PrimitivePutStringOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with date properties
    * @param options The options parameters.
@@ -168,7 +167,7 @@ export interface Primitive {
   putDate(
     complexBody: DateWrapper,
     options?: PrimitivePutDateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with datetime properties
    * @param options The options parameters.
@@ -184,7 +183,7 @@ export interface Primitive {
   putDateTime(
     complexBody: DatetimeWrapper,
     options?: PrimitivePutDateTimeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with datetimeRfc1123 properties
    * @param options The options parameters.
@@ -200,7 +199,7 @@ export interface Primitive {
   putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
     options?: PrimitivePutDateTimeRfc1123OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with duration properties
    * @param options The options parameters.
@@ -216,7 +215,7 @@ export interface Primitive {
   putDuration(
     complexBody: DurationWrapper,
     options?: PrimitivePutDurationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with byte properties
    * @param options The options parameters.
@@ -232,5 +231,5 @@ export interface Primitive {
   putByte(
     complexBody: ByteWrapper,
     options?: PrimitivePutByteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

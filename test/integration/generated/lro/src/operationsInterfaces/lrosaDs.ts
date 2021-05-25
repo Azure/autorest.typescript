@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
@@ -335,16 +334,14 @@ export interface LrosaDs {
    */
   beginDelete204Succeeded(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
   beginDelete204SucceededAndWait(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status

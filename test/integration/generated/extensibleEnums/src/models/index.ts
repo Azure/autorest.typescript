@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface PetDef {
   /** name */
@@ -65,41 +65,23 @@ export type IntEnum = string;
 
 /** Optional parameters. */
 export interface PetGetByPetIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByPetId operation. */
-export type PetGetByPetIdResponse = PetDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PetDef;
-  };
-};
+export type PetGetByPetIdResponse = PetDef;
 
 /** Optional parameters. */
-export interface PetAddPetOptionalParams extends coreHttp.OperationOptions {
+export interface PetAddPetOptionalParams extends coreClient.OperationOptions {
   /** pet param */
   petParam?: PetDef;
 }
 
 /** Contains response data for the addPet operation. */
-export type PetAddPetResponse = PetDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PetDef;
-  };
-};
+export type PetAddPetResponse = PetDef;
 
 /** Optional parameters. */
 export interface ExtensibleEnumsClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

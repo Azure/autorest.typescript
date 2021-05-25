@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
@@ -39,7 +38,7 @@ export interface Dictionary {
   putValid(
     complexBody: DictionaryWrapper,
     options?: DictionaryPutValidOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with dictionary property which is empty
    * @param options The options parameters.
@@ -55,7 +54,7 @@ export interface Dictionary {
   putEmpty(
     complexBody: DictionaryWrapper,
     options?: DictionaryPutEmptyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get complex types with dictionary property which is null
    * @param options The options parameters.

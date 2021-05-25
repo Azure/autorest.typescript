@@ -1,4 +1,4 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import { NoLicenseHeaderClientContext } from "./noLicenseHeaderClientContext";
 import {
@@ -27,19 +27,13 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
   apiV1ValueGet(
     options?: NoLicenseHeaderClientApiV1ValueGetOptionalParams
   ): Promise<NoLicenseHeaderClientApiV1ValueGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      apiV1ValueGetOperationSpec
-    ) as Promise<NoLicenseHeaderClientApiV1ValueGetResponse>;
+    return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer({}, /* isXml */ false);
+const serializer = coreClient.createSerializer({}, /* isXml */ false);
 
-const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
+const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "GET",
   responses: {

@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   HttpRetryHead408OptionalParams,
   HttpRetryPut500OptionalParams,
@@ -26,30 +25,22 @@ export interface HttpRetry {
    * Return 408 status code, then 200 after retry
    * @param options The options parameters.
    */
-  head408(
-    options?: HttpRetryHead408OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  head408(options?: HttpRetryHead408OptionalParams): Promise<void>;
   /**
    * Return 500 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put500(
-    options?: HttpRetryPut500OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  put500(options?: HttpRetryPut500OptionalParams): Promise<void>;
   /**
    * Return 500 status code, then 200 after retry
    * @param options The options parameters.
    */
-  patch500(
-    options?: HttpRetryPatch500OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  patch500(options?: HttpRetryPatch500OptionalParams): Promise<void>;
   /**
    * Return 502 status code, then 200 after retry
    * @param options The options parameters.
    */
-  get502(
-    options?: HttpRetryGet502OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  get502(options?: HttpRetryGet502OptionalParams): Promise<void>;
   /**
    * Return 502 status code, then 200 after retry
    * @param options The options parameters.
@@ -61,28 +52,20 @@ export interface HttpRetry {
    * Return 503 status code, then 200 after retry
    * @param options The options parameters.
    */
-  post503(
-    options?: HttpRetryPost503OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  post503(options?: HttpRetryPost503OptionalParams): Promise<void>;
   /**
    * Return 503 status code, then 200 after retry
    * @param options The options parameters.
    */
-  delete503(
-    options?: HttpRetryDelete503OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  delete503(options?: HttpRetryDelete503OptionalParams): Promise<void>;
   /**
    * Return 504 status code, then 200 after retry
    * @param options The options parameters.
    */
-  put504(
-    options?: HttpRetryPut504OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  put504(options?: HttpRetryPut504OptionalParams): Promise<void>;
   /**
    * Return 504 status code, then 200 after retry
    * @param options The options parameters.
    */
-  patch504(
-    options?: HttpRetryPatch504OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  patch504(options?: HttpRetryPatch504OptionalParams): Promise<void>;
 }

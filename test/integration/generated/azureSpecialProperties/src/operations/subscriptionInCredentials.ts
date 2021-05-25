@@ -7,7 +7,7 @@
  */
 
 import { SubscriptionInCredentials } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -39,14 +39,11 @@ export class SubscriptionInCredentialsImpl
    */
   postMethodGlobalValid(
     options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       postMethodGlobalValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -56,14 +53,11 @@ export class SubscriptionInCredentialsImpl
    */
   postMethodGlobalNull(
     options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       postMethodGlobalNullOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -73,14 +67,11 @@ export class SubscriptionInCredentialsImpl
    */
   postMethodGlobalNotProvidedValid(
     options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       postMethodGlobalNotProvidedValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -90,14 +81,11 @@ export class SubscriptionInCredentialsImpl
    */
   postPathGlobalValid(
     options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       postPathGlobalValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -107,20 +95,17 @@ export class SubscriptionInCredentialsImpl
    */
   postSwaggerGlobalValid(
     options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       postSwaggerGlobalValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const postMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {
+const postMethodGlobalValidOperationSpec: coreClient.OperationSpec = {
   path:
     "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
@@ -134,7 +119,7 @@ const postMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const postMethodGlobalNullOperationSpec: coreHttp.OperationSpec = {
+const postMethodGlobalNullOperationSpec: coreClient.OperationSpec = {
   path:
     "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
   httpMethod: "POST",
@@ -148,7 +133,7 @@ const postMethodGlobalNullOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const postMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
+const postMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec = {
   path:
     "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
@@ -163,7 +148,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const postPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
+const postPathGlobalValidOperationSpec: coreClient.OperationSpec = {
   path:
     "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
@@ -177,7 +162,7 @@ const postPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const postSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
+const postSwaggerGlobalValidOperationSpec: coreClient.OperationSpec = {
   path:
     "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",

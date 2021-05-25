@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
@@ -20,28 +19,20 @@ export interface HttpServerFailure {
    * Return 501 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  head501(
-    options?: HttpServerFailureHead501OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  head501(options?: HttpServerFailureHead501OptionalParams): Promise<void>;
   /**
    * Return 501 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  get501(
-    options?: HttpServerFailureGet501OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  get501(options?: HttpServerFailureGet501OptionalParams): Promise<void>;
   /**
    * Return 505 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  post505(
-    options?: HttpServerFailurePost505OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  post505(options?: HttpServerFailurePost505OptionalParams): Promise<void>;
   /**
    * Return 505 status code - should be represented in the client as an error
    * @param options The options parameters.
    */
-  delete505(
-    options?: HttpServerFailureDelete505OptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  delete505(options?: HttpServerFailureDelete505OptionalParams): Promise<void>;
 }

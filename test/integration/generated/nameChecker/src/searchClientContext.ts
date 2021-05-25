@@ -1,10 +1,7 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { SearchClientOptionalParams } from "./models";
 
-const packageName = "@azure/search-documents";
-const packageVersion = "1.0.0-preview1";
-
-export class SearchClientContext extends coreHttp.ServiceClient {
+export class SearchClientContext extends coreClient.ServiceClient {
   endpoint: string;
   indexName: string;
   apiVersion: string;
@@ -31,16 +28,16 @@ export class SearchClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: SearchClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "{endpoint}/indexes('{indexName}')";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "{endpoint}/indexes('{indexName}')"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.endpoint = endpoint;
     this.indexName = indexName;

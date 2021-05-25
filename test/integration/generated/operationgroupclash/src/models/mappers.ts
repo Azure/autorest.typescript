@@ -1,6 +1,6 @@
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Product: coreHttp.CompositeMapper = {
+export const Product: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Product",
@@ -21,7 +21,7 @@ export const Product: coreHttp.CompositeMapper = {
   }
 };
 
-export const Dummy: coreHttp.CompositeMapper = {
+export const Dummy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Dummy",

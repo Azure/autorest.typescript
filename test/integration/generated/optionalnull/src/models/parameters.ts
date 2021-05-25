@@ -1,7 +1,7 @@
 import {
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-http";
+} from "@azure/core-client";
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

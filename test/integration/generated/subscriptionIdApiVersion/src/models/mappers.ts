@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const SampleResourceGroup: coreHttp.CompositeMapper = {
+export const SampleResourceGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SampleResourceGroup",
@@ -29,7 +29,7 @@ export const SampleResourceGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreHttp.CompositeMapper = {
+export const ErrorModel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",

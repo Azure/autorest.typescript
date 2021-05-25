@@ -6,13 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import { ReportClientOptionalParams } from "./models";
 
-const packageName = "zzzReport";
-const packageVersion = "1.0.0-preview1";
-
-export class ReportClientContext extends coreHttp.ServiceClient {
+export class ReportClientContext extends coreClient.ServiceClient {
   $host: string;
 
   /**
@@ -24,16 +21,16 @@ export class ReportClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: ReportClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(undefined, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "http://localhost:3000";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";

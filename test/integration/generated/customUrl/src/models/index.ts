@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -15,11 +15,11 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface PathsGetEmptyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface CustomUrlClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** A string value that is used as a global part of the parameterized host */
   host?: string;
   /** Overrides client endpoint. */

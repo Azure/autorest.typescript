@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import { RegexConstraintContext } from "./regexConstraintContext";
 import {
@@ -34,20 +34,16 @@ export class RegexConstraint extends RegexConstraintContext {
     serverName: string,
     options?: RegexConstraintApiV1ValueGetOptionalParams
   ): Promise<RegexConstraintApiV1ValueGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      serverName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { serverName, options },
       apiV1ValueGetOperationSpec
-    ) as Promise<RegexConstraintApiV1ValueGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer({}, /* isXml */ false);
+const serializer = coreClient.createSerializer({}, /* isXml */ false);
 
-const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
+const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "GET",
   responses: {

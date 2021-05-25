@@ -8,7 +8,7 @@
 
 import { createSpan } from "../tracing";
 import { Polymorphicrecursive } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -43,12 +43,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
       "BodyComplexWithTracing-getValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { options },
         getValidOperationSpec
       );
       return result as PolymorphicrecursiveGetValidResponse;
@@ -123,21 +120,17 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
   async putValid(
     complexBody: FishUnion,
     options?: PolymorphicrecursivePutValidOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const { span } = createSpan(
       "BodyComplexWithTracing-putValid",
       options || {}
     );
-    const operationArguments: coreHttp.OperationArguments = {
-      complexBody,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     try {
       const result = await this.client.sendOperationRequest(
-        operationArguments,
+        { complexBody, options },
         putValidOperationSpec
       );
-      return result as coreHttp.RestResponse;
+      return result as void;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -150,9 +143,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreHttp.OperationSpec = {
+const getValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphicrecursive/valid",
   httpMethod: "GET",
   responses: {
@@ -167,7 +160,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreHttp.OperationSpec = {
+const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphicrecursive/valid",
   httpMethod: "PUT",
   responses: {
